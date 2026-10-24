@@ -4,7 +4,7 @@ The site is a static build in `docs/`. It can be deployed without a build step.
 
 **Live:** https://gregarious-cat-8f3216.netlify.app/
 
-Security headers were verified on the live Netlify deployment.
+Security headers were verified on the live Netlify deployment. The GitHub repository is linked to Netlify: a push to `main` triggers an automatic production deploy.
 
 ## Recommended: Netlify Drop
 
