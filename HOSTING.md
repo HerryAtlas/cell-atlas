@@ -2,6 +2,10 @@
 
 The site is a static build in `docs/`. It can be deployed without a build step.
 
+**Live:** https://gregarious-cat-8f3216.netlify.app/
+
+Security headers were verified on the live Netlify deployment.
+
 ## Recommended: Netlify Drop
 
 1. Sign up at **https://app.netlify.com/signup** with GitHub (free, no card).

@@ -4,7 +4,7 @@
 
 The only official live deployment is:
 
-**https://herryatlas.github.io/cell-atlas/**
+**https://gregarious-cat-8f3216.netlify.app/**
 
 Canonical repository:
 
@@ -25,9 +25,9 @@ This is a static, client-side educational site:
 
 The relevant risks are therefore limited to content spoofing at an abandoned URL and to browser-side code execution in the static frontend itself.
 
-## GitHub Pages headers
+## Hosting headers
 
-GitHub Pages controls response headers and does not allow a repository to set arbitrary headers such as `Content-Security-Policy`, `X-Frame-Options` or `Permissions-Policy`. The pages include a restrictive `<meta http-equiv="Content-Security-Policy">` and a referrer policy as partial mitigations. Header-level controls require a reverse proxy or a host with configurable headers.
+The official Netlify deployment supplies the full security-header set through `_headers`: CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, COOP, CORP, COEP, HSTS and X-Permitted-Cross-Domain-Policies. The GitHub Pages copy is a legacy mirror and cannot set those response headers; it is not the official deployment.
 
 ## Reporting
 
