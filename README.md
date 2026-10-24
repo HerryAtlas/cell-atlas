@@ -435,3 +435,7 @@ welcome — please cite the textbook section or a primary source in the PR.
 ## Security
 
 See [SECURITY.md](SECURITY.md) for the official deployment URL, the abandoned-username note and the GitHub Pages header limitations.
+
+## Hosting
+
+See [HOSTING.md](HOSTING.md) for the Netlify / Cloudflare static deployment and the `_headers` policy.
