@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>教材分节学习 / Cell Atlas Study Reader</title>
+  <meta name="description" content="《细胞生物学》第5版分节学习：16章44节，学习目标、核心概念、机制要点与自测。" />
+  <meta name="theme-color" content="#02060b" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./textbook.css" />
+</head>
+<body>
+  <div class="tb-app">
+    <header class="tb-top">
+      <a class="tb-back" href="./index.html">← 返回细胞图谱</a>
+      <div class="tb-brand"><span class="tb-brand-mark"></span> CELL ATLAS <em>/ 教材分节</em></div>
+      <div class="tb-edition">5TH ED · 16 CHAPTERS · 44 SECTIONS</div>
+    </header>
+
+    <div class="tb-layout">
+      <aside class="tb-side">
+        <div class="tb-side-eyebrow">CELL BIOLOGY / STUDY READER</div>
+        <h1>教材分节</h1>
+        <p class="tb-side-sub">按节精读 · 与七幕视觉课件互为索引</p>
+        <div class="tb-search">
+          <input id="tbSearch" type="search" placeholder="搜索章节或小节…" aria-label="搜索章节或小节" />
+        </div>
+        <nav class="tb-nav" id="tbChapters" aria-label="教材章节"></nav>
+        <div class="tb-side-foot">
+          依据《细胞生物学》第5版<br />丁明孝 等 · 高等教育出版社 · 2020
+        </div>
+      </aside>
+
+      <main class="tb-main">
+        <header class="tb-chapter" id="tbChapterHead">
+          <div class="tb-chapter-kicker" id="tbChapterKicker"></div>
+          <h2 id="tbChapterTitle"></h2>
+          <p id="tbChapterOverview"></p>
+          <div class="tb-chapter-actions">
+            <a class="tb-scene-link" id="tbSceneLink" href="./index.html" hidden>看对应画面 →</a>
+            <span class="tb-page-chip" id="tbPageChip"></span>
+          </div>
+          <div class="tb-model-strip" id="tbModelStrip" hidden></div>
+        </header>
+
+        <section class="tb-sections" id="tbSections" aria-label="小节内容"></section>
+
+        <footer class="tb-footer">
+          <div class="tb-footer-mark">44</div>
+          <p>本页为学习摘要，依据丁明孝等《细胞生物学》第5版（高等教育出版社，2020，ISBN 978-7-04-047157-1）相关章节整理；请以原书为准。</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script src="./textbook.js"></script>
+</body>
+</html>

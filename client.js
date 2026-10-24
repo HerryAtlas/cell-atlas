@@ -1,0 +1,7225 @@
+(()=>{var Oh=0,Vc=1,Bh=2;var ia=1,kh=2,$s=3,di=0,Yt=1,qt=2,kn=0,js=1,xt=2,Wc=3,Xc=4,zh=5;var fs=100,Hh=101,Gh=102,Vh=103,Wh=104,Xh=200,qh=201,Yh=202,Zh=203,qc=204,Yc=205,Kh=206,Jh=207,$h=208,jh=209,Qh=210,ed=211,td=212,nd=213,id=214,_o=0,bo=1,Mo=2,Hs=3,So=4,Eo=5,wo=6,To=7,al=0,sd=1,rd=2,jn=0,sa=1,ra=2,aa=3,Ti=4,oa=5,la=6,ca=7;var Zc=300,Wi=301,ps=302,Qs=303,ol=304,ua=306,Ao=1e3,si=1001,Co=1002,ln=1003,ad=1004;var ha=1005;var cn=1006,ll=1007;var Xi=1008;var En=1009,Kc=1010,Jc=1011,er=1012,cl=1013,Qn=1014,zn=1015,un=1016,ul=1017,hl=1018,tr=1020,$c=35902,jc=35899,Qc=1021,eu=1022,Hn=1023,ri=1026,qi=1027,dl=1028,fl=1029,Yi=1030,pl=1031;var ml=1033,da=33776,fa=33777,pa=33778,ma=33779,gl=35840,xl=35841,vl=35842,yl=35843,_l=36196,bl=37492,Ml=37496,Sl=37488,El=37489,ga=37490,wl=37491,Tl=37808,Al=37809,Cl=37810,Rl=37811,Pl=37812,Il=37813,Nl=37814,Ll=37815,Dl=37816,Ul=37817,Fl=37818,Ol=37819,Bl=37820,kl=37821,zl=36492,Hl=36494,Gl=36495,Vl=36283,Wl=36284,xa=36285,Xl=36286;var Nr=2300,Ro=2301,vo=2302,Lc=2303,Dc=2400,Uc=2401,Fc=2402;var od=3200;var va=0,ld=1,Ai="",on="srgb",Lr="srgb-linear",Dr="linear",Ct="srgb";var yo=7680;var cd=519,ud=512,hd=513,dd=514,ql=515,fd=516,pd=517,Yl=518,md=519,gd=35044;var tu="300 es",Zn=2e3,Gs=2001;function $f(i){for(let e=i.length-1;e>=0;--e)if(i[e]>=65535)return!0;return!1}function jf(i){return ArrayBuffer.isView(i)&&!(i instanceof DataView)}function Ur(i){return document.createElementNS("http://www.w3.org/1999/xhtml",i)}function xd(){let i=Ur("canvas");return i.style.display="block",i}var rh={},Vs=null;function nu(...i){let e="THREE."+i.shift();Vs?Vs("log",e,...i):console.log(e,...i)}function vd(i){let e=i[0];if(typeof e=="string"&&e.startsWith("TSL:")){let t=i[1];t&&t.isStackTrace?i[0]+=" "+t.getLocation():i[1]='Stack trace not available. Enable "THREE.Node.captureStackTrace" to capture stack traces.'}return i}function Ke(...i){i=vd(i);let e="THREE."+i.shift();if(Vs)Vs("warn",e,...i);else{let t=i[0];t&&t.isStackTrace?console.warn(t.getError(e)):console.warn(e,...i)}}function Qe(...i){i=vd(i);let e="THREE."+i.shift();if(Vs)Vs("error",e,...i);else{let t=i[0];t&&t.isStackTrace?console.error(t.getError(e)):console.error(e,...i)}}function os(...i){let e=i.join(" ");e in rh||(rh[e]=!0,Ke(...i))}function yd(i,e,t){return new Promise(function(n,s){function r(){switch(i.clientWaitSync(e,i.SYNC_FLUSH_COMMANDS_BIT,0)){case i.WAIT_FAILED:s();break;case i.TIMEOUT_EXPIRED:setTimeout(r,t);break;default:n()}}setTimeout(r,t)})}var _d={[_o]:bo,[Mo]:wo,[So]:To,[Hs]:Eo,[bo]:_o,[wo]:Mo,[To]:So,[Eo]:Hs},ai=class{addEventListener(e,t){this._listeners===void 0&&(this._listeners={});let n=this._listeners;n[e]===void 0&&(n[e]=[]),n[e].indexOf(t)===-1&&n[e].push(t)}hasEventListener(e,t){let n=this._listeners;return n===void 0?!1:n[e]!==void 0&&n[e].indexOf(t)!==-1}removeEventListener(e,t){let n=this._listeners;if(n===void 0)return;let s=n[e];if(s!==void 0){let r=s.indexOf(t);r!==-1&&s.splice(r,1)}}dispatchEvent(e){let t=this._listeners;if(t===void 0)return;let n=t[e.type];if(n!==void 0){e.target=this;let s=n.slice(0);for(let r=0,a=s.length;r<a;r++)s[r].call(this,e);e.target=null}}},dn=["00","01","02","03","04","05","06","07","08","09","0a","0b","0c","0d","0e","0f","10","11","12","13","14","15","16","17","18","19","1a","1b","1c","1d","1e","1f","20","21","22","23","24","25","26","27","28","29","2a","2b","2c","2d","2e","2f","30","31","32","33","34","35","36","37","38","39","3a","3b","3c","3d","3e","3f","40","41","42","43","44","45","46","47","48","49","4a","4b","4c","4d","4e","4f","50","51","52","53","54","55","56","57","58","59","5a","5b","5c","5d","5e","5f","60","61","62","63","64","65","66","67","68","69","6a","6b","6c","6d","6e","6f","70","71","72","73","74","75","76","77","78","79","7a","7b","7c","7d","7e","7f","80","81","82","83","84","85","86","87","88","89","8a","8b","8c","8d","8e","8f","90","91","92","93","94","95","96","97","98","99","9a","9b","9c","9d","9e","9f","a0","a1","a2","a3","a4","a5","a6","a7","a8","a9","aa","ab","ac","ad","ae","af","b0","b1","b2","b3","b4","b5","b6","b7","b8","b9","ba","bb","bc","bd","be","bf","c0","c1","c2","c3","c4","c5","c6","c7","c8","c9","ca","cb","cc","cd","ce","cf","d0","d1","d2","d3","d4","d5","d6","d7","d8","d9","da","db","dc","dd","de","df","e0","e1","e2","e3","e4","e5","e6","e7","e8","e9","ea","eb","ec","ed","ee","ef","f0","f1","f2","f3","f4","f5","f6","f7","f8","f9","fa","fb","fc","fd","fe","ff"];var ac=Math.PI/180,Fr=180/Math.PI;function ya(){let i=Math.random()*4294967295|0,e=Math.random()*4294967295|0,t=Math.random()*4294967295|0,n=Math.random()*4294967295|0;return(dn[i&255]+dn[i>>8&255]+dn[i>>16&255]+dn[i>>24&255]+"-"+dn[e&255]+dn[e>>8&255]+"-"+dn[e>>16&15|64]+dn[e>>24&255]+"-"+dn[t&63|128]+dn[t>>8&255]+"-"+dn[t>>16&255]+dn[t>>24&255]+dn[n&255]+dn[n>>8&255]+dn[n>>16&255]+dn[n>>24&255]).toLowerCase()}function gt(i,e,t){return Math.max(e,Math.min(t,i))}function Qf(i,e){return(i%e+e)%e}function oc(i,e,t){return(1-t)*i+t*e}function Mr(i,e){switch(e.constructor){case Float32Array:return i;case Uint32Array:return i/4294967295;case Uint16Array:return i/65535;case Uint8Array:case Uint8ClampedArray:return i/255;case Int32Array:return Math.max(i/2147483647,-1);case Int16Array:return Math.max(i/32767,-1);case Int8Array:return Math.max(i/127,-1);default:throw new Error("THREE.MathUtils: Invalid component type.")}}function Mn(i,e){switch(e.constructor){case Float32Array:return i;case Uint32Array:return Math.round(i*4294967295);case Uint16Array:return Math.round(i*65535);case Uint8Array:case Uint8ClampedArray:return Math.round(i*255);case Int32Array:return Math.round(i*2147483647);case Int16Array:return Math.round(i*32767);case Int8Array:return Math.round(i*127);default:throw new Error("THREE.MathUtils: Invalid component type.")}}var lu=class lu{constructor(e=0,t=0){this.x=e,this.y=t}get width(){return this.x}set width(e){this.x=e}get height(){return this.y}set height(e){this.y=e}set(e,t){return this.x=e,this.y=t,this}setScalar(e){return this.x=e,this.y=e,this}setX(e){return this.x=e,this}setY(e){return this.y=e,this}setComponent(e,t){switch(e){case 0:this.x=t;break;case 1:this.y=t;break;default:throw new Error("THREE.Vector2: index is out of range: "+e)}return this}getComponent(e){switch(e){case 0:return this.x;case 1:return this.y;default:throw new Error("THREE.Vector2: index is out of range: "+e)}}clone(){return new this.constructor(this.x,this.y)}copy(e){return this.x=e.x,this.y=e.y,this}add(e){return this.x+=e.x,this.y+=e.y,this}addScalar(e){return this.x+=e,this.y+=e,this}addVectors(e,t){return this.x=e.x+t.x,this.y=e.y+t.y,this}addScaledVector(e,t){return this.x+=e.x*t,this.y+=e.y*t,this}sub(e){return this.x-=e.x,this.y-=e.y,this}subScalar(e){return this.x-=e,this.y-=e,this}subVectors(e,t){return this.x=e.x-t.x,this.y=e.y-t.y,this}multiply(e){return this.x*=e.x,this.y*=e.y,this}multiplyScalar(e){return this.x*=e,this.y*=e,this}divide(e){return this.x/=e.x,this.y/=e.y,this}divideScalar(e){return this.multiplyScalar(1/e)}applyMatrix3(e){let t=this.x,n=this.y,s=e.elements;return this.x=s[0]*t+s[3]*n+s[6],this.y=s[1]*t+s[4]*n+s[7],this}min(e){return this.x=Math.min(this.x,e.x),this.y=Math.min(this.y,e.y),this}max(e){return this.x=Math.max(this.x,e.x),this.y=Math.max(this.y,e.y),this}clamp(e,t){return this.x=gt(this.x,e.x,t.x),this.y=gt(this.y,e.y,t.y),this}clampScalar(e,t){return this.x=gt(this.x,e,t),this.y=gt(this.y,e,t),this}clampLength(e,t){let n=this.length();return this.divideScalar(n||1).multiplyScalar(gt(n,e,t))}floor(){return this.x=Math.floor(this.x),this.y=Math.floor(this.y),this}ceil(){return this.x=Math.ceil(this.x),this.y=Math.ceil(this.y),this}round(){return this.x=Math.round(this.x),this.y=Math.round(this.y),this}roundToZero(){return this.x=Math.trunc(this.x),this.y=Math.trunc(this.y),this}negate(){return this.x=-this.x,this.y=-this.y,this}dot(e){return this.x*e.x+this.y*e.y}cross(e){return this.x*e.y-this.y*e.x}lengthSq(){return this.x*this.x+this.y*this.y}length(){return Math.sqrt(this.x*this.x+this.y*this.y)}manhattanLength(){return Math.abs(this.x)+Math.abs(this.y)}normalize(){return this.divideScalar(this.length()||1)}angle(){return Math.atan2(-this.y,-this.x)+Math.PI}angleTo(e){let t=Math.sqrt(this.lengthSq()*e.lengthSq());if(t===0)return Math.PI/2;let n=this.dot(e)/t;return Math.acos(gt(n,-1,1))}distanceTo(e){return Math.sqrt(this.distanceToSquared(e))}distanceToSquared(e){let t=this.x-e.x,n=this.y-e.y;return t*t+n*n}manhattanDistanceTo(e){return Math.abs(this.x-e.x)+Math.abs(this.y-e.y)}setLength(e){return this.normalize().multiplyScalar(e)}lerp(e,t){return this.x+=(e.x-this.x)*t,this.y+=(e.y-this.y)*t,this}lerpVectors(e,t,n){return this.x=e.x+(t.x-e.x)*n,this.y=e.y+(t.y-e.y)*n,this}equals(e){return e.x===this.x&&e.y===this.y}fromArray(e,t=0){return this.x=e[t],this.y=e[t+1],this}toArray(e=[],t=0){return e[t]=this.x,e[t+1]=this.y,e}fromBufferAttribute(e,t){return this.x=e.getX(t),this.y=e.getY(t),this}rotateAround(e,t){let n=Math.cos(t),s=Math.sin(t),r=this.x-e.x,a=this.y-e.y;return this.x=r*n-a*s+e.x,this.y=r*s+a*n+e.y,this}random(){return this.x=Math.random(),this.y=Math.random(),this}*[Symbol.iterator](){yield this.x,yield this.y}};lu.prototype.isVector2=!0;var Me=lu,oi=class{constructor(e=0,t=0,n=0,s=1){this.isQuaternion=!0,this._x=e,this._y=t,this._z=n,this._w=s}static slerpFlat(e,t,n,s,r,a,o){let l=n[s+0],c=n[s+1],u=n[s+2],f=n[s+3],h=r[a+0],p=r[a+1],x=r[a+2],M=r[a+3];if(f!==M||l!==h||c!==p||u!==x){let g=l*h+c*p+u*x+f*M;g<0&&(h=-h,p=-p,x=-x,M=-M,g=-g);let m=1-o;if(g<.9995){let S=Math.acos(g),C=Math.sin(S);m=Math.sin(m*S)/C,o=Math.sin(o*S)/C,l=l*m+h*o,c=c*m+p*o,u=u*m+x*o,f=f*m+M*o}else{l=l*m+h*o,c=c*m+p*o,u=u*m+x*o,f=f*m+M*o;let S=1/Math.sqrt(l*l+c*c+u*u+f*f);l*=S,c*=S,u*=S,f*=S}}e[t]=l,e[t+1]=c,e[t+2]=u,e[t+3]=f}static multiplyQuaternionsFlat(e,t,n,s,r,a){let o=n[s],l=n[s+1],c=n[s+2],u=n[s+3],f=r[a],h=r[a+1],p=r[a+2],x=r[a+3];return e[t]=o*x+u*f+l*p-c*h,e[t+1]=l*x+u*h+c*f-o*p,e[t+2]=c*x+u*p+o*h-l*f,e[t+3]=u*x-o*f-l*h-c*p,e}get x(){return this._x}set x(e){this._x=e,this._onChangeCallback()}get y(){return this._y}set y(e){this._y=e,this._onChangeCallback()}get z(){return this._z}set z(e){this._z=e,this._onChangeCallback()}get w(){return this._w}set w(e){this._w=e,this._onChangeCallback()}set(e,t,n,s){return this._x=e,this._y=t,this._z=n,this._w=s,this._onChangeCallback(),this}clone(){return new this.constructor(this._x,this._y,this._z,this._w)}copy(e){return this._x=e.x,this._y=e.y,this._z=e.z,this._w=e.w,this._onChangeCallback(),this}setFromEuler(e,t=!0){let n=e._x,s=e._y,r=e._z,a=e._order,o=Math.cos,l=Math.sin,c=o(n/2),u=o(s/2),f=o(r/2),h=l(n/2),p=l(s/2),x=l(r/2);switch(a){case"XYZ":this._x=h*u*f+c*p*x,this._y=c*p*f-h*u*x,this._z=c*u*x+h*p*f,this._w=c*u*f-h*p*x;break;case"YXZ":this._x=h*u*f+c*p*x,this._y=c*p*f-h*u*x,this._z=c*u*x-h*p*f,this._w=c*u*f+h*p*x;break;case"ZXY":this._x=h*u*f-c*p*x,this._y=c*p*f+h*u*x,this._z=c*u*x+h*p*f,this._w=c*u*f-h*p*x;break;case"ZYX":this._x=h*u*f-c*p*x,this._y=c*p*f+h*u*x,this._z=c*u*x-h*p*f,this._w=c*u*f+h*p*x;break;case"YZX":this._x=h*u*f+c*p*x,this._y=c*p*f+h*u*x,this._z=c*u*x-h*p*f,this._w=c*u*f-h*p*x;break;case"XZY":this._x=h*u*f-c*p*x,this._y=c*p*f-h*u*x,this._z=c*u*x+h*p*f,this._w=c*u*f+h*p*x;break;default:Ke("Quaternion: .setFromEuler() encountered an unknown order: "+a)}return t===!0&&this._onChangeCallback(),this}setFromAxisAngle(e,t){let n=t/2,s=Math.sin(n);return this._x=e.x*s,this._y=e.y*s,this._z=e.z*s,this._w=Math.cos(n),this._onChangeCallback(),this}setFromRotationMatrix(e){let t=e.elements,n=t[0],s=t[4],r=t[8],a=t[1],o=t[5],l=t[9],c=t[2],u=t[6],f=t[10],h=n+o+f;if(h>0){let p=.5/Math.sqrt(h+1);this._w=.25/p,this._x=(u-l)*p,this._y=(r-c)*p,this._z=(a-s)*p}else if(n>o&&n>f){let p=2*Math.sqrt(1+n-o-f);this._w=(u-l)/p,this._x=.25*p,this._y=(s+a)/p,this._z=(r+c)/p}else if(o>f){let p=2*Math.sqrt(1+o-n-f);this._w=(r-c)/p,this._x=(s+a)/p,this._y=.25*p,this._z=(l+u)/p}else{let p=2*Math.sqrt(1+f-n-o);this._w=(a-s)/p,this._x=(r+c)/p,this._y=(l+u)/p,this._z=.25*p}return this._onChangeCallback(),this}setFromUnitVectors(e,t){let n=e.dot(t)+1;return n<1e-8?(n=0,Math.abs(e.x)>Math.abs(e.z)?(this._x=-e.y,this._y=e.x,this._z=0,this._w=n):(this._x=0,this._y=-e.z,this._z=e.y,this._w=n)):(this._x=e.y*t.z-e.z*t.y,this._y=e.z*t.x-e.x*t.z,this._z=e.x*t.y-e.y*t.x,this._w=n),this.normalize()}angleTo(e){return 2*Math.acos(Math.abs(gt(this.dot(e),-1,1)))}rotateTowards(e,t){let n=this.angleTo(e);if(n===0)return this;let s=Math.min(1,t/n);return this.slerp(e,s),this}identity(){return this.set(0,0,0,1)}invert(){return this.conjugate()}conjugate(){return this._x*=-1,this._y*=-1,this._z*=-1,this._onChangeCallback(),this}dot(e){return this._x*e._x+this._y*e._y+this._z*e._z+this._w*e._w}lengthSq(){return this._x*this._x+this._y*this._y+this._z*this._z+this._w*this._w}length(){return Math.sqrt(this._x*this._x+this._y*this._y+this._z*this._z+this._w*this._w)}normalize(){let e=this.length();return e===0?(this._x=0,this._y=0,this._z=0,this._w=1):(e=1/e,this._x=this._x*e,this._y=this._y*e,this._z=this._z*e,this._w=this._w*e),this._onChangeCallback(),this}multiply(e){return this.multiplyQuaternions(this,e)}premultiply(e){return this.multiplyQuaternions(e,this)}multiplyQuaternions(e,t){let n=e._x,s=e._y,r=e._z,a=e._w,o=t._x,l=t._y,c=t._z,u=t._w;return this._x=n*u+a*o+s*c-r*l,this._y=s*u+a*l+r*o-n*c,this._z=r*u+a*c+n*l-s*o,this._w=a*u-n*o-s*l-r*c,this._onChangeCallback(),this}slerp(e,t){let n=e._x,s=e._y,r=e._z,a=e._w,o=this.dot(e);o<0&&(n=-n,s=-s,r=-r,a=-a,o=-o);let l=1-t;if(o<.9995){let c=Math.acos(o),u=Math.sin(c);l=Math.sin(l*c)/u,t=Math.sin(t*c)/u,this._x=this._x*l+n*t,this._y=this._y*l+s*t,this._z=this._z*l+r*t,this._w=this._w*l+a*t,this._onChangeCallback()}else this._x=this._x*l+n*t,this._y=this._y*l+s*t,this._z=this._z*l+r*t,this._w=this._w*l+a*t,this.normalize();return this}slerpQuaternions(e,t,n){return this.copy(e).slerp(t,n)}random(){let e=2*Math.PI*Math.random(),t=2*Math.PI*Math.random(),n=Math.random(),s=Math.sqrt(1-n),r=Math.sqrt(n);return this.set(s*Math.sin(e),s*Math.cos(e),r*Math.sin(t),r*Math.cos(t))}equals(e){return e._x===this._x&&e._y===this._y&&e._z===this._z&&e._w===this._w}fromArray(e,t=0){return this._x=e[t],this._y=e[t+1],this._z=e[t+2],this._w=e[t+3],this._onChangeCallback(),this}toArray(e=[],t=0){return e[t]=this._x,e[t+1]=this._y,e[t+2]=this._z,e[t+3]=this._w,e}fromBufferAttribute(e,t){return this._x=e.getX(t),this._y=e.getY(t),this._z=e.getZ(t),this._w=e.getW(t),this._onChangeCallback(),this}toJSON(){return this.toArray()}_onChange(e){return this._onChangeCallback=e,this}_onChangeCallback(){}*[Symbol.iterator](){yield this._x,yield this._y,yield this._z,yield this._w}},cu=class cu{constructor(e=0,t=0,n=0){this.x=e,this.y=t,this.z=n}set(e,t,n){return n===void 0&&(n=this.z),this.x=e,this.y=t,this.z=n,this}setScalar(e){return this.x=e,this.y=e,this.z=e,this}setX(e){return this.x=e,this}setY(e){return this.y=e,this}setZ(e){return this.z=e,this}setComponent(e,t){switch(e){case 0:this.x=t;break;case 1:this.y=t;break;case 2:this.z=t;break;default:throw new Error("THREE.Vector3: index is out of range: "+e)}return this}getComponent(e){switch(e){case 0:return this.x;case 1:return this.y;case 2:return this.z;default:throw new Error("THREE.Vector3: index is out of range: "+e)}}clone(){return new this.constructor(this.x,this.y,this.z)}copy(e){return this.x=e.x,this.y=e.y,this.z=e.z,this}add(e){return this.x+=e.x,this.y+=e.y,this.z+=e.z,this}addScalar(e){return this.x+=e,this.y+=e,this.z+=e,this}addVectors(e,t){return this.x=e.x+t.x,this.y=e.y+t.y,this.z=e.z+t.z,this}addScaledVector(e,t){return this.x+=e.x*t,this.y+=e.y*t,this.z+=e.z*t,this}sub(e){return this.x-=e.x,this.y-=e.y,this.z-=e.z,this}subScalar(e){return this.x-=e,this.y-=e,this.z-=e,this}subVectors(e,t){return this.x=e.x-t.x,this.y=e.y-t.y,this.z=e.z-t.z,this}multiply(e){return this.x*=e.x,this.y*=e.y,this.z*=e.z,this}multiplyScalar(e){return this.x*=e,this.y*=e,this.z*=e,this}multiplyVectors(e,t){return this.x=e.x*t.x,this.y=e.y*t.y,this.z=e.z*t.z,this}applyEuler(e){return this.applyQuaternion(ah.setFromEuler(e))}applyAxisAngle(e,t){return this.applyQuaternion(ah.setFromAxisAngle(e,t))}applyMatrix3(e){let t=this.x,n=this.y,s=this.z,r=e.elements;return this.x=r[0]*t+r[3]*n+r[6]*s,this.y=r[1]*t+r[4]*n+r[7]*s,this.z=r[2]*t+r[5]*n+r[8]*s,this}applyNormalMatrix(e){return this.applyMatrix3(e).normalize()}applyMatrix4(e){let t=this.x,n=this.y,s=this.z,r=e.elements,a=1/(r[3]*t+r[7]*n+r[11]*s+r[15]);return this.x=(r[0]*t+r[4]*n+r[8]*s+r[12])*a,this.y=(r[1]*t+r[5]*n+r[9]*s+r[13])*a,this.z=(r[2]*t+r[6]*n+r[10]*s+r[14])*a,this}applyQuaternion(e){let t=this.x,n=this.y,s=this.z,r=e.x,a=e.y,o=e.z,l=e.w,c=2*(a*s-o*n),u=2*(o*t-r*s),f=2*(r*n-a*t);return this.x=t+l*c+a*f-o*u,this.y=n+l*u+o*c-r*f,this.z=s+l*f+r*u-a*c,this}project(e){return this.applyMatrix4(e.matrixWorldInverse).applyMatrix4(e.projectionMatrix)}unproject(e){return this.applyMatrix4(e.projectionMatrixInverse).applyMatrix4(e.matrixWorld)}transformDirection(e){let t=this.x,n=this.y,s=this.z,r=e.elements;return this.x=r[0]*t+r[4]*n+r[8]*s,this.y=r[1]*t+r[5]*n+r[9]*s,this.z=r[2]*t+r[6]*n+r[10]*s,this.normalize()}divide(e){return this.x/=e.x,this.y/=e.y,this.z/=e.z,this}divideScalar(e){return this.multiplyScalar(1/e)}min(e){return this.x=Math.min(this.x,e.x),this.y=Math.min(this.y,e.y),this.z=Math.min(this.z,e.z),this}max(e){return this.x=Math.max(this.x,e.x),this.y=Math.max(this.y,e.y),this.z=Math.max(this.z,e.z),this}clamp(e,t){return this.x=gt(this.x,e.x,t.x),this.y=gt(this.y,e.y,t.y),this.z=gt(this.z,e.z,t.z),this}clampScalar(e,t){return this.x=gt(this.x,e,t),this.y=gt(this.y,e,t),this.z=gt(this.z,e,t),this}clampLength(e,t){let n=this.length();return this.divideScalar(n||1).multiplyScalar(gt(n,e,t))}floor(){return this.x=Math.floor(this.x),this.y=Math.floor(this.y),this.z=Math.floor(this.z),this}ceil(){return this.x=Math.ceil(this.x),this.y=Math.ceil(this.y),this.z=Math.ceil(this.z),this}round(){return this.x=Math.round(this.x),this.y=Math.round(this.y),this.z=Math.round(this.z),this}roundToZero(){return this.x=Math.trunc(this.x),this.y=Math.trunc(this.y),this.z=Math.trunc(this.z),this}negate(){return this.x=-this.x,this.y=-this.y,this.z=-this.z,this}dot(e){return this.x*e.x+this.y*e.y+this.z*e.z}lengthSq(){return this.x*this.x+this.y*this.y+this.z*this.z}length(){return Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z)}manhattanLength(){return Math.abs(this.x)+Math.abs(this.y)+Math.abs(this.z)}normalize(){return this.divideScalar(this.length()||1)}setLength(e){return this.normalize().multiplyScalar(e)}lerp(e,t){return this.x+=(e.x-this.x)*t,this.y+=(e.y-this.y)*t,this.z+=(e.z-this.z)*t,this}lerpVectors(e,t,n){return this.x=e.x+(t.x-e.x)*n,this.y=e.y+(t.y-e.y)*n,this.z=e.z+(t.z-e.z)*n,this}cross(e){return this.crossVectors(this,e)}crossVectors(e,t){let n=e.x,s=e.y,r=e.z,a=t.x,o=t.y,l=t.z;return this.x=s*l-r*o,this.y=r*a-n*l,this.z=n*o-s*a,this}projectOnVector(e){let t=e.lengthSq();if(t===0)return this.set(0,0,0);let n=e.dot(this)/t;return this.copy(e).multiplyScalar(n)}projectOnPlane(e){return lc.copy(this).projectOnVector(e),this.sub(lc)}reflect(e){return this.sub(lc.copy(e).multiplyScalar(2*this.dot(e)))}angleTo(e){let t=Math.sqrt(this.lengthSq()*e.lengthSq());if(t===0)return Math.PI/2;let n=this.dot(e)/t;return Math.acos(gt(n,-1,1))}distanceTo(e){return Math.sqrt(this.distanceToSquared(e))}distanceToSquared(e){let t=this.x-e.x,n=this.y-e.y,s=this.z-e.z;return t*t+n*n+s*s}manhattanDistanceTo(e){return Math.abs(this.x-e.x)+Math.abs(this.y-e.y)+Math.abs(this.z-e.z)}setFromSpherical(e){return this.setFromSphericalCoords(e.radius,e.phi,e.theta)}setFromSphericalCoords(e,t,n){let s=Math.sin(t)*e;return this.x=s*Math.sin(n),this.y=Math.cos(t)*e,this.z=s*Math.cos(n),this}setFromCylindrical(e){return this.setFromCylindricalCoords(e.radius,e.theta,e.y)}setFromCylindricalCoords(e,t,n){return this.x=e*Math.sin(t),this.y=n,this.z=e*Math.cos(t),this}setFromMatrixPosition(e){let t=e.elements;return this.x=t[12],this.y=t[13],this.z=t[14],this}setFromMatrixScale(e){let t=this.setFromMatrixColumn(e,0).length(),n=this.setFromMatrixColumn(e,1).length(),s=this.setFromMatrixColumn(e,2).length();return this.x=t,this.y=n,this.z=s,this}setFromMatrixColumn(e,t){return this.fromArray(e.elements,t*4)}setFromMatrix3Column(e,t){return this.fromArray(e.elements,t*3)}setFromEuler(e){return this.x=e._x,this.y=e._y,this.z=e._z,this}setFromColor(e){return this.x=e.r,this.y=e.g,this.z=e.b,this}equals(e){return e.x===this.x&&e.y===this.y&&e.z===this.z}fromArray(e,t=0){return this.x=e[t],this.y=e[t+1],this.z=e[t+2],this}toArray(e=[],t=0){return e[t]=this.x,e[t+1]=this.y,e[t+2]=this.z,e}fromBufferAttribute(e,t){return this.x=e.getX(t),this.y=e.getY(t),this.z=e.getZ(t),this}random(){return this.x=Math.random(),this.y=Math.random(),this.z=Math.random(),this}randomDirection(){let e=Math.random()*Math.PI*2,t=Math.random()*2-1,n=Math.sqrt(1-t*t);return this.x=n*Math.cos(e),this.y=t,this.z=n*Math.sin(e),this}*[Symbol.iterator](){yield this.x,yield this.y,yield this.z}};cu.prototype.isVector3=!0;var I=cu,lc=new I,ah=new oi,uu=class uu{constructor(e,t,n,s,r,a,o,l,c){this.elements=[1,0,0,0,1,0,0,0,1],e!==void 0&&this.set(e,t,n,s,r,a,o,l,c)}set(e,t,n,s,r,a,o,l,c){let u=this.elements;return u[0]=e,u[1]=s,u[2]=o,u[3]=t,u[4]=r,u[5]=l,u[6]=n,u[7]=a,u[8]=c,this}identity(){return this.set(1,0,0,0,1,0,0,0,1),this}copy(e){let t=this.elements,n=e.elements;return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],this}extractBasis(e,t,n){return e.setFromMatrix3Column(this,0),t.setFromMatrix3Column(this,1),n.setFromMatrix3Column(this,2),this}setFromMatrix4(e){let t=e.elements;return this.set(t[0],t[4],t[8],t[1],t[5],t[9],t[2],t[6],t[10]),this}multiply(e){return this.multiplyMatrices(this,e)}premultiply(e){return this.multiplyMatrices(e,this)}multiplyMatrices(e,t){let n=e.elements,s=t.elements,r=this.elements,a=n[0],o=n[3],l=n[6],c=n[1],u=n[4],f=n[7],h=n[2],p=n[5],x=n[8],M=s[0],g=s[3],m=s[6],S=s[1],C=s[4],_=s[7],T=s[2],E=s[5],R=s[8];return r[0]=a*M+o*S+l*T,r[3]=a*g+o*C+l*E,r[6]=a*m+o*_+l*R,r[1]=c*M+u*S+f*T,r[4]=c*g+u*C+f*E,r[7]=c*m+u*_+f*R,r[2]=h*M+p*S+x*T,r[5]=h*g+p*C+x*E,r[8]=h*m+p*_+x*R,this}multiplyScalar(e){let t=this.elements;return t[0]*=e,t[3]*=e,t[6]*=e,t[1]*=e,t[4]*=e,t[7]*=e,t[2]*=e,t[5]*=e,t[8]*=e,this}determinant(){let e=this.elements,t=e[0],n=e[1],s=e[2],r=e[3],a=e[4],o=e[5],l=e[6],c=e[7],u=e[8];return t*a*u-t*o*c-n*r*u+n*o*l+s*r*c-s*a*l}invert(){let e=this.elements,t=e[0],n=e[1],s=e[2],r=e[3],a=e[4],o=e[5],l=e[6],c=e[7],u=e[8],f=u*a-o*c,h=o*l-u*r,p=c*r-a*l,x=t*f+n*h+s*p;if(x===0)return this.set(0,0,0,0,0,0,0,0,0);let M=1/x;return e[0]=f*M,e[1]=(s*c-u*n)*M,e[2]=(o*n-s*a)*M,e[3]=h*M,e[4]=(u*t-s*l)*M,e[5]=(s*r-o*t)*M,e[6]=p*M,e[7]=(n*l-c*t)*M,e[8]=(a*t-n*r)*M,this}transpose(){let e,t=this.elements;return e=t[1],t[1]=t[3],t[3]=e,e=t[2],t[2]=t[6],t[6]=e,e=t[5],t[5]=t[7],t[7]=e,this}getNormalMatrix(e){return this.setFromMatrix4(e).invert().transpose()}transposeIntoArray(e){let t=this.elements;return e[0]=t[0],e[1]=t[3],e[2]=t[6],e[3]=t[1],e[4]=t[4],e[5]=t[7],e[6]=t[2],e[7]=t[5],e[8]=t[8],this}setUvTransform(e,t,n,s,r,a,o){let l=Math.cos(r),c=Math.sin(r);return this.set(n*l,n*c,-n*(l*a+c*o)+a+e,-s*c,s*l,-s*(-c*a+l*o)+o+t,0,0,1),this}scale(e,t){return os("Matrix3: .scale() is deprecated. Use .makeScale() instead."),this.premultiply(cc.makeScale(e,t)),this}rotate(e){return os("Matrix3: .rotate() is deprecated. Use .makeRotation() instead."),this.premultiply(cc.makeRotation(-e)),this}translate(e,t){return os("Matrix3: .translate() is deprecated. Use .makeTranslation() instead."),this.premultiply(cc.makeTranslation(e,t)),this}makeTranslation(e,t){return e.isVector2?this.set(1,0,e.x,0,1,e.y,0,0,1):this.set(1,0,e,0,1,t,0,0,1),this}makeRotation(e){let t=Math.cos(e),n=Math.sin(e);return this.set(t,-n,0,n,t,0,0,0,1),this}makeScale(e,t){return this.set(e,0,0,0,t,0,0,0,1),this}equals(e){let t=this.elements,n=e.elements;for(let s=0;s<9;s++)if(t[s]!==n[s])return!1;return!0}fromArray(e,t=0){for(let n=0;n<9;n++)this.elements[n]=e[n+t];return this}toArray(e=[],t=0){let n=this.elements;return e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3],e[t+4]=n[4],e[t+5]=n[5],e[t+6]=n[6],e[t+7]=n[7],e[t+8]=n[8],e}clone(){return new this.constructor().fromArray(this.elements)}};uu.prototype.isMatrix3=!0;var rt=uu,cc=new rt,oh=new rt().set(.4123908,.3575843,.1804808,.212639,.7151687,.0721923,.0193308,.1191948,.9505322),lh=new rt().set(3.2409699,-1.5373832,-.4986108,-.9692436,1.8759675,.0415551,.0556301,-.203977,1.0569715);function ep(){let i={enabled:!0,workingColorSpace:Lr,spaces:{},convert:function(s,r,a){return this.enabled===!1||r===a||!r||!a||(this.spaces[r].transfer===Ct&&(s.r=Ei(s.r),s.g=Ei(s.g),s.b=Ei(s.b)),this.spaces[r].primaries!==this.spaces[a].primaries&&(s.applyMatrix3(this.spaces[r].toXYZ),s.applyMatrix3(this.spaces[a].fromXYZ)),this.spaces[a].transfer===Ct&&(s.r=zs(s.r),s.g=zs(s.g),s.b=zs(s.b))),s},workingToColorSpace:function(s,r){return this.convert(s,this.workingColorSpace,r)},colorSpaceToWorking:function(s,r){return this.convert(s,r,this.workingColorSpace)},getPrimaries:function(s){return this.spaces[s].primaries},getTransfer:function(s){return s===Ai?Dr:this.spaces[s].transfer},getToneMappingMode:function(s){return this.spaces[s].outputColorSpaceConfig.toneMappingMode||"standard"},getLuminanceCoefficients:function(s,r=this.workingColorSpace){return s.fromArray(this.spaces[r].luminanceCoefficients)},define:function(s){Object.assign(this.spaces,s)},_getMatrix:function(s,r,a){return s.copy(this.spaces[r].toXYZ).multiply(this.spaces[a].fromXYZ)},_getDrawingBufferColorSpace:function(s){return this.spaces[s].outputColorSpaceConfig.drawingBufferColorSpace},_getUnpackColorSpace:function(s=this.workingColorSpace){return this.spaces[s].workingColorSpaceConfig.unpackColorSpace},fromWorkingColorSpace:function(s,r){return os("ColorManagement: .fromWorkingColorSpace() has been renamed to .workingToColorSpace()."),i.workingToColorSpace(s,r)},toWorkingColorSpace:function(s,r){return os("ColorManagement: .toWorkingColorSpace() has been renamed to .colorSpaceToWorking()."),i.colorSpaceToWorking(s,r)}},e=[.64,.33,.3,.6,.15,.06],t=[.2126,.7152,.0722],n=[.3127,.329];return i.define({[Lr]:{primaries:e,whitePoint:n,transfer:Dr,toXYZ:oh,fromXYZ:lh,luminanceCoefficients:t,workingColorSpaceConfig:{unpackColorSpace:on},outputColorSpaceConfig:{drawingBufferColorSpace:on}},[on]:{primaries:e,whitePoint:n,transfer:Ct,toXYZ:oh,fromXYZ:lh,luminanceCoefficients:t,outputColorSpaceConfig:{drawingBufferColorSpace:on}}}),i}var mt=ep();function Ei(i){return i<.04045?i*.0773993808:Math.pow(i*.9478672986+.0521327014,2.4)}function zs(i){return i<.0031308?i*12.92:1.055*Math.pow(i,.41666)-.055}var Ts,Po=class{static getDataURL(e,t="image/png"){if(/^data:/i.test(e.src)||typeof HTMLCanvasElement>"u")return e.src;let n;if(e instanceof HTMLCanvasElement)n=e;else{Ts===void 0&&(Ts=Ur("canvas")),Ts.width=e.width,Ts.height=e.height;let s=Ts.getContext("2d");e instanceof ImageData?s.putImageData(e,0,0):s.drawImage(e,0,0,e.width,e.height),n=Ts}return n.toDataURL(t)}static sRGBToLinear(e){if(typeof HTMLImageElement<"u"&&e instanceof HTMLImageElement||typeof HTMLCanvasElement<"u"&&e instanceof HTMLCanvasElement||typeof ImageBitmap<"u"&&e instanceof ImageBitmap){let t=Ur("canvas");t.width=e.width,t.height=e.height;let n=t.getContext("2d");n.drawImage(e,0,0,e.width,e.height);let s=n.getImageData(0,0,e.width,e.height),r=s.data;for(let a=0;a<r.length;a++)r[a]=Ei(r[a]/255)*255;return n.putImageData(s,0,0),t}else if(e.data){let t=e.data.slice(0);for(let n=0;n<t.length;n++)t instanceof Uint8Array||t instanceof Uint8ClampedArray?t[n]=Math.floor(Ei(t[n]/255)*255):t[n]=Ei(t[n]);return{data:t,width:e.width,height:e.height}}else return Ke("ImageUtils.sRGBToLinear(): Unsupported image type. No color space conversion applied."),e}},tp=0,Ws=class{constructor(e=null){this.isTextureSource=!0,Object.defineProperty(this,"id",{value:tp++}),this.uuid=ya(),this.data=e,this.dataReady=!0,this.version=0}getSize(e){let t=this.data;return typeof HTMLVideoElement<"u"&&t instanceof HTMLVideoElement?e.set(t.videoWidth,t.videoHeight,0):typeof VideoFrame<"u"&&t instanceof VideoFrame?e.set(t.displayWidth,t.displayHeight,0):t!==null?e.set(t.width,t.height,t.depth||0):e.set(0,0,0),e}set needsUpdate(e){e===!0&&this.version++}toJSON(e){let t=e===void 0||typeof e=="string";if(!t&&e.images[this.uuid]!==void 0)return e.images[this.uuid];let n={uuid:this.uuid,url:""},s=this.data;if(s!==null){let r;if(Array.isArray(s)){r=[];for(let a=0,o=s.length;a<o;a++)s[a].isDataTexture?r.push(uc(s[a].image)):r.push(uc(s[a]))}else r=uc(s);n.url=r}return t||(e.images[this.uuid]=n),n}};function uc(i){return typeof HTMLImageElement<"u"&&i instanceof HTMLImageElement||typeof HTMLCanvasElement<"u"&&i instanceof HTMLCanvasElement||typeof ImageBitmap<"u"&&i instanceof ImageBitmap?Po.getDataURL(i):i.data?{data:Array.from(i.data),width:i.width,height:i.height,type:i.data.constructor.name}:(Ke("Texture: Unable to serialize Texture."),{})}var np=0,hc=new I,xn=class i extends ai{constructor(e=i.DEFAULT_IMAGE,t=i.DEFAULT_MAPPING,n=si,s=si,r=cn,a=Xi,o=Hn,l=En,c=i.DEFAULT_ANISOTROPY,u=Ai){super(),this.isTexture=!0,Object.defineProperty(this,"id",{value:np++}),this.uuid=ya(),this.name="",this.source=new Ws(e),this.mipmaps=[],this.mapping=t,this.channel=0,this.wrapS=n,this.wrapT=s,this.magFilter=r,this.minFilter=a,this.anisotropy=c,this.format=o,this.internalFormat=null,this.type=l,this.offset=new Me(0,0),this.repeat=new Me(1,1),this.center=new Me(0,0),this.rotation=0,this.matrixAutoUpdate=!0,this.matrix=new rt,this.generateMipmaps=!0,this.premultiplyAlpha=!1,this.flipY=!0,this.unpackAlignment=4,this.colorSpace=u,this.userData={},this.updateRanges=[],this.version=0,this.onUpdate=null,this.renderTarget=null,this.isRenderTargetTexture=!1,this.isArrayTexture=!!(e&&e.depth&&e.depth>1),this.pmremVersion=0,this.normalized=!1}get width(){return this.source.getSize(hc).x}get height(){return this.source.getSize(hc).y}get depth(){return this.source.getSize(hc).z}get image(){return this.source.data}set image(e){this.source.data=e}updateMatrix(){this.matrix.setUvTransform(this.offset.x,this.offset.y,this.repeat.x,this.repeat.y,this.rotation,this.center.x,this.center.y)}addUpdateRange(e,t){this.updateRanges.push({start:e,count:t})}clearUpdateRanges(){this.updateRanges.length=0}clone(){return new this.constructor().copy(this)}copy(e){return this.name=e.name,this.source=e.source,this.mipmaps=e.mipmaps.slice(0),this.mapping=e.mapping,this.channel=e.channel,this.wrapS=e.wrapS,this.wrapT=e.wrapT,this.magFilter=e.magFilter,this.minFilter=e.minFilter,this.anisotropy=e.anisotropy,this.format=e.format,this.internalFormat=e.internalFormat,this.type=e.type,this.normalized=e.normalized,this.offset.copy(e.offset),this.repeat.copy(e.repeat),this.center.copy(e.center),this.rotation=e.rotation,this.matrixAutoUpdate=e.matrixAutoUpdate,this.matrix.copy(e.matrix),this.generateMipmaps=e.generateMipmaps,this.premultiplyAlpha=e.premultiplyAlpha,this.flipY=e.flipY,this.unpackAlignment=e.unpackAlignment,this.colorSpace=e.colorSpace,this.renderTarget=e.renderTarget,this.isRenderTargetTexture=e.isRenderTargetTexture,this.isArrayTexture=e.isArrayTexture,this.userData=JSON.parse(JSON.stringify(e.userData)),this.needsUpdate=!0,this}setValues(e){for(let t in e){let n=e[t];if(n===void 0){Ke(`Texture.setValues(): parameter '${t}' has value of undefined.`);continue}let s=this[t];if(s===void 0){Ke(`Texture.setValues(): property '${t}' does not exist.`);continue}s&&n&&s.isVector2&&n.isVector2||s&&n&&s.isVector3&&n.isVector3||s&&n&&s.isMatrix3&&n.isMatrix3?s.copy(n):this[t]=n}}toJSON(e){let t=e===void 0||typeof e=="string";if(!t&&e.textures[this.uuid]!==void 0)return e.textures[this.uuid];let n={metadata:{version:4.7,type:"Texture",generator:"Texture.toJSON"},uuid:this.uuid,name:this.name,image:this.source.toJSON(e).uuid,mapping:this.mapping,channel:this.channel,repeat:[this.repeat.x,this.repeat.y],offset:[this.offset.x,this.offset.y],center:[this.center.x,this.center.y],rotation:this.rotation,wrap:[this.wrapS,this.wrapT],format:this.format,internalFormat:this.internalFormat,type:this.type,normalized:this.normalized,colorSpace:this.colorSpace,minFilter:this.minFilter,magFilter:this.magFilter,anisotropy:this.anisotropy,flipY:this.flipY,generateMipmaps:this.generateMipmaps,premultiplyAlpha:this.premultiplyAlpha,unpackAlignment:this.unpackAlignment};return Object.keys(this.userData).length>0&&(n.userData=this.userData),t||(e.textures[this.uuid]=n),n}dispose(){this.dispatchEvent({type:"dispose"})}transformUv(e){if(this.mapping!==Zc)return e;if(e.applyMatrix3(this.matrix),e.x<0||e.x>1)switch(this.wrapS){case Ao:e.x=e.x-Math.floor(e.x);break;case si:e.x=e.x<0?0:1;break;case Co:Math.abs(Math.floor(e.x)%2)===1?e.x=Math.ceil(e.x)-e.x:e.x=e.x-Math.floor(e.x);break}if(e.y<0||e.y>1)switch(this.wrapT){case Ao:e.y=e.y-Math.floor(e.y);break;case si:e.y=e.y<0?0:1;break;case Co:Math.abs(Math.floor(e.y)%2)===1?e.y=Math.ceil(e.y)-e.y:e.y=e.y-Math.floor(e.y);break}return this.flipY&&(e.y=1-e.y),e}set needsUpdate(e){e===!0&&(this.version++,this.source.needsUpdate=!0)}set needsPMREMUpdate(e){e===!0&&this.pmremVersion++}};xn.DEFAULT_IMAGE=null;xn.DEFAULT_MAPPING=Zc;xn.DEFAULT_ANISOTROPY=1;var hu=class hu{constructor(e=0,t=0,n=0,s=1){this.x=e,this.y=t,this.z=n,this.w=s}get width(){return this.z}set width(e){this.z=e}get height(){return this.w}set height(e){this.w=e}set(e,t,n,s){return this.x=e,this.y=t,this.z=n,this.w=s,this}setScalar(e){return this.x=e,this.y=e,this.z=e,this.w=e,this}setX(e){return this.x=e,this}setY(e){return this.y=e,this}setZ(e){return this.z=e,this}setW(e){return this.w=e,this}setComponent(e,t){switch(e){case 0:this.x=t;break;case 1:this.y=t;break;case 2:this.z=t;break;case 3:this.w=t;break;default:throw new Error("THREE.Vector4: index is out of range: "+e)}return this}getComponent(e){switch(e){case 0:return this.x;case 1:return this.y;case 2:return this.z;case 3:return this.w;default:throw new Error("THREE.Vector4: index is out of range: "+e)}}clone(){return new this.constructor(this.x,this.y,this.z,this.w)}copy(e){return this.x=e.x,this.y=e.y,this.z=e.z,this.w=e.w!==void 0?e.w:1,this}add(e){return this.x+=e.x,this.y+=e.y,this.z+=e.z,this.w+=e.w,this}addScalar(e){return this.x+=e,this.y+=e,this.z+=e,this.w+=e,this}addVectors(e,t){return this.x=e.x+t.x,this.y=e.y+t.y,this.z=e.z+t.z,this.w=e.w+t.w,this}addScaledVector(e,t){return this.x+=e.x*t,this.y+=e.y*t,this.z+=e.z*t,this.w+=e.w*t,this}sub(e){return this.x-=e.x,this.y-=e.y,this.z-=e.z,this.w-=e.w,this}subScalar(e){return this.x-=e,this.y-=e,this.z-=e,this.w-=e,this}subVectors(e,t){return this.x=e.x-t.x,this.y=e.y-t.y,this.z=e.z-t.z,this.w=e.w-t.w,this}multiply(e){return this.x*=e.x,this.y*=e.y,this.z*=e.z,this.w*=e.w,this}multiplyScalar(e){return this.x*=e,this.y*=e,this.z*=e,this.w*=e,this}applyMatrix4(e){let t=this.x,n=this.y,s=this.z,r=this.w,a=e.elements;return this.x=a[0]*t+a[4]*n+a[8]*s+a[12]*r,this.y=a[1]*t+a[5]*n+a[9]*s+a[13]*r,this.z=a[2]*t+a[6]*n+a[10]*s+a[14]*r,this.w=a[3]*t+a[7]*n+a[11]*s+a[15]*r,this}divide(e){return this.x/=e.x,this.y/=e.y,this.z/=e.z,this.w/=e.w,this}divideScalar(e){return this.multiplyScalar(1/e)}setAxisAngleFromQuaternion(e){this.w=2*Math.acos(e.w);let t=Math.sqrt(1-e.w*e.w);return t<1e-4?(this.x=1,this.y=0,this.z=0):(this.x=e.x/t,this.y=e.y/t,this.z=e.z/t),this}setAxisAngleFromRotationMatrix(e){let t,n,s,r,l=e.elements,c=l[0],u=l[4],f=l[8],h=l[1],p=l[5],x=l[9],M=l[2],g=l[6],m=l[10];if(Math.abs(u-h)<.01&&Math.abs(f-M)<.01&&Math.abs(x-g)<.01){if(Math.abs(u+h)<.1&&Math.abs(f+M)<.1&&Math.abs(x+g)<.1&&Math.abs(c+p+m-3)<.1)return this.set(1,0,0,0),this;t=Math.PI;let C=(c+1)/2,_=(p+1)/2,T=(m+1)/2,E=(u+h)/4,R=(f+M)/4,y=(x+g)/4;return C>_&&C>T?C<.01?(n=0,s=.707106781,r=.707106781):(n=Math.sqrt(C),s=E/n,r=R/n):_>T?_<.01?(n=.707106781,s=0,r=.707106781):(s=Math.sqrt(_),n=E/s,r=y/s):T<.01?(n=.707106781,s=.707106781,r=0):(r=Math.sqrt(T),n=R/r,s=y/r),this.set(n,s,r,t),this}let S=Math.sqrt((g-x)*(g-x)+(f-M)*(f-M)+(h-u)*(h-u));return Math.abs(S)<.001&&(S=1),this.x=(g-x)/S,this.y=(f-M)/S,this.z=(h-u)/S,this.w=Math.acos((c+p+m-1)/2),this}setFromMatrixPosition(e){let t=e.elements;return this.x=t[12],this.y=t[13],this.z=t[14],this.w=t[15],this}min(e){return this.x=Math.min(this.x,e.x),this.y=Math.min(this.y,e.y),this.z=Math.min(this.z,e.z),this.w=Math.min(this.w,e.w),this}max(e){return this.x=Math.max(this.x,e.x),this.y=Math.max(this.y,e.y),this.z=Math.max(this.z,e.z),this.w=Math.max(this.w,e.w),this}clamp(e,t){return this.x=gt(this.x,e.x,t.x),this.y=gt(this.y,e.y,t.y),this.z=gt(this.z,e.z,t.z),this.w=gt(this.w,e.w,t.w),this}clampScalar(e,t){return this.x=gt(this.x,e,t),this.y=gt(this.y,e,t),this.z=gt(this.z,e,t),this.w=gt(this.w,e,t),this}clampLength(e,t){let n=this.length();return this.divideScalar(n||1).multiplyScalar(gt(n,e,t))}floor(){return this.x=Math.floor(this.x),this.y=Math.floor(this.y),this.z=Math.floor(this.z),this.w=Math.floor(this.w),this}ceil(){return this.x=Math.ceil(this.x),this.y=Math.ceil(this.y),this.z=Math.ceil(this.z),this.w=Math.ceil(this.w),this}round(){return this.x=Math.round(this.x),this.y=Math.round(this.y),this.z=Math.round(this.z),this.w=Math.round(this.w),this}roundToZero(){return this.x=Math.trunc(this.x),this.y=Math.trunc(this.y),this.z=Math.trunc(this.z),this.w=Math.trunc(this.w),this}negate(){return this.x=-this.x,this.y=-this.y,this.z=-this.z,this.w=-this.w,this}dot(e){return this.x*e.x+this.y*e.y+this.z*e.z+this.w*e.w}lengthSq(){return this.x*this.x+this.y*this.y+this.z*this.z+this.w*this.w}length(){return Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z+this.w*this.w)}manhattanLength(){return Math.abs(this.x)+Math.abs(this.y)+Math.abs(this.z)+Math.abs(this.w)}normalize(){return this.divideScalar(this.length()||1)}setLength(e){return this.normalize().multiplyScalar(e)}lerp(e,t){return this.x+=(e.x-this.x)*t,this.y+=(e.y-this.y)*t,this.z+=(e.z-this.z)*t,this.w+=(e.w-this.w)*t,this}lerpVectors(e,t,n){return this.x=e.x+(t.x-e.x)*n,this.y=e.y+(t.y-e.y)*n,this.z=e.z+(t.z-e.z)*n,this.w=e.w+(t.w-e.w)*n,this}equals(e){return e.x===this.x&&e.y===this.y&&e.z===this.z&&e.w===this.w}fromArray(e,t=0){return this.x=e[t],this.y=e[t+1],this.z=e[t+2],this.w=e[t+3],this}toArray(e=[],t=0){return e[t]=this.x,e[t+1]=this.y,e[t+2]=this.z,e[t+3]=this.w,e}fromBufferAttribute(e,t){return this.x=e.getX(t),this.y=e.getY(t),this.z=e.getZ(t),this.w=e.getW(t),this}random(){return this.x=Math.random(),this.y=Math.random(),this.z=Math.random(),this.w=Math.random(),this}*[Symbol.iterator](){yield this.x,yield this.y,yield this.z,yield this.w}};hu.prototype.isVector4=!0;var Wt=hu,Io=class extends ai{constructor(e=1,t=1,n={}){super(),n=Object.assign({generateMipmaps:!1,internalFormat:null,minFilter:cn,depthBuffer:!0,stencilBuffer:!1,resolveColorBuffer:!0,resolveDepthBuffer:!0,resolveStencilBuffer:!0,storeMultisampledColorBuffer:!0,storeMultisampledDepthBuffer:!0,storeMultisampledStencilBuffer:!0,depthTexture:null,samples:0,count:1,depth:1,multiview:!1,useArrayDepthTexture:!1},n),this.isRenderTarget=!0,this.width=e,this.height=t,this.depth=n.depth,this.scissor=new Wt(0,0,e,t),this.scissorTest=!1,this.viewport=new Wt(0,0,e,t),this.textures=[];let s={width:e,height:t,depth:n.depth},r=new xn(s),a=n.count;for(let o=0;o<a;o++)this.textures[o]=r.clone(),this.textures[o].isRenderTargetTexture=!0,this.textures[o].renderTarget=this;this._setTextureOptions(n),this.depthBuffer=n.depthBuffer,this.stencilBuffer=n.stencilBuffer,this.resolveColorBuffer=n.resolveColorBuffer,this.resolveDepthBuffer=n.resolveDepthBuffer,this.resolveStencilBuffer=n.resolveStencilBuffer,this.storeMultisampledColorBuffer=n.storeMultisampledColorBuffer,this.storeMultisampledDepthBuffer=n.storeMultisampledDepthBuffer,this.storeMultisampledStencilBuffer=n.storeMultisampledStencilBuffer,this._depthTexture=null,this.depthTexture=n.depthTexture,this.samples=n.samples,this.multiview=n.multiview,this.useArrayDepthTexture=n.useArrayDepthTexture}_setTextureOptions(e={}){let t={minFilter:cn,generateMipmaps:!1,flipY:!1,internalFormat:null};e.mapping!==void 0&&(t.mapping=e.mapping),e.wrapS!==void 0&&(t.wrapS=e.wrapS),e.wrapT!==void 0&&(t.wrapT=e.wrapT),e.wrapR!==void 0&&(t.wrapR=e.wrapR),e.magFilter!==void 0&&(t.magFilter=e.magFilter),e.minFilter!==void 0&&(t.minFilter=e.minFilter),e.format!==void 0&&(t.format=e.format),e.type!==void 0&&(t.type=e.type),e.anisotropy!==void 0&&(t.anisotropy=e.anisotropy),e.colorSpace!==void 0&&(t.colorSpace=e.colorSpace),e.flipY!==void 0&&(t.flipY=e.flipY),e.generateMipmaps!==void 0&&(t.generateMipmaps=e.generateMipmaps),e.internalFormat!==void 0&&(t.internalFormat=e.internalFormat);for(let n=0;n<this.textures.length;n++)this.textures[n].setValues(t)}get texture(){return this.textures[0]}set texture(e){this.textures[0]=e}set depthTexture(e){this._depthTexture!==null&&this._depthTexture.renderTarget===this&&(this._depthTexture.renderTarget=null),e!==null&&e.renderTarget===null&&(e.renderTarget=this),this._depthTexture=e}get depthTexture(){return this._depthTexture}setSize(e,t,n=1){if(this.width!==e||this.height!==t||this.depth!==n){this.width=e,this.height=t,this.depth=n;for(let s=0,r=this.textures.length;s<r;s++)this.textures[s].image.width=e,this.textures[s].image.height=t,this.textures[s].image.depth=n,this.textures[s].isData3DTexture!==!0&&(this.textures[s].isArrayTexture=this.textures[s].image.depth>1);this.dispose()}this.viewport.set(0,0,e,t),this.scissor.set(0,0,e,t)}clone(){return new this.constructor().copy(this)}copy(e){this.width=e.width,this.height=e.height,this.depth=e.depth,this.scissor.copy(e.scissor),this.scissorTest=e.scissorTest,this.viewport.copy(e.viewport),this.textures.length=0;for(let t=0,n=e.textures.length;t<n;t++){this.textures[t]=e.textures[t].clone(),this.textures[t].isRenderTargetTexture=!0,this.textures[t].renderTarget=this;let s=Object.assign({},e.textures[t].image);this.textures[t].source=new Ws(s)}if(this.depthBuffer=e.depthBuffer,this.stencilBuffer=e.stencilBuffer,this.resolveColorBuffer=e.resolveColorBuffer,this.resolveDepthBuffer=e.resolveDepthBuffer,this.resolveStencilBuffer=e.resolveStencilBuffer,this.storeMultisampledColorBuffer=e.storeMultisampledColorBuffer,this.storeMultisampledDepthBuffer=e.storeMultisampledDepthBuffer,this.storeMultisampledStencilBuffer=e.storeMultisampledStencilBuffer,e.depthTexture!==null)if(e.depthTexture.renderTarget===e){let t=e.depthTexture.clone();t.renderTarget=null,this.depthTexture=t}else this.depthTexture=e.depthTexture;return this.samples=e.samples,this.multiview=e.multiview,this.useArrayDepthTexture=e.useArrayDepthTexture,this}dispose(){this.dispatchEvent({type:"dispose"})}},jt=class extends Io{constructor(e=1,t=1,n={}){super(e,t,n),this.isWebGLRenderTarget=!0}},Or=class extends xn{constructor(e=null,t=1,n=1,s=1){super(null),this.isDataArrayTexture=!0,this.image={data:e,width:t,height:n,depth:s},this.magFilter=ln,this.minFilter=ln,this.wrapR=si,this.generateMipmaps=!1,this.flipY=!1,this.unpackAlignment=1,this.layerUpdates=new Set}copy(e){return super.copy(e),this.wrapR=e.wrapR,this}addLayerUpdate(e){this.layerUpdates.add(e)}clearLayerUpdates(){this.layerUpdates.clear()}};var No=class extends xn{constructor(e=null,t=1,n=1,s=1){super(null),this.isData3DTexture=!0,this.image={data:e,width:t,height:n,depth:s},this.magFilter=ln,this.minFilter=ln,this.wrapR=si,this.generateMipmaps=!1,this.flipY=!1,this.unpackAlignment=1}copy(e){return super.copy(e),this.wrapR=e.wrapR,this}};var rl=class rl{constructor(e,t,n,s,r,a,o,l,c,u,f,h,p,x,M,g){this.elements=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],e!==void 0&&this.set(e,t,n,s,r,a,o,l,c,u,f,h,p,x,M,g)}set(e,t,n,s,r,a,o,l,c,u,f,h,p,x,M,g){let m=this.elements;return m[0]=e,m[4]=t,m[8]=n,m[12]=s,m[1]=r,m[5]=a,m[9]=o,m[13]=l,m[2]=c,m[6]=u,m[10]=f,m[14]=h,m[3]=p,m[7]=x,m[11]=M,m[15]=g,this}identity(){return this.set(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1),this}clone(){return new rl().fromArray(this.elements)}copy(e){let t=this.elements,n=e.elements;return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t[9]=n[9],t[10]=n[10],t[11]=n[11],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15],this}copyPosition(e){let t=this.elements,n=e.elements;return t[12]=n[12],t[13]=n[13],t[14]=n[14],this}setFromMatrix3(e){let t=e.elements;return this.set(t[0],t[3],t[6],0,t[1],t[4],t[7],0,t[2],t[5],t[8],0,0,0,0,1),this}extractBasis(e,t,n){return this.determinantAffine()===0?(e.set(1,0,0),t.set(0,1,0),n.set(0,0,1),this):(e.setFromMatrixColumn(this,0),t.setFromMatrixColumn(this,1),n.setFromMatrixColumn(this,2),this)}makeBasis(e,t,n){return this.set(e.x,t.x,n.x,0,e.y,t.y,n.y,0,e.z,t.z,n.z,0,0,0,0,1),this}extractRotation(e){if(e.determinantAffine()===0)return this.identity();let t=this.elements,n=e.elements,s=1/As.setFromMatrixColumn(e,0).length(),r=1/As.setFromMatrixColumn(e,1).length(),a=1/As.setFromMatrixColumn(e,2).length();return t[0]=n[0]*s,t[1]=n[1]*s,t[2]=n[2]*s,t[3]=0,t[4]=n[4]*r,t[5]=n[5]*r,t[6]=n[6]*r,t[7]=0,t[8]=n[8]*a,t[9]=n[9]*a,t[10]=n[10]*a,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,this}makeRotationFromEuler(e){let t=this.elements,n=e.x,s=e.y,r=e.z,a=Math.cos(n),o=Math.sin(n),l=Math.cos(s),c=Math.sin(s),u=Math.cos(r),f=Math.sin(r);if(e.order==="XYZ"){let h=a*u,p=a*f,x=o*u,M=o*f;t[0]=l*u,t[4]=-l*f,t[8]=c,t[1]=p+x*c,t[5]=h-M*c,t[9]=-o*l,t[2]=M-h*c,t[6]=x+p*c,t[10]=a*l}else if(e.order==="YXZ"){let h=l*u,p=l*f,x=c*u,M=c*f;t[0]=h+M*o,t[4]=x*o-p,t[8]=a*c,t[1]=a*f,t[5]=a*u,t[9]=-o,t[2]=p*o-x,t[6]=M+h*o,t[10]=a*l}else if(e.order==="ZXY"){let h=l*u,p=l*f,x=c*u,M=c*f;t[0]=h-M*o,t[4]=-a*f,t[8]=x+p*o,t[1]=p+x*o,t[5]=a*u,t[9]=M-h*o,t[2]=-a*c,t[6]=o,t[10]=a*l}else if(e.order==="ZYX"){let h=a*u,p=a*f,x=o*u,M=o*f;t[0]=l*u,t[4]=x*c-p,t[8]=h*c+M,t[1]=l*f,t[5]=M*c+h,t[9]=p*c-x,t[2]=-c,t[6]=o*l,t[10]=a*l}else if(e.order==="YZX"){let h=a*l,p=a*c,x=o*l,M=o*c;t[0]=l*u,t[4]=M-h*f,t[8]=x*f+p,t[1]=f,t[5]=a*u,t[9]=-o*u,t[2]=-c*u,t[6]=p*f+x,t[10]=h-M*f}else if(e.order==="XZY"){let h=a*l,p=a*c,x=o*l,M=o*c;t[0]=l*u,t[4]=-f,t[8]=c*u,t[1]=h*f+M,t[5]=a*u,t[9]=p*f-x,t[2]=x*f-p,t[6]=o*u,t[10]=M*f+h}return t[3]=0,t[7]=0,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,this}makeRotationFromQuaternion(e){return this.compose(ip,e,sp)}lookAt(e,t,n){let s=this.elements;return An.subVectors(e,t),An.lengthSq()===0&&(An.z=1),An.normalize(),Ii.crossVectors(n,An),Ii.lengthSq()===0&&(Math.abs(n.z)===1?An.x+=1e-4:An.z+=1e-4,An.normalize(),Ii.crossVectors(n,An)),Ii.normalize(),Ya.crossVectors(An,Ii),s[0]=Ii.x,s[4]=Ya.x,s[8]=An.x,s[1]=Ii.y,s[5]=Ya.y,s[9]=An.y,s[2]=Ii.z,s[6]=Ya.z,s[10]=An.z,this}multiply(e){return this.multiplyMatrices(this,e)}premultiply(e){return this.multiplyMatrices(e,this)}multiplyMatrices(e,t){let n=e.elements,s=t.elements,r=this.elements,a=n[0],o=n[4],l=n[8],c=n[12],u=n[1],f=n[5],h=n[9],p=n[13],x=n[2],M=n[6],g=n[10],m=n[14],S=n[3],C=n[7],_=n[11],T=n[15],E=s[0],R=s[4],y=s[8],w=s[12],P=s[1],L=s[5],B=s[9],H=s[13],D=s[2],W=s[6],K=s[10],J=s[14],ne=s[3],Z=s[7],ee=s[11],re=s[15];return r[0]=a*E+o*P+l*D+c*ne,r[4]=a*R+o*L+l*W+c*Z,r[8]=a*y+o*B+l*K+c*ee,r[12]=a*w+o*H+l*J+c*re,r[1]=u*E+f*P+h*D+p*ne,r[5]=u*R+f*L+h*W+p*Z,r[9]=u*y+f*B+h*K+p*ee,r[13]=u*w+f*H+h*J+p*re,r[2]=x*E+M*P+g*D+m*ne,r[6]=x*R+M*L+g*W+m*Z,r[10]=x*y+M*B+g*K+m*ee,r[14]=x*w+M*H+g*J+m*re,r[3]=S*E+C*P+_*D+T*ne,r[7]=S*R+C*L+_*W+T*Z,r[11]=S*y+C*B+_*K+T*ee,r[15]=S*w+C*H+_*J+T*re,this}multiplyScalar(e){let t=this.elements;return t[0]*=e,t[4]*=e,t[8]*=e,t[12]*=e,t[1]*=e,t[5]*=e,t[9]*=e,t[13]*=e,t[2]*=e,t[6]*=e,t[10]*=e,t[14]*=e,t[3]*=e,t[7]*=e,t[11]*=e,t[15]*=e,this}determinant(){let e=this.elements,t=e[0],n=e[4],s=e[8],r=e[12],a=e[1],o=e[5],l=e[9],c=e[13],u=e[2],f=e[6],h=e[10],p=e[14],x=e[3],M=e[7],g=e[11],m=e[15],S=l*p-c*h,C=o*p-c*f,_=o*h-l*f,T=a*p-c*u,E=a*h-l*u,R=a*f-o*u;return t*(M*S-g*C+m*_)-n*(x*S-g*T+m*E)+s*(x*C-M*T+m*R)-r*(x*_-M*E+g*R)}determinantAffine(){let e=this.elements,t=e[0],n=e[4],s=e[8],r=e[1],a=e[5],o=e[9],l=e[2],c=e[6],u=e[10];return t*(a*u-o*c)-n*(r*u-o*l)+s*(r*c-a*l)}transpose(){let e=this.elements,t;return t=e[1],e[1]=e[4],e[4]=t,t=e[2],e[2]=e[8],e[8]=t,t=e[6],e[6]=e[9],e[9]=t,t=e[3],e[3]=e[12],e[12]=t,t=e[7],e[7]=e[13],e[13]=t,t=e[11],e[11]=e[14],e[14]=t,this}setPosition(e,t,n){let s=this.elements;return e.isVector3?(s[12]=e.x,s[13]=e.y,s[14]=e.z):(s[12]=e,s[13]=t,s[14]=n),this}invert(){let e=this.elements,t=e[0],n=e[1],s=e[2],r=e[3],a=e[4],o=e[5],l=e[6],c=e[7],u=e[8],f=e[9],h=e[10],p=e[11],x=e[12],M=e[13],g=e[14],m=e[15],S=t*o-n*a,C=t*l-s*a,_=t*c-r*a,T=n*l-s*o,E=n*c-r*o,R=s*c-r*l,y=u*M-f*x,w=u*g-h*x,P=u*m-p*x,L=f*g-h*M,B=f*m-p*M,H=h*m-p*g,D=S*H-C*B+_*L+T*P-E*w+R*y;if(D===0)return this.set(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);let W=1/D;return e[0]=(o*H-l*B+c*L)*W,e[1]=(s*B-n*H-r*L)*W,e[2]=(M*R-g*E+m*T)*W,e[3]=(h*E-f*R-p*T)*W,e[4]=(l*P-a*H-c*w)*W,e[5]=(t*H-s*P+r*w)*W,e[6]=(g*_-x*R-m*C)*W,e[7]=(u*R-h*_+p*C)*W,e[8]=(a*B-o*P+c*y)*W,e[9]=(n*P-t*B-r*y)*W,e[10]=(x*E-M*_+m*S)*W,e[11]=(f*_-u*E-p*S)*W,e[12]=(o*w-a*L-l*y)*W,e[13]=(t*L-n*w+s*y)*W,e[14]=(M*C-x*T-g*S)*W,e[15]=(u*T-f*C+h*S)*W,this}scale(e){let t=this.elements,n=e.x,s=e.y,r=e.z;return t[0]*=n,t[4]*=s,t[8]*=r,t[1]*=n,t[5]*=s,t[9]*=r,t[2]*=n,t[6]*=s,t[10]*=r,t[3]*=n,t[7]*=s,t[11]*=r,this}getMaxScaleOnAxis(){let e=this.elements,t=e[0]*e[0]+e[1]*e[1]+e[2]*e[2],n=e[4]*e[4]+e[5]*e[5]+e[6]*e[6],s=e[8]*e[8]+e[9]*e[9]+e[10]*e[10];return Math.sqrt(Math.max(t,n,s))}makeTranslation(e,t,n){return e.isVector3?this.set(1,0,0,e.x,0,1,0,e.y,0,0,1,e.z,0,0,0,1):this.set(1,0,0,e,0,1,0,t,0,0,1,n,0,0,0,1),this}makeRotationX(e){let t=Math.cos(e),n=Math.sin(e);return this.set(1,0,0,0,0,t,-n,0,0,n,t,0,0,0,0,1),this}makeRotationY(e){let t=Math.cos(e),n=Math.sin(e);return this.set(t,0,n,0,0,1,0,0,-n,0,t,0,0,0,0,1),this}makeRotationZ(e){let t=Math.cos(e),n=Math.sin(e);return this.set(t,-n,0,0,n,t,0,0,0,0,1,0,0,0,0,1),this}makeRotationAxis(e,t){let n=Math.cos(t),s=Math.sin(t),r=1-n,a=e.x,o=e.y,l=e.z,c=r*a,u=r*o;return this.set(c*a+n,c*o-s*l,c*l+s*o,0,c*o+s*l,u*o+n,u*l-s*a,0,c*l-s*o,u*l+s*a,r*l*l+n,0,0,0,0,1),this}makeScale(e,t,n){return this.set(e,0,0,0,0,t,0,0,0,0,n,0,0,0,0,1),this}makeShear(e,t,n,s,r,a){return this.set(1,n,r,0,e,1,a,0,t,s,1,0,0,0,0,1),this}compose(e,t,n){let s=this.elements,r=t._x,a=t._y,o=t._z,l=t._w,c=r+r,u=a+a,f=o+o,h=r*c,p=r*u,x=r*f,M=a*u,g=a*f,m=o*f,S=l*c,C=l*u,_=l*f,T=n.x,E=n.y,R=n.z;return s[0]=(1-(M+m))*T,s[1]=(p+_)*T,s[2]=(x-C)*T,s[3]=0,s[4]=(p-_)*E,s[5]=(1-(h+m))*E,s[6]=(g+S)*E,s[7]=0,s[8]=(x+C)*R,s[9]=(g-S)*R,s[10]=(1-(h+M))*R,s[11]=0,s[12]=e.x,s[13]=e.y,s[14]=e.z,s[15]=1,this}decompose(e,t,n){let s=this.elements;e.x=s[12],e.y=s[13],e.z=s[14];let r=this.determinantAffine();if(r===0)return n.set(1,1,1),t.identity(),this;let a=As.set(s[0],s[1],s[2]).length(),o=As.set(s[4],s[5],s[6]).length(),l=As.set(s[8],s[9],s[10]).length();r<0&&(a=-a),Wn.copy(this);let c=1/a,u=1/o,f=1/l;return Wn.elements[0]*=c,Wn.elements[1]*=c,Wn.elements[2]*=c,Wn.elements[4]*=u,Wn.elements[5]*=u,Wn.elements[6]*=u,Wn.elements[8]*=f,Wn.elements[9]*=f,Wn.elements[10]*=f,t.setFromRotationMatrix(Wn),n.x=a,n.y=o,n.z=l,this}makePerspective(e,t,n,s,r,a,o=Zn,l=!1){let c=this.elements,u=2*r/(t-e),f=2*r/(n-s),h=(t+e)/(t-e),p=(n+s)/(n-s),x,M;if(l)x=r/(a-r),M=a*r/(a-r);else if(o===Zn)x=-(a+r)/(a-r),M=-2*a*r/(a-r);else if(o===Gs)x=-a/(a-r),M=-a*r/(a-r);else throw new Error("THREE.Matrix4.makePerspective(): Invalid coordinate system: "+o);return c[0]=u,c[4]=0,c[8]=h,c[12]=0,c[1]=0,c[5]=f,c[9]=p,c[13]=0,c[2]=0,c[6]=0,c[10]=x,c[14]=M,c[3]=0,c[7]=0,c[11]=-1,c[15]=0,this}makeOrthographic(e,t,n,s,r,a,o=Zn,l=!1){let c=this.elements,u=2/(t-e),f=2/(n-s),h=-(t+e)/(t-e),p=-(n+s)/(n-s),x,M;if(l)x=1/(a-r),M=a/(a-r);else if(o===Zn)x=-2/(a-r),M=-(a+r)/(a-r);else if(o===Gs)x=-1/(a-r),M=-r/(a-r);else throw new Error("THREE.Matrix4.makeOrthographic(): Invalid coordinate system: "+o);return c[0]=u,c[4]=0,c[8]=0,c[12]=h,c[1]=0,c[5]=f,c[9]=0,c[13]=p,c[2]=0,c[6]=0,c[10]=x,c[14]=M,c[3]=0,c[7]=0,c[11]=0,c[15]=1,this}equals(e){let t=this.elements,n=e.elements;for(let s=0;s<16;s++)if(t[s]!==n[s])return!1;return!0}fromArray(e,t=0){for(let n=0;n<16;n++)this.elements[n]=e[n+t];return this}toArray(e=[],t=0){let n=this.elements;return e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3],e[t+4]=n[4],e[t+5]=n[5],e[t+6]=n[6],e[t+7]=n[7],e[t+8]=n[8],e[t+9]=n[9],e[t+10]=n[10],e[t+11]=n[11],e[t+12]=n[12],e[t+13]=n[13],e[t+14]=n[14],e[t+15]=n[15],e}};rl.prototype.isMatrix4=!0;var Ft=rl,As=new I,Wn=new Ft,ip=new I(0,0,0),sp=new I(1,1,1),Ii=new I,Ya=new I,An=new I,ch=new Ft,uh=new oi,li=class i{constructor(e=0,t=0,n=0,s=i.DEFAULT_ORDER){this.isEuler=!0,this._x=e,this._y=t,this._z=n,this._order=s}get x(){return this._x}set x(e){this._x=e,this._onChangeCallback()}get y(){return this._y}set y(e){this._y=e,this._onChangeCallback()}get z(){return this._z}set z(e){this._z=e,this._onChangeCallback()}get order(){return this._order}set order(e){this._order=e,this._onChangeCallback()}set(e,t,n,s=this._order){return this._x=e,this._y=t,this._z=n,this._order=s,this._onChangeCallback(),this}clone(){return new this.constructor(this._x,this._y,this._z,this._order)}copy(e){return this._x=e._x,this._y=e._y,this._z=e._z,this._order=e._order,this._onChangeCallback(),this}setFromRotationMatrix(e,t=this._order,n=!0){let s=e.elements,r=s[0],a=s[4],o=s[8],l=s[1],c=s[5],u=s[9],f=s[2],h=s[6],p=s[10];switch(t){case"XYZ":this._y=Math.asin(gt(o,-1,1)),Math.abs(o)<.9999999?(this._x=Math.atan2(-u,p),this._z=Math.atan2(-a,r)):(this._x=Math.atan2(h,c),this._z=0);break;case"YXZ":this._x=Math.asin(-gt(u,-1,1)),Math.abs(u)<.9999999?(this._y=Math.atan2(o,p),this._z=Math.atan2(l,c)):(this._y=Math.atan2(-f,r),this._z=0);break;case"ZXY":this._x=Math.asin(gt(h,-1,1)),Math.abs(h)<.9999999?(this._y=Math.atan2(-f,p),this._z=Math.atan2(-a,c)):(this._y=0,this._z=Math.atan2(l,r));break;case"ZYX":this._y=Math.asin(-gt(f,-1,1)),Math.abs(f)<.9999999?(this._x=Math.atan2(h,p),this._z=Math.atan2(l,r)):(this._x=0,this._z=Math.atan2(-a,c));break;case"YZX":this._z=Math.asin(gt(l,-1,1)),Math.abs(l)<.9999999?(this._x=Math.atan2(-u,c),this._y=Math.atan2(-f,r)):(this._x=0,this._y=Math.atan2(o,p));break;case"XZY":this._z=Math.asin(-gt(a,-1,1)),Math.abs(a)<.9999999?(this._x=Math.atan2(h,c),this._y=Math.atan2(o,r)):(this._x=Math.atan2(-u,p),this._y=0);break;default:Ke("Euler: .setFromRotationMatrix() encountered an unknown order: "+t)}return this._order=t,n===!0&&this._onChangeCallback(),this}setFromQuaternion(e,t,n){return ch.makeRotationFromQuaternion(e),this.setFromRotationMatrix(ch,t,n)}setFromVector3(e,t=this._order){return this.set(e.x,e.y,e.z,t)}reorder(e){return uh.setFromEuler(this),this.setFromQuaternion(uh,e)}equals(e){return e._x===this._x&&e._y===this._y&&e._z===this._z&&e._order===this._order}fromArray(e){return this._x=e[0],this._y=e[1],this._z=e[2],e[3]!==void 0&&(this._order=e[3]),this._onChangeCallback(),this}toArray(e=[],t=0){return e[t]=this._x,e[t+1]=this._y,e[t+2]=this._z,e[t+3]=this._order,e}_onChange(e){return this._onChangeCallback=e,this}_onChangeCallback(){}*[Symbol.iterator](){yield this._x,yield this._y,yield this._z,yield this._order}};li.DEFAULT_ORDER="XYZ";var Br=class{constructor(){this.mask=1}set(e){this.mask=(1<<e|0)>>>0}enable(e){this.mask|=1<<e|0}enableAll(){this.mask=-1}toggle(e){this.mask^=1<<e|0}disable(e){this.mask&=~(1<<e|0)}disableAll(){this.mask=0}test(e){return(this.mask&e.mask)!==0}isEnabled(e){return(this.mask&(1<<e|0))!==0}},rp=0,hh=new I,Cs=new oi,yi=new Ft,Za=new I,Sr=new I,ap=new I,op=new oi,dh=new I(1,0,0),fh=new I(0,1,0),ph=new I(0,0,1),mh={type:"added"},lp={type:"removed"},Rs={type:"childadded",child:null},dc={type:"childremoved",child:null},zt=class i extends ai{constructor(){super(),this.isObject3D=!0,Object.defineProperty(this,"id",{value:rp++}),this.uuid=ya(),this.name="",this.type="Object3D",this.parent=null,this.children=[],this.up=i.DEFAULT_UP.clone();let e=new I,t=new li,n=new oi,s=new I(1,1,1);function r(){n.setFromEuler(t,!1)}function a(){t.setFromQuaternion(n,void 0,!1)}t._onChange(r),n._onChange(a),Object.defineProperties(this,{position:{configurable:!0,enumerable:!0,value:e},rotation:{configurable:!0,enumerable:!0,value:t},quaternion:{configurable:!0,enumerable:!0,value:n},scale:{configurable:!0,enumerable:!0,value:s},modelViewMatrix:{value:new Ft},normalMatrix:{value:new rt}}),this.matrix=new Ft,this.matrixWorld=new Ft,this.matrixAutoUpdate=i.DEFAULT_MATRIX_AUTO_UPDATE,this.matrixWorldAutoUpdate=i.DEFAULT_MATRIX_WORLD_AUTO_UPDATE,this.matrixWorldNeedsUpdate=!1,this.layers=new Br,this.visible=!0,this.castShadow=!1,this.receiveShadow=!1,this.frustumCulled=!0,this.renderOrder=0,this.animations=[],this.customDepthMaterial=void 0,this.customDistanceMaterial=void 0,this.static=!1,this.userData={},this.pivot=null}onBeforeShadow(){}onAfterShadow(){}onBeforeRender(){}onAfterRender(){}applyMatrix4(e){this.matrixAutoUpdate&&this.updateMatrix(),this.matrix.premultiply(e),this.matrix.decompose(this.position,this.quaternion,this.scale)}applyQuaternion(e){return this.quaternion.premultiply(e),this}setRotationFromAxisAngle(e,t){this.quaternion.setFromAxisAngle(e,t)}setRotationFromEuler(e){this.quaternion.setFromEuler(e,!0)}setRotationFromMatrix(e){this.quaternion.setFromRotationMatrix(e)}setRotationFromQuaternion(e){this.quaternion.copy(e)}rotateOnAxis(e,t){return Cs.setFromAxisAngle(e,t),this.quaternion.multiply(Cs),this}rotateOnWorldAxis(e,t){return Cs.setFromAxisAngle(e,t),this.quaternion.premultiply(Cs),this}rotateX(e){return this.rotateOnAxis(dh,e)}rotateY(e){return this.rotateOnAxis(fh,e)}rotateZ(e){return this.rotateOnAxis(ph,e)}translateOnAxis(e,t){return hh.copy(e).applyQuaternion(this.quaternion),this.position.add(hh.multiplyScalar(t)),this}translateX(e){return this.translateOnAxis(dh,e)}translateY(e){return this.translateOnAxis(fh,e)}translateZ(e){return this.translateOnAxis(ph,e)}localToWorld(e){return this.updateWorldMatrix(!0,!1),e.applyMatrix4(this.matrixWorld)}worldToLocal(e){return this.updateWorldMatrix(!0,!1),e.applyMatrix4(yi.copy(this.matrixWorld).invert())}lookAt(e,t,n){e.isVector3?Za.copy(e):Za.set(e,t,n);let s=this.parent;this.updateWorldMatrix(!0,!1),Sr.setFromMatrixPosition(this.matrixWorld),this.isCamera||this.isLight?yi.lookAt(Sr,Za,this.up):yi.lookAt(Za,Sr,this.up),this.quaternion.setFromRotationMatrix(yi),s&&(yi.extractRotation(s.matrixWorld),Cs.setFromRotationMatrix(yi),this.quaternion.premultiply(Cs.invert()))}add(e){if(arguments.length>1){for(let t=0;t<arguments.length;t++)this.add(arguments[t]);return this}return e===this?(Qe("Object3D.add: object can't be added as a child of itself.",e),this):(e&&e.isObject3D?(e.removeFromParent(),e.parent=this,this.children.push(e),e.dispatchEvent(mh),Rs.child=e,this.dispatchEvent(Rs),Rs.child=null):Qe("Object3D.add: object not an instance of THREE.Object3D.",e),this)}remove(e){if(arguments.length>1){for(let n=0;n<arguments.length;n++)this.remove(arguments[n]);return this}let t=this.children.indexOf(e);return t!==-1&&(e.parent=null,this.children.splice(t,1),e.dispatchEvent(lp),dc.child=e,this.dispatchEvent(dc),dc.child=null),this}removeFromParent(){let e=this.parent;return e!==null&&e.remove(this),this}clear(){return this.remove(...this.children)}attach(e){return this.updateWorldMatrix(!0,!1),yi.copy(this.matrixWorld).invert(),e.parent!==null&&(e.parent.updateWorldMatrix(!0,!1),yi.multiply(e.parent.matrixWorld)),e.applyMatrix4(yi),e.removeFromParent(),e.parent=this,this.children.push(e),e.updateWorldMatrix(!1,!0),e.dispatchEvent(mh),Rs.child=e,this.dispatchEvent(Rs),Rs.child=null,this}getObjectById(e){return this.getObjectByProperty("id",e)}getObjectByName(e){return this.getObjectByProperty("name",e)}getObjectByProperty(e,t){if(this[e]===t)return this;for(let n=0,s=this.children.length;n<s;n++){let a=this.children[n].getObjectByProperty(e,t);if(a!==void 0)return a}}getObjectsByProperty(e,t,n=[]){this[e]===t&&n.push(this);let s=this.children;for(let r=0,a=s.length;r<a;r++)s[r].getObjectsByProperty(e,t,n);return n}getWorldPosition(e){return this.updateWorldMatrix(!0,!1),e.setFromMatrixPosition(this.matrixWorld)}getWorldQuaternion(e){return this.updateWorldMatrix(!0,!1),this.matrixWorld.decompose(Sr,e,ap),e}getWorldScale(e){return this.updateWorldMatrix(!0,!1),this.matrixWorld.decompose(Sr,op,e),e}getWorldDirection(e){this.updateWorldMatrix(!0,!1);let t=this.matrixWorld.elements;return e.set(t[8],t[9],t[10]).normalize()}raycast(){}intersectsFrustum(){}traverse(e){e(this);let t=this.children;for(let n=0,s=t.length;n<s;n++)t[n].traverse(e)}traverseVisible(e){if(this.visible===!1)return;e(this);let t=this.children;for(let n=0,s=t.length;n<s;n++)t[n].traverseVisible(e)}traverseAncestors(e){let t=this.parent;t!==null&&(e(t),t.traverseAncestors(e))}updateMatrix(){this.matrix.compose(this.position,this.quaternion,this.scale);let e=this.pivot;if(e!==null){let t=e.x,n=e.y,s=e.z,r=this.matrix.elements;r[12]+=t-r[0]*t-r[4]*n-r[8]*s,r[13]+=n-r[1]*t-r[5]*n-r[9]*s,r[14]+=s-r[2]*t-r[6]*n-r[10]*s}this.matrixWorldNeedsUpdate=!0}updateMatrixWorld(e){this.matrixAutoUpdate&&this.updateMatrix(),(this.matrixWorldNeedsUpdate||e)&&(this.matrixWorldAutoUpdate===!0&&(this.parent===null?this.matrixWorld.copy(this.matrix):this.matrixWorld.multiplyMatrices(this.parent.matrixWorld,this.matrix)),this.matrixWorldNeedsUpdate=!1,e=!0);let t=this.children;for(let n=0,s=t.length;n<s;n++)t[n].updateMatrixWorld(e)}updateWorldMatrix(e,t,n=!1){let s=this.parent;if(e===!0&&s!==null&&s.updateWorldMatrix(!0,!1),this.matrixAutoUpdate&&this.updateMatrix(),(this.matrixWorldNeedsUpdate||n)&&(this.matrixWorldAutoUpdate===!0&&(this.parent===null?this.matrixWorld.copy(this.matrix):this.matrixWorld.multiplyMatrices(this.parent.matrixWorld,this.matrix)),this.matrixWorldNeedsUpdate=!1,n=!0),t===!0){let r=this.children;for(let a=0,o=r.length;a<o;a++)r[a].updateWorldMatrix(!1,!0,n)}}toJSON(e){let t=e===void 0||typeof e=="string",n={};t&&(e={geometries:{},materials:{},textures:{},images:{},shapes:{},skeletons:{},animations:{},nodes:{}},n.metadata={version:4.7,type:"Object",generator:"Object3D.toJSON"});let s={};s.uuid=this.uuid,s.type=this.type,s.name=this.name,s.castShadow=this.castShadow,s.receiveShadow=this.receiveShadow,s.visible=this.visible,s.frustumCulled=this.frustumCulled,s.renderOrder=this.renderOrder,s.static=this.static,s.matrixAutoUpdate=this.matrixAutoUpdate,Object.keys(this.userData).length>0&&(s.userData=this.userData),s.layers=this.layers.mask,s.matrix=this.matrix.toArray(),s.up=this.up.toArray(),this.pivot!==null&&(s.pivot=this.pivot.toArray()),this.morphTargetDictionary!==void 0&&(s.morphTargetDictionary=Object.assign({},this.morphTargetDictionary)),this.morphTargetInfluences!==void 0&&(s.morphTargetInfluences=this.morphTargetInfluences.slice()),this.isInstancedMesh&&(s.type="InstancedMesh",s.count=this.count,s.instanceMatrix=this.instanceMatrix.toJSON(),this.instanceColor!==null&&(s.instanceColor=this.instanceColor.toJSON())),this.isBatchedMesh&&(s.type="BatchedMesh",s.perObjectFrustumCulled=this.perObjectFrustumCulled,s.sortObjects=this.sortObjects,s.drawRanges=this._drawRanges,s.reservedRanges=this._reservedRanges,s.geometryInfo=this._geometryInfo.map(o=>({...o,boundingBox:o.boundingBox?o.boundingBox.toJSON():void 0,boundingSphere:o.boundingSphere?o.boundingSphere.toJSON():void 0})),s.instanceInfo=this._instanceInfo.map(o=>({...o})),s.availableInstanceIds=this._availableInstanceIds.slice(),s.availableGeometryIds=this._availableGeometryIds.slice(),s.nextIndexStart=this._nextIndexStart,s.nextVertexStart=this._nextVertexStart,s.geometryCount=this._geometryCount,s.maxInstanceCount=this._maxInstanceCount,s.maxVertexCount=this._maxVertexCount,s.maxIndexCount=this._maxIndexCount,s.geometryInitialized=this._geometryInitialized,s.matricesTexture=this._matricesTexture.toJSON(e),s.indirectTexture=this._indirectTexture.toJSON(e),this._colorsTexture!==null&&(s.colorsTexture=this._colorsTexture.toJSON(e)),this.boundingSphere!==null&&(s.boundingSphere=this.boundingSphere.toJSON()),this.boundingBox!==null&&(s.boundingBox=this.boundingBox.toJSON()));function r(o,l){return o[l.uuid]===void 0&&(o[l.uuid]=l.toJSON(e)),l.uuid}if(this.isScene)this.background&&(this.background.isColor?s.background=this.background.toJSON():this.background.isTexture&&(s.background=this.background.toJSON(e).uuid)),this.environment&&this.environment.isTexture&&this.environment.isRenderTargetTexture!==!0&&(s.environment=this.environment.toJSON(e).uuid);else if(this.isMesh||this.isLine||this.isPoints){s.geometry=r(e.geometries,this.geometry);let o=this.geometry.parameters;if(o!==void 0&&o.shapes!==void 0){let l=o.shapes;if(Array.isArray(l))for(let c=0,u=l.length;c<u;c++){let f=l[c];r(e.shapes,f)}else r(e.shapes,l)}}if(this.isSkinnedMesh&&(s.bindMode=this.bindMode,s.bindMatrix=this.bindMatrix.toArray(),this.skeleton!==void 0&&(r(e.skeletons,this.skeleton),s.skeleton=this.skeleton.uuid)),this.material!==void 0)if(Array.isArray(this.material)){let o=[];for(let l=0,c=this.material.length;l<c;l++)o.push(r(e.materials,this.material[l]));s.material=o}else s.material=r(e.materials,this.material);if(this.children.length>0){s.children=[];for(let o=0;o<this.children.length;o++)s.children.push(this.children[o].toJSON(e).object)}if(this.animations.length>0){s.animations=[];for(let o=0;o<this.animations.length;o++){let l=this.animations[o];s.animations.push(r(e.animations,l))}}if(t){let o=a(e.geometries),l=a(e.materials),c=a(e.textures),u=a(e.images),f=a(e.shapes),h=a(e.skeletons),p=a(e.animations),x=a(e.nodes);o.length>0&&(n.geometries=o),l.length>0&&(n.materials=l),c.length>0&&(n.textures=c),u.length>0&&(n.images=u),f.length>0&&(n.shapes=f),h.length>0&&(n.skeletons=h),p.length>0&&(n.animations=p),x.length>0&&(n.nodes=x)}return n.object=s,n;function a(o){let l=[];for(let c in o){let u=o[c];delete u.metadata,l.push(u)}return l}}clone(e){return new this.constructor().copy(this,e)}copy(e,t=!0){if(this.name=e.name,this.up.copy(e.up),this.position.copy(e.position),this.rotation.order=e.rotation.order,this.quaternion.copy(e.quaternion),this.scale.copy(e.scale),this.pivot=e.pivot!==null?e.pivot.clone():null,this.matrix.copy(e.matrix),this.matrixWorld.copy(e.matrixWorld),this.matrixAutoUpdate=e.matrixAutoUpdate,this.matrixWorldAutoUpdate=e.matrixWorldAutoUpdate,this.matrixWorldNeedsUpdate=e.matrixWorldNeedsUpdate,this.layers.mask=e.layers.mask,this.visible=e.visible,this.castShadow=e.castShadow,this.receiveShadow=e.receiveShadow,this.frustumCulled=e.frustumCulled,this.renderOrder=e.renderOrder,this.static=e.static,this.animations=e.animations.slice(),this.userData=JSON.parse(JSON.stringify(e.userData)),t===!0)for(let n=0;n<e.children.length;n++){let s=e.children[n];this.add(s.clone())}return this}dispose(){this.dispatchEvent({type:"dispose"})}};zt.DEFAULT_UP=new I(0,1,0);zt.DEFAULT_MATRIX_AUTO_UPDATE=!0;zt.DEFAULT_MATRIX_WORLD_AUTO_UPDATE=!0;var Oe=class extends zt{constructor(){super(),this.isGroup=!0,this.type="Group"}},cp={type:"move"},Xs=class{constructor(){this._targetRay=null,this._grip=null,this._hand=null}getHandSpace(){return this._hand===null&&(this._hand=new Oe,this._hand.matrixAutoUpdate=!1,this._hand.visible=!1,this._hand.joints={},this._hand.inputState={pinching:!1}),this._hand}getTargetRaySpace(){return this._targetRay===null&&(this._targetRay=new Oe,this._targetRay.matrixAutoUpdate=!1,this._targetRay.visible=!1,this._targetRay.hasLinearVelocity=!1,this._targetRay.linearVelocity=new I,this._targetRay.hasAngularVelocity=!1,this._targetRay.angularVelocity=new I),this._targetRay}getGripSpace(){return this._grip===null&&(this._grip=new Oe,this._grip.matrixAutoUpdate=!1,this._grip.visible=!1,this._grip.hasLinearVelocity=!1,this._grip.linearVelocity=new I,this._grip.hasAngularVelocity=!1,this._grip.angularVelocity=new I,this._grip.eventsEnabled=!1),this._grip}dispatchEvent(e){return this._targetRay!==null&&this._targetRay.dispatchEvent(e),this._grip!==null&&this._grip.dispatchEvent(e),this._hand!==null&&this._hand.dispatchEvent(e),this}connect(e){if(e&&e.hand){let t=this._hand;if(t)for(let n of e.hand.values())this._getHandJoint(t,n)}return this.dispatchEvent({type:"connected",data:e}),this}disconnect(e){return this.dispatchEvent({type:"disconnected",data:e}),this._targetRay!==null&&(this._targetRay.visible=!1),this._grip!==null&&(this._grip.visible=!1),this._hand!==null&&(this._hand.visible=!1),this}update(e,t,n){let s=null,r=null,a=null,o=this._targetRay,l=this._grip,c=this._hand;if(e&&t.session.visibilityState!=="visible-blurred"){if(c&&e.hand){a=!0;for(let M of e.hand.values()){let g=t.getJointPose(M,n),m=this._getHandJoint(c,M);g!==null&&(m.matrix.fromArray(g.transform.matrix),m.matrix.decompose(m.position,m.rotation,m.scale),m.matrixWorldNeedsUpdate=!0,m.jointRadius=g.radius),m.visible=g!==null}let u=c.joints["index-finger-tip"],f=c.joints["thumb-tip"],h=u.position.distanceTo(f.position),p=.02,x=.005;c.inputState.pinching&&h>p+x?(c.inputState.pinching=!1,this.dispatchEvent({type:"pinchend",handedness:e.handedness,target:this})):!c.inputState.pinching&&h<=p-x&&(c.inputState.pinching=!0,this.dispatchEvent({type:"pinchstart",handedness:e.handedness,target:this}))}else l!==null&&e.gripSpace&&(r=t.getPose(e.gripSpace,n),r!==null&&(l.matrix.fromArray(r.transform.matrix),l.matrix.decompose(l.position,l.rotation,l.scale),l.matrixWorldNeedsUpdate=!0,r.linearVelocity?(l.hasLinearVelocity=!0,l.linearVelocity.copy(r.linearVelocity)):l.hasLinearVelocity=!1,r.angularVelocity?(l.hasAngularVelocity=!0,l.angularVelocity.copy(r.angularVelocity)):l.hasAngularVelocity=!1,l.eventsEnabled&&l.dispatchEvent({type:"gripUpdated",data:e,target:this})));o!==null&&(s=t.getPose(e.targetRaySpace,n),s===null&&r!==null&&(s=r),s!==null&&(o.matrix.fromArray(s.transform.matrix),o.matrix.decompose(o.position,o.rotation,o.scale),o.matrixWorldNeedsUpdate=!0,s.linearVelocity?(o.hasLinearVelocity=!0,o.linearVelocity.copy(s.linearVelocity)):o.hasLinearVelocity=!1,s.angularVelocity?(o.hasAngularVelocity=!0,o.angularVelocity.copy(s.angularVelocity)):o.hasAngularVelocity=!1,this.dispatchEvent(cp)))}return o!==null&&(o.visible=s!==null),l!==null&&(l.visible=r!==null),c!==null&&(c.visible=a!==null),this}_getHandJoint(e,t){if(e.joints[t.jointName]===void 0){let n=new Oe;n.matrixAutoUpdate=!1,n.visible=!1,e.joints[t.jointName]=n,e.add(n)}return e.joints[t.jointName]}},bd={aliceblue:15792383,antiquewhite:16444375,aqua:65535,aquamarine:8388564,azure:15794175,beige:16119260,bisque:16770244,black:0,blanchedalmond:16772045,blue:255,blueviolet:9055202,brown:10824234,burlywood:14596231,cadetblue:6266528,chartreuse:8388352,chocolate:13789470,coral:16744272,cornflowerblue:6591981,cornsilk:16775388,crimson:14423100,cyan:65535,darkblue:139,darkcyan:35723,darkgoldenrod:12092939,darkgray:11119017,darkgreen:25600,darkgrey:11119017,darkkhaki:12433259,darkmagenta:9109643,darkolivegreen:5597999,darkorange:16747520,darkorchid:10040012,darkred:9109504,darksalmon:15308410,darkseagreen:9419919,darkslateblue:4734347,darkslategray:3100495,darkslategrey:3100495,darkturquoise:52945,darkviolet:9699539,deeppink:16716947,deepskyblue:49151,dimgray:6908265,dimgrey:6908265,dodgerblue:2003199,firebrick:11674146,floralwhite:16775920,forestgreen:2263842,fuchsia:16711935,gainsboro:14474460,ghostwhite:16316671,gold:16766720,goldenrod:14329120,gray:8421504,green:32768,greenyellow:11403055,grey:8421504,honeydew:15794160,hotpink:16738740,indianred:13458524,indigo:4915330,ivory:16777200,khaki:15787660,lavender:15132410,lavenderblush:16773365,lawngreen:8190976,lemonchiffon:16775885,lightblue:11393254,lightcoral:15761536,lightcyan:14745599,lightgoldenrodyellow:16448210,lightgray:13882323,lightgreen:9498256,lightgrey:13882323,lightpink:16758465,lightsalmon:16752762,lightseagreen:2142890,lightskyblue:8900346,lightslategray:7833753,lightslategrey:7833753,lightsteelblue:11584734,lightyellow:16777184,lime:65280,limegreen:3329330,linen:16445670,magenta:16711935,maroon:8388608,mediumaquamarine:6737322,mediumblue:205,mediumorchid:12211667,mediumpurple:9662683,mediumseagreen:3978097,mediumslateblue:8087790,mediumspringgreen:64154,mediumturquoise:4772300,mediumvioletred:13047173,midnightblue:1644912,mintcream:16121850,mistyrose:16770273,moccasin:16770229,navajowhite:16768685,navy:128,oldlace:16643558,olive:8421376,olivedrab:7048739,orange:16753920,orangered:16729344,orchid:14315734,palegoldenrod:15657130,palegreen:10025880,paleturquoise:11529966,palevioletred:14381203,papayawhip:16773077,peachpuff:16767673,peru:13468991,pink:16761035,plum:14524637,powderblue:11591910,purple:8388736,rebeccapurple:6697881,red:16711680,rosybrown:12357519,royalblue:4286945,saddlebrown:9127187,salmon:16416882,sandybrown:16032864,seagreen:3050327,seashell:16774638,sienna:10506797,silver:12632256,skyblue:8900331,slateblue:6970061,slategray:7372944,slategrey:7372944,snow:16775930,springgreen:65407,steelblue:4620980,tan:13808780,teal:32896,thistle:14204888,tomato:16737095,turquoise:4251856,violet:15631086,wheat:16113331,white:16777215,whitesmoke:16119285,yellow:16776960,yellowgreen:10145074},Ni={h:0,s:0,l:0},Ka={h:0,s:0,l:0};function fc(i,e,t){return t<0&&(t+=1),t>1&&(t-=1),t<1/6?i+(e-i)*6*t:t<1/2?e:t<2/3?i+(e-i)*6*(2/3-t):i}var he=class{constructor(e,t,n){return this.isColor=!0,this.r=1,this.g=1,this.b=1,this.set(e,t,n)}set(e,t,n){if(t===void 0&&n===void 0){let s=e;s&&s.isColor?this.copy(s):typeof s=="number"?this.setHex(s):typeof s=="string"&&this.setStyle(s)}else this.setRGB(e,t,n);return this}setScalar(e){return this.r=e,this.g=e,this.b=e,this}setHex(e,t=on){return e=Math.floor(e),this.r=(e>>16&255)/255,this.g=(e>>8&255)/255,this.b=(e&255)/255,mt.colorSpaceToWorking(this,t),this}setRGB(e,t,n,s=mt.workingColorSpace){return this.r=e,this.g=t,this.b=n,mt.colorSpaceToWorking(this,s),this}setHSL(e,t,n,s=mt.workingColorSpace){if(e=Qf(e,1),t=gt(t,0,1),n=gt(n,0,1),t===0)this.r=this.g=this.b=n;else{let r=n<=.5?n*(1+t):n+t-n*t,a=2*n-r;this.r=fc(a,r,e+1/3),this.g=fc(a,r,e),this.b=fc(a,r,e-1/3)}return mt.colorSpaceToWorking(this,s),this}setStyle(e,t=on){function n(r){r!==void 0&&parseFloat(r)<1&&Ke("Color: Alpha component of "+e+" will be ignored.")}let s;if(s=/^(\w+)\(([^\)]*)\)/.exec(e)){let r,a=s[1],o=s[2];switch(a){case"rgb":case"rgba":if(r=/^\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec(o))return n(r[4]),this.setRGB(Math.min(255,parseInt(r[1],10))/255,Math.min(255,parseInt(r[2],10))/255,Math.min(255,parseInt(r[3],10))/255,t);if(r=/^\s*(\d+)\%\s*,\s*(\d+)\%\s*,\s*(\d+)\%\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec(o))return n(r[4]),this.setRGB(Math.min(100,parseInt(r[1],10))/100,Math.min(100,parseInt(r[2],10))/100,Math.min(100,parseInt(r[3],10))/100,t);break;case"hsl":case"hsla":if(r=/^\s*(\d*\.?\d+)\s*,\s*(\d*\.?\d+)\%\s*,\s*(\d*\.?\d+)\%\s*(?:,\s*(\d*\.?\d+)\s*)?$/.exec(o))return n(r[4]),this.setHSL(parseFloat(r[1])/360,parseFloat(r[2])/100,parseFloat(r[3])/100,t);break;default:Ke("Color: Unknown color model "+e)}}else if(s=/^\#([A-Fa-f\d]+)$/.exec(e)){let r=s[1],a=r.length;if(a===3)return this.setRGB(parseInt(r.charAt(0),16)/15,parseInt(r.charAt(1),16)/15,parseInt(r.charAt(2),16)/15,t);if(a===6)return this.setHex(parseInt(r,16),t);Ke("Color: Invalid hex color "+e)}else if(e&&e.length>0)return this.setColorName(e,t);return this}setColorName(e,t=on){let n=bd[e.toLowerCase()];return n!==void 0?this.setHex(n,t):Ke("Color: Unknown color "+e),this}clone(){return new this.constructor(this.r,this.g,this.b)}copy(e){return this.r=e.r,this.g=e.g,this.b=e.b,this}copySRGBToLinear(e){return this.r=Ei(e.r),this.g=Ei(e.g),this.b=Ei(e.b),this}copyLinearToSRGB(e){return this.r=zs(e.r),this.g=zs(e.g),this.b=zs(e.b),this}convertSRGBToLinear(){return this.copySRGBToLinear(this),this}convertLinearToSRGB(){return this.copyLinearToSRGB(this),this}getHex(e=on){return mt.workingToColorSpace(fn.copy(this),e),Math.round(gt(fn.r*255,0,255))*65536+Math.round(gt(fn.g*255,0,255))*256+Math.round(gt(fn.b*255,0,255))}getHexString(e=on){return("000000"+this.getHex(e).toString(16)).slice(-6)}getHSL(e,t=mt.workingColorSpace){mt.workingToColorSpace(fn.copy(this),t);let n=fn.r,s=fn.g,r=fn.b,a=Math.max(n,s,r),o=Math.min(n,s,r),l,c,u=(o+a)/2;if(o===a)l=0,c=0;else{let f=a-o;switch(c=u<=.5?f/(a+o):f/(2-a-o),a){case n:l=(s-r)/f+(s<r?6:0);break;case s:l=(r-n)/f+2;break;case r:l=(n-s)/f+4;break}l/=6}return e.h=l,e.s=c,e.l=u,e}getRGB(e,t=mt.workingColorSpace){return mt.workingToColorSpace(fn.copy(this),t),e.r=fn.r,e.g=fn.g,e.b=fn.b,e}getStyle(e=on){mt.workingToColorSpace(fn.copy(this),e);let t=fn.r,n=fn.g,s=fn.b;return e!==on?`color(${e} ${t.toFixed(3)} ${n.toFixed(3)} ${s.toFixed(3)})`:`rgb(${Math.round(t*255)},${Math.round(n*255)},${Math.round(s*255)})`}offsetHSL(e,t,n){return this.getHSL(Ni),this.setHSL(Ni.h+e,Ni.s+t,Ni.l+n)}add(e){return this.r+=e.r,this.g+=e.g,this.b+=e.b,this}addColors(e,t){return this.r=e.r+t.r,this.g=e.g+t.g,this.b=e.b+t.b,this}addScalar(e){return this.r+=e,this.g+=e,this.b+=e,this}sub(e){return this.r=Math.max(0,this.r-e.r),this.g=Math.max(0,this.g-e.g),this.b=Math.max(0,this.b-e.b),this}multiply(e){return this.r*=e.r,this.g*=e.g,this.b*=e.b,this}multiplyScalar(e){return this.r*=e,this.g*=e,this.b*=e,this}lerp(e,t){return this.r+=(e.r-this.r)*t,this.g+=(e.g-this.g)*t,this.b+=(e.b-this.b)*t,this}lerpColors(e,t,n){return this.r=e.r+(t.r-e.r)*n,this.g=e.g+(t.g-e.g)*n,this.b=e.b+(t.b-e.b)*n,this}lerpHSL(e,t){this.getHSL(Ni),e.getHSL(Ka);let n=oc(Ni.h,Ka.h,t),s=oc(Ni.s,Ka.s,t),r=oc(Ni.l,Ka.l,t);return this.setHSL(n,s,r),this}setFromVector3(e){return this.r=e.x,this.g=e.y,this.b=e.z,this}applyMatrix3(e){let t=this.r,n=this.g,s=this.b,r=e.elements;return this.r=r[0]*t+r[3]*n+r[6]*s,this.g=r[1]*t+r[4]*n+r[7]*s,this.b=r[2]*t+r[5]*n+r[8]*s,this}equals(e){return e.r===this.r&&e.g===this.g&&e.b===this.b}fromArray(e,t=0){return this.r=e[t],this.g=e[t+1],this.b=e[t+2],this}toArray(e=[],t=0){return e[t]=this.r,e[t+1]=this.g,e[t+2]=this.b,e}fromBufferAttribute(e,t){return this.r=e.getX(t),this.g=e.getY(t),this.b=e.getZ(t),this}toJSON(){return this.getHex()}*[Symbol.iterator](){yield this.r,yield this.g,yield this.b}},fn=new he;he.NAMES=bd;var ls=class i{constructor(e,t=25e-5){this.isFogExp2=!0,this.name="",this.color=new he(e),this.density=t}clone(){return new i(this.color,this.density)}toJSON(){return{type:"FogExp2",name:this.name,color:this.color.getHex(),density:this.density}}};var wi=class extends zt{constructor(){super(),this.isScene=!0,this.type="Scene",this.background=null,this.environment=null,this.fog=null,this.backgroundBlurriness=0,this.backgroundIntensity=1,this.backgroundRotation=new li,this.environmentIntensity=1,this.environmentRotation=new li,this.overrideMaterial=null,typeof __THREE_DEVTOOLS__<"u"&&__THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("observe",{detail:this}))}copy(e,t){return super.copy(e,t),e.background!==null&&(this.background=e.background.clone()),e.environment!==null&&(this.environment=e.environment.clone()),e.fog!==null&&(this.fog=e.fog.clone()),this.backgroundBlurriness=e.backgroundBlurriness,this.backgroundIntensity=e.backgroundIntensity,this.backgroundRotation.copy(e.backgroundRotation),this.environmentIntensity=e.environmentIntensity,this.environmentRotation.copy(e.environmentRotation),e.overrideMaterial!==null&&(this.overrideMaterial=e.overrideMaterial.clone()),this.matrixAutoUpdate=e.matrixAutoUpdate,this}toJSON(e){let t=super.toJSON(e);return this.fog!==null&&(t.object.fog=this.fog.toJSON()),t.object.backgroundBlurriness=this.backgroundBlurriness,t.object.backgroundIntensity=this.backgroundIntensity,t.object.backgroundRotation=this.backgroundRotation.toArray(),t.object.environmentIntensity=this.environmentIntensity,t.object.environmentRotation=this.environmentRotation.toArray(),t}},Xn=new I,_i=new I,pc=new I,bi=new I,Ps=new I,Is=new I,gh=new I,mc=new I,gc=new I,xc=new I,vc=new Wt,yc=new Wt,_c=new Wt,Fi=class i{constructor(e=new I,t=new I,n=new I){this.a=e,this.b=t,this.c=n}static getNormal(e,t,n,s){s.subVectors(n,t),Xn.subVectors(e,t),s.cross(Xn);let r=s.lengthSq();return r>0?s.multiplyScalar(1/Math.sqrt(r)):s.set(0,0,0)}static getBarycoord(e,t,n,s,r){Xn.subVectors(s,t),_i.subVectors(n,t),pc.subVectors(e,t);let a=Xn.dot(Xn),o=Xn.dot(_i),l=Xn.dot(pc),c=_i.dot(_i),u=_i.dot(pc),f=a*c-o*o;if(f===0)return r.set(0,0,0),null;let h=1/f,p=(c*l-o*u)*h,x=(a*u-o*l)*h;return r.set(1-p-x,x,p)}static containsPoint(e,t,n,s){return this.getBarycoord(e,t,n,s,bi)===null?!1:bi.x>=0&&bi.y>=0&&bi.x+bi.y<=1}static getInterpolation(e,t,n,s,r,a,o,l){return this.getBarycoord(e,t,n,s,bi)===null?(l.x=0,l.y=0,"z"in l&&(l.z=0),"w"in l&&(l.w=0),null):(l.setScalar(0),l.addScaledVector(r,bi.x),l.addScaledVector(a,bi.y),l.addScaledVector(o,bi.z),l)}static getInterpolatedAttribute(e,t,n,s,r,a){return vc.setScalar(0),yc.setScalar(0),_c.setScalar(0),vc.fromBufferAttribute(e,t),yc.fromBufferAttribute(e,n),_c.fromBufferAttribute(e,s),a.setScalar(0),a.addScaledVector(vc,r.x),a.addScaledVector(yc,r.y),a.addScaledVector(_c,r.z),a}static isFrontFacing(e,t,n,s){return Xn.subVectors(n,t),_i.subVectors(e,t),Xn.cross(_i).dot(s)<0}set(e,t,n){return this.a.copy(e),this.b.copy(t),this.c.copy(n),this}setFromPointsAndIndices(e,t,n,s){return this.a.copy(e[t]),this.b.copy(e[n]),this.c.copy(e[s]),this}setFromAttributeAndIndices(e,t,n,s){return this.a.fromBufferAttribute(e,t),this.b.fromBufferAttribute(e,n),this.c.fromBufferAttribute(e,s),this}clone(){return new this.constructor().copy(this)}copy(e){return this.a.copy(e.a),this.b.copy(e.b),this.c.copy(e.c),this}getArea(){return Xn.subVectors(this.c,this.b),_i.subVectors(this.a,this.b),Xn.cross(_i).length()*.5}getMidpoint(e){return e.addVectors(this.a,this.b).add(this.c).multiplyScalar(1/3)}getNormal(e){return i.getNormal(this.a,this.b,this.c,e)}getPlane(e){return e.setFromCoplanarPoints(this.a,this.b,this.c)}getBarycoord(e,t){return i.getBarycoord(e,this.a,this.b,this.c,t)}getInterpolation(e,t,n,s,r){return i.getInterpolation(e,this.a,this.b,this.c,t,n,s,r)}containsPoint(e){return i.containsPoint(e,this.a,this.b,this.c)}isFrontFacing(e){return i.isFrontFacing(this.a,this.b,this.c,e)}intersectsBox(e){return e.intersectsTriangle(this)}closestPointToPoint(e,t){let n=this.a,s=this.b,r=this.c,a,o;Ps.subVectors(s,n),Is.subVectors(r,n),mc.subVectors(e,n);let l=Ps.dot(mc),c=Is.dot(mc);if(l<=0&&c<=0)return t.copy(n);gc.subVectors(e,s);let u=Ps.dot(gc),f=Is.dot(gc);if(u>=0&&f<=u)return t.copy(s);let h=l*f-u*c;if(h<=0&&l>=0&&u<=0)return a=l/(l-u),t.copy(n).addScaledVector(Ps,a);xc.subVectors(e,r);let p=Ps.dot(xc),x=Is.dot(xc);if(x>=0&&p<=x)return t.copy(r);let M=p*c-l*x;if(M<=0&&c>=0&&x<=0)return o=c/(c-x),t.copy(n).addScaledVector(Is,o);let g=u*x-p*f;if(g<=0&&f-u>=0&&p-x>=0)return gh.subVectors(r,s),o=(f-u)/(f-u+(p-x)),t.copy(s).addScaledVector(gh,o);let m=1/(g+M+h);return a=M*m,o=h*m,t.copy(n).addScaledVector(Ps,a).addScaledVector(Is,o)}equals(e){return e.a.equals(this.a)&&e.b.equals(this.b)&&e.c.equals(this.c)}},ci=class{constructor(e=new I(1/0,1/0,1/0),t=new I(-1/0,-1/0,-1/0)){this.isBox3=!0,this.min=e,this.max=t}set(e,t){return this.min.copy(e),this.max.copy(t),this}setFromArray(e){this.makeEmpty();for(let t=0,n=e.length;t<n;t+=3)this.expandByPoint(qn.fromArray(e,t));return this}setFromBufferAttribute(e){this.makeEmpty();for(let t=0,n=e.count;t<n;t++)this.expandByPoint(qn.fromBufferAttribute(e,t));return this}setFromPoints(e){this.makeEmpty();for(let t=0,n=e.length;t<n;t++)this.expandByPoint(e[t]);return this}setFromCenterAndSize(e,t){let n=qn.copy(t).multiplyScalar(.5);return this.min.copy(e).sub(n),this.max.copy(e).add(n),this}setFromObject(e,t=!1){return this.makeEmpty(),this.expandByObject(e,t)}clone(){return new this.constructor().copy(this)}copy(e){return this.min.copy(e.min),this.max.copy(e.max),this}makeEmpty(){return this.min.x=this.min.y=this.min.z=1/0,this.max.x=this.max.y=this.max.z=-1/0,this}isEmpty(){return this.max.x<this.min.x||this.max.y<this.min.y||this.max.z<this.min.z}getCenter(e){return this.isEmpty()?e.set(0,0,0):e.addVectors(this.min,this.max).multiplyScalar(.5)}getSize(e){return this.isEmpty()?e.set(0,0,0):e.subVectors(this.max,this.min)}expandByPoint(e){return this.min.min(e),this.max.max(e),this}expandByVector(e){return this.min.sub(e),this.max.add(e),this}expandByScalar(e){return this.min.addScalar(-e),this.max.addScalar(e),this}expandByObject(e,t=!1){e.updateWorldMatrix(!1,!1);let n=e.geometry;if(n!==void 0){let r=n.getAttribute("position");if(t===!0&&r!==void 0&&e.isInstancedMesh!==!0)for(let a=0,o=r.count;a<o;a++)e.isMesh===!0?e.getVertexPosition(a,qn):qn.fromBufferAttribute(r,a),qn.applyMatrix4(e.matrixWorld),this.expandByPoint(qn);else e.boundingBox!==void 0?(e.boundingBox===null&&e.computeBoundingBox(),Ja.copy(e.boundingBox)):(n.boundingBox===null&&n.computeBoundingBox(),Ja.copy(n.boundingBox)),Ja.applyMatrix4(e.matrixWorld),this.union(Ja)}let s=e.children;for(let r=0,a=s.length;r<a;r++)this.expandByObject(s[r],t);return this}containsPoint(e){return e.x>=this.min.x&&e.x<=this.max.x&&e.y>=this.min.y&&e.y<=this.max.y&&e.z>=this.min.z&&e.z<=this.max.z}containsBox(e){return this.min.x<=e.min.x&&e.max.x<=this.max.x&&this.min.y<=e.min.y&&e.max.y<=this.max.y&&this.min.z<=e.min.z&&e.max.z<=this.max.z}getParameter(e,t){return t.set((e.x-this.min.x)/(this.max.x-this.min.x),(e.y-this.min.y)/(this.max.y-this.min.y),(e.z-this.min.z)/(this.max.z-this.min.z))}intersectsBox(e){return e.max.x>=this.min.x&&e.min.x<=this.max.x&&e.max.y>=this.min.y&&e.min.y<=this.max.y&&e.max.z>=this.min.z&&e.min.z<=this.max.z}intersectsSphere(e){return this.clampPoint(e.center,qn),qn.distanceToSquared(e.center)<=e.radius*e.radius}intersectsPlane(e){let t,n;return e.normal.x>0?(t=e.normal.x*this.min.x,n=e.normal.x*this.max.x):(t=e.normal.x*this.max.x,n=e.normal.x*this.min.x),e.normal.y>0?(t+=e.normal.y*this.min.y,n+=e.normal.y*this.max.y):(t+=e.normal.y*this.max.y,n+=e.normal.y*this.min.y),e.normal.z>0?(t+=e.normal.z*this.min.z,n+=e.normal.z*this.max.z):(t+=e.normal.z*this.max.z,n+=e.normal.z*this.min.z),t<=-e.constant&&n>=-e.constant}intersectsTriangle(e){if(this.isEmpty())return!1;this.getCenter(Er),$a.subVectors(this.max,Er),Ns.subVectors(e.a,Er),Ls.subVectors(e.b,Er),Ds.subVectors(e.c,Er),Li.subVectors(Ls,Ns),Di.subVectors(Ds,Ls),is.subVectors(Ns,Ds);let t=[0,-Li.z,Li.y,0,-Di.z,Di.y,0,-is.z,is.y,Li.z,0,-Li.x,Di.z,0,-Di.x,is.z,0,-is.x,-Li.y,Li.x,0,-Di.y,Di.x,0,-is.y,is.x,0];return!bc(t,Ns,Ls,Ds,$a)||(t=[1,0,0,0,1,0,0,0,1],!bc(t,Ns,Ls,Ds,$a))?!1:(ja.crossVectors(Li,Di),t=[ja.x,ja.y,ja.z],bc(t,Ns,Ls,Ds,$a))}clampPoint(e,t){return t.copy(e).clamp(this.min,this.max)}distanceToPoint(e){return this.clampPoint(e,qn).distanceTo(e)}getBoundingSphere(e){return this.isEmpty()?e.makeEmpty():(this.getCenter(e.center),e.radius=this.getSize(qn).length()*.5),e}intersect(e){return this.min.max(e.min),this.max.min(e.max),this.isEmpty()&&this.makeEmpty(),this}union(e){return this.min.min(e.min),this.max.max(e.max),this}applyMatrix4(e){return this.isEmpty()?this:(Mi[0].set(this.min.x,this.min.y,this.min.z).applyMatrix4(e),Mi[1].set(this.min.x,this.min.y,this.max.z).applyMatrix4(e),Mi[2].set(this.min.x,this.max.y,this.min.z).applyMatrix4(e),Mi[3].set(this.min.x,this.max.y,this.max.z).applyMatrix4(e),Mi[4].set(this.max.x,this.min.y,this.min.z).applyMatrix4(e),Mi[5].set(this.max.x,this.min.y,this.max.z).applyMatrix4(e),Mi[6].set(this.max.x,this.max.y,this.min.z).applyMatrix4(e),Mi[7].set(this.max.x,this.max.y,this.max.z).applyMatrix4(e),this.setFromPoints(Mi),this)}translate(e){return this.min.add(e),this.max.add(e),this}equals(e){return e.min.equals(this.min)&&e.max.equals(this.max)}toJSON(){return{min:this.min.toArray(),max:this.max.toArray()}}fromJSON(e){return this.min.fromArray(e.min),this.max.fromArray(e.max),this}},Mi=[new I,new I,new I,new I,new I,new I,new I,new I],qn=new I,Ja=new ci,Ns=new I,Ls=new I,Ds=new I,Li=new I,Di=new I,is=new I,Er=new I,$a=new I,ja=new I,ss=new I;function bc(i,e,t,n,s){for(let r=0,a=i.length-3;r<=a;r+=3){ss.fromArray(i,r);let o=s.x*Math.abs(ss.x)+s.y*Math.abs(ss.y)+s.z*Math.abs(ss.z),l=e.dot(ss),c=t.dot(ss),u=n.dot(ss);if(Math.max(-Math.max(l,c,u),Math.min(l,c,u))>o)return!1}return!0}var Jt=new I,Qa=new Me,up=0,Nt=class extends ai{constructor(e,t,n=!1){if(super(),Array.isArray(e))throw new TypeError("THREE.BufferAttribute: array should be a Typed Array.");this.isBufferAttribute=!0,Object.defineProperty(this,"id",{value:up++}),this.name="",this.array=e,this.itemSize=t,this.count=e!==void 0?e.length/t:0,this.normalized=n,this.usage=gd,this.updateRanges=[],this.gpuType=zn,this.version=0}onUploadCallback(){}set needsUpdate(e){e===!0&&this.version++}setUsage(e){return this.usage=e,this}addUpdateRange(e,t){this.updateRanges.push({start:e,count:t})}clearUpdateRanges(){this.updateRanges.length=0}copy(e){return this.name=e.name,this.array=new e.array.constructor(e.array),this.itemSize=e.itemSize,this.count=e.count,this.normalized=e.normalized,this.usage=e.usage,this.gpuType=e.gpuType,this}copyAt(e,t,n){e*=this.itemSize,n*=t.itemSize;for(let s=0,r=this.itemSize;s<r;s++)this.array[e+s]=t.array[n+s];return this}copyArray(e){return this.array.set(e),this}applyMatrix3(e){if(this.itemSize===2)for(let t=0,n=this.count;t<n;t++)Qa.fromBufferAttribute(this,t),Qa.applyMatrix3(e),this.setXY(t,Qa.x,Qa.y);else if(this.itemSize===3)for(let t=0,n=this.count;t<n;t++)Jt.fromBufferAttribute(this,t),Jt.applyMatrix3(e),this.setXYZ(t,Jt.x,Jt.y,Jt.z);return this}applyMatrix4(e){for(let t=0,n=this.count;t<n;t++)Jt.fromBufferAttribute(this,t),Jt.applyMatrix4(e),this.setXYZ(t,Jt.x,Jt.y,Jt.z);return this}applyNormalMatrix(e){for(let t=0,n=this.count;t<n;t++)Jt.fromBufferAttribute(this,t),Jt.applyNormalMatrix(e),this.setXYZ(t,Jt.x,Jt.y,Jt.z);return this}transformDirection(e){for(let t=0,n=this.count;t<n;t++)Jt.fromBufferAttribute(this,t),Jt.transformDirection(e),this.setXYZ(t,Jt.x,Jt.y,Jt.z);return this}set(e,t=0){return this.array.set(e,t),this}getComponent(e,t){let n=this.array[e*this.itemSize+t];return this.normalized&&(n=Mr(n,this.array)),n}setComponent(e,t,n){return this.normalized&&(n=Mn(n,this.array)),this.array[e*this.itemSize+t]=n,this}getX(e){let t=this.array[e*this.itemSize];return this.normalized&&(t=Mr(t,this.array)),t}setX(e,t){return this.normalized&&(t=Mn(t,this.array)),this.array[e*this.itemSize]=t,this}getY(e){let t=this.array[e*this.itemSize+1];return this.normalized&&(t=Mr(t,this.array)),t}setY(e,t){return this.normalized&&(t=Mn(t,this.array)),this.array[e*this.itemSize+1]=t,this}getZ(e){let t=this.array[e*this.itemSize+2];return this.normalized&&(t=Mr(t,this.array)),t}setZ(e,t){return this.normalized&&(t=Mn(t,this.array)),this.array[e*this.itemSize+2]=t,this}getW(e){let t=this.array[e*this.itemSize+3];return this.normalized&&(t=Mr(t,this.array)),t}setW(e,t){return this.normalized&&(t=Mn(t,this.array)),this.array[e*this.itemSize+3]=t,this}setXY(e,t,n){return e*=this.itemSize,this.normalized&&(t=Mn(t,this.array),n=Mn(n,this.array)),this.array[e+0]=t,this.array[e+1]=n,this}setXYZ(e,t,n,s){return e*=this.itemSize,this.normalized&&(t=Mn(t,this.array),n=Mn(n,this.array),s=Mn(s,this.array)),this.array[e+0]=t,this.array[e+1]=n,this.array[e+2]=s,this}setXYZW(e,t,n,s,r){return e*=this.itemSize,this.normalized&&(t=Mn(t,this.array),n=Mn(n,this.array),s=Mn(s,this.array),r=Mn(r,this.array)),this.array[e+0]=t,this.array[e+1]=n,this.array[e+2]=s,this.array[e+3]=r,this}onUpload(e){return this.onUploadCallback=e,this}clone(){return new this.constructor(this.array,this.itemSize).copy(this)}toJSON(){let e={itemSize:this.itemSize,type:this.array.constructor.name,array:Array.from(this.array),normalized:this.normalized};return e.name=this.name,e.usage=this.usage,e.gpuType=this.gpuType,e}dispose(){this.dispatchEvent({type:"dispose"})}};var kr=class extends Nt{constructor(e,t,n){super(new Uint16Array(e),t,n)}};var zr=class extends Nt{constructor(e,t,n){super(new Uint32Array(e),t,n)}};var et=class extends Nt{constructor(e,t,n){super(new Float32Array(e),t,n)}},hp=new ci,wr=new I,Mc=new I,ui=class{constructor(e=new I,t=-1){this.isSphere=!0,this.center=e,this.radius=t}set(e,t){return this.center.copy(e),this.radius=t,this}setFromPoints(e,t){let n=this.center;t!==void 0?n.copy(t):hp.setFromPoints(e).getCenter(n);let s=0;for(let r=0,a=e.length;r<a;r++)s=Math.max(s,n.distanceToSquared(e[r]));return this.radius=Math.sqrt(s),this}copy(e){return this.center.copy(e.center),this.radius=e.radius,this}isEmpty(){return this.radius<0}makeEmpty(){return this.center.set(0,0,0),this.radius=-1,this}containsPoint(e){return e.distanceToSquared(this.center)<=this.radius*this.radius}distanceToPoint(e){return e.distanceTo(this.center)-this.radius}intersectsSphere(e){let t=this.radius+e.radius;return e.center.distanceToSquared(this.center)<=t*t}intersectsBox(e){return e.intersectsSphere(this)}intersectsPlane(e){return Math.abs(e.distanceToPoint(this.center))<=this.radius}clampPoint(e,t){let n=this.center.distanceToSquared(e);return t.copy(e),n>this.radius*this.radius&&(t.sub(this.center).normalize(),t.multiplyScalar(this.radius).add(this.center)),t}getBoundingBox(e){return this.isEmpty()?(e.makeEmpty(),e):(e.set(this.center,this.center),e.expandByScalar(this.radius),e)}applyMatrix4(e){return this.center.applyMatrix4(e),this.radius=this.radius*e.getMaxScaleOnAxis(),this}translate(e){return this.center.add(e),this}expandByPoint(e){if(this.isEmpty())return this.center.copy(e),this.radius=0,this;wr.subVectors(e,this.center);let t=wr.lengthSq();if(t>this.radius*this.radius){let n=Math.sqrt(t),s=(n-this.radius)*.5;this.center.addScaledVector(wr,s/n),this.radius+=s}return this}union(e){return e.isEmpty()?this:this.isEmpty()?(this.copy(e),this):(this.center.equals(e.center)===!0?this.radius=Math.max(this.radius,e.radius):(Mc.subVectors(e.center,this.center).setLength(e.radius),this.expandByPoint(wr.copy(e.center).add(Mc)),this.expandByPoint(wr.copy(e.center).sub(Mc))),this)}equals(e){return e.center.equals(this.center)&&e.radius===this.radius}clone(){return new this.constructor().copy(this)}toJSON(){return{radius:this.radius,center:this.center.toArray()}}fromJSON(e){return this.radius=e.radius,this.center.fromArray(e.center),this}},dp=0,Fn=new Ft,Sc=new zt,Us=new I,Cn=new ci,Tr=new ci,an=new I,_t=class i extends ai{constructor(){super(),this.isBufferGeometry=!0,Object.defineProperty(this,"id",{value:dp++}),this.uuid=ya(),this.name="",this.type="BufferGeometry",this.index=null,this.indirect=null,this.indirectOffset=0,this.attributes={},this.morphAttributes={},this.morphTargetsRelative=!1,this.groups=[],this.boundingBox=null,this.boundingSphere=null,this.drawRange={start:0,count:1/0},this.userData={},this._transformed=!1}getIndex(){return this.index}setIndex(e){return Array.isArray(e)?this.index=new($f(e)?zr:kr)(e,1):this.index=e,this}setIndirect(e,t=0){return this.indirect=e,this.indirectOffset=t,this}getIndirect(){return this.indirect}getAttribute(e){return this.attributes[e]}setAttribute(e,t){return this.attributes[e]=t,this}deleteAttribute(e){return delete this.attributes[e],this}hasAttribute(e){return this.attributes[e]!==void 0}addGroup(e,t,n=0){this.groups.push({start:e,count:t,materialIndex:n})}clearGroups(){this.groups=[]}setDrawRange(e,t){this.drawRange.start=e,this.drawRange.count=t}applyMatrix4(e){let t=this.attributes.position;t!==void 0&&(t.applyMatrix4(e),t.needsUpdate=!0);let n=this.attributes.normal;if(n!==void 0){let r=new rt().getNormalMatrix(e);n.applyNormalMatrix(r),n.needsUpdate=!0}let s=this.attributes.tangent;return s!==void 0&&(s.transformDirection(e),s.needsUpdate=!0),this.boundingBox!==null&&this.computeBoundingBox(),this.boundingSphere!==null&&this.computeBoundingSphere(),this._transformed=!0,this}applyQuaternion(e){return Fn.makeRotationFromQuaternion(e),this.applyMatrix4(Fn),this}rotateX(e){return Fn.makeRotationX(e),this.applyMatrix4(Fn),this}rotateY(e){return Fn.makeRotationY(e),this.applyMatrix4(Fn),this}rotateZ(e){return Fn.makeRotationZ(e),this.applyMatrix4(Fn),this}translate(e,t,n){return Fn.makeTranslation(e,t,n),this.applyMatrix4(Fn),this}scale(e,t,n){return Fn.makeScale(e,t,n),this.applyMatrix4(Fn),this}lookAt(e){return Sc.lookAt(e),Sc.updateMatrix(),this.applyMatrix4(Sc.matrix),this}center(){return this.computeBoundingBox(),this.boundingBox.getCenter(Us).negate(),this.translate(Us.x,Us.y,Us.z),this}setFromPoints(e){let t=this.getAttribute("position");if(t===void 0){let n=[];for(let s=0,r=e.length;s<r;s++){let a=e[s];n.push(a.x,a.y,a.z||0)}this.setAttribute("position",new et(n,3))}else{let n=Math.min(e.length,t.count);for(let s=0;s<n;s++){let r=e[s];t.setXYZ(s,r.x,r.y,r.z||0)}e.length>t.count&&Ke("BufferGeometry: Buffer size too small for points data. Use .dispose() and create a new geometry."),t.needsUpdate=!0}return this}computeBoundingBox(){this.boundingBox===null&&(this.boundingBox=new ci);let e=this.attributes.position,t=this.morphAttributes.position;if(e&&e.isGLBufferAttribute){Qe("BufferGeometry.computeBoundingBox(): GLBufferAttribute requires a manual bounding box.",this),this.boundingBox.set(new I(-1/0,-1/0,-1/0),new I(1/0,1/0,1/0));return}if(e!==void 0){if(this.boundingBox.setFromBufferAttribute(e),t)for(let n=0,s=t.length;n<s;n++){let r=t[n];Cn.setFromBufferAttribute(r),this.morphTargetsRelative?(an.addVectors(this.boundingBox.min,Cn.min),this.boundingBox.expandByPoint(an),an.addVectors(this.boundingBox.max,Cn.max),this.boundingBox.expandByPoint(an)):(this.boundingBox.expandByPoint(Cn.min),this.boundingBox.expandByPoint(Cn.max))}}else this.boundingBox.makeEmpty();(isNaN(this.boundingBox.min.x)||isNaN(this.boundingBox.min.y)||isNaN(this.boundingBox.min.z))&&Qe('BufferGeometry.computeBoundingBox(): Computed min/max have NaN values. The "position" attribute is likely to have NaN values.',this)}computeBoundingSphere(){this.boundingSphere===null&&(this.boundingSphere=new ui);let e=this.attributes.position,t=this.morphAttributes.position;if(e&&e.isGLBufferAttribute){Qe("BufferGeometry.computeBoundingSphere(): GLBufferAttribute requires a manual bounding sphere.",this),this.boundingSphere.set(new I,1/0);return}if(e){let n=this.boundingSphere.center;if(Cn.setFromBufferAttribute(e),t)for(let r=0,a=t.length;r<a;r++){let o=t[r];Tr.setFromBufferAttribute(o),this.morphTargetsRelative?(an.addVectors(Cn.min,Tr.min),Cn.expandByPoint(an),an.addVectors(Cn.max,Tr.max),Cn.expandByPoint(an)):(Cn.expandByPoint(Tr.min),Cn.expandByPoint(Tr.max))}Cn.getCenter(n);let s=0;for(let r=0,a=e.count;r<a;r++)an.fromBufferAttribute(e,r),s=Math.max(s,n.distanceToSquared(an));if(t)for(let r=0,a=t.length;r<a;r++){let o=t[r],l=this.morphTargetsRelative;for(let c=0,u=o.count;c<u;c++)an.fromBufferAttribute(o,c),l&&(Us.fromBufferAttribute(e,c),an.add(Us)),s=Math.max(s,n.distanceToSquared(an))}this.boundingSphere.radius=Math.sqrt(s),isNaN(this.boundingSphere.radius)&&Qe('BufferGeometry.computeBoundingSphere(): Computed radius is NaN. The "position" attribute is likely to have NaN values.',this)}}computeTangents(){let e=this.index,t=this.attributes;if(e===null||t.position===void 0||t.normal===void 0||t.uv===void 0){Qe("BufferGeometry: .computeTangents() failed. Missing required attributes (index, position, normal or uv)");return}let n=t.position,s=t.normal,r=t.uv,a=this.getAttribute("tangent");(a===void 0||a.count!==n.count)&&(a=new Nt(new Float32Array(4*n.count),4),this.setAttribute("tangent",a));let o=[],l=[];for(let y=0;y<n.count;y++)o[y]=new I,l[y]=new I;let c=new I,u=new I,f=new I,h=new Me,p=new Me,x=new Me,M=new I,g=new I;function m(y,w,P){c.fromBufferAttribute(n,y),u.fromBufferAttribute(n,w),f.fromBufferAttribute(n,P),h.fromBufferAttribute(r,y),p.fromBufferAttribute(r,w),x.fromBufferAttribute(r,P),u.sub(c),f.sub(c),p.sub(h),x.sub(h);let L=1/(p.x*x.y-x.x*p.y);isFinite(L)&&(M.copy(u).multiplyScalar(x.y).addScaledVector(f,-p.y).multiplyScalar(L),g.copy(f).multiplyScalar(p.x).addScaledVector(u,-x.x).multiplyScalar(L),o[y].add(M),o[w].add(M),o[P].add(M),l[y].add(g),l[w].add(g),l[P].add(g))}let S=this.groups;S.length===0&&(S=[{start:0,count:e.count}]);for(let y=0,w=S.length;y<w;++y){let P=S[y],L=P.start,B=P.count;for(let H=L,D=L+B;H<D;H+=3)m(e.getX(H+0),e.getX(H+1),e.getX(H+2))}let C=new I,_=new I,T=new I,E=new I;function R(y){T.fromBufferAttribute(s,y),E.copy(T);let w=o[y];C.copy(w),C.sub(T.multiplyScalar(T.dot(w))).normalize(),_.crossVectors(E,w);let L=_.dot(l[y])<0?-1:1;a.setXYZW(y,C.x,C.y,C.z,L)}for(let y=0,w=S.length;y<w;++y){let P=S[y],L=P.start,B=P.count;for(let H=L,D=L+B;H<D;H+=3)R(e.getX(H+0)),R(e.getX(H+1)),R(e.getX(H+2))}this._transformed=!0}computeVertexNormals(){let e=this.index,t=this.getAttribute("position");if(t!==void 0){let n=this.getAttribute("normal");if(n===void 0||n.count!==t.count)n=new Nt(new Float32Array(t.count*3),3),this.setAttribute("normal",n);else for(let h=0,p=n.count;h<p;h++)n.setXYZ(h,0,0,0);let s=new I,r=new I,a=new I,o=new I,l=new I,c=new I,u=new I,f=new I;if(e)for(let h=0,p=e.count;h<p;h+=3){let x=e.getX(h+0),M=e.getX(h+1),g=e.getX(h+2);s.fromBufferAttribute(t,x),r.fromBufferAttribute(t,M),a.fromBufferAttribute(t,g),u.subVectors(a,r),f.subVectors(s,r),u.cross(f),o.fromBufferAttribute(n,x),l.fromBufferAttribute(n,M),c.fromBufferAttribute(n,g),o.add(u),l.add(u),c.add(u),n.setXYZ(x,o.x,o.y,o.z),n.setXYZ(M,l.x,l.y,l.z),n.setXYZ(g,c.x,c.y,c.z)}else for(let h=0,p=t.count;h<p;h+=3)s.fromBufferAttribute(t,h+0),r.fromBufferAttribute(t,h+1),a.fromBufferAttribute(t,h+2),u.subVectors(a,r),f.subVectors(s,r),u.cross(f),n.setXYZ(h+0,u.x,u.y,u.z),n.setXYZ(h+1,u.x,u.y,u.z),n.setXYZ(h+2,u.x,u.y,u.z);this.normalizeNormals(),n.needsUpdate=!0}}normalizeNormals(){let e=this.attributes.normal;for(let t=0,n=e.count;t<n;t++)an.fromBufferAttribute(e,t),an.normalize(),e.setXYZ(t,an.x,an.y,an.z)}toNonIndexed(){function e(o,l){let c=o.array,u=o.itemSize,f=o.normalized,h=new c.constructor(l.length*u),p=0,x=0;for(let M=0,g=l.length;M<g;M++){o.isInterleavedBufferAttribute?p=l[M]*o.data.stride+o.offset:p=l[M]*u;for(let m=0;m<u;m++)h[x++]=c[p++]}return new Nt(h,u,f)}if(this.index===null)return Ke("BufferGeometry.toNonIndexed(): BufferGeometry is already non-indexed."),this;let t=new i,n=this.index.array,s=this.attributes;for(let o in s){let l=s[o],c=e(l,n);t.setAttribute(o,c)}let r=this.morphAttributes;for(let o in r){let l=[],c=r[o];for(let u=0,f=c.length;u<f;u++){let h=c[u],p=e(h,n);l.push(p)}t.morphAttributes[o]=l}t.morphTargetsRelative=this.morphTargetsRelative;let a=this.groups;for(let o=0,l=a.length;o<l;o++){let c=a[o];t.addGroup(c.start,c.count,c.materialIndex)}return t}toJSON(){let e={metadata:{version:4.7,type:"BufferGeometry",generator:"BufferGeometry.toJSON"}};if(e.uuid=this.uuid,e.type=this.parameters!==void 0&&this._transformed===!0?"BufferGeometry":this.type,e.name=this.name,Object.keys(this.userData).length>0&&(e.userData=this.userData),this.parameters!==void 0&&this._transformed!==!0){let l=this.parameters;for(let c in l)l[c]!==void 0&&(e[c]=l[c]);return e}e.data={attributes:{}};let t=this.index;t!==null&&(e.data.index={type:t.array.constructor.name,array:Array.prototype.slice.call(t.array)});let n=this.attributes;for(let l in n){let c=n[l];e.data.attributes[l]=c.toJSON(e.data)}let s={},r=!1;for(let l in this.morphAttributes){let c=this.morphAttributes[l],u=[];for(let f=0,h=c.length;f<h;f++){let p=c[f];u.push(p.toJSON(e.data))}u.length>0&&(s[l]=u,r=!0)}r&&(e.data.morphAttributes=s,e.data.morphTargetsRelative=this.morphTargetsRelative);let a=this.groups;a.length>0&&(e.data.groups=JSON.parse(JSON.stringify(a)));let o=this.boundingSphere;return o!==null&&(e.data.boundingSphere=o.toJSON()),e}clone(){return new this.constructor().copy(this)}copy(e){this.index=null,this.attributes={},this.morphAttributes={},this.groups=[],this.boundingBox=null,this.boundingSphere=null;let t={};this.name=e.name;let n=e.index;n!==null&&this.setIndex(n.clone());let s=e.attributes;for(let c in s){let u=s[c];this.setAttribute(c,u.clone(t))}let r=e.morphAttributes;for(let c in r){let u=[],f=r[c];for(let h=0,p=f.length;h<p;h++)u.push(f[h].clone(t));this.morphAttributes[c]=u}this.morphTargetsRelative=e.morphTargetsRelative;let a=e.groups;for(let c=0,u=a.length;c<u;c++){let f=a[c];this.addGroup(f.start,f.count,f.materialIndex)}let o=e.boundingBox;o!==null&&(this.boundingBox=o.clone());let l=e.boundingSphere;return l!==null&&(this.boundingSphere=l.clone()),this.drawRange.start=e.drawRange.start,this.drawRange.count=e.drawRange.count,this.userData=e.userData,this._transformed=e._transformed,this}dispose(){this.dispatchEvent({type:"dispose"})}};var Ec=new I,fp=new I,pp=new rt,Yn=class{constructor(e=new I(1,0,0),t=0){this.isPlane=!0,this.normal=e,this.constant=t}set(e,t){return this.normal.copy(e),this.constant=t,this}setComponents(e,t,n,s){return this.normal.set(e,t,n),this.constant=s,this}setFromNormalAndCoplanarPoint(e,t){return this.normal.copy(e),this.constant=-t.dot(this.normal),this}setFromCoplanarPoints(e,t,n){let s=Ec.subVectors(n,t).cross(fp.subVectors(e,t)).normalize();return this.setFromNormalAndCoplanarPoint(s,e),this}copy(e){return this.normal.copy(e.normal),this.constant=e.constant,this}normalize(){let e=1/this.normal.length();return this.normal.multiplyScalar(e),this.constant*=e,this}negate(){return this.constant*=-1,this.normal.negate(),this}distanceToPoint(e){return this.normal.dot(e)+this.constant}distanceToSphere(e){return this.distanceToPoint(e.center)-e.radius}projectPoint(e,t){return t.copy(e).addScaledVector(this.normal,-this.distanceToPoint(e))}intersectLine(e,t,n=!0){let s=e.delta(Ec),r=this.normal.dot(s);if(r===0)return this.distanceToPoint(e.start)===0?t.copy(e.start):null;let a=-(e.start.dot(this.normal)+this.constant)/r;return n===!0&&(a<0||a>1)?null:t.copy(e.start).addScaledVector(s,a)}intersectsLine(e){let t=this.distanceToPoint(e.start),n=this.distanceToPoint(e.end);return t<0&&n>0||n<0&&t>0}intersectsBox(e){return e.intersectsPlane(this)}intersectsSphere(e){return e.intersectsPlane(this)}coplanarPoint(e){return e.copy(this.normal).multiplyScalar(-this.constant)}applyMatrix4(e,t){let n=t||pp.getNormalMatrix(e),s=this.coplanarPoint(Ec).applyMatrix4(e),r=this.normal.applyMatrix3(n).normalize();return this.constant=-s.dot(r),this}translate(e){return this.constant-=e.dot(this.normal),this}equals(e){return e.normal.equals(this.normal)&&e.constant===this.constant}clone(){return new this.constructor().copy(this)}toJSON(){return{normal:this.normal.toArray(),constant:this.constant}}fromJSON(e){return this.normal.fromArray(e.normal),this.constant=e.constant,this}},mp=0,Kn=class extends ai{constructor(){super(),this.isMaterial=!0,Object.defineProperty(this,"id",{value:mp++}),this.uuid=ya(),this.name="",this.type="Material",this.blending=js,this.side=di,this.vertexColors=!1,this.opacity=1,this.transparent=!1,this.alphaHash=!1,this.blendSrc=qc,this.blendDst=Yc,this.blendEquation=fs,this.blendSrcAlpha=null,this.blendDstAlpha=null,this.blendEquationAlpha=null,this.blendColor=new he(0,0,0),this.blendAlpha=0,this.depthFunc=Hs,this.depthTest=!0,this.depthWrite=!0,this.stencilWriteMask=255,this.stencilFunc=cd,this.stencilRef=0,this.stencilFuncMask=255,this.stencilFail=yo,this.stencilZFail=yo,this.stencilZPass=yo,this.stencilWrite=!1,this.clippingPlanes=null,this.clipIntersection=!1,this.clipShadows=!1,this.shadowSide=null,this.colorWrite=!0,this.precision=null,this.polygonOffset=!1,this.polygonOffsetFactor=0,this.polygonOffsetUnits=0,this.dithering=!1,this.alphaToCoverage=!1,this.premultipliedAlpha=!1,this.forceSinglePass=!1,this.allowOverride=!0,this.visible=!0,this.toneMapped=!0,this.userData={},this.version=0,this._alphaTest=0}get alphaTest(){return this._alphaTest}set alphaTest(e){this._alphaTest>0!=e>0&&this.version++,this._alphaTest=e}onBeforeRender(){}onBeforeCompile(){}customProgramCacheKey(){return this.onBeforeCompile.toString()}setValues(e){if(e!==void 0)for(let t in e){let n=e[t];if(n===void 0){Ke(`Material: parameter '${t}' has value of undefined.`);continue}let s=this[t];if(s===void 0){Ke(`Material: '${t}' is not a property of THREE.${this.type}.`);continue}s&&s.isColor?s.set(n):s&&s.isVector2&&n&&n.isVector2||s&&s.isEuler&&n&&n.isEuler||s&&s.isVector3&&n&&n.isVector3?s.copy(n):this[t]=n}}toJSON(e){let t=e===void 0||typeof e=="string";t&&(e={textures:{},images:{}});let n={metadata:{version:4.7,type:"Material",generator:"Material.toJSON"}};n.uuid=this.uuid,n.type=this.type,n.blending=this.blending,n.side=this.side,n.shadowSide=this.shadowSide,n.vertexColors=this.vertexColors,n.opacity=this.opacity,n.transparent=this.transparent,n.blendSrc=this.blendSrc,n.blendDst=this.blendDst,n.blendEquation=this.blendEquation,n.blendSrcAlpha=this.blendSrcAlpha,n.blendDstAlpha=this.blendDstAlpha,n.blendEquationAlpha=this.blendEquationAlpha,n.blendColor=this.blendColor.getHex(),n.blendAlpha=this.blendAlpha,n.depthFunc=this.depthFunc,n.depthTest=this.depthTest,n.depthWrite=this.depthWrite,n.colorWrite=this.colorWrite,n.clipIntersection=this.clipIntersection,n.clipShadows=this.clipShadows,n.stencilWriteMask=this.stencilWriteMask,n.stencilFunc=this.stencilFunc,n.stencilRef=this.stencilRef,n.stencilFuncMask=this.stencilFuncMask,n.stencilFail=this.stencilFail,n.stencilZFail=this.stencilZFail,n.stencilZPass=this.stencilZPass,n.stencilWrite=this.stencilWrite,n.polygonOffset=this.polygonOffset,n.polygonOffsetFactor=this.polygonOffsetFactor,n.polygonOffsetUnits=this.polygonOffsetUnits,n.dithering=this.dithering,n.alphaTest=this.alphaTest,n.alphaHash=this.alphaHash,n.alphaToCoverage=this.alphaToCoverage,n.premultipliedAlpha=this.premultipliedAlpha,n.forceSinglePass=this.forceSinglePass,n.allowOverride=this.allowOverride,n.visible=this.visible,n.toneMapped=this.toneMapped,n.name=this.name,this.color&&this.color.isColor&&(n.color=this.color.getHex()),this.roughness!==void 0&&(n.roughness=this.roughness),this.metalness!==void 0&&(n.metalness=this.metalness),this.sheen!==void 0&&(n.sheen=this.sheen),this.sheenColor&&this.sheenColor.isColor&&(n.sheenColor=this.sheenColor.getHex()),this.sheenRoughness!==void 0&&(n.sheenRoughness=this.sheenRoughness),this.emissive&&this.emissive.isColor&&(n.emissive=this.emissive.getHex()),this.emissiveIntensity!==void 0&&(n.emissiveIntensity=this.emissiveIntensity),this.specular&&this.specular.isColor&&(n.specular=this.specular.getHex()),this.specularIntensity!==void 0&&(n.specularIntensity=this.specularIntensity),this.specularColor&&this.specularColor.isColor&&(n.specularColor=this.specularColor.getHex()),this.shininess!==void 0&&(n.shininess=this.shininess),this.clearcoat!==void 0&&(n.clearcoat=this.clearcoat),this.clearcoatRoughness!==void 0&&(n.clearcoatRoughness=this.clearcoatRoughness),this.clearcoatMap&&this.clearcoatMap.isTexture&&(n.clearcoatMap=this.clearcoatMap.toJSON(e).uuid),this.clearcoatRoughnessMap&&this.clearcoatRoughnessMap.isTexture&&(n.clearcoatRoughnessMap=this.clearcoatRoughnessMap.toJSON(e).uuid),this.clearcoatNormalMap&&this.clearcoatNormalMap.isTexture&&(n.clearcoatNormalMap=this.clearcoatNormalMap.toJSON(e).uuid,n.clearcoatNormalScale=this.clearcoatNormalScale.toArray()),this.sheenColorMap&&this.sheenColorMap.isTexture&&(n.sheenColorMap=this.sheenColorMap.toJSON(e).uuid),this.sheenRoughnessMap&&this.sheenRoughnessMap.isTexture&&(n.sheenRoughnessMap=this.sheenRoughnessMap.toJSON(e).uuid),this.dispersion!==void 0&&(n.dispersion=this.dispersion),this.retroreflectivity!==void 0&&(n.retroreflectivity=this.retroreflectivity),this.iridescence!==void 0&&(n.iridescence=this.iridescence),this.iridescenceIOR!==void 0&&(n.iridescenceIOR=this.iridescenceIOR),this.iridescenceThicknessRange!==void 0&&(n.iridescenceThicknessRange=this.iridescenceThicknessRange),this.iridescenceMap&&this.iridescenceMap.isTexture&&(n.iridescenceMap=this.iridescenceMap.toJSON(e).uuid),this.iridescenceThicknessMap&&this.iridescenceThicknessMap.isTexture&&(n.iridescenceThicknessMap=this.iridescenceThicknessMap.toJSON(e).uuid),this.anisotropy!==void 0&&(n.anisotropy=this.anisotropy),this.anisotropyRotation!==void 0&&(n.anisotropyRotation=this.anisotropyRotation),this.anisotropyMap&&this.anisotropyMap.isTexture&&(n.anisotropyMap=this.anisotropyMap.toJSON(e).uuid),this.map&&this.map.isTexture&&(n.map=this.map.toJSON(e).uuid),this.matcap&&this.matcap.isTexture&&(n.matcap=this.matcap.toJSON(e).uuid),this.alphaMap&&this.alphaMap.isTexture&&(n.alphaMap=this.alphaMap.toJSON(e).uuid),this.lightMap&&this.lightMap.isTexture&&(n.lightMap=this.lightMap.toJSON(e).uuid,n.lightMapIntensity=this.lightMapIntensity),this.aoMap&&this.aoMap.isTexture&&(n.aoMap=this.aoMap.toJSON(e).uuid,n.aoMapIntensity=this.aoMapIntensity),this.bumpMap&&this.bumpMap.isTexture&&(n.bumpMap=this.bumpMap.toJSON(e).uuid,n.bumpScale=this.bumpScale),this.normalMap&&this.normalMap.isTexture&&(n.normalMap=this.normalMap.toJSON(e).uuid,n.normalMapType=this.normalMapType,n.normalScale=this.normalScale.toArray()),this.displacementMap&&this.displacementMap.isTexture&&(n.displacementMap=this.displacementMap.toJSON(e).uuid,n.displacementScale=this.displacementScale,n.displacementBias=this.displacementBias),this.roughnessMap&&this.roughnessMap.isTexture&&(n.roughnessMap=this.roughnessMap.toJSON(e).uuid),this.metalnessMap&&this.metalnessMap.isTexture&&(n.metalnessMap=this.metalnessMap.toJSON(e).uuid),this.emissiveMap&&this.emissiveMap.isTexture&&(n.emissiveMap=this.emissiveMap.toJSON(e).uuid),this.specularMap&&this.specularMap.isTexture&&(n.specularMap=this.specularMap.toJSON(e).uuid),this.specularIntensityMap&&this.specularIntensityMap.isTexture&&(n.specularIntensityMap=this.specularIntensityMap.toJSON(e).uuid),this.specularColorMap&&this.specularColorMap.isTexture&&(n.specularColorMap=this.specularColorMap.toJSON(e).uuid),this.envMap&&this.envMap.isTexture&&(n.envMap=this.envMap.toJSON(e).uuid,this.combine!==void 0&&(n.combine=this.combine)),this.envMapRotation!==void 0&&(n.envMapRotation=this.envMapRotation.toArray()),this.envMapIntensity!==void 0&&(n.envMapIntensity=this.envMapIntensity),this.reflectivity!==void 0&&(n.reflectivity=this.reflectivity),this.refractionRatio!==void 0&&(n.refractionRatio=this.refractionRatio),this.gradientMap&&this.gradientMap.isTexture&&(n.gradientMap=this.gradientMap.toJSON(e).uuid),this.transmission!==void 0&&(n.transmission=this.transmission),this.transmissionMap&&this.transmissionMap.isTexture&&(n.transmissionMap=this.transmissionMap.toJSON(e).uuid),this.thickness!==void 0&&(n.thickness=this.thickness),this.thicknessMap&&this.thicknessMap.isTexture&&(n.thicknessMap=this.thicknessMap.toJSON(e).uuid),this.attenuationDistance!==void 0&&(n.attenuationDistance=this.attenuationDistance),this.attenuationColor!==void 0&&(n.attenuationColor=this.attenuationColor.getHex()),this.size!==void 0&&(n.size=this.size),this.sizeAttenuation!==void 0&&(n.sizeAttenuation=this.sizeAttenuation),Array.isArray(this.clippingPlanes)&&this.clippingPlanes.length>0&&(n.clippingPlanes=this.clippingPlanes.map(r=>r.toJSON())),this.rotation!==void 0&&(n.rotation=this.rotation),this.depthPacking!==void 0&&(n.depthPacking=this.depthPacking),this.linewidth!==void 0&&(n.linewidth=this.linewidth),this.linecap!==void 0&&(n.linecap=this.linecap),this.linejoin!==void 0&&(n.linejoin=this.linejoin),this.dashSize!==void 0&&(n.dashSize=this.dashSize),this.gapSize!==void 0&&(n.gapSize=this.gapSize),this.scale!==void 0&&(n.scale=this.scale),this.wireframe!==void 0&&(n.wireframe=this.wireframe),this.wireframeLinewidth!==void 0&&(n.wireframeLinewidth=this.wireframeLinewidth),this.wireframeLinecap!==void 0&&(n.wireframeLinecap=this.wireframeLinecap),this.wireframeLinejoin!==void 0&&(n.wireframeLinejoin=this.wireframeLinejoin),this.flatShading!==void 0&&(n.flatShading=this.flatShading),this.fog!==void 0&&(n.fog=this.fog),Object.keys(this.userData).length>0&&(n.userData=this.userData);function s(r){let a=[];for(let o in r){let l=r[o];delete l.metadata,a.push(l)}return a}if(t){let r=s(e.textures),a=s(e.images);r.length>0&&(n.textures=r),a.length>0&&(n.images=a)}return n}fromJSON(e,t){if(e.uuid!==void 0&&(this.uuid=e.uuid),e.name!==void 0&&(this.name=e.name),e.color!==void 0&&this.color!==void 0&&this.color.setHex(e.color),e.roughness!==void 0&&(this.roughness=e.roughness),e.metalness!==void 0&&(this.metalness=e.metalness),e.sheen!==void 0&&(this.sheen=e.sheen),e.sheenColor!==void 0&&(this.sheenColor=new he().setHex(e.sheenColor)),e.sheenRoughness!==void 0&&(this.sheenRoughness=e.sheenRoughness),e.emissive!==void 0&&this.emissive!==void 0&&this.emissive.setHex(e.emissive),e.specular!==void 0&&this.specular!==void 0&&this.specular.setHex(e.specular),e.specularIntensity!==void 0&&(this.specularIntensity=e.specularIntensity),e.specularColor!==void 0&&this.specularColor!==void 0&&this.specularColor.setHex(e.specularColor),e.shininess!==void 0&&(this.shininess=e.shininess),e.clearcoat!==void 0&&(this.clearcoat=e.clearcoat),e.clearcoatRoughness!==void 0&&(this.clearcoatRoughness=e.clearcoatRoughness),e.dispersion!==void 0&&(this.dispersion=e.dispersion),e.retroreflectivity!==void 0&&(this.retroreflectivity=e.retroreflectivity),e.iridescence!==void 0&&(this.iridescence=e.iridescence),e.iridescenceIOR!==void 0&&(this.iridescenceIOR=e.iridescenceIOR),e.iridescenceThicknessRange!==void 0&&(this.iridescenceThicknessRange=e.iridescenceThicknessRange),e.transmission!==void 0&&(this.transmission=e.transmission),e.thickness!==void 0&&(this.thickness=e.thickness),e.attenuationDistance!==void 0&&(this.attenuationDistance=e.attenuationDistance),e.attenuationColor!==void 0&&this.attenuationColor!==void 0&&this.attenuationColor.setHex(e.attenuationColor),e.anisotropy!==void 0&&(this.anisotropy=e.anisotropy),e.anisotropyRotation!==void 0&&(this.anisotropyRotation=e.anisotropyRotation),e.fog!==void 0&&(this.fog=e.fog),e.flatShading!==void 0&&(this.flatShading=e.flatShading),e.blending!==void 0&&(this.blending=e.blending),e.combine!==void 0&&(this.combine=e.combine),e.side!==void 0&&(this.side=e.side),e.shadowSide!==void 0&&(this.shadowSide=e.shadowSide),e.opacity!==void 0&&(this.opacity=e.opacity),e.transparent!==void 0&&(this.transparent=e.transparent),e.alphaTest!==void 0&&(this.alphaTest=e.alphaTest),e.alphaHash!==void 0&&(this.alphaHash=e.alphaHash),e.depthFunc!==void 0&&(this.depthFunc=e.depthFunc),e.depthTest!==void 0&&(this.depthTest=e.depthTest),e.depthWrite!==void 0&&(this.depthWrite=e.depthWrite),e.colorWrite!==void 0&&(this.colorWrite=e.colorWrite),e.clippingPlanes!==void 0&&(this.clippingPlanes=e.clippingPlanes.map(n=>new Yn().fromJSON(n))),e.clipIntersection!==void 0&&(this.clipIntersection=e.clipIntersection),e.clipShadows!==void 0&&(this.clipShadows=e.clipShadows),e.depthPacking!==void 0&&(this.depthPacking=e.depthPacking),e.blendSrc!==void 0&&(this.blendSrc=e.blendSrc),e.blendDst!==void 0&&(this.blendDst=e.blendDst),e.blendEquation!==void 0&&(this.blendEquation=e.blendEquation),e.blendSrcAlpha!==void 0&&(this.blendSrcAlpha=e.blendSrcAlpha),e.blendDstAlpha!==void 0&&(this.blendDstAlpha=e.blendDstAlpha),e.blendEquationAlpha!==void 0&&(this.blendEquationAlpha=e.blendEquationAlpha),e.blendColor!==void 0&&this.blendColor!==void 0&&this.blendColor.setHex(e.blendColor),e.blendAlpha!==void 0&&(this.blendAlpha=e.blendAlpha),e.stencilWriteMask!==void 0&&(this.stencilWriteMask=e.stencilWriteMask),e.stencilFunc!==void 0&&(this.stencilFunc=e.stencilFunc),e.stencilRef!==void 0&&(this.stencilRef=e.stencilRef),e.stencilFuncMask!==void 0&&(this.stencilFuncMask=e.stencilFuncMask),e.stencilFail!==void 0&&(this.stencilFail=e.stencilFail),e.stencilZFail!==void 0&&(this.stencilZFail=e.stencilZFail),e.stencilZPass!==void 0&&(this.stencilZPass=e.stencilZPass),e.stencilWrite!==void 0&&(this.stencilWrite=e.stencilWrite),e.wireframe!==void 0&&(this.wireframe=e.wireframe),e.wireframeLinewidth!==void 0&&(this.wireframeLinewidth=e.wireframeLinewidth),e.wireframeLinecap!==void 0&&(this.wireframeLinecap=e.wireframeLinecap),e.wireframeLinejoin!==void 0&&(this.wireframeLinejoin=e.wireframeLinejoin),e.rotation!==void 0&&(this.rotation=e.rotation),e.linewidth!==void 0&&(this.linewidth=e.linewidth),e.linecap!==void 0&&(this.linecap=e.linecap),e.linejoin!==void 0&&(this.linejoin=e.linejoin),e.dashSize!==void 0&&(this.dashSize=e.dashSize),e.gapSize!==void 0&&(this.gapSize=e.gapSize),e.scale!==void 0&&(this.scale=e.scale),e.polygonOffset!==void 0&&(this.polygonOffset=e.polygonOffset),e.polygonOffsetFactor!==void 0&&(this.polygonOffsetFactor=e.polygonOffsetFactor),e.polygonOffsetUnits!==void 0&&(this.polygonOffsetUnits=e.polygonOffsetUnits),e.dithering!==void 0&&(this.dithering=e.dithering),e.alphaToCoverage!==void 0&&(this.alphaToCoverage=e.alphaToCoverage),e.premultipliedAlpha!==void 0&&(this.premultipliedAlpha=e.premultipliedAlpha),e.forceSinglePass!==void 0&&(this.forceSinglePass=e.forceSinglePass),e.allowOverride!==void 0&&(this.allowOverride=e.allowOverride),e.visible!==void 0&&(this.visible=e.visible),e.toneMapped!==void 0&&(this.toneMapped=e.toneMapped),e.userData!==void 0&&(this.userData=e.userData),e.vertexColors!==void 0&&(typeof e.vertexColors=="number"?this.vertexColors=e.vertexColors>0:this.vertexColors=e.vertexColors),e.size!==void 0&&(this.size=e.size),e.sizeAttenuation!==void 0&&(this.sizeAttenuation=e.sizeAttenuation),e.map!==void 0&&(this.map=t[e.map]||null),e.matcap!==void 0&&(this.matcap=t[e.matcap]||null),e.alphaMap!==void 0&&(this.alphaMap=t[e.alphaMap]||null),e.bumpMap!==void 0&&(this.bumpMap=t[e.bumpMap]||null),e.bumpScale!==void 0&&(this.bumpScale=e.bumpScale),e.normalMap!==void 0&&(this.normalMap=t[e.normalMap]||null),e.normalMapType!==void 0&&(this.normalMapType=e.normalMapType),e.normalScale!==void 0){let n=e.normalScale;Array.isArray(n)===!1&&(n=[n,n]),this.normalScale=new Me().fromArray(n)}return e.displacementMap!==void 0&&(this.displacementMap=t[e.displacementMap]||null),e.displacementScale!==void 0&&(this.displacementScale=e.displacementScale),e.displacementBias!==void 0&&(this.displacementBias=e.displacementBias),e.roughnessMap!==void 0&&(this.roughnessMap=t[e.roughnessMap]||null),e.metalnessMap!==void 0&&(this.metalnessMap=t[e.metalnessMap]||null),e.emissiveMap!==void 0&&(this.emissiveMap=t[e.emissiveMap]||null),e.emissiveIntensity!==void 0&&(this.emissiveIntensity=e.emissiveIntensity),e.specularMap!==void 0&&(this.specularMap=t[e.specularMap]||null),e.specularIntensityMap!==void 0&&(this.specularIntensityMap=t[e.specularIntensityMap]||null),e.specularColorMap!==void 0&&(this.specularColorMap=t[e.specularColorMap]||null),e.envMap!==void 0&&(this.envMap=t[e.envMap]||null),e.envMapRotation!==void 0&&this.envMapRotation.fromArray(e.envMapRotation),e.envMapIntensity!==void 0&&(this.envMapIntensity=e.envMapIntensity),e.reflectivity!==void 0&&(this.reflectivity=e.reflectivity),e.refractionRatio!==void 0&&(this.refractionRatio=e.refractionRatio),e.lightMap!==void 0&&(this.lightMap=t[e.lightMap]||null),e.lightMapIntensity!==void 0&&(this.lightMapIntensity=e.lightMapIntensity),e.aoMap!==void 0&&(this.aoMap=t[e.aoMap]||null),e.aoMapIntensity!==void 0&&(this.aoMapIntensity=e.aoMapIntensity),e.gradientMap!==void 0&&(this.gradientMap=t[e.gradientMap]||null),e.clearcoatMap!==void 0&&(this.clearcoatMap=t[e.clearcoatMap]||null),e.clearcoatRoughnessMap!==void 0&&(this.clearcoatRoughnessMap=t[e.clearcoatRoughnessMap]||null),e.clearcoatNormalMap!==void 0&&(this.clearcoatNormalMap=t[e.clearcoatNormalMap]||null),e.clearcoatNormalScale!==void 0&&(this.clearcoatNormalScale=new Me().fromArray(e.clearcoatNormalScale)),e.iridescenceMap!==void 0&&(this.iridescenceMap=t[e.iridescenceMap]||null),e.iridescenceThicknessMap!==void 0&&(this.iridescenceThicknessMap=t[e.iridescenceThicknessMap]||null),e.transmissionMap!==void 0&&(this.transmissionMap=t[e.transmissionMap]||null),e.thicknessMap!==void 0&&(this.thicknessMap=t[e.thicknessMap]||null),e.anisotropyMap!==void 0&&(this.anisotropyMap=t[e.anisotropyMap]||null),e.sheenColorMap!==void 0&&(this.sheenColorMap=t[e.sheenColorMap]||null),e.sheenRoughnessMap!==void 0&&(this.sheenRoughnessMap=t[e.sheenRoughnessMap]||null),this}clone(){return new this.constructor().copy(this)}copy(e){this.name=e.name,this.blending=e.blending,this.side=e.side,this.vertexColors=e.vertexColors,this.opacity=e.opacity,this.transparent=e.transparent,this.blendSrc=e.blendSrc,this.blendDst=e.blendDst,this.blendEquation=e.blendEquation,this.blendSrcAlpha=e.blendSrcAlpha,this.blendDstAlpha=e.blendDstAlpha,this.blendEquationAlpha=e.blendEquationAlpha,this.blendColor.copy(e.blendColor),this.blendAlpha=e.blendAlpha,this.depthFunc=e.depthFunc,this.depthTest=e.depthTest,this.depthWrite=e.depthWrite,this.stencilWriteMask=e.stencilWriteMask,this.stencilFunc=e.stencilFunc,this.stencilRef=e.stencilRef,this.stencilFuncMask=e.stencilFuncMask,this.stencilFail=e.stencilFail,this.stencilZFail=e.stencilZFail,this.stencilZPass=e.stencilZPass,this.stencilWrite=e.stencilWrite;let t=e.clippingPlanes,n=null;if(t!==null){let s=t.length;n=new Array(s);for(let r=0;r!==s;++r)n[r]=t[r].clone()}return this.clippingPlanes=n,this.clipIntersection=e.clipIntersection,this.clipShadows=e.clipShadows,this.shadowSide=e.shadowSide,this.colorWrite=e.colorWrite,this.precision=e.precision,this.polygonOffset=e.polygonOffset,this.polygonOffsetFactor=e.polygonOffsetFactor,this.polygonOffsetUnits=e.polygonOffsetUnits,this.dithering=e.dithering,this.alphaTest=e.alphaTest,this.alphaHash=e.alphaHash,this.alphaToCoverage=e.alphaToCoverage,this.premultipliedAlpha=e.premultipliedAlpha,this.forceSinglePass=e.forceSinglePass,this.allowOverride=e.allowOverride,this.visible=e.visible,this.toneMapped=e.toneMapped,this.userData=JSON.parse(JSON.stringify(e.userData)),this}dispose(){this.dispatchEvent({type:"dispose"})}set needsUpdate(e){e===!0&&this.version++}};var Si=new I,wc=new I,eo=new I,to=new I,qs=class{constructor(e=new I,t=new I(0,0,-1)){this.origin=e,this.direction=t}set(e,t){return this.origin.copy(e),this.direction.copy(t),this}copy(e){return this.origin.copy(e.origin),this.direction.copy(e.direction),this}at(e,t){return t.copy(this.origin).addScaledVector(this.direction,e)}lookAt(e){return this.direction.copy(e).sub(this.origin).normalize(),this}recast(e){return this.origin.copy(this.at(e,Si)),this}closestPointToPoint(e,t){t.subVectors(e,this.origin);let n=t.dot(this.direction);return n<0?t.copy(this.origin):t.copy(this.origin).addScaledVector(this.direction,n)}distanceToPoint(e){return Math.sqrt(this.distanceSqToPoint(e))}distanceSqToPoint(e){let t=Si.subVectors(e,this.origin).dot(this.direction);return t<0?this.origin.distanceToSquared(e):(Si.copy(this.origin).addScaledVector(this.direction,t),Si.distanceToSquared(e))}distanceSqToSegment(e,t,n,s){wc.copy(e).add(t).multiplyScalar(.5),eo.copy(t).sub(e).normalize(),to.copy(this.origin).sub(wc);let r=e.distanceTo(t)*.5,a=-this.direction.dot(eo),o=to.dot(this.direction),l=-to.dot(eo),c=to.lengthSq(),u=Math.abs(1-a*a),f,h,p,x;if(u>0)if(f=a*l-o,h=a*o-l,x=r*u,f>=0)if(h>=-x)if(h<=x){let M=1/u;f*=M,h*=M,p=f*(f+a*h+2*o)+h*(a*f+h+2*l)+c}else h=r,f=Math.max(0,-(a*h+o)),p=-f*f+h*(h+2*l)+c;else h=-r,f=Math.max(0,-(a*h+o)),p=-f*f+h*(h+2*l)+c;else h<=-x?(f=Math.max(0,-(-a*r+o)),h=f>0?-r:Math.min(Math.max(-r,-l),r),p=-f*f+h*(h+2*l)+c):h<=x?(f=0,h=Math.min(Math.max(-r,-l),r),p=h*(h+2*l)+c):(f=Math.max(0,-(a*r+o)),h=f>0?r:Math.min(Math.max(-r,-l),r),p=-f*f+h*(h+2*l)+c);else h=a>0?-r:r,f=Math.max(0,-(a*h+o)),p=-f*f+h*(h+2*l)+c;return n&&n.copy(this.origin).addScaledVector(this.direction,f),s&&s.copy(wc).addScaledVector(eo,h),p}intersectSphere(e,t){if(e.radius<0)return null;Si.subVectors(e.center,this.origin);let n=Si.dot(this.direction),s=Si.dot(Si)-n*n,r=e.radius*e.radius;if(s>r)return null;let a=Math.sqrt(r-s),o=n-a,l=n+a;return l<0?null:o<0?this.at(l,t):this.at(o,t)}intersectsSphere(e){return e.radius<0?!1:this.distanceSqToPoint(e.center)<=e.radius*e.radius}distanceToPlane(e){let t=e.normal.dot(this.direction);if(t===0)return e.distanceToPoint(this.origin)===0?0:null;let n=-(this.origin.dot(e.normal)+e.constant)/t;return n>=0?n:null}intersectPlane(e,t){let n=this.distanceToPlane(e);return n===null?null:this.at(n,t)}intersectsPlane(e){let t=e.distanceToPoint(this.origin);return t===0||e.normal.dot(this.direction)*t<0}intersectBox(e,t){let n,s,r,a,o,l,c=1/this.direction.x,u=1/this.direction.y,f=1/this.direction.z,h=this.origin;return c>=0?(n=(e.min.x-h.x)*c,s=(e.max.x-h.x)*c):(n=(e.max.x-h.x)*c,s=(e.min.x-h.x)*c),u>=0?(r=(e.min.y-h.y)*u,a=(e.max.y-h.y)*u):(r=(e.max.y-h.y)*u,a=(e.min.y-h.y)*u),n>a||r>s||((r>n||isNaN(n))&&(n=r),(a<s||isNaN(s))&&(s=a),f>=0?(o=(e.min.z-h.z)*f,l=(e.max.z-h.z)*f):(o=(e.max.z-h.z)*f,l=(e.min.z-h.z)*f),n>l||o>s)||((o>n||n!==n)&&(n=o),(l<s||s!==s)&&(s=l),s<0)?null:this.at(n>=0?n:s,t)}intersectsBox(e){return this.intersectBox(e,Si)!==null}intersectTriangle(e,t,n,s,r){let a=this.origin,o=this.direction,l=o.x,c=o.y,u=o.z,f=e.x-a.x,h=e.y-a.y,p=e.z-a.z,x=t.x-a.x,M=t.y-a.y,g=t.z-a.z,m=n.x-a.x,S=n.y-a.y,C=n.z-a.z,_=Math.abs(l),T=Math.abs(c),E=Math.abs(u),R,y,w,P,L,B,H,D,W,K,J,ne;if(_>=T&&_>=E?(w=l,B=f,W=x,ne=m,l>=0?(R=c,y=u,P=h,L=p,H=M,D=g,K=S,J=C):(R=u,y=c,P=p,L=h,H=g,D=M,K=C,J=S)):T>=E?(w=c,B=h,W=M,ne=S,c>=0?(R=u,y=l,P=p,L=f,H=g,D=x,K=C,J=m):(R=l,y=u,P=f,L=p,H=x,D=g,K=m,J=C)):(w=u,B=p,W=g,ne=C,u>=0?(R=l,y=c,P=f,L=h,H=x,D=M,K=m,J=S):(R=c,y=l,P=h,L=f,H=M,D=x,K=S,J=m)),w===0)return null;let Z=R/w,ee=y/w,re=1/w,Pe=P-Z*B,Ie=L-ee*B,vt=H-Z*W,ot=D-ee*W,ut=K-Z*ne,j=J-ee*ne,se=ut*ot-j*vt,Ee=Pe*j-Ie*ut,Ve=vt*Ie-ot*Pe;if(s){if(se<0||Ee<0||Ve<0)return null}else if((se<0||Ee<0||Ve<0)&&(se>0||Ee>0||Ve>0))return null;let fe=se+Ee+Ve;if(fe===0)return null;let tt=re*(se*B+Ee*W+Ve*ne);return(fe>0?tt<0:tt>0)?null:this.at(tt/fe,r)}applyMatrix4(e){return this.origin.applyMatrix4(e),this.direction.transformDirection(e),this}equals(e){return e.origin.equals(this.origin)&&e.direction.equals(this.direction)}clone(){return new this.constructor().copy(this)}},Ot=class extends Kn{constructor(e){super(),this.isMeshBasicMaterial=!0,this.type="MeshBasicMaterial",this.color=new he(16777215),this.map=null,this.lightMap=null,this.lightMapIntensity=1,this.aoMap=null,this.aoMapIntensity=1,this.specularMap=null,this.alphaMap=null,this.envMap=null,this.envMapRotation=new li,this.combine=al,this.reflectivity=1,this.refractionRatio=.98,this.wireframe=!1,this.wireframeLinewidth=1,this.wireframeLinecap="round",this.wireframeLinejoin="round",this.fog=!0,this.setValues(e)}copy(e){return super.copy(e),this.color.copy(e.color),this.map=e.map,this.lightMap=e.lightMap,this.lightMapIntensity=e.lightMapIntensity,this.aoMap=e.aoMap,this.aoMapIntensity=e.aoMapIntensity,this.specularMap=e.specularMap,this.alphaMap=e.alphaMap,this.envMap=e.envMap,this.envMapRotation.copy(e.envMapRotation),this.combine=e.combine,this.reflectivity=e.reflectivity,this.refractionRatio=e.refractionRatio,this.wireframe=e.wireframe,this.wireframeLinewidth=e.wireframeLinewidth,this.wireframeLinecap=e.wireframeLinecap,this.wireframeLinejoin=e.wireframeLinejoin,this.fog=e.fog,this}},xh=new Ft,rs=new qs,no=new ui,vh=new I,io=new I,so=new I,ro=new I,Tc=new I,ao=new I,yh=new I,oo=new I,Je=class extends zt{constructor(e=new _t,t=new Ot){super(),this.isMesh=!0,this.type="Mesh",this.geometry=e,this.material=t,this.morphTargetDictionary=void 0,this.morphTargetInfluences=void 0,this.count=1,this.updateMorphTargets()}copy(e,t){return super.copy(e,t),e.morphTargetInfluences!==void 0&&(this.morphTargetInfluences=e.morphTargetInfluences.slice()),e.morphTargetDictionary!==void 0&&(this.morphTargetDictionary=Object.assign({},e.morphTargetDictionary)),this.material=Array.isArray(e.material)?e.material.slice():e.material,this.geometry=e.geometry,this}updateMorphTargets(){let t=this.geometry.morphAttributes,n=Object.keys(t);if(n.length>0){let s=t[n[0]];if(s!==void 0){this.morphTargetInfluences=[],this.morphTargetDictionary={};for(let r=0,a=s.length;r<a;r++){let o=s[r].name||String(r);this.morphTargetInfluences.push(0),this.morphTargetDictionary[o]=r}}}}getVertexPosition(e,t){let n=this.geometry,s=n.attributes.position,r=n.morphAttributes.position,a=n.morphTargetsRelative;t.fromBufferAttribute(s,e);let o=this.morphTargetInfluences;if(r&&o){ao.set(0,0,0);for(let l=0,c=r.length;l<c;l++){let u=o[l],f=r[l];u!==0&&(Tc.fromBufferAttribute(f,e),a?ao.addScaledVector(Tc,u):ao.addScaledVector(Tc.sub(t),u))}t.add(ao)}return t}intersectsFrustum(e){return e.intersectsObject(this)}raycast(e,t){let n=this.geometry,s=this.material,r=this.matrixWorld;s!==void 0&&(n.boundingSphere===null&&n.computeBoundingSphere(),no.copy(n.boundingSphere),no.applyMatrix4(r),rs.copy(e.ray).recast(e.near),!(no.containsPoint(rs.origin)===!1&&(rs.intersectSphere(no,vh)===null||rs.origin.distanceToSquared(vh)>(e.far-e.near)**2))&&(xh.copy(r).invert(),rs.copy(e.ray).applyMatrix4(xh),!(n.boundingBox!==null&&rs.intersectsBox(n.boundingBox)===!1)&&this._computeIntersections(e,t,rs)))}_computeIntersections(e,t,n){let s,r=this.geometry,a=this.material,o=r.index,l=r.attributes.position,c=r.attributes.uv,u=r.attributes.uv1,f=r.attributes.normal,h=r.groups,p=r.drawRange;if(o!==null)if(Array.isArray(a))for(let x=0,M=h.length;x<M;x++){let g=h[x],m=a[g.materialIndex],S=Math.max(g.start,p.start),C=Math.min(o.count,Math.min(g.start+g.count,p.start+p.count));for(let _=S,T=C;_<T;_+=3){let E=o.getX(_),R=o.getX(_+1),y=o.getX(_+2);s=lo(this,m,e,n,c,u,f,E,R,y),s&&(s.faceIndex=Math.floor(_/3),s.face.materialIndex=g.materialIndex,t.push(s))}}else{let x=Math.max(0,p.start),M=Math.min(o.count,p.start+p.count);for(let g=x,m=M;g<m;g+=3){let S=o.getX(g),C=o.getX(g+1),_=o.getX(g+2);s=lo(this,a,e,n,c,u,f,S,C,_),s&&(s.faceIndex=Math.floor(g/3),t.push(s))}}else if(l!==void 0)if(Array.isArray(a))for(let x=0,M=h.length;x<M;x++){let g=h[x],m=a[g.materialIndex],S=Math.max(g.start,p.start),C=Math.min(l.count,Math.min(g.start+g.count,p.start+p.count));for(let _=S,T=C;_<T;_+=3){let E=_,R=_+1,y=_+2;s=lo(this,m,e,n,c,u,f,E,R,y),s&&(s.faceIndex=Math.floor(_/3),s.face.materialIndex=g.materialIndex,t.push(s))}}else{let x=Math.max(0,p.start),M=Math.min(l.count,p.start+p.count);for(let g=x,m=M;g<m;g+=3){let S=g,C=g+1,_=g+2;s=lo(this,a,e,n,c,u,f,S,C,_),s&&(s.faceIndex=Math.floor(g/3),t.push(s))}}}};function gp(i,e,t,n,s,r,a,o){let l;if(e.side===Yt?l=n.intersectTriangle(a,r,s,!0,o):l=n.intersectTriangle(s,r,a,e.side===di,o),l===null)return null;oo.copy(o),oo.applyMatrix4(i.matrixWorld);let c=t.ray.origin.distanceTo(oo);return c<t.near||c>t.far?null:{distance:c,point:oo.clone(),object:i}}function lo(i,e,t,n,s,r,a,o,l,c){i.getVertexPosition(o,io),i.getVertexPosition(l,so),i.getVertexPosition(c,ro);let u=gp(i,e,t,n,io,so,ro,yh);if(u){let f=new I;Fi.getBarycoord(yh,io,so,ro,f),s&&(u.uv=Fi.getInterpolatedAttribute(s,o,l,c,f,new Me)),r&&(u.uv1=Fi.getInterpolatedAttribute(r,o,l,c,f,new Me)),a&&(u.normal=Fi.getInterpolatedAttribute(a,o,l,c,f,new I),u.normal.dot(n.direction)>0&&u.normal.multiplyScalar(-1));let h={a:o,b:l,c,normal:new I,materialIndex:0};Fi.getNormal(io,so,ro,h.normal),u.face=h,u.barycoord=f}return u}var Hr=class extends xn{constructor(e=null,t=1,n=1,s,r,a,o,l,c=ln,u=ln,f,h){super(null,a,o,l,c,u,s,r,f,h),this.isDataTexture=!0,this.image={data:e,width:t,height:n},this.generateMipmaps=!1,this.flipY=!1,this.unpackAlignment=1}};var Gr=class extends Nt{constructor(e,t,n,s=1){super(e,t,n),this.isInstancedBufferAttribute=!0,this.meshPerAttribute=s}copy(e){return super.copy(e),this.meshPerAttribute=e.meshPerAttribute,this}toJSON(){let e=super.toJSON();return e.meshPerAttribute=this.meshPerAttribute,e.isInstancedBufferAttribute=!0,e}},Fs=new Ft,_h=new Ft,co=[],bh=new ci,xp=new Ft,Ar=new Je,Cr=new ui,Jn=class extends Je{constructor(e,t,n){super(e,t),this.isInstancedMesh=!0,this.instanceMatrix=new Gr(new Float32Array(n*16),16),this.instanceColor=null,this.morphTexture=null,this.count=n,this.boundingBox=null,this.boundingSphere=null;for(let s=0;s<n;s++)this.setMatrixAt(s,xp)}computeBoundingBox(){let e=this.geometry,t=this.count;this.boundingBox===null&&(this.boundingBox=new ci),e.boundingBox===null&&e.computeBoundingBox(),this.boundingBox.makeEmpty();for(let n=0;n<t;n++)this.getMatrixAt(n,Fs),bh.copy(e.boundingBox).applyMatrix4(Fs),this.boundingBox.union(bh)}computeBoundingSphere(){let e=this.geometry,t=this.count;this.boundingSphere===null&&(this.boundingSphere=new ui),e.boundingSphere===null&&e.computeBoundingSphere(),this.boundingSphere.makeEmpty();for(let n=0;n<t;n++)this.getMatrixAt(n,Fs),Cr.copy(e.boundingSphere).applyMatrix4(Fs),this.boundingSphere.union(Cr)}copy(e,t){return super.copy(e,t),this.instanceMatrix.copy(e.instanceMatrix),e.morphTexture!==null&&(this.morphTexture=e.morphTexture.clone()),e.instanceColor!==null&&(this.instanceColor=e.instanceColor.clone()),this.count=e.count,e.boundingBox!==null&&(this.boundingBox=e.boundingBox.clone()),e.boundingSphere!==null&&(this.boundingSphere=e.boundingSphere.clone()),this}getColorAt(e,t){return this.instanceColor===null?t.setRGB(1,1,1):t.fromArray(this.instanceColor.array,e*3)}getMatrixAt(e,t){return t.fromArray(this.instanceMatrix.array,e*16)}getMorphAt(e,t){let n=t.morphTargetInfluences,s=this.morphTexture.source.data.data,r=n.length+1,a=e*r+1;for(let o=0;o<n.length;o++)n[o]=s[a+o]}raycast(e,t){let n=this.matrixWorld,s=this.count;if(Ar.geometry=this.geometry,Ar.material=this.material,Ar.material!==void 0&&(this.boundingSphere===null&&this.computeBoundingSphere(),Cr.copy(this.boundingSphere),Cr.applyMatrix4(n),e.ray.intersectsSphere(Cr)!==!1))for(let r=0;r<s;r++){this.getMatrixAt(r,Fs),_h.multiplyMatrices(n,Fs),Ar.matrixWorld=_h,Ar.raycast(e,co);for(let a=0,o=co.length;a<o;a++){let l=co[a];l.instanceId=r,l.object=this,t.push(l)}co.length=0}}setColorAt(e,t){return this.instanceColor===null&&(this.instanceColor=new Gr(new Float32Array(this.instanceMatrix.count*3).fill(1),3)),t.toArray(this.instanceColor.array,e*3),this}setMatrixAt(e,t){return t.toArray(this.instanceMatrix.array,e*16),this}setMorphAt(e,t){let n=t.morphTargetInfluences,s=n.length+1;this.morphTexture===null&&(this.morphTexture=new Hr(new Float32Array(s*this.count),s,this.count,dl,zn));let r=this.morphTexture.source.data.data,a=0;for(let c=0;c<n.length;c++)a+=n[c];let o=this.geometry.morphTargetsRelative?1:1-a,l=s*e;return r[l]=o,r.set(n,l+1),this}updateMorphTargets(){}dispose(){super.dispose(),this.morphTexture!==null&&(this.morphTexture.dispose(),this.morphTexture=null)}},as=new ui,vp=new Me(.5,.5),uo=new I,Ys=class{constructor(e=new Yn,t=new Yn,n=new Yn,s=new Yn,r=new Yn,a=new Yn){this.planes=[e,t,n,s,r,a]}set(e,t,n,s,r,a){let o=this.planes;return o[0].copy(e),o[1].copy(t),o[2].copy(n),o[3].copy(s),o[4].copy(r),o[5].copy(a),this}copy(e){let t=this.planes;for(let n=0;n<6;n++)t[n].copy(e.planes[n]);return this}setFromProjectionMatrix(e,t=Zn,n=!1){let s=this.planes,r=e.elements,a=r[0],o=r[1],l=r[2],c=r[3],u=r[4],f=r[5],h=r[6],p=r[7],x=r[8],M=r[9],g=r[10],m=r[11],S=r[12],C=r[13],_=r[14],T=r[15];if(s[0].setComponents(c-a,p-u,m-x,T-S).normalize(),s[1].setComponents(c+a,p+u,m+x,T+S).normalize(),s[2].setComponents(c+o,p+f,m+M,T+C).normalize(),s[3].setComponents(c-o,p-f,m-M,T-C).normalize(),n)s[4].setComponents(l,h,g,_).normalize(),s[5].setComponents(c-l,p-h,m-g,T-_).normalize();else if(s[4].setComponents(c-l,p-h,m-g,T-_).normalize(),t===Zn)s[5].setComponents(c+l,p+h,m+g,T+_).normalize();else if(t===Gs)s[5].setComponents(l,h,g,_).normalize();else throw new Error("THREE.Frustum.setFromProjectionMatrix(): Invalid coordinate system: "+t);return this}intersectsObject(e){if(e.boundingSphere!==void 0)e.boundingSphere===null&&e.computeBoundingSphere(),as.copy(e.boundingSphere).applyMatrix4(e.matrixWorld);else{let t=e.geometry;t.boundingSphere===null&&t.computeBoundingSphere(),as.copy(t.boundingSphere).applyMatrix4(e.matrixWorld)}return this.intersectsSphere(as)}intersectsSprite(e){as.center.set(0,0,0);let t=vp.distanceTo(e.center);return as.radius=.7071067811865476+t,as.applyMatrix4(e.matrixWorld),this.intersectsSphere(as)}intersectsSphere(e){let t=this.planes,n=e.center,s=-e.radius;for(let r=0;r<6;r++)if(t[r].distanceToPoint(n)<s)return!1;return!0}intersectsBox(e){let t=this.planes;for(let n=0;n<6;n++){let s=t[n];if(uo.x=s.normal.x>0?e.max.x:e.min.x,uo.y=s.normal.y>0?e.max.y:e.min.y,uo.z=s.normal.z>0?e.max.z:e.min.z,s.distanceToPoint(uo)<0)return!1}return!0}containsPoint(e){let t=this.planes;for(let n=0;n<6;n++)if(t[n].distanceToPoint(e)<0)return!1;return!0}clone(){return new this.constructor().copy(this)}};var cs=class extends Kn{constructor(e){super(),this.isLineBasicMaterial=!0,this.type="LineBasicMaterial",this.color=new he(16777215),this.map=null,this.linewidth=1,this.linecap="round",this.linejoin="round",this.fog=!0,this.setValues(e)}copy(e){return super.copy(e),this.color.copy(e.color),this.map=e.map,this.linewidth=e.linewidth,this.linecap=e.linecap,this.linejoin=e.linejoin,this.fog=e.fog,this}},Lo=new I,Do=new I,Mh=new Ft,Rr=new qs,ho=new ui,Ac=new I,Sh=new I,Uo=class extends zt{constructor(e=new _t,t=new cs){super(),this.isLine=!0,this.type="Line",this.geometry=e,this.material=t,this.morphTargetDictionary=void 0,this.morphTargetInfluences=void 0,this.updateMorphTargets()}copy(e,t){return super.copy(e,t),this.material=Array.isArray(e.material)?e.material.slice():e.material,this.geometry=e.geometry,this}computeLineDistances(){let e=this.geometry;if(e.index===null){let t=e.attributes.position,n=[0];for(let s=1,r=t.count;s<r;s++)Lo.fromBufferAttribute(t,s-1),Do.fromBufferAttribute(t,s),n[s]=n[s-1],n[s]+=Lo.distanceTo(Do);e.setAttribute("lineDistance",new et(n,1))}else Ke("Line.computeLineDistances(): Computation only possible with non-indexed BufferGeometry.");return this}intersectsFrustum(e){return e.intersectsObject(this)}raycast(e,t){let n=this.geometry,s=this.matrixWorld,r=e.params.Line.threshold,a=n.drawRange;if(n.boundingSphere===null&&n.computeBoundingSphere(),ho.copy(n.boundingSphere),ho.applyMatrix4(s),ho.radius+=r,e.ray.intersectsSphere(ho)===!1)return;Mh.copy(s).invert(),Rr.copy(e.ray).applyMatrix4(Mh);let o=r/((this.scale.x+this.scale.y+this.scale.z)/3),l=o*o,c=this.isLineSegments?2:1,u=n.index,h=n.attributes.position;if(u!==null){let p=Math.max(0,a.start),x=Math.min(u.count,a.start+a.count);for(let M=p,g=x-1;M<g;M+=c){let m=u.getX(M),S=u.getX(M+1),C=fo(this,e,Rr,l,m,S,M);C&&t.push(C)}if(this.isLineLoop){let M=u.getX(x-1),g=u.getX(p),m=fo(this,e,Rr,l,M,g,x-1);m&&t.push(m)}}else{let p=Math.max(0,a.start),x=Math.min(h.count,a.start+a.count);for(let M=p,g=x-1;M<g;M+=c){let m=fo(this,e,Rr,l,M,M+1,M);m&&t.push(m)}if(this.isLineLoop){let M=fo(this,e,Rr,l,x-1,p,x-1);M&&t.push(M)}}}updateMorphTargets(){let t=this.geometry.morphAttributes,n=Object.keys(t);if(n.length>0){let s=t[n[0]];if(s!==void 0){this.morphTargetInfluences=[],this.morphTargetDictionary={};for(let r=0,a=s.length;r<a;r++){let o=s[r].name||String(r);this.morphTargetInfluences.push(0),this.morphTargetDictionary[o]=r}}}}};function fo(i,e,t,n,s,r,a){let o=i.geometry.attributes.position;if(Lo.fromBufferAttribute(o,s),Do.fromBufferAttribute(o,r),t.distanceSqToSegment(Lo,Do,Ac,Sh)>n)return;Ac.applyMatrix4(i.matrixWorld);let c=e.ray.origin.distanceTo(Ac);if(!(c<e.near||c>e.far))return{distance:c,point:Sh.clone().applyMatrix4(i.matrixWorld),index:a,face:null,faceIndex:null,barycoord:null,object:i}}var Eh=new I,wh=new I,Oi=class extends Uo{constructor(e,t){super(e,t),this.isLineSegments=!0,this.type="LineSegments"}computeLineDistances(){let e=this.geometry;if(e.index===null){let t=e.attributes.position,n=[];for(let s=0,r=t.count;s<r;s+=2)Eh.fromBufferAttribute(t,s),wh.fromBufferAttribute(t,s+1),n[s]=s===0?0:n[s-1],n[s+1]=n[s]+Eh.distanceTo(wh);e.setAttribute("lineDistance",new et(n,1))}else Ke("LineSegments.computeLineDistances(): Computation only possible with non-indexed BufferGeometry.");return this}};var Rn=class extends Kn{constructor(e){super(),this.isPointsMaterial=!0,this.type="PointsMaterial",this.color=new he(16777215),this.map=null,this.alphaMap=null,this.size=1,this.sizeAttenuation=!0,this.fog=!0,this.setValues(e)}copy(e){return super.copy(e),this.color.copy(e.color),this.map=e.map,this.alphaMap=e.alphaMap,this.size=e.size,this.sizeAttenuation=e.sizeAttenuation,this.fog=e.fog,this}},Th=new Ft,Oc=new qs,po=new ui,mo=new I,vn=class extends zt{constructor(e=new _t,t=new Rn){super(),this.isPoints=!0,this.type="Points",this.geometry=e,this.material=t,this.morphTargetDictionary=void 0,this.morphTargetInfluences=void 0,this.updateMorphTargets()}copy(e,t){return super.copy(e,t),this.material=Array.isArray(e.material)?e.material.slice():e.material,this.geometry=e.geometry,this}intersectsFrustum(e){return e.intersectsObject(this)}raycast(e,t){let n=this.geometry,s=this.matrixWorld,r=e.params.Points.threshold,a=n.drawRange;if(n.boundingSphere===null&&n.computeBoundingSphere(),po.copy(n.boundingSphere),po.applyMatrix4(s),po.radius+=r,e.ray.intersectsSphere(po)===!1)return;Th.copy(s).invert(),Oc.copy(e.ray).applyMatrix4(Th);let o=r/((this.scale.x+this.scale.y+this.scale.z)/3),l=o*o,c=n.index,f=n.attributes.position;if(c!==null){let h=Math.max(0,a.start),p=Math.min(c.count,a.start+a.count);for(let x=h,M=p;x<M;x++){let g=c.getX(x);mo.fromBufferAttribute(f,g),Ah(mo,g,l,s,e,t,this)}}else{let h=Math.max(0,a.start),p=Math.min(f.count,a.start+a.count);for(let x=h,M=p;x<M;x++)mo.fromBufferAttribute(f,x),Ah(mo,x,l,s,e,t,this)}}updateMorphTargets(){let t=this.geometry.morphAttributes,n=Object.keys(t);if(n.length>0){let s=t[n[0]];if(s!==void 0){this.morphTargetInfluences=[],this.morphTargetDictionary={};for(let r=0,a=s.length;r<a;r++){let o=s[r].name||String(r);this.morphTargetInfluences.push(0),this.morphTargetDictionary[o]=r}}}}};function Ah(i,e,t,n,s,r,a){let o=Oc.distanceSqToPoint(i);if(o<t){let l=new I;Oc.closestPointToPoint(i,l),l.applyMatrix4(n);let c=s.ray.origin.distanceTo(l);if(c<s.near||c>s.far)return;r.push({distance:c,distanceToRay:Math.sqrt(o),point:l,index:e,face:null,faceIndex:null,barycoord:null,object:a})}}var Vr=class extends xn{constructor(e=[],t=Wi,n,s,r,a,o,l,c,u){super(e,t,n,s,r,a,o,l,c,u),this.isCubeTexture=!0,this.flipY=!1}get images(){return this.image}set images(e){this.image=e}},Wr=class extends xn{constructor(e,t,n,s,r,a,o,l,c){super(e,t,n,s,r,a,o,l,c),this.isCanvasTexture=!0,this.needsUpdate=!0}};var Bi=class extends xn{constructor(e,t,n=Qn,s,r,a,o=ln,l=ln,c,u=ri,f=1){if(u!==ri&&u!==qi)throw new Error("THREE.DepthTexture: format must be either THREE.DepthFormat or THREE.DepthStencilFormat");let h={width:e,height:t,depth:f};super(h,s,r,a,o,l,u,n,c),this.isDepthTexture=!0,this.flipY=!1,this.generateMipmaps=!1,this.compareFunction=null}copy(e){return super.copy(e),this.source=new Ws(Object.assign({},e.image)),this.compareFunction=e.compareFunction,this}toJSON(e){let t=super.toJSON(e);return t.compareFunction=this.compareFunction,t}},Fo=class extends Bi{constructor(e,t=Qn,n=Wi,s,r,a=ln,o=ln,l,c=ri){let u={width:e,height:e,depth:1},f=[u,u,u,u,u,u];super(e,e,t,n,s,r,a,o,l,c),this.image=f,this.isCubeDepthTexture=!0,this.isCubeTexture=!0}get images(){return this.image}set images(e){this.image=e}},Xr=class extends xn{constructor(e=null){super(),this.sourceTexture=e,this.isExternalTexture=!0}copy(e){return super.copy(e),this.sourceTexture=e.sourceTexture,this}},Pn=class i extends _t{constructor(e=1,t=1,n=1,s=1,r=1,a=1){super(),this.type="BoxGeometry",this.parameters={width:e,height:t,depth:n,widthSegments:s,heightSegments:r,depthSegments:a};let o=this;s=Math.floor(s),r=Math.floor(r),a=Math.floor(a);let l=[],c=[],u=[],f=[],h=0,p=0;x("z","y","x",-1,-1,n,t,e,a,r,0),x("z","y","x",1,-1,n,t,-e,a,r,1),x("x","z","y",1,1,e,n,t,s,a,2),x("x","z","y",1,-1,e,n,-t,s,a,3),x("x","y","z",1,-1,e,t,n,s,r,4),x("x","y","z",-1,-1,e,t,-n,s,r,5),this.setIndex(l),this.setAttribute("position",new et(c,3)),this.setAttribute("normal",new et(u,3)),this.setAttribute("uv",new et(f,2));function x(M,g,m,S,C,_,T,E,R,y,w){let P=_/R,L=T/y,B=_/2,H=T/2,D=E/2,W=R+1,K=y+1,J=0,ne=0,Z=new I;for(let ee=0;ee<K;ee++){let re=ee*L-H;for(let Pe=0;Pe<W;Pe++){let Ie=Pe*P-B;Z[M]=Ie*S,Z[g]=re*C,Z[m]=D,c.push(Z.x,Z.y,Z.z),Z[M]=0,Z[g]=0,Z[m]=E>0?1:-1,u.push(Z.x,Z.y,Z.z),f.push(Pe/R),f.push(1-ee/y),J+=1}}for(let ee=0;ee<y;ee++)for(let re=0;re<R;re++){let Pe=h+re+W*ee,Ie=h+re+W*(ee+1),vt=h+(re+1)+W*(ee+1),ot=h+(re+1)+W*ee;l.push(Pe,Ie,ot),l.push(Ie,vt,ot),ne+=6}o.addGroup(p,ne,w),p+=ne,h+=J}}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}static fromJSON(e){return new i(e.width,e.height,e.depth,e.widthSegments,e.heightSegments,e.depthSegments)}},$n=class i extends _t{constructor(e=1,t=1,n=4,s=8,r=1){super(),this.type="CapsuleGeometry",this.parameters={radius:e,height:t,capSegments:n,radialSegments:s,heightSegments:r},t=Math.max(0,t),n=Math.max(1,Math.floor(n)),s=Math.max(3,Math.floor(s)),r=Math.max(1,Math.floor(r));let a=[],o=[],l=[],c=[],u=t/2,f=Math.PI/2*e,h=t,p=2*f+h,x=n*2+r,M=s+1,g=new I,m=new I;for(let S=0;S<=x;S++){let C=0,_=0,T=0,E=0;if(S<=n){let w=S/n,P=w*Math.PI/2;_=-u-e*Math.cos(P),T=e*Math.sin(P),E=-e*Math.cos(P),C=w*f}else if(S<=n+r){let w=(S-n)/r;_=-u+w*t,T=e,E=0,C=f+w*h}else{let w=(S-n-r)/n,P=w*Math.PI/2;_=u+e*Math.sin(P),T=e*Math.cos(P),E=e*Math.sin(P),C=f+h+w*f}let R=Math.max(0,Math.min(1,C/p)),y=0;S===0?y=.5/s:S===x&&(y=-.5/s);for(let w=0;w<=s;w++){let P=w/s,L=P*Math.PI*2,B=Math.sin(L),H=Math.cos(L);m.x=-T*H,m.y=_,m.z=T*B,o.push(m.x,m.y,m.z),g.set(-T*H,E,T*B),g.normalize(),l.push(g.x,g.y,g.z),c.push(P+y,R)}if(S>0){let w=(S-1)*M;for(let P=0;P<s;P++){let L=w+P,B=w+P+1,H=S*M+P,D=S*M+P+1;a.push(L,B,H),a.push(B,D,H)}}}this.setIndex(a),this.setAttribute("position",new et(o,3)),this.setAttribute("normal",new et(l,3)),this.setAttribute("uv",new et(c,2))}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}static fromJSON(e){return new i(e.radius,e.height,e.capSegments,e.radialSegments,e.heightSegments)}},qr=class i extends _t{constructor(e=1,t=32,n=0,s=Math.PI*2){super(),this.type="CircleGeometry",this.parameters={radius:e,segments:t,thetaStart:n,thetaLength:s},t=Math.max(3,t);let r=[],a=[],o=[],l=[],c=new I,u=new Me;a.push(0,0,0),o.push(0,0,1),l.push(.5,.5);for(let f=0,h=3;f<=t;f++,h+=3){let p=n+f/t*s;c.x=e*Math.cos(p),c.y=e*Math.sin(p),a.push(c.x,c.y,c.z),o.push(0,0,1),u.x=(a[h]/e+1)/2,u.y=(a[h+1]/e+1)/2,l.push(u.x,u.y)}for(let f=1;f<=t;f++)r.push(f,f+1,0);this.setIndex(r),this.setAttribute("position",new et(a,3)),this.setAttribute("normal",new et(o,3)),this.setAttribute("uv",new et(l,2))}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}static fromJSON(e){return new i(e.radius,e.segments,e.thetaStart,e.thetaLength)}},Be=class i extends _t{constructor(e=1,t=1,n=1,s=32,r=1,a=!1,o=0,l=Math.PI*2){super(),this.type="CylinderGeometry",this.parameters={radiusTop:e,radiusBottom:t,height:n,radialSegments:s,heightSegments:r,openEnded:a,thetaStart:o,thetaLength:l};let c=this;s=Math.floor(s),r=Math.floor(r);let u=[],f=[],h=[],p=[],x=0,M=[],g=n/2,m=0;S(),a===!1&&(e>0&&C(!0),t>0&&C(!1)),this.setIndex(u),this.setAttribute("position",new et(f,3)),this.setAttribute("normal",new et(h,3)),this.setAttribute("uv",new et(p,2));function S(){let _=new I,T=new I,E=0,R=(t-e)/n;for(let y=0;y<=r;y++){let w=[],P=y/r,L=P*(t-e)+e;for(let B=0;B<=s;B++){let H=B/s,D=H*l+o,W=Math.sin(D),K=Math.cos(D);T.x=L*W,T.y=-P*n+g,T.z=L*K,f.push(T.x,T.y,T.z),_.set(W,R,K).normalize(),h.push(_.x,_.y,_.z),p.push(H,1-P),w.push(x++)}M.push(w)}for(let y=0;y<s;y++)for(let w=0;w<r;w++){let P=M[w][y],L=M[w+1][y],B=M[w+1][y+1],H=M[w][y+1];(e>0||w!==0)&&(u.push(P,L,H),E+=3),(t>0||w!==r-1)&&(u.push(L,B,H),E+=3)}c.addGroup(m,E,0),m+=E}function C(_){let T=x,E=new Me,R=new I,y=0,w=_===!0?e:t,P=_===!0?1:-1;for(let B=1;B<=s;B++)f.push(0,g*P,0),h.push(0,P,0),p.push(.5,.5),x++;let L=x;for(let B=0;B<=s;B++){let D=B/s*l+o,W=Math.cos(D),K=Math.sin(D);R.x=w*K,R.y=g*P,R.z=w*W,f.push(R.x,R.y,R.z),h.push(0,P,0),E.x=W*.5+.5,E.y=K*.5*P+.5,p.push(E.x,E.y),x++}for(let B=0;B<s;B++){let H=T+B,D=L+B;_===!0?u.push(D,D+1,H):u.push(D+1,D,H),y+=3}c.addGroup(m,y,_===!0?1:2),m+=y}}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}static fromJSON(e){return new i(e.radiusTop,e.radiusBottom,e.height,e.radialSegments,e.heightSegments,e.openEnded,e.thetaStart,e.thetaLength)}},ki=class i extends Be{constructor(e=1,t=1,n=32,s=1,r=!1,a=0,o=Math.PI*2){super(0,e,t,n,s,r,a,o),this.type="ConeGeometry",this.parameters={radius:e,height:t,radialSegments:n,heightSegments:s,openEnded:r,thetaStart:a,thetaLength:o}}static fromJSON(e){return new i(e.radius,e.height,e.radialSegments,e.heightSegments,e.openEnded,e.thetaStart,e.thetaLength)}},Oo=class i extends _t{constructor(e=[],t=[],n=1,s=0){super(),this.type="PolyhedronGeometry",this.parameters={vertices:e,indices:t,radius:n,detail:s};let r=[],a=[];o(s),c(n),u(),this.setAttribute("position",new et(r,3)),this.setAttribute("normal",new et(r.slice(),3)),this.setAttribute("uv",new et(a,2)),s===0?this.computeVertexNormals():this.normalizeNormals();function o(S){let C=new I,_=new I,T=new I;for(let E=0;E<t.length;E+=3)p(t[E+0],C),p(t[E+1],_),p(t[E+2],T),l(C,_,T,S)}function l(S,C,_,T){let E=T+1,R=[];for(let y=0;y<=E;y++){R[y]=[];let w=S.clone().lerp(_,y/E),P=C.clone().lerp(_,y/E),L=E-y;for(let B=0;B<=L;B++)B===0&&y===E?R[y][B]=w:R[y][B]=w.clone().lerp(P,B/L)}for(let y=0;y<E;y++)for(let w=0;w<2*(E-y)-1;w++){let P=Math.floor(w/2);w%2===0?(h(R[y][P+1]),h(R[y+1][P]),h(R[y][P])):(h(R[y][P+1]),h(R[y+1][P+1]),h(R[y+1][P]))}}function c(S){let C=new I;for(let _=0;_<r.length;_+=3)C.x=r[_+0],C.y=r[_+1],C.z=r[_+2],C.normalize().multiplyScalar(S),r[_+0]=C.x,r[_+1]=C.y,r[_+2]=C.z}function u(){let S=new I;for(let C=0;C<r.length;C+=3){S.x=r[C+0],S.y=r[C+1],S.z=r[C+2];let _=g(S)/2/Math.PI+.5,T=m(S)/Math.PI+.5;a.push(_,1-T)}x(),f()}function f(){for(let S=0;S<a.length;S+=6){let C=a[S+0],_=a[S+2],T=a[S+4],E=Math.max(C,_,T),R=Math.min(C,_,T);E>.9&&R<.1&&(C<.2&&(a[S+0]+=1),_<.2&&(a[S+2]+=1),T<.2&&(a[S+4]+=1))}}function h(S){r.push(S.x,S.y,S.z)}function p(S,C){let _=S*3;C.x=e[_+0],C.y=e[_+1],C.z=e[_+2]}function x(){let S=new I,C=new I,_=new I,T=new I,E=new Me,R=new Me,y=new Me;for(let w=0,P=0;w<r.length;w+=9,P+=6){S.set(r[w+0],r[w+1],r[w+2]),C.set(r[w+3],r[w+4],r[w+5]),_.set(r[w+6],r[w+7],r[w+8]),E.set(a[P+0],a[P+1]),R.set(a[P+2],a[P+3]),y.set(a[P+4],a[P+5]),T.copy(S).add(C).add(_).divideScalar(3);let L=g(T);M(E,P+0,S,L),M(R,P+2,C,L),M(y,P+4,_,L)}}function M(S,C,_,T){T<0&&S.x===1&&(a[C]=S.x-1),_.x===0&&_.z===0&&(a[C]=T/2/Math.PI+.5)}function g(S){return Math.atan2(S.z,-S.x)}function m(S){return Math.atan2(-S.y,Math.sqrt(S.x*S.x+S.z*S.z))}}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}static fromJSON(e){return new i(e.vertices,e.indices,e.radius,e.detail)}};var On=class{constructor(){this.type="Curve",this.arcLengthDivisions=200,this.needsUpdate=!1,this.cacheArcLengths=null}getPoint(){Ke("Curve: .getPoint() not implemented.")}getPointAt(e,t){let n=this.getUtoTmapping(e);return this.getPoint(n,t)}getPoints(e=5){let t=[];for(let n=0;n<=e;n++)t.push(this.getPoint(n/e));return t}getSpacedPoints(e=5){let t=[];for(let n=0;n<=e;n++)t.push(this.getPointAt(n/e));return t}getLength(){let e=this.getLengths();return e[e.length-1]}getLengths(e=this.arcLengthDivisions){if(this.cacheArcLengths&&this.cacheArcLengths.length===e+1&&!this.needsUpdate)return this.cacheArcLengths;this.needsUpdate=!1;let t=[],n,s=this.getPoint(0),r=0;t.push(0);for(let a=1;a<=e;a++)n=this.getPoint(a/e),r+=n.distanceTo(s),t.push(r),s=n;return this.cacheArcLengths=t,t}updateArcLengths(){this.needsUpdate=!0,this.getLengths()}getUtoTmapping(e,t=null){let n=this.getLengths(),s=0,r=n.length,a;t?a=t:a=e*n[r-1];let o=0,l=r-1,c;for(;o<=l;)if(s=Math.floor(o+(l-o)/2),c=n[s]-a,c<0)o=s+1;else if(c>0)l=s-1;else{l=s;break}if(s=l,n[s]===a)return s/(r-1);let u=n[s],h=n[s+1]-u,p=(a-u)/h;return(s+p)/(r-1)}getTangent(e,t){let s=e-1e-4,r=e+1e-4;s<0&&(s=0),r>1&&(r=1);let a=this.getPoint(s),o=this.getPoint(r),l=t||(a.isVector2?new Me:new I);return l.copy(o).sub(a).normalize(),l}getTangentAt(e,t){let n=this.getUtoTmapping(e);return this.getTangent(n,t)}computeFrenetFrames(e,t=!1){let n=new I,s=[],r=[],a=[],o=new I,l=new Ft;for(let p=0;p<=e;p++){let x=p/e;s[p]=this.getTangentAt(x,new I)}r[0]=new I,a[0]=new I;let c=Number.MAX_VALUE,u=Math.abs(s[0].x),f=Math.abs(s[0].y),h=Math.abs(s[0].z);u<=c&&(c=u,n.set(1,0,0)),f<=c&&(c=f,n.set(0,1,0)),h<=c&&n.set(0,0,1),o.crossVectors(s[0],n).normalize(),r[0].crossVectors(s[0],o),a[0].crossVectors(s[0],r[0]);for(let p=1;p<=e;p++){if(r[p]=r[p-1].clone(),a[p]=a[p-1].clone(),o.crossVectors(s[p-1],s[p]),o.length()>Number.EPSILON){o.normalize();let x=Math.acos(gt(s[p-1].dot(s[p]),-1,1));r[p].applyMatrix4(l.makeRotationAxis(o,x))}a[p].crossVectors(s[p],r[p])}if(t===!0){let p=Math.acos(gt(r[0].dot(r[e]),-1,1));p/=e,s[0].dot(o.crossVectors(r[0],r[e]))>0&&(p=-p);for(let x=1;x<=e;x++)r[x].applyMatrix4(l.makeRotationAxis(s[x],p*x)),a[x].crossVectors(s[x],r[x])}return{tangents:s,normals:r,binormals:a}}clone(){return new this.constructor().copy(this)}copy(e){return this.arcLengthDivisions=e.arcLengthDivisions,this}toJSON(){let e={metadata:{version:4.7,type:"Curve",generator:"Curve.toJSON"}};return e.arcLengthDivisions=this.arcLengthDivisions,e.type=this.type,e}fromJSON(e){return this.arcLengthDivisions=e.arcLengthDivisions,this}},Yr=class extends On{constructor(e=0,t=0,n=1,s=1,r=0,a=Math.PI*2,o=!1,l=0){super(),this.isEllipseCurve=!0,this.type="EllipseCurve",this.aX=e,this.aY=t,this.xRadius=n,this.yRadius=s,this.aStartAngle=r,this.aEndAngle=a,this.aClockwise=o,this.aRotation=l}getPoint(e,t=new Me){let n=t,s=Math.PI*2,r=this.aEndAngle-this.aStartAngle,a=Math.abs(r)<Number.EPSILON;for(;r<0;)r+=s;for(;r>s;)r-=s;r<Number.EPSILON&&(a?r=0:r=s),this.aClockwise===!0&&!a&&(r===s?r=-s:r=r-s);let o=this.aStartAngle+e*r,l=this.aX+this.xRadius*Math.cos(o),c=this.aY+this.yRadius*Math.sin(o);if(this.aRotation!==0){let u=Math.cos(this.aRotation),f=Math.sin(this.aRotation),h=l-this.aX,p=c-this.aY;l=h*u-p*f+this.aX,c=h*f+p*u+this.aY}return n.set(l,c)}copy(e){return super.copy(e),this.aX=e.aX,this.aY=e.aY,this.xRadius=e.xRadius,this.yRadius=e.yRadius,this.aStartAngle=e.aStartAngle,this.aEndAngle=e.aEndAngle,this.aClockwise=e.aClockwise,this.aRotation=e.aRotation,this}toJSON(){let e=super.toJSON();return e.aX=this.aX,e.aY=this.aY,e.xRadius=this.xRadius,e.yRadius=this.yRadius,e.aStartAngle=this.aStartAngle,e.aEndAngle=this.aEndAngle,e.aClockwise=this.aClockwise,e.aRotation=this.aRotation,e}fromJSON(e){return super.fromJSON(e),this.aX=e.aX,this.aY=e.aY,this.xRadius=e.xRadius,this.yRadius=e.yRadius,this.aStartAngle=e.aStartAngle,this.aEndAngle=e.aEndAngle,this.aClockwise=e.aClockwise,this.aRotation=e.aRotation,this}},Bo=class extends Yr{constructor(e,t,n,s,r,a){super(e,t,n,n,s,r,a),this.isArcCurve=!0,this.type="ArcCurve"}};function iu(){let i=0,e=0,t=0,n=0;function s(r,a,o,l){i=r,e=o,t=-3*r+3*a-2*o-l,n=2*r-2*a+o+l}return{initCatmullRom:function(r,a,o,l,c){s(a,o,c*(o-r),c*(l-a))},initNonuniformCatmullRom:function(r,a,o,l,c,u,f){let h=(a-r)/c-(o-r)/(c+u)+(o-a)/u,p=(o-a)/u-(l-a)/(u+f)+(l-o)/f;h*=u,p*=u,s(a,o,h,p)},calc:function(r){let a=r*r,o=a*r;return i+e*r+t*a+n*o}}}var Ch=new I,Rh=new I,Cc=new iu,Rc=new iu,Pc=new iu,yn=class extends On{constructor(e=[],t=!1,n="centripetal",s=.5){super(),this.isCatmullRomCurve3=!0,this.type="CatmullRomCurve3",this.points=e,this.closed=t,this.curveType=n,this.tension=s}getPoint(e,t=new I){let n=t,s=this.points,r=s.length,a=(r-(this.closed?0:1))*e,o=Math.floor(a),l=a-o;this.closed?o+=o>0?0:(Math.floor(Math.abs(o)/r)+1)*r:l===0&&o===r-1&&(o=r-2,l=1);let c,u;this.closed||o>0?c=s[(o-1)%r]:(Rh.subVectors(s[0],s[1]).add(s[0]),c=Rh);let f=s[o%r],h=s[(o+1)%r];if(this.closed||o+2<r?u=s[(o+2)%r]:(Ch.subVectors(s[r-1],s[r-2]).add(s[r-1]),u=Ch),this.curveType==="centripetal"||this.curveType==="chordal"){let p=this.curveType==="chordal"?.5:.25,x=Math.pow(c.distanceToSquared(f),p),M=Math.pow(f.distanceToSquared(h),p),g=Math.pow(h.distanceToSquared(u),p);M<1e-4&&(M=1),x<1e-4&&(x=M),g<1e-4&&(g=M),Cc.initNonuniformCatmullRom(c.x,f.x,h.x,u.x,x,M,g),Rc.initNonuniformCatmullRom(c.y,f.y,h.y,u.y,x,M,g),Pc.initNonuniformCatmullRom(c.z,f.z,h.z,u.z,x,M,g)}else this.curveType==="catmullrom"&&(Cc.initCatmullRom(c.x,f.x,h.x,u.x,this.tension),Rc.initCatmullRom(c.y,f.y,h.y,u.y,this.tension),Pc.initCatmullRom(c.z,f.z,h.z,u.z,this.tension));return n.set(Cc.calc(l),Rc.calc(l),Pc.calc(l)),n}copy(e){super.copy(e),this.points=[];for(let t=0,n=e.points.length;t<n;t++){let s=e.points[t];this.points.push(s.clone())}return this.closed=e.closed,this.curveType=e.curveType,this.tension=e.tension,this}toJSON(){let e=super.toJSON();e.points=[];for(let t=0,n=this.points.length;t<n;t++){let s=this.points[t];e.points.push(s.toArray())}return e.closed=this.closed,e.curveType=this.curveType,e.tension=this.tension,e}fromJSON(e){super.fromJSON(e),this.points=[];for(let t=0,n=e.points.length;t<n;t++){let s=e.points[t];this.points.push(new I().fromArray(s))}return this.closed=e.closed,this.curveType=e.curveType,this.tension=e.tension,this}};function Ph(i,e,t,n,s){let r=(n-e)*.5,a=(s-t)*.5,o=i*i,l=i*o;return(2*t-2*n+r+a)*l+(-3*t+3*n-2*r-a)*o+r*i+t}function yp(i,e){let t=1-i;return t*t*e}function _p(i,e){return 2*(1-i)*i*e}function bp(i,e){return i*i*e}function Pr(i,e,t,n){return yp(i,e)+_p(i,t)+bp(i,n)}function Mp(i,e){let t=1-i;return t*t*t*e}function Sp(i,e){let t=1-i;return 3*t*t*i*e}function Ep(i,e){return 3*(1-i)*i*i*e}function wp(i,e){return i*i*i*e}function Ir(i,e,t,n,s){return Mp(i,e)+Sp(i,t)+Ep(i,n)+wp(i,s)}var ko=class extends On{constructor(e=new Me,t=new Me,n=new Me,s=new Me){super(),this.isCubicBezierCurve=!0,this.type="CubicBezierCurve",this.v0=e,this.v1=t,this.v2=n,this.v3=s}getPoint(e,t=new Me){let n=t,s=this.v0,r=this.v1,a=this.v2,o=this.v3;return n.set(Ir(e,s.x,r.x,a.x,o.x),Ir(e,s.y,r.y,a.y,o.y)),n}copy(e){return super.copy(e),this.v0.copy(e.v0),this.v1.copy(e.v1),this.v2.copy(e.v2),this.v3.copy(e.v3),this}toJSON(){let e=super.toJSON();return e.v0=this.v0.toArray(),e.v1=this.v1.toArray(),e.v2=this.v2.toArray(),e.v3=this.v3.toArray(),e}fromJSON(e){return super.fromJSON(e),this.v0.fromArray(e.v0),this.v1.fromArray(e.v1),this.v2.fromArray(e.v2),this.v3.fromArray(e.v3),this}},zo=class extends On{constructor(e=new I,t=new I,n=new I,s=new I){super(),this.isCubicBezierCurve3=!0,this.type="CubicBezierCurve3",this.v0=e,this.v1=t,this.v2=n,this.v3=s}getPoint(e,t=new I){let n=t,s=this.v0,r=this.v1,a=this.v2,o=this.v3;return n.set(Ir(e,s.x,r.x,a.x,o.x),Ir(e,s.y,r.y,a.y,o.y),Ir(e,s.z,r.z,a.z,o.z)),n}copy(e){return super.copy(e),this.v0.copy(e.v0),this.v1.copy(e.v1),this.v2.copy(e.v2),this.v3.copy(e.v3),this}toJSON(){let e=super.toJSON();return e.v0=this.v0.toArray(),e.v1=this.v1.toArray(),e.v2=this.v2.toArray(),e.v3=this.v3.toArray(),e}fromJSON(e){return super.fromJSON(e),this.v0.fromArray(e.v0),this.v1.fromArray(e.v1),this.v2.fromArray(e.v2),this.v3.fromArray(e.v3),this}},Ho=class extends On{constructor(e=new Me,t=new Me){super(),this.isLineCurve=!0,this.type="LineCurve",this.v1=e,this.v2=t}getPoint(e,t=new Me){let n=t;return e===1?n.copy(this.v2):(n.copy(this.v2).sub(this.v1),n.multiplyScalar(e).add(this.v1)),n}getPointAt(e,t){return this.getPoint(e,t)}getTangent(e,t=new Me){return t.subVectors(this.v2,this.v1).normalize()}getTangentAt(e,t){return this.getTangent(e,t)}copy(e){return super.copy(e),this.v1.copy(e.v1),this.v2.copy(e.v2),this}toJSON(){let e=super.toJSON();return e.v1=this.v1.toArray(),e.v2=this.v2.toArray(),e}fromJSON(e){return super.fromJSON(e),this.v1.fromArray(e.v1),this.v2.fromArray(e.v2),this}},Go=class extends On{constructor(e=new I,t=new I){super(),this.isLineCurve3=!0,this.type="LineCurve3",this.v1=e,this.v2=t}getPoint(e,t=new I){let n=t;return e===1?n.copy(this.v2):(n.copy(this.v2).sub(this.v1),n.multiplyScalar(e).add(this.v1)),n}getPointAt(e,t){return this.getPoint(e,t)}getTangent(e,t=new I){return t.subVectors(this.v2,this.v1).normalize()}getTangentAt(e,t){return this.getTangent(e,t)}copy(e){return super.copy(e),this.v1.copy(e.v1),this.v2.copy(e.v2),this}toJSON(){let e=super.toJSON();return e.v1=this.v1.toArray(),e.v2=this.v2.toArray(),e}fromJSON(e){return super.fromJSON(e),this.v1.fromArray(e.v1),this.v2.fromArray(e.v2),this}},Vo=class extends On{constructor(e=new Me,t=new Me,n=new Me){super(),this.isQuadraticBezierCurve=!0,this.type="QuadraticBezierCurve",this.v0=e,this.v1=t,this.v2=n}getPoint(e,t=new Me){let n=t,s=this.v0,r=this.v1,a=this.v2;return n.set(Pr(e,s.x,r.x,a.x),Pr(e,s.y,r.y,a.y)),n}copy(e){return super.copy(e),this.v0.copy(e.v0),this.v1.copy(e.v1),this.v2.copy(e.v2),this}toJSON(){let e=super.toJSON();return e.v0=this.v0.toArray(),e.v1=this.v1.toArray(),e.v2=this.v2.toArray(),e}fromJSON(e){return super.fromJSON(e),this.v0.fromArray(e.v0),this.v1.fromArray(e.v1),this.v2.fromArray(e.v2),this}},Zr=class extends On{constructor(e=new I,t=new I,n=new I){super(),this.isQuadraticBezierCurve3=!0,this.type="QuadraticBezierCurve3",this.v0=e,this.v1=t,this.v2=n}getPoint(e,t=new I){let n=t,s=this.v0,r=this.v1,a=this.v2;return n.set(Pr(e,s.x,r.x,a.x),Pr(e,s.y,r.y,a.y),Pr(e,s.z,r.z,a.z)),n}copy(e){return super.copy(e),this.v0.copy(e.v0),this.v1.copy(e.v1),this.v2.copy(e.v2),this}toJSON(){let e=super.toJSON();return e.v0=this.v0.toArray(),e.v1=this.v1.toArray(),e.v2=this.v2.toArray(),e}fromJSON(e){return super.fromJSON(e),this.v0.fromArray(e.v0),this.v1.fromArray(e.v1),this.v2.fromArray(e.v2),this}},Wo=class extends On{constructor(e=[]){super(),this.isSplineCurve=!0,this.type="SplineCurve",this.points=e}getPoint(e,t=new Me){let n=t,s=this.points,r=(s.length-1)*e,a=Math.floor(r),o=r-a,l=s[a===0?a:a-1],c=s[a],u=s[a>s.length-2?s.length-1:a+1],f=s[a>s.length-3?s.length-1:a+2];return n.set(Ph(o,l.x,c.x,u.x,f.x),Ph(o,l.y,c.y,u.y,f.y)),n}copy(e){super.copy(e),this.points=[];for(let t=0,n=e.points.length;t<n;t++){let s=e.points[t];this.points.push(s.clone())}return this}toJSON(){let e=super.toJSON();e.points=[];for(let t=0,n=this.points.length;t<n;t++){let s=this.points[t];e.points.push(s.toArray())}return e}fromJSON(e){super.fromJSON(e),this.points=[];for(let t=0,n=e.points.length;t<n;t++){let s=e.points[t];this.points.push(new Me().fromArray(s))}return this}},Tp=Object.freeze({__proto__:null,ArcCurve:Bo,CatmullRomCurve3:yn,CubicBezierCurve:ko,CubicBezierCurve3:zo,EllipseCurve:Yr,LineCurve:Ho,LineCurve3:Go,QuadraticBezierCurve:Vo,QuadraticBezierCurve3:Zr,SplineCurve:Wo});var Zs=class i extends Oo{constructor(e=1,t=0){let n=(1+Math.sqrt(5))/2,s=[-1,n,0,1,n,0,-1,-n,0,1,-n,0,0,-1,n,0,1,n,0,-1,-n,0,1,-n,n,0,-1,n,0,1,-n,0,-1,-n,0,1],r=[0,11,5,0,5,1,0,1,7,0,7,10,0,10,11,1,5,9,5,11,4,11,10,2,10,7,6,7,1,8,3,9,4,3,4,2,3,2,6,3,6,8,3,8,9,4,9,5,2,4,11,6,2,10,8,6,7,9,8,1];super(s,r,e,t),this.type="IcosahedronGeometry",this.parameters={radius:e,detail:t}}static fromJSON(e){return new i(e.radius,e.detail)}};var Kr=class i extends _t{constructor(e=1,t=1,n=1,s=1){super(),this.type="PlaneGeometry",this.parameters={width:e,height:t,widthSegments:n,heightSegments:s};let r=e/2,a=t/2,o=Math.floor(n),l=Math.floor(s),c=o+1,u=l+1,f=e/o,h=t/l,p=[],x=[],M=[],g=[];for(let m=0;m<u;m++){let S=m*h-a;for(let C=0;C<c;C++){let _=C*f-r;x.push(_,-S,0),M.push(0,0,1),g.push(C/o),g.push(1-m/l)}}for(let m=0;m<l;m++)for(let S=0;S<o;S++){let C=S+c*m,_=S+c*(m+1),T=S+1+c*(m+1),E=S+1+c*m;p.push(C,_,E),p.push(_,T,E)}this.setIndex(p),this.setAttribute("position",new et(x,3)),this.setAttribute("normal",new et(M,3)),this.setAttribute("uv",new et(g,2))}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}static fromJSON(e){return new i(e.width,e.height,e.widthSegments,e.heightSegments)}};var Rt=class i extends _t{constructor(e=1,t=32,n=16,s=0,r=Math.PI*2,a=0,o=Math.PI){super(),this.type="SphereGeometry",this.parameters={radius:e,widthSegments:t,heightSegments:n,phiStart:s,phiLength:r,thetaStart:a,thetaLength:o},t=Math.max(3,Math.floor(t)),n=Math.max(2,Math.floor(n));let l=Math.min(a+o,Math.PI),c=0,u=[],f=new I,h=new I,p=[],x=[],M=[],g=[];for(let m=0;m<=n;m++){let S=[],C=m/n,_=a+C*o,T=e*Math.cos(_),E=Math.sqrt(e*e-T*T),R=0;m===0&&a===0?R=.5/t:m===n&&l===Math.PI&&(R=-.5/t);for(let y=0;y<=t;y++){let w=y/t,P=s+w*r;f.x=-E*Math.cos(P),f.y=T,f.z=E*Math.sin(P),x.push(f.x,f.y,f.z),h.copy(f).normalize(),M.push(h.x,h.y,h.z),g.push(w+R,1-C),S.push(c++)}u.push(S)}for(let m=0;m<n;m++)for(let S=0;S<t;S++){let C=u[m][S+1],_=u[m][S],T=u[m+1][S],E=u[m+1][S+1];(m!==0||a>0)&&p.push(C,_,E),(m!==n-1||l<Math.PI)&&p.push(_,T,E)}this.setIndex(p),this.setAttribute("position",new et(x,3)),this.setAttribute("normal",new et(M,3)),this.setAttribute("uv",new et(g,2))}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}static fromJSON(e){return new i(e.radius,e.widthSegments,e.heightSegments,e.phiStart,e.phiLength,e.thetaStart,e.thetaLength)}};var In=class i extends _t{constructor(e=1,t=.4,n=12,s=48,r=Math.PI*2,a=0,o=Math.PI*2){super(),this.type="TorusGeometry",this.parameters={radius:e,tube:t,radialSegments:n,tubularSegments:s,arc:r,thetaStart:a,thetaLength:o},n=Math.floor(n),s=Math.floor(s);let l=[],c=[],u=[],f=[],h=new I,p=new I,x=new I;for(let M=0;M<=n;M++){let g=a+M/n*o;for(let m=0;m<=s;m++){let S=m/s*r;p.x=(e+t*Math.cos(g))*Math.cos(S),p.y=(e+t*Math.cos(g))*Math.sin(S),p.z=t*Math.sin(g),c.push(p.x,p.y,p.z),h.x=e*Math.cos(S),h.y=e*Math.sin(S),x.subVectors(p,h).normalize(),u.push(x.x,x.y,x.z),f.push(m/s),f.push(M/n)}}for(let M=1;M<=n;M++)for(let g=1;g<=s;g++){let m=(s+1)*M+g-1,S=(s+1)*(M-1)+g-1,C=(s+1)*(M-1)+g,_=(s+1)*M+g;l.push(m,S,_),l.push(S,C,_)}this.setIndex(l),this.setAttribute("position",new et(c,3)),this.setAttribute("normal",new et(u,3)),this.setAttribute("uv",new et(f,2))}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}static fromJSON(e){return new i(e.radius,e.tube,e.radialSegments,e.tubularSegments,e.arc,e.thetaStart,e.thetaLength)}};var hi=class i extends _t{constructor(e=new Zr(new I(-1,-1,0),new I(-1,1,0),new I(1,1,0)),t=64,n=1,s=8,r=!1){super(),this.type="TubeGeometry",this.parameters={path:e,tubularSegments:t,radius:n,radialSegments:s,closed:r};let a=e.computeFrenetFrames(t,r);this.tangents=a.tangents,this.normals=a.normals,this.binormals=a.binormals;let o=new I,l=new I,c=new Me,u=new I,f=[],h=[],p=[],x=[];M(),this.setIndex(x),this.setAttribute("position",new et(f,3)),this.setAttribute("normal",new et(h,3)),this.setAttribute("uv",new et(p,2));function M(){for(let C=0;C<t;C++)g(C);g(r===!1?t:0),S(),m()}function g(C){u=e.getPointAt(C/t,u);let _=a.normals[C],T=a.binormals[C];for(let E=0;E<=s;E++){let R=E/s*Math.PI*2,y=Math.sin(R),w=-Math.cos(R);l.x=w*_.x+y*T.x,l.y=w*_.y+y*T.y,l.z=w*_.z+y*T.z,l.normalize(),h.push(l.x,l.y,l.z),o.x=u.x+n*l.x,o.y=u.y+n*l.y,o.z=u.z+n*l.z,f.push(o.x,o.y,o.z)}}function m(){for(let C=1;C<=t;C++)for(let _=1;_<=s;_++){let T=(s+1)*(C-1)+(_-1),E=(s+1)*C+(_-1),R=(s+1)*C+_,y=(s+1)*(C-1)+_;x.push(T,E,y),x.push(E,R,y)}}function S(){for(let C=0;C<=t;C++)for(let _=0;_<=s;_++)c.x=C/t,c.y=_/s,p.push(c.x,c.y)}}copy(e){return super.copy(e),this.parameters=Object.assign({},e.parameters),this}toJSON(){let e=super.toJSON();return e.path=this.parameters.path.toJSON(),e}static fromJSON(e){return new i(new Tp[e.path.type]().fromJSON(e.path),e.tubularSegments,e.radius,e.radialSegments,e.closed)}};function ms(i){let e={};for(let t in i){e[t]={};for(let n in i[t]){let s=i[t][n];if(Ih(s))s.isRenderTargetTexture?(Ke("UniformsUtils: Textures of render targets cannot be cloned via cloneUniforms() or mergeUniforms()."),e[t][n]=null):e[t][n]=s.clone();else if(Array.isArray(s))if(Ih(s[0])){let r=[];for(let a=0,o=s.length;a<o;a++)r[a]=s[a].clone();e[t][n]=r}else e[t][n]=s.slice();else e[t][n]=s}}return e}function mn(i){let e={};for(let t=0;t<i.length;t++){let n=ms(i[t]);for(let s in n)e[s]=n[s]}return e}function Ih(i){return i&&(i.isColor||i.isMatrix3||i.isMatrix4||i.isVector2||i.isVector3||i.isVector4||i.isTexture||i.isQuaternion)}function Ap(i){let e=[];for(let t=0;t<i.length;t++)e.push(i[t].clone());return e}function su(i){let e=i.getRenderTarget();return e===null?i.outputColorSpace:e.isXRRenderTarget===!0?e.texture.colorSpace:mt.workingColorSpace}var Ci={clone:ms,merge:mn},Cp=`void main() {
+	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+}`,Rp=`void main() {
+	gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+}`,pt=class extends Kn{constructor(e){super(),this.isShaderMaterial=!0,this.type="ShaderMaterial",this.defines={},this.uniforms={},this.uniformsGroups=[],this.vertexShader=Cp,this.fragmentShader=Rp,this.linewidth=1,this.wireframe=!1,this.wireframeLinewidth=1,this.fog=!1,this.lights=!1,this.clipping=!1,this.forceSinglePass=!0,this.extensions={clipCullDistance:!1,multiDraw:!1},this.defaultAttributeValues={color:[1,1,1],uv:[0,0],uv1:[0,0]},this.index0AttributeName=void 0,this.uniformsNeedUpdate=!1,this.glslVersion=null,e!==void 0&&this.setValues(e)}copy(e){return super.copy(e),this.fragmentShader=e.fragmentShader,this.vertexShader=e.vertexShader,this.uniforms=ms(e.uniforms),this.uniformsGroups=Ap(e.uniformsGroups),this.defines=Object.assign({},e.defines),this.wireframe=e.wireframe,this.wireframeLinewidth=e.wireframeLinewidth,this.fog=e.fog,this.lights=e.lights,this.clipping=e.clipping,this.extensions=Object.assign({},e.extensions),this.glslVersion=e.glslVersion,this.defaultAttributeValues=Object.assign({},e.defaultAttributeValues),this.index0AttributeName=e.index0AttributeName,this.uniformsNeedUpdate=e.uniformsNeedUpdate,this}toJSON(e){let t=super.toJSON(e);t.glslVersion=this.glslVersion,t.uniforms={};for(let s in this.uniforms){let a=this.uniforms[s].value;a&&a.isTexture?t.uniforms[s]={type:"t",value:a.toJSON(e).uuid}:a&&a.isColor?t.uniforms[s]={type:"c",value:a.getHex()}:a&&a.isVector2?t.uniforms[s]={type:"v2",value:a.toArray()}:a&&a.isVector3?t.uniforms[s]={type:"v3",value:a.toArray()}:a&&a.isVector4?t.uniforms[s]={type:"v4",value:a.toArray()}:a&&a.isMatrix3?t.uniforms[s]={type:"m3",value:a.toArray()}:a&&a.isMatrix4?t.uniforms[s]={type:"m4",value:a.toArray()}:t.uniforms[s]={value:a}}Object.keys(this.defines).length>0&&(t.defines=this.defines),t.vertexShader=this.vertexShader,t.fragmentShader=this.fragmentShader,t.lights=this.lights,t.clipping=this.clipping;let n={};for(let s in this.extensions)this.extensions[s]===!0&&(n[s]=!0);return Object.keys(n).length>0&&(t.extensions=n),t}fromJSON(e,t){if(super.fromJSON(e,t),e.uniforms!==void 0)for(let n in e.uniforms){let s=e.uniforms[n];switch(this.uniforms[n]={},s.type){case"t":this.uniforms[n].value=t[s.value]||null;break;case"c":this.uniforms[n].value=new he().setHex(s.value);break;case"v2":this.uniforms[n].value=new Me().fromArray(s.value);break;case"v3":this.uniforms[n].value=new I().fromArray(s.value);break;case"v4":this.uniforms[n].value=new Wt().fromArray(s.value);break;case"m3":this.uniforms[n].value=new rt().fromArray(s.value);break;case"m4":this.uniforms[n].value=new Ft().fromArray(s.value);break;default:this.uniforms[n].value=s.value}}if(e.defines!==void 0&&(this.defines=e.defines),e.vertexShader!==void 0&&(this.vertexShader=e.vertexShader),e.fragmentShader!==void 0&&(this.fragmentShader=e.fragmentShader),e.glslVersion!==void 0&&(this.glslVersion=e.glslVersion),e.extensions!==void 0)for(let n in e.extensions)this.extensions[n]=e.extensions[n];return e.lights!==void 0&&(this.lights=e.lights),e.clipping!==void 0&&(this.clipping=e.clipping),this}},Ks=class extends pt{constructor(e){super(e),this.isRawShaderMaterial=!0,this.type="RawShaderMaterial"}},pn=class extends Kn{constructor(e){super(),this.isMeshStandardMaterial=!0,this.type="MeshStandardMaterial",this.defines={STANDARD:""},this.color=new he(16777215),this.roughness=1,this.metalness=0,this.map=null,this.lightMap=null,this.lightMapIntensity=1,this.aoMap=null,this.aoMapIntensity=1,this.emissive=new he(0),this.emissiveIntensity=1,this.emissiveMap=null,this.bumpMap=null,this.bumpScale=1,this.normalMap=null,this.normalMapType=va,this.normalScale=new Me(1,1),this.displacementMap=null,this.displacementScale=1,this.displacementBias=0,this.roughnessMap=null,this.metalnessMap=null,this.alphaMap=null,this.envMap=null,this.envMapRotation=new li,this.envMapIntensity=1,this.wireframe=!1,this.wireframeLinewidth=1,this.wireframeLinecap="round",this.wireframeLinejoin="round",this.flatShading=!1,this.fog=!0,this.setValues(e)}copy(e){return super.copy(e),this.defines={STANDARD:""},this.color.copy(e.color),this.roughness=e.roughness,this.metalness=e.metalness,this.map=e.map,this.lightMap=e.lightMap,this.lightMapIntensity=e.lightMapIntensity,this.aoMap=e.aoMap,this.aoMapIntensity=e.aoMapIntensity,this.emissive.copy(e.emissive),this.emissiveMap=e.emissiveMap,this.emissiveIntensity=e.emissiveIntensity,this.bumpMap=e.bumpMap,this.bumpScale=e.bumpScale,this.normalMap=e.normalMap,this.normalMapType=e.normalMapType,this.normalScale.copy(e.normalScale),this.displacementMap=e.displacementMap,this.displacementScale=e.displacementScale,this.displacementBias=e.displacementBias,this.roughnessMap=e.roughnessMap,this.metalnessMap=e.metalnessMap,this.alphaMap=e.alphaMap,this.envMap=e.envMap,this.envMapRotation.copy(e.envMapRotation),this.envMapIntensity=e.envMapIntensity,this.wireframe=e.wireframe,this.wireframeLinewidth=e.wireframeLinewidth,this.wireframeLinecap=e.wireframeLinecap,this.wireframeLinejoin=e.wireframeLinejoin,this.flatShading=e.flatShading,this.fog=e.fog,this}},Bn=class extends pn{constructor(e){super(),this.isMeshPhysicalMaterial=!0,this.defines={STANDARD:"",PHYSICAL:""},this.type="MeshPhysicalMaterial",this.anisotropyRotation=0,this.anisotropyMap=null,this.clearcoatMap=null,this.clearcoatRoughness=0,this.clearcoatRoughnessMap=null,this.clearcoatNormalScale=new Me(1,1),this.clearcoatNormalMap=null,this.ior=1.5,Object.defineProperty(this,"reflectivity",{get:function(){return gt(2.5*(this.ior-1)/(this.ior+1),0,1)},set:function(t){this.ior=(1+.4*t)/(1-.4*t)}}),this.iridescenceMap=null,this.iridescenceIOR=1.3,this.iridescenceThicknessRange=[100,400],this.iridescenceThicknessMap=null,this.sheenColor=new he(0),this.sheenColorMap=null,this.sheenRoughness=1,this.sheenRoughnessMap=null,this.transmissionMap=null,this.thickness=0,this.thicknessMap=null,this.attenuationDistance=1/0,this.attenuationColor=new he(1,1,1),this.specularIntensity=1,this.specularIntensityMap=null,this.specularColor=new he(1,1,1),this.specularColorMap=null,this._anisotropy=0,this._clearcoat=0,this._dispersion=0,this._iridescence=0,this._retroreflectivity=0,this._sheen=0,this._transmission=0,this.setValues(e)}get anisotropy(){return this._anisotropy}set anisotropy(e){this._anisotropy>0!=e>0&&this.version++,this._anisotropy=e}get clearcoat(){return this._clearcoat}set clearcoat(e){this._clearcoat>0!=e>0&&this.version++,this._clearcoat=e}get iridescence(){return this._iridescence}set iridescence(e){this._iridescence>0!=e>0&&this.version++,this._iridescence=e}get dispersion(){return this._dispersion}set dispersion(e){this._dispersion>0!=e>0&&this.version++,this._dispersion=e}get retroreflectivity(){return this._retroreflectivity}set retroreflectivity(e){this._retroreflectivity>0!=e>0&&this.version++,this._retroreflectivity=e}get sheen(){return this._sheen}set sheen(e){this._sheen>0!=e>0&&this.version++,this._sheen=e}get transmission(){return this._transmission}set transmission(e){this._transmission>0!=e>0&&this.version++,this._transmission=e}copy(e){return super.copy(e),this.defines={STANDARD:"",PHYSICAL:""},this.anisotropy=e.anisotropy,this.anisotropyRotation=e.anisotropyRotation,this.anisotropyMap=e.anisotropyMap,this.clearcoat=e.clearcoat,this.clearcoatMap=e.clearcoatMap,this.clearcoatRoughness=e.clearcoatRoughness,this.clearcoatRoughnessMap=e.clearcoatRoughnessMap,this.clearcoatNormalMap=e.clearcoatNormalMap,this.clearcoatNormalScale.copy(e.clearcoatNormalScale),this.dispersion=e.dispersion,this.ior=e.ior,this.iridescence=e.iridescence,this.iridescenceMap=e.iridescenceMap,this.iridescenceIOR=e.iridescenceIOR,this.iridescenceThicknessRange=[...e.iridescenceThicknessRange],this.iridescenceThicknessMap=e.iridescenceThicknessMap,this.retroreflectivity=e.retroreflectivity,this.sheen=e.sheen,this.sheenColor.copy(e.sheenColor),this.sheenColorMap=e.sheenColorMap,this.sheenRoughness=e.sheenRoughness,this.sheenRoughnessMap=e.sheenRoughnessMap,this.transmission=e.transmission,this.transmissionMap=e.transmissionMap,this.thickness=e.thickness,this.thicknessMap=e.thicknessMap,this.attenuationDistance=e.attenuationDistance,this.attenuationColor.copy(e.attenuationColor),this.specularIntensity=e.specularIntensity,this.specularIntensityMap=e.specularIntensityMap,this.specularColor.copy(e.specularColor),this.specularColorMap=e.specularColorMap,this}};var Jr=class extends Kn{constructor(e){super(),this.isMeshLambertMaterial=!0,this.type="MeshLambertMaterial",this.color=new he(16777215),this.map=null,this.lightMap=null,this.lightMapIntensity=1,this.aoMap=null,this.aoMapIntensity=1,this.emissive=new he(0),this.emissiveIntensity=1,this.emissiveMap=null,this.bumpMap=null,this.bumpScale=1,this.normalMap=null,this.normalMapType=va,this.normalScale=new Me(1,1),this.displacementMap=null,this.displacementScale=1,this.displacementBias=0,this.specularMap=null,this.alphaMap=null,this.envMap=null,this.envMapRotation=new li,this.combine=al,this.reflectivity=1,this.envMapIntensity=1,this.refractionRatio=.98,this.wireframe=!1,this.wireframeLinewidth=1,this.wireframeLinecap="round",this.wireframeLinejoin="round",this.flatShading=!1,this.fog=!0,this.setValues(e)}copy(e){return super.copy(e),this.color.copy(e.color),this.map=e.map,this.lightMap=e.lightMap,this.lightMapIntensity=e.lightMapIntensity,this.aoMap=e.aoMap,this.aoMapIntensity=e.aoMapIntensity,this.emissive.copy(e.emissive),this.emissiveMap=e.emissiveMap,this.emissiveIntensity=e.emissiveIntensity,this.bumpMap=e.bumpMap,this.bumpScale=e.bumpScale,this.normalMap=e.normalMap,this.normalMapType=e.normalMapType,this.normalScale.copy(e.normalScale),this.displacementMap=e.displacementMap,this.displacementScale=e.displacementScale,this.displacementBias=e.displacementBias,this.specularMap=e.specularMap,this.alphaMap=e.alphaMap,this.envMap=e.envMap,this.envMapRotation.copy(e.envMapRotation),this.combine=e.combine,this.reflectivity=e.reflectivity,this.envMapIntensity=e.envMapIntensity,this.refractionRatio=e.refractionRatio,this.wireframe=e.wireframe,this.wireframeLinewidth=e.wireframeLinewidth,this.wireframeLinecap=e.wireframeLinecap,this.wireframeLinejoin=e.wireframeLinejoin,this.flatShading=e.flatShading,this.fog=e.fog,this}},Xo=class extends Kn{constructor(e){super(),this.isMeshDepthMaterial=!0,this.type="MeshDepthMaterial",this.depthPacking=od,this.map=null,this.alphaMap=null,this.displacementMap=null,this.displacementScale=1,this.displacementBias=0,this.wireframe=!1,this.wireframeLinewidth=1,this.setValues(e)}copy(e){return super.copy(e),this.depthPacking=e.depthPacking,this.map=e.map,this.alphaMap=e.alphaMap,this.displacementMap=e.displacementMap,this.displacementScale=e.displacementScale,this.displacementBias=e.displacementBias,this.wireframe=e.wireframe,this.wireframeLinewidth=e.wireframeLinewidth,this}},qo=class extends Kn{constructor(e){super(),this.isMeshDistanceMaterial=!0,this.type="MeshDistanceMaterial",this.map=null,this.alphaMap=null,this.displacementMap=null,this.displacementScale=1,this.displacementBias=0,this.setValues(e)}copy(e){return super.copy(e),this.map=e.map,this.alphaMap=e.alphaMap,this.displacementMap=e.displacementMap,this.displacementScale=e.displacementScale,this.displacementBias=e.displacementBias,this}};function Os(i,e){return!i||i.constructor===e?i:typeof e.BYTES_PER_ELEMENT=="number"?new e(i):Array.prototype.slice.call(i)}function Ic(i){return i!==void 0&&i.inTangents!==void 0&&i.outTangents!==void 0}var zi=class{constructor(e,t,n,s){this.parameterPositions=e,this._cachedIndex=0,this.resultBuffer=s!==void 0?s:new t.constructor(n),this.sampleValues=t,this.valueSize=n,this.settings=null,this.DefaultSettings_={}}evaluate(e){let t=this.parameterPositions,n=this._cachedIndex,s=t[n],r=t[n-1];n:{e:{let a;t:{i:if(!(e<s)){for(let o=n+2;;){if(s===void 0){if(e<r)break i;return n=t.length,this._cachedIndex=n,this.copySampleValue_(n-1)}if(n===o)break;if(r=s,s=t[++n],e<s)break e}a=t.length;break t}if(!(e>=r)){let o=t[1];e<o&&(n=2,r=o);for(let l=n-2;;){if(r===void 0)return this._cachedIndex=0,this.copySampleValue_(0);if(n===l)break;if(s=r,r=t[--n-1],e>=r)break e}a=n,n=0;break t}break n}for(;n<a;){let o=n+a>>>1;e<t[o]?a=o:n=o+1}if(s=t[n],r=t[n-1],r===void 0)return this._cachedIndex=0,this.copySampleValue_(0);if(s===void 0)return n=t.length,this._cachedIndex=n,this.copySampleValue_(n-1)}this._cachedIndex=n,this.intervalChanged_(n,r,s)}return this.interpolate_(n,r,e,s)}getSettings_(){return this.settings||this.DefaultSettings_}copySampleValue_(e){let t=this.resultBuffer,n=this.sampleValues,s=this.valueSize,r=e*s;for(let a=0;a!==s;++a)t[a]=n[r+a];return t}interpolate_(){throw new Error("THREE.Interpolant: Call to abstract method.")}intervalChanged_(){}},Yo=class extends zi{constructor(e,t,n,s){super(e,t,n,s),this._weightPrev=-0,this._offsetPrev=-0,this._weightNext=-0,this._offsetNext=-0,this.DefaultSettings_={endingStart:Dc,endingEnd:Dc}}intervalChanged_(e,t,n){let s=this.parameterPositions,r=e-2,a=e+1,o=s[r],l=s[a];if(o===void 0)switch(this.getSettings_().endingStart){case Uc:r=e,o=2*t-n;break;case Fc:r=s.length-2,o=t+s[r]-s[r+1];break;default:r=e,o=n}if(l===void 0)switch(this.getSettings_().endingEnd){case Uc:a=e,l=2*n-t;break;case Fc:a=1,l=n+s[1]-s[0];break;default:a=e-1,l=t}let c=(n-t)*.5,u=this.valueSize;this._weightPrev=c/(t-o),this._weightNext=c/(l-n),this._offsetPrev=r*u,this._offsetNext=a*u}interpolate_(e,t,n,s){let r=this.resultBuffer,a=this.sampleValues,o=this.valueSize,l=e*o,c=l-o,u=this._offsetPrev,f=this._offsetNext,h=this._weightPrev,p=this._weightNext,x=(n-t)/(s-t),M=x*x,g=M*x,m=-h*g+2*h*M-h*x,S=(1+h)*g+(-1.5-2*h)*M+(-.5+h)*x+1,C=(-1-p)*g+(1.5+p)*M+.5*x,_=p*g-p*M;for(let T=0;T!==o;++T)r[T]=m*a[u+T]+S*a[c+T]+C*a[l+T]+_*a[f+T];return r}},Zo=class extends zi{constructor(e,t,n,s){super(e,t,n,s)}interpolate_(e,t,n,s){let r=this.resultBuffer,a=this.sampleValues,o=this.valueSize,l=e*o,c=l-o,u=(n-t)/(s-t),f=1-u;for(let h=0;h!==o;++h)r[h]=a[c+h]*f+a[l+h]*u;return r}},Ko=class extends zi{constructor(e,t,n,s){super(e,t,n,s)}interpolate_(e){return this.copySampleValue_(e-1)}},Jo=class extends zi{interpolate_(e,t,n,s){let r=this.resultBuffer,a=this.sampleValues,o=this.valueSize,l=e*o,c=l-o,u=this.inTangents,f=this.outTangents;if(!u||!f){let x=(n-t)/(s-t),M=1-x;for(let g=0;g!==o;++g)r[g]=a[c+g]*M+a[l+g]*x;return r}let h=o*2,p=e-1;for(let x=0;x!==o;++x){let M=a[c+x],g=a[l+x],m=p*h+x*2,S=f[m],C=f[m+1],_=e*h+x*2,T=u[_],E=u[_+1],R=Ip(n,t,S,T,s);r[x]=Md(R,M,C,E,g)}return r}};function Md(i,e,t,n,s){let r=1-i;return r*r*r*e+3*r*r*i*t+3*r*i*i*n+i*i*i*s}function Pp(i,e,t,n,s){let r=1-i;return 3*r*r*(t-e)+6*r*i*(n-t)+3*i*i*(s-n)}function Ip(i,e,t,n,s){let r=(i-e)/(s-e);for(let a=0;a<8;a++){let o=Md(r,e,t,n,s)-i;if(Math.abs(o)<1e-10)break;let l=Pp(r,e,t,n,s);if(Math.abs(l)<1e-10)break;r=Math.max(0,Math.min(1,r-o/l))}return r}var Nn=class{constructor(e,t,n,s){if(e===void 0)throw new Error("THREE.KeyframeTrack: track name is undefined");if(t===void 0||t.length===0)throw new Error("THREE.KeyframeTrack: no keyframes in track named "+e);this.name=e,this.times=Os(t,this.TimeBufferType),this.values=Os(n,this.ValueBufferType),this.setInterpolation(s||this.DefaultInterpolation)}static toJSON(e){let t=e.constructor,n;if(t.toJSON!==this.toJSON)n=t.toJSON(e);else{n={name:e.name,times:Os(e.times,Array),values:Os(e.values,Array)};let s=e.getInterpolation();s!==e.DefaultInterpolation&&(n.interpolation=s),Ic(e.settings)&&(n.settings={inTangents:Os(e.settings.inTangents,Array),outTangents:Os(e.settings.outTangents,Array)})}return n.type=e.ValueTypeName,n}InterpolantFactoryMethodDiscrete(e){return new Ko(this.times,this.values,this.getValueSize(),e)}InterpolantFactoryMethodLinear(e){return new Zo(this.times,this.values,this.getValueSize(),e)}InterpolantFactoryMethodSmooth(e){return new Yo(this.times,this.values,this.getValueSize(),e)}InterpolantFactoryMethodBezier(e){let t=new Jo(this.times,this.values,this.getValueSize(),e);return this.settings&&(t.inTangents=this.settings.inTangents,t.outTangents=this.settings.outTangents),t}setInterpolation(e){let t;switch(e){case Nr:t=this.InterpolantFactoryMethodDiscrete;break;case Ro:t=this.InterpolantFactoryMethodLinear;break;case vo:t=this.InterpolantFactoryMethodSmooth;break;case Lc:t=this.InterpolantFactoryMethodBezier;break}if(t===void 0){let n="unsupported interpolation for "+this.ValueTypeName+" keyframe track named "+this.name;if(this.createInterpolant===void 0)if(e!==this.DefaultInterpolation)this.setInterpolation(this.DefaultInterpolation);else throw new Error(n);return Ke("KeyframeTrack:",n),this}return this.createInterpolant=t,this}getInterpolation(){switch(this.createInterpolant){case this.InterpolantFactoryMethodDiscrete:return Nr;case this.InterpolantFactoryMethodLinear:return Ro;case this.InterpolantFactoryMethodSmooth:return vo;case this.InterpolantFactoryMethodBezier:return Lc}}getValueSize(){return this.values.length/this.times.length}shift(e){if(e!==0){let t=this.times;for(let n=0,s=t.length;n!==s;++n)t[n]+=e}return this}scale(e){if(e!==1){let t=this.times;for(let n=0,s=t.length;n!==s;++n)t[n]*=e;Ic(this.settings)&&(Nh(this.settings.inTangents,e),Nh(this.settings.outTangents,e))}return this}trim(e,t){let n=this.times,s=n.length,r=0,a=s-1;for(;r!==s&&n[r]<e;)++r;for(;a!==-1&&n[a]>t;)--a;if(++a,r!==0||a!==s){r>=a&&(a=Math.max(a,1),r=a-1);let o=this.getValueSize();this.times=n.slice(r,a),this.values=this.values.slice(r*o,a*o)}return this}validate(){let e=!0,t=this.getValueSize();t-Math.floor(t)!==0&&(Qe("KeyframeTrack: Invalid value size in track.",this),e=!1);let n=this.times,s=this.values,r=n.length;r===0&&(Qe("KeyframeTrack: Track is empty.",this),e=!1);let a=null;for(let o=0;o!==r;o++){let l=n[o];if(typeof l=="number"&&isNaN(l)){Qe("KeyframeTrack: Time is not a valid number.",this,o,l),e=!1;break}if(a!==null&&a>l){Qe("KeyframeTrack: Out of order keys.",this,o,l,a),e=!1;break}a=l}if(s!==void 0&&jf(s))for(let o=0,l=s.length;o!==l;++o){let c=s[o];if(isNaN(c)){Qe("KeyframeTrack: Value is not a valid number.",this,o,c),e=!1;break}}return e}optimize(){let e=this.times.slice(),t=this.values.slice(),n=this.getValueSize(),s=this.getInterpolation()===vo,r=e.length-1,a=1;for(let o=1;o<r;++o){let l=!1,c=e[o],u=e[o+1];if(c!==u&&(o!==1||c!==e[0]))if(s)l=!0;else{let f=o*n,h=f-n,p=f+n;for(let x=0;x!==n;++x){let M=t[f+x];if(M!==t[h+x]||M!==t[p+x]){l=!0;break}}}if(l){if(o!==a){e[a]=e[o];let f=o*n,h=a*n;for(let p=0;p!==n;++p)t[h+p]=t[f+p]}++a}}if(r>0){e[a]=e[r];for(let o=r*n,l=a*n,c=0;c!==n;++c)t[l+c]=t[o+c];++a}return a!==e.length?(this.times=e.slice(0,a),this.values=t.slice(0,a*n)):(this.times=e,this.values=t),this}clone(){let e=this.times.slice(),t=this.values.slice(),n=this.constructor,s=new n(this.name,e,t);return s.createInterpolant=this.createInterpolant,Ic(this.settings)&&(s.settings={inTangents:this.settings.inTangents.slice(),outTangents:this.settings.outTangents.slice()}),s}};function Nh(i,e){for(let t=0,n=i.length;t!==n;t+=2)i[t]*=e}Nn.prototype.ValueTypeName="";Nn.prototype.TimeBufferType=Float32Array;Nn.prototype.ValueBufferType=Float32Array;Nn.prototype.DefaultInterpolation=Ro;var Hi=class extends Nn{constructor(e,t,n){super(e,t,n)}};Hi.prototype.ValueTypeName="bool";Hi.prototype.ValueBufferType=Array;Hi.prototype.DefaultInterpolation=Nr;Hi.prototype.InterpolantFactoryMethodLinear=void 0;Hi.prototype.InterpolantFactoryMethodSmooth=void 0;var $o=class extends Nn{constructor(e,t,n,s){super(e,t,n,s)}};$o.prototype.ValueTypeName="color";var jo=class extends Nn{constructor(e,t,n,s){super(e,t,n,s)}};jo.prototype.ValueTypeName="number";var Qo=class extends zi{constructor(e,t,n,s){super(e,t,n,s)}interpolate_(e,t,n,s){let r=this.resultBuffer,a=this.sampleValues,o=this.valueSize,l=(n-t)/(s-t),c=e*o;for(let u=c+o;c!==u;c+=4)oi.slerpFlat(r,0,a,c-o,a,c,l);return r}},$r=class extends Nn{constructor(e,t,n,s){super(e,t,n,s)}InterpolantFactoryMethodLinear(e){return new Qo(this.times,this.values,this.getValueSize(),e)}};$r.prototype.ValueTypeName="quaternion";$r.prototype.InterpolantFactoryMethodSmooth=void 0;var Gi=class extends Nn{constructor(e,t,n){super(e,t,n)}};Gi.prototype.ValueTypeName="string";Gi.prototype.ValueBufferType=Array;Gi.prototype.DefaultInterpolation=Nr;Gi.prototype.InterpolantFactoryMethodLinear=void 0;Gi.prototype.InterpolantFactoryMethodSmooth=void 0;var el=class extends Nn{constructor(e,t,n,s){super(e,t,n,s)}};el.prototype.ValueTypeName="vector";var tl=class{constructor(e,t,n){let s=this,r=!1,a=0,o=0,l,c=[];this.onStart=void 0,this.onLoad=e,this.onProgress=t,this.onError=n,this._abortController=null,this.itemStart=function(u){o++,r===!1&&s.onStart!==void 0&&s.onStart(u,a,o),r=!0},this.itemEnd=function(u){a++,s.onProgress!==void 0&&s.onProgress(u,a,o),a===o&&(r=!1,s.onLoad!==void 0&&s.onLoad())},this.itemError=function(u){s.onError!==void 0&&s.onError(u)},this.resolveURL=function(u){return u=u.normalize("NFC"),l?l(u):u},this.setURLModifier=function(u){return l=u,this},this.addHandler=function(u,f){return c.push(u,f),this},this.removeHandler=function(u){let f=c.indexOf(u);return f!==-1&&c.splice(f,2),this},this.getHandler=function(u){for(let f=0,h=c.length;f<h;f+=2){let p=c[f],x=c[f+1];if(p.global&&(p.lastIndex=0),p.test(u))return x}return null},this.abort=function(){return this.abortController.abort(),this._abortController=null,this}}get abortController(){return this._abortController||(this._abortController=new AbortController),this._abortController}},Sd=new tl,nl=class{constructor(e){this.manager=e!==void 0?e:Sd,this.crossOrigin="anonymous",this.withCredentials=!1,this.path="",this.resourcePath="",this.requestHeader={},typeof __THREE_DEVTOOLS__<"u"&&__THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("observe",{detail:this}))}load(){}loadAsync(e,t){let n=this;return new Promise(function(s,r){n.load(e,s,t,r)})}parse(){}setCrossOrigin(e){return this.crossOrigin=e,this}setWithCredentials(e){return this.withCredentials=e,this}setPath(e){return this.path=e,this}setResourcePath(e){return this.resourcePath=e,this}setRequestHeader(e){return this.requestHeader=e,this}abort(){return this}};nl.DEFAULT_MATERIAL_NAME="__DEFAULT";var us=class extends zt{constructor(e,t=1){super(),this.isLight=!0,this.type="Light",this.color=new he(e),this.intensity=t}copy(e,t){return super.copy(e,t),this.color.copy(e.color),this.intensity=e.intensity,this}toJSON(e){let t=super.toJSON(e);return t.object.color=this.color.getHex(),t.object.intensity=this.intensity,t}},hs=class extends us{constructor(e,t,n){super(e,n),this.isHemisphereLight=!0,this.type="HemisphereLight",this.position.copy(zt.DEFAULT_UP),this.updateMatrix(),this.groundColor=new he(t)}copy(e,t){return super.copy(e,t),this.groundColor.copy(e.groundColor),this}toJSON(e){let t=super.toJSON(e);return t.object.groundColor=this.groundColor.getHex(),t}},Nc=new Ft,Lh=new I,Dh=new I,Js=class{constructor(e){this.camera=e,this.intensity=1,this.bias=0,this.biasNode=null,this.normalBias=0,this.radius=1,this.blurSamples=8,this.mapSize=new Me(512,512),this.mapType=En,this.map=null,this.mapPass=null,this.matrix=new Ft,this.autoUpdate=!0,this.needsUpdate=!1,this._frustum=new Ys,this._frameExtents=new Me(1,1),this._viewportCount=1,this._viewports=[new Wt(0,0,1,1)]}getViewportCount(){return this._viewportCount}getCamera(){return this.camera}getFrustum(){return this._frustum}updateMatrices(e){let t=this.camera;Lh.setFromMatrixPosition(e.matrixWorld),t.position.copy(Lh),Dh.setFromMatrixPosition(e.target.matrixWorld),t.lookAt(Dh),t.updateMatrixWorld(),this._updateMatrix(t,this.matrix,this._frustum)}_updateMatrix(e,t,n,s){Nc.multiplyMatrices(e.projectionMatrix,e.matrixWorldInverse),n.setFromProjectionMatrix(Nc,e.coordinateSystem,e.reversedDepth);let r=this._frameExtents,a=s?s.z/r.x:1,o=s?s.w/r.y:1,l=s?s.x/r.x:0,c=s?s.y/r.y:0;e.coordinateSystem===Gs||e.reversedDepth?t.set(.5*a,0,0,.5*a+l,0,.5*o,0,.5*o+c,0,0,1,0,0,0,0,1):t.set(.5*a,0,0,.5*a+l,0,.5*o,0,.5*o+c,0,0,.5,.5,0,0,0,1),t.multiply(Nc)}getViewport(e){return this._viewports[e]}getFrameExtents(){return this._frameExtents}dispose(){this.map&&this.map.dispose(),this.mapPass&&this.mapPass.dispose()}copy(e){return this.camera=e.camera.clone(),this.intensity=e.intensity,this.bias=e.bias,this.radius=e.radius,this.autoUpdate=e.autoUpdate,this.needsUpdate=e.needsUpdate,this.normalBias=e.normalBias,this.blurSamples=e.blurSamples,this.mapSize.copy(e.mapSize),this.biasNode=e.biasNode,this}clone(){return new this.constructor().copy(this)}toJSON(){let e={};return e.intensity=this.intensity,e.bias=this.bias,e.normalBias=this.normalBias,e.radius=this.radius,e.blurSamples=this.blurSamples,e.mapSize=this.mapSize.toArray(),e.camera=this.camera.toJSON(!1).object,delete e.camera.matrix,e}},go=new I,xo=new oi,ii=new I,jr=class extends zt{constructor(){super(),this.isCamera=!0,this.type="Camera",this.matrixWorldInverse=new Ft,this.projectionMatrix=new Ft,this.projectionMatrixInverse=new Ft,this.coordinateSystem=Zn,this._reversedDepth=!1}get reversedDepth(){return this._reversedDepth}copy(e,t){return super.copy(e,t),this.matrixWorldInverse.copy(e.matrixWorldInverse),this.projectionMatrix.copy(e.projectionMatrix),this.projectionMatrixInverse.copy(e.projectionMatrixInverse),this.coordinateSystem=e.coordinateSystem,this}getWorldDirection(e){return super.getWorldDirection(e).negate()}updateMatrixWorld(e){super.updateMatrixWorld(e),this.matrixWorld.decompose(go,xo,ii),ii.x===1&&ii.y===1&&ii.z===1?this.matrixWorldInverse.copy(this.matrixWorld).invert():this.matrixWorldInverse.compose(go,xo,ii.set(1,1,1)).invert()}updateWorldMatrix(e,t,n=!1){super.updateWorldMatrix(e,t,n),this.matrixWorld.decompose(go,xo,ii),ii.x===1&&ii.y===1&&ii.z===1?this.matrixWorldInverse.copy(this.matrixWorld).invert():this.matrixWorldInverse.compose(go,xo,ii.set(1,1,1)).invert()}clone(){return new this.constructor().copy(this)}},Ui=new I,Uh=new Me,Fh=new Me,$t=class extends jr{constructor(e=50,t=1,n=.1,s=2e3){super(),this.isPerspectiveCamera=!0,this.type="PerspectiveCamera",this.fov=e,this.zoom=1,this.near=n,this.far=s,this.focus=10,this.aspect=t,this.view=null,this.filmGauge=35,this.filmOffset=0,this.updateProjectionMatrix()}copy(e,t){return super.copy(e,t),this.fov=e.fov,this.zoom=e.zoom,this.near=e.near,this.far=e.far,this.focus=e.focus,this.aspect=e.aspect,this.view=e.view===null?null:Object.assign({},e.view),this.filmGauge=e.filmGauge,this.filmOffset=e.filmOffset,this}setFocalLength(e){let t=.5*this.getFilmHeight()/e;this.fov=Fr*2*Math.atan(t),this.updateProjectionMatrix()}getFocalLength(){let e=Math.tan(ac*.5*this.fov);return .5*this.getFilmHeight()/e}getEffectiveFOV(){return Fr*2*Math.atan(Math.tan(ac*.5*this.fov)/this.zoom)}getFilmWidth(){return this.filmGauge*Math.min(this.aspect,1)}getFilmHeight(){return this.filmGauge/Math.max(this.aspect,1)}getViewBounds(e,t,n){Ui.set(-1,-1,.5).applyMatrix4(this.projectionMatrixInverse),t.set(Ui.x,Ui.y).multiplyScalar(-e/Ui.z),Ui.set(1,1,.5).applyMatrix4(this.projectionMatrixInverse),n.set(Ui.x,Ui.y).multiplyScalar(-e/Ui.z)}getViewSize(e,t){return this.getViewBounds(e,Uh,Fh),t.subVectors(Fh,Uh)}setViewOffset(e,t,n,s,r,a){this.aspect=e/t,this.view===null&&(this.view={enabled:!0,fullWidth:1,fullHeight:1,offsetX:0,offsetY:0,width:1,height:1}),this.view.enabled=!0,this.view.fullWidth=e,this.view.fullHeight=t,this.view.offsetX=n,this.view.offsetY=s,this.view.width=r,this.view.height=a,this.updateProjectionMatrix()}clearViewOffset(){this.view!==null&&(this.view.enabled=!1),this.updateProjectionMatrix()}updateProjectionMatrix(){let e=this.near,t=e*Math.tan(ac*.5*this.fov)/this.zoom,n=2*t,s=this.aspect*n,r=-.5*s,a=this.view;if(this.view!==null&&this.view.enabled){let l=a.fullWidth,c=a.fullHeight;r+=a.offsetX*s/l,t-=a.offsetY*n/c,s*=a.width/l,n*=a.height/c}let o=this.filmOffset;o!==0&&(r+=e*o/this.getFilmWidth()),this.projectionMatrix.makePerspective(r,r+s,t,t-n,e,this.far,this.coordinateSystem,this.reversedDepth),this.projectionMatrixInverse.copy(this.projectionMatrix).invert()}toJSON(e){let t=super.toJSON(e);return t.object.fov=this.fov,t.object.zoom=this.zoom,t.object.near=this.near,t.object.far=this.far,t.object.focus=this.focus,t.object.aspect=this.aspect,this.view!==null&&(t.object.view=Object.assign({},this.view)),t.object.filmGauge=this.filmGauge,t.object.filmOffset=this.filmOffset,t}},Bc=class extends Js{constructor(){super(new $t(50,1,.5,500)),this.isSpotLightShadow=!0,this.focus=1,this.aspect=1}updateMatrices(e){let t=this.camera,n=Fr*2*e.angle*this.focus,s=this.mapSize.width/this.mapSize.height*this.aspect,r=e.distance||t.far;(n!==t.fov||s!==t.aspect||r!==t.far)&&(t.fov=n,t.aspect=s,t.far=r,t.updateProjectionMatrix()),super.updateMatrices(e)}copy(e){return super.copy(e),this.focus=e.focus,this.aspect=e.aspect,this}toJSON(){let e=super.toJSON();return e.focus=this.focus,e.aspect=this.aspect,e}},Qr=class extends us{constructor(e,t,n=0,s=Math.PI/3,r=0,a=2){super(e,t),this.isSpotLight=!0,this.type="SpotLight",this.position.copy(zt.DEFAULT_UP),this.updateMatrix(),this.target=new zt,this.distance=n,this.angle=s,this.penumbra=r,this.decay=a,this.map=null,this.shadow=new Bc}get power(){return this.intensity*Math.PI}set power(e){this.intensity=e/Math.PI}dispose(){super.dispose(),this.shadow.dispose()}copy(e,t){return super.copy(e,t),this.distance=e.distance,this.angle=e.angle,this.penumbra=e.penumbra,this.decay=e.decay,this.target=e.target.clone(),this.map=e.map,this.shadow=e.shadow.clone(),this}toJSON(e){let t=super.toJSON(e);return t.object.distance=this.distance,t.object.angle=this.angle,t.object.decay=this.decay,t.object.penumbra=this.penumbra,t.object.target=this.target.uuid,this.map&&this.map.isTexture&&(t.object.map=this.map.toJSON(e).uuid),t.object.shadow=this.shadow.toJSON(),t}},kc=class extends Js{constructor(){super(new $t(90,1,.5,500)),this.isPointLightShadow=!0}},Sn=class extends us{constructor(e,t,n=0,s=2){super(e,t),this.isPointLight=!0,this.type="PointLight",this.distance=n,this.decay=s,this.shadow=new kc}get power(){return this.intensity*4*Math.PI}set power(e){this.intensity=e/(4*Math.PI)}dispose(){super.dispose(),this.shadow.dispose()}copy(e,t){return super.copy(e,t),this.distance=e.distance,this.decay=e.decay,this.shadow=e.shadow.clone(),this}toJSON(e){let t=super.toJSON(e);return t.object.distance=this.distance,t.object.decay=this.decay,t.object.shadow=this.shadow.toJSON(),t}},Vi=class extends jr{constructor(e=-1,t=1,n=1,s=-1,r=.1,a=2e3){super(),this.isOrthographicCamera=!0,this.type="OrthographicCamera",this.zoom=1,this.view=null,this.left=e,this.right=t,this.top=n,this.bottom=s,this.near=r,this.far=a,this.updateProjectionMatrix()}copy(e,t){return super.copy(e,t),this.left=e.left,this.right=e.right,this.top=e.top,this.bottom=e.bottom,this.near=e.near,this.far=e.far,this.zoom=e.zoom,this.view=e.view===null?null:Object.assign({},e.view),this}setViewOffset(e,t,n,s,r,a){this.view===null&&(this.view={enabled:!0,fullWidth:1,fullHeight:1,offsetX:0,offsetY:0,width:1,height:1}),this.view.enabled=!0,this.view.fullWidth=e,this.view.fullHeight=t,this.view.offsetX=n,this.view.offsetY=s,this.view.width=r,this.view.height=a,this.updateProjectionMatrix()}clearViewOffset(){this.view!==null&&(this.view.enabled=!1),this.updateProjectionMatrix()}updateProjectionMatrix(){let e=(this.right-this.left)/(2*this.zoom),t=(this.top-this.bottom)/(2*this.zoom),n=(this.right+this.left)/2,s=(this.top+this.bottom)/2,r=n-e,a=n+e,o=s+t,l=s-t;if(this.view!==null&&this.view.enabled){let c=(this.right-this.left)/this.view.fullWidth/this.zoom,u=(this.top-this.bottom)/this.view.fullHeight/this.zoom;r+=c*this.view.offsetX,a=r+c*this.view.width,o-=u*this.view.offsetY,l=o-u*this.view.height}this.projectionMatrix.makeOrthographic(r,a,o,l,this.near,this.far,this.coordinateSystem,this.reversedDepth),this.projectionMatrixInverse.copy(this.projectionMatrix).invert()}toJSON(e){let t=super.toJSON(e);return t.object.zoom=this.zoom,t.object.left=this.left,t.object.right=this.right,t.object.top=this.top,t.object.bottom=this.bottom,t.object.near=this.near,t.object.far=this.far,this.view!==null&&(t.object.view=Object.assign({},this.view)),t}},zc=class extends Js{constructor(){super(new Vi(-5,5,5,-5,.5,500)),this.isDirectionalLightShadow=!0}},ds=class extends us{constructor(e,t){super(e,t),this.isDirectionalLight=!0,this.type="DirectionalLight",this.position.copy(zt.DEFAULT_UP),this.updateMatrix(),this.target=new zt,this.shadow=new zc}dispose(){super.dispose(),this.shadow.dispose()}copy(e){return super.copy(e),this.target=e.target.clone(),this.shadow=e.shadow.clone(),this}toJSON(e){let t=super.toJSON(e);return t.object.shadow=this.shadow.toJSON(),t.object.target=this.target.uuid,t}};var Bs=-90,ks=1,il=class extends zt{constructor(e,t,n){super(),this.type="CubeCamera",this.renderTarget=n,this.coordinateSystem=null,this.activeMipmapLevel=0;let s=new $t(Bs,ks,e,t);s.layers=this.layers,this.add(s);let r=new $t(Bs,ks,e,t);r.layers=this.layers,this.add(r);let a=new $t(Bs,ks,e,t);a.layers=this.layers,this.add(a);let o=new $t(Bs,ks,e,t);o.layers=this.layers,this.add(o);let l=new $t(Bs,ks,e,t);l.layers=this.layers,this.add(l);let c=new $t(Bs,ks,e,t);c.layers=this.layers,this.add(c)}updateCoordinateSystem(){let e=this.coordinateSystem,t=this.children.concat(),[n,s,r,a,o,l]=t;for(let c of t)this.remove(c);if(e===Zn)n.up.set(0,1,0),n.lookAt(1,0,0),s.up.set(0,1,0),s.lookAt(-1,0,0),r.up.set(0,0,-1),r.lookAt(0,1,0),a.up.set(0,0,1),a.lookAt(0,-1,0),o.up.set(0,1,0),o.lookAt(0,0,1),l.up.set(0,1,0),l.lookAt(0,0,-1);else if(e===Gs)n.up.set(0,-1,0),n.lookAt(-1,0,0),s.up.set(0,-1,0),s.lookAt(1,0,0),r.up.set(0,0,1),r.lookAt(0,1,0),a.up.set(0,0,-1),a.lookAt(0,-1,0),o.up.set(0,-1,0),o.lookAt(0,0,1),l.up.set(0,-1,0),l.lookAt(0,0,-1);else throw new Error("THREE.CubeCamera.updateCoordinateSystem(): Invalid coordinate system: "+e);for(let c of t)this.add(c),c.updateMatrixWorld()}update(e,t){this.parent===null&&this.updateMatrixWorld();let{renderTarget:n,activeMipmapLevel:s}=this;this.coordinateSystem!==e.coordinateSystem&&(this.coordinateSystem=e.coordinateSystem,this.updateCoordinateSystem());let[r,a,o,l,c,u]=this.children,f=e.getRenderTarget(),h=e.getActiveCubeFace(),p=e.getActiveMipmapLevel(),x=e.xr.enabled;e.xr.enabled=!1;let M=n.texture.generateMipmaps;n.texture.generateMipmaps=!1;let g=!1;e.isWebGLRenderer===!0?g=e.state.buffers.depth.getReversed():g=e.reversedDepthBuffer,e.setRenderTarget(n,0,s),g&&e.autoClear===!1&&e.clearDepth(),e.render(t,r),e.setRenderTarget(n,1,s),g&&e.autoClear===!1&&e.clearDepth(),e.render(t,a),e.setRenderTarget(n,2,s),g&&e.autoClear===!1&&e.clearDepth(),e.render(t,o),e.setRenderTarget(n,3,s),g&&e.autoClear===!1&&e.clearDepth(),e.render(t,l),e.setRenderTarget(n,4,s),g&&e.autoClear===!1&&e.clearDepth(),e.render(t,c),n.texture.generateMipmaps=M,e.setRenderTarget(n,5,s),g&&e.autoClear===!1&&e.clearDepth(),e.render(t,u),e.setRenderTarget(f,h,p),e.xr.enabled=x,n.texture.needsPMREMUpdate=!0}},sl=class extends $t{constructor(e=[]){super(),this.isArrayCamera=!0,this.isMultiViewCamera=!1,this.cameras=e}},ea=class{constructor(){this._previousTime=0,this._currentTime=0,this._startTime=performance.now(),this._delta=0,this._elapsed=0,this._timescale=1,this._document=null,this._pageVisibilityHandler=null}connect(e){this._document=e,e.hidden!==void 0&&(this._pageVisibilityHandler=Np.bind(this),e.addEventListener("visibilitychange",this._pageVisibilityHandler,!1))}disconnect(){this._pageVisibilityHandler!==null&&(this._document.removeEventListener("visibilitychange",this._pageVisibilityHandler),this._pageVisibilityHandler=null),this._document=null}getDelta(){return this._delta/1e3}getElapsed(){return this._elapsed/1e3}getTimescale(){return this._timescale}setTimescale(e){return this._timescale=e,this}reset(){return this._currentTime=performance.now()-this._startTime,this}dispose(){this.disconnect()}update(e){return this._pageVisibilityHandler!==null&&this._document.hidden===!0?this._delta=0:(this._previousTime=this._currentTime,this._currentTime=(e!==void 0?e:performance.now())-this._startTime,this._delta=(this._currentTime-this._previousTime)*this._timescale,this._elapsed+=this._delta),this}};function Np(){this._document.hidden===!1&&this.reset()}var ru="\\[\\]\\.:\\/",Lp=new RegExp("["+ru+"]","g"),au="[^"+ru+"]",Dp="[^"+ru.replace("\\.","")+"]",Up=/((?:WC+[\/:])*)/.source.replace("WC",au),Fp=/(WCOD+)?/.source.replace("WCOD",Dp),Op=/(?:\.(WC+)(?:\[(.+)\])?)?/.source.replace("WC",au),Bp=/\.(WC+)(?:\[(.+)\])?/.source.replace("WC",au),kp=new RegExp("^"+Up+Fp+Op+Bp+"$"),zp=["material","materials","bones","map"],Hc=class{constructor(e,t,n){let s=n||Ht.parseTrackName(t);this._targetGroup=e,this._bindings=e.subscribe_(t,s)}getValue(e,t){this.bind();let n=this._targetGroup.nCachedObjects_,s=this._bindings[n];s!==void 0&&s.getValue(e,t)}setValue(e,t){let n=this._bindings;for(let s=this._targetGroup.nCachedObjects_,r=n.length;s!==r;++s)n[s].setValue(e,t)}bind(){let e=this._bindings;for(let t=this._targetGroup.nCachedObjects_,n=e.length;t!==n;++t)e[t].bind()}unbind(){let e=this._bindings;for(let t=this._targetGroup.nCachedObjects_,n=e.length;t!==n;++t)e[t].unbind()}},Ht=class i{constructor(e,t,n){this.path=t,this.parsedPath=n||i.parseTrackName(t),this.node=i.findNode(e,this.parsedPath.nodeName),this.rootNode=e,this.getValue=this._getValue_unbound,this.setValue=this._setValue_unbound}static create(e,t,n){return e&&e.isAnimationObjectGroup?new i.Composite(e,t,n):new i(e,t,n)}static sanitizeNodeName(e){return e.replace(/\s/g,"_").replace(Lp,"")}static parseTrackName(e){let t=kp.exec(e);if(t===null)throw new Error("THREE.PropertyBinding: Cannot parse trackName: "+e);let n={nodeName:t[2],objectName:t[3],objectIndex:t[4],propertyName:t[5],propertyIndex:t[6]},s=n.nodeName&&n.nodeName.lastIndexOf(".");if(s!==void 0&&s!==-1){let r=n.nodeName.substring(s+1);zp.indexOf(r)!==-1&&(n.nodeName=n.nodeName.substring(0,s),n.objectName=r)}if(n.propertyName===null||n.propertyName.length===0)throw new Error("THREE.PropertyBinding: can not parse propertyName from trackName: "+e);return n}static findNode(e,t){if(t===void 0||t===""||t==="."||t===-1||t===e.name||t===e.uuid)return e;if(e.skeleton){let n=e.skeleton.getBoneByName(t);if(n!==void 0)return n}if(e.children){let n=function(r){for(let a=0;a<r.length;a++){let o=r[a];if(o.name===t||o.uuid===t)return o;let l=n(o.children);if(l)return l}return null},s=n(e.children);if(s)return s}return null}_getValue_unavailable(){}_setValue_unavailable(){}_getValue_direct(e,t){e[t]=this.targetObject[this.propertyName]}_getValue_array(e,t){let n=this.resolvedProperty;for(let s=0,r=n.length;s!==r;++s)e[t++]=n[s]}_getValue_arrayElement(e,t){e[t]=this.resolvedProperty[this.propertyIndex]}_getValue_toArray(e,t){this.resolvedProperty.toArray(e,t)}_setValue_direct(e,t){this.targetObject[this.propertyName]=e[t]}_setValue_direct_setNeedsUpdate(e,t){this.targetObject[this.propertyName]=e[t],this.targetObject.needsUpdate=!0}_setValue_direct_setMatrixWorldNeedsUpdate(e,t){this.targetObject[this.propertyName]=e[t],this.targetObject.matrixWorldNeedsUpdate=!0}_setValue_array(e,t){let n=this.resolvedProperty;for(let s=0,r=n.length;s!==r;++s)n[s]=e[t++]}_setValue_array_setNeedsUpdate(e,t){let n=this.resolvedProperty;for(let s=0,r=n.length;s!==r;++s)n[s]=e[t++];this.targetObject.needsUpdate=!0}_setValue_array_setMatrixWorldNeedsUpdate(e,t){let n=this.resolvedProperty;for(let s=0,r=n.length;s!==r;++s)n[s]=e[t++];this.targetObject.matrixWorldNeedsUpdate=!0}_setValue_arrayElement(e,t){this.resolvedProperty[this.propertyIndex]=e[t]}_setValue_arrayElement_setNeedsUpdate(e,t){this.resolvedProperty[this.propertyIndex]=e[t],this.targetObject.needsUpdate=!0}_setValue_arrayElement_setMatrixWorldNeedsUpdate(e,t){this.resolvedProperty[this.propertyIndex]=e[t],this.targetObject.matrixWorldNeedsUpdate=!0}_setValue_fromArray(e,t){this.resolvedProperty.fromArray(e,t)}_setValue_fromArray_setNeedsUpdate(e,t){this.resolvedProperty.fromArray(e,t),this.targetObject.needsUpdate=!0}_setValue_fromArray_setMatrixWorldNeedsUpdate(e,t){this.resolvedProperty.fromArray(e,t),this.targetObject.matrixWorldNeedsUpdate=!0}_getValue_unbound(e,t){this.bind(),this.getValue(e,t)}_setValue_unbound(e,t){this.bind(),this.setValue(e,t)}bind(){let e=this.node,t=this.parsedPath,n=t.objectName,s=t.propertyName,r=t.propertyIndex;if(e||(e=i.findNode(this.rootNode,t.nodeName),this.node=e),this.getValue=this._getValue_unavailable,this.setValue=this._setValue_unavailable,!e){Ke("PropertyBinding: No target node found for track: "+this.path+".");return}if(n){let c=t.objectIndex;switch(n){case"materials":if(!e.material){Qe("PropertyBinding: Can not bind to material as node does not have a material.",this);return}if(!e.material.materials){Qe("PropertyBinding: Can not bind to material.materials as node.material does not have a materials array.",this);return}e=e.material.materials;break;case"bones":if(!e.skeleton){Qe("PropertyBinding: Can not bind to bones as node does not have a skeleton.",this);return}e=e.skeleton.bones;for(let u=0;u<e.length;u++)if(e[u].name===c){c=u;break}break;case"map":if("map"in e){e=e.map;break}if(!e.material){Qe("PropertyBinding: Can not bind to material as node does not have a material.",this);return}if(!e.material.map){Qe("PropertyBinding: Can not bind to material.map as node.material does not have a map.",this);return}e=e.material.map;break;default:if(e[n]===void 0){Qe("PropertyBinding: Can not bind to objectName of node undefined.",this);return}e=e[n]}if(c!==void 0){if(e[c]===void 0){Qe("PropertyBinding: Trying to bind to objectIndex of objectName, but is undefined.",this,e);return}e=e[c]}}let a=e[s];if(a===void 0){let c=t.nodeName;Qe("PropertyBinding: Trying to update property for track: "+c+"."+s+" but it wasn't found.",e);return}let o=this.Versioning.None;this.targetObject=e,e.isMaterial===!0?o=this.Versioning.NeedsUpdate:e.isObject3D===!0&&(o=this.Versioning.MatrixWorldNeedsUpdate);let l=this.BindingType.Direct;if(r!==void 0){if(s==="morphTargetInfluences"){if(!e.geometry){Qe("PropertyBinding: Can not bind to morphTargetInfluences because node does not have a geometry.",this);return}if(!e.geometry.morphAttributes){Qe("PropertyBinding: Can not bind to morphTargetInfluences because node does not have a geometry.morphAttributes.",this);return}e.morphTargetDictionary[r]!==void 0&&(r=e.morphTargetDictionary[r])}l=this.BindingType.ArrayElement,this.resolvedProperty=a,this.propertyIndex=r}else a.fromArray!==void 0&&a.toArray!==void 0?(l=this.BindingType.HasFromToArray,this.resolvedProperty=a):Array.isArray(a)?(l=this.BindingType.EntireArray,this.resolvedProperty=a):this.propertyName=s;this.getValue=this.GetterByBindingType[l],this.setValue=this.SetterByBindingTypeAndVersioning[l][o]}unbind(){this.node=null,this.getValue=this._getValue_unbound,this.setValue=this._setValue_unbound}};Ht.Composite=Hc;Ht.prototype.BindingType={Direct:0,EntireArray:1,ArrayElement:2,HasFromToArray:3};Ht.prototype.Versioning={None:0,NeedsUpdate:1,MatrixWorldNeedsUpdate:2};Ht.prototype.GetterByBindingType=[Ht.prototype._getValue_direct,Ht.prototype._getValue_array,Ht.prototype._getValue_arrayElement,Ht.prototype._getValue_toArray];Ht.prototype.SetterByBindingTypeAndVersioning=[[Ht.prototype._setValue_direct,Ht.prototype._setValue_direct_setNeedsUpdate,Ht.prototype._setValue_direct_setMatrixWorldNeedsUpdate],[Ht.prototype._setValue_array,Ht.prototype._setValue_array_setNeedsUpdate,Ht.prototype._setValue_array_setMatrixWorldNeedsUpdate],[Ht.prototype._setValue_arrayElement,Ht.prototype._setValue_arrayElement_setNeedsUpdate,Ht.prototype._setValue_arrayElement_setMatrixWorldNeedsUpdate],[Ht.prototype._setValue_fromArray,Ht.prototype._setValue_fromArray_setNeedsUpdate,Ht.prototype._setValue_fromArray_setMatrixWorldNeedsUpdate]];var xy=new Float32Array(1);var ta=class{constructor(e=!0){this.autoStart=e,this.startTime=0,this.oldTime=0,this.elapsedTime=0,this.running=!1,Ke("Clock: This module has been deprecated. Please use THREE.Timer instead.")}start(){this.startTime=performance.now(),this.oldTime=this.startTime,this.elapsedTime=0,this.running=!0}stop(){this.getElapsedTime(),this.running=!1,this.autoStart=!1}getElapsedTime(){return this.getDelta(),this.elapsedTime}getDelta(){let e=0;if(this.autoStart&&!this.running)return this.start(),0;if(this.running){let t=performance.now();e=(t-this.oldTime)/1e3,this.oldTime=t,this.elapsedTime+=e}return e}};var du=class du{constructor(e,t,n,s){this.elements=[1,0,0,1],e!==void 0&&this.set(e,t,n,s)}identity(){return this.set(1,0,0,1),this}fromArray(e,t=0){for(let n=0;n<4;n++)this.elements[n]=e[n+t];return this}set(e,t,n,s){let r=this.elements;return r[0]=e,r[2]=t,r[1]=n,r[3]=s,this}};du.prototype.isMatrix2=!0;var Gc=du;var na=class extends Oi{constructor(e=10,t=10,n=4473924,s=8947848){n=new he(n),s=new he(s);let r=t/2,a=e/t,o=e/2,l=[],c=[];for(let h=0,p=0,x=-o;h<=t;h++,x+=a){l.push(-o,0,x,o,0,x),l.push(x,0,-o,x,0,o);let M=h===r?n:s;M.toArray(c,p),p+=3,M.toArray(c,p),p+=3,M.toArray(c,p),p+=3,M.toArray(c,p),p+=3}let u=new _t;u.setAttribute("position",new et(l,3)),u.setAttribute("color",new et(c,3));let f=new cs({vertexColors:!0,toneMapped:!1});super(u,f),this.type="GridHelper"}dispose(){super.dispose(),this.geometry.dispose(),this.material.dispose()}};function ou(i,e,t,n){let s=Hp(n);switch(t){case Qc:return i*e;case dl:return i*e/s.components*s.byteLength;case fl:return i*e/s.components*s.byteLength;case Yi:return i*e*2/s.components*s.byteLength;case pl:return i*e*2/s.components*s.byteLength;case eu:return i*e*3/s.components*s.byteLength;case Hn:return i*e*4/s.components*s.byteLength;case ml:return i*e*4/s.components*s.byteLength;case da:case fa:return Math.floor((i+3)/4)*Math.floor((e+3)/4)*8;case pa:case ma:return Math.floor((i+3)/4)*Math.floor((e+3)/4)*16;case xl:case yl:return Math.max(i,16)*Math.max(e,8)/4;case gl:case vl:return Math.max(i,8)*Math.max(e,8)/2;case _l:case bl:case Sl:case El:return Math.floor((i+3)/4)*Math.floor((e+3)/4)*8;case Ml:case ga:case wl:return Math.floor((i+3)/4)*Math.floor((e+3)/4)*16;case Tl:return Math.floor((i+3)/4)*Math.floor((e+3)/4)*16;case Al:return Math.floor((i+4)/5)*Math.floor((e+3)/4)*16;case Cl:return Math.floor((i+4)/5)*Math.floor((e+4)/5)*16;case Rl:return Math.floor((i+5)/6)*Math.floor((e+4)/5)*16;case Pl:return Math.floor((i+5)/6)*Math.floor((e+5)/6)*16;case Il:return Math.floor((i+7)/8)*Math.floor((e+4)/5)*16;case Nl:return Math.floor((i+7)/8)*Math.floor((e+5)/6)*16;case Ll:return Math.floor((i+7)/8)*Math.floor((e+7)/8)*16;case Dl:return Math.floor((i+9)/10)*Math.floor((e+4)/5)*16;case Ul:return Math.floor((i+9)/10)*Math.floor((e+5)/6)*16;case Fl:return Math.floor((i+9)/10)*Math.floor((e+7)/8)*16;case Ol:return Math.floor((i+9)/10)*Math.floor((e+9)/10)*16;case Bl:return Math.floor((i+11)/12)*Math.floor((e+9)/10)*16;case kl:return Math.floor((i+11)/12)*Math.floor((e+11)/12)*16;case zl:case Hl:case Gl:return Math.ceil(i/4)*Math.ceil(e/4)*16;case Vl:case Wl:return Math.ceil(i/4)*Math.ceil(e/4)*8;case xa:case Xl:return Math.ceil(i/4)*Math.ceil(e/4)*16}throw new Error(`Unable to determine texture byte length for ${t} format.`)}function Hp(i){switch(i){case En:case Kc:return{byteLength:1,components:1};case er:case Jc:case un:return{byteLength:2,components:1};case ul:case hl:return{byteLength:2,components:4};case Qn:case cl:case zn:return{byteLength:4,components:1};case $c:case jc:return{byteLength:4,components:3}}throw new Error(`THREE.TextureUtils: Unknown texture type ${i}.`)}typeof __THREE_DEVTOOLS__<"u"&&__THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("register",{detail:{revision:"186"}}));typeof window<"u"&&(window.__THREE__?Ke("WARNING: Multiple instances of Three.js being imported."):window.__THREE__="186");function Xd(){let i=null,e=!1,t=null,n=null;function s(r,a){n=i.requestAnimationFrame(s),t(r,a)}return{start:function(){e!==!0&&t!==null&&i!==null&&(n=i.requestAnimationFrame(s),e=!0)},stop:function(){i!==null&&i.cancelAnimationFrame(n),e=!1},setAnimationLoop:function(r){t=r},setContext:function(r){i=r}}}function Vp(i){let e=new WeakMap;function t(o,l){let c=o.array,u=o.usage,f=c.byteLength,h=i.createBuffer();i.bindBuffer(l,h),i.bufferData(l,c,u),o.onUploadCallback();let p;if(c instanceof Float32Array)p=i.FLOAT;else if(typeof Float16Array<"u"&&c instanceof Float16Array)p=i.HALF_FLOAT;else if(c instanceof Uint16Array)o.isFloat16BufferAttribute?p=i.HALF_FLOAT:p=i.UNSIGNED_SHORT;else if(c instanceof Int16Array)p=i.SHORT;else if(c instanceof Uint32Array)p=i.UNSIGNED_INT;else if(c instanceof Int32Array)p=i.INT;else if(c instanceof Int8Array)p=i.BYTE;else if(c instanceof Uint8Array)p=i.UNSIGNED_BYTE;else if(c instanceof Uint8ClampedArray)p=i.UNSIGNED_BYTE;else throw new Error("THREE.WebGLAttributes: Unsupported buffer data format: "+c);return{buffer:h,type:p,bytesPerElement:c.BYTES_PER_ELEMENT,version:o.version,size:f}}function n(o,l,c){let u=l.array,f=l.updateRanges;if(i.bindBuffer(c,o),f.length===0)i.bufferSubData(c,0,u);else{f.sort((p,x)=>p.start-x.start);let h=0;for(let p=1;p<f.length;p++){let x=f[h],M=f[p];M.start<=x.start+x.count+1?x.count=Math.max(x.count,M.start+M.count-x.start):(++h,f[h]=M)}f.length=h+1;for(let p=0,x=f.length;p<x;p++){let M=f[p];i.bufferSubData(c,M.start*u.BYTES_PER_ELEMENT,u,M.start,M.count)}l.clearUpdateRanges()}l.onUploadCallback()}function s(o){return o.isInterleavedBufferAttribute&&(o=o.data),e.get(o)}function r(o){o.isInterleavedBufferAttribute&&(o=o.data);let l=e.get(o);l&&(i.deleteBuffer(l.buffer),e.delete(o))}function a(o,l){if(o.isInterleavedBufferAttribute&&(o=o.data),o.isGLBufferAttribute){let u=e.get(o);(!u||u.version<o.version)&&e.set(o,{buffer:o.buffer,type:o.type,bytesPerElement:o.elementSize,version:o.version});return}let c=e.get(o);if(c===void 0)e.set(o,t(o,l));else if(c.version<o.version){if(c.size!==o.array.byteLength)throw new Error("THREE.WebGLAttributes: The size of the buffer attribute's array buffer does not match the original size. Resizing buffer attributes is not supported.");n(c.buffer,o,l),c.version=o.version}}return{get:s,remove:r,update:a}}var Wp=`#ifdef USE_ALPHAHASH
+	if ( diffuseColor.a < getAlphaHashThreshold( vPosition ) ) discard;
+#endif`,Xp=`#ifdef USE_ALPHAHASH
+	const float ALPHA_HASH_SCALE = 0.05;
+	float hash2D( vec2 value ) {
+		return fract( 1.0e4 * sin( 17.0 * value.x + 0.1 * value.y ) * ( 0.1 + abs( sin( 13.0 * value.y + value.x ) ) ) );
+	}
+	float hash3D( vec3 value ) {
+		return hash2D( vec2( hash2D( value.xy ), value.z ) );
+	}
+	float getAlphaHashThreshold( vec3 position ) {
+		float maxDeriv = max(
+			length( dFdx( position.xyz ) ),
+			length( dFdy( position.xyz ) )
+		);
+		float pixScale = 1.0 / ( ALPHA_HASH_SCALE * maxDeriv );
+		vec2 pixScales = vec2(
+			exp2( floor( log2( pixScale ) ) ),
+			exp2( ceil( log2( pixScale ) ) )
+		);
+		vec2 alpha = vec2(
+			hash3D( floor( pixScales.x * position.xyz ) ),
+			hash3D( floor( pixScales.y * position.xyz ) )
+		);
+		float lerpFactor = fract( log2( pixScale ) );
+		float x = ( 1.0 - lerpFactor ) * alpha.x + lerpFactor * alpha.y;
+		float a = min( lerpFactor, 1.0 - lerpFactor );
+		vec3 cases = vec3(
+			x * x / ( 2.0 * a * ( 1.0 - a ) ),
+			( x - 0.5 * a ) / ( 1.0 - a ),
+			1.0 - ( ( 1.0 - x ) * ( 1.0 - x ) / ( 2.0 * a * ( 1.0 - a ) ) )
+		);
+		float threshold = ( x < ( 1.0 - a ) )
+			? ( ( x < a ) ? cases.x : cases.y )
+			: cases.z;
+		return clamp( threshold , 1.0e-6, 1.0 );
+	}
+#endif`,qp=`#ifdef USE_ALPHAMAP
+	diffuseColor.a *= texture2D( alphaMap, vAlphaMapUv ).g;
+#endif`,Yp=`#ifdef USE_ALPHAMAP
+	uniform sampler2D alphaMap;
+#endif`,Zp=`#ifdef USE_ALPHATEST
+	#ifdef ALPHA_TO_COVERAGE
+	diffuseColor.a = smoothstep( alphaTest, alphaTest + fwidth( diffuseColor.a ), diffuseColor.a );
+	if ( diffuseColor.a == 0.0 ) discard;
+	#else
+	if ( diffuseColor.a < alphaTest ) discard;
+	#endif
+#endif`,Kp=`#ifdef USE_ALPHATEST
+	uniform float alphaTest;
+#endif`,Jp=`#ifdef USE_AOMAP
+	float ambientOcclusion = ( texture2D( aoMap, vAoMapUv ).r - 1.0 ) * aoMapIntensity + 1.0;
+	reflectedLight.indirectDiffuse *= ambientOcclusion;
+	#if defined( USE_CLEARCOAT ) 
+		clearcoatSpecularIndirect *= ambientOcclusion;
+	#endif
+	#if defined( USE_SHEEN ) 
+		sheenSpecularIndirect *= ambientOcclusion;
+	#endif
+	#if defined( USE_ENVMAP ) && defined( STANDARD )
+		float dotNV = saturate( dot( geometryNormal, geometryViewDir ) );
+		reflectedLight.indirectSpecular *= computeSpecularOcclusion( dotNV, ambientOcclusion, material.roughness );
+	#endif
+#endif`,$p=`#ifdef USE_AOMAP
+	uniform sampler2D aoMap;
+	uniform float aoMapIntensity;
+#endif`,jp=`#ifdef USE_BATCHING
+	#if ! defined( GL_ANGLE_multi_draw )
+	#define gl_DrawID _gl_DrawID
+	uniform int _gl_DrawID;
+	#endif
+	uniform highp sampler2D batchingTexture;
+	uniform highp usampler2D batchingIdTexture;
+	mat4 getBatchingMatrix( const in float i ) {
+		int size = textureSize( batchingTexture, 0 ).x;
+		int j = int( i ) * 4;
+		int x = j % size;
+		int y = j / size;
+		vec4 v1 = texelFetch( batchingTexture, ivec2( x, y ), 0 );
+		vec4 v2 = texelFetch( batchingTexture, ivec2( x + 1, y ), 0 );
+		vec4 v3 = texelFetch( batchingTexture, ivec2( x + 2, y ), 0 );
+		vec4 v4 = texelFetch( batchingTexture, ivec2( x + 3, y ), 0 );
+		return mat4( v1, v2, v3, v4 );
+	}
+	float getIndirectIndex( const in int i ) {
+		int size = textureSize( batchingIdTexture, 0 ).x;
+		int x = i % size;
+		int y = i / size;
+		return float( texelFetch( batchingIdTexture, ivec2( x, y ), 0 ).r );
+	}
+#endif
+#ifdef USE_BATCHING_COLOR
+	uniform sampler2D batchingColorTexture;
+	vec4 getBatchingColor( const in float i ) {
+		int size = textureSize( batchingColorTexture, 0 ).x;
+		int j = int( i );
+		int x = j % size;
+		int y = j / size;
+		return texelFetch( batchingColorTexture, ivec2( x, y ), 0 );
+	}
+#endif`,Qp=`#ifdef USE_BATCHING
+	mat4 batchingMatrix = getBatchingMatrix( getIndirectIndex( gl_DrawID ) );
+#endif`,em=`vec3 transformed = vec3( position );
+#ifdef USE_ALPHAHASH
+	vPosition = vec3( position );
+#endif`,tm=`vec3 objectNormal = vec3( normal );
+#ifdef USE_TANGENT
+	vec3 objectTangent = vec3( tangent.xyz );
+#endif`,nm=`float G_BlinnPhong_Implicit( ) {
+	return 0.25;
+}
+float D_BlinnPhong( const in float shininess, const in float dotNH ) {
+	return RECIPROCAL_PI * ( shininess * 0.5 + 1.0 ) * pow( dotNH, shininess );
+}
+vec3 BRDF_BlinnPhong( const in vec3 lightDir, const in vec3 viewDir, const in vec3 normal, const in vec3 specularColor, const in float shininess ) {
+	vec3 halfDir = normalize( lightDir + viewDir );
+	float dotNH = saturate( dot( normal, halfDir ) );
+	float dotVH = saturate( dot( viewDir, halfDir ) );
+	vec3 F = F_Schlick( specularColor, 1.0, dotVH );
+	float G = G_BlinnPhong_Implicit( );
+	float D = D_BlinnPhong( shininess, dotNH );
+	return F * ( G * D );
+} // validated`,im=`#ifdef USE_IRIDESCENCE
+	const mat3 XYZ_TO_REC709 = mat3(
+		 3.2404542, -0.9692660,  0.0556434,
+		-1.5371385,  1.8760108, -0.2040259,
+		-0.4985314,  0.0415560,  1.0572252
+	);
+	vec3 Fresnel0ToIor( vec3 fresnel0 ) {
+		vec3 sqrtF0 = sqrt( fresnel0 );
+		return ( vec3( 1.0 ) + sqrtF0 ) / ( vec3( 1.0 ) - sqrtF0 );
+	}
+	vec3 IorToFresnel0( vec3 transmittedIor, float incidentIor ) {
+		return pow2( ( transmittedIor - vec3( incidentIor ) ) / ( transmittedIor + vec3( incidentIor ) ) );
+	}
+	float IorToFresnel0( float transmittedIor, float incidentIor ) {
+		return pow2( ( transmittedIor - incidentIor ) / ( transmittedIor + incidentIor ));
+	}
+	vec3 evalSensitivity( float OPD, vec3 shift ) {
+		float phase = 2.0 * PI * OPD * 1.0e-9;
+		vec3 val = vec3( 5.4856e-13, 4.4201e-13, 5.2481e-13 );
+		vec3 pos = vec3( 1.6810e+06, 1.7953e+06, 2.2084e+06 );
+		vec3 var = vec3( 4.3278e+09, 9.3046e+09, 6.6121e+09 );
+		vec3 xyz = val * sqrt( 2.0 * PI * var ) * cos( pos * phase + shift ) * exp( - pow2( phase ) * var );
+		xyz.x += 9.7470e-14 * sqrt( 2.0 * PI * 4.5282e+09 ) * cos( 2.2399e+06 * phase + shift[ 0 ] ) * exp( - 4.5282e+09 * pow2( phase ) );
+		xyz /= 1.0685e-7;
+		vec3 rgb = XYZ_TO_REC709 * xyz;
+		return rgb;
+	}
+	vec3 evalIridescence( float outsideIOR, float eta2, float cosTheta1, float thinFilmThickness, vec3 baseF0 ) {
+		vec3 I;
+		float iridescenceIOR = mix( outsideIOR, eta2, smoothstep( 0.0, 0.03, thinFilmThickness ) );
+		float sinTheta2Sq = pow2( outsideIOR / iridescenceIOR ) * ( 1.0 - pow2( cosTheta1 ) );
+		float cosTheta2Sq = 1.0 - sinTheta2Sq;
+		if ( cosTheta2Sq < 0.0 ) {
+			return vec3( 1.0 );
+		}
+		float cosTheta2 = sqrt( cosTheta2Sq );
+		float R0 = IorToFresnel0( iridescenceIOR, outsideIOR );
+		float R12 = F_Schlick( R0, 1.0, cosTheta1 );
+		float T121 = 1.0 - R12;
+		float phi12 = 0.0;
+		if ( iridescenceIOR < outsideIOR ) phi12 = PI;
+		float phi21 = PI - phi12;
+		vec3 baseIOR = Fresnel0ToIor( clamp( baseF0, 0.0, 0.9999 ) );		vec3 R1 = IorToFresnel0( baseIOR, iridescenceIOR );
+		vec3 R23 = F_Schlick( R1, 1.0, cosTheta2 );
+		vec3 phi23 = vec3( 0.0 );
+		if ( baseIOR[ 0 ] < iridescenceIOR ) phi23[ 0 ] = PI;
+		if ( baseIOR[ 1 ] < iridescenceIOR ) phi23[ 1 ] = PI;
+		if ( baseIOR[ 2 ] < iridescenceIOR ) phi23[ 2 ] = PI;
+		float OPD = 2.0 * iridescenceIOR * thinFilmThickness * cosTheta2;
+		vec3 phi = vec3( phi21 ) + phi23;
+		vec3 R123 = clamp( R12 * R23, 1e-5, 0.9999 );
+		vec3 r123 = sqrt( R123 );
+		vec3 Rs = pow2( T121 ) * R23 / ( vec3( 1.0 ) - R123 );
+		vec3 C0 = R12 + Rs;
+		I = C0;
+		vec3 Cm = Rs - T121;
+		for ( int m = 1; m <= 2; ++ m ) {
+			Cm *= r123;
+			vec3 Sm = 2.0 * evalSensitivity( float( m ) * OPD, float( m ) * phi );
+			I += Cm * Sm;
+		}
+		return max( I, vec3( 0.0 ) );
+	}
+#endif`,sm=`#ifdef USE_BUMPMAP
+	uniform sampler2D bumpMap;
+	uniform float bumpScale;
+	vec2 dHdxy_fwd() {
+		vec2 dSTdx = dFdx( vBumpMapUv );
+		vec2 dSTdy = dFdy( vBumpMapUv );
+		float Hll = bumpScale * texture2D( bumpMap, vBumpMapUv ).x;
+		float dBx = bumpScale * texture2D( bumpMap, vBumpMapUv + dSTdx ).x - Hll;
+		float dBy = bumpScale * texture2D( bumpMap, vBumpMapUv + dSTdy ).x - Hll;
+		return vec2( dBx, dBy );
+	}
+	vec3 perturbNormalArb( vec3 surf_pos, vec3 surf_norm, vec2 dHdxy, float faceDirection ) {
+		vec3 vSigmaX = normalize( dFdx( surf_pos.xyz ) );
+		vec3 vSigmaY = normalize( dFdy( surf_pos.xyz ) );
+		vec3 vN = surf_norm;
+		vec3 R1 = cross( vSigmaY, vN );
+		vec3 R2 = cross( vN, vSigmaX );
+		float fDet = dot( vSigmaX, R1 ) * faceDirection;
+		vec3 vGrad = sign( fDet ) * ( dHdxy.x * R1 + dHdxy.y * R2 );
+		return normalize( abs( fDet ) * surf_norm - vGrad );
+	}
+#endif`,rm=`#if NUM_CLIPPING_PLANES > 0
+	vec4 plane;
+	#ifdef ALPHA_TO_COVERAGE
+		float distanceToPlane, distanceGradient;
+		float clipOpacity = 1.0;
+		#pragma unroll_loop_start
+		for ( int i = 0; i < UNION_CLIPPING_PLANES; i ++ ) {
+			plane = clippingPlanes[ i ];
+			distanceToPlane = - dot( vClipPosition, plane.xyz ) + plane.w;
+			distanceGradient = fwidth( distanceToPlane ) / 2.0;
+			clipOpacity *= smoothstep( - distanceGradient, distanceGradient, distanceToPlane );
+			if ( clipOpacity == 0.0 ) discard;
+		}
+		#pragma unroll_loop_end
+		#if UNION_CLIPPING_PLANES < NUM_CLIPPING_PLANES
+			float unionClipOpacity = 1.0;
+			#pragma unroll_loop_start
+			for ( int i = UNION_CLIPPING_PLANES; i < NUM_CLIPPING_PLANES; i ++ ) {
+				plane = clippingPlanes[ i ];
+				distanceToPlane = - dot( vClipPosition, plane.xyz ) + plane.w;
+				distanceGradient = fwidth( distanceToPlane ) / 2.0;
+				unionClipOpacity *= 1.0 - smoothstep( - distanceGradient, distanceGradient, distanceToPlane );
+			}
+			#pragma unroll_loop_end
+			clipOpacity *= 1.0 - unionClipOpacity;
+		#endif
+		diffuseColor.a *= clipOpacity;
+		if ( diffuseColor.a == 0.0 ) discard;
+	#else
+		#pragma unroll_loop_start
+		for ( int i = 0; i < UNION_CLIPPING_PLANES; i ++ ) {
+			plane = clippingPlanes[ i ];
+			if ( dot( vClipPosition, plane.xyz ) > plane.w ) discard;
+		}
+		#pragma unroll_loop_end
+		#if UNION_CLIPPING_PLANES < NUM_CLIPPING_PLANES
+			bool clipped = true;
+			#pragma unroll_loop_start
+			for ( int i = UNION_CLIPPING_PLANES; i < NUM_CLIPPING_PLANES; i ++ ) {
+				plane = clippingPlanes[ i ];
+				clipped = ( dot( vClipPosition, plane.xyz ) > plane.w ) && clipped;
+			}
+			#pragma unroll_loop_end
+			if ( clipped ) discard;
+		#endif
+	#endif
+#endif`,am=`#if NUM_CLIPPING_PLANES > 0
+	varying vec3 vClipPosition;
+	uniform vec4 clippingPlanes[ NUM_CLIPPING_PLANES ];
+#endif`,om=`#if NUM_CLIPPING_PLANES > 0
+	varying vec3 vClipPosition;
+#endif`,lm=`#if NUM_CLIPPING_PLANES > 0
+	vClipPosition = - mvPosition.xyz;
+#endif`,cm=`#if defined( USE_COLOR ) || defined( USE_COLOR_ALPHA )
+	diffuseColor *= vColor;
+#endif`,um=`#if defined( USE_COLOR ) || defined( USE_COLOR_ALPHA )
+	varying vec4 vColor;
+#endif`,hm=`#if defined( USE_COLOR ) || defined( USE_COLOR_ALPHA ) || defined( USE_INSTANCING_COLOR ) || defined( USE_BATCHING_COLOR )
+	varying vec4 vColor;
+#endif`,dm=`#if defined( USE_COLOR ) || defined( USE_COLOR_ALPHA ) || defined( USE_INSTANCING_COLOR ) || defined( USE_BATCHING_COLOR )
+	vColor = vec4( 1.0 );
+#endif
+#ifdef USE_COLOR_ALPHA
+	vColor *= color;
+#elif defined( USE_COLOR )
+	vColor.rgb *= color;
+#endif
+#ifdef USE_INSTANCING_COLOR
+	vColor.rgb *= instanceColor.rgb;
+#endif
+#ifdef USE_BATCHING_COLOR
+	vColor *= getBatchingColor( getIndirectIndex( gl_DrawID ) );
+#endif`,fm=`#define PI 3.141592653589793
+#define PI2 6.283185307179586
+#define PI_HALF 1.5707963267948966
+#define RECIPROCAL_PI 0.3183098861837907
+#define RECIPROCAL_PI2 0.15915494309189535
+#define EPSILON 1e-6
+#ifndef saturate
+#define saturate( a ) clamp( a, 0.0, 1.0 )
+#endif
+#define whiteComplement( a ) ( 1.0 - saturate( a ) )
+float pow2( const in float x ) { return x*x; }
+vec3 pow2( const in vec3 x ) { return x*x; }
+float pow3( const in float x ) { return x*x*x; }
+float pow4( const in float x ) { float x2 = x*x; return x2*x2; }
+float max3( const in vec3 v ) { return max( max( v.x, v.y ), v.z ); }
+float average( const in vec3 v ) { return dot( v, vec3( 0.3333333 ) ); }
+highp float rand( const in vec2 uv ) {
+	const highp float a = 12.9898, b = 78.233, c = 43758.5453;
+	highp float dt = dot( uv.xy, vec2( a,b ) ), sn = mod( dt, PI );
+	return fract( sin( sn ) * c );
+}
+#ifdef HIGH_PRECISION
+	float precisionSafeLength( vec3 v ) { return length( v ); }
+#else
+	float precisionSafeLength( vec3 v ) {
+		float maxComponent = max3( abs( v ) );
+		return length( v / maxComponent ) * maxComponent;
+	}
+#endif
+struct IncidentLight {
+	vec3 color;
+	vec3 direction;
+	bool visible;
+};
+struct ReflectedLight {
+	vec3 directDiffuse;
+	vec3 directSpecular;
+	vec3 indirectDiffuse;
+	vec3 indirectSpecular;
+};
+#ifdef USE_ALPHAHASH
+	varying vec3 vPosition;
+#endif
+vec3 transformDirection( in vec3 dir, in mat4 matrix ) {
+	return normalize( ( matrix * vec4( dir, 0.0 ) ).xyz );
+}
+#define inverseTransformDirection transformDirectionByInverseViewMatrix
+vec3 transformNormalByInverseViewMatrix( in vec3 normal, in mat4 viewMatrix ) {
+	return normalize( ( vec4( normal, 0.0 ) * viewMatrix ).xyz );
+}
+vec3 transformDirectionByInverseViewMatrix( in vec3 dir, in mat4 viewMatrix ) {
+	return normalize( ( vec4( dir, 0.0 ) * viewMatrix ).xyz );
+}
+bool isPerspectiveMatrix( mat4 m ) {
+	return m[ 2 ][ 3 ] == - 1.0;
+}
+vec2 equirectUv( in vec3 dir ) {
+	float u = atan( dir.z, dir.x ) * RECIPROCAL_PI2 + 0.5;
+	float v = asin( clamp( dir.y, - 1.0, 1.0 ) ) * RECIPROCAL_PI + 0.5;
+	return vec2( u, v );
+}
+vec3 BRDF_Lambert( const in vec3 diffuseColor ) {
+	return RECIPROCAL_PI * diffuseColor;
+}
+vec3 F_Schlick( const in vec3 f0, const in float f90, const in float dotVH ) {
+	float fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );
+	return f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );
+}
+float F_Schlick( const in float f0, const in float f90, const in float dotVH ) {
+	float fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );
+	return f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );
+} // validated`,pm=`#ifdef ENVMAP_TYPE_CUBE_UV
+	#define cubeUV_minMipLevel 4.0
+	#define cubeUV_minTileSize 16.0
+	float getFace( vec3 direction ) {
+		vec3 absDirection = abs( direction );
+		float face = - 1.0;
+		if ( absDirection.x > absDirection.z ) {
+			if ( absDirection.x > absDirection.y )
+				face = direction.x > 0.0 ? 0.0 : 3.0;
+			else
+				face = direction.y > 0.0 ? 1.0 : 4.0;
+		} else {
+			if ( absDirection.z > absDirection.y )
+				face = direction.z > 0.0 ? 2.0 : 5.0;
+			else
+				face = direction.y > 0.0 ? 1.0 : 4.0;
+		}
+		return face;
+	}
+	vec2 getUV( vec3 direction, float face ) {
+		vec2 uv;
+		if ( face == 0.0 ) {
+			uv = vec2( direction.z, direction.y ) / abs( direction.x );
+		} else if ( face == 1.0 ) {
+			uv = vec2( - direction.x, - direction.z ) / abs( direction.y );
+		} else if ( face == 2.0 ) {
+			uv = vec2( - direction.x, direction.y ) / abs( direction.z );
+		} else if ( face == 3.0 ) {
+			uv = vec2( - direction.z, direction.y ) / abs( direction.x );
+		} else if ( face == 4.0 ) {
+			uv = vec2( - direction.x, direction.z ) / abs( direction.y );
+		} else {
+			uv = vec2( direction.x, direction.y ) / abs( direction.z );
+		}
+		return 0.5 * ( uv + 1.0 );
+	}
+	vec3 bilinearCubeUV( sampler2D envMap, vec3 direction, float mipInt ) {
+		float face = getFace( direction );
+		float filterInt = max( cubeUV_minMipLevel - mipInt, 0.0 );
+		mipInt = max( mipInt, cubeUV_minMipLevel );
+		float faceSize = exp2( mipInt );
+		highp vec2 uv = getUV( direction, face ) * ( faceSize - 2.0 ) + 1.0;
+		if ( face > 2.0 ) {
+			uv.y += faceSize;
+			face -= 3.0;
+		}
+		uv.x += face * faceSize;
+		uv.x += filterInt * 3.0 * cubeUV_minTileSize;
+		uv.y += 4.0 * ( exp2( CUBEUV_MAX_MIP ) - faceSize );
+		uv.x *= CUBEUV_TEXEL_WIDTH;
+		uv.y *= CUBEUV_TEXEL_HEIGHT;
+		#ifdef texture2DGradEXT
+			return texture2DGradEXT( envMap, uv, vec2( 0.0 ), vec2( 0.0 ) ).rgb;
+		#else
+			return texture2D( envMap, uv ).rgb;
+		#endif
+	}
+	#define cubeUV_r0 1.0
+	#define cubeUV_m0 - 2.0
+	#define cubeUV_r1 0.8
+	#define cubeUV_m1 - 1.0
+	#define cubeUV_r4 0.4
+	#define cubeUV_m4 2.0
+	#define cubeUV_r5 0.305
+	#define cubeUV_m5 3.0
+	#define cubeUV_r6 0.21
+	#define cubeUV_m6 4.0
+	float roughnessToMip( float roughness ) {
+		float mip = 0.0;
+		if ( roughness >= cubeUV_r1 ) {
+			mip = ( cubeUV_r0 - roughness ) * ( cubeUV_m1 - cubeUV_m0 ) / ( cubeUV_r0 - cubeUV_r1 ) + cubeUV_m0;
+		} else if ( roughness >= cubeUV_r4 ) {
+			mip = ( cubeUV_r1 - roughness ) * ( cubeUV_m4 - cubeUV_m1 ) / ( cubeUV_r1 - cubeUV_r4 ) + cubeUV_m1;
+		} else if ( roughness >= cubeUV_r5 ) {
+			mip = ( cubeUV_r4 - roughness ) * ( cubeUV_m5 - cubeUV_m4 ) / ( cubeUV_r4 - cubeUV_r5 ) + cubeUV_m4;
+		} else if ( roughness >= cubeUV_r6 ) {
+			mip = ( cubeUV_r5 - roughness ) * ( cubeUV_m6 - cubeUV_m5 ) / ( cubeUV_r5 - cubeUV_r6 ) + cubeUV_m5;
+		} else {
+			mip = - 2.0 * log2( 1.16 * roughness );		}
+		return mip;
+	}
+	vec4 textureCubeUV( sampler2D envMap, vec3 sampleDir, float roughness ) {
+		float mip = clamp( roughnessToMip( roughness ), cubeUV_m0, CUBEUV_MAX_MIP );
+		float mipF = fract( mip );
+		float mipInt = floor( mip );
+		vec3 color0 = bilinearCubeUV( envMap, sampleDir, mipInt );
+		if ( mipF == 0.0 ) {
+			return vec4( color0, 1.0 );
+		} else {
+			vec3 color1 = bilinearCubeUV( envMap, sampleDir, mipInt + 1.0 );
+			return vec4( mix( color0, color1, mipF ), 1.0 );
+		}
+	}
+#endif`,mm=`vec3 transformedNormal = objectNormal;
+#ifdef USE_TANGENT
+	vec3 transformedTangent = objectTangent;
+#endif
+#ifdef USE_BATCHING
+	mat3 bm = mat3( batchingMatrix );
+	transformedNormal /= vec3( dot( bm[ 0 ], bm[ 0 ] ), dot( bm[ 1 ], bm[ 1 ] ), dot( bm[ 2 ], bm[ 2 ] ) );
+	transformedNormal = bm * transformedNormal;
+	#ifdef USE_TANGENT
+		transformedTangent = bm * transformedTangent;
+	#endif
+#endif
+#ifdef USE_INSTANCING
+	mat3 im = mat3( instanceMatrix );
+	transformedNormal /= vec3( dot( im[ 0 ], im[ 0 ] ), dot( im[ 1 ], im[ 1 ] ), dot( im[ 2 ], im[ 2 ] ) );
+	transformedNormal = im * transformedNormal;
+	#ifdef USE_TANGENT
+		transformedTangent = im * transformedTangent;
+	#endif
+#endif
+transformedNormal = normalMatrix * transformedNormal;
+#ifdef FLIP_SIDED
+	transformedNormal = - transformedNormal;
+#endif
+#ifdef USE_TANGENT
+	transformedTangent = ( modelViewMatrix * vec4( transformedTangent, 0.0 ) ).xyz;
+#endif`,gm=`#ifdef USE_DISPLACEMENTMAP
+	uniform sampler2D displacementMap;
+	uniform float displacementScale;
+	uniform float displacementBias;
+#endif`,xm=`#ifdef USE_DISPLACEMENTMAP
+	transformed += normalize( objectNormal ) * ( texture2D( displacementMap, vDisplacementMapUv ).x * displacementScale + displacementBias );
+#endif`,vm=`#ifdef USE_EMISSIVEMAP
+	vec4 emissiveColor = texture2D( emissiveMap, vEmissiveMapUv );
+	#ifdef DECODE_VIDEO_TEXTURE_EMISSIVE
+		emissiveColor = sRGBTransferEOTF( emissiveColor );
+	#endif
+	totalEmissiveRadiance *= emissiveColor.rgb;
+#endif`,ym=`#ifdef USE_EMISSIVEMAP
+	uniform sampler2D emissiveMap;
+#endif`,_m="gl_FragColor = linearToOutputTexel( gl_FragColor );",bm=`vec4 LinearTransferOETF( in vec4 value ) {
+	return value;
+}
+vec4 sRGBTransferEOTF( in vec4 value ) {
+	return vec4( mix( pow( value.rgb * 0.9478672986 + vec3( 0.0521327014 ), vec3( 2.4 ) ), value.rgb * 0.0773993808, vec3( lessThanEqual( value.rgb, vec3( 0.04045 ) ) ) ), value.a );
+}
+vec4 sRGBTransferOETF( in vec4 value ) {
+	return vec4( mix( pow( value.rgb, vec3( 0.41666 ) ) * 1.055 - vec3( 0.055 ), value.rgb * 12.92, vec3( lessThanEqual( value.rgb, vec3( 0.0031308 ) ) ) ), value.a );
+}`,Mm=`#ifdef USE_ENVMAP
+	#ifdef ENV_WORLDPOS
+		vec3 cameraToFrag;
+		if ( isOrthographic ) {
+			cameraToFrag = normalize( vec3( - viewMatrix[ 0 ][ 2 ], - viewMatrix[ 1 ][ 2 ], - viewMatrix[ 2 ][ 2 ] ) );
+		} else {
+			cameraToFrag = normalize( vWorldPosition - cameraPosition );
+		}
+		vec3 worldNormal = transformNormalByInverseViewMatrix( normal, viewMatrix );
+		#ifdef ENVMAP_MODE_REFLECTION
+			vec3 reflectVec = reflect( cameraToFrag, worldNormal );
+		#else
+			vec3 reflectVec = refract( cameraToFrag, worldNormal, refractionRatio );
+		#endif
+	#else
+		vec3 reflectVec = vReflect;
+	#endif
+	#ifdef ENVMAP_TYPE_CUBE
+		vec4 envColor = textureCube( envMap, envMapRotation * reflectVec );
+		#ifdef ENVMAP_BLENDING_MULTIPLY
+			outgoingLight = mix( outgoingLight, outgoingLight * envColor.xyz, specularStrength * reflectivity );
+		#elif defined( ENVMAP_BLENDING_MIX )
+			outgoingLight = mix( outgoingLight, envColor.xyz, specularStrength * reflectivity );
+		#elif defined( ENVMAP_BLENDING_ADD )
+			outgoingLight += envColor.xyz * specularStrength * reflectivity;
+		#endif
+	#endif
+#endif`,Sm=`#ifdef USE_ENVMAP
+	uniform float envMapIntensity;
+	uniform mat3 envMapRotation;
+	#ifdef ENVMAP_TYPE_CUBE
+		uniform samplerCube envMap;
+	#else
+		uniform sampler2D envMap;
+	#endif
+#endif`,Em=`#ifdef USE_ENVMAP
+	uniform float reflectivity;
+	#if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( PHONG ) || defined( LAMBERT )
+		#define ENV_WORLDPOS
+	#endif
+	#ifdef ENV_WORLDPOS
+		varying vec3 vWorldPosition;
+		uniform float refractionRatio;
+	#else
+		varying vec3 vReflect;
+	#endif
+#endif`,wm=`#ifdef USE_ENVMAP
+	#if defined( USE_BUMPMAP ) || defined( USE_NORMALMAP ) || defined( PHONG ) || defined( LAMBERT )
+		#define ENV_WORLDPOS
+	#endif
+	#ifdef ENV_WORLDPOS
+		
+		varying vec3 vWorldPosition;
+	#else
+		varying vec3 vReflect;
+		uniform float refractionRatio;
+	#endif
+#endif`,Tm=`#ifdef USE_ENVMAP
+	#ifdef ENV_WORLDPOS
+		vWorldPosition = worldPosition.xyz;
+	#else
+		vec3 cameraToVertex;
+		if ( isOrthographic ) {
+			cameraToVertex = normalize( vec3( - viewMatrix[ 0 ][ 2 ], - viewMatrix[ 1 ][ 2 ], - viewMatrix[ 2 ][ 2 ] ) );
+		} else {
+			cameraToVertex = normalize( worldPosition.xyz - cameraPosition );
+		}
+		vec3 worldNormal = transformNormalByInverseViewMatrix( transformedNormal, viewMatrix );
+		#ifdef ENVMAP_MODE_REFLECTION
+			vReflect = reflect( cameraToVertex, worldNormal );
+		#else
+			vReflect = refract( cameraToVertex, worldNormal, refractionRatio );
+		#endif
+	#endif
+#endif`,Am=`#ifdef USE_FOG
+	vFogDepth = - mvPosition.z;
+#endif`,Cm=`#ifdef USE_FOG
+	varying float vFogDepth;
+#endif`,Rm=`#ifdef USE_FOG
+	#ifdef FOG_EXP2
+		float fogFactor = 1.0 - exp( - fogDensity * fogDensity * vFogDepth * vFogDepth );
+	#else
+		float fogFactor = smoothstep( fogNear, fogFar, vFogDepth );
+	#endif
+	gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );
+#endif`,Pm=`#ifdef USE_FOG
+	uniform vec3 fogColor;
+	varying float vFogDepth;
+	#ifdef FOG_EXP2
+		uniform float fogDensity;
+	#else
+		uniform float fogNear;
+		uniform float fogFar;
+	#endif
+#endif`,Im=`#ifdef USE_GRADIENTMAP
+	uniform sampler2D gradientMap;
+#endif
+vec3 getGradientIrradiance( vec3 normal, vec3 lightDirection ) {
+	float dotNL = dot( normal, lightDirection );
+	vec2 coord = vec2( dotNL * 0.5 + 0.5, 0.0 );
+	#ifdef USE_GRADIENTMAP
+		return vec3( texture2D( gradientMap, coord ).r );
+	#else
+		vec2 fw = fwidth( coord ) * 0.5;
+		return mix( vec3( 0.7 ), vec3( 1.0 ), smoothstep( 0.7 - fw.x, 0.7 + fw.x, coord.x ) );
+	#endif
+}`,Nm=`#ifdef USE_LIGHTMAP
+	uniform sampler2D lightMap;
+	uniform float lightMapIntensity;
+#endif`,Lm=`LambertMaterial material;
+material.diffuseColor = diffuseColor.rgb;
+material.specularStrength = specularStrength;`,Dm=`varying vec3 vViewPosition;
+struct LambertMaterial {
+	vec3 diffuseColor;
+	float specularStrength;
+};
+void RE_Direct_Lambert( const in IncidentLight directLight, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in LambertMaterial material, inout ReflectedLight reflectedLight ) {
+	float dotNL = saturate( dot( geometryNormal, directLight.direction ) );
+	vec3 irradiance = dotNL * directLight.color;
+	reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );
+}
+void RE_IndirectDiffuse_Lambert( const in vec3 irradiance, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in LambertMaterial material, inout ReflectedLight reflectedLight ) {
+	reflectedLight.indirectDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );
+}
+#define RE_Direct				RE_Direct_Lambert
+#define RE_IndirectDiffuse		RE_IndirectDiffuse_Lambert`,Um=`uniform bool receiveShadow;
+uniform vec3 ambientLightColor;
+#if defined( USE_LIGHT_PROBES )
+	uniform vec3 lightProbe[ 9 ];
+#endif
+vec3 shGetIrradianceAt( in vec3 normal, in vec3 shCoefficients[ 9 ] ) {
+	float x = normal.x, y = normal.y, z = normal.z;
+	vec3 result = shCoefficients[ 0 ] * 0.886227;
+	result += shCoefficients[ 1 ] * 2.0 * 0.511664 * y;
+	result += shCoefficients[ 2 ] * 2.0 * 0.511664 * z;
+	result += shCoefficients[ 3 ] * 2.0 * 0.511664 * x;
+	result += shCoefficients[ 4 ] * 2.0 * 0.429043 * x * y;
+	result += shCoefficients[ 5 ] * 2.0 * 0.429043 * y * z;
+	result += shCoefficients[ 6 ] * ( 0.743125 * z * z - 0.247708 );
+	result += shCoefficients[ 7 ] * 2.0 * 0.429043 * x * z;
+	result += shCoefficients[ 8 ] * 0.429043 * ( x * x - y * y );
+	return result;
+}
+vec3 getLightProbeIrradiance( const in vec3 lightProbe[ 9 ], const in vec3 normal ) {
+	vec3 worldNormal = transformNormalByInverseViewMatrix( normal, viewMatrix );
+	vec3 irradiance = shGetIrradianceAt( worldNormal, lightProbe );
+	return irradiance;
+}
+vec3 getAmbientLightIrradiance( const in vec3 ambientLightColor ) {
+	vec3 irradiance = ambientLightColor;
+	return irradiance;
+}
+float getDistanceAttenuation( const in float lightDistance, const in float cutoffDistance, const in float decayExponent ) {
+	float distanceFalloff = 1.0 / max( pow( lightDistance, decayExponent ), 0.01 );
+	if ( cutoffDistance > 0.0 ) {
+		distanceFalloff *= pow2( saturate( 1.0 - pow4( lightDistance / cutoffDistance ) ) );
+	}
+	return distanceFalloff;
+}
+float getSpotAttenuation( const in float coneCosine, const in float penumbraCosine, const in float angleCosine ) {
+	return smoothstep( coneCosine, penumbraCosine, angleCosine );
+}
+#if NUM_SUN_LIGHTS > 0
+	struct SunLight {
+		vec3 direction;
+		vec3 color;
+	};
+	uniform SunLight sunLights[ NUM_SUN_LIGHTS ];
+	void getSunLightInfo( const in SunLight sunLight, out IncidentLight light ) {
+		light.color = sunLight.color;
+		light.direction = sunLight.direction;
+		light.visible = true;
+	}
+#endif
+#if NUM_DIR_LIGHTS > 0
+	struct DirectionalLight {
+		vec3 direction;
+		vec3 color;
+	};
+	uniform DirectionalLight directionalLights[ NUM_DIR_LIGHTS ];
+	void getDirectionalLightInfo( const in DirectionalLight directionalLight, out IncidentLight light ) {
+		light.color = directionalLight.color;
+		light.direction = directionalLight.direction;
+		light.visible = true;
+	}
+#endif
+#if NUM_POINT_LIGHTS > 0
+	struct PointLight {
+		vec3 position;
+		vec3 color;
+		float distance;
+		float decay;
+	};
+	uniform PointLight pointLights[ NUM_POINT_LIGHTS ];
+	void getPointLightInfo( const in PointLight pointLight, const in vec3 geometryPosition, out IncidentLight light ) {
+		vec3 lVector = pointLight.position - geometryPosition;
+		light.direction = normalize( lVector );
+		float lightDistance = length( lVector );
+		light.color = pointLight.color;
+		light.color *= getDistanceAttenuation( lightDistance, pointLight.distance, pointLight.decay );
+		light.visible = ( light.color != vec3( 0.0 ) );
+	}
+#endif
+#if NUM_SPOT_LIGHTS > 0
+	struct SpotLight {
+		vec3 position;
+		vec3 direction;
+		vec3 color;
+		float distance;
+		float decay;
+		float coneCos;
+		float penumbraCos;
+	};
+	uniform SpotLight spotLights[ NUM_SPOT_LIGHTS ];
+	void getSpotLightInfo( const in SpotLight spotLight, const in vec3 geometryPosition, out IncidentLight light ) {
+		vec3 lVector = spotLight.position - geometryPosition;
+		light.direction = normalize( lVector );
+		float angleCos = dot( light.direction, spotLight.direction );
+		float spotAttenuation = getSpotAttenuation( spotLight.coneCos, spotLight.penumbraCos, angleCos );
+		if ( spotAttenuation > 0.0 ) {
+			float lightDistance = length( lVector );
+			light.color = spotLight.color * spotAttenuation;
+			light.color *= getDistanceAttenuation( lightDistance, spotLight.distance, spotLight.decay );
+			light.visible = ( light.color != vec3( 0.0 ) );
+		} else {
+			light.color = vec3( 0.0 );
+			light.visible = false;
+		}
+	}
+#endif
+#if NUM_RECT_AREA_LIGHTS > 0
+	struct RectAreaLight {
+		vec3 color;
+		vec3 position;
+		vec3 halfWidth;
+		vec3 halfHeight;
+	};
+	uniform sampler2D ltc_1;	uniform sampler2D ltc_2;
+	uniform RectAreaLight rectAreaLights[ NUM_RECT_AREA_LIGHTS ];
+#endif
+#if NUM_HEMI_LIGHTS > 0
+	struct HemisphereLight {
+		vec3 direction;
+		vec3 skyColor;
+		vec3 groundColor;
+	};
+	uniform HemisphereLight hemisphereLights[ NUM_HEMI_LIGHTS ];
+	vec3 getHemisphereLightIrradiance( const in HemisphereLight hemiLight, const in vec3 normal ) {
+		float dotNL = dot( normal, hemiLight.direction );
+		float hemiDiffuseWeight = 0.5 * dotNL + 0.5;
+		vec3 irradiance = mix( hemiLight.groundColor, hemiLight.skyColor, hemiDiffuseWeight );
+		return irradiance;
+	}
+#endif
+#include <lightprobes_pars_fragment>`,Fm=`#ifdef USE_ENVMAP
+	vec3 getIBLIrradiance( const in vec3 normal ) {
+		#ifdef ENVMAP_TYPE_CUBE_UV
+			vec3 worldNormal = transformNormalByInverseViewMatrix( normal, viewMatrix );
+			vec4 envMapColor = textureCubeUV( envMap, envMapRotation * worldNormal, 1.0 );
+			return PI * envMapColor.rgb * envMapIntensity;
+		#else
+			return vec3( 0.0 );
+		#endif
+	}
+	vec3 getIBLRadiance( const in vec3 viewDir, const in vec3 normal, const in float roughness ) {
+		#ifdef ENVMAP_TYPE_CUBE_UV
+			vec3 reflectVec = reflect( - viewDir, normal );
+			reflectVec = normalize( mix( reflectVec, normal, pow4( roughness ) ) );
+			reflectVec = transformDirectionByInverseViewMatrix( reflectVec, viewMatrix );
+			vec4 envMapColor = textureCubeUV( envMap, envMapRotation * reflectVec, roughness );
+			return envMapColor.rgb * envMapIntensity;
+		#else
+			return vec3( 0.0 );
+		#endif
+	}
+	#ifdef USE_RETROREFLECTION
+		vec3 getIBLRetroRadiance( const in vec3 viewDir, const in vec3 normal, const in float roughness ) {
+			#ifdef ENVMAP_TYPE_CUBE_UV
+				vec3 retroVec = normalize( mix( viewDir, normal, pow4( roughness ) ) );
+				retroVec = transformDirectionByInverseViewMatrix( retroVec, viewMatrix );
+				vec4 envMapColor = textureCubeUV( envMap, envMapRotation * retroVec, roughness );
+				return envMapColor.rgb * envMapIntensity;
+			#else
+				return vec3( 0.0 );
+			#endif
+		}
+	#endif
+	#ifdef USE_ANISOTROPY
+		vec3 getIBLAnisotropyRadiance( const in vec3 viewDir, const in vec3 normal, const in float roughness, const in vec3 bitangent, const in float anisotropy ) {
+			#ifdef ENVMAP_TYPE_CUBE_UV
+				vec3 bentNormal = cross( bitangent, viewDir );
+				bentNormal = normalize( cross( bentNormal, bitangent ) );
+				bentNormal = normalize( mix( bentNormal, normal, pow2( pow2( 1.0 - anisotropy * ( 1.0 - roughness ) ) ) ) );
+				return getIBLRadiance( viewDir, bentNormal, roughness );
+			#else
+				return vec3( 0.0 );
+			#endif
+		}
+		#ifdef USE_RETROREFLECTION
+			vec3 getIBLAnisotropyRetroRadiance( const in vec3 viewDir, const in vec3 normal, const in float roughness, const in vec3 bitangent, const in float anisotropy ) {
+				#ifdef ENVMAP_TYPE_CUBE_UV
+					vec3 bentNormal = cross( bitangent, viewDir );
+					bentNormal = normalize( cross( bentNormal, bitangent ) );
+					bentNormal = normalize( mix( bentNormal, normal, pow2( pow2( 1.0 - anisotropy * ( 1.0 - roughness ) ) ) ) );
+					return getIBLRetroRadiance( viewDir, bentNormal, roughness );
+				#else
+					return vec3( 0.0 );
+				#endif
+			}
+		#endif
+	#endif
+#endif`,Om=`ToonMaterial material;
+material.diffuseColor = diffuseColor.rgb;`,Bm=`varying vec3 vViewPosition;
+struct ToonMaterial {
+	vec3 diffuseColor;
+};
+void RE_Direct_Toon( const in IncidentLight directLight, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in ToonMaterial material, inout ReflectedLight reflectedLight ) {
+	vec3 irradiance = getGradientIrradiance( geometryNormal, directLight.direction ) * directLight.color;
+	reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );
+}
+void RE_IndirectDiffuse_Toon( const in vec3 irradiance, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in ToonMaterial material, inout ReflectedLight reflectedLight ) {
+	reflectedLight.indirectDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );
+}
+#define RE_Direct				RE_Direct_Toon
+#define RE_IndirectDiffuse		RE_IndirectDiffuse_Toon`,km=`BlinnPhongMaterial material;
+material.diffuseColor = diffuseColor.rgb;
+material.specularColor = specular;
+material.specularShininess = shininess;
+material.specularStrength = specularStrength;`,zm=`varying vec3 vViewPosition;
+struct BlinnPhongMaterial {
+	vec3 diffuseColor;
+	vec3 specularColor;
+	float specularShininess;
+	float specularStrength;
+};
+void RE_Direct_BlinnPhong( const in IncidentLight directLight, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in BlinnPhongMaterial material, inout ReflectedLight reflectedLight ) {
+	float dotNL = saturate( dot( geometryNormal, directLight.direction ) );
+	vec3 irradiance = dotNL * directLight.color;
+	reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );
+	reflectedLight.directSpecular += irradiance * BRDF_BlinnPhong( directLight.direction, geometryViewDir, geometryNormal, material.specularColor, material.specularShininess ) * material.specularStrength;
+}
+void RE_IndirectDiffuse_BlinnPhong( const in vec3 irradiance, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in BlinnPhongMaterial material, inout ReflectedLight reflectedLight ) {
+	reflectedLight.indirectDiffuse += irradiance * BRDF_Lambert( material.diffuseColor );
+}
+#define RE_Direct				RE_Direct_BlinnPhong
+#define RE_IndirectDiffuse		RE_IndirectDiffuse_BlinnPhong`,Hm=`PhysicalMaterial material;
+material.diffuseColor = diffuseColor.rgb;
+material.diffuseContribution = diffuseColor.rgb * ( 1.0 - metalnessFactor );
+material.metalness = metalnessFactor;
+vec3 dxy = max( abs( dFdx( nonPerturbedNormal ) ), abs( dFdy( nonPerturbedNormal ) ) );
+float geometryRoughness = max( max( dxy.x, dxy.y ), dxy.z );
+material.roughness = max( roughnessFactor, 0.0525 );material.roughness += geometryRoughness;
+material.roughness = min( material.roughness, 1.0 );
+#ifdef IOR
+	material.ior = ior;
+	#ifdef USE_SPECULAR
+		float specularIntensityFactor = specularIntensity;
+		vec3 specularColorFactor = specularColor;
+		#ifdef USE_SPECULAR_COLORMAP
+			specularColorFactor *= texture2D( specularColorMap, vSpecularColorMapUv ).rgb;
+		#endif
+		#ifdef USE_SPECULAR_INTENSITYMAP
+			specularIntensityFactor *= texture2D( specularIntensityMap, vSpecularIntensityMapUv ).a;
+		#endif
+		material.specularF90 = mix( specularIntensityFactor, 1.0, metalnessFactor );
+	#else
+		float specularIntensityFactor = 1.0;
+		vec3 specularColorFactor = vec3( 1.0 );
+		material.specularF90 = 1.0;
+	#endif
+	material.specularColor = min( pow2( ( material.ior - 1.0 ) / ( material.ior + 1.0 ) ) * specularColorFactor, vec3( 1.0 ) ) * specularIntensityFactor;
+	material.specularColorBlended = mix( material.specularColor, diffuseColor.rgb, metalnessFactor );
+#else
+	material.specularColor = vec3( 0.04 );
+	material.specularColorBlended = mix( material.specularColor, diffuseColor.rgb, metalnessFactor );
+	material.specularF90 = 1.0;
+#endif
+#ifdef USE_CLEARCOAT
+	material.clearcoat = clearcoat;
+	material.clearcoatRoughness = clearcoatRoughness;
+	material.clearcoatF0 = vec3( 0.04 );
+	material.clearcoatF90 = 1.0;
+	#ifdef USE_CLEARCOATMAP
+		material.clearcoat *= texture2D( clearcoatMap, vClearcoatMapUv ).x;
+	#endif
+	#ifdef USE_CLEARCOAT_ROUGHNESSMAP
+		material.clearcoatRoughness *= texture2D( clearcoatRoughnessMap, vClearcoatRoughnessMapUv ).y;
+	#endif
+	material.clearcoat = saturate( material.clearcoat );	material.clearcoatRoughness = max( material.clearcoatRoughness, 0.0525 );
+	material.clearcoatRoughness += geometryRoughness;
+	material.clearcoatRoughness = min( material.clearcoatRoughness, 1.0 );
+#endif
+#ifdef USE_DISPERSION
+	material.dispersion = dispersion;
+#endif
+#ifdef USE_RETROREFLECTION
+	material.retroreflectivity = retroreflectivity;
+#endif
+#ifdef USE_IRIDESCENCE
+	material.iridescence = iridescence;
+	material.iridescenceIOR = iridescenceIOR;
+	#ifdef USE_IRIDESCENCEMAP
+		material.iridescence *= texture2D( iridescenceMap, vIridescenceMapUv ).r;
+	#endif
+	#ifdef USE_IRIDESCENCE_THICKNESSMAP
+		material.iridescenceThickness = (iridescenceThicknessMaximum - iridescenceThicknessMinimum) * texture2D( iridescenceThicknessMap, vIridescenceThicknessMapUv ).g + iridescenceThicknessMinimum;
+	#else
+		material.iridescenceThickness = iridescenceThicknessMaximum;
+	#endif
+#endif
+#ifdef USE_SHEEN
+	material.sheenColor = sheenColor;
+	#ifdef USE_SHEEN_COLORMAP
+		material.sheenColor *= texture2D( sheenColorMap, vSheenColorMapUv ).rgb;
+	#endif
+	material.sheenRoughness = clamp( sheenRoughness, 0.0001, 1.0 );
+	#ifdef USE_SHEEN_ROUGHNESSMAP
+		material.sheenRoughness *= texture2D( sheenRoughnessMap, vSheenRoughnessMapUv ).a;
+	#endif
+#endif
+#ifdef USE_ANISOTROPY
+	#ifdef USE_ANISOTROPYMAP
+		mat2 anisotropyMat = mat2( anisotropyVector.x, anisotropyVector.y, - anisotropyVector.y, anisotropyVector.x );
+		vec3 anisotropyPolar = texture2D( anisotropyMap, vAnisotropyMapUv ).rgb;
+		vec2 anisotropyV = anisotropyMat * normalize( 2.0 * anisotropyPolar.rg - vec2( 1.0 ) ) * anisotropyPolar.b;
+	#else
+		vec2 anisotropyV = anisotropyVector;
+	#endif
+	material.anisotropy = length( anisotropyV );
+	if( material.anisotropy == 0.0 ) {
+		anisotropyV = vec2( 1.0, 0.0 );
+	} else {
+		anisotropyV /= material.anisotropy;
+		material.anisotropy = saturate( material.anisotropy );
+	}
+	material.alphaT = mix( pow2( material.roughness ), 1.0, pow2( material.anisotropy ) );
+	material.anisotropyT = tbn[ 0 ] * anisotropyV.x + tbn[ 1 ] * anisotropyV.y;
+	material.anisotropyB = tbn[ 1 ] * anisotropyV.x - tbn[ 0 ] * anisotropyV.y;
+#endif`,Gm=`uniform sampler2D dfgLUT;
+struct PhysicalMaterial {
+	vec3 diffuseColor;
+	vec3 diffuseContribution;
+	vec3 specularColor;
+	vec3 specularColorBlended;
+	float roughness;
+	float metalness;
+	float specularF90;
+	float dispersion;
+	vec2 dfg;
+	vec3 multiScatteringCompensation;
+	#ifdef USE_RETROREFLECTION
+		float retroreflectivity;
+	#endif
+	#ifdef USE_CLEARCOAT
+		float clearcoat;
+		float clearcoatRoughness;
+		vec3 clearcoatF0;
+		float clearcoatF90;
+	#endif
+	#ifdef USE_IRIDESCENCE
+		float iridescence;
+		float iridescenceIOR;
+		float iridescenceThickness;
+		vec3 iridescenceFresnel;
+		vec3 iridescenceF0Dielectric;
+		vec3 iridescenceF0Metallic;
+	#endif
+	#ifdef USE_SHEEN
+		vec3 sheenColor;
+		float sheenRoughness;
+	#endif
+	#ifdef IOR
+		float ior;
+	#endif
+	#ifdef USE_TRANSMISSION
+		float transmission;
+		float transmissionAlpha;
+		float thickness;
+		float attenuationDistance;
+		vec3 attenuationColor;
+	#endif
+	#ifdef USE_ANISOTROPY
+		float anisotropy;
+		float alphaT;
+		vec3 anisotropyT;
+		vec3 anisotropyB;
+	#endif
+};
+vec3 clearcoatSpecularDirect = vec3( 0.0 );
+vec3 clearcoatSpecularIndirect = vec3( 0.0 );
+vec3 sheenSpecularDirect = vec3( 0.0 );
+vec3 sheenSpecularIndirect = vec3(0.0 );
+vec3 Schlick_to_F0( const in vec3 f, const in float f90, const in float dotVH ) {
+    float x = clamp( 1.0 - dotVH, 0.0, 1.0 );
+    float x2 = x * x;
+    float x5 = clamp( x * x2 * x2, 0.0, 0.9999 );
+    return ( f - vec3( f90 ) * x5 ) / ( 1.0 - x5 );
+}
+float V_GGX_SmithCorrelated( const in float alpha, const in float dotNL, const in float dotNV ) {
+	float a2 = pow2( alpha );
+	float gv = dotNL * sqrt( a2 + ( 1.0 - a2 ) * pow2( dotNV ) );
+	float gl = dotNV * sqrt( a2 + ( 1.0 - a2 ) * pow2( dotNL ) );
+	return 0.5 / max( gv + gl, EPSILON );
+}
+float D_GGX( const in float alpha, const in float dotNH ) {
+	float a2 = pow2( alpha );
+	float denom = pow2( dotNH ) * ( a2 - 1.0 ) + 1.0;
+	return RECIPROCAL_PI * a2 / pow2( denom );
+}
+#ifdef USE_ANISOTROPY
+	float V_GGX_SmithCorrelated_Anisotropic( const in float alphaT, const in float alphaB, const in float dotTV, const in float dotBV, const in float dotTL, const in float dotBL, const in float dotNV, const in float dotNL ) {
+		float gv = dotNL * length( vec3( alphaT * dotTV, alphaB * dotBV, dotNV ) );
+		float gl = dotNV * length( vec3( alphaT * dotTL, alphaB * dotBL, dotNL ) );
+		return 0.5 / max( gv + gl, EPSILON );
+	}
+	float D_GGX_Anisotropic( const in float alphaT, const in float alphaB, const in float dotNH, const in float dotTH, const in float dotBH ) {
+		float a2 = alphaT * alphaB;
+		highp vec3 v = vec3( alphaB * dotTH, alphaT * dotBH, a2 * dotNH );
+		highp float v2 = dot( v, v );
+		float w2 = a2 / v2;
+		return RECIPROCAL_PI * a2 * pow2 ( w2 );
+	}
+#endif
+#ifdef USE_CLEARCOAT
+	vec3 BRDF_GGX_Clearcoat( const in vec3 lightDir, const in vec3 viewDir, const in vec3 normal, const in PhysicalMaterial material) {
+		vec3 f0 = material.clearcoatF0;
+		float f90 = material.clearcoatF90;
+		float roughness = material.clearcoatRoughness;
+		float alpha = pow2( roughness );
+		vec3 halfDir = normalize( lightDir + viewDir );
+		float dotNL = saturate( dot( normal, lightDir ) );
+		float dotNV = saturate( dot( normal, viewDir ) );
+		float dotNH = saturate( dot( normal, halfDir ) );
+		float dotVH = saturate( dot( viewDir, halfDir ) );
+		vec3 F = F_Schlick( f0, f90, dotVH );
+		float V = V_GGX_SmithCorrelated( alpha, dotNL, dotNV );
+		float D = D_GGX( alpha, dotNH );
+		return F * ( V * D );
+	}
+#endif
+vec3 BRDF_GGX( const in vec3 lightDir, const in vec3 viewDir, const in vec3 normal, const in PhysicalMaterial material ) {
+	vec3 f0 = material.specularColorBlended;
+	float f90 = material.specularF90;
+	float roughness = material.roughness;
+	float alpha = pow2( roughness );
+	vec3 halfDir = normalize( lightDir + viewDir );
+	float dotNL = saturate( dot( normal, lightDir ) );
+	float dotNV = saturate( dot( normal, viewDir ) );
+	float dotNH = saturate( dot( normal, halfDir ) );
+	float dotVH = saturate( dot( viewDir, halfDir ) );
+	vec3 F = F_Schlick( f0, f90, dotVH );
+	#ifdef USE_IRIDESCENCE
+		F = mix( F, material.iridescenceFresnel, material.iridescence );
+	#endif
+	#ifdef USE_ANISOTROPY
+		float dotTL = dot( material.anisotropyT, lightDir );
+		float dotTV = dot( material.anisotropyT, viewDir );
+		float dotTH = dot( material.anisotropyT, halfDir );
+		float dotBL = dot( material.anisotropyB, lightDir );
+		float dotBV = dot( material.anisotropyB, viewDir );
+		float dotBH = dot( material.anisotropyB, halfDir );
+		float V = V_GGX_SmithCorrelated_Anisotropic( material.alphaT, alpha, dotTV, dotBV, dotTL, dotBL, dotNV, dotNL );
+		float D = D_GGX_Anisotropic( material.alphaT, alpha, dotNH, dotTH, dotBH );
+	#else
+		float V = V_GGX_SmithCorrelated( alpha, dotNL, dotNV );
+		float D = D_GGX( alpha, dotNH );
+	#endif
+	return F * ( V * D );
+}
+vec2 LTC_Uv( const in vec3 N, const in vec3 V, const in float roughness ) {
+	const float LUT_SIZE = 64.0;
+	const float LUT_SCALE = ( LUT_SIZE - 1.0 ) / LUT_SIZE;
+	const float LUT_BIAS = 0.5 / LUT_SIZE;
+	float dotNV = saturate( dot( N, V ) );
+	vec2 uv = vec2( roughness, sqrt( 1.0 - dotNV ) );
+	uv = uv * LUT_SCALE + LUT_BIAS;
+	return uv;
+}
+float LTC_ClippedSphereFormFactor( const in vec3 f ) {
+	float l = length( f );
+	return max( ( l * l + f.z ) / ( l + 1.0 ), 0.0 );
+}
+vec3 LTC_EdgeVectorFormFactor( const in vec3 v1, const in vec3 v2 ) {
+	float x = dot( v1, v2 );
+	float y = abs( x );
+	float a = 0.8543985 + ( 0.4965155 + 0.0145206 * y ) * y;
+	float b = 3.4175940 + ( 4.1616724 + y ) * y;
+	float v = a / b;
+	float theta_sintheta = ( x > 0.0 ) ? v : 0.5 * inversesqrt( max( 1.0 - x * x, 1e-7 ) ) - v;
+	return cross( v1, v2 ) * theta_sintheta;
+}
+vec3 LTC_Evaluate( const in vec3 N, const in vec3 V, const in vec3 P, const in mat3 mInv, const in vec3 rectCoords[ 4 ] ) {
+	vec3 v1 = rectCoords[ 1 ] - rectCoords[ 0 ];
+	vec3 v2 = rectCoords[ 3 ] - rectCoords[ 0 ];
+	vec3 lightNormal = cross( v1, v2 );
+	if( dot( lightNormal, P - rectCoords[ 0 ] ) < 0.0 ) return vec3( 0.0 );
+	vec3 T1, T2;
+	T1 = normalize( V - N * dot( V, N ) );
+	T2 = - cross( N, T1 );
+	mat3 mat = mInv * transpose( mat3( T1, T2, N ) );
+	vec3 coords[ 4 ];
+	coords[ 0 ] = mat * ( rectCoords[ 0 ] - P );
+	coords[ 1 ] = mat * ( rectCoords[ 1 ] - P );
+	coords[ 2 ] = mat * ( rectCoords[ 2 ] - P );
+	coords[ 3 ] = mat * ( rectCoords[ 3 ] - P );
+	coords[ 0 ] = normalize( coords[ 0 ] );
+	coords[ 1 ] = normalize( coords[ 1 ] );
+	coords[ 2 ] = normalize( coords[ 2 ] );
+	coords[ 3 ] = normalize( coords[ 3 ] );
+	vec3 vectorFormFactor = vec3( 0.0 );
+	vectorFormFactor += LTC_EdgeVectorFormFactor( coords[ 0 ], coords[ 1 ] );
+	vectorFormFactor += LTC_EdgeVectorFormFactor( coords[ 1 ], coords[ 2 ] );
+	vectorFormFactor += LTC_EdgeVectorFormFactor( coords[ 2 ], coords[ 3 ] );
+	vectorFormFactor += LTC_EdgeVectorFormFactor( coords[ 3 ], coords[ 0 ] );
+	float result = LTC_ClippedSphereFormFactor( vectorFormFactor );
+	return vec3( result );
+}
+#if defined( USE_SHEEN )
+float D_Charlie( float roughness, float dotNH ) {
+	float alpha = pow2( roughness );
+	float invAlpha = 1.0 / alpha;
+	float cos2h = dotNH * dotNH;
+	float sin2h = max( 1.0 - cos2h, 0.0078125 );
+	return ( 2.0 + invAlpha ) * pow( sin2h, invAlpha * 0.5 ) / ( 2.0 * PI );
+}
+float V_Neubelt( float dotNV, float dotNL ) {
+	return saturate( 1.0 / ( 4.0 * ( dotNL + dotNV - dotNL * dotNV ) ) );
+}
+vec3 BRDF_Sheen( const in vec3 lightDir, const in vec3 viewDir, const in vec3 normal, vec3 sheenColor, const in float sheenRoughness ) {
+	vec3 halfDir = normalize( lightDir + viewDir );
+	float dotNL = saturate( dot( normal, lightDir ) );
+	float dotNV = saturate( dot( normal, viewDir ) );
+	float dotNH = saturate( dot( normal, halfDir ) );
+	float D = D_Charlie( sheenRoughness, dotNH );
+	float V = V_Neubelt( dotNV, dotNL );
+	return sheenColor * ( D * V );
+}
+#endif
+float IBLSheenBRDF( const in vec3 normal, const in vec3 viewDir, const in float roughness ) {
+	float dotNV = saturate( dot( normal, viewDir ) );
+	float r2 = roughness * roughness;
+	float rInv = 1.0 / ( roughness + 0.1 );
+	float a = -1.9362 + 1.0678 * roughness + 0.4573 * r2 - 0.8469 * rInv;
+	float b = -0.6014 + 0.5538 * roughness - 0.4670 * r2 - 0.1255 * rInv;
+	float DG = exp( a * dotNV + b );
+	return saturate( DG );
+}
+vec3 EnvironmentBRDF( const in vec3 normal, const in vec3 viewDir, const in vec3 specularColor, const in float specularF90, const in float roughness ) {
+	float dotNV = saturate( dot( normal, viewDir ) );
+	vec2 fab = texture2D( dfgLUT, vec2( roughness, dotNV ) ).rg;
+	return specularColor * fab.x + specularF90 * fab.y;
+}
+#ifdef USE_IRIDESCENCE
+void computeMultiscatteringIridescence( const in vec2 fab, const in vec3 specularColor, const in float specularF90, const in float iridescence, const in vec3 iridescenceF0, inout vec3 singleScatter, inout vec3 multiScatter ) {
+#else
+void computeMultiscattering( const in vec2 fab, const in vec3 specularColor, const in float specularF90, inout vec3 singleScatter, inout vec3 multiScatter ) {
+#endif
+	#ifdef USE_IRIDESCENCE
+		vec3 Fr = mix( specularColor, iridescenceF0, iridescence );
+	#else
+		vec3 Fr = specularColor;
+	#endif
+	vec3 FssEss = Fr * fab.x + specularF90 * fab.y;
+	float Ess = fab.x + fab.y;
+	float Ems = 1.0 - Ess;
+	vec3 Favg = Fr + ( 1.0 - Fr ) * 0.047619;	vec3 Fms = FssEss * Favg / ( 1.0 - Ems * Favg );
+	singleScatter += FssEss;
+	multiScatter += Fms * Ems;
+}
+#if NUM_RECT_AREA_LIGHTS > 0
+	void RE_Direct_RectArea_Physical( const in RectAreaLight rectAreaLight, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in PhysicalMaterial material, inout ReflectedLight reflectedLight ) {
+		vec3 normal = geometryNormal;
+		vec3 viewDir = geometryViewDir;
+		vec3 position = geometryPosition;
+		vec3 lightPos = rectAreaLight.position;
+		vec3 halfWidth = rectAreaLight.halfWidth;
+		vec3 halfHeight = rectAreaLight.halfHeight;
+		vec3 lightColor = rectAreaLight.color;
+		float roughness = material.roughness;
+		vec3 rectCoords[ 4 ];
+		rectCoords[ 0 ] = lightPos + halfWidth - halfHeight;		rectCoords[ 1 ] = lightPos - halfWidth - halfHeight;
+		rectCoords[ 2 ] = lightPos - halfWidth + halfHeight;
+		rectCoords[ 3 ] = lightPos + halfWidth + halfHeight;
+		vec2 uv = LTC_Uv( normal, viewDir, roughness );
+		vec4 t1 = texture2D( ltc_1, uv );
+		vec4 t2 = texture2D( ltc_2, uv );
+		mat3 mInv = mat3(
+			vec3( t1.x, 0, t1.y ),
+			vec3(    0, 1,    0 ),
+			vec3( t1.z, 0, t1.w )
+		);
+		vec3 fresnel = ( material.specularColorBlended * t2.x + ( material.specularF90 - material.specularColorBlended ) * t2.y );
+		reflectedLight.directSpecular += lightColor * fresnel * LTC_Evaluate( normal, viewDir, position, mInv, rectCoords );
+		reflectedLight.directDiffuse += lightColor * material.diffuseContribution * LTC_Evaluate( normal, viewDir, position, mat3( 1.0 ), rectCoords );
+		#ifdef USE_CLEARCOAT
+			vec3 Ncc = geometryClearcoatNormal;
+			vec2 uvClearcoat = LTC_Uv( Ncc, viewDir, material.clearcoatRoughness );
+			vec4 t1Clearcoat = texture2D( ltc_1, uvClearcoat );
+			vec4 t2Clearcoat = texture2D( ltc_2, uvClearcoat );
+			mat3 mInvClearcoat = mat3(
+				vec3( t1Clearcoat.x, 0, t1Clearcoat.y ),
+				vec3(             0, 1,             0 ),
+				vec3( t1Clearcoat.z, 0, t1Clearcoat.w )
+			);
+			vec3 fresnelClearcoat = material.clearcoatF0 * t2Clearcoat.x + ( material.clearcoatF90 - material.clearcoatF0 ) * t2Clearcoat.y;
+			clearcoatSpecularDirect += lightColor * fresnelClearcoat * LTC_Evaluate( Ncc, viewDir, position, mInvClearcoat, rectCoords );
+		#endif
+	}
+#endif
+void RE_Direct_Physical( const in IncidentLight directLight, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in PhysicalMaterial material, inout ReflectedLight reflectedLight ) {
+	float dotNL = saturate( dot( geometryNormal, directLight.direction ) );
+	vec3 irradiance = dotNL * directLight.color;
+	#ifdef USE_CLEARCOAT
+		float dotNLcc = saturate( dot( geometryClearcoatNormal, directLight.direction ) );
+		vec3 ccIrradiance = dotNLcc * directLight.color;
+		clearcoatSpecularDirect += ccIrradiance * BRDF_GGX_Clearcoat( directLight.direction, geometryViewDir, geometryClearcoatNormal, material );
+	#endif
+	#ifdef USE_SHEEN
+ 
+ 		sheenSpecularDirect += irradiance * BRDF_Sheen( directLight.direction, geometryViewDir, geometryNormal, material.sheenColor, material.sheenRoughness );
+ 
+ 		float sheenAlbedoV = IBLSheenBRDF( geometryNormal, geometryViewDir, material.sheenRoughness );
+ 		float sheenAlbedoL = IBLSheenBRDF( geometryNormal, directLight.direction, material.sheenRoughness );
+ 
+ 		float sheenEnergyComp = 1.0 - max3( material.sheenColor ) * max( sheenAlbedoV, sheenAlbedoL );
+ 
+ 		irradiance *= sheenEnergyComp;
+ 
+ 	#endif
+	vec3 specularBRDF = BRDF_GGX( directLight.direction, geometryViewDir, geometryNormal, material );
+	#ifdef USE_RETROREFLECTION
+		vec3 retroViewDir = reflect( - geometryViewDir, geometryNormal );
+		vec3 retroSpecularBRDF = BRDF_GGX( directLight.direction, retroViewDir, geometryNormal, material );
+		specularBRDF = mix( specularBRDF, retroSpecularBRDF, saturate( material.retroreflectivity ) );
+	#endif
+	reflectedLight.directSpecular += irradiance * specularBRDF * material.multiScatteringCompensation;
+	vec3 halfDir = normalize( directLight.direction + geometryViewDir );
+	float dotVH = saturate( dot( geometryViewDir, halfDir ) );
+	vec3 F = F_Schlick( material.specularColor, material.specularF90, dotVH );
+	#ifdef USE_RETROREFLECTION
+		vec3 retroHalfDir = normalize( directLight.direction + retroViewDir );
+		float dotRetroVH = saturate( dot( retroViewDir, retroHalfDir ) );
+		vec3 retroF = F_Schlick( material.specularColor, material.specularF90, dotRetroVH );
+		F = mix( F, retroF, saturate( material.retroreflectivity ) );
+	#endif
+	reflectedLight.directDiffuse += irradiance * BRDF_Lambert( material.diffuseContribution ) * ( 1.0 - F );
+}
+void RE_IndirectDiffuse_Physical( const in vec3 irradiance, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in PhysicalMaterial material, inout ReflectedLight reflectedLight ) {
+	vec3 singleScattering = vec3( 0.0 );
+	vec3 multiScattering = vec3( 0.0 );
+	#ifdef USE_IRIDESCENCE
+		computeMultiscatteringIridescence( material.dfg, material.specularColor, material.specularF90, material.iridescence, material.iridescenceF0Dielectric, singleScattering, multiScattering );
+	#else
+		computeMultiscattering( material.dfg, material.specularColor, material.specularF90, singleScattering, multiScattering );
+	#endif
+	vec3 diffuse = irradiance * BRDF_Lambert( material.diffuseContribution ) * ( 1.0 - singleScattering - multiScattering );
+	#ifdef USE_SHEEN
+		float sheenAlbedo = IBLSheenBRDF( geometryNormal, geometryViewDir, material.sheenRoughness );
+		sheenSpecularIndirect += irradiance * material.sheenColor * sheenAlbedo * RECIPROCAL_PI;
+		float sheenEnergyComp = 1.0 - max3( material.sheenColor ) * sheenAlbedo;
+		diffuse *= sheenEnergyComp;
+	#endif
+	reflectedLight.indirectDiffuse += diffuse;
+}
+void RE_IndirectSpecular_Physical( const in vec3 radiance, const in vec3 irradiance, const in vec3 clearcoatRadiance, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, const in PhysicalMaterial material, inout ReflectedLight reflectedLight) {
+	#ifdef USE_CLEARCOAT
+		clearcoatSpecularIndirect += clearcoatRadiance * EnvironmentBRDF( geometryClearcoatNormal, geometryViewDir, material.clearcoatF0, material.clearcoatF90, material.clearcoatRoughness );
+	#endif
+	#ifdef USE_SHEEN
+		sheenSpecularIndirect += irradiance * material.sheenColor * IBLSheenBRDF( geometryNormal, geometryViewDir, material.sheenRoughness ) * RECIPROCAL_PI;
+ 	#endif
+	vec3 singleScatteringDielectric = vec3( 0.0 );
+	vec3 multiScatteringDielectric = vec3( 0.0 );
+	vec3 singleScatteringMetallic = vec3( 0.0 );
+	vec3 multiScatteringMetallic = vec3( 0.0 );
+	#ifdef USE_IRIDESCENCE
+		computeMultiscatteringIridescence( material.dfg, material.specularColor, material.specularF90, material.iridescence, material.iridescenceF0Dielectric, singleScatteringDielectric, multiScatteringDielectric );
+		computeMultiscatteringIridescence( material.dfg, material.diffuseColor, material.specularF90, material.iridescence, material.iridescenceF0Metallic, singleScatteringMetallic, multiScatteringMetallic );
+	#else
+		computeMultiscattering( material.dfg, material.specularColor, material.specularF90, singleScatteringDielectric, multiScatteringDielectric );
+		computeMultiscattering( material.dfg, material.diffuseColor, material.specularF90, singleScatteringMetallic, multiScatteringMetallic );
+	#endif
+	vec3 singleScattering = mix( singleScatteringDielectric, singleScatteringMetallic, material.metalness );
+	vec3 multiScattering = mix( multiScatteringDielectric, multiScatteringMetallic, material.metalness );
+	vec3 totalScatteringDielectric = singleScatteringDielectric + multiScatteringDielectric;
+	vec3 diffuse = material.diffuseContribution * ( 1.0 - totalScatteringDielectric );
+	vec3 cosineWeightedIrradiance = irradiance * RECIPROCAL_PI;
+	vec3 indirectSpecular = radiance * singleScattering;
+	indirectSpecular += multiScattering * cosineWeightedIrradiance;
+	vec3 indirectDiffuse = diffuse * cosineWeightedIrradiance;
+	#ifdef USE_SHEEN
+		float sheenAlbedo = IBLSheenBRDF( geometryNormal, geometryViewDir, material.sheenRoughness );
+		float sheenEnergyComp = 1.0 - max3( material.sheenColor ) * sheenAlbedo;
+		indirectSpecular *= sheenEnergyComp;
+		indirectDiffuse *= sheenEnergyComp;
+	#endif
+	reflectedLight.indirectSpecular += indirectSpecular;
+	reflectedLight.indirectDiffuse += indirectDiffuse;
+}
+#define RE_Direct				RE_Direct_Physical
+#define RE_Direct_RectArea		RE_Direct_RectArea_Physical
+#define RE_IndirectDiffuse		RE_IndirectDiffuse_Physical
+#define RE_IndirectSpecular		RE_IndirectSpecular_Physical
+float computeSpecularOcclusion( const in float dotNV, const in float ambientOcclusion, const in float roughness ) {
+	return saturate( pow( dotNV + ambientOcclusion, exp2( - 16.0 * roughness - 1.0 ) ) - 1.0 + ambientOcclusion );
+}`,Vm=`
+vec3 geometryPosition = - vViewPosition;
+vec3 geometryNormal = normal;
+vec3 geometryViewDir = ( isOrthographic ) ? vec3( 0, 0, 1 ) : normalize( vViewPosition );
+vec3 geometryClearcoatNormal = vec3( 0.0 );
+#ifdef USE_CLEARCOAT
+	geometryClearcoatNormal = clearcoatNormal;
+#endif
+#ifdef USE_IRIDESCENCE
+	float dotNVi = saturate( dot( normal, geometryViewDir ) );
+	if ( material.iridescenceThickness == 0.0 ) {
+		material.iridescence = 0.0;
+	} else {
+		material.iridescence = saturate( material.iridescence );
+	}
+	if ( material.iridescence > 0.0 ) {
+		vec3 iridescenceFresnelDielectric = evalIridescence( 1.0, material.iridescenceIOR, dotNVi, material.iridescenceThickness, material.specularColor );
+		vec3 iridescenceFresnelMetallic = evalIridescence( 1.0, material.iridescenceIOR, dotNVi, material.iridescenceThickness, material.diffuseColor );
+		material.iridescenceFresnel = mix( iridescenceFresnelDielectric, iridescenceFresnelMetallic, material.metalness );
+		material.iridescenceF0Dielectric = Schlick_to_F0( iridescenceFresnelDielectric, 1.0, dotNVi );
+		material.iridescenceF0Metallic = Schlick_to_F0( iridescenceFresnelMetallic, 1.0, dotNVi );
+	}
+#endif
+#ifdef STANDARD
+	float dotNVms = saturate( dot( geometryNormal, geometryViewDir ) );
+	material.dfg = texture2D( dfgLUT, vec2( material.roughness, dotNVms ) ).rg;
+	#if ( NUM_SUN_LIGHTS > 0 || NUM_DIR_LIGHTS > 0 || NUM_POINT_LIGHTS > 0 || NUM_SPOT_LIGHTS > 0 )
+		float EssMs = material.dfg.x + material.dfg.y;
+		material.multiScatteringCompensation = 1.0 + material.specularColorBlended * ( 1.0 / EssMs - 1.0 );
+	#endif
+#endif
+IncidentLight directLight;
+#if ( NUM_POINT_LIGHTS > 0 ) && defined( RE_Direct )
+	PointLight pointLight;
+	#if defined( USE_SHADOWMAP ) && NUM_POINT_LIGHT_SHADOWS > 0
+	PointLightShadow pointLightShadow;
+	#endif
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_POINT_LIGHTS; i ++ ) {
+		pointLight = pointLights[ i ];
+		getPointLightInfo( pointLight, geometryPosition, directLight );
+		#if defined( USE_SHADOWMAP ) && ( UNROLLED_LOOP_INDEX < NUM_POINT_LIGHT_SHADOWS ) && ( defined( SHADOWMAP_TYPE_PCF ) || defined( SHADOWMAP_TYPE_BASIC ) )
+		pointLightShadow = pointLightShadows[ i ];
+		directLight.color *= ( directLight.visible && receiveShadow ) ? getPointShadow( pointShadowMap[ i ], pointLightShadow.shadowMapSize, pointLightShadow.shadowIntensity, pointLightShadow.shadowBias, pointLightShadow.shadowRadius, vPointShadowCoord[ i ], pointLightShadow.shadowCameraNear, pointLightShadow.shadowCameraFar ) : 1.0;
+		#endif
+		RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );
+	}
+	#pragma unroll_loop_end
+#endif
+#if ( NUM_SPOT_LIGHTS > 0 ) && defined( RE_Direct )
+	SpotLight spotLight;
+	vec4 spotColor;
+	vec3 spotLightCoord;
+	bool inSpotLightMap;
+	#if defined( USE_SHADOWMAP ) && NUM_SPOT_LIGHT_SHADOWS > 0
+	SpotLightShadow spotLightShadow;
+	#endif
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_SPOT_LIGHTS; i ++ ) {
+		spotLight = spotLights[ i ];
+		getSpotLightInfo( spotLight, geometryPosition, directLight );
+		#if ( UNROLLED_LOOP_INDEX < NUM_SPOT_LIGHT_SHADOWS_WITH_MAPS )
+		#define SPOT_LIGHT_MAP_INDEX UNROLLED_LOOP_INDEX
+		#elif ( UNROLLED_LOOP_INDEX < NUM_SPOT_LIGHT_SHADOWS )
+		#define SPOT_LIGHT_MAP_INDEX NUM_SPOT_LIGHT_MAPS
+		#else
+		#define SPOT_LIGHT_MAP_INDEX ( UNROLLED_LOOP_INDEX - NUM_SPOT_LIGHT_SHADOWS + NUM_SPOT_LIGHT_SHADOWS_WITH_MAPS )
+		#endif
+		#if ( SPOT_LIGHT_MAP_INDEX < NUM_SPOT_LIGHT_MAPS )
+			spotLightCoord = vSpotLightCoord[ i ].xyz / vSpotLightCoord[ i ].w;
+			inSpotLightMap = all( lessThan( abs( spotLightCoord * 2. - 1. ), vec3( 1.0 ) ) );
+			spotColor = texture2D( spotLightMap[ SPOT_LIGHT_MAP_INDEX ], spotLightCoord.xy );
+			directLight.color = inSpotLightMap ? directLight.color * spotColor.rgb : directLight.color;
+		#endif
+		#undef SPOT_LIGHT_MAP_INDEX
+		#if defined( USE_SHADOWMAP ) && ( UNROLLED_LOOP_INDEX < NUM_SPOT_LIGHT_SHADOWS )
+		spotLightShadow = spotLightShadows[ i ];
+		directLight.color *= ( directLight.visible && receiveShadow ) ? getShadow( spotShadowMap[ i ], spotLightShadow.shadowMapSize, spotLightShadow.shadowIntensity, spotLightShadow.shadowBias, spotLightShadow.shadowRadius, vSpotLightCoord[ i ] ) : 1.0;
+		#endif
+		RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );
+	}
+	#pragma unroll_loop_end
+#endif
+#if ( NUM_SUN_LIGHTS > 0 ) && defined( RE_Direct )
+	SunLight sunLight;
+	#if defined( USE_SHADOWMAP ) && NUM_SUN_LIGHT_SHADOWS > 0
+	SunLightShadow sunLightShadow;
+	#endif
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_SUN_LIGHTS; i ++ ) {
+		sunLight = sunLights[ i ];
+		getSunLightInfo( sunLight, directLight );
+		#if defined( USE_SHADOWMAP ) && ( UNROLLED_LOOP_INDEX < NUM_SUN_LIGHT_SHADOWS )
+		sunLightShadow = sunLightShadows[ i ];
+		directLight.color *= ( directLight.visible && receiveShadow ) ? getSunShadow( sunShadowMap[ i ], sunLightShadow, UNROLLED_LOOP_INDEX ) : 1.0;
+		#endif
+		RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );
+	}
+	#pragma unroll_loop_end
+#endif
+#if ( NUM_DIR_LIGHTS > 0 ) && defined( RE_Direct )
+	DirectionalLight directionalLight;
+	#if defined( USE_SHADOWMAP ) && NUM_DIR_LIGHT_SHADOWS > 0
+	DirectionalLightShadow directionalLightShadow;
+	#endif
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_DIR_LIGHTS; i ++ ) {
+		directionalLight = directionalLights[ i ];
+		getDirectionalLightInfo( directionalLight, directLight );
+		#if defined( USE_SHADOWMAP ) && ( UNROLLED_LOOP_INDEX < NUM_DIR_LIGHT_SHADOWS )
+		directionalLightShadow = directionalLightShadows[ i ];
+		directLight.color *= ( directLight.visible && receiveShadow ) ? getShadow( directionalShadowMap[ i ], directionalLightShadow.shadowMapSize, directionalLightShadow.shadowIntensity, directionalLightShadow.shadowBias, directionalLightShadow.shadowRadius, vDirectionalShadowCoord[ i ] ) : 1.0;
+		#endif
+		RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );
+	}
+	#pragma unroll_loop_end
+#endif
+#if ( NUM_RECT_AREA_LIGHTS > 0 ) && defined( RE_Direct_RectArea )
+	RectAreaLight rectAreaLight;
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_RECT_AREA_LIGHTS; i ++ ) {
+		rectAreaLight = rectAreaLights[ i ];
+		RE_Direct_RectArea( rectAreaLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );
+	}
+	#pragma unroll_loop_end
+#endif
+#if defined( RE_IndirectDiffuse )
+	vec3 iblIrradiance = vec3( 0.0 );
+	vec3 irradiance = getAmbientLightIrradiance( ambientLightColor );
+	#if defined( USE_LIGHT_PROBES )
+		irradiance += getLightProbeIrradiance( lightProbe, geometryNormal );
+	#endif
+	#if ( NUM_HEMI_LIGHTS > 0 )
+		#pragma unroll_loop_start
+		for ( int i = 0; i < NUM_HEMI_LIGHTS; i ++ ) {
+			irradiance += getHemisphereLightIrradiance( hemisphereLights[ i ], geometryNormal );
+		}
+		#pragma unroll_loop_end
+	#endif
+	#ifdef USE_LIGHT_PROBES_GRID
+		vec3 probeWorldPos = ( ( vec4( geometryPosition, 1.0 ) - viewMatrix[ 3 ] ) * viewMatrix ).xyz;
+		vec3 probeWorldNormal = transformNormalByInverseViewMatrix( geometryNormal, viewMatrix );
+		irradiance += getLightProbeGridIrradiance( probeWorldPos, probeWorldNormal );
+	#endif
+#endif
+#if defined( RE_IndirectSpecular )
+	vec3 radiance = vec3( 0.0 );
+	vec3 clearcoatRadiance = vec3( 0.0 );
+#endif`,Wm=`#if defined( RE_IndirectDiffuse )
+	#ifdef USE_LIGHTMAP
+		vec4 lightMapTexel = texture2D( lightMap, vLightMapUv );
+		vec3 lightMapIrradiance = lightMapTexel.rgb * lightMapIntensity;
+		irradiance += lightMapIrradiance;
+	#endif
+	#if defined( USE_ENVMAP ) && defined( ENVMAP_TYPE_CUBE_UV )
+		#if defined( STANDARD ) || defined( LAMBERT ) || defined( PHONG )
+			iblIrradiance += getIBLIrradiance( geometryNormal );
+		#endif
+	#endif
+#endif
+#if defined( USE_ENVMAP ) && defined( RE_IndirectSpecular )
+	#ifdef USE_ANISOTROPY
+		vec3 iblRadiance = getIBLAnisotropyRadiance( geometryViewDir, geometryNormal, material.roughness, material.anisotropyB, material.anisotropy );
+	#else
+		vec3 iblRadiance = getIBLRadiance( geometryViewDir, geometryNormal, material.roughness );
+	#endif
+	#ifdef USE_RETROREFLECTION
+		#ifdef USE_ANISOTROPY
+			vec3 retroIBLRadiance = getIBLAnisotropyRetroRadiance( geometryViewDir, geometryNormal, material.roughness, material.anisotropyB, material.anisotropy );
+		#else
+			vec3 retroIBLRadiance = getIBLRetroRadiance( geometryViewDir, geometryNormal, material.roughness );
+		#endif
+		iblRadiance = mix( iblRadiance, retroIBLRadiance, saturate( material.retroreflectivity ) );
+	#endif
+	radiance += iblRadiance;
+	#ifdef USE_CLEARCOAT
+		clearcoatRadiance += getIBLRadiance( geometryViewDir, geometryClearcoatNormal, material.clearcoatRoughness );
+	#endif
+#endif`,Xm=`#if defined( RE_IndirectDiffuse )
+	#if defined( LAMBERT ) || defined( PHONG )
+		irradiance += iblIrradiance;
+	#endif
+	RE_IndirectDiffuse( irradiance, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );
+#endif
+#if defined( RE_IndirectSpecular )
+	RE_IndirectSpecular( radiance, iblIrradiance, clearcoatRadiance, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );
+#endif`,qm=`#ifdef USE_LIGHT_PROBES_GRID
+uniform highp sampler3D probesSH;
+uniform vec3 probesMin;
+uniform vec3 probesMax;
+uniform vec3 probesResolution;
+vec3 getLightProbeGridIrradiance( vec3 worldPos, vec3 worldNormal ) {
+	vec3 res = probesResolution;
+	vec3 gridRange = probesMax - probesMin;
+	vec3 resMinusOne = res - 1.0;
+	vec3 probeSpacing = gridRange / resMinusOne;
+	vec3 samplePos = worldPos + worldNormal * probeSpacing * 0.5;
+	vec3 uvw = clamp( ( samplePos - probesMin ) / gridRange, 0.0, 1.0 );
+	uvw = uvw * resMinusOne / res + 0.5 / res;
+	float nz          = res.z;
+	float paddedSlices = nz + 2.0;
+	float atlasDepth  = 7.0 * paddedSlices;
+	float uvZBase     = uvw.z * nz + 1.0;
+	vec4 s0 = texture( probesSH, vec3( uvw.xy, ( uvZBase                       ) / atlasDepth ) );
+	vec4 s1 = texture( probesSH, vec3( uvw.xy, ( uvZBase +       paddedSlices   ) / atlasDepth ) );
+	vec4 s2 = texture( probesSH, vec3( uvw.xy, ( uvZBase + 2.0 * paddedSlices   ) / atlasDepth ) );
+	vec4 s3 = texture( probesSH, vec3( uvw.xy, ( uvZBase + 3.0 * paddedSlices   ) / atlasDepth ) );
+	vec4 s4 = texture( probesSH, vec3( uvw.xy, ( uvZBase + 4.0 * paddedSlices   ) / atlasDepth ) );
+	vec4 s5 = texture( probesSH, vec3( uvw.xy, ( uvZBase + 5.0 * paddedSlices   ) / atlasDepth ) );
+	vec4 s6 = texture( probesSH, vec3( uvw.xy, ( uvZBase + 6.0 * paddedSlices   ) / atlasDepth ) );
+	vec3 c0 = s0.xyz;
+	vec3 c1 = vec3( s0.w, s1.xy );
+	vec3 c2 = vec3( s1.zw, s2.x );
+	vec3 c3 = s2.yzw;
+	vec3 c4 = s3.xyz;
+	vec3 c5 = vec3( s3.w, s4.xy );
+	vec3 c6 = vec3( s4.zw, s5.x );
+	vec3 c7 = s5.yzw;
+	vec3 c8 = s6.xyz;
+	float x = worldNormal.x, y = worldNormal.y, z = worldNormal.z;
+	vec3 result = c0 * 0.886227;
+	result += c1 * 2.0 * 0.511664 * y;
+	result += c2 * 2.0 * 0.511664 * z;
+	result += c3 * 2.0 * 0.511664 * x;
+	result += c4 * 2.0 * 0.429043 * x * y;
+	result += c5 * 2.0 * 0.429043 * y * z;
+	result += c6 * ( 0.743125 * z * z - 0.247708 );
+	result += c7 * 2.0 * 0.429043 * x * z;
+	result += c8 * 0.429043 * ( x * x - y * y );
+	return max( result, vec3( 0.0 ) );
+}
+#endif`,Ym=`#if defined( USE_LOGARITHMIC_DEPTH_BUFFER )
+	gl_FragDepth = vIsPerspective == 0.0 ? gl_FragCoord.z : log2( vFragDepth ) * logDepthBufFC * 0.5;
+#endif`,Zm=`#if defined( USE_LOGARITHMIC_DEPTH_BUFFER )
+	uniform float logDepthBufFC;
+	varying float vFragDepth;
+	varying float vIsPerspective;
+#endif`,Km=`#ifdef USE_LOGARITHMIC_DEPTH_BUFFER
+	varying float vFragDepth;
+	varying float vIsPerspective;
+#endif`,Jm=`#ifdef USE_LOGARITHMIC_DEPTH_BUFFER
+	vFragDepth = 1.0 + gl_Position.w;
+	vIsPerspective = float( isPerspectiveMatrix( projectionMatrix ) );
+#endif`,$m=`#ifdef USE_MAP
+	vec4 sampledDiffuseColor = texture2D( map, vMapUv );
+	#ifdef DECODE_VIDEO_TEXTURE
+		sampledDiffuseColor = sRGBTransferEOTF( sampledDiffuseColor );
+	#endif
+	diffuseColor *= sampledDiffuseColor;
+#endif`,jm=`#ifdef USE_MAP
+	uniform sampler2D map;
+#endif`,Qm=`#if defined( USE_MAP ) || defined( USE_ALPHAMAP )
+	#if defined( USE_POINTS_UV )
+		vec2 uv = vUv;
+	#else
+		vec2 uv = ( uvTransform * vec3( gl_PointCoord.x, 1.0 - gl_PointCoord.y, 1 ) ).xy;
+	#endif
+#endif
+#ifdef USE_MAP
+	diffuseColor *= texture2D( map, uv );
+#endif
+#ifdef USE_ALPHAMAP
+	diffuseColor.a *= texture2D( alphaMap, uv ).g;
+#endif`,e0=`#if defined( USE_POINTS_UV )
+	varying vec2 vUv;
+#else
+	#if defined( USE_MAP ) || defined( USE_ALPHAMAP )
+		uniform mat3 uvTransform;
+	#endif
+#endif
+#ifdef USE_MAP
+	uniform sampler2D map;
+#endif
+#ifdef USE_ALPHAMAP
+	uniform sampler2D alphaMap;
+#endif`,t0=`float metalnessFactor = metalness;
+#ifdef USE_METALNESSMAP
+	vec4 texelMetalness = texture2D( metalnessMap, vMetalnessMapUv );
+	metalnessFactor *= texelMetalness.b;
+#endif`,n0=`#ifdef USE_METALNESSMAP
+	uniform sampler2D metalnessMap;
+#endif`,i0=`#ifdef USE_INSTANCING_MORPH
+	float morphTargetInfluences[ MORPHTARGETS_COUNT ];
+	float morphTargetBaseInfluence = texelFetch( morphTexture, ivec2( 0, gl_InstanceID ), 0 ).r;
+	for ( int i = 0; i < MORPHTARGETS_COUNT; i ++ ) {
+		morphTargetInfluences[i] =  texelFetch( morphTexture, ivec2( i + 1, gl_InstanceID ), 0 ).r;
+	}
+#endif`,s0=`#if defined( USE_MORPHCOLORS )
+	vColor *= morphTargetBaseInfluence;
+	for ( int i = 0; i < MORPHTARGETS_COUNT; i ++ ) {
+		#if defined( USE_COLOR_ALPHA )
+			if ( morphTargetInfluences[ i ] != 0.0 ) vColor += getMorph( gl_VertexID, i, 2 ) * morphTargetInfluences[ i ];
+		#elif defined( USE_COLOR )
+			if ( morphTargetInfluences[ i ] != 0.0 ) vColor += getMorph( gl_VertexID, i, 2 ).rgb * morphTargetInfluences[ i ];
+		#endif
+	}
+#endif`,r0=`#ifdef USE_MORPHNORMALS
+	objectNormal *= morphTargetBaseInfluence;
+	for ( int i = 0; i < MORPHTARGETS_COUNT; i ++ ) {
+		if ( morphTargetInfluences[ i ] != 0.0 ) objectNormal += getMorph( gl_VertexID, i, 1 ).xyz * morphTargetInfluences[ i ];
+	}
+#endif`,a0=`#ifdef USE_MORPHTARGETS
+	#ifndef USE_INSTANCING_MORPH
+		uniform float morphTargetBaseInfluence;
+		uniform float morphTargetInfluences[ MORPHTARGETS_COUNT ];
+	#endif
+	uniform sampler2DArray morphTargetsTexture;
+	uniform ivec2 morphTargetsTextureSize;
+	vec4 getMorph( const in int vertexIndex, const in int morphTargetIndex, const in int offset ) {
+		int texelIndex = vertexIndex * MORPHTARGETS_TEXTURE_STRIDE + offset;
+		int y = texelIndex / morphTargetsTextureSize.x;
+		int x = texelIndex - y * morphTargetsTextureSize.x;
+		ivec3 morphUV = ivec3( x, y, morphTargetIndex );
+		return texelFetch( morphTargetsTexture, morphUV, 0 );
+	}
+#endif`,o0=`#ifdef USE_MORPHTARGETS
+	transformed *= morphTargetBaseInfluence;
+	for ( int i = 0; i < MORPHTARGETS_COUNT; i ++ ) {
+		if ( morphTargetInfluences[ i ] != 0.0 ) transformed += getMorph( gl_VertexID, i, 0 ).xyz * morphTargetInfluences[ i ];
+	}
+#endif`,l0=`float faceDirection = gl_FrontFacing ? 1.0 : - 1.0;
+#ifdef FLAT_SHADED
+	vec3 fdx = dFdx( vViewPosition );
+	vec3 fdy = dFdy( vViewPosition );
+	vec3 normal = normalize( cross( fdx, fdy ) );
+#else
+	vec3 normal = normalize( vNormal );
+	#ifdef DOUBLE_SIDED
+		normal *= faceDirection;
+	#endif
+#endif
+#if defined( USE_NORMALMAP_TANGENTSPACE ) || defined( USE_CLEARCOAT_NORMALMAP ) || defined( USE_ANISOTROPY )
+	#ifdef USE_TANGENT
+		mat3 tbn = mat3( normalize( vTangent ), normalize( vBitangent ), normal );
+	#else
+		mat3 tbn = getTangentFrame( - vViewPosition, normal,
+		#if defined( USE_NORMALMAP )
+			vNormalMapUv
+		#elif defined( USE_CLEARCOAT_NORMALMAP )
+			vClearcoatNormalMapUv
+		#else
+			vUv
+		#endif
+		);
+	#endif
+	#ifdef DOUBLE_SIDED
+		tbn[0] *= faceDirection;
+		tbn[1] *= faceDirection;
+	#endif
+#endif
+#ifdef USE_CLEARCOAT_NORMALMAP
+	#ifdef USE_TANGENT
+		mat3 tbn2 = mat3( normalize( vTangent ), normalize( vBitangent ), normal );
+	#else
+		mat3 tbn2 = getTangentFrame( - vViewPosition, normal, vClearcoatNormalMapUv );
+	#endif
+	#ifdef DOUBLE_SIDED
+		tbn2[0] *= faceDirection;
+		tbn2[1] *= faceDirection;
+	#endif
+#endif
+vec3 nonPerturbedNormal = normal;`,c0=`#ifdef USE_NORMALMAP_OBJECTSPACE
+	normal = texture2D( normalMap, vNormalMapUv ).xyz * 2.0 - 1.0;
+	#ifdef FLIP_SIDED
+		normal = - normal;
+	#endif
+	#ifdef DOUBLE_SIDED
+		normal = normal * faceDirection;
+	#endif
+	normal = normalize( normalMatrix * normal );
+#elif defined( USE_NORMALMAP_TANGENTSPACE )
+	vec3 mapN = texture2D( normalMap, vNormalMapUv ).xyz * 2.0 - 1.0;
+	#if defined( USE_PACKED_NORMALMAP )
+		mapN = vec3( mapN.xy, sqrt( saturate( 1.0 - dot( mapN.xy, mapN.xy ) ) ) );
+	#endif
+	mapN.xy *= normalScale;
+	normal = normalize( tbn * mapN );
+#elif defined( USE_BUMPMAP )
+	normal = perturbNormalArb( - vViewPosition, normal, dHdxy_fwd(), faceDirection );
+#endif`,u0=`#ifndef FLAT_SHADED
+	varying vec3 vNormal;
+	#ifdef USE_TANGENT
+		varying vec3 vTangent;
+		varying vec3 vBitangent;
+	#endif
+#endif`,h0=`#ifndef FLAT_SHADED
+	varying vec3 vNormal;
+	#ifdef USE_TANGENT
+		varying vec3 vTangent;
+		varying vec3 vBitangent;
+	#endif
+#endif`,d0=`#ifndef FLAT_SHADED
+	vNormal = normalize( transformedNormal );
+	#ifdef USE_TANGENT
+		vTangent = normalize( transformedTangent );
+		vBitangent = normalize( cross( vNormal, vTangent ) * tangent.w );
+		#ifdef FLIP_SIDED
+			vBitangent = - vBitangent;
+		#endif
+	#endif
+#endif`,f0=`#ifdef USE_NORMALMAP
+	uniform sampler2D normalMap;
+	uniform vec2 normalScale;
+#endif
+#ifdef USE_NORMALMAP_OBJECTSPACE
+	uniform mat3 normalMatrix;
+#endif
+#if ! defined ( USE_TANGENT ) && ( defined ( USE_NORMALMAP_TANGENTSPACE ) || defined ( USE_CLEARCOAT_NORMALMAP ) || defined( USE_ANISOTROPY ) )
+	mat3 getTangentFrame( vec3 eye_pos, vec3 surf_norm, vec2 uv ) {
+		vec3 q0 = dFdx( eye_pos.xyz );
+		vec3 q1 = dFdy( eye_pos.xyz );
+		vec2 st0 = dFdx( uv.st );
+		vec2 st1 = dFdy( uv.st );
+		vec3 N = surf_norm;
+		vec3 q1perp = cross( q1, N );
+		vec3 q0perp = cross( N, q0 );
+		vec3 T = q1perp * st0.x + q0perp * st1.x;
+		vec3 B = q1perp * st0.y + q0perp * st1.y;
+		float det = max( dot( T, T ), dot( B, B ) );
+		float scale = ( det == 0.0 ) ? 0.0 : inversesqrt( det );
+		return mat3( T * scale, B * scale, N );
+	}
+#endif`,p0=`#ifdef USE_CLEARCOAT
+	vec3 clearcoatNormal = nonPerturbedNormal;
+#endif`,m0=`#ifdef USE_CLEARCOAT_NORMALMAP
+	vec3 clearcoatMapN = texture2D( clearcoatNormalMap, vClearcoatNormalMapUv ).xyz * 2.0 - 1.0;
+	clearcoatMapN.xy *= clearcoatNormalScale;
+	clearcoatNormal = normalize( tbn2 * clearcoatMapN );
+#endif`,g0=`#ifdef USE_CLEARCOATMAP
+	uniform sampler2D clearcoatMap;
+#endif
+#ifdef USE_CLEARCOAT_NORMALMAP
+	uniform sampler2D clearcoatNormalMap;
+	uniform vec2 clearcoatNormalScale;
+#endif
+#ifdef USE_CLEARCOAT_ROUGHNESSMAP
+	uniform sampler2D clearcoatRoughnessMap;
+#endif`,x0=`#ifdef USE_IRIDESCENCEMAP
+	uniform sampler2D iridescenceMap;
+#endif
+#ifdef USE_IRIDESCENCE_THICKNESSMAP
+	uniform sampler2D iridescenceThicknessMap;
+#endif`,v0=`#ifdef OPAQUE
+diffuseColor.a = 1.0;
+#endif
+#ifdef USE_TRANSMISSION
+diffuseColor.a *= material.transmissionAlpha;
+#endif
+gl_FragColor = vec4( outgoingLight, diffuseColor.a );`,y0=`vec3 packNormalToRGB( const in vec3 normal ) {
+	return normalize( normal ) * 0.5 + 0.5;
+}
+vec3 unpackRGBToNormal( const in vec3 rgb ) {
+	return 2.0 * rgb.xyz - 1.0;
+}
+const float PackUpscale = 256. / 255.;const float UnpackDownscale = 255. / 256.;const float ShiftRight8 = 1. / 256.;
+const float Inv255 = 1. / 255.;
+const vec4 PackFactors = vec4( 1.0, 256.0, 256.0 * 256.0, 256.0 * 256.0 * 256.0 );
+const vec2 UnpackFactors2 = vec2( UnpackDownscale, 1.0 / PackFactors.g );
+const vec3 UnpackFactors3 = vec3( UnpackDownscale / PackFactors.rg, 1.0 / PackFactors.b );
+const vec4 UnpackFactors4 = vec4( UnpackDownscale / PackFactors.rgb, 1.0 / PackFactors.a );
+vec4 packDepthToRGBA( const in float v ) {
+	if( v <= 0.0 )
+		return vec4( 0., 0., 0., 0. );
+	if( v >= 1.0 )
+		return vec4( 1., 1., 1., 1. );
+	float vuf;
+	float af = modf( v * PackFactors.a, vuf );
+	float bf = modf( vuf * ShiftRight8, vuf );
+	float gf = modf( vuf * ShiftRight8, vuf );
+	return vec4( vuf * Inv255, gf * PackUpscale, bf * PackUpscale, af );
+}
+vec3 packDepthToRGB( const in float v ) {
+	if( v <= 0.0 )
+		return vec3( 0., 0., 0. );
+	if( v >= 1.0 )
+		return vec3( 1., 1., 1. );
+	float vuf;
+	float bf = modf( v * PackFactors.b, vuf );
+	float gf = modf( vuf * ShiftRight8, vuf );
+	return vec3( vuf * Inv255, gf * PackUpscale, bf );
+}
+vec2 packDepthToRG( const in float v ) {
+	if( v <= 0.0 )
+		return vec2( 0., 0. );
+	if( v >= 1.0 )
+		return vec2( 1., 1. );
+	float vuf;
+	float gf = modf( v * 256., vuf );
+	return vec2( vuf * Inv255, gf );
+}
+float unpackRGBAToDepth( const in vec4 v ) {
+	return dot( v, UnpackFactors4 );
+}
+float unpackRGBToDepth( const in vec3 v ) {
+	return dot( v, UnpackFactors3 );
+}
+float unpackRGToDepth( const in vec2 v ) {
+	return v.r * UnpackFactors2.r + v.g * UnpackFactors2.g;
+}
+vec4 pack2HalfToRGBA( const in vec2 v ) {
+	vec4 r = vec4( v.x, fract( v.x * 255.0 ), v.y, fract( v.y * 255.0 ) );
+	return vec4( r.x - r.y / 255.0, r.y, r.z - r.w / 255.0, r.w );
+}
+vec2 unpackRGBATo2Half( const in vec4 v ) {
+	return vec2( v.x + ( v.y / 255.0 ), v.z + ( v.w / 255.0 ) );
+}
+float viewZToOrthographicDepth( const in float viewZ, const in float near, const in float far ) {
+	return ( viewZ + near ) / ( near - far );
+}
+float orthographicDepthToViewZ( const in float depth, const in float near, const in float far ) {
+	#ifdef USE_REVERSED_DEPTH_BUFFER
+	
+		return depth * ( far - near ) - far;
+	#else
+		return depth * ( near - far ) - near;
+	#endif
+}
+float viewZToPerspectiveDepth( const in float viewZ, const in float near, const in float far ) {
+	return ( ( near + viewZ ) * far ) / ( ( far - near ) * viewZ );
+}
+float perspectiveDepthToViewZ( const in float depth, const in float near, const in float far ) {
+	
+	#ifdef USE_REVERSED_DEPTH_BUFFER
+		return ( near * far ) / ( ( near - far ) * depth - near );
+	#else
+		return ( near * far ) / ( ( far - near ) * depth - far );
+	#endif
+}`,_0=`#ifdef PREMULTIPLIED_ALPHA
+	gl_FragColor.rgb *= gl_FragColor.a;
+#endif`,b0=`vec4 mvPosition = vec4( transformed, 1.0 );
+#ifdef USE_BATCHING
+	mvPosition = batchingMatrix * mvPosition;
+#endif
+#ifdef USE_INSTANCING
+	mvPosition = instanceMatrix * mvPosition;
+#endif
+mvPosition = modelViewMatrix * mvPosition;
+gl_Position = projectionMatrix * mvPosition;`,M0=`#ifdef DITHERING
+	gl_FragColor.rgb = dithering( gl_FragColor.rgb );
+#endif`,S0=`#ifdef DITHERING
+	vec3 dithering( vec3 color ) {
+		float grid_position = rand( gl_FragCoord.xy );
+		vec3 dither_shift_RGB = vec3( 0.25 / 255.0, -0.25 / 255.0, 0.25 / 255.0 );
+		dither_shift_RGB = mix( 2.0 * dither_shift_RGB, -2.0 * dither_shift_RGB, grid_position );
+		return color + dither_shift_RGB;
+	}
+#endif`,E0=`float roughnessFactor = roughness;
+#ifdef USE_ROUGHNESSMAP
+	vec4 texelRoughness = texture2D( roughnessMap, vRoughnessMapUv );
+	roughnessFactor *= texelRoughness.g;
+#endif`,w0=`#ifdef USE_ROUGHNESSMAP
+	uniform sampler2D roughnessMap;
+#endif`,T0=`#if NUM_SPOT_LIGHT_COORDS > 0
+	varying vec4 vSpotLightCoord[ NUM_SPOT_LIGHT_COORDS ];
+#endif
+#if NUM_SPOT_LIGHT_MAPS > 0
+	uniform sampler2D spotLightMap[ NUM_SPOT_LIGHT_MAPS ];
+#endif
+#ifdef USE_SHADOWMAP
+	#if NUM_SUN_LIGHT_SHADOWS > 0
+		#define SUN_LIGHT_CASCADES 2
+		#if defined( SHADOWMAP_TYPE_PCF )
+			uniform sampler2DShadow sunShadowMap[ NUM_SUN_LIGHT_SHADOWS ];
+		#else
+			uniform sampler2D sunShadowMap[ NUM_SUN_LIGHT_SHADOWS ];
+		#endif
+		uniform mat4 sunShadowMatrix[ NUM_SUN_LIGHT_SHADOWS * SUN_LIGHT_CASCADES ];
+		uniform vec4 sunShadowCascade[ NUM_SUN_LIGHT_SHADOWS * SUN_LIGHT_CASCADES ];
+		varying vec4 vSunShadowWorldPosition;
+		varying vec3 vSunShadowWorldNormal;
+		struct SunLightShadow {
+			float shadowIntensity;
+			float shadowBias;
+			float shadowNormalBias;
+			float shadowRadius;
+			vec2 shadowMapSize;
+		};
+		uniform SunLightShadow sunLightShadows[ NUM_SUN_LIGHT_SHADOWS ];
+	#endif
+	#if NUM_DIR_LIGHT_SHADOWS > 0
+		#if defined( SHADOWMAP_TYPE_PCF )
+			uniform sampler2DShadow directionalShadowMap[ NUM_DIR_LIGHT_SHADOWS ];
+		#else
+			uniform sampler2D directionalShadowMap[ NUM_DIR_LIGHT_SHADOWS ];
+		#endif
+		varying vec4 vDirectionalShadowCoord[ NUM_DIR_LIGHT_SHADOWS ];
+		struct DirectionalLightShadow {
+			float shadowIntensity;
+			float shadowBias;
+			float shadowNormalBias;
+			float shadowRadius;
+			vec2 shadowMapSize;
+		};
+		uniform DirectionalLightShadow directionalLightShadows[ NUM_DIR_LIGHT_SHADOWS ];
+	#endif
+	#if NUM_SPOT_LIGHT_SHADOWS > 0
+		#if defined( SHADOWMAP_TYPE_PCF )
+			uniform sampler2DShadow spotShadowMap[ NUM_SPOT_LIGHT_SHADOWS ];
+		#else
+			uniform sampler2D spotShadowMap[ NUM_SPOT_LIGHT_SHADOWS ];
+		#endif
+		struct SpotLightShadow {
+			float shadowIntensity;
+			float shadowBias;
+			float shadowNormalBias;
+			float shadowRadius;
+			vec2 shadowMapSize;
+		};
+		uniform SpotLightShadow spotLightShadows[ NUM_SPOT_LIGHT_SHADOWS ];
+	#endif
+	#if NUM_POINT_LIGHT_SHADOWS > 0
+		#if defined( SHADOWMAP_TYPE_PCF )
+			uniform samplerCubeShadow pointShadowMap[ NUM_POINT_LIGHT_SHADOWS ];
+		#elif defined( SHADOWMAP_TYPE_BASIC )
+			uniform samplerCube pointShadowMap[ NUM_POINT_LIGHT_SHADOWS ];
+		#endif
+		varying vec4 vPointShadowCoord[ NUM_POINT_LIGHT_SHADOWS ];
+		struct PointLightShadow {
+			float shadowIntensity;
+			float shadowBias;
+			float shadowNormalBias;
+			float shadowRadius;
+			vec2 shadowMapSize;
+			float shadowCameraNear;
+			float shadowCameraFar;
+		};
+		uniform PointLightShadow pointLightShadows[ NUM_POINT_LIGHT_SHADOWS ];
+	#endif
+	#if defined( SHADOWMAP_TYPE_PCF )
+		float interleavedGradientNoise( vec2 position ) {
+			return fract( 52.9829189 * fract( dot( position, vec2( 0.06711056, 0.00583715 ) ) ) );
+		}
+		vec2 vogelDiskSample( int sampleIndex, int samplesCount, float phi ) {
+			const float goldenAngle = 2.399963229728653;
+			float r = sqrt( ( float( sampleIndex ) + 0.5 ) / float( samplesCount ) );
+			float theta = float( sampleIndex ) * goldenAngle + phi;
+			return vec2( cos( theta ), sin( theta ) ) * r;
+		}
+	#endif
+	#if defined( SHADOWMAP_TYPE_PCF )
+		float getShadow( sampler2DShadow shadowMap, vec2 shadowMapSize, float shadowIntensity, float shadowBias, float shadowRadius, vec4 shadowCoord ) {
+			float shadow = 1.0;
+			shadowCoord.xyz /= shadowCoord.w;
+			shadowCoord.z += shadowBias;
+			bool inFrustum = shadowCoord.x >= 0.0 && shadowCoord.x <= 1.0 && shadowCoord.y >= 0.0 && shadowCoord.y <= 1.0;
+			bool frustumTest = inFrustum && shadowCoord.z <= 1.0;
+			if ( frustumTest ) {
+				vec2 texelSize = vec2( 1.0 ) / shadowMapSize;
+				float radius = shadowRadius * texelSize.x;
+				float phi = interleavedGradientNoise( gl_FragCoord.xy ) * PI2;
+				shadow = (
+					texture( shadowMap, vec3( shadowCoord.xy + vogelDiskSample( 0, 5, phi ) * radius, shadowCoord.z ) ) +
+					texture( shadowMap, vec3( shadowCoord.xy + vogelDiskSample( 1, 5, phi ) * radius, shadowCoord.z ) ) +
+					texture( shadowMap, vec3( shadowCoord.xy + vogelDiskSample( 2, 5, phi ) * radius, shadowCoord.z ) ) +
+					texture( shadowMap, vec3( shadowCoord.xy + vogelDiskSample( 3, 5, phi ) * radius, shadowCoord.z ) ) +
+					texture( shadowMap, vec3( shadowCoord.xy + vogelDiskSample( 4, 5, phi ) * radius, shadowCoord.z ) )
+				) * 0.2;
+			}
+			return mix( 1.0, shadow, shadowIntensity );
+		}
+	#elif defined( SHADOWMAP_TYPE_VSM )
+		float getShadow( sampler2D shadowMap, vec2 shadowMapSize, float shadowIntensity, float shadowBias, float shadowRadius, vec4 shadowCoord ) {
+			float shadow = 1.0;
+			shadowCoord.xyz /= shadowCoord.w;
+			#ifdef USE_REVERSED_DEPTH_BUFFER
+				shadowCoord.z -= shadowBias;
+			#else
+				shadowCoord.z += shadowBias;
+			#endif
+			bool inFrustum = shadowCoord.x >= 0.0 && shadowCoord.x <= 1.0 && shadowCoord.y >= 0.0 && shadowCoord.y <= 1.0;
+			bool frustumTest = inFrustum && shadowCoord.z <= 1.0;
+			if ( frustumTest ) {
+				vec2 distribution = texture2D( shadowMap, shadowCoord.xy ).rg;
+				float mean = distribution.x;
+				float variance = distribution.y * distribution.y;
+				#ifdef USE_REVERSED_DEPTH_BUFFER
+					float hard_shadow = step( mean, shadowCoord.z );
+				#else
+					float hard_shadow = step( shadowCoord.z, mean );
+				#endif
+				
+				if ( hard_shadow == 1.0 ) {
+					shadow = 1.0;
+				} else {
+					variance = max( variance, 0.0000001 );
+					float d = shadowCoord.z - mean;
+					float p_max = variance / ( variance + d * d );
+					p_max = clamp( ( p_max - 0.3 ) / 0.65, 0.0, 1.0 );
+					shadow = max( hard_shadow, p_max );
+				}
+			}
+			return mix( 1.0, shadow, shadowIntensity );
+		}
+	#else
+		float getShadow( sampler2D shadowMap, vec2 shadowMapSize, float shadowIntensity, float shadowBias, float shadowRadius, vec4 shadowCoord ) {
+			float shadow = 1.0;
+			shadowCoord.xyz /= shadowCoord.w;
+			#ifdef USE_REVERSED_DEPTH_BUFFER
+				shadowCoord.z -= shadowBias;
+			#else
+				shadowCoord.z += shadowBias;
+			#endif
+			bool inFrustum = shadowCoord.x >= 0.0 && shadowCoord.x <= 1.0 && shadowCoord.y >= 0.0 && shadowCoord.y <= 1.0;
+			bool frustumTest = inFrustum && shadowCoord.z <= 1.0;
+			if ( frustumTest ) {
+				float depth = texture2D( shadowMap, shadowCoord.xy ).r;
+				#ifdef USE_REVERSED_DEPTH_BUFFER
+					shadow = step( depth, shadowCoord.z );
+				#else
+					shadow = step( shadowCoord.z, depth );
+				#endif
+			}
+			return mix( 1.0, shadow, shadowIntensity );
+		}
+	#endif
+	#if NUM_SUN_LIGHT_SHADOWS > 0
+		float getSunShadow(
+			#if defined( SHADOWMAP_TYPE_PCF )
+				sampler2DShadow shadowMap,
+			#else
+				sampler2D shadowMap,
+			#endif
+			SunLightShadow sunLightShadow,
+			int shadowIndex
+		) {
+			vec4 shadowWorldPosition = vec4( vSunShadowWorldPosition.xyz + vSunShadowWorldNormal * sunLightShadow.shadowNormalBias, 1.0 );
+			float viewDepth = vSunShadowWorldPosition.w;
+			int cascadeOffset = shadowIndex * SUN_LIGHT_CASCADES;
+			float shadow = 1.0;
+			for ( int i = SUN_LIGHT_CASCADES - 1; i >= 0; i -- ) {
+				vec4 cascade = sunShadowCascade[ cascadeOffset + i ];
+				if ( viewDepth >= cascade.x && viewDepth < cascade.y ) {
+					float cascadeShadow = getShadow(
+						shadowMap,
+						sunLightShadow.shadowMapSize,
+						sunLightShadow.shadowIntensity,
+						sunLightShadow.shadowBias,
+						sunLightShadow.shadowRadius,
+						sunShadowMatrix[ cascadeOffset + i ] * shadowWorldPosition
+					);
+					shadow = mix( cascadeShadow, shadow, smoothstep( cascade.z, cascade.y, viewDepth ) );
+				}
+			}
+			return shadow;
+		}
+	#endif
+	#if NUM_POINT_LIGHT_SHADOWS > 0
+	#if defined( SHADOWMAP_TYPE_PCF )
+	float getPointShadow( samplerCubeShadow shadowMap, vec2 shadowMapSize, float shadowIntensity, float shadowBias, float shadowRadius, vec4 shadowCoord, float shadowCameraNear, float shadowCameraFar ) {
+		float shadow = 1.0;
+		vec3 lightToPosition = shadowCoord.xyz;
+		vec3 bd3D = normalize( lightToPosition );
+		vec3 absVec = abs( lightToPosition );
+		float viewSpaceZ = max( max( absVec.x, absVec.y ), absVec.z );
+		if ( viewSpaceZ - shadowCameraFar <= 0.0 && viewSpaceZ - shadowCameraNear >= 0.0 ) {
+			#ifdef USE_REVERSED_DEPTH_BUFFER
+				float dp = ( shadowCameraNear * ( shadowCameraFar - viewSpaceZ ) ) / ( viewSpaceZ * ( shadowCameraFar - shadowCameraNear ) );
+				dp -= shadowBias;
+			#else
+				float dp = ( shadowCameraFar * ( viewSpaceZ - shadowCameraNear ) ) / ( viewSpaceZ * ( shadowCameraFar - shadowCameraNear ) );
+				dp += shadowBias;
+			#endif
+			float texelSize = shadowRadius / shadowMapSize.x;
+			vec3 absDir = abs( bd3D );
+			vec3 tangent = absDir.x > absDir.z ? vec3( 0.0, 1.0, 0.0 ) : vec3( 1.0, 0.0, 0.0 );
+			tangent = normalize( cross( bd3D, tangent ) );
+			vec3 bitangent = cross( bd3D, tangent );
+			float phi = interleavedGradientNoise( gl_FragCoord.xy ) * PI2;
+			vec2 sample0 = vogelDiskSample( 0, 5, phi );
+			vec2 sample1 = vogelDiskSample( 1, 5, phi );
+			vec2 sample2 = vogelDiskSample( 2, 5, phi );
+			vec2 sample3 = vogelDiskSample( 3, 5, phi );
+			vec2 sample4 = vogelDiskSample( 4, 5, phi );
+			shadow = (
+				texture( shadowMap, vec4( bd3D + ( tangent * sample0.x + bitangent * sample0.y ) * texelSize, dp ) ) +
+				texture( shadowMap, vec4( bd3D + ( tangent * sample1.x + bitangent * sample1.y ) * texelSize, dp ) ) +
+				texture( shadowMap, vec4( bd3D + ( tangent * sample2.x + bitangent * sample2.y ) * texelSize, dp ) ) +
+				texture( shadowMap, vec4( bd3D + ( tangent * sample3.x + bitangent * sample3.y ) * texelSize, dp ) ) +
+				texture( shadowMap, vec4( bd3D + ( tangent * sample4.x + bitangent * sample4.y ) * texelSize, dp ) )
+			) * 0.2;
+		}
+		return mix( 1.0, shadow, shadowIntensity );
+	}
+	#elif defined( SHADOWMAP_TYPE_BASIC )
+	float getPointShadow( samplerCube shadowMap, vec2 shadowMapSize, float shadowIntensity, float shadowBias, float shadowRadius, vec4 shadowCoord, float shadowCameraNear, float shadowCameraFar ) {
+		float shadow = 1.0;
+		vec3 lightToPosition = shadowCoord.xyz;
+		vec3 absVec = abs( lightToPosition );
+		float viewSpaceZ = max( max( absVec.x, absVec.y ), absVec.z );
+		if ( viewSpaceZ - shadowCameraFar <= 0.0 && viewSpaceZ - shadowCameraNear >= 0.0 ) {
+			float dp = ( shadowCameraFar * ( viewSpaceZ - shadowCameraNear ) ) / ( viewSpaceZ * ( shadowCameraFar - shadowCameraNear ) );
+			dp += shadowBias;
+			vec3 bd3D = normalize( lightToPosition );
+			float depth = textureCube( shadowMap, bd3D ).r;
+			#ifdef USE_REVERSED_DEPTH_BUFFER
+				depth = 1.0 - depth;
+			#endif
+			shadow = step( dp, depth );
+		}
+		return mix( 1.0, shadow, shadowIntensity );
+	}
+	#endif
+	#endif
+#endif`,A0=`#if NUM_SPOT_LIGHT_COORDS > 0
+	uniform mat4 spotLightMatrix[ NUM_SPOT_LIGHT_COORDS ];
+	varying vec4 vSpotLightCoord[ NUM_SPOT_LIGHT_COORDS ];
+#endif
+#ifdef USE_SHADOWMAP
+	#if NUM_SUN_LIGHT_SHADOWS > 0
+		varying vec4 vSunShadowWorldPosition;
+		varying vec3 vSunShadowWorldNormal;
+	#endif
+	#if NUM_DIR_LIGHT_SHADOWS > 0
+		uniform mat4 directionalShadowMatrix[ NUM_DIR_LIGHT_SHADOWS ];
+		varying vec4 vDirectionalShadowCoord[ NUM_DIR_LIGHT_SHADOWS ];
+		struct DirectionalLightShadow {
+			float shadowIntensity;
+			float shadowBias;
+			float shadowNormalBias;
+			float shadowRadius;
+			vec2 shadowMapSize;
+		};
+		uniform DirectionalLightShadow directionalLightShadows[ NUM_DIR_LIGHT_SHADOWS ];
+	#endif
+	#if NUM_SPOT_LIGHT_SHADOWS > 0
+		struct SpotLightShadow {
+			float shadowIntensity;
+			float shadowBias;
+			float shadowNormalBias;
+			float shadowRadius;
+			vec2 shadowMapSize;
+		};
+		uniform SpotLightShadow spotLightShadows[ NUM_SPOT_LIGHT_SHADOWS ];
+	#endif
+	#if NUM_POINT_LIGHT_SHADOWS > 0
+		uniform mat4 pointShadowMatrix[ NUM_POINT_LIGHT_SHADOWS ];
+		varying vec4 vPointShadowCoord[ NUM_POINT_LIGHT_SHADOWS ];
+		struct PointLightShadow {
+			float shadowIntensity;
+			float shadowBias;
+			float shadowNormalBias;
+			float shadowRadius;
+			vec2 shadowMapSize;
+			float shadowCameraNear;
+			float shadowCameraFar;
+		};
+		uniform PointLightShadow pointLightShadows[ NUM_POINT_LIGHT_SHADOWS ];
+	#endif
+#endif`,C0=`#if ( defined( USE_SHADOWMAP ) && ( NUM_DIR_LIGHT_SHADOWS > 0 || NUM_SUN_LIGHT_SHADOWS > 0 || NUM_POINT_LIGHT_SHADOWS > 0 ) ) || ( NUM_SPOT_LIGHT_COORDS > 0 )
+	#ifdef HAS_NORMAL
+		vec3 shadowWorldNormal = transformNormalByInverseViewMatrix( transformedNormal, viewMatrix );
+	#else
+		vec3 shadowWorldNormal = vec3( 0.0 );
+	#endif
+	vec4 shadowWorldPosition;
+#endif
+#if defined( USE_SHADOWMAP )
+	#if NUM_SUN_LIGHT_SHADOWS > 0
+		vSunShadowWorldPosition = vec4( worldPosition.xyz, - mvPosition.z );
+		vSunShadowWorldNormal = shadowWorldNormal;
+	#endif
+	#if NUM_DIR_LIGHT_SHADOWS > 0
+		#pragma unroll_loop_start
+		for ( int i = 0; i < NUM_DIR_LIGHT_SHADOWS; i ++ ) {
+			shadowWorldPosition = worldPosition + vec4( shadowWorldNormal * directionalLightShadows[ i ].shadowNormalBias, 0 );
+			vDirectionalShadowCoord[ i ] = directionalShadowMatrix[ i ] * shadowWorldPosition;
+		}
+		#pragma unroll_loop_end
+	#endif
+	#if NUM_POINT_LIGHT_SHADOWS > 0
+		#pragma unroll_loop_start
+		for ( int i = 0; i < NUM_POINT_LIGHT_SHADOWS; i ++ ) {
+			shadowWorldPosition = worldPosition + vec4( shadowWorldNormal * pointLightShadows[ i ].shadowNormalBias, 0 );
+			vPointShadowCoord[ i ] = pointShadowMatrix[ i ] * shadowWorldPosition;
+		}
+		#pragma unroll_loop_end
+	#endif
+#endif
+#if NUM_SPOT_LIGHT_COORDS > 0
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_SPOT_LIGHT_COORDS; i ++ ) {
+		shadowWorldPosition = worldPosition;
+		#if ( defined( USE_SHADOWMAP ) && UNROLLED_LOOP_INDEX < NUM_SPOT_LIGHT_SHADOWS )
+			shadowWorldPosition.xyz += shadowWorldNormal * spotLightShadows[ i ].shadowNormalBias;
+		#endif
+		vSpotLightCoord[ i ] = spotLightMatrix[ i ] * shadowWorldPosition;
+	}
+	#pragma unroll_loop_end
+#endif`,R0=`float getShadowMask() {
+	float shadow = 1.0;
+	#ifdef USE_SHADOWMAP
+	#if NUM_SUN_LIGHT_SHADOWS > 0
+	SunLightShadow sunLight;
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_SUN_LIGHT_SHADOWS; i ++ ) {
+		sunLight = sunLightShadows[ i ];
+		shadow *= receiveShadow ? getSunShadow( sunShadowMap[ i ], sunLight, UNROLLED_LOOP_INDEX ) : 1.0;
+	}
+	#pragma unroll_loop_end
+	#endif
+	#if NUM_DIR_LIGHT_SHADOWS > 0
+	DirectionalLightShadow directionalLight;
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_DIR_LIGHT_SHADOWS; i ++ ) {
+		directionalLight = directionalLightShadows[ i ];
+		shadow *= receiveShadow ? getShadow( directionalShadowMap[ i ], directionalLight.shadowMapSize, directionalLight.shadowIntensity, directionalLight.shadowBias, directionalLight.shadowRadius, vDirectionalShadowCoord[ i ] ) : 1.0;
+	}
+	#pragma unroll_loop_end
+	#endif
+	#if NUM_SPOT_LIGHT_SHADOWS > 0
+	SpotLightShadow spotLight;
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_SPOT_LIGHT_SHADOWS; i ++ ) {
+		spotLight = spotLightShadows[ i ];
+		shadow *= receiveShadow ? getShadow( spotShadowMap[ i ], spotLight.shadowMapSize, spotLight.shadowIntensity, spotLight.shadowBias, spotLight.shadowRadius, vSpotLightCoord[ i ] ) : 1.0;
+	}
+	#pragma unroll_loop_end
+	#endif
+	#if NUM_POINT_LIGHT_SHADOWS > 0 && ( defined( SHADOWMAP_TYPE_PCF ) || defined( SHADOWMAP_TYPE_BASIC ) )
+	PointLightShadow pointLight;
+	#pragma unroll_loop_start
+	for ( int i = 0; i < NUM_POINT_LIGHT_SHADOWS; i ++ ) {
+		pointLight = pointLightShadows[ i ];
+		shadow *= receiveShadow ? getPointShadow( pointShadowMap[ i ], pointLight.shadowMapSize, pointLight.shadowIntensity, pointLight.shadowBias, pointLight.shadowRadius, vPointShadowCoord[ i ], pointLight.shadowCameraNear, pointLight.shadowCameraFar ) : 1.0;
+	}
+	#pragma unroll_loop_end
+	#endif
+	#endif
+	return shadow;
+}`,P0=`#ifdef USE_SKINNING
+	mat4 boneMatX = getBoneMatrix( skinIndex.x );
+	mat4 boneMatY = getBoneMatrix( skinIndex.y );
+	mat4 boneMatZ = getBoneMatrix( skinIndex.z );
+	mat4 boneMatW = getBoneMatrix( skinIndex.w );
+#endif`,I0=`#ifdef USE_SKINNING
+	uniform mat4 bindMatrix;
+	uniform mat4 bindMatrixInverse;
+	uniform highp sampler2D boneTexture;
+	mat4 getBoneMatrix( const in float i ) {
+		int size = textureSize( boneTexture, 0 ).x;
+		int j = int( i ) * 4;
+		int x = j % size;
+		int y = j / size;
+		vec4 v1 = texelFetch( boneTexture, ivec2( x, y ), 0 );
+		vec4 v2 = texelFetch( boneTexture, ivec2( x + 1, y ), 0 );
+		vec4 v3 = texelFetch( boneTexture, ivec2( x + 2, y ), 0 );
+		vec4 v4 = texelFetch( boneTexture, ivec2( x + 3, y ), 0 );
+		return mat4( v1, v2, v3, v4 );
+	}
+#endif`,N0=`#ifdef USE_SKINNING
+	vec4 skinVertex = bindMatrix * vec4( transformed, 1.0 );
+	vec4 skinned = vec4( 0.0 );
+	skinned += boneMatX * skinVertex * skinWeight.x;
+	skinned += boneMatY * skinVertex * skinWeight.y;
+	skinned += boneMatZ * skinVertex * skinWeight.z;
+	skinned += boneMatW * skinVertex * skinWeight.w;
+	transformed = ( bindMatrixInverse * skinned ).xyz;
+#endif`,L0=`#ifdef USE_SKINNING
+	mat4 skinMatrix = mat4( 0.0 );
+	skinMatrix += skinWeight.x * boneMatX;
+	skinMatrix += skinWeight.y * boneMatY;
+	skinMatrix += skinWeight.z * boneMatZ;
+	skinMatrix += skinWeight.w * boneMatW;
+	skinMatrix = bindMatrixInverse * skinMatrix * bindMatrix;
+	objectNormal = vec4( skinMatrix * vec4( objectNormal, 0.0 ) ).xyz;
+	#ifdef USE_TANGENT
+		objectTangent = vec4( skinMatrix * vec4( objectTangent, 0.0 ) ).xyz;
+	#endif
+#endif`,D0=`float specularStrength;
+#ifdef USE_SPECULARMAP
+	vec4 texelSpecular = texture2D( specularMap, vSpecularMapUv );
+	specularStrength = texelSpecular.r;
+#else
+	specularStrength = 1.0;
+#endif`,U0=`#ifdef USE_SPECULARMAP
+	uniform sampler2D specularMap;
+#endif`,F0=`#if defined( TONE_MAPPING )
+	gl_FragColor.rgb = toneMapping( gl_FragColor.rgb );
+#endif`,O0=`#ifndef saturate
+#define saturate( a ) clamp( a, 0.0, 1.0 )
+#endif
+uniform float toneMappingExposure;
+vec3 LinearToneMapping( vec3 color ) {
+	return saturate( toneMappingExposure * color );
+}
+vec3 ReinhardToneMapping( vec3 color ) {
+	color *= toneMappingExposure;
+	return saturate( color / ( vec3( 1.0 ) + color ) );
+}
+vec3 CineonToneMapping( vec3 color ) {
+	color *= toneMappingExposure;
+	color = max( vec3( 0.0 ), color - 0.004 );
+	return pow( ( color * ( 6.2 * color + 0.5 ) ) / ( color * ( 6.2 * color + 1.7 ) + 0.06 ), vec3( 2.2 ) );
+}
+vec3 RRTAndODTFit( vec3 v ) {
+	vec3 a = v * ( v + 0.0245786 ) - 0.000090537;
+	vec3 b = v * ( 0.983729 * v + 0.4329510 ) + 0.238081;
+	return a / b;
+}
+vec3 ACESFilmicToneMapping( vec3 color ) {
+	const mat3 ACESInputMat = mat3(
+		vec3( 0.59719, 0.07600, 0.02840 ),		vec3( 0.35458, 0.90834, 0.13383 ),
+		vec3( 0.04823, 0.01566, 0.83777 )
+	);
+	const mat3 ACESOutputMat = mat3(
+		vec3(  1.60475, -0.10208, -0.00327 ),		vec3( -0.53108,  1.10813, -0.07276 ),
+		vec3( -0.07367, -0.00605,  1.07602 )
+	);
+	color *= toneMappingExposure / 0.6;
+	color = ACESInputMat * color;
+	color = RRTAndODTFit( color );
+	color = ACESOutputMat * color;
+	return saturate( color );
+}
+const mat3 LINEAR_REC2020_TO_LINEAR_SRGB = mat3(
+	vec3( 1.6605, - 0.1246, - 0.0182 ),
+	vec3( - 0.5876, 1.1329, - 0.1006 ),
+	vec3( - 0.0728, - 0.0083, 1.1187 )
+);
+const mat3 LINEAR_SRGB_TO_LINEAR_REC2020 = mat3(
+	vec3( 0.6274, 0.0691, 0.0164 ),
+	vec3( 0.3293, 0.9195, 0.0880 ),
+	vec3( 0.0433, 0.0113, 0.8956 )
+);
+vec3 agxDefaultContrastApprox( vec3 x ) {
+	vec3 x2 = x * x;
+	vec3 x4 = x2 * x2;
+	return + 15.5 * x4 * x2
+		- 40.14 * x4 * x
+		+ 31.96 * x4
+		- 6.868 * x2 * x
+		+ 0.4298 * x2
+		+ 0.1191 * x
+		- 0.00232;
+}
+vec3 AgXToneMapping( vec3 color ) {
+	const mat3 AgXInsetMatrix = mat3(
+		vec3( 0.856627153315983, 0.137318972929847, 0.11189821299995 ),
+		vec3( 0.0951212405381588, 0.761241990602591, 0.0767994186031903 ),
+		vec3( 0.0482516061458583, 0.101439036467562, 0.811302368396859 )
+	);
+	const mat3 AgXOutsetMatrix = mat3(
+		vec3( 1.1271005818144368, - 0.1413297634984383, - 0.14132976349843826 ),
+		vec3( - 0.11060664309660323, 1.157823702216272, - 0.11060664309660294 ),
+		vec3( - 0.016493938717834573, - 0.016493938717834257, 1.2519364065950405 )
+	);
+	const float AgxMinEv = - 12.47393;	const float AgxMaxEv = 4.026069;
+	color *= toneMappingExposure;
+	color = LINEAR_SRGB_TO_LINEAR_REC2020 * color;
+	color = AgXInsetMatrix * color;
+	color = max( color, 1e-10 );	color = log2( color );
+	color = ( color - AgxMinEv ) / ( AgxMaxEv - AgxMinEv );
+	color = clamp( color, 0.0, 1.0 );
+	color = agxDefaultContrastApprox( color );
+	color = AgXOutsetMatrix * color;
+	color = pow( max( vec3( 0.0 ), color ), vec3( 2.2 ) );
+	color = LINEAR_REC2020_TO_LINEAR_SRGB * color;
+	color = clamp( color, 0.0, 1.0 );
+	return color;
+}
+vec3 NeutralToneMapping( vec3 color ) {
+	const float StartCompression = 0.8 - 0.04;
+	const float Desaturation = 0.15;
+	color *= toneMappingExposure;
+	float x = min( color.r, min( color.g, color.b ) );
+	float offset = x < 0.08 ? x - 6.25 * x * x : 0.04;
+	color -= offset;
+	float peak = max( color.r, max( color.g, color.b ) );
+	if ( peak < StartCompression ) return color;
+	float d = 1. - StartCompression;
+	float newPeak = 1. - d * d / ( peak + d - StartCompression );
+	color *= newPeak / peak;
+	float g = 1. - 1. / ( Desaturation * ( peak - newPeak ) + 1. );
+	return mix( color, vec3( newPeak ), g );
+}
+vec3 CustomToneMapping( vec3 color ) { return color; }`,B0=`#ifdef USE_TRANSMISSION
+	material.transmission = transmission;
+	material.transmissionAlpha = 1.0;
+	material.thickness = thickness;
+	material.attenuationDistance = attenuationDistance;
+	material.attenuationColor = attenuationColor;
+	#ifdef USE_TRANSMISSIONMAP
+		material.transmission *= texture2D( transmissionMap, vTransmissionMapUv ).r;
+	#endif
+	#ifdef USE_THICKNESSMAP
+		material.thickness *= texture2D( thicknessMap, vThicknessMapUv ).g;
+	#endif
+	vec3 pos = vWorldPosition;
+	vec3 v = normalize( cameraPosition - pos );
+	vec3 n = transformNormalByInverseViewMatrix( normal, viewMatrix );
+	vec4 transmitted = getIBLVolumeRefraction(
+		n, v, material.roughness, material.diffuseContribution, material.specularColorBlended, material.specularF90,
+		pos, modelMatrix, viewMatrix, projectionMatrix, material.dispersion, material.ior, material.thickness,
+		material.attenuationColor, material.attenuationDistance );
+	material.transmissionAlpha = mix( material.transmissionAlpha, transmitted.a, material.transmission );
+	totalDiffuse = mix( totalDiffuse, transmitted.rgb, material.transmission );
+#endif`,k0=`#ifdef USE_TRANSMISSION
+	uniform float transmission;
+	uniform float thickness;
+	uniform float attenuationDistance;
+	uniform vec3 attenuationColor;
+	#ifdef USE_TRANSMISSIONMAP
+		uniform sampler2D transmissionMap;
+	#endif
+	#ifdef USE_THICKNESSMAP
+		uniform sampler2D thicknessMap;
+	#endif
+	uniform vec2 transmissionSamplerSize;
+	uniform sampler2D transmissionSamplerMap;
+	uniform mat4 modelMatrix;
+	uniform mat4 projectionMatrix;
+	varying vec3 vWorldPosition;
+	float w0( float a ) {
+		return ( 1.0 / 6.0 ) * ( a * ( a * ( - a + 3.0 ) - 3.0 ) + 1.0 );
+	}
+	float w1( float a ) {
+		return ( 1.0 / 6.0 ) * ( a *  a * ( 3.0 * a - 6.0 ) + 4.0 );
+	}
+	float w2( float a ){
+		return ( 1.0 / 6.0 ) * ( a * ( a * ( - 3.0 * a + 3.0 ) + 3.0 ) + 1.0 );
+	}
+	float w3( float a ) {
+		return ( 1.0 / 6.0 ) * ( a * a * a );
+	}
+	float g0( float a ) {
+		return w0( a ) + w1( a );
+	}
+	float g1( float a ) {
+		return w2( a ) + w3( a );
+	}
+	float h0( float a ) {
+		return - 1.0 + w1( a ) / ( w0( a ) + w1( a ) );
+	}
+	float h1( float a ) {
+		return 1.0 + w3( a ) / ( w2( a ) + w3( a ) );
+	}
+	vec4 bicubic( sampler2D tex, vec2 uv, vec4 texelSize, float lod ) {
+		uv = uv * texelSize.zw + 0.5;
+		vec2 iuv = floor( uv );
+		vec2 fuv = fract( uv );
+		float g0x = g0( fuv.x );
+		float g1x = g1( fuv.x );
+		float h0x = h0( fuv.x );
+		float h1x = h1( fuv.x );
+		float h0y = h0( fuv.y );
+		float h1y = h1( fuv.y );
+		vec2 p0 = ( vec2( iuv.x + h0x, iuv.y + h0y ) - 0.5 ) * texelSize.xy;
+		vec2 p1 = ( vec2( iuv.x + h1x, iuv.y + h0y ) - 0.5 ) * texelSize.xy;
+		vec2 p2 = ( vec2( iuv.x + h0x, iuv.y + h1y ) - 0.5 ) * texelSize.xy;
+		vec2 p3 = ( vec2( iuv.x + h1x, iuv.y + h1y ) - 0.5 ) * texelSize.xy;
+		return g0( fuv.y ) * ( g0x * textureLod( tex, p0, lod ) + g1x * textureLod( tex, p1, lod ) ) +
+			g1( fuv.y ) * ( g0x * textureLod( tex, p2, lod ) + g1x * textureLod( tex, p3, lod ) );
+	}
+	vec4 textureBicubic( sampler2D sampler, vec2 uv, float lod ) {
+		vec2 fLodSize = vec2( textureSize( sampler, int( lod ) ) );
+		vec2 cLodSize = vec2( textureSize( sampler, int( lod + 1.0 ) ) );
+		vec2 fLodSizeInv = 1.0 / fLodSize;
+		vec2 cLodSizeInv = 1.0 / cLodSize;
+		vec4 fSample = bicubic( sampler, uv, vec4( fLodSizeInv, fLodSize ), floor( lod ) );
+		vec4 cSample = bicubic( sampler, uv, vec4( cLodSizeInv, cLodSize ), ceil( lod ) );
+		return mix( fSample, cSample, fract( lod ) );
+	}
+	vec3 getVolumeTransmissionRay( const in vec3 n, const in vec3 v, const in float thickness, const in float ior, const in mat4 modelMatrix ) {
+		vec3 refractionVector = refract( - v, normalize( n ), 1.0 / ior );
+		vec3 modelScale;
+		modelScale.x = length( vec3( modelMatrix[ 0 ].xyz ) );
+		modelScale.y = length( vec3( modelMatrix[ 1 ].xyz ) );
+		modelScale.z = length( vec3( modelMatrix[ 2 ].xyz ) );
+		return normalize( refractionVector ) * thickness * modelScale;
+	}
+	float applyIorToRoughness( const in float roughness, const in float ior ) {
+		return roughness * clamp( ior * 2.0 - 2.0, 0.0, 1.0 );
+	}
+	vec4 getTransmissionSample( const in vec2 fragCoord, const in float roughness, const in float ior ) {
+		float lod = log2( transmissionSamplerSize.x ) * applyIorToRoughness( roughness, ior );
+		return textureBicubic( transmissionSamplerMap, fragCoord.xy, lod );
+	}
+	vec3 volumeAttenuation( const in float transmissionDistance, const in vec3 attenuationColor, const in float attenuationDistance ) {
+		if ( isinf( attenuationDistance ) ) {
+			return vec3( 1.0 );
+		} else {
+			vec3 attenuationCoefficient = -log( attenuationColor ) / attenuationDistance;
+			vec3 transmittance = exp( - attenuationCoefficient * transmissionDistance );			return transmittance;
+		}
+	}
+	vec4 getIBLVolumeRefraction( const in vec3 n, const in vec3 v, const in float roughness, const in vec3 diffuseColor,
+		const in vec3 specularColor, const in float specularF90, const in vec3 position, const in mat4 modelMatrix,
+		const in mat4 viewMatrix, const in mat4 projMatrix, const in float dispersion, const in float ior, const in float thickness,
+		const in vec3 attenuationColor, const in float attenuationDistance ) {
+		vec4 transmittedLight;
+		vec3 transmittance;
+		#ifdef USE_DISPERSION
+			float halfSpread = ( ior - 1.0 ) * 0.025 * dispersion;
+			vec3 iors = vec3( ior - halfSpread, ior, ior + halfSpread );
+			for ( int i = 0; i < 3; i ++ ) {
+				vec3 transmissionRay = getVolumeTransmissionRay( n, v, thickness, iors[ i ], modelMatrix );
+				vec3 refractedRayExit = position + transmissionRay;
+				vec4 ndcPos = projMatrix * viewMatrix * vec4( refractedRayExit, 1.0 );
+				vec2 refractionCoords = ndcPos.xy / ndcPos.w;
+				refractionCoords += 1.0;
+				refractionCoords /= 2.0;
+				vec4 transmissionSample = getTransmissionSample( refractionCoords, roughness, iors[ i ] );
+				transmittedLight[ i ] = transmissionSample[ i ];
+				transmittedLight.a += transmissionSample.a;
+				transmittance[ i ] = diffuseColor[ i ] * volumeAttenuation( length( transmissionRay ), attenuationColor, attenuationDistance )[ i ];
+			}
+			transmittedLight.a /= 3.0;
+		#else
+			vec3 transmissionRay = getVolumeTransmissionRay( n, v, thickness, ior, modelMatrix );
+			vec3 refractedRayExit = position + transmissionRay;
+			vec4 ndcPos = projMatrix * viewMatrix * vec4( refractedRayExit, 1.0 );
+			vec2 refractionCoords = ndcPos.xy / ndcPos.w;
+			refractionCoords += 1.0;
+			refractionCoords /= 2.0;
+			transmittedLight = getTransmissionSample( refractionCoords, roughness, ior );
+			transmittance = diffuseColor * volumeAttenuation( length( transmissionRay ), attenuationColor, attenuationDistance );
+		#endif
+		vec3 attenuatedColor = transmittance * transmittedLight.rgb;
+		vec3 F = EnvironmentBRDF( n, v, specularColor, specularF90, roughness );
+		float transmittanceFactor = ( transmittance.r + transmittance.g + transmittance.b ) / 3.0;
+		return vec4( ( 1.0 - F ) * attenuatedColor, 1.0 - ( 1.0 - transmittedLight.a ) * transmittanceFactor );
+	}
+#endif`,z0=`#if defined( USE_UV ) || defined( USE_ANISOTROPY )
+	varying vec2 vUv;
+#endif
+#ifdef USE_MAP
+	varying vec2 vMapUv;
+#endif
+#ifdef USE_ALPHAMAP
+	varying vec2 vAlphaMapUv;
+#endif
+#ifdef USE_LIGHTMAP
+	varying vec2 vLightMapUv;
+#endif
+#ifdef USE_AOMAP
+	varying vec2 vAoMapUv;
+#endif
+#ifdef USE_BUMPMAP
+	varying vec2 vBumpMapUv;
+#endif
+#ifdef USE_NORMALMAP
+	varying vec2 vNormalMapUv;
+#endif
+#ifdef USE_EMISSIVEMAP
+	varying vec2 vEmissiveMapUv;
+#endif
+#ifdef USE_METALNESSMAP
+	varying vec2 vMetalnessMapUv;
+#endif
+#ifdef USE_ROUGHNESSMAP
+	varying vec2 vRoughnessMapUv;
+#endif
+#ifdef USE_ANISOTROPYMAP
+	varying vec2 vAnisotropyMapUv;
+#endif
+#ifdef USE_CLEARCOATMAP
+	varying vec2 vClearcoatMapUv;
+#endif
+#ifdef USE_CLEARCOAT_NORMALMAP
+	varying vec2 vClearcoatNormalMapUv;
+#endif
+#ifdef USE_CLEARCOAT_ROUGHNESSMAP
+	varying vec2 vClearcoatRoughnessMapUv;
+#endif
+#ifdef USE_IRIDESCENCEMAP
+	varying vec2 vIridescenceMapUv;
+#endif
+#ifdef USE_IRIDESCENCE_THICKNESSMAP
+	varying vec2 vIridescenceThicknessMapUv;
+#endif
+#ifdef USE_SHEEN_COLORMAP
+	varying vec2 vSheenColorMapUv;
+#endif
+#ifdef USE_SHEEN_ROUGHNESSMAP
+	varying vec2 vSheenRoughnessMapUv;
+#endif
+#ifdef USE_SPECULARMAP
+	varying vec2 vSpecularMapUv;
+#endif
+#ifdef USE_SPECULAR_COLORMAP
+	varying vec2 vSpecularColorMapUv;
+#endif
+#ifdef USE_SPECULAR_INTENSITYMAP
+	varying vec2 vSpecularIntensityMapUv;
+#endif
+#ifdef USE_TRANSMISSIONMAP
+	uniform mat3 transmissionMapTransform;
+	varying vec2 vTransmissionMapUv;
+#endif
+#ifdef USE_THICKNESSMAP
+	uniform mat3 thicknessMapTransform;
+	varying vec2 vThicknessMapUv;
+#endif`,H0=`#if defined( USE_UV ) || defined( USE_ANISOTROPY )
+	varying vec2 vUv;
+#endif
+#ifdef USE_MAP
+	uniform mat3 mapTransform;
+	varying vec2 vMapUv;
+#endif
+#ifdef USE_ALPHAMAP
+	uniform mat3 alphaMapTransform;
+	varying vec2 vAlphaMapUv;
+#endif
+#ifdef USE_LIGHTMAP
+	uniform mat3 lightMapTransform;
+	varying vec2 vLightMapUv;
+#endif
+#ifdef USE_AOMAP
+	uniform mat3 aoMapTransform;
+	varying vec2 vAoMapUv;
+#endif
+#ifdef USE_BUMPMAP
+	uniform mat3 bumpMapTransform;
+	varying vec2 vBumpMapUv;
+#endif
+#ifdef USE_NORMALMAP
+	uniform mat3 normalMapTransform;
+	varying vec2 vNormalMapUv;
+#endif
+#ifdef USE_DISPLACEMENTMAP
+	uniform mat3 displacementMapTransform;
+	varying vec2 vDisplacementMapUv;
+#endif
+#ifdef USE_EMISSIVEMAP
+	uniform mat3 emissiveMapTransform;
+	varying vec2 vEmissiveMapUv;
+#endif
+#ifdef USE_METALNESSMAP
+	uniform mat3 metalnessMapTransform;
+	varying vec2 vMetalnessMapUv;
+#endif
+#ifdef USE_ROUGHNESSMAP
+	uniform mat3 roughnessMapTransform;
+	varying vec2 vRoughnessMapUv;
+#endif
+#ifdef USE_ANISOTROPYMAP
+	uniform mat3 anisotropyMapTransform;
+	varying vec2 vAnisotropyMapUv;
+#endif
+#ifdef USE_CLEARCOATMAP
+	uniform mat3 clearcoatMapTransform;
+	varying vec2 vClearcoatMapUv;
+#endif
+#ifdef USE_CLEARCOAT_NORMALMAP
+	uniform mat3 clearcoatNormalMapTransform;
+	varying vec2 vClearcoatNormalMapUv;
+#endif
+#ifdef USE_CLEARCOAT_ROUGHNESSMAP
+	uniform mat3 clearcoatRoughnessMapTransform;
+	varying vec2 vClearcoatRoughnessMapUv;
+#endif
+#ifdef USE_SHEEN_COLORMAP
+	uniform mat3 sheenColorMapTransform;
+	varying vec2 vSheenColorMapUv;
+#endif
+#ifdef USE_SHEEN_ROUGHNESSMAP
+	uniform mat3 sheenRoughnessMapTransform;
+	varying vec2 vSheenRoughnessMapUv;
+#endif
+#ifdef USE_IRIDESCENCEMAP
+	uniform mat3 iridescenceMapTransform;
+	varying vec2 vIridescenceMapUv;
+#endif
+#ifdef USE_IRIDESCENCE_THICKNESSMAP
+	uniform mat3 iridescenceThicknessMapTransform;
+	varying vec2 vIridescenceThicknessMapUv;
+#endif
+#ifdef USE_SPECULARMAP
+	uniform mat3 specularMapTransform;
+	varying vec2 vSpecularMapUv;
+#endif
+#ifdef USE_SPECULAR_COLORMAP
+	uniform mat3 specularColorMapTransform;
+	varying vec2 vSpecularColorMapUv;
+#endif
+#ifdef USE_SPECULAR_INTENSITYMAP
+	uniform mat3 specularIntensityMapTransform;
+	varying vec2 vSpecularIntensityMapUv;
+#endif
+#ifdef USE_TRANSMISSIONMAP
+	uniform mat3 transmissionMapTransform;
+	varying vec2 vTransmissionMapUv;
+#endif
+#ifdef USE_THICKNESSMAP
+	uniform mat3 thicknessMapTransform;
+	varying vec2 vThicknessMapUv;
+#endif`,G0=`#if defined( USE_UV ) || defined( USE_ANISOTROPY )
+	vUv = vec3( uv, 1 ).xy;
+#endif
+#ifdef USE_MAP
+	vMapUv = ( mapTransform * vec3( MAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_ALPHAMAP
+	vAlphaMapUv = ( alphaMapTransform * vec3( ALPHAMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_LIGHTMAP
+	vLightMapUv = ( lightMapTransform * vec3( LIGHTMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_AOMAP
+	vAoMapUv = ( aoMapTransform * vec3( AOMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_BUMPMAP
+	vBumpMapUv = ( bumpMapTransform * vec3( BUMPMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_NORMALMAP
+	vNormalMapUv = ( normalMapTransform * vec3( NORMALMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_DISPLACEMENTMAP
+	vDisplacementMapUv = ( displacementMapTransform * vec3( DISPLACEMENTMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_EMISSIVEMAP
+	vEmissiveMapUv = ( emissiveMapTransform * vec3( EMISSIVEMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_METALNESSMAP
+	vMetalnessMapUv = ( metalnessMapTransform * vec3( METALNESSMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_ROUGHNESSMAP
+	vRoughnessMapUv = ( roughnessMapTransform * vec3( ROUGHNESSMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_ANISOTROPYMAP
+	vAnisotropyMapUv = ( anisotropyMapTransform * vec3( ANISOTROPYMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_CLEARCOATMAP
+	vClearcoatMapUv = ( clearcoatMapTransform * vec3( CLEARCOATMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_CLEARCOAT_NORMALMAP
+	vClearcoatNormalMapUv = ( clearcoatNormalMapTransform * vec3( CLEARCOAT_NORMALMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_CLEARCOAT_ROUGHNESSMAP
+	vClearcoatRoughnessMapUv = ( clearcoatRoughnessMapTransform * vec3( CLEARCOAT_ROUGHNESSMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_IRIDESCENCEMAP
+	vIridescenceMapUv = ( iridescenceMapTransform * vec3( IRIDESCENCEMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_IRIDESCENCE_THICKNESSMAP
+	vIridescenceThicknessMapUv = ( iridescenceThicknessMapTransform * vec3( IRIDESCENCE_THICKNESSMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_SHEEN_COLORMAP
+	vSheenColorMapUv = ( sheenColorMapTransform * vec3( SHEEN_COLORMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_SHEEN_ROUGHNESSMAP
+	vSheenRoughnessMapUv = ( sheenRoughnessMapTransform * vec3( SHEEN_ROUGHNESSMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_SPECULARMAP
+	vSpecularMapUv = ( specularMapTransform * vec3( SPECULARMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_SPECULAR_COLORMAP
+	vSpecularColorMapUv = ( specularColorMapTransform * vec3( SPECULAR_COLORMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_SPECULAR_INTENSITYMAP
+	vSpecularIntensityMapUv = ( specularIntensityMapTransform * vec3( SPECULAR_INTENSITYMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_TRANSMISSIONMAP
+	vTransmissionMapUv = ( transmissionMapTransform * vec3( TRANSMISSIONMAP_UV, 1 ) ).xy;
+#endif
+#ifdef USE_THICKNESSMAP
+	vThicknessMapUv = ( thicknessMapTransform * vec3( THICKNESSMAP_UV, 1 ) ).xy;
+#endif`,V0=`#if defined( USE_ENVMAP ) || defined( DISTANCE ) || defined ( USE_SHADOWMAP ) || defined ( USE_TRANSMISSION ) || NUM_SPOT_LIGHT_COORDS > 0
+	vec4 worldPosition = vec4( transformed, 1.0 );
+	#ifdef USE_BATCHING
+		worldPosition = batchingMatrix * worldPosition;
+	#endif
+	#ifdef USE_INSTANCING
+		worldPosition = instanceMatrix * worldPosition;
+	#endif
+	worldPosition = modelMatrix * worldPosition;
+#endif`,W0=`varying vec2 vUv;
+uniform mat3 uvTransform;
+void main() {
+	vUv = ( uvTransform * vec3( uv, 1 ) ).xy;
+	gl_Position = vec4( position.xy, 1.0, 1.0 );
+}`,X0=`uniform sampler2D t2D;
+uniform float backgroundIntensity;
+varying vec2 vUv;
+void main() {
+	vec4 texColor = texture2D( t2D, vUv );
+	#ifdef DECODE_VIDEO_TEXTURE
+		texColor = vec4( mix( pow( texColor.rgb * 0.9478672986 + vec3( 0.0521327014 ), vec3( 2.4 ) ), texColor.rgb * 0.0773993808, vec3( lessThanEqual( texColor.rgb, vec3( 0.04045 ) ) ) ), texColor.w );
+	#endif
+	texColor.rgb *= backgroundIntensity;
+	gl_FragColor = texColor;
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,q0=`varying vec3 vWorldDirection;
+#include <common>
+void main() {
+	vWorldDirection = transformDirection( position, modelMatrix );
+	#include <begin_vertex>
+	#include <project_vertex>
+	gl_Position.z = gl_Position.w;
+}`,Y0=`#ifdef ENVMAP_TYPE_CUBE
+	uniform samplerCube envMap;
+#elif defined( ENVMAP_TYPE_CUBE_UV )
+	uniform sampler2D envMap;
+#endif
+uniform float backgroundBlurriness;
+uniform float backgroundIntensity;
+uniform mat3 backgroundRotation;
+varying vec3 vWorldDirection;
+#include <cube_uv_reflection_fragment>
+void main() {
+	#ifdef ENVMAP_TYPE_CUBE
+		vec4 texColor = textureCube( envMap, backgroundRotation * vWorldDirection );
+	#elif defined( ENVMAP_TYPE_CUBE_UV )
+		vec4 texColor = textureCubeUV( envMap, backgroundRotation * vWorldDirection, backgroundBlurriness );
+	#else
+		vec4 texColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+	#endif
+	texColor.rgb *= backgroundIntensity;
+	gl_FragColor = texColor;
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,Z0=`varying vec3 vWorldDirection;
+#include <common>
+void main() {
+	vWorldDirection = transformDirection( position, modelMatrix );
+	#include <begin_vertex>
+	#include <project_vertex>
+	gl_Position.z = gl_Position.w;
+}`,K0=`uniform samplerCube tCube;
+uniform float tFlip;
+uniform float opacity;
+varying vec3 vWorldDirection;
+void main() {
+	vec4 texColor = textureCube( tCube, vec3( tFlip * vWorldDirection.x, vWorldDirection.yz ) );
+	gl_FragColor = texColor;
+	gl_FragColor.a *= opacity;
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,J0=`#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacementmap_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+varying vec2 vHighPrecisionZW;
+void main() {
+	#include <uv_vertex>
+	#include <batching_vertex>
+	#include <skinbase_vertex>
+	#include <morphinstance_vertex>
+	#ifdef USE_DISPLACEMENTMAP
+		#include <beginnormal_vertex>
+		#include <morphnormal_vertex>
+		#include <skinnormal_vertex>
+	#endif
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <displacementmap_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	vHighPrecisionZW = gl_Position.zw;
+}`,$0=`#if DEPTH_PACKING == 3200
+	uniform float opacity;
+#endif
+#include <common>
+#include <packing>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+varying vec2 vHighPrecisionZW;
+void main() {
+	vec4 diffuseColor = vec4( 1.0 );
+	#include <clipping_planes_fragment>
+	#if DEPTH_PACKING == 3200
+		diffuseColor.a = opacity;
+	#endif
+	#include <map_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	#include <logdepthbuf_fragment>
+	#ifdef USE_REVERSED_DEPTH_BUFFER
+		float fragCoordZ = vHighPrecisionZW[ 0 ] / vHighPrecisionZW[ 1 ];
+	#else
+		float fragCoordZ = 0.5 * vHighPrecisionZW[ 0 ] / vHighPrecisionZW[ 1 ] + 0.5;
+	#endif
+	#if DEPTH_PACKING == 3200
+		gl_FragColor = vec4( vec3( 1.0 - fragCoordZ ), opacity );
+	#elif DEPTH_PACKING == 3201
+		gl_FragColor = packDepthToRGBA( fragCoordZ );
+	#elif DEPTH_PACKING == 3202
+		gl_FragColor = vec4( packDepthToRGB( fragCoordZ ), 1.0 );
+	#elif DEPTH_PACKING == 3203
+		gl_FragColor = vec4( packDepthToRG( fragCoordZ ), 0.0, 1.0 );
+	#endif
+}`,j0=`#define DISTANCE
+varying vec3 vWorldPosition;
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacementmap_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	#include <batching_vertex>
+	#include <skinbase_vertex>
+	#include <morphinstance_vertex>
+	#ifdef USE_DISPLACEMENTMAP
+		#include <beginnormal_vertex>
+		#include <morphnormal_vertex>
+		#include <skinnormal_vertex>
+	#endif
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <displacementmap_vertex>
+	#include <project_vertex>
+	#include <worldpos_vertex>
+	#include <clipping_planes_vertex>
+	vWorldPosition = worldPosition.xyz;
+}`,Q0=`#define DISTANCE
+uniform vec3 referencePosition;
+uniform float nearDistance;
+uniform float farDistance;
+varying vec3 vWorldPosition;
+#include <common>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( 1.0 );
+	#include <clipping_planes_fragment>
+	#include <map_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	float dist = length( vWorldPosition - referencePosition );
+	dist = ( dist - nearDistance ) / ( farDistance - nearDistance );
+	dist = saturate( dist );
+	gl_FragColor = vec4( dist, 0.0, 0.0, 1.0 );
+}`,eg=`varying vec3 vWorldDirection;
+#include <common>
+void main() {
+	vWorldDirection = transformDirection( position, modelMatrix );
+	#include <begin_vertex>
+	#include <project_vertex>
+}`,tg=`uniform sampler2D tEquirect;
+varying vec3 vWorldDirection;
+#include <common>
+void main() {
+	vec3 direction = normalize( vWorldDirection );
+	vec2 sampleUV = equirectUv( direction );
+	gl_FragColor = texture2D( tEquirect, sampleUV );
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,ng=`uniform float scale;
+attribute float lineDistance;
+varying float vLineDistance;
+#include <common>
+#include <uv_pars_vertex>
+#include <color_pars_vertex>
+#include <fog_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	vLineDistance = scale * lineDistance;
+	#include <uv_vertex>
+	#include <color_vertex>
+	#include <morphinstance_vertex>
+	#include <morphcolor_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	#include <fog_vertex>
+}`,ig=`uniform vec3 diffuse;
+uniform float opacity;
+uniform float dashSize;
+uniform float totalSize;
+varying float vLineDistance;
+#include <common>
+#include <color_pars_fragment>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <fog_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	if ( mod( vLineDistance, totalSize ) > dashSize ) {
+		discard;
+	}
+	vec3 outgoingLight = vec3( 0.0 );
+	#include <logdepthbuf_fragment>
+	#include <map_fragment>
+	#include <color_fragment>
+	outgoingLight = diffuseColor.rgb;
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+}`,sg=`#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <envmap_pars_vertex>
+#include <color_pars_vertex>
+#include <fog_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	#include <color_vertex>
+	#include <morphinstance_vertex>
+	#include <morphcolor_vertex>
+	#include <batching_vertex>
+	#if defined ( USE_ENVMAP ) || defined ( USE_SKINNING )
+		#include <beginnormal_vertex>
+		#include <morphnormal_vertex>
+		#include <skinbase_vertex>
+		#include <skinnormal_vertex>
+		#include <defaultnormal_vertex>
+	#endif
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	#include <worldpos_vertex>
+	#include <envmap_vertex>
+	#include <fog_vertex>
+}`,rg=`uniform vec3 diffuse;
+uniform float opacity;
+#ifndef FLAT_SHADED
+	varying vec3 vNormal;
+#endif
+#include <common>
+#include <dithering_pars_fragment>
+#include <color_pars_fragment>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <aomap_pars_fragment>
+#include <lightmap_pars_fragment>
+#include <envmap_common_pars_fragment>
+#include <envmap_pars_fragment>
+#include <fog_pars_fragment>
+#include <specularmap_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	#include <logdepthbuf_fragment>
+	#include <map_fragment>
+	#include <color_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	#include <specularmap_fragment>
+	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
+	#ifdef USE_LIGHTMAP
+		vec4 lightMapTexel = texture2D( lightMap, vLightMapUv );
+		reflectedLight.indirectDiffuse += lightMapTexel.rgb * lightMapIntensity * RECIPROCAL_PI;
+	#else
+		reflectedLight.indirectDiffuse += vec3( 1.0 );
+	#endif
+	#include <aomap_fragment>
+	reflectedLight.indirectDiffuse *= diffuseColor.rgb;
+	vec3 outgoingLight = reflectedLight.indirectDiffuse;
+	#include <envmap_fragment>
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+	#include <dithering_fragment>
+}`,ag=`#define LAMBERT
+varying vec3 vViewPosition;
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacementmap_pars_vertex>
+#include <envmap_pars_vertex>
+#include <color_pars_vertex>
+#include <fog_pars_vertex>
+#include <normal_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <shadowmap_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	#include <color_vertex>
+	#include <morphinstance_vertex>
+	#include <morphcolor_vertex>
+	#include <batching_vertex>
+	#include <beginnormal_vertex>
+	#include <morphnormal_vertex>
+	#include <skinbase_vertex>
+	#include <skinnormal_vertex>
+	#include <defaultnormal_vertex>
+	#include <normal_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <displacementmap_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	vViewPosition = - mvPosition.xyz;
+	#include <worldpos_vertex>
+	#include <envmap_vertex>
+	#include <shadowmap_vertex>
+	#include <fog_vertex>
+}`,og=`#define LAMBERT
+uniform vec3 diffuse;
+uniform vec3 emissive;
+uniform float opacity;
+#include <common>
+#include <dithering_pars_fragment>
+#include <color_pars_fragment>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <aomap_pars_fragment>
+#include <lightmap_pars_fragment>
+#include <emissivemap_pars_fragment>
+#include <cube_uv_reflection_fragment>
+#include <envmap_common_pars_fragment>
+#include <envmap_pars_fragment>
+#include <envmap_physical_pars_fragment>
+#include <fog_pars_fragment>
+#include <bsdfs>
+#include <lights_pars_begin>
+#include <normal_pars_fragment>
+#include <lights_lambert_pars_fragment>
+#include <shadowmap_pars_fragment>
+#include <bumpmap_pars_fragment>
+#include <normalmap_pars_fragment>
+#include <specularmap_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
+	vec3 totalEmissiveRadiance = emissive;
+	#include <logdepthbuf_fragment>
+	#include <map_fragment>
+	#include <color_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	#include <specularmap_fragment>
+	#include <normal_fragment_begin>
+	#include <normal_fragment_maps>
+	#include <emissivemap_fragment>
+	#include <lights_lambert_fragment>
+	#include <lights_fragment_begin>
+	#include <lights_fragment_maps>
+	#include <lights_fragment_end>
+	#include <aomap_fragment>
+	vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + totalEmissiveRadiance;
+	#include <envmap_fragment>
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+	#include <dithering_fragment>
+}`,lg=`#define MATCAP
+varying vec3 vViewPosition;
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <color_pars_vertex>
+#include <displacementmap_pars_vertex>
+#include <fog_pars_vertex>
+#include <normal_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	#include <color_vertex>
+	#include <morphinstance_vertex>
+	#include <morphcolor_vertex>
+	#include <batching_vertex>
+	#include <beginnormal_vertex>
+	#include <morphnormal_vertex>
+	#include <skinbase_vertex>
+	#include <skinnormal_vertex>
+	#include <defaultnormal_vertex>
+	#include <normal_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <displacementmap_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	#include <fog_vertex>
+	vViewPosition = - mvPosition.xyz;
+}`,cg=`#define MATCAP
+uniform vec3 diffuse;
+uniform float opacity;
+uniform sampler2D matcap;
+varying vec3 vViewPosition;
+#include <common>
+#include <dithering_pars_fragment>
+#include <color_pars_fragment>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <fog_pars_fragment>
+#include <normal_pars_fragment>
+#include <bumpmap_pars_fragment>
+#include <normalmap_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	#include <logdepthbuf_fragment>
+	#include <map_fragment>
+	#include <color_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	#include <normal_fragment_begin>
+	#include <normal_fragment_maps>
+	vec3 viewDir = normalize( vViewPosition );
+	vec3 x = normalize( vec3( viewDir.z, 0.0, - viewDir.x ) );
+	vec3 y = cross( viewDir, x );
+	vec2 uv = vec2( dot( x, normal ), dot( y, normal ) ) * 0.495 + 0.5;
+	#ifdef USE_MATCAP
+		vec4 matcapColor = texture2D( matcap, uv );
+	#else
+		vec4 matcapColor = vec4( vec3( mix( 0.2, 0.8, uv.y ) ), 1.0 );
+	#endif
+	vec3 outgoingLight = diffuseColor.rgb * matcapColor.rgb;
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+	#include <dithering_fragment>
+}`,ug=`#define NORMAL
+#if defined( FLAT_SHADED ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP_TANGENTSPACE )
+	varying vec3 vViewPosition;
+#endif
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacementmap_pars_vertex>
+#include <normal_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	#include <batching_vertex>
+	#include <beginnormal_vertex>
+	#include <morphinstance_vertex>
+	#include <morphnormal_vertex>
+	#include <skinbase_vertex>
+	#include <skinnormal_vertex>
+	#include <defaultnormal_vertex>
+	#include <normal_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <displacementmap_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+#if defined( FLAT_SHADED ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP_TANGENTSPACE )
+	vViewPosition = - mvPosition.xyz;
+#endif
+}`,hg=`#define NORMAL
+uniform float opacity;
+#if defined( FLAT_SHADED ) || defined( USE_BUMPMAP ) || defined( USE_NORMALMAP_TANGENTSPACE )
+	varying vec3 vViewPosition;
+#endif
+#include <uv_pars_fragment>
+#include <normal_pars_fragment>
+#include <bumpmap_pars_fragment>
+#include <normalmap_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( 0.0, 0.0, 0.0, opacity );
+	#include <clipping_planes_fragment>
+	#include <logdepthbuf_fragment>
+	#include <normal_fragment_begin>
+	#include <normal_fragment_maps>
+	gl_FragColor = vec4( normalize( normal ) * 0.5 + 0.5, diffuseColor.a );
+	#ifdef OPAQUE
+		gl_FragColor.a = 1.0;
+	#endif
+}`,dg=`#define PHONG
+varying vec3 vViewPosition;
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacementmap_pars_vertex>
+#include <envmap_pars_vertex>
+#include <color_pars_vertex>
+#include <fog_pars_vertex>
+#include <normal_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <shadowmap_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	#include <color_vertex>
+	#include <morphcolor_vertex>
+	#include <batching_vertex>
+	#include <beginnormal_vertex>
+	#include <morphinstance_vertex>
+	#include <morphnormal_vertex>
+	#include <skinbase_vertex>
+	#include <skinnormal_vertex>
+	#include <defaultnormal_vertex>
+	#include <normal_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <displacementmap_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	vViewPosition = - mvPosition.xyz;
+	#include <worldpos_vertex>
+	#include <envmap_vertex>
+	#include <shadowmap_vertex>
+	#include <fog_vertex>
+}`,fg=`#define PHONG
+uniform vec3 diffuse;
+uniform vec3 emissive;
+uniform vec3 specular;
+uniform float shininess;
+uniform float opacity;
+#include <common>
+#include <dithering_pars_fragment>
+#include <color_pars_fragment>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <aomap_pars_fragment>
+#include <lightmap_pars_fragment>
+#include <emissivemap_pars_fragment>
+#include <cube_uv_reflection_fragment>
+#include <envmap_common_pars_fragment>
+#include <envmap_pars_fragment>
+#include <envmap_physical_pars_fragment>
+#include <fog_pars_fragment>
+#include <bsdfs>
+#include <lights_pars_begin>
+#include <normal_pars_fragment>
+#include <lights_phong_pars_fragment>
+#include <shadowmap_pars_fragment>
+#include <bumpmap_pars_fragment>
+#include <normalmap_pars_fragment>
+#include <specularmap_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
+	vec3 totalEmissiveRadiance = emissive;
+	#include <logdepthbuf_fragment>
+	#include <map_fragment>
+	#include <color_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	#include <specularmap_fragment>
+	#include <normal_fragment_begin>
+	#include <normal_fragment_maps>
+	#include <emissivemap_fragment>
+	#include <lights_phong_fragment>
+	#include <lights_fragment_begin>
+	#include <lights_fragment_maps>
+	#include <lights_fragment_end>
+	#include <aomap_fragment>
+	vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;
+	#include <envmap_fragment>
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+	#include <dithering_fragment>
+}`,pg=`#define STANDARD
+varying vec3 vViewPosition;
+#ifdef USE_TRANSMISSION
+	varying vec3 vWorldPosition;
+#endif
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacementmap_pars_vertex>
+#include <color_pars_vertex>
+#include <fog_pars_vertex>
+#include <normal_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <shadowmap_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	#include <color_vertex>
+	#include <morphinstance_vertex>
+	#include <morphcolor_vertex>
+	#include <batching_vertex>
+	#include <beginnormal_vertex>
+	#include <morphnormal_vertex>
+	#include <skinbase_vertex>
+	#include <skinnormal_vertex>
+	#include <defaultnormal_vertex>
+	#include <normal_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <displacementmap_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	vViewPosition = - mvPosition.xyz;
+	#include <worldpos_vertex>
+	#include <shadowmap_vertex>
+	#include <fog_vertex>
+#ifdef USE_TRANSMISSION
+	vWorldPosition = worldPosition.xyz;
+#endif
+}`,mg=`#define STANDARD
+#ifdef PHYSICAL
+	#define IOR
+	#define USE_SPECULAR
+#endif
+uniform vec3 diffuse;
+uniform vec3 emissive;
+uniform float roughness;
+uniform float metalness;
+uniform float opacity;
+#ifdef IOR
+	uniform float ior;
+#endif
+#ifdef USE_SPECULAR
+	uniform float specularIntensity;
+	uniform vec3 specularColor;
+	#ifdef USE_SPECULAR_COLORMAP
+		uniform sampler2D specularColorMap;
+	#endif
+	#ifdef USE_SPECULAR_INTENSITYMAP
+		uniform sampler2D specularIntensityMap;
+	#endif
+#endif
+#ifdef USE_CLEARCOAT
+	uniform float clearcoat;
+	uniform float clearcoatRoughness;
+#endif
+#ifdef USE_DISPERSION
+	uniform float dispersion;
+#endif
+#ifdef USE_RETROREFLECTION
+	uniform float retroreflectivity;
+#endif
+#ifdef USE_IRIDESCENCE
+	uniform float iridescence;
+	uniform float iridescenceIOR;
+	uniform float iridescenceThicknessMinimum;
+	uniform float iridescenceThicknessMaximum;
+#endif
+#ifdef USE_SHEEN
+	uniform vec3 sheenColor;
+	uniform float sheenRoughness;
+	#ifdef USE_SHEEN_COLORMAP
+		uniform sampler2D sheenColorMap;
+	#endif
+	#ifdef USE_SHEEN_ROUGHNESSMAP
+		uniform sampler2D sheenRoughnessMap;
+	#endif
+#endif
+#ifdef USE_ANISOTROPY
+	uniform vec2 anisotropyVector;
+	#ifdef USE_ANISOTROPYMAP
+		uniform sampler2D anisotropyMap;
+	#endif
+#endif
+varying vec3 vViewPosition;
+#include <common>
+#include <dithering_pars_fragment>
+#include <color_pars_fragment>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <aomap_pars_fragment>
+#include <lightmap_pars_fragment>
+#include <emissivemap_pars_fragment>
+#include <iridescence_fragment>
+#include <cube_uv_reflection_fragment>
+#include <envmap_common_pars_fragment>
+#include <envmap_physical_pars_fragment>
+#include <fog_pars_fragment>
+#include <lights_pars_begin>
+#include <normal_pars_fragment>
+#include <lights_physical_pars_fragment>
+#include <transmission_pars_fragment>
+#include <shadowmap_pars_fragment>
+#include <bumpmap_pars_fragment>
+#include <normalmap_pars_fragment>
+#include <clearcoat_pars_fragment>
+#include <iridescence_pars_fragment>
+#include <roughnessmap_pars_fragment>
+#include <metalnessmap_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
+	vec3 totalEmissiveRadiance = emissive;
+	#include <logdepthbuf_fragment>
+	#include <map_fragment>
+	#include <color_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	#include <roughnessmap_fragment>
+	#include <metalnessmap_fragment>
+	#include <normal_fragment_begin>
+	#include <normal_fragment_maps>
+	#include <clearcoat_normal_fragment_begin>
+	#include <clearcoat_normal_fragment_maps>
+	#include <emissivemap_fragment>
+	#include <lights_physical_fragment>
+	#include <lights_fragment_begin>
+	#include <lights_fragment_maps>
+	#include <lights_fragment_end>
+	#include <aomap_fragment>
+	vec3 totalDiffuse = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse;
+	vec3 totalSpecular = reflectedLight.directSpecular + reflectedLight.indirectSpecular;
+	#include <transmission_fragment>
+	vec3 outgoingLight = totalDiffuse + totalSpecular + totalEmissiveRadiance;
+	#ifdef USE_SHEEN
+ 
+		outgoingLight = outgoingLight + sheenSpecularDirect + sheenSpecularIndirect;
+ 
+ 	#endif
+	#ifdef USE_CLEARCOAT
+		float dotNVcc = saturate( dot( geometryClearcoatNormal, geometryViewDir ) );
+		vec3 Fcc = F_Schlick( material.clearcoatF0, material.clearcoatF90, dotNVcc );
+		outgoingLight = outgoingLight * ( 1.0 - material.clearcoat * Fcc ) + ( clearcoatSpecularDirect + clearcoatSpecularIndirect ) * material.clearcoat;
+	#endif
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+	#include <dithering_fragment>
+}`,gg=`#define TOON
+varying vec3 vViewPosition;
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacementmap_pars_vertex>
+#include <color_pars_vertex>
+#include <fog_pars_vertex>
+#include <normal_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <shadowmap_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	#include <color_vertex>
+	#include <morphinstance_vertex>
+	#include <morphcolor_vertex>
+	#include <batching_vertex>
+	#include <beginnormal_vertex>
+	#include <morphnormal_vertex>
+	#include <skinbase_vertex>
+	#include <skinnormal_vertex>
+	#include <defaultnormal_vertex>
+	#include <normal_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <displacementmap_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	vViewPosition = - mvPosition.xyz;
+	#include <worldpos_vertex>
+	#include <shadowmap_vertex>
+	#include <fog_vertex>
+}`,xg=`#define TOON
+uniform vec3 diffuse;
+uniform vec3 emissive;
+uniform float opacity;
+#include <common>
+#include <dithering_pars_fragment>
+#include <color_pars_fragment>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <aomap_pars_fragment>
+#include <lightmap_pars_fragment>
+#include <emissivemap_pars_fragment>
+#include <gradientmap_pars_fragment>
+#include <fog_pars_fragment>
+#include <bsdfs>
+#include <lights_pars_begin>
+#include <normal_pars_fragment>
+#include <lights_toon_pars_fragment>
+#include <shadowmap_pars_fragment>
+#include <bumpmap_pars_fragment>
+#include <normalmap_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	ReflectedLight reflectedLight = ReflectedLight( vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ), vec3( 0.0 ) );
+	vec3 totalEmissiveRadiance = emissive;
+	#include <logdepthbuf_fragment>
+	#include <map_fragment>
+	#include <color_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	#include <normal_fragment_begin>
+	#include <normal_fragment_maps>
+	#include <emissivemap_fragment>
+	#include <lights_toon_fragment>
+	#include <lights_fragment_begin>
+	#include <lights_fragment_maps>
+	#include <lights_fragment_end>
+	#include <aomap_fragment>
+	vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + totalEmissiveRadiance;
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+	#include <dithering_fragment>
+}`,vg=`uniform float size;
+uniform float scale;
+#include <common>
+#include <color_pars_vertex>
+#include <fog_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+#ifdef USE_POINTS_UV
+	varying vec2 vUv;
+	uniform mat3 uvTransform;
+#endif
+void main() {
+	#ifdef USE_POINTS_UV
+		vUv = ( uvTransform * vec3( uv, 1 ) ).xy;
+	#endif
+	#include <color_vertex>
+	#include <morphinstance_vertex>
+	#include <morphcolor_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <project_vertex>
+	gl_PointSize = size;
+	#ifdef USE_SIZEATTENUATION
+		bool isPerspective = isPerspectiveMatrix( projectionMatrix );
+		if ( isPerspective ) gl_PointSize *= ( scale / - mvPosition.z );
+	#endif
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	#include <worldpos_vertex>
+	#include <fog_vertex>
+}`,yg=`uniform vec3 diffuse;
+uniform float opacity;
+#include <common>
+#include <color_pars_fragment>
+#include <map_particle_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <fog_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	vec3 outgoingLight = vec3( 0.0 );
+	#include <logdepthbuf_fragment>
+	#include <map_particle_fragment>
+	#include <color_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	outgoingLight = diffuseColor.rgb;
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+}`,_g=`#include <common>
+#include <batching_pars_vertex>
+#include <fog_pars_vertex>
+#include <morphtarget_pars_vertex>
+#include <skinning_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <shadowmap_pars_vertex>
+void main() {
+	#include <batching_vertex>
+	#include <beginnormal_vertex>
+	#include <morphinstance_vertex>
+	#include <morphnormal_vertex>
+	#include <skinbase_vertex>
+	#include <skinnormal_vertex>
+	#include <defaultnormal_vertex>
+	#include <begin_vertex>
+	#include <morphtarget_vertex>
+	#include <skinning_vertex>
+	#include <project_vertex>
+	#include <logdepthbuf_vertex>
+	#include <worldpos_vertex>
+	#include <shadowmap_vertex>
+	#include <fog_vertex>
+}`,bg=`uniform vec3 color;
+uniform float opacity;
+#include <common>
+#include <fog_pars_fragment>
+#include <bsdfs>
+#include <lights_pars_begin>
+#include <logdepthbuf_pars_fragment>
+#include <shadowmap_pars_fragment>
+#include <shadowmask_pars_fragment>
+void main() {
+	#include <logdepthbuf_fragment>
+	gl_FragColor = vec4( color, opacity * ( 1.0 - getShadowMask() ) );
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+	#include <premultiplied_alpha_fragment>
+}`,Mg=`uniform float rotation;
+uniform vec2 center;
+#include <common>
+#include <uv_pars_vertex>
+#include <fog_pars_vertex>
+#include <logdepthbuf_pars_vertex>
+#include <clipping_planes_pars_vertex>
+void main() {
+	#include <uv_vertex>
+	vec4 mvPosition = modelViewMatrix[ 3 ];
+	vec2 scale = vec2( length( modelMatrix[ 0 ].xyz ), length( modelMatrix[ 1 ].xyz ) );
+	#ifndef USE_SIZEATTENUATION
+		bool isPerspective = isPerspectiveMatrix( projectionMatrix );
+		if ( isPerspective ) scale *= - mvPosition.z;
+	#endif
+	vec2 alignedPosition = ( position.xy - ( center - vec2( 0.5 ) ) ) * scale;
+	vec2 rotatedPosition;
+	rotatedPosition.x = cos( rotation ) * alignedPosition.x - sin( rotation ) * alignedPosition.y;
+	rotatedPosition.y = sin( rotation ) * alignedPosition.x + cos( rotation ) * alignedPosition.y;
+	mvPosition.xy += rotatedPosition;
+	gl_Position = projectionMatrix * mvPosition;
+	#include <logdepthbuf_vertex>
+	#include <clipping_planes_vertex>
+	#include <fog_vertex>
+}`,Sg=`uniform vec3 diffuse;
+uniform float opacity;
+#include <common>
+#include <uv_pars_fragment>
+#include <map_pars_fragment>
+#include <alphamap_pars_fragment>
+#include <alphatest_pars_fragment>
+#include <alphahash_pars_fragment>
+#include <fog_pars_fragment>
+#include <logdepthbuf_pars_fragment>
+#include <clipping_planes_pars_fragment>
+void main() {
+	vec4 diffuseColor = vec4( diffuse, opacity );
+	#include <clipping_planes_fragment>
+	vec3 outgoingLight = vec3( 0.0 );
+	#include <logdepthbuf_fragment>
+	#include <map_fragment>
+	#include <alphamap_fragment>
+	#include <alphatest_fragment>
+	#include <alphahash_fragment>
+	outgoingLight = diffuseColor.rgb;
+	#include <opaque_fragment>
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+}`,ht={alphahash_fragment:Wp,alphahash_pars_fragment:Xp,alphamap_fragment:qp,alphamap_pars_fragment:Yp,alphatest_fragment:Zp,alphatest_pars_fragment:Kp,aomap_fragment:Jp,aomap_pars_fragment:$p,batching_pars_vertex:jp,batching_vertex:Qp,begin_vertex:em,beginnormal_vertex:tm,bsdfs:nm,iridescence_fragment:im,bumpmap_pars_fragment:sm,clipping_planes_fragment:rm,clipping_planes_pars_fragment:am,clipping_planes_pars_vertex:om,clipping_planes_vertex:lm,color_fragment:cm,color_pars_fragment:um,color_pars_vertex:hm,color_vertex:dm,common:fm,cube_uv_reflection_fragment:pm,defaultnormal_vertex:mm,displacementmap_pars_vertex:gm,displacementmap_vertex:xm,emissivemap_fragment:vm,emissivemap_pars_fragment:ym,colorspace_fragment:_m,colorspace_pars_fragment:bm,envmap_fragment:Mm,envmap_common_pars_fragment:Sm,envmap_pars_fragment:Em,envmap_pars_vertex:wm,envmap_physical_pars_fragment:Fm,envmap_vertex:Tm,fog_vertex:Am,fog_pars_vertex:Cm,fog_fragment:Rm,fog_pars_fragment:Pm,gradientmap_pars_fragment:Im,lightmap_pars_fragment:Nm,lights_lambert_fragment:Lm,lights_lambert_pars_fragment:Dm,lights_pars_begin:Um,lights_toon_fragment:Om,lights_toon_pars_fragment:Bm,lights_phong_fragment:km,lights_phong_pars_fragment:zm,lights_physical_fragment:Hm,lights_physical_pars_fragment:Gm,lights_fragment_begin:Vm,lights_fragment_maps:Wm,lights_fragment_end:Xm,lightprobes_pars_fragment:qm,logdepthbuf_fragment:Ym,logdepthbuf_pars_fragment:Zm,logdepthbuf_pars_vertex:Km,logdepthbuf_vertex:Jm,map_fragment:$m,map_pars_fragment:jm,map_particle_fragment:Qm,map_particle_pars_fragment:e0,metalnessmap_fragment:t0,metalnessmap_pars_fragment:n0,morphinstance_vertex:i0,morphcolor_vertex:s0,morphnormal_vertex:r0,morphtarget_pars_vertex:a0,morphtarget_vertex:o0,normal_fragment_begin:l0,normal_fragment_maps:c0,normal_pars_fragment:u0,normal_pars_vertex:h0,normal_vertex:d0,normalmap_pars_fragment:f0,clearcoat_normal_fragment_begin:p0,clearcoat_normal_fragment_maps:m0,clearcoat_pars_fragment:g0,iridescence_pars_fragment:x0,opaque_fragment:v0,packing:y0,premultiplied_alpha_fragment:_0,project_vertex:b0,dithering_fragment:M0,dithering_pars_fragment:S0,roughnessmap_fragment:E0,roughnessmap_pars_fragment:w0,shadowmap_pars_fragment:T0,shadowmap_pars_vertex:A0,shadowmap_vertex:C0,shadowmask_pars_fragment:R0,skinbase_vertex:P0,skinning_pars_vertex:I0,skinning_vertex:N0,skinnormal_vertex:L0,specularmap_fragment:D0,specularmap_pars_fragment:U0,tonemapping_fragment:F0,tonemapping_pars_fragment:O0,transmission_fragment:B0,transmission_pars_fragment:k0,uv_pars_fragment:z0,uv_pars_vertex:H0,uv_vertex:G0,worldpos_vertex:V0,background_vert:W0,background_frag:X0,backgroundCube_vert:q0,backgroundCube_frag:Y0,cube_vert:Z0,cube_frag:K0,depth_vert:J0,depth_frag:$0,distance_vert:j0,distance_frag:Q0,equirect_vert:eg,equirect_frag:tg,linedashed_vert:ng,linedashed_frag:ig,meshbasic_vert:sg,meshbasic_frag:rg,meshlambert_vert:ag,meshlambert_frag:og,meshmatcap_vert:lg,meshmatcap_frag:cg,meshnormal_vert:ug,meshnormal_frag:hg,meshphong_vert:dg,meshphong_frag:fg,meshphysical_vert:pg,meshphysical_frag:mg,meshtoon_vert:gg,meshtoon_frag:xg,points_vert:vg,points_frag:yg,shadow_vert:_g,shadow_frag:bg,sprite_vert:Mg,sprite_frag:Sg},we={common:{diffuse:{value:new he(16777215)},opacity:{value:1},map:{value:null},mapTransform:{value:new rt},alphaMap:{value:null},alphaMapTransform:{value:new rt},alphaTest:{value:0}},specularmap:{specularMap:{value:null},specularMapTransform:{value:new rt}},envmap:{envMap:{value:null},envMapRotation:{value:new rt},reflectivity:{value:1},ior:{value:1.5},refractionRatio:{value:.98},dfgLUT:{value:null}},aomap:{aoMap:{value:null},aoMapIntensity:{value:1},aoMapTransform:{value:new rt}},lightmap:{lightMap:{value:null},lightMapIntensity:{value:1},lightMapTransform:{value:new rt}},bumpmap:{bumpMap:{value:null},bumpMapTransform:{value:new rt},bumpScale:{value:1}},normalmap:{normalMap:{value:null},normalMapTransform:{value:new rt},normalScale:{value:new Me(1,1)}},displacementmap:{displacementMap:{value:null},displacementMapTransform:{value:new rt},displacementScale:{value:1},displacementBias:{value:0}},emissivemap:{emissiveMap:{value:null},emissiveMapTransform:{value:new rt}},metalnessmap:{metalnessMap:{value:null},metalnessMapTransform:{value:new rt}},roughnessmap:{roughnessMap:{value:null},roughnessMapTransform:{value:new rt}},gradientmap:{gradientMap:{value:null}},fog:{fogDensity:{value:25e-5},fogNear:{value:1},fogFar:{value:2e3},fogColor:{value:new he(16777215)}},lights:{ambientLightColor:{value:[]},lightProbe:{value:[]},sunLights:{value:[],properties:{direction:{},color:{}}},sunLightShadows:{value:[],properties:{shadowIntensity:1,shadowBias:{},shadowNormalBias:{},shadowRadius:{},shadowMapSize:{}}},sunShadowMatrix:{value:[]},sunShadowCascade:{value:[]},directionalLights:{value:[],properties:{direction:{},color:{}}},directionalLightShadows:{value:[],properties:{shadowIntensity:1,shadowBias:{},shadowNormalBias:{},shadowRadius:{},shadowMapSize:{}}},directionalShadowMatrix:{value:[]},spotLights:{value:[],properties:{color:{},position:{},direction:{},distance:{},coneCos:{},penumbraCos:{},decay:{}}},spotLightShadows:{value:[],properties:{shadowIntensity:1,shadowBias:{},shadowNormalBias:{},shadowRadius:{},shadowMapSize:{}}},spotLightMap:{value:[]},spotLightMatrix:{value:[]},pointLights:{value:[],properties:{color:{},position:{},decay:{},distance:{}}},pointLightShadows:{value:[],properties:{shadowIntensity:1,shadowBias:{},shadowNormalBias:{},shadowRadius:{},shadowMapSize:{},shadowCameraNear:{},shadowCameraFar:{}}},pointShadowMatrix:{value:[]},hemisphereLights:{value:[],properties:{direction:{},skyColor:{},groundColor:{}}},rectAreaLights:{value:[],properties:{color:{},position:{},width:{},height:{}}},ltc_1:{value:null},ltc_2:{value:null},probesSH:{value:null},probesMin:{value:new I},probesMax:{value:new I},probesResolution:{value:new I}},points:{diffuse:{value:new he(16777215)},opacity:{value:1},size:{value:1},scale:{value:1},map:{value:null},alphaMap:{value:null},alphaMapTransform:{value:new rt},alphaTest:{value:0},uvTransform:{value:new rt}},sprite:{diffuse:{value:new he(16777215)},opacity:{value:1},center:{value:new Me(.5,.5)},rotation:{value:0},map:{value:null},mapTransform:{value:new rt},alphaMap:{value:null},alphaMapTransform:{value:new rt},alphaTest:{value:0}}},pi={basic:{uniforms:mn([we.common,we.specularmap,we.envmap,we.aomap,we.lightmap,we.fog]),vertexShader:ht.meshbasic_vert,fragmentShader:ht.meshbasic_frag},lambert:{uniforms:mn([we.common,we.specularmap,we.envmap,we.aomap,we.lightmap,we.emissivemap,we.bumpmap,we.normalmap,we.displacementmap,we.fog,we.lights,{emissive:{value:new he(0)},envMapIntensity:{value:1}}]),vertexShader:ht.meshlambert_vert,fragmentShader:ht.meshlambert_frag},phong:{uniforms:mn([we.common,we.specularmap,we.envmap,we.aomap,we.lightmap,we.emissivemap,we.bumpmap,we.normalmap,we.displacementmap,we.fog,we.lights,{emissive:{value:new he(0)},specular:{value:new he(1118481)},shininess:{value:30},envMapIntensity:{value:1}}]),vertexShader:ht.meshphong_vert,fragmentShader:ht.meshphong_frag},standard:{uniforms:mn([we.common,we.envmap,we.aomap,we.lightmap,we.emissivemap,we.bumpmap,we.normalmap,we.displacementmap,we.roughnessmap,we.metalnessmap,we.fog,we.lights,{emissive:{value:new he(0)},roughness:{value:1},metalness:{value:0},envMapIntensity:{value:1}}]),vertexShader:ht.meshphysical_vert,fragmentShader:ht.meshphysical_frag},toon:{uniforms:mn([we.common,we.aomap,we.lightmap,we.emissivemap,we.bumpmap,we.normalmap,we.displacementmap,we.gradientmap,we.fog,we.lights,{emissive:{value:new he(0)}}]),vertexShader:ht.meshtoon_vert,fragmentShader:ht.meshtoon_frag},matcap:{uniforms:mn([we.common,we.bumpmap,we.normalmap,we.displacementmap,we.fog,{matcap:{value:null}}]),vertexShader:ht.meshmatcap_vert,fragmentShader:ht.meshmatcap_frag},points:{uniforms:mn([we.points,we.fog]),vertexShader:ht.points_vert,fragmentShader:ht.points_frag},dashed:{uniforms:mn([we.common,we.fog,{scale:{value:1},dashSize:{value:1},totalSize:{value:2}}]),vertexShader:ht.linedashed_vert,fragmentShader:ht.linedashed_frag},depth:{uniforms:mn([we.common,we.displacementmap]),vertexShader:ht.depth_vert,fragmentShader:ht.depth_frag},normal:{uniforms:mn([we.common,we.bumpmap,we.normalmap,we.displacementmap,{opacity:{value:1}}]),vertexShader:ht.meshnormal_vert,fragmentShader:ht.meshnormal_frag},sprite:{uniforms:mn([we.sprite,we.fog]),vertexShader:ht.sprite_vert,fragmentShader:ht.sprite_frag},background:{uniforms:{uvTransform:{value:new rt},t2D:{value:null},backgroundIntensity:{value:1}},vertexShader:ht.background_vert,fragmentShader:ht.background_frag},backgroundCube:{uniforms:{envMap:{value:null},backgroundBlurriness:{value:0},backgroundIntensity:{value:1},backgroundRotation:{value:new rt}},vertexShader:ht.backgroundCube_vert,fragmentShader:ht.backgroundCube_frag},cube:{uniforms:{tCube:{value:null},tFlip:{value:-1},opacity:{value:1}},vertexShader:ht.cube_vert,fragmentShader:ht.cube_frag},equirect:{uniforms:{tEquirect:{value:null}},vertexShader:ht.equirect_vert,fragmentShader:ht.equirect_frag},distance:{uniforms:mn([we.common,we.displacementmap,{referencePosition:{value:new I},nearDistance:{value:1},farDistance:{value:1e3}}]),vertexShader:ht.distance_vert,fragmentShader:ht.distance_frag},shadow:{uniforms:mn([we.lights,we.fog,{color:{value:new he(0)},opacity:{value:1}}]),vertexShader:ht.shadow_vert,fragmentShader:ht.shadow_frag}};pi.physical={uniforms:mn([pi.standard.uniforms,{clearcoat:{value:0},clearcoatMap:{value:null},clearcoatMapTransform:{value:new rt},clearcoatNormalMap:{value:null},clearcoatNormalMapTransform:{value:new rt},clearcoatNormalScale:{value:new Me(1,1)},clearcoatRoughness:{value:0},clearcoatRoughnessMap:{value:null},clearcoatRoughnessMapTransform:{value:new rt},dispersion:{value:0},retroreflectivity:{value:0},iridescence:{value:0},iridescenceMap:{value:null},iridescenceMapTransform:{value:new rt},iridescenceIOR:{value:1.3},iridescenceThicknessMinimum:{value:100},iridescenceThicknessMaximum:{value:400},iridescenceThicknessMap:{value:null},iridescenceThicknessMapTransform:{value:new rt},sheen:{value:0},sheenColor:{value:new he(0)},sheenColorMap:{value:null},sheenColorMapTransform:{value:new rt},sheenRoughness:{value:1},sheenRoughnessMap:{value:null},sheenRoughnessMapTransform:{value:new rt},transmission:{value:0},transmissionMap:{value:null},transmissionMapTransform:{value:new rt},transmissionSamplerSize:{value:new Me},transmissionSamplerMap:{value:null},thickness:{value:0},thicknessMap:{value:null},thicknessMapTransform:{value:new rt},attenuationDistance:{value:0},attenuationColor:{value:new he(0)},specularColor:{value:new he(1,1,1)},specularColorMap:{value:null},specularColorMapTransform:{value:new rt},specularIntensity:{value:1},specularIntensityMap:{value:null},specularIntensityMapTransform:{value:new rt},anisotropyVector:{value:new Me},anisotropyMap:{value:null},anisotropyMapTransform:{value:new rt}}]),vertexShader:ht.meshphysical_vert,fragmentShader:ht.meshphysical_frag};var Zl={r:0,b:0,g:0},Eg=new Ft,qd=new rt;qd.set(-1,0,0,0,1,0,0,0,1);function wg(i,e,t,n,s,r){let a=new he(0),o=s===!0?0:1,l,c,u=null,f=0,h=null;function p(S){let C=S.isScene===!0?S.background:null;if(C&&C.isTexture){let _=S.backgroundBlurriness>0;C=e.get(C,_)}return C}function x(S){let C=!1,_=p(S);_===null?g(a,o):_&&_.isColor&&(g(_,1),C=!0);let T=i.xr.getEnvironmentBlendMode();T==="additive"?t.buffers.color.setClear(0,0,0,1,r):T==="alpha-blend"&&t.buffers.color.setClear(0,0,0,0,r),(i.autoClear||C)&&(t.buffers.depth.setTest(!0),t.buffers.depth.setMask(!0),t.buffers.color.setMask(!0),i.clear(i.autoClearColor,i.autoClearDepth,i.autoClearStencil))}function M(S,C){let _=p(C);_&&(_.isCubeTexture||_.mapping===ua)?(c===void 0&&(c=new Je(new Pn(1,1,1),new pt({name:"BackgroundCubeMaterial",uniforms:ms(pi.backgroundCube.uniforms),vertexShader:pi.backgroundCube.vertexShader,fragmentShader:pi.backgroundCube.fragmentShader,side:Yt,depthTest:!1,depthWrite:!1,fog:!1,allowOverride:!1})),c.geometry.deleteAttribute("normal"),c.geometry.deleteAttribute("uv"),c.onBeforeRender=function(T,E,R){this.matrixWorld.copyPosition(R.matrixWorld)},Object.defineProperty(c.material,"envMap",{get:function(){return this.uniforms.envMap.value}}),n.update(c)),c.material.uniforms.envMap.value=_,c.material.uniforms.backgroundBlurriness.value=C.backgroundBlurriness,c.material.uniforms.backgroundIntensity.value=C.backgroundIntensity,c.material.uniforms.backgroundRotation.value.setFromMatrix4(Eg.makeRotationFromEuler(C.backgroundRotation)).transpose(),_.isCubeTexture&&_.isRenderTargetTexture===!1&&c.material.uniforms.backgroundRotation.value.premultiply(qd),c.material.toneMapped=mt.getTransfer(_.colorSpace)!==Ct,(u!==_||f!==_.version||h!==i.toneMapping)&&(c.material.needsUpdate=!0,u=_,f=_.version,h=i.toneMapping),c.layers.enableAll(),S.unshift(c,c.geometry,c.material,0,0,null)):_&&_.isTexture&&(l===void 0&&(l=new Je(new Kr(2,2),new pt({name:"BackgroundMaterial",uniforms:ms(pi.background.uniforms),vertexShader:pi.background.vertexShader,fragmentShader:pi.background.fragmentShader,side:di,depthTest:!1,depthWrite:!1,fog:!1,allowOverride:!1})),l.geometry.deleteAttribute("normal"),Object.defineProperty(l.material,"map",{get:function(){return this.uniforms.t2D.value}}),n.update(l)),l.material.uniforms.t2D.value=_,l.material.uniforms.backgroundIntensity.value=C.backgroundIntensity,l.material.toneMapped=mt.getTransfer(_.colorSpace)!==Ct,_.matrixAutoUpdate===!0&&_.updateMatrix(),l.material.uniforms.uvTransform.value.copy(_.matrix),(u!==_||f!==_.version||h!==i.toneMapping)&&(l.material.needsUpdate=!0,u=_,f=_.version,h=i.toneMapping),l.layers.enableAll(),S.unshift(l,l.geometry,l.material,0,0,null))}function g(S,C){S.getRGB(Zl,su(i)),t.buffers.color.setClear(Zl.r,Zl.g,Zl.b,C,r)}function m(){c!==void 0&&(c.geometry.dispose(),c.material.dispose(),c=void 0),l!==void 0&&(l.geometry.dispose(),l.material.dispose(),l=void 0)}return{getClearColor:function(){return a},setClearColor:function(S,C=1){a.set(S),o=C,g(a,o)},getClearAlpha:function(){return o},setClearAlpha:function(S){o=S,g(a,o)},render:x,addToRenderList:M,dispose:m}}function Tg(i,e){let t=i.getParameter(i.MAX_VERTEX_ATTRIBS),n={},s=h(null),r=s,a=!1;function o(L,B,H,D,W){let K=!1,J=f(L,D,H,B);r!==J&&(r=J,c(r.object)),K=p(L,D,H,W),K&&x(L,D,H,W),W!==null&&e.update(W,i.ELEMENT_ARRAY_BUFFER),(K||a)&&(a=!1,_(L,B,H,D),W!==null&&i.bindBuffer(i.ELEMENT_ARRAY_BUFFER,e.get(W).buffer))}function l(){return i.createVertexArray()}function c(L){return i.bindVertexArray(L)}function u(L){return i.deleteVertexArray(L)}function f(L,B,H,D){let W=D.wireframe===!0,K=n[B.id];K===void 0&&(K={},n[B.id]=K);let J=L.isInstancedMesh===!0?L.id:0,ne=K[J];ne===void 0&&(ne={},K[J]=ne);let Z=ne[H.id];Z===void 0&&(Z={},ne[H.id]=Z);let ee=Z[W];return ee===void 0&&(ee=h(l()),Z[W]=ee),ee}function h(L){let B=[],H=[],D=[];for(let W=0;W<t;W++)B[W]=0,H[W]=0,D[W]=0;return{geometry:null,program:null,wireframe:!1,newAttributes:B,enabledAttributes:H,attributeDivisors:D,object:L,attributes:{},index:null}}function p(L,B,H,D){let W=r.attributes,K=B.attributes,J=0,ne=H.getAttributes();for(let Z in ne)if(ne[Z].location>=0){let re=W[Z],Pe=K[Z];if(Pe===void 0&&(Z==="instanceMatrix"&&L.instanceMatrix&&(Pe=L.instanceMatrix),Z==="instanceColor"&&L.instanceColor&&(Pe=L.instanceColor)),re===void 0||re.attribute!==Pe||Pe&&re.data!==Pe.data)return!0;J++}return r.attributesNum!==J||r.index!==D}function x(L,B,H,D){let W={},K=B.attributes,J=0,ne=H.getAttributes();for(let Z in ne)if(ne[Z].location>=0){let re=K[Z];re===void 0&&(Z==="instanceMatrix"&&L.instanceMatrix&&(re=L.instanceMatrix),Z==="instanceColor"&&L.instanceColor&&(re=L.instanceColor));let Pe={};Pe.attribute=re,re&&re.data&&(Pe.data=re.data),W[Z]=Pe,J++}r.attributes=W,r.attributesNum=J,r.index=D}function M(){let L=r.newAttributes;for(let B=0,H=L.length;B<H;B++)L[B]=0}function g(L){m(L,0)}function m(L,B){let H=r.newAttributes,D=r.enabledAttributes,W=r.attributeDivisors;H[L]=1,D[L]===0&&(i.enableVertexAttribArray(L),D[L]=1),W[L]!==B&&(i.vertexAttribDivisor(L,B),W[L]=B)}function S(){let L=r.newAttributes,B=r.enabledAttributes;for(let H=0,D=B.length;H<D;H++)B[H]!==L[H]&&(i.disableVertexAttribArray(H),B[H]=0)}function C(L,B,H,D,W,K,J){J===!0?i.vertexAttribIPointer(L,B,H,W,K):i.vertexAttribPointer(L,B,H,D,W,K)}function _(L,B,H,D){M();let W=D.attributes,K=H.getAttributes(),J=B.defaultAttributeValues;for(let ne in K){let Z=K[ne];if(Z.location>=0){let ee=W[ne];if(ee===void 0&&(ne==="instanceMatrix"&&L.instanceMatrix&&(ee=L.instanceMatrix),ne==="instanceColor"&&L.instanceColor&&(ee=L.instanceColor)),ee!==void 0){let re=ee.normalized,Pe=ee.itemSize,Ie=e.get(ee);if(Ie===void 0)continue;let vt=Ie.buffer,ot=Ie.type,ut=Ie.bytesPerElement,j=ot===i.INT||ot===i.UNSIGNED_INT||ee.gpuType===cl;if(ee.isInterleavedBufferAttribute){let se=ee.data,Ee=se.stride,Ve=ee.offset;if(se.isInstancedInterleavedBuffer){for(let fe=0;fe<Z.locationSize;fe++)m(Z.location+fe,se.meshPerAttribute);L.isInstancedMesh!==!0&&D._maxInstanceCount===void 0&&(D._maxInstanceCount=se.meshPerAttribute*se.count)}else for(let fe=0;fe<Z.locationSize;fe++)g(Z.location+fe);i.bindBuffer(i.ARRAY_BUFFER,vt);for(let fe=0;fe<Z.locationSize;fe++)C(Z.location+fe,Pe/Z.locationSize,ot,re,Ee*ut,(Ve+Pe/Z.locationSize*fe)*ut,j)}else{if(ee.isInstancedBufferAttribute){for(let se=0;se<Z.locationSize;se++)m(Z.location+se,ee.meshPerAttribute);L.isInstancedMesh!==!0&&D._maxInstanceCount===void 0&&(D._maxInstanceCount=ee.meshPerAttribute*ee.count)}else for(let se=0;se<Z.locationSize;se++)g(Z.location+se);i.bindBuffer(i.ARRAY_BUFFER,vt);for(let se=0;se<Z.locationSize;se++)C(Z.location+se,Pe/Z.locationSize,ot,re,Pe*ut,Pe/Z.locationSize*se*ut,j)}}else if(J!==void 0){let re=J[ne];if(re!==void 0)switch(re.length){case 2:i.vertexAttrib2fv(Z.location,re);break;case 3:i.vertexAttrib3fv(Z.location,re);break;case 4:i.vertexAttrib4fv(Z.location,re);break;default:i.vertexAttrib1fv(Z.location,re)}}}}S()}function T(){w();for(let L in n){let B=n[L];for(let H in B){let D=B[H];for(let W in D){let K=D[W];for(let J in K)u(K[J].object),delete K[J];delete D[W]}}delete n[L]}}function E(L){if(n[L.id]===void 0)return;let B=n[L.id];for(let H in B){let D=B[H];for(let W in D){let K=D[W];for(let J in K)u(K[J].object),delete K[J];delete D[W]}}delete n[L.id]}function R(L){for(let B in n){let H=n[B];for(let D in H){let W=H[D];if(W[L.id]===void 0)continue;let K=W[L.id];for(let J in K)u(K[J].object),delete K[J];delete W[L.id]}}}function y(L){for(let B in n){let H=n[B],D=L.isInstancedMesh===!0?L.id:0,W=H[D];if(W!==void 0){for(let K in W){let J=W[K];for(let ne in J)u(J[ne].object),delete J[ne];delete W[K]}delete H[D],Object.keys(H).length===0&&delete n[B]}}}function w(){P(),a=!0,r!==s&&(r=s,c(r.object))}function P(){s.geometry=null,s.program=null,s.wireframe=!1}return{setup:o,reset:w,resetDefaultState:P,dispose:T,releaseStatesOfGeometry:E,releaseStatesOfObject:y,releaseStatesOfProgram:R,initAttributes:M,enableAttribute:g,disableUnusedAttributes:S}}function Ag(i,e,t){let n;function s(l){n=l}function r(l,c){i.drawArrays(n,l,c),t.update(c,n,1)}function a(l,c,u){u!==0&&(i.drawArraysInstanced(n,l,c,u),t.update(c,n,u))}function o(l,c,u){if(u===0)return;e.get("WEBGL_multi_draw").multiDrawArraysWEBGL(n,l,0,c,0,u);let h=0;for(let p=0;p<u;p++)h+=c[p];t.update(h,n,1)}this.setMode=s,this.render=r,this.renderInstances=a,this.renderMultiDraw=o}function Cg(i,e,t,n){let s;function r(){if(s!==void 0)return s;if(e.has("EXT_texture_filter_anisotropic")===!0){let R=e.get("EXT_texture_filter_anisotropic");s=i.getParameter(R.MAX_TEXTURE_MAX_ANISOTROPY_EXT)}else s=0;return s}function a(R){return!(R!==Hn&&n.convert(R)!==i.getParameter(i.IMPLEMENTATION_COLOR_READ_FORMAT))}function o(R){let y=R===un&&(e.has("EXT_color_buffer_half_float")||e.has("EXT_color_buffer_float"));return!(R!==En&&R!==zn&&!y&&n.convert(R)!==i.getParameter(i.IMPLEMENTATION_COLOR_READ_TYPE))}function l(R){if(R==="highp"){if(i.getShaderPrecisionFormat(i.VERTEX_SHADER,i.HIGH_FLOAT).precision>0&&i.getShaderPrecisionFormat(i.FRAGMENT_SHADER,i.HIGH_FLOAT).precision>0)return"highp";R="mediump"}return R==="mediump"&&i.getShaderPrecisionFormat(i.VERTEX_SHADER,i.MEDIUM_FLOAT).precision>0&&i.getShaderPrecisionFormat(i.FRAGMENT_SHADER,i.MEDIUM_FLOAT).precision>0?"mediump":"lowp"}let c=t.precision!==void 0?t.precision:"highp",u=l(c);u!==c&&(Ke("WebGLRenderer:",c,"not supported, using",u,"instead."),c=u);let f=t.logarithmicDepthBuffer===!0,h=t.reversedDepthBuffer===!0&&e.has("EXT_clip_control");t.reversedDepthBuffer===!0&&h===!1&&Ke("WebGLRenderer: Unable to use reversed depth buffer due to missing EXT_clip_control extension. Fallback to default depth buffer.");let p=i.getParameter(i.MAX_TEXTURE_IMAGE_UNITS),x=i.getParameter(i.MAX_VERTEX_TEXTURE_IMAGE_UNITS),M=i.getParameter(i.MAX_TEXTURE_SIZE),g=i.getParameter(i.MAX_CUBE_MAP_TEXTURE_SIZE),m=i.getParameter(i.MAX_VERTEX_ATTRIBS),S=i.getParameter(i.MAX_VERTEX_UNIFORM_VECTORS),C=i.getParameter(i.MAX_VARYING_VECTORS),_=i.getParameter(i.MAX_FRAGMENT_UNIFORM_VECTORS),T=i.getParameter(i.MAX_SAMPLES),E=i.getParameter(i.SAMPLES);return{isWebGL2:!0,getMaxAnisotropy:r,getMaxPrecision:l,textureFormatReadable:a,textureTypeReadable:o,precision:c,logarithmicDepthBuffer:f,reversedDepthBuffer:h,maxTextures:p,maxVertexTextures:x,maxTextureSize:M,maxCubemapSize:g,maxAttributes:m,maxVertexUniforms:S,maxVaryings:C,maxFragmentUniforms:_,maxSamples:T,samples:E}}function Rg(i){let e=this,t=null,n=0,s=!1,r=!1,a=new Yn,o=new rt,l={value:null,needsUpdate:!1};this.uniform=l,this.numPlanes=0,this.numIntersection=0,this.init=function(f,h){let p=f.length!==0||h||n!==0||s;return s=h,n=f.length,p},this.beginShadows=function(){r=!0,u(null)},this.endShadows=function(){r=!1},this.setGlobalState=function(f,h){t=u(f,h,0)},this.setState=function(f,h,p){let x=f.clippingPlanes,M=f.clipIntersection,g=f.clipShadows,m=i.get(f);if(!s||x===null||x.length===0||r&&!g)r?u(null):c();else{let S=r?0:n,C=S*4,_=m.clippingState||null;l.value=_,_=u(x,h,C,p);for(let T=0;T!==C;++T)_[T]=t[T];m.clippingState=_,this.numIntersection=M?this.numPlanes:0,this.numPlanes+=S}};function c(){l.value!==t&&(l.value=t,l.needsUpdate=n>0),e.numPlanes=n,e.numIntersection=0}function u(f,h,p,x){let M=f!==null?f.length:0,g=null;if(M!==0){if(g=l.value,x!==!0||g===null){let m=p+M*4,S=h.matrixWorldInverse;o.getNormalMatrix(S),(g===null||g.length<m)&&(g=new Float32Array(m));for(let C=0,_=p;C!==M;++C,_+=4)a.copy(f[C]).applyMatrix4(S,o),a.normal.toArray(g,_),g[_+3]=a.constant}l.value=g,l.needsUpdate=!0}return e.numPlanes=M,e.numIntersection=0,g}}var ir=4,Pg=6,Ig=20,Ng=256,_a=new Vi,Ed=new he,fu=null,pu=0,mu=0,gu=!1,Lg=new I,gs=new I,Zi=class{constructor(e){this._renderer=e,this._pingPongRenderTarget=null,this._lodMax=0,this._cubeSize=0,this._sizeLods=[],this._lodMeshes=[],this._backgroundBox=null,this._cubemapMaterial=null,this._equirectMaterial=null,this._blurMaterial=null,this._ggxMaterial=null}fromScene(e,t=0,n=.1,s=100,r={}){let{size:a=256,position:o=Lg}=r;fu=this._renderer.getRenderTarget(),pu=this._renderer.getActiveCubeFace(),mu=this._renderer.getActiveMipmapLevel(),gu=this._renderer.xr.enabled,this._renderer.xr.enabled=!1,this._setSize(a);let l=this._allocateTargets();return l.depthBuffer=!0,this._sceneToCubeUV(e,n,s,l,o),t>0&&this._blur(l,0,0,t),this._applyPMREM(l),this._cleanup(l),l}fromEquirectangular(e,t=null){return this._fromTexture(e,t)}fromCubemap(e,t=null){return this._fromTexture(e,t)}compileCubemapShader(){this._cubemapMaterial===null&&(this._cubemapMaterial=Ad(),this._compileMaterial(this._cubemapMaterial))}compileEquirectangularShader(){this._equirectMaterial===null&&(this._equirectMaterial=Td(),this._compileMaterial(this._equirectMaterial))}dispose(){this._dispose(),this._cubemapMaterial!==null&&this._cubemapMaterial.dispose(),this._equirectMaterial!==null&&this._equirectMaterial.dispose(),this._backgroundBox!==null&&(this._backgroundBox.geometry.dispose(),this._backgroundBox.material.dispose())}_setSize(e){this._lodMax=Math.floor(Math.log2(e)),this._cubeSize=Math.pow(2,this._lodMax)}_dispose(){this._blurMaterial!==null&&this._blurMaterial.dispose(),this._ggxMaterial!==null&&this._ggxMaterial.dispose(),this._pingPongRenderTarget!==null&&this._pingPongRenderTarget.dispose();for(let e=0;e<this._lodMeshes.length;e++)this._lodMeshes[e].geometry.dispose()}_cleanup(e){this._renderer.setRenderTarget(fu,pu,mu),this._renderer.xr.enabled=gu,e.scissorTest=!1,nr(e,0,0,e.width,e.height)}_fromTexture(e,t){e.mapping===Wi||e.mapping===ps?this._setSize(e.image.length===0?16:e.image[0].width||e.image[0].image.width):this._setSize(e.image.width/4),fu=this._renderer.getRenderTarget(),pu=this._renderer.getActiveCubeFace(),mu=this._renderer.getActiveMipmapLevel(),gu=this._renderer.xr.enabled,this._renderer.xr.enabled=!1;let n=t||this._allocateTargets();return this._textureToCubeUV(e,n),this._applyPMREM(n),this._cleanup(n),n}_allocateTargets(){let e=3*Math.max(this._cubeSize,112),t=4*this._cubeSize,n={magFilter:cn,minFilter:cn,generateMipmaps:!1,type:un,format:Hn,colorSpace:Lr,depthBuffer:!1},s=wd(e,t,n);if(this._pingPongRenderTarget===null||this._pingPongRenderTarget.width!==e||this._pingPongRenderTarget.height!==t){this._pingPongRenderTarget!==null&&this._dispose(),this._pingPongRenderTarget=wd(e,t,n);let{_lodMax:r}=this;({lodMeshes:this._lodMeshes,sizeLods:this._sizeLods}=Dg(r)),this._blurMaterial=Fg(r,e,t),this._ggxMaterial=Ug(r,e,t)}return s}_compileMaterial(e){let t=new Je(new _t,e);this._renderer.compile(t,_a)}_sceneToCubeUV(e,t,n,s,r){let l=new $t(90,1,t,n),c=[1,-1,1,1,1,1],u=[1,1,1,-1,-1,-1],f=this._renderer,h=f.autoClear,p=f.toneMapping;f.getClearColor(Ed),f.toneMapping=jn,f.autoClear=!1,f.state.buffers.depth.getReversed()&&(f.setRenderTarget(s),f.clearDepth(),f.setRenderTarget(null)),this._backgroundBox===null&&(this._backgroundBox=new Je(new Pn,new Ot({name:"PMREM.Background",side:Yt,depthWrite:!1,depthTest:!1})));let M=this._backgroundBox,g=M.material,m=!1,S=e.background;S?S.isColor&&(g.color.copy(S),e.background=null,m=!0):(g.color.copy(Ed),m=!0);for(let C=0;C<6;C++){let _=C%3;_===0?(l.up.set(0,c[C],0),l.position.set(r.x,r.y,r.z),l.lookAt(r.x+u[C],r.y,r.z)):_===1?(l.up.set(0,0,c[C]),l.position.set(r.x,r.y,r.z),l.lookAt(r.x,r.y+u[C],r.z)):(l.up.set(0,c[C],0),l.position.set(r.x,r.y,r.z),l.lookAt(r.x,r.y,r.z+u[C]));let T=this._cubeSize;nr(s,_*T,C>2?T:0,T,T),f.setRenderTarget(s),m&&f.render(M,l),f.render(e,l)}f.toneMapping=p,f.autoClear=h,e.background=S}_textureToCubeUV(e,t){let n=this._renderer,s=e.mapping===Wi||e.mapping===ps;s?(this._cubemapMaterial===null&&(this._cubemapMaterial=Ad()),this._cubemapMaterial.uniforms.flipEnvMap.value=e.isRenderTargetTexture===!1?-1:1):this._equirectMaterial===null&&(this._equirectMaterial=Td());let r=s?this._cubemapMaterial:this._equirectMaterial,a=this._lodMeshes[0];a.material=r;let o=r.uniforms;o.envMap.value=e;let l=this._cubeSize;nr(t,0,0,3*l,2*l),n.setRenderTarget(t),n.render(a,_a)}_applyPMREM(e){let t=this._renderer,n=t.autoClear;t.autoClear=!1;let s=this._lodMeshes.length;for(let r=1;r<s;r++)this._applyGGXFilter(e,r-1,r);t.autoClear=n}_applyGGXFilter(e,t,n){let s=this._renderer,r=this._pingPongRenderTarget,a=this._ggxMaterial,o=this._lodMeshes[n];o.material=a;let l=a.uniforms,c=n/(this._lodMeshes.length-1),u=t/(this._lodMeshes.length-1),f=Math.sqrt(c*c-u*u),h=c*1.25,p=f*h,{_lodMax:x}=this,M=this._sizeLods[n],g=3*M*(n>x-ir?n-x+ir:0),m=4*(this._cubeSize-M);l.envMap.value=e.texture,l.roughness.value=p,l.mipInt.value=x-t,nr(r,g,m,3*M,2*M),s.setRenderTarget(r),s.render(o,_a),l.envMap.value=r.texture,l.roughness.value=0,l.mipInt.value=x-n,nr(e,g,m,3*M,2*M),s.setRenderTarget(e),s.render(o,_a)}_blur(e,t,n,s){let r=this._pingPongRenderTarget,a=Math.min(s,Math.PI)/Math.SQRT2;this._blurPass(e,r,t,n,a),this._blurPass(r,e,n,n,a)}_blurPass(e,t,n,s,r){let a=this._renderer,o=this._blurMaterial,l=this._lodMeshes[s];l.material=o;let c=o.uniforms;c.envMap.value=e.texture,c.sigma.value=r,c.mipInt.value=this._lodMax-n;let u=this._sizeLods[s],f=3*u*(s>this._lodMax-ir?s-this._lodMax+ir:0),h=4*(this._cubeSize-u);nr(t,f,h,3*u,2*u),a.setRenderTarget(t),a.render(l,_a)}};function Dg(i){let e=[],t=[],n=i,s=i-ir+1+Pg;for(let r=0;r<s;r++){let a=Math.pow(2,n);e.push(a);let o=1/(a-2),l=-o,c=1+o,u=[l,l,c,l,c,c,l,l,c,c,l,c],f=6,h=6,p=3,x=new Float32Array(p*h*f),M=new Float32Array(p*h*f);for(let m=0;m<f;m++){let S=m%3*2/3-1,C=m>2?0:-1,_=[S,C,0,S+2/3,C,0,S+2/3,C+1,0,S,C,0,S+2/3,C+1,0,S,C+1,0];x.set(_,p*h*m);for(let T=0;T<h;T++){let E=u[T*2]*2-1,R=u[T*2+1]*2-1;m===0?gs.set(1,R,E):m===1?gs.set(-E,1,-R):m===2?gs.set(-E,R,1):m===3?gs.set(-1,R,-E):m===4?gs.set(-E,-1,R):gs.set(E,R,-1),gs.toArray(M,(m*h+T)*p)}}let g=new _t;g.setAttribute("position",new Nt(x,p)),g.setAttribute("outputDirection",new Nt(M,p)),t.push(new Je(g,null)),n>ir&&n--}return{lodMeshes:t,sizeLods:e}}function wd(i,e,t){let n=new jt(i,e,t);return n.texture.mapping=ua,n.texture.name="PMREM.cubeUv",n.scissorTest=!0,n}function nr(i,e,t,n,s){i.viewport.set(e,t,n,s),i.scissor.set(e,t,n,s)}function Ug(i,e,t){return new pt({name:"PMREMGGXConvolution",defines:{GGX_SAMPLES:Ng,CUBEUV_TEXEL_WIDTH:1/e,CUBEUV_TEXEL_HEIGHT:1/t,CUBEUV_MAX_MIP:`${i}.0`},uniforms:{envMap:{value:null},roughness:{value:0},mipInt:{value:0}},vertexShader:$l(),fragmentShader:`
+
+			precision highp float;
+			precision highp int;
+
+			varying vec3 vOutputDirection;
+
+			uniform sampler2D envMap;
+			uniform float roughness;
+			uniform float mipInt;
+
+			#define ENVMAP_TYPE_CUBE_UV
+			#include <cube_uv_reflection_fragment>
+
+			#define PI 3.14159265359
+
+			// Van der Corput radical inverse
+			float radicalInverse_VdC(uint bits) {
+				bits = (bits << 16u) | (bits >> 16u);
+				bits = ((bits & 0x55555555u) << 1u) | ((bits & 0xAAAAAAAAu) >> 1u);
+				bits = ((bits & 0x33333333u) << 2u) | ((bits & 0xCCCCCCCCu) >> 2u);
+				bits = ((bits & 0x0F0F0F0Fu) << 4u) | ((bits & 0xF0F0F0F0u) >> 4u);
+				bits = ((bits & 0x00FF00FFu) << 8u) | ((bits & 0xFF00FF00u) >> 8u);
+				return float(bits) * 2.3283064365386963e-10; // / 0x100000000
+			}
+
+			// Hammersley sequence
+			vec2 hammersley(uint i, uint N) {
+				return vec2(float(i) / float(N), radicalInverse_VdC(i));
+			}
+
+			// GGX VNDF importance sampling (Eric Heitz 2018)
+			// "Sampling the GGX Distribution of Visible Normals"
+			// https://jcgt.org/published/0007/04/01/
+			vec3 importanceSampleGGX_VNDF(vec2 Xi, vec3 V, float roughness) {
+				float alpha = roughness * roughness;
+
+				// Section 4.1: Orthonormal basis
+				vec3 T1 = vec3(1.0, 0.0, 0.0);
+				vec3 T2 = cross(V, T1);
+
+				// Section 4.2: Parameterization of projected area
+				float r = sqrt(Xi.x);
+				float phi = 2.0 * PI * Xi.y;
+				float t1 = r * cos(phi);
+				float t2 = r * sin(phi);
+				float s = 0.5 * (1.0 + V.z);
+				t2 = (1.0 - s) * sqrt(1.0 - t1 * t1) + s * t2;
+
+				// Section 4.3: Reprojection onto hemisphere
+				vec3 Nh = t1 * T1 + t2 * T2 + sqrt(max(0.0, 1.0 - t1 * t1 - t2 * t2)) * V;
+
+				// Section 3.4: Transform back to ellipsoid configuration
+				return normalize(vec3(alpha * Nh.x, alpha * Nh.y, max(0.0, Nh.z)));
+			}
+
+			void main() {
+				vec3 N = normalize(vOutputDirection);
+				vec3 V = N; // Assume view direction equals normal for pre-filtering
+
+				vec3 prefilteredColor = vec3(0.0);
+				float totalWeight = 0.0;
+
+				// For very low roughness, just sample the environment directly
+				if (roughness < 0.001) {
+					gl_FragColor = vec4(bilinearCubeUV(envMap, N, mipInt), 1.0);
+					return;
+				}
+
+				// Tangent space basis for VNDF sampling
+				vec3 up = abs(N.z) < 0.999 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);
+				vec3 tangent = normalize(cross(up, N));
+				vec3 bitangent = cross(N, tangent);
+
+				for(uint i = 0u; i < uint(GGX_SAMPLES); i++) {
+					vec2 Xi = hammersley(i, uint(GGX_SAMPLES));
+
+					// For PMREM, V = N, so in tangent space V is always (0, 0, 1)
+					vec3 H_tangent = importanceSampleGGX_VNDF(Xi, vec3(0.0, 0.0, 1.0), roughness);
+
+					// Transform H back to world space
+					vec3 H = normalize(tangent * H_tangent.x + bitangent * H_tangent.y + N * H_tangent.z);
+					vec3 L = normalize(2.0 * dot(V, H) * H - V);
+
+					float NdotL = max(dot(N, L), 0.0);
+
+					if(NdotL > 0.0) {
+						// Sample environment at fixed mip level
+						// VNDF importance sampling handles the distribution filtering
+						vec3 sampleColor = bilinearCubeUV(envMap, L, mipInt);
+
+						// Weight by NdotL for the split-sum approximation
+						// VNDF PDF naturally accounts for the visible microfacet distribution
+						prefilteredColor += sampleColor * NdotL;
+						totalWeight += NdotL;
+					}
+				}
+
+				if (totalWeight > 0.0) {
+					prefilteredColor = prefilteredColor / totalWeight;
+				}
+
+				gl_FragColor = vec4(prefilteredColor, 1.0);
+			}
+		`,blending:kn,depthTest:!1,depthWrite:!1})}function Fg(i,e,t){return new pt({name:"SphericalGaussianBlur",defines:{SAMPLES:Ig,CUBEUV_TEXEL_WIDTH:1/e,CUBEUV_TEXEL_HEIGHT:1/t,CUBEUV_MAX_MIP:`${i}.0`},uniforms:{envMap:{value:null},sigma:{value:0},mipInt:{value:0}},vertexShader:$l(),fragmentShader:`
+
+			precision highp float;
+			precision highp int;
+
+			varying vec3 vOutputDirection;
+
+			uniform sampler2D envMap;
+			uniform float sigma;
+			uniform float mipInt;
+
+			#define ENVMAP_TYPE_CUBE_UV
+			#include <cube_uv_reflection_fragment>
+
+			#define PI 3.14159265359
+			#define GOLDEN_ANGLE 2.39996322973
+
+			void main() {
+
+				if ( sigma == 0.0 ) {
+
+					gl_FragColor = vec4( bilinearCubeUV( envMap, vOutputDirection, mipInt ), 1.0 );
+					return;
+
+				}
+
+				vec3 outputDirection = normalize( vOutputDirection );
+
+				vec3 up = abs( outputDirection.z ) < 0.999 ? vec3( 0.0, 0.0, 1.0 ) : vec3( 1.0, 0.0, 0.0 );
+				vec3 tangent = normalize( cross( up, outputDirection ) );
+				vec3 bitangent = cross( outputDirection, tangent );
+
+				// Truncate the kernel at three standard deviations or at the antipode.
+				float thetaMax = min( 3.0 * sigma, PI );
+				float truncation = 1.0 - exp( - 0.5 * thetaMax * thetaMax / ( sigma * sigma ) );
+
+				vec3 accumColor = vec3( 0.0 );
+				float accumWeight = 0.0;
+
+				for ( int i = 0; i < SAMPLES; i ++ ) {
+
+					// Stratified inverse-CDF sampling of the Gaussian, placed on a golden-angle spiral.
+					float stratum = ( float( i ) + 0.5 ) / float( SAMPLES );
+					float theta = sigma * sqrt( - 2.0 * log( 1.0 - stratum * truncation ) );
+					float phi = float( i ) * GOLDEN_ANGLE;
+
+					vec3 offset = cos( phi ) * tangent + sin( phi ) * bitangent;
+					vec3 sampleDirection = cos( theta ) * outputDirection + sin( theta ) * offset;
+
+					// Correct the planar sample density to solid angle.
+					float weight = sin( theta ) / theta;
+
+					accumColor += weight * bilinearCubeUV( envMap, sampleDirection, mipInt );
+					accumWeight += weight;
+
+				}
+
+				gl_FragColor = vec4( accumColor / accumWeight, 1.0 );
+
+			}
+		`,blending:kn,depthTest:!1,depthWrite:!1})}function Td(){return new pt({name:"EquirectangularToCubeUV",uniforms:{envMap:{value:null}},vertexShader:$l(),fragmentShader:`
+
+			precision mediump float;
+			precision mediump int;
+
+			varying vec3 vOutputDirection;
+
+			uniform sampler2D envMap;
+
+			#include <common>
+
+			void main() {
+
+				vec3 outputDirection = normalize( vOutputDirection );
+				vec2 uv = equirectUv( outputDirection );
+
+				gl_FragColor = vec4( texture2D ( envMap, uv ).rgb, 1.0 );
+
+			}
+		`,blending:kn,depthTest:!1,depthWrite:!1})}function Ad(){return new pt({name:"CubemapToCubeUV",uniforms:{envMap:{value:null},flipEnvMap:{value:-1}},vertexShader:$l(),fragmentShader:`
+
+			precision mediump float;
+			precision mediump int;
+
+			uniform float flipEnvMap;
+
+			varying vec3 vOutputDirection;
+
+			uniform samplerCube envMap;
+
+			void main() {
+
+				gl_FragColor = textureCube( envMap, vec3( flipEnvMap * vOutputDirection.x, vOutputDirection.yz ) );
+
+			}
+		`,blending:kn,depthTest:!1,depthWrite:!1})}function $l(){return`
+
+		precision mediump float;
+		precision mediump int;
+
+		attribute vec3 outputDirection;
+
+		varying vec3 vOutputDirection;
+
+		void main() {
+
+			vOutputDirection = outputDirection;
+			gl_Position = vec4( position, 1.0 );
+
+		}
+	`}var Jl=class extends jt{constructor(e=1,t={}){super(e,e,t),this.isWebGLCubeRenderTarget=!0;let n={width:e,height:e,depth:1},s=[n,n,n,n,n,n];this.texture=new Vr(s),this._setTextureOptions(t),this.texture.isRenderTargetTexture=!0}fromEquirectangularTexture(e,t){this.texture.type=t.type,this.texture.colorSpace=t.colorSpace,this.texture.generateMipmaps=t.generateMipmaps,this.texture.minFilter=t.minFilter,this.texture.magFilter=t.magFilter;let n={uniforms:{tEquirect:{value:null}},vertexShader:`
+
+				varying vec3 vWorldDirection;
+
+				vec3 transformDirection( in vec3 dir, in mat4 matrix ) {
+
+					return normalize( ( matrix * vec4( dir, 0.0 ) ).xyz );
+
+				}
+
+				void main() {
+
+					vWorldDirection = transformDirection( position, modelMatrix );
+
+					#include <begin_vertex>
+					#include <project_vertex>
+
+				}
+			`,fragmentShader:`
+
+				uniform sampler2D tEquirect;
+
+				varying vec3 vWorldDirection;
+
+				#include <common>
+
+				void main() {
+
+					vec3 direction = normalize( vWorldDirection );
+
+					vec2 sampleUV = equirectUv( direction );
+
+					gl_FragColor = texture2D( tEquirect, sampleUV );
+
+				}
+			`},s=new Pn(5,5,5),r=new pt({name:"CubemapFromEquirect",uniforms:ms(n.uniforms),vertexShader:n.vertexShader,fragmentShader:n.fragmentShader,side:Yt,blending:kn});r.uniforms.tEquirect.value=t;let a=new Je(s,r),o=t.minFilter;return t.minFilter===Xi&&(t.minFilter=cn),new il(1,10,this).update(e,a),t.minFilter=o,a.geometry.dispose(),a.material.dispose(),this}clear(e,t=!0,n=!0,s=!0){let r=e.getRenderTarget();for(let a=0;a<6;a++)e.setRenderTarget(this,a),e.clear(t,n,s);e.setRenderTarget(r)}};function Og(i){let e=new WeakMap,t=new WeakMap,n=null;function s(h,p=!1){return h==null?null:p?a(h):r(h)}function r(h){if(h&&h.isTexture){let p=h.mapping;if(p===Qs||p===ol)if(e.has(h)){let x=e.get(h).texture;return o(x,h.mapping)}else{let x=h.image;if(x&&x.height>0){let M=new Jl(x.height);return M.fromEquirectangularTexture(i,h),e.set(h,M),h.addEventListener("dispose",c),o(M.texture,h.mapping)}else return null}}return h}function a(h){if(h&&h.isTexture){let p=h.mapping,x=p===Qs||p===ol,M=p===Wi||p===ps;if(x||M){let g=t.get(h),m=g!==void 0?g.texture.pmremVersion:0;if(h.isRenderTargetTexture&&h.pmremVersion!==m)return n===null&&(n=new Zi(i)),g=x?n.fromEquirectangular(h,g):n.fromCubemap(h,g),g.texture.pmremVersion=h.pmremVersion,t.set(h,g),g.texture;if(g!==void 0)return g.texture;{let S=h.image;return x&&S&&S.height>0||M&&S&&l(S)?(n===null&&(n=new Zi(i)),g=x?n.fromEquirectangular(h):n.fromCubemap(h),g.texture.pmremVersion=h.pmremVersion,t.set(h,g),h.addEventListener("dispose",u),g.texture):null}}}return h}function o(h,p){return p===Qs?h.mapping=Wi:p===ol&&(h.mapping=ps),h}function l(h){let p=0,x=6;for(let M=0;M<x;M++)h[M]!==void 0&&p++;return p===x}function c(h){let p=h.target;p.removeEventListener("dispose",c);let x=e.get(p);x!==void 0&&(e.delete(p),x.dispose())}function u(h){let p=h.target;p.removeEventListener("dispose",u);let x=t.get(p);x!==void 0&&(t.delete(p),x.dispose())}function f(){e=new WeakMap,t=new WeakMap,n!==null&&(n.dispose(),n=null)}return{get:s,dispose:f}}function Bg(i){let e={};function t(n){if(e[n]!==void 0)return e[n];let s=i.getExtension(n);return e[n]=s,s}return{has:function(n){return t(n)!==null},init:function(){t("EXT_color_buffer_float"),t("WEBGL_clip_cull_distance"),t("OES_texture_float_linear"),t("EXT_color_buffer_half_float"),t("WEBGL_multisampled_render_to_texture"),t("WEBGL_render_shared_exponent")},get:function(n){let s=t(n);return s===null&&os("WebGLRenderer: "+n+" extension not supported."),s}}}function kg(i,e,t,n){let s={},r=new WeakMap;function a(f){let h=f.target;h.index!==null&&e.remove(h.index);for(let x in h.attributes)e.remove(h.attributes[x]);h.removeEventListener("dispose",a),delete s[h.id];let p=r.get(h);p&&(e.remove(p),r.delete(h)),n.releaseStatesOfGeometry(h),h.isInstancedBufferGeometry===!0&&delete h._maxInstanceCount,t.memory.geometries--}function o(f,h){return s[h.id]===!0||(h.addEventListener("dispose",a),s[h.id]=!0,t.memory.geometries++),h}function l(f){let h=f.attributes;for(let p in h)e.update(h[p],i.ARRAY_BUFFER)}function c(f){let h=[],p=f.index,x=f.attributes.position,M=0;if(x===void 0)return;if(p!==null){let S=p.array;M=p.version;for(let C=0,_=S.length;C<_;C+=3){let T=S[C+0],E=S[C+1],R=S[C+2];h.push(T,E,E,R,R,T)}}else{let S=x.array;M=x.version;for(let C=0,_=S.length/3-1;C<_;C+=3){let T=C+0,E=C+1,R=C+2;h.push(T,E,E,R,R,T)}}let g=new(x.count>=65535?zr:kr)(h,1);g.version=M;let m=r.get(f);m&&e.remove(m),r.set(f,g)}function u(f){let h=r.get(f);if(h){let p=f.index;p!==null&&h.version<p.version&&c(f)}else c(f);return r.get(f)}return{get:o,update:l,getWireframeAttribute:u}}function zg(i,e,t){let n;function s(f){n=f}let r,a;function o(f){r=f.type,a=f.bytesPerElement}function l(f,h){i.drawElements(n,h,r,f*a),t.update(h,n,1)}function c(f,h,p){p!==0&&(i.drawElementsInstanced(n,h,r,f*a,p),t.update(h,n,p))}function u(f,h,p){if(p===0)return;e.get("WEBGL_multi_draw").multiDrawElementsWEBGL(n,h,0,r,f,0,p);let M=0;for(let g=0;g<p;g++)M+=h[g];t.update(M,n,1)}this.setMode=s,this.setIndex=o,this.render=l,this.renderInstances=c,this.renderMultiDraw=u}function Hg(i){let e={geometries:0,textures:0},t={frame:0,calls:0,triangles:0,points:0,lines:0};function n(r,a,o){switch(t.calls++,a){case i.TRIANGLES:t.triangles+=o*(r/3);break;case i.LINES:t.lines+=o*(r/2);break;case i.LINE_STRIP:t.lines+=o*(r-1);break;case i.LINE_LOOP:t.lines+=o*r;break;case i.POINTS:t.points+=o*r;break;default:Qe("WebGLInfo: Unknown draw mode:",a);break}}function s(){t.calls=0,t.triangles=0,t.points=0,t.lines=0}return{memory:e,render:t,programs:null,autoReset:!0,reset:s,update:n}}function Gg(i,e,t){let n=new WeakMap,s=new Wt;function r(a,o,l){let c=a.morphTargetInfluences,u=o.morphAttributes.position||o.morphAttributes.normal||o.morphAttributes.color,f=u!==void 0?u.length:0,h=n.get(o);if(h===void 0||h.count!==f){let w=function(){R.dispose(),n.delete(o),o.removeEventListener("dispose",w)};h!==void 0&&h.texture.dispose();let p=o.morphAttributes.position!==void 0,x=o.morphAttributes.normal!==void 0,M=o.morphAttributes.color!==void 0,g=o.morphAttributes.position||[],m=o.morphAttributes.normal||[],S=o.morphAttributes.color||[],C=0;p===!0&&(C=1),x===!0&&(C=2),M===!0&&(C=3);let _=o.attributes.position.count*C,T=1;_>e.maxTextureSize&&(T=Math.ceil(_/e.maxTextureSize),_=e.maxTextureSize);let E=new Float32Array(_*T*4*f),R=new Or(E,_,T,f);R.type=zn,R.needsUpdate=!0;let y=C*4;for(let P=0;P<f;P++){let L=g[P],B=m[P],H=S[P],D=_*T*4*P;for(let W=0;W<L.count;W++){let K=W*y;p===!0&&(s.fromBufferAttribute(L,W),E[D+K+0]=s.x,E[D+K+1]=s.y,E[D+K+2]=s.z,E[D+K+3]=0),x===!0&&(s.fromBufferAttribute(B,W),E[D+K+4]=s.x,E[D+K+5]=s.y,E[D+K+6]=s.z,E[D+K+7]=0),M===!0&&(s.fromBufferAttribute(H,W),E[D+K+8]=s.x,E[D+K+9]=s.y,E[D+K+10]=s.z,E[D+K+11]=H.itemSize===4?s.w:1)}}h={count:f,texture:R,size:new Me(_,T)},n.set(o,h),o.addEventListener("dispose",w)}if(a.isInstancedMesh===!0&&a.morphTexture!==null)l.getUniforms().setValue(i,"morphTexture",a.morphTexture,t);else{let p=0;for(let M=0;M<c.length;M++)p+=c[M];let x=o.morphTargetsRelative?1:1-p;l.getUniforms().setValue(i,"morphTargetBaseInfluence",x),l.getUniforms().setValue(i,"morphTargetInfluences",c)}l.getUniforms().setValue(i,"morphTargetsTexture",h.texture,t),l.getUniforms().setValue(i,"morphTargetsTextureSize",h.size)}return{update:r}}function Vg(i,e,t,n,s){let r=new WeakMap;function a(c){let u=s.render.frame,f=c.geometry,h=e.get(c,f);if(r.get(h)!==u&&(e.update(h),r.set(h,u)),c.isInstancedMesh&&(c.hasEventListener("dispose",l)===!1&&c.addEventListener("dispose",l),r.get(c)!==u&&(t.update(c.instanceMatrix,i.ARRAY_BUFFER),c.instanceColor!==null&&t.update(c.instanceColor,i.ARRAY_BUFFER),r.set(c,u))),c.isSkinnedMesh){let p=c.skeleton;r.get(p)!==u&&(p.update(),r.set(p,u))}return h}function o(){r=new WeakMap}function l(c){let u=c.target;u.removeEventListener("dispose",l),n.releaseStatesOfObject(u),t.remove(u.instanceMatrix),u.instanceColor!==null&&t.remove(u.instanceColor)}return{update:a,dispose:o}}var Wg={[sa]:"LINEAR_TONE_MAPPING",[ra]:"REINHARD_TONE_MAPPING",[aa]:"CINEON_TONE_MAPPING",[Ti]:"ACES_FILMIC_TONE_MAPPING",[la]:"AGX_TONE_MAPPING",[ca]:"NEUTRAL_TONE_MAPPING",[oa]:"CUSTOM_TONE_MAPPING"};function Xg(i,e,t,n,s,r){let a=new jt(e,t,{type:i,depthBuffer:s,stencilBuffer:r,samples:n?4:0,storeMultisampledDepthBuffer:!1,storeMultisampledStencilBuffer:!1,resolveDepthBuffer:!1,resolveStencilBuffer:!1}),o=null,l=null,c=new _t;c.setAttribute("position",new et([-1,3,0,-1,-1,0,3,-1,0],3)),c.setAttribute("uv",new et([0,2,0,0,2,0],2));let u=new Ks({uniforms:{tDiffuse:{value:null}},vertexShader:`
+			precision highp float;
+
+			uniform mat4 modelViewMatrix;
+			uniform mat4 projectionMatrix;
+
+			attribute vec3 position;
+			attribute vec2 uv;
+
+			varying vec2 vUv;
+
+			void main() {
+				vUv = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+			}`,fragmentShader:`
+			precision highp float;
+
+			uniform sampler2D tDiffuse;
+
+			varying vec2 vUv;
+
+			#include <tonemapping_pars_fragment>
+			#include <colorspace_pars_fragment>
+
+			void main() {
+				gl_FragColor = texture2D( tDiffuse, vUv );
+
+				#ifdef LINEAR_TONE_MAPPING
+					gl_FragColor.rgb = LinearToneMapping( gl_FragColor.rgb );
+				#elif defined( REINHARD_TONE_MAPPING )
+					gl_FragColor.rgb = ReinhardToneMapping( gl_FragColor.rgb );
+				#elif defined( CINEON_TONE_MAPPING )
+					gl_FragColor.rgb = CineonToneMapping( gl_FragColor.rgb );
+				#elif defined( ACES_FILMIC_TONE_MAPPING )
+					gl_FragColor.rgb = ACESFilmicToneMapping( gl_FragColor.rgb );
+				#elif defined( AGX_TONE_MAPPING )
+					gl_FragColor.rgb = AgXToneMapping( gl_FragColor.rgb );
+				#elif defined( NEUTRAL_TONE_MAPPING )
+					gl_FragColor.rgb = NeutralToneMapping( gl_FragColor.rgb );
+				#elif defined( CUSTOM_TONE_MAPPING )
+					gl_FragColor.rgb = CustomToneMapping( gl_FragColor.rgb );
+				#endif
+
+				#ifdef SRGB_TRANSFER
+					gl_FragColor = sRGBTransferOETF( gl_FragColor );
+				#endif
+			}`,depthTest:!1,depthWrite:!1}),f=new Je(c,u),h=new Vi(-1,1,1,-1,0,1),p=null,x=null,M=!1,g,m=null,S=[],C=!1;this.setSize=function(_,T){a.setSize(_,T),o!==null&&o.setSize(_,T),l!==null&&l.setSize(_,T);for(let E=0;E<S.length;E++){let R=S[E];R.setSize&&R.setSize(_,T)}},this.setEffects=function(_){S=_,C=S.length>0&&S[0].isRenderPass===!0;let T=a.width,E=a.height;S.length>0&&o===null&&(o=new jt(T,E,{type:un,depthBuffer:!1,stencilBuffer:!1}),l=new jt(T,E,{type:un,depthBuffer:!1,stencilBuffer:!1}));for(let R=0;R<S.length;R++){let y=S[R];y.setSize&&y.setSize(T,E)}},this.begin=function(_,T){if(M||_.toneMapping===jn&&S.length===0)return!1;if(m=T,T!==null){let E=T.width,R=T.height;(a.width!==E||a.height!==R)&&this.setSize(E,R)}return C===!1&&_.setRenderTarget(a),g=_.toneMapping,_.toneMapping=jn,!0},this.hasRenderPass=function(){return C},this.end=function(_,T){_.toneMapping=g,M=!0;let E=a,R=o;for(let y=0;y<S.length;y++){let w=S[y];w.enabled!==!1&&(w.render(_,R,E,T),w.needsSwap!==!1&&(E=R,R=R===o?l:o))}if(p!==_.outputColorSpace||x!==_.toneMapping){p=_.outputColorSpace,x=_.toneMapping,u.defines={},mt.getTransfer(p)===Ct&&(u.defines.SRGB_TRANSFER="");let y=Wg[x];y&&(u.defines[y]=""),u.needsUpdate=!0}u.uniforms.tDiffuse.value=E.texture,_.setRenderTarget(m),_.render(f,h),m=null,M=!1},this.isCompositing=function(){return M},this.dispose=function(){a.dispose(),o!==null&&o.dispose(),l!==null&&l.dispose(),c.dispose(),u.dispose()}}var Yd=new xn,yu=new Bi(1,1),Zd=new Or,Kd=new No,Jd=new Vr,Cd=[],Rd=[],Pd=new Float32Array(16),Id=new Float32Array(9),Nd=new Float32Array(4);function ar(i,e,t){let n=i[0];if(n<=0||n>0)return i;let s=e*t,r=Cd[s];if(r===void 0&&(r=new Float32Array(s),Cd[s]=r),e!==0){n.toArray(r,0);for(let a=1,o=0;a!==e;++a)o+=t,i[a].toArray(r,o)}return r}function en(i,e){if(i.length!==e.length)return!1;for(let t=0,n=i.length;t<n;t++)if(i[t]!==e[t])return!1;return!0}function tn(i,e){for(let t=0,n=e.length;t<n;t++)i[t]=e[t]}function jl(i,e){let t=Rd[e];t===void 0&&(t=new Int32Array(e),Rd[e]=t);for(let n=0;n!==e;++n)t[n]=i.allocateTextureUnit();return t}function qg(i,e){let t=this.cache;t[0]!==e&&(i.uniform1f(this.addr,e),t[0]=e)}function Yg(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y)&&(i.uniform2f(this.addr,e.x,e.y),t[0]=e.x,t[1]=e.y);else{if(en(t,e))return;i.uniform2fv(this.addr,e),tn(t,e)}}function Zg(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y||t[2]!==e.z)&&(i.uniform3f(this.addr,e.x,e.y,e.z),t[0]=e.x,t[1]=e.y,t[2]=e.z);else if(e.r!==void 0)(t[0]!==e.r||t[1]!==e.g||t[2]!==e.b)&&(i.uniform3f(this.addr,e.r,e.g,e.b),t[0]=e.r,t[1]=e.g,t[2]=e.b);else{if(en(t,e))return;i.uniform3fv(this.addr,e),tn(t,e)}}function Kg(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y||t[2]!==e.z||t[3]!==e.w)&&(i.uniform4f(this.addr,e.x,e.y,e.z,e.w),t[0]=e.x,t[1]=e.y,t[2]=e.z,t[3]=e.w);else{if(en(t,e))return;i.uniform4fv(this.addr,e),tn(t,e)}}function Jg(i,e){let t=this.cache,n=e.elements;if(n===void 0){if(en(t,e))return;i.uniformMatrix2fv(this.addr,!1,e),tn(t,e)}else{if(en(t,n))return;Nd.set(n),i.uniformMatrix2fv(this.addr,!1,Nd),tn(t,n)}}function $g(i,e){let t=this.cache,n=e.elements;if(n===void 0){if(en(t,e))return;i.uniformMatrix3fv(this.addr,!1,e),tn(t,e)}else{if(en(t,n))return;Id.set(n),i.uniformMatrix3fv(this.addr,!1,Id),tn(t,n)}}function jg(i,e){let t=this.cache,n=e.elements;if(n===void 0){if(en(t,e))return;i.uniformMatrix4fv(this.addr,!1,e),tn(t,e)}else{if(en(t,n))return;Pd.set(n),i.uniformMatrix4fv(this.addr,!1,Pd),tn(t,n)}}function Qg(i,e){let t=this.cache;t[0]!==e&&(i.uniform1i(this.addr,e),t[0]=e)}function ex(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y)&&(i.uniform2i(this.addr,e.x,e.y),t[0]=e.x,t[1]=e.y);else{if(en(t,e))return;i.uniform2iv(this.addr,e),tn(t,e)}}function tx(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y||t[2]!==e.z)&&(i.uniform3i(this.addr,e.x,e.y,e.z),t[0]=e.x,t[1]=e.y,t[2]=e.z);else{if(en(t,e))return;i.uniform3iv(this.addr,e),tn(t,e)}}function nx(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y||t[2]!==e.z||t[3]!==e.w)&&(i.uniform4i(this.addr,e.x,e.y,e.z,e.w),t[0]=e.x,t[1]=e.y,t[2]=e.z,t[3]=e.w);else{if(en(t,e))return;i.uniform4iv(this.addr,e),tn(t,e)}}function ix(i,e){let t=this.cache;t[0]!==e&&(i.uniform1ui(this.addr,e),t[0]=e)}function sx(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y)&&(i.uniform2ui(this.addr,e.x,e.y),t[0]=e.x,t[1]=e.y);else{if(en(t,e))return;i.uniform2uiv(this.addr,e),tn(t,e)}}function rx(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y||t[2]!==e.z)&&(i.uniform3ui(this.addr,e.x,e.y,e.z),t[0]=e.x,t[1]=e.y,t[2]=e.z);else{if(en(t,e))return;i.uniform3uiv(this.addr,e),tn(t,e)}}function ax(i,e){let t=this.cache;if(e.x!==void 0)(t[0]!==e.x||t[1]!==e.y||t[2]!==e.z||t[3]!==e.w)&&(i.uniform4ui(this.addr,e.x,e.y,e.z,e.w),t[0]=e.x,t[1]=e.y,t[2]=e.z,t[3]=e.w);else{if(en(t,e))return;i.uniform4uiv(this.addr,e),tn(t,e)}}function ox(i,e,t){let n=this.cache,s=t.allocateTextureUnit();n[0]!==s&&(i.uniform1i(this.addr,s),n[0]=s);let r;this.type===i.SAMPLER_2D_SHADOW?(yu.compareFunction=t.isReversedDepthBuffer()?Yl:ql,r=yu):r=Yd,t.setTexture2D(e||r,s)}function lx(i,e,t){let n=this.cache,s=t.allocateTextureUnit();n[0]!==s&&(i.uniform1i(this.addr,s),n[0]=s),t.setTexture3D(e||Kd,s)}function cx(i,e,t){let n=this.cache,s=t.allocateTextureUnit();n[0]!==s&&(i.uniform1i(this.addr,s),n[0]=s),t.setTextureCube(e||Jd,s)}function ux(i,e,t){let n=this.cache,s=t.allocateTextureUnit();n[0]!==s&&(i.uniform1i(this.addr,s),n[0]=s),t.setTexture2DArray(e||Zd,s)}function hx(i){switch(i){case 5126:return qg;case 35664:return Yg;case 35665:return Zg;case 35666:return Kg;case 35674:return Jg;case 35675:return $g;case 35676:return jg;case 5124:case 35670:return Qg;case 35667:case 35671:return ex;case 35668:case 35672:return tx;case 35669:case 35673:return nx;case 5125:return ix;case 36294:return sx;case 36295:return rx;case 36296:return ax;case 35678:case 36198:case 36298:case 36306:case 35682:return ox;case 35679:case 36299:case 36307:return lx;case 35680:case 36300:case 36308:case 36293:return cx;case 36289:case 36303:case 36311:case 36292:return ux}}function dx(i,e){i.uniform1fv(this.addr,e)}function fx(i,e){let t=ar(e,this.size,2);i.uniform2fv(this.addr,t)}function px(i,e){let t=ar(e,this.size,3);i.uniform3fv(this.addr,t)}function mx(i,e){let t=ar(e,this.size,4);i.uniform4fv(this.addr,t)}function gx(i,e){let t=ar(e,this.size,4);i.uniformMatrix2fv(this.addr,!1,t)}function xx(i,e){let t=ar(e,this.size,9);i.uniformMatrix3fv(this.addr,!1,t)}function vx(i,e){let t=ar(e,this.size,16);i.uniformMatrix4fv(this.addr,!1,t)}function yx(i,e){i.uniform1iv(this.addr,e)}function _x(i,e){i.uniform2iv(this.addr,e)}function bx(i,e){i.uniform3iv(this.addr,e)}function Mx(i,e){i.uniform4iv(this.addr,e)}function Sx(i,e){i.uniform1uiv(this.addr,e)}function Ex(i,e){i.uniform2uiv(this.addr,e)}function wx(i,e){i.uniform3uiv(this.addr,e)}function Tx(i,e){i.uniform4uiv(this.addr,e)}function Ax(i,e,t){let n=this.cache,s=e.length,r=jl(t,s);en(n,r)||(i.uniform1iv(this.addr,r),tn(n,r));let a;this.type===i.SAMPLER_2D_SHADOW?a=yu:a=Yd;for(let o=0;o!==s;++o)t.setTexture2D(e[o]||a,r[o])}function Cx(i,e,t){let n=this.cache,s=e.length,r=jl(t,s);en(n,r)||(i.uniform1iv(this.addr,r),tn(n,r));for(let a=0;a!==s;++a)t.setTexture3D(e[a]||Kd,r[a])}function Rx(i,e,t){let n=this.cache,s=e.length,r=jl(t,s);en(n,r)||(i.uniform1iv(this.addr,r),tn(n,r));for(let a=0;a!==s;++a)t.setTextureCube(e[a]||Jd,r[a])}function Px(i,e,t){let n=this.cache,s=e.length,r=jl(t,s);en(n,r)||(i.uniform1iv(this.addr,r),tn(n,r));for(let a=0;a!==s;++a)t.setTexture2DArray(e[a]||Zd,r[a])}function Ix(i){switch(i){case 5126:return dx;case 35664:return fx;case 35665:return px;case 35666:return mx;case 35674:return gx;case 35675:return xx;case 35676:return vx;case 5124:case 35670:return yx;case 35667:case 35671:return _x;case 35668:case 35672:return bx;case 35669:case 35673:return Mx;case 5125:return Sx;case 36294:return Ex;case 36295:return wx;case 36296:return Tx;case 35678:case 36198:case 36298:case 36306:case 35682:return Ax;case 35679:case 36299:case 36307:return Cx;case 35680:case 36300:case 36308:case 36293:return Rx;case 36289:case 36303:case 36311:case 36292:return Px}}var _u=class{constructor(e,t,n){this.id=e,this.addr=n,this.cache=[],this.type=t.type,this.setValue=hx(t.type)}},bu=class{constructor(e,t,n){this.id=e,this.addr=n,this.cache=[],this.type=t.type,this.size=t.size,this.setValue=Ix(t.type)}},Mu=class{constructor(e){this.id=e,this.seq=[],this.map={}}setValue(e,t,n){let s=this.seq;for(let r=0,a=s.length;r!==a;++r){let o=s[r];o.setValue(e,t[o.id],n)}}},xu=/(\w+)(\])?(\[|\.)?/g;function Ld(i,e){i.seq.push(e),i.map[e.id]=e}function Nx(i,e,t){let n=i.name,s=n.length;for(xu.lastIndex=0;;){let r=xu.exec(n),a=xu.lastIndex,o=r[1],l=r[2]==="]",c=r[3];if(l&&(o=o|0),c===void 0||c==="["&&a+2===s){Ld(t,c===void 0?new _u(o,i,e):new bu(o,i,e));break}else{let f=t.map[o];f===void 0&&(f=new Mu(o),Ld(t,f)),t=f}}}var sr=class{constructor(e,t){this.seq=[],this.map={};let n=e.getProgramParameter(t,e.ACTIVE_UNIFORMS);for(let a=0;a<n;++a){let o=e.getActiveUniform(t,a),l=e.getUniformLocation(t,o.name);Nx(o,l,this)}let s=[],r=[];for(let a of this.seq)a.type===e.SAMPLER_2D_SHADOW||a.type===e.SAMPLER_CUBE_SHADOW||a.type===e.SAMPLER_2D_ARRAY_SHADOW?s.push(a):r.push(a);s.length>0&&(this.seq=s.concat(r))}setValue(e,t,n,s){let r=this.map[t];r!==void 0&&r.setValue(e,n,s)}setOptional(e,t,n){let s=t[n];s!==void 0&&this.setValue(e,n,s)}static upload(e,t,n,s){for(let r=0,a=t.length;r!==a;++r){let o=t[r],l=n[o.id];l.needsUpdate!==!1&&o.setValue(e,l.value,s)}}static seqWithValue(e,t){let n=[];for(let s=0,r=e.length;s!==r;++s){let a=e[s];a.id in t&&n.push(a)}return n}};function Dd(i,e,t){let n=i.createShader(e);return i.shaderSource(n,t),i.compileShader(n),n}var Lx=37297,Dx=0;function Ux(i,e){let t=i.split(`
+`),n=[],s=Math.max(e-6,0),r=Math.min(e+6,t.length);for(let a=s;a<r;a++){let o=a+1;n.push(`${o===e?">":" "} ${o}: ${t[a]}`)}return n.join(`
+`)}var Ud=new rt;function Fx(i){mt._getMatrix(Ud,mt.workingColorSpace,i);let e=`mat3( ${Ud.elements.map(t=>t.toFixed(4))} )`;switch(mt.getTransfer(i)){case Dr:return[e,"LinearTransferOETF"];case Ct:return[e,"sRGBTransferOETF"];default:return Ke("WebGLProgram: Unsupported color space: ",i),[e,"LinearTransferOETF"]}}function Fd(i,e,t){let n=i.getShaderParameter(e,i.COMPILE_STATUS),r=(i.getShaderInfoLog(e)||"").trim();if(n&&r==="")return"";let a=/ERROR: 0:(\d+)/.exec(r);if(a){let o=parseInt(a[1]);return t.toUpperCase()+`
+
+`+r+`
+
+`+Ux(i.getShaderSource(e),o)}else return r}function Ox(i,e){let t=Fx(e);return[`vec4 ${i}( vec4 value ) {`,`	return ${t[1]}( vec4( value.rgb * ${t[0]}, value.a ) );`,"}"].join(`
+`)}var Bx={[sa]:"Linear",[ra]:"Reinhard",[aa]:"Cineon",[Ti]:"ACESFilmic",[la]:"AgX",[ca]:"Neutral",[oa]:"Custom"};function kx(i,e){let t=Bx[e];return t===void 0?(Ke("WebGLProgram: Unsupported toneMapping:",e),"vec3 "+i+"( vec3 color ) { return LinearToneMapping( color ); }"):"vec3 "+i+"( vec3 color ) { return "+t+"ToneMapping( color ); }"}var Kl=new I;function zx(){mt.getLuminanceCoefficients(Kl);let i=Kl.x.toFixed(4),e=Kl.y.toFixed(4),t=Kl.z.toFixed(4);return["float luminance( const in vec3 rgb ) {",`	const vec3 weights = vec3( ${i}, ${e}, ${t} );`,"	return dot( weights, rgb );","}"].join(`
+`)}function Hx(i){return[i.extensionClipCullDistance?"#extension GL_ANGLE_clip_cull_distance : require":"",i.extensionMultiDraw?"#extension GL_ANGLE_multi_draw : require":""].filter(Ma).join(`
+`)}function Gx(i){let e=[];for(let t in i){let n=i[t];n!==!1&&e.push("#define "+t+" "+n)}return e.join(`
+`)}function Vx(i,e){let t={},n=i.getProgramParameter(e,i.ACTIVE_ATTRIBUTES);for(let s=0;s<n;s++){let r=i.getActiveAttrib(e,s),a=r.name,o=1;r.type===i.FLOAT_MAT2&&(o=2),r.type===i.FLOAT_MAT3&&(o=3),r.type===i.FLOAT_MAT4&&(o=4),t[a]={type:r.type,location:i.getAttribLocation(e,a),locationSize:o}}return t}function Ma(i){return i!==""}function Od(i,e){let t=e.numSpotLightShadows+e.numSpotLightMaps-e.numSpotLightShadowsWithMaps;return i.replace(/NUM_SUN_LIGHTS/g,e.numSunLights).replace(/NUM_DIR_LIGHTS/g,e.numDirLights).replace(/NUM_SPOT_LIGHTS/g,e.numSpotLights).replace(/NUM_SPOT_LIGHT_MAPS/g,e.numSpotLightMaps).replace(/NUM_SPOT_LIGHT_COORDS/g,t).replace(/NUM_RECT_AREA_LIGHTS/g,e.numRectAreaLights).replace(/NUM_POINT_LIGHTS/g,e.numPointLights).replace(/NUM_HEMI_LIGHTS/g,e.numHemiLights).replace(/NUM_SUN_LIGHT_SHADOWS/g,e.numSunLightShadows).replace(/NUM_DIR_LIGHT_SHADOWS/g,e.numDirLightShadows).replace(/NUM_SPOT_LIGHT_SHADOWS_WITH_MAPS/g,e.numSpotLightShadowsWithMaps).replace(/NUM_SPOT_LIGHT_SHADOWS/g,e.numSpotLightShadows).replace(/NUM_POINT_LIGHT_SHADOWS/g,e.numPointLightShadows)}function Bd(i,e){return i.replace(/NUM_CLIPPING_PLANES/g,e.numClippingPlanes).replace(/UNION_CLIPPING_PLANES/g,e.numClippingPlanes-e.numClipIntersection)}var Wx=/^[ \t]*#include +<([\w\d./]+)>/gm;function Su(i){return i.replace(Wx,qx)}var Xx=new Map;function qx(i,e){let t=ht[e];if(t===void 0){let n=Xx.get(e);if(n!==void 0)t=ht[n],Ke('WebGLRenderer: Shader chunk "%s" has been deprecated. Use "%s" instead.',e,n);else throw new Error("THREE.WebGLProgram: Can not resolve #include <"+e+">")}return Su(t)}var Yx=/#pragma unroll_loop_start\s+for\s*\(\s*int\s+i\s*=\s*(\d+)\s*;\s*i\s*<\s*(\d+)\s*;\s*i\s*\+\+\s*\)\s*{([\s\S]+?)}\s+#pragma unroll_loop_end/g;function kd(i){return i.replace(Yx,Zx)}function Zx(i,e,t,n){let s="";for(let r=parseInt(e);r<parseInt(t);r++)s+=n.replace(/\[\s*i\s*\]/g,"[ "+r+" ]").replace(/UNROLLED_LOOP_INDEX/g,r);return s}function zd(i){let e=`precision ${i.precision} float;
+	precision ${i.precision} int;
+	precision ${i.precision} sampler2D;
+	precision ${i.precision} samplerCube;
+	precision ${i.precision} sampler3D;
+	precision ${i.precision} sampler2DArray;
+	precision ${i.precision} sampler2DShadow;
+	precision ${i.precision} samplerCubeShadow;
+	precision ${i.precision} sampler2DArrayShadow;
+	precision ${i.precision} isampler2D;
+	precision ${i.precision} isampler3D;
+	precision ${i.precision} isamplerCube;
+	precision ${i.precision} isampler2DArray;
+	precision ${i.precision} usampler2D;
+	precision ${i.precision} usampler3D;
+	precision ${i.precision} usamplerCube;
+	precision ${i.precision} usampler2DArray;
+	`;return i.precision==="highp"?e+=`
+#define HIGH_PRECISION`:i.precision==="mediump"?e+=`
+#define MEDIUM_PRECISION`:i.precision==="lowp"&&(e+=`
+#define LOW_PRECISION`),e}var Kx={[ia]:"SHADOWMAP_TYPE_PCF",[$s]:"SHADOWMAP_TYPE_VSM"};function Jx(i){return Kx[i.shadowMapType]||"SHADOWMAP_TYPE_BASIC"}var $x={[Wi]:"ENVMAP_TYPE_CUBE",[ps]:"ENVMAP_TYPE_CUBE",[ua]:"ENVMAP_TYPE_CUBE_UV"};function jx(i){return i.envMap===!1?"ENVMAP_TYPE_CUBE":$x[i.envMapMode]||"ENVMAP_TYPE_CUBE"}var Qx={[ps]:"ENVMAP_MODE_REFRACTION"};function ev(i){return i.envMap===!1?"ENVMAP_MODE_REFLECTION":Qx[i.envMapMode]||"ENVMAP_MODE_REFLECTION"}var tv={[al]:"ENVMAP_BLENDING_MULTIPLY",[sd]:"ENVMAP_BLENDING_MIX",[rd]:"ENVMAP_BLENDING_ADD"};function nv(i){return i.envMap===!1?"ENVMAP_BLENDING_NONE":tv[i.combine]||"ENVMAP_BLENDING_NONE"}function iv(i){let e=i.envMapCubeUVHeight;if(e===null)return null;let t=Math.log2(e)-2,n=1/e;return{texelWidth:1/(3*Math.max(Math.pow(2,t),112)),texelHeight:n,maxMip:t}}function sv(i,e,t,n){let s=i.getContext(),r=t.defines,a=t.vertexShader,o=t.fragmentShader,l=Jx(t),c=jx(t),u=ev(t),f=nv(t),h=iv(t),p=Hx(t),x=Gx(r),M=s.createProgram(),g,m,S=t.glslVersion?"#version "+t.glslVersion+`
+`:"";t.isRawShaderMaterial?(g=["#define SHADER_TYPE "+t.shaderType,"#define SHADER_NAME "+t.shaderName,x].filter(Ma).join(`
+`),g.length>0&&(g+=`
+`),m=["#define SHADER_TYPE "+t.shaderType,"#define SHADER_NAME "+t.shaderName,x].filter(Ma).join(`
+`),m.length>0&&(m+=`
+`)):(g=[zd(t),"#define SHADER_TYPE "+t.shaderType,"#define SHADER_NAME "+t.shaderName,x,t.extensionClipCullDistance?"#define USE_CLIP_DISTANCE":"",t.batching?"#define USE_BATCHING":"",t.batchingColor?"#define USE_BATCHING_COLOR":"",t.instancing?"#define USE_INSTANCING":"",t.instancingColor?"#define USE_INSTANCING_COLOR":"",t.instancingMorph?"#define USE_INSTANCING_MORPH":"",t.useFog&&t.fog?"#define USE_FOG":"",t.useFog&&t.fogExp2?"#define FOG_EXP2":"",t.map?"#define USE_MAP":"",t.envMap?"#define USE_ENVMAP":"",t.envMap?"#define "+u:"",t.lightMap?"#define USE_LIGHTMAP":"",t.aoMap?"#define USE_AOMAP":"",t.bumpMap?"#define USE_BUMPMAP":"",t.normalMap?"#define USE_NORMALMAP":"",t.normalMapObjectSpace?"#define USE_NORMALMAP_OBJECTSPACE":"",t.normalMapTangentSpace?"#define USE_NORMALMAP_TANGENTSPACE":"",t.displacementMap?"#define USE_DISPLACEMENTMAP":"",t.emissiveMap?"#define USE_EMISSIVEMAP":"",t.anisotropy?"#define USE_ANISOTROPY":"",t.anisotropyMap?"#define USE_ANISOTROPYMAP":"",t.clearcoatMap?"#define USE_CLEARCOATMAP":"",t.clearcoatRoughnessMap?"#define USE_CLEARCOAT_ROUGHNESSMAP":"",t.clearcoatNormalMap?"#define USE_CLEARCOAT_NORMALMAP":"",t.iridescenceMap?"#define USE_IRIDESCENCEMAP":"",t.iridescenceThicknessMap?"#define USE_IRIDESCENCE_THICKNESSMAP":"",t.specularMap?"#define USE_SPECULARMAP":"",t.specularColorMap?"#define USE_SPECULAR_COLORMAP":"",t.specularIntensityMap?"#define USE_SPECULAR_INTENSITYMAP":"",t.roughnessMap?"#define USE_ROUGHNESSMAP":"",t.metalnessMap?"#define USE_METALNESSMAP":"",t.alphaMap?"#define USE_ALPHAMAP":"",t.alphaHash?"#define USE_ALPHAHASH":"",t.transmission?"#define USE_TRANSMISSION":"",t.transmissionMap?"#define USE_TRANSMISSIONMAP":"",t.thicknessMap?"#define USE_THICKNESSMAP":"",t.sheenColorMap?"#define USE_SHEEN_COLORMAP":"",t.sheenRoughnessMap?"#define USE_SHEEN_ROUGHNESSMAP":"",t.mapUv?"#define MAP_UV "+t.mapUv:"",t.alphaMapUv?"#define ALPHAMAP_UV "+t.alphaMapUv:"",t.lightMapUv?"#define LIGHTMAP_UV "+t.lightMapUv:"",t.aoMapUv?"#define AOMAP_UV "+t.aoMapUv:"",t.emissiveMapUv?"#define EMISSIVEMAP_UV "+t.emissiveMapUv:"",t.bumpMapUv?"#define BUMPMAP_UV "+t.bumpMapUv:"",t.normalMapUv?"#define NORMALMAP_UV "+t.normalMapUv:"",t.displacementMapUv?"#define DISPLACEMENTMAP_UV "+t.displacementMapUv:"",t.metalnessMapUv?"#define METALNESSMAP_UV "+t.metalnessMapUv:"",t.roughnessMapUv?"#define ROUGHNESSMAP_UV "+t.roughnessMapUv:"",t.anisotropyMapUv?"#define ANISOTROPYMAP_UV "+t.anisotropyMapUv:"",t.clearcoatMapUv?"#define CLEARCOATMAP_UV "+t.clearcoatMapUv:"",t.clearcoatNormalMapUv?"#define CLEARCOAT_NORMALMAP_UV "+t.clearcoatNormalMapUv:"",t.clearcoatRoughnessMapUv?"#define CLEARCOAT_ROUGHNESSMAP_UV "+t.clearcoatRoughnessMapUv:"",t.iridescenceMapUv?"#define IRIDESCENCEMAP_UV "+t.iridescenceMapUv:"",t.iridescenceThicknessMapUv?"#define IRIDESCENCE_THICKNESSMAP_UV "+t.iridescenceThicknessMapUv:"",t.sheenColorMapUv?"#define SHEEN_COLORMAP_UV "+t.sheenColorMapUv:"",t.sheenRoughnessMapUv?"#define SHEEN_ROUGHNESSMAP_UV "+t.sheenRoughnessMapUv:"",t.specularMapUv?"#define SPECULARMAP_UV "+t.specularMapUv:"",t.specularColorMapUv?"#define SPECULAR_COLORMAP_UV "+t.specularColorMapUv:"",t.specularIntensityMapUv?"#define SPECULAR_INTENSITYMAP_UV "+t.specularIntensityMapUv:"",t.transmissionMapUv?"#define TRANSMISSIONMAP_UV "+t.transmissionMapUv:"",t.thicknessMapUv?"#define THICKNESSMAP_UV "+t.thicknessMapUv:"",t.vertexTangents&&t.flatShading===!1?"#define USE_TANGENT":"",t.vertexNormals?"#define HAS_NORMAL":"",t.vertexColors?"#define USE_COLOR":"",t.vertexAlphas?"#define USE_COLOR_ALPHA":"",t.vertexUv1s?"#define USE_UV1":"",t.vertexUv2s?"#define USE_UV2":"",t.vertexUv3s?"#define USE_UV3":"",t.pointsUvs?"#define USE_POINTS_UV":"",t.flatShading?"#define FLAT_SHADED":"",t.skinning?"#define USE_SKINNING":"",t.morphTargets?"#define USE_MORPHTARGETS":"",t.morphNormals&&t.flatShading===!1?"#define USE_MORPHNORMALS":"",t.morphColors?"#define USE_MORPHCOLORS":"",t.morphTargetsCount>0?"#define MORPHTARGETS_TEXTURE_STRIDE "+t.morphTextureStride:"",t.morphTargetsCount>0?"#define MORPHTARGETS_COUNT "+t.morphTargetsCount:"",t.doubleSided?"#define DOUBLE_SIDED":"",t.flipSided?"#define FLIP_SIDED":"",t.shadowMapEnabled?"#define USE_SHADOWMAP":"",t.shadowMapEnabled?"#define "+l:"",t.sizeAttenuation?"#define USE_SIZEATTENUATION":"",t.numLightProbes>0?"#define USE_LIGHT_PROBES":"",t.logarithmicDepthBuffer?"#define USE_LOGARITHMIC_DEPTH_BUFFER":"",t.reversedDepthBuffer?"#define USE_REVERSED_DEPTH_BUFFER":"","uniform mat4 modelMatrix;","uniform mat4 modelViewMatrix;","uniform mat4 projectionMatrix;","uniform mat4 viewMatrix;","uniform mat3 normalMatrix;","uniform vec3 cameraPosition;","uniform bool isOrthographic;","#ifdef USE_INSTANCING","	attribute mat4 instanceMatrix;","#endif","#ifdef USE_INSTANCING_COLOR","	attribute vec3 instanceColor;","#endif","#ifdef USE_INSTANCING_MORPH","	uniform sampler2D morphTexture;","#endif","attribute vec3 position;","attribute vec3 normal;","attribute vec2 uv;","#ifdef USE_UV1","	attribute vec2 uv1;","#endif","#ifdef USE_UV2","	attribute vec2 uv2;","#endif","#ifdef USE_UV3","	attribute vec2 uv3;","#endif","#ifdef USE_TANGENT","	attribute vec4 tangent;","#endif","#if defined( USE_COLOR_ALPHA )","	attribute vec4 color;","#elif defined( USE_COLOR )","	attribute vec3 color;","#endif","#ifdef USE_SKINNING","	attribute vec4 skinIndex;","	attribute vec4 skinWeight;","#endif",`
+`].filter(Ma).join(`
+`),m=[zd(t),"#define SHADER_TYPE "+t.shaderType,"#define SHADER_NAME "+t.shaderName,x,t.useFog&&t.fog?"#define USE_FOG":"",t.useFog&&t.fogExp2?"#define FOG_EXP2":"",t.alphaToCoverage?"#define ALPHA_TO_COVERAGE":"",t.map?"#define USE_MAP":"",t.matcap?"#define USE_MATCAP":"",t.envMap?"#define USE_ENVMAP":"",t.envMap?"#define "+c:"",t.envMap?"#define "+u:"",t.envMap?"#define "+f:"",h?"#define CUBEUV_TEXEL_WIDTH "+h.texelWidth:"",h?"#define CUBEUV_TEXEL_HEIGHT "+h.texelHeight:"",h?"#define CUBEUV_MAX_MIP "+h.maxMip+".0":"",t.lightMap?"#define USE_LIGHTMAP":"",t.aoMap?"#define USE_AOMAP":"",t.bumpMap?"#define USE_BUMPMAP":"",t.normalMap?"#define USE_NORMALMAP":"",t.normalMapObjectSpace?"#define USE_NORMALMAP_OBJECTSPACE":"",t.normalMapTangentSpace?"#define USE_NORMALMAP_TANGENTSPACE":"",t.packedNormalMap?"#define USE_PACKED_NORMALMAP":"",t.emissiveMap?"#define USE_EMISSIVEMAP":"",t.anisotropy?"#define USE_ANISOTROPY":"",t.anisotropyMap?"#define USE_ANISOTROPYMAP":"",t.clearcoat?"#define USE_CLEARCOAT":"",t.clearcoatMap?"#define USE_CLEARCOATMAP":"",t.clearcoatRoughnessMap?"#define USE_CLEARCOAT_ROUGHNESSMAP":"",t.clearcoatNormalMap?"#define USE_CLEARCOAT_NORMALMAP":"",t.dispersion?"#define USE_DISPERSION":"",t.retroreflection?"#define USE_RETROREFLECTION":"",t.iridescence?"#define USE_IRIDESCENCE":"",t.iridescenceMap?"#define USE_IRIDESCENCEMAP":"",t.iridescenceThicknessMap?"#define USE_IRIDESCENCE_THICKNESSMAP":"",t.specularMap?"#define USE_SPECULARMAP":"",t.specularColorMap?"#define USE_SPECULAR_COLORMAP":"",t.specularIntensityMap?"#define USE_SPECULAR_INTENSITYMAP":"",t.roughnessMap?"#define USE_ROUGHNESSMAP":"",t.metalnessMap?"#define USE_METALNESSMAP":"",t.alphaMap?"#define USE_ALPHAMAP":"",t.alphaTest?"#define USE_ALPHATEST":"",t.alphaHash?"#define USE_ALPHAHASH":"",t.sheen?"#define USE_SHEEN":"",t.sheenColorMap?"#define USE_SHEEN_COLORMAP":"",t.sheenRoughnessMap?"#define USE_SHEEN_ROUGHNESSMAP":"",t.transmission?"#define USE_TRANSMISSION":"",t.transmissionMap?"#define USE_TRANSMISSIONMAP":"",t.thicknessMap?"#define USE_THICKNESSMAP":"",t.vertexTangents&&t.flatShading===!1?"#define USE_TANGENT":"",t.vertexColors||t.instancingColor?"#define USE_COLOR":"",t.vertexAlphas||t.batchingColor?"#define USE_COLOR_ALPHA":"",t.vertexUv1s?"#define USE_UV1":"",t.vertexUv2s?"#define USE_UV2":"",t.vertexUv3s?"#define USE_UV3":"",t.pointsUvs?"#define USE_POINTS_UV":"",t.gradientMap?"#define USE_GRADIENTMAP":"",t.flatShading?"#define FLAT_SHADED":"",t.doubleSided?"#define DOUBLE_SIDED":"",t.flipSided?"#define FLIP_SIDED":"",t.shadowMapEnabled?"#define USE_SHADOWMAP":"",t.shadowMapEnabled?"#define "+l:"",t.premultipliedAlpha?"#define PREMULTIPLIED_ALPHA":"",t.numLightProbes>0?"#define USE_LIGHT_PROBES":"",t.numLightProbeGrids>0?"#define USE_LIGHT_PROBES_GRID":"",t.decodeVideoTexture?"#define DECODE_VIDEO_TEXTURE":"",t.decodeVideoTextureEmissive?"#define DECODE_VIDEO_TEXTURE_EMISSIVE":"",t.logarithmicDepthBuffer?"#define USE_LOGARITHMIC_DEPTH_BUFFER":"",t.reversedDepthBuffer?"#define USE_REVERSED_DEPTH_BUFFER":"","uniform mat4 viewMatrix;","uniform vec3 cameraPosition;","uniform bool isOrthographic;",t.toneMapping!==jn?"#define TONE_MAPPING":"",t.toneMapping!==jn?ht.tonemapping_pars_fragment:"",t.toneMapping!==jn?kx("toneMapping",t.toneMapping):"",t.dithering?"#define DITHERING":"",t.opaque?"#define OPAQUE":"",ht.colorspace_pars_fragment,Ox("linearToOutputTexel",t.outputColorSpace),zx(),t.useDepthPacking?"#define DEPTH_PACKING "+t.depthPacking:"",`
+`].filter(Ma).join(`
+`)),a=Su(a),a=Od(a,t),a=Bd(a,t),o=Su(o),o=Od(o,t),o=Bd(o,t),a=kd(a),o=kd(o),t.isRawShaderMaterial!==!0&&(S=`#version 300 es
+`,g=[p,"#define attribute in","#define varying out","#define texture2D texture"].join(`
+`)+`
+`+g,m=["#define varying in",t.glslVersion===tu?"":"layout(location = 0) out highp vec4 pc_fragColor;",t.glslVersion===tu?"":"#define gl_FragColor pc_fragColor","#define gl_FragDepthEXT gl_FragDepth","#define texture2D texture","#define textureCube texture","#define texture2DProj textureProj","#define texture2DLodEXT textureLod","#define texture2DProjLodEXT textureProjLod","#define textureCubeLodEXT textureLod","#define texture2DGradEXT textureGrad","#define texture2DProjGradEXT textureProjGrad","#define textureCubeGradEXT textureGrad"].join(`
+`)+`
+`+m);let C=S+g+a,_=S+m+o,T=Dd(s,s.VERTEX_SHADER,C),E=Dd(s,s.FRAGMENT_SHADER,_);s.attachShader(M,T),s.attachShader(M,E),t.index0AttributeName!==void 0?s.bindAttribLocation(M,0,t.index0AttributeName):t.hasPositionAttribute===!0&&s.bindAttribLocation(M,0,"position"),s.linkProgram(M);function R(L){if(i.debug.checkShaderErrors){let B=s.getProgramInfoLog(M)||"",H=s.getShaderInfoLog(T)||"",D=s.getShaderInfoLog(E)||"",W=B.trim(),K=H.trim(),J=D.trim(),ne=!0,Z=!0;if(s.getProgramParameter(M,s.LINK_STATUS)===!1)if(ne=!1,typeof i.debug.onShaderError=="function")i.debug.onShaderError(s,M,T,E);else{let ee=Fd(s,T,"vertex"),re=Fd(s,E,"fragment");Qe("WebGLProgram: Shader Error "+s.getError()+" - VALIDATE_STATUS "+s.getProgramParameter(M,s.VALIDATE_STATUS)+`
+
+Material Name: `+L.name+`
+Material Type: `+L.type+`
+
+Program Info Log: `+W+`
+`+ee+`
+`+re)}else W!==""?Ke("WebGLProgram: Program Info Log:",W):(K===""||J==="")&&(Z=!1);Z&&(L.diagnostics={runnable:ne,programLog:W,vertexShader:{log:K,prefix:g},fragmentShader:{log:J,prefix:m}})}s.deleteShader(T),s.deleteShader(E),y=new sr(s,M),w=Vx(s,M)}let y;this.getUniforms=function(){return y===void 0&&R(this),y};let w;this.getAttributes=function(){return w===void 0&&R(this),w};let P=t.rendererExtensionParallelShaderCompile===!1;return this.isReady=function(){return P===!1&&(P=s.getProgramParameter(M,Lx)),P},this.destroy=function(){n.releaseStatesOfProgram(this),s.deleteProgram(M),this.program=void 0},this.type=t.shaderType,this.name=t.shaderName,this.id=Dx++,this.cacheKey=e,this.usedTimes=1,this.program=M,this.vertexShader=T,this.fragmentShader=E,this}var rv=0,Eu=class{constructor(){this.shaderCache=new Map,this.materialCache=new Map}update(e,t,n){let s=this._getShaderCacheForMaterial(e);return s.has(t)===!1&&(s.add(t),t.usedTimes++),s.has(n)===!1&&(s.add(n),n.usedTimes++),this}remove(e){let t=this.materialCache.get(e);for(let n of t)n.usedTimes--,n.usedTimes===0&&this.shaderCache.delete(n.code);return this.materialCache.delete(e),this}getVertexShaderStage(e){return this._getShaderStage(e.vertexShader)}getFragmentShaderStage(e){return this._getShaderStage(e.fragmentShader)}dispose(){this.shaderCache.clear(),this.materialCache.clear()}_getShaderCacheForMaterial(e){let t=this.materialCache,n=t.get(e);return n===void 0&&(n=new Set,t.set(e,n)),n}_getShaderStage(e){let t=this.shaderCache,n=t.get(e);return n===void 0&&(n=new wu(e),t.set(e,n)),n}},wu=class{constructor(e){this.id=rv++,this.code=e,this.usedTimes=0}};function av(i){return i===Yi||i===ga||i===xa}function ov(i,e,t,n,s,r){let a=new Br,o=new Eu,l=new Set,c=[],u=new Map,f=n.logarithmicDepthBuffer,h=n.precision,p={MeshDepthMaterial:"depth",MeshDistanceMaterial:"distance",MeshNormalMaterial:"normal",MeshBasicMaterial:"basic",MeshLambertMaterial:"lambert",MeshPhongMaterial:"phong",MeshToonMaterial:"toon",MeshStandardMaterial:"physical",MeshPhysicalMaterial:"physical",MeshMatcapMaterial:"matcap",LineBasicMaterial:"basic",LineDashedMaterial:"dashed",PointsMaterial:"points",ShadowMaterial:"shadow",SpriteMaterial:"sprite"};function x(y){return l.add(y),y===0?"uv":`uv${y}`}function M(y,w,P,L,B,H){let D=L.fog,W=B.geometry,K=y.isMeshStandardMaterial||y.isMeshLambertMaterial||y.isMeshPhongMaterial?L.environment:null,J=y.isMeshStandardMaterial||y.isMeshLambertMaterial&&!y.envMap||y.isMeshPhongMaterial&&!y.envMap,ne=e.get(y.envMap||K,J),Z=ne&&ne.mapping===ua?ne.image.height:null,ee=p[y.type];y.precision!==null&&(h=n.getMaxPrecision(y.precision),h!==y.precision&&Ke("WebGLProgram.getParameters:",y.precision,"not supported, using",h,"instead."));let re=W.morphAttributes.position||W.morphAttributes.normal||W.morphAttributes.color,Pe=re!==void 0?re.length:0,Ie=0;W.morphAttributes.position!==void 0&&(Ie=1),W.morphAttributes.normal!==void 0&&(Ie=2),W.morphAttributes.color!==void 0&&(Ie=3);let vt,ot,ut,j;if(ee){let Pt=pi[ee];vt=Pt.vertexShader,ot=Pt.fragmentShader}else{vt=y.vertexShader,ot=y.fragmentShader;let Pt=o.getVertexShaderStage(y),wt=o.getFragmentShaderStage(y);o.update(y,Pt,wt),ut=Pt.id,j=wt.id}let se=i.getRenderTarget(),Ee=i.state.buffers.depth.getReversed(),Ve=B.isInstancedMesh===!0,fe=B.isBatchedMesh===!0,tt=!!y.map,kt=!!y.matcap,$e=!!ne,at=!!y.aoMap,St=!!y.lightMap,oe=!!y.bumpMap&&y.wireframe===!1,le=!!y.normalMap,dt=!!y.displacementMap,Le=!!y.emissiveMap,qe=!!y.metalnessMap,nt=!!y.roughnessMap,F=y.anisotropy>0,Xt=y.clearcoat>0,Et=y.dispersion>0,A=y.retroreflectivity>0,v=y.iridescence>0,z=y.sheen>0,q=y.transmission>0,$=F&&!!y.anisotropyMap,ue=Xt&&!!y.clearcoatMap,me=Xt&&!!y.clearcoatNormalMap,Q=Xt&&!!y.clearcoatRoughnessMap,ie=v&&!!y.iridescenceMap,xe=v&&!!y.iridescenceThicknessMap,He=z&&!!y.sheenColorMap,be=z&&!!y.sheenRoughnessMap,pe=!!y.specularMap,ke=!!y.specularColorMap,Ye=!!y.specularIntensityMap,st=q&&!!y.transmissionMap,O=q&&!!y.thicknessMap,ve=!!y.gradientMap,te=!!y.alphaMap,ye=y.alphaTest>0,Te=!!y.alphaHash,ae=!!y.extensions,Ge=jn;y.toneMapped&&(se===null||se.isXRRenderTarget===!0)&&(Ge=i.toneMapping);let Ue={shaderID:ee,shaderType:y.type,shaderName:y.name,vertexShader:vt,fragmentShader:ot,defines:y.defines,customVertexShaderID:ut,customFragmentShaderID:j,isRawShaderMaterial:y.isRawShaderMaterial===!0,glslVersion:y.glslVersion,precision:h,batching:fe,batchingColor:fe&&B._colorsTexture!==null,instancing:Ve,instancingColor:Ve&&B.instanceColor!==null,instancingMorph:Ve&&B.morphTexture!==null,outputColorSpace:se===null?i.outputColorSpace:se.isXRRenderTarget===!0?se.texture.colorSpace:mt.workingColorSpace,alphaToCoverage:!!y.alphaToCoverage,map:tt,matcap:kt,envMap:$e,envMapMode:$e&&ne.mapping,envMapCubeUVHeight:Z,aoMap:at,lightMap:St,bumpMap:oe,normalMap:le,displacementMap:dt,emissiveMap:Le,normalMapObjectSpace:le&&y.normalMapType===ld,normalMapTangentSpace:le&&y.normalMapType===va,packedNormalMap:le&&y.normalMapType===va&&av(y.normalMap.format),metalnessMap:qe,roughnessMap:nt,anisotropy:F,anisotropyMap:$,clearcoat:Xt,clearcoatMap:ue,clearcoatNormalMap:me,clearcoatRoughnessMap:Q,dispersion:Et,retroreflection:A,iridescence:v,iridescenceMap:ie,iridescenceThicknessMap:xe,sheen:z,sheenColorMap:He,sheenRoughnessMap:be,specularMap:pe,specularColorMap:ke,specularIntensityMap:Ye,transmission:q,transmissionMap:st,thicknessMap:O,gradientMap:ve,opaque:y.transparent===!1&&y.blending===js&&y.alphaToCoverage===!1,alphaMap:te,alphaTest:ye,alphaHash:Te,combine:y.combine,mapUv:tt&&x(y.map.channel),aoMapUv:at&&x(y.aoMap.channel),lightMapUv:St&&x(y.lightMap.channel),bumpMapUv:oe&&x(y.bumpMap.channel),normalMapUv:le&&x(y.normalMap.channel),displacementMapUv:dt&&x(y.displacementMap.channel),emissiveMapUv:Le&&x(y.emissiveMap.channel),metalnessMapUv:qe&&x(y.metalnessMap.channel),roughnessMapUv:nt&&x(y.roughnessMap.channel),anisotropyMapUv:$&&x(y.anisotropyMap.channel),clearcoatMapUv:ue&&x(y.clearcoatMap.channel),clearcoatNormalMapUv:me&&x(y.clearcoatNormalMap.channel),clearcoatRoughnessMapUv:Q&&x(y.clearcoatRoughnessMap.channel),iridescenceMapUv:ie&&x(y.iridescenceMap.channel),iridescenceThicknessMapUv:xe&&x(y.iridescenceThicknessMap.channel),sheenColorMapUv:He&&x(y.sheenColorMap.channel),sheenRoughnessMapUv:be&&x(y.sheenRoughnessMap.channel),specularMapUv:pe&&x(y.specularMap.channel),specularColorMapUv:ke&&x(y.specularColorMap.channel),specularIntensityMapUv:Ye&&x(y.specularIntensityMap.channel),transmissionMapUv:st&&x(y.transmissionMap.channel),thicknessMapUv:O&&x(y.thicknessMap.channel),alphaMapUv:te&&x(y.alphaMap.channel),vertexTangents:!!W.attributes.tangent&&(le||F),vertexNormals:!!W.attributes.normal,vertexColors:y.vertexColors,vertexAlphas:y.vertexColors===!0&&!!W.attributes.color&&W.attributes.color.itemSize===4,pointsUvs:B.isPoints===!0&&!!W.attributes.uv&&(tt||te),fog:!!D,useFog:y.fog===!0,fogExp2:!!D&&D.isFogExp2,flatShading:y.wireframe===!1&&(y.flatShading===!0||W.attributes.normal===void 0&&le===!1&&(y.isMeshLambertMaterial||y.isMeshPhongMaterial||y.isMeshStandardMaterial||y.isMeshPhysicalMaterial)),sizeAttenuation:y.sizeAttenuation===!0,logarithmicDepthBuffer:f,reversedDepthBuffer:Ee,skinning:B.isSkinnedMesh===!0,hasPositionAttribute:W.attributes.position!==void 0,morphTargets:W.morphAttributes.position!==void 0,morphNormals:W.morphAttributes.normal!==void 0,morphColors:W.morphAttributes.color!==void 0,morphTargetsCount:Pe,morphTextureStride:Ie,numSunLights:w.sun.length,numDirLights:w.directional.length,numPointLights:w.point.length,numSpotLights:w.spot.length,numSpotLightMaps:w.spotLightMap.length,numRectAreaLights:w.rectArea.length,numHemiLights:w.hemi.length,numSunLightShadows:w.sunShadowMap.length,numDirLightShadows:w.directionalShadowMap.length,numPointLightShadows:w.pointShadowMap.length,numSpotLightShadows:w.spotShadowMap.length,numSpotLightShadowsWithMaps:w.numSpotLightShadowsWithMaps,numLightProbes:w.numLightProbes,numLightProbeGrids:H.length,numClippingPlanes:r.numPlanes,numClipIntersection:r.numIntersection,dithering:y.dithering,shadowMapEnabled:i.shadowMap.enabled&&P.length>0,shadowMapType:i.shadowMap.type,toneMapping:Ge,decodeVideoTexture:tt&&y.map.isVideoTexture===!0&&mt.getTransfer(y.map.colorSpace)===Ct,decodeVideoTextureEmissive:Le&&y.emissiveMap.isVideoTexture===!0&&mt.getTransfer(y.emissiveMap.colorSpace)===Ct,premultipliedAlpha:y.premultipliedAlpha,doubleSided:y.side===qt,flipSided:y.side===Yt,useDepthPacking:y.depthPacking>=0,depthPacking:y.depthPacking||0,index0AttributeName:y.index0AttributeName,extensionClipCullDistance:ae&&y.extensions.clipCullDistance===!0&&t.has("WEBGL_clip_cull_distance"),extensionMultiDraw:(ae&&y.extensions.multiDraw===!0||fe)&&t.has("WEBGL_multi_draw"),rendererExtensionParallelShaderCompile:t.has("KHR_parallel_shader_compile"),customProgramCacheKey:y.customProgramCacheKey()};return Ue.vertexUv1s=l.has(1),Ue.vertexUv2s=l.has(2),Ue.vertexUv3s=l.has(3),l.clear(),Ue}function g(y){let w=[];if(y.shaderID?w.push(y.shaderID):(w.push(y.customVertexShaderID),w.push(y.customFragmentShaderID)),y.defines!==void 0)for(let P in y.defines)w.push(P),w.push(y.defines[P]);return y.isRawShaderMaterial===!1&&(m(w,y),S(w,y),w.push(i.outputColorSpace)),w.push(y.customProgramCacheKey),w.join()}function m(y,w){y.push(w.precision),y.push(w.outputColorSpace),y.push(w.envMapMode),y.push(w.envMapCubeUVHeight),y.push(w.mapUv),y.push(w.alphaMapUv),y.push(w.lightMapUv),y.push(w.aoMapUv),y.push(w.bumpMapUv),y.push(w.normalMapUv),y.push(w.displacementMapUv),y.push(w.emissiveMapUv),y.push(w.metalnessMapUv),y.push(w.roughnessMapUv),y.push(w.anisotropyMapUv),y.push(w.clearcoatMapUv),y.push(w.clearcoatNormalMapUv),y.push(w.clearcoatRoughnessMapUv),y.push(w.iridescenceMapUv),y.push(w.iridescenceThicknessMapUv),y.push(w.sheenColorMapUv),y.push(w.sheenRoughnessMapUv),y.push(w.specularMapUv),y.push(w.specularColorMapUv),y.push(w.specularIntensityMapUv),y.push(w.transmissionMapUv),y.push(w.thicknessMapUv),y.push(w.combine),y.push(w.fogExp2),y.push(w.sizeAttenuation),y.push(w.morphTargetsCount),y.push(w.morphAttributeCount),y.push(w.numSunLights),y.push(w.numDirLights),y.push(w.numPointLights),y.push(w.numSpotLights),y.push(w.numSpotLightMaps),y.push(w.numHemiLights),y.push(w.numRectAreaLights),y.push(w.numSunLightShadows),y.push(w.numDirLightShadows),y.push(w.numPointLightShadows),y.push(w.numSpotLightShadows),y.push(w.numSpotLightShadowsWithMaps),y.push(w.numLightProbes),y.push(w.shadowMapType),y.push(w.toneMapping),y.push(w.numClippingPlanes),y.push(w.numClipIntersection),y.push(w.depthPacking)}function S(y,w){a.disableAll(),w.instancing&&a.enable(0),w.instancingColor&&a.enable(1),w.instancingMorph&&a.enable(2),w.matcap&&a.enable(3),w.envMap&&a.enable(4),w.normalMapObjectSpace&&a.enable(5),w.normalMapTangentSpace&&a.enable(6),w.clearcoat&&a.enable(7),w.iridescence&&a.enable(8),w.alphaTest&&a.enable(9),w.vertexColors&&a.enable(10),w.vertexAlphas&&a.enable(11),w.vertexUv1s&&a.enable(12),w.vertexUv2s&&a.enable(13),w.vertexUv3s&&a.enable(14),w.vertexTangents&&a.enable(15),w.anisotropy&&a.enable(16),w.alphaHash&&a.enable(17),w.batching&&a.enable(18),w.dispersion&&a.enable(19),w.retroreflection&&a.enable(24),w.batchingColor&&a.enable(20),w.gradientMap&&a.enable(21),w.packedNormalMap&&a.enable(22),w.vertexNormals&&a.enable(23),y.push(a.mask),a.disableAll(),w.fog&&a.enable(0),w.useFog&&a.enable(1),w.flatShading&&a.enable(2),w.logarithmicDepthBuffer&&a.enable(3),w.reversedDepthBuffer&&a.enable(4),w.skinning&&a.enable(5),w.morphTargets&&a.enable(6),w.morphNormals&&a.enable(7),w.morphColors&&a.enable(8),w.premultipliedAlpha&&a.enable(9),w.shadowMapEnabled&&a.enable(10),w.doubleSided&&a.enable(11),w.flipSided&&a.enable(12),w.useDepthPacking&&a.enable(13),w.dithering&&a.enable(14),w.transmission&&a.enable(15),w.sheen&&a.enable(16),w.opaque&&a.enable(17),w.pointsUvs&&a.enable(18),w.decodeVideoTexture&&a.enable(19),w.decodeVideoTextureEmissive&&a.enable(20),w.alphaToCoverage&&a.enable(21),w.numLightProbeGrids>0&&a.enable(22),w.hasPositionAttribute&&a.enable(23),y.push(a.mask)}function C(y){let w=p[y.type],P;if(w){let L=pi[w];P=Ci.clone(L.uniforms)}else P=y.uniforms;return P}function _(y,w){let P=u.get(w);return P!==void 0?++P.usedTimes:(P=new sv(i,w,y,s),c.push(P),u.set(w,P)),P}function T(y){if(--y.usedTimes===0){let w=c.indexOf(y);c[w]=c[c.length-1],c.pop(),u.delete(y.cacheKey),y.destroy()}}function E(y){o.remove(y)}function R(){o.dispose()}return{getParameters:M,getProgramCacheKey:g,getUniforms:C,acquireProgram:_,releaseProgram:T,releaseShaderCache:E,programs:c,dispose:R}}function lv(){let i=new WeakMap;function e(a){return i.has(a)}function t(a){let o=i.get(a);return o===void 0&&(o={},i.set(a,o)),o}function n(a){i.delete(a)}function s(a,o,l){i.get(a)[o]=l}function r(){i=new WeakMap}return{has:e,get:t,remove:n,update:s,dispose:r}}function cv(i,e){return i.groupOrder!==e.groupOrder?i.groupOrder-e.groupOrder:i.renderOrder!==e.renderOrder?i.renderOrder-e.renderOrder:i.material.id!==e.material.id?i.material.id-e.material.id:i.materialVariant!==e.materialVariant?i.materialVariant-e.materialVariant:i.z!==e.z?i.z-e.z:i.id-e.id}function Hd(i,e){return i.groupOrder!==e.groupOrder?i.groupOrder-e.groupOrder:i.renderOrder!==e.renderOrder?i.renderOrder-e.renderOrder:i.z!==e.z?e.z-i.z:i.id-e.id}function Gd(){let i=[],e=0,t=[],n=[],s=[];function r(){e=0,t.length=0,n.length=0,s.length=0}function a(h){let p=0;return h.isInstancedMesh&&(p+=2),h.isSkinnedMesh&&(p+=1),p}function o(h,p,x,M,g,m){let S=i[e];return S===void 0?(S={id:h.id,object:h,geometry:p,material:x,materialVariant:a(h),groupOrder:M,renderOrder:h.renderOrder,z:g,group:m},i[e]=S):(S.id=h.id,S.object=h,S.geometry=p,S.material=x,S.materialVariant=a(h),S.groupOrder=M,S.renderOrder=h.renderOrder,S.z=g,S.group=m),e++,S}function l(h,p,x,M,g,m,S){S.reversedDepth===!0&&(g=-g);let C=o(h,p,x,M,g,m);x.transmission>0?n.push(C):x.transparent===!0?s.push(C):t.push(C)}function c(h,p,x,M,g,m){let S=o(h,p,x,M,g,m);x.transmission>0?n.unshift(S):x.transparent===!0?s.unshift(S):t.unshift(S)}function u(h,p){t.length>1&&t.sort(h||cv),n.length>1&&n.sort(p||Hd),s.length>1&&s.sort(p||Hd)}function f(){for(let h=e,p=i.length;h<p;h++){let x=i[h];if(x.id===null)break;x.id=null,x.object=null,x.geometry=null,x.material=null,x.group=null}}return{opaque:t,transmissive:n,transparent:s,init:r,push:l,unshift:c,finish:f,sort:u}}function uv(){let i=new WeakMap;function e(n,s){let r=i.get(n),a;return r===void 0?(a=new Gd,i.set(n,[a])):s>=r.length?(a=new Gd,r.push(a)):a=r[s],a}function t(){i=new WeakMap}return{get:e,dispose:t}}function hv(){let i={};return{get:function(e){if(i[e.id]!==void 0)return i[e.id];let t;switch(e.type){case"SunLight":case"DirectionalLight":t={direction:new I,color:new he};break;case"SpotLight":t={position:new I,direction:new I,color:new he,distance:0,coneCos:0,penumbraCos:0,decay:0};break;case"PointLight":t={position:new I,color:new he,distance:0,decay:0};break;case"HemisphereLight":t={direction:new I,skyColor:new he,groundColor:new he};break;case"RectAreaLight":t={color:new he,position:new I,halfWidth:new I,halfHeight:new I};break}return i[e.id]=t,t}}}function dv(){let i={};return{get:function(e){if(i[e.id]!==void 0)return i[e.id];let t;switch(e.type){case"SunLight":case"DirectionalLight":t={shadowIntensity:1,shadowBias:0,shadowNormalBias:0,shadowRadius:1,shadowMapSize:new Me};break;case"SpotLight":t={shadowIntensity:1,shadowBias:0,shadowNormalBias:0,shadowRadius:1,shadowMapSize:new Me};break;case"PointLight":t={shadowIntensity:1,shadowBias:0,shadowNormalBias:0,shadowRadius:1,shadowMapSize:new Me,shadowCameraNear:1,shadowCameraFar:1e3};break}return i[e.id]=t,t}}}var fv=0;function pv(i,e){return(e.castShadow?2:0)-(i.castShadow?2:0)+(e.map?1:0)-(i.map?1:0)}function mv(i){let e=new hv,t=dv(),n={version:0,hash:{sunLength:-1,directionalLength:-1,pointLength:-1,spotLength:-1,rectAreaLength:-1,hemiLength:-1,numSunShadows:-1,numDirectionalShadows:-1,numPointShadows:-1,numSpotShadows:-1,numSpotMaps:-1,numLightProbes:-1},ambient:[0,0,0],probe:[],sun:[],sunShadow:[],sunShadowMap:[],sunShadowMatrix:[],sunShadowCascade:[],directional:[],directionalShadow:[],directionalShadowMap:[],directionalShadowMatrix:[],spot:[],spotLightMap:[],spotShadow:[],spotShadowMap:[],spotLightMatrix:[],rectArea:[],rectAreaLTC1:null,rectAreaLTC2:null,point:[],pointShadow:[],pointShadowMap:[],pointShadowMatrix:[],hemi:[],numSpotLightShadowsWithMaps:0,numLightProbes:0};for(let c=0;c<9;c++)n.probe.push(new I);let s=new I,r=new Ft,a=new Ft;function o(c){let u=0,f=0,h=0;for(let B=0;B<9;B++)n.probe[B].set(0,0,0);let p=0,x=0,M=0,g=0,m=0,S=0,C=0,_=0,T=0,E=0,R=0,y=0,w=0,P=0;c.sort(pv);for(let B=0,H=c.length;B<H;B++){let D=c[B],W=D.color,K=D.intensity,J=D.distance,ne=null;if(D.shadow&&D.shadow.map&&(D.shadow.map.texture.format===Yi?ne=D.shadow.map.texture:ne=D.shadow.map.depthTexture||D.shadow.map.texture),D.isAmbientLight)u+=W.r*K,f+=W.g*K,h+=W.b*K;else if(D.isLightProbe){for(let Z=0;Z<9;Z++)n.probe[Z].addScaledVector(D.sh.coefficients[Z],K);P++}else if(D.isSunLight){let Z=e.get(D);if(Z.color.copy(D.color).multiplyScalar(D.intensity),D.castShadow){let ee=D.shadow,re=t.get(D);re.shadowIntensity=ee.intensity,re.shadowBias=ee.bias,re.shadowNormalBias=ee.normalBias,re.shadowRadius=ee.radius,re.shadowMapSize.copy(ee.mapSize).multiply(ee.getFrameExtents()),n.sunShadow[x]=re,n.sunShadowMap[x]=ne;let Pe=ee.getViewportCount();for(let Ie=0;Ie<Pe;Ie++)n.sunShadowMatrix[M+Ie]=ee.getMatrix(Ie),n.sunShadowCascade[M+Ie]=ee._cascadeData[Ie];M+=Pe,x++}n.sun[p]=Z,p++}else if(D.isDirectionalLight){let Z=e.get(D);if(Z.color.copy(D.color).multiplyScalar(D.intensity),D.castShadow){let ee=D.shadow,re=t.get(D);re.shadowIntensity=ee.intensity,re.shadowBias=ee.bias,re.shadowNormalBias=ee.normalBias,re.shadowRadius=ee.radius,re.shadowMapSize=ee.mapSize,n.directionalShadow[g]=re,n.directionalShadowMap[g]=ne,n.directionalShadowMatrix[g]=D.shadow.matrix,T++}n.directional[g]=Z,g++}else if(D.isSpotLight){let Z=e.get(D);Z.position.setFromMatrixPosition(D.matrixWorld),Z.color.copy(W).multiplyScalar(K),Z.distance=J,Z.coneCos=Math.cos(D.angle),Z.penumbraCos=Math.cos(D.angle*(1-D.penumbra)),Z.decay=D.decay,n.spot[S]=Z;let ee=D.shadow;if(D.map&&(n.spotLightMap[y]=D.map,y++,ee.updateMatrices(D),D.castShadow&&w++),n.spotLightMatrix[S]=ee.matrix,D.castShadow){let re=t.get(D);re.shadowIntensity=ee.intensity,re.shadowBias=ee.bias,re.shadowNormalBias=ee.normalBias,re.shadowRadius=ee.radius,re.shadowMapSize=ee.mapSize,n.spotShadow[S]=re,n.spotShadowMap[S]=ne,R++}S++}else if(D.isRectAreaLight){let Z=e.get(D);Z.color.copy(W).multiplyScalar(K),Z.halfWidth.set(D.width*.5,0,0),Z.halfHeight.set(0,D.height*.5,0),n.rectArea[C]=Z,C++}else if(D.isPointLight){let Z=e.get(D);if(Z.color.copy(D.color).multiplyScalar(D.intensity),Z.distance=D.distance,Z.decay=D.decay,D.castShadow){let ee=D.shadow,re=t.get(D);re.shadowIntensity=ee.intensity,re.shadowBias=ee.bias,re.shadowNormalBias=ee.normalBias,re.shadowRadius=ee.radius,re.shadowMapSize=ee.mapSize,re.shadowCameraNear=ee.camera.near,re.shadowCameraFar=ee.camera.far,n.pointShadow[m]=re,n.pointShadowMap[m]=ne,n.pointShadowMatrix[m]=D.shadow.matrix,E++}n.point[m]=Z,m++}else if(D.isHemisphereLight){let Z=e.get(D);Z.skyColor.copy(D.color).multiplyScalar(K),Z.groundColor.copy(D.groundColor).multiplyScalar(K),n.hemi[_]=Z,_++}}C>0&&(i.has("OES_texture_float_linear")===!0?(n.rectAreaLTC1=we.LTC_FLOAT_1,n.rectAreaLTC2=we.LTC_FLOAT_2):(n.rectAreaLTC1=we.LTC_HALF_1,n.rectAreaLTC2=we.LTC_HALF_2)),n.ambient[0]=u,n.ambient[1]=f,n.ambient[2]=h;let L=n.hash;(L.sunLength!==p||L.directionalLength!==g||L.pointLength!==m||L.spotLength!==S||L.rectAreaLength!==C||L.hemiLength!==_||L.numSunShadows!==x||L.numDirectionalShadows!==T||L.numPointShadows!==E||L.numSpotShadows!==R||L.numSpotMaps!==y||L.numLightProbes!==P)&&(n.sun.length=p,n.directional.length=g,n.spot.length=S,n.rectArea.length=C,n.point.length=m,n.hemi.length=_,n.sunShadow.length=x,n.sunShadowMap.length=x,n.sunShadowMatrix.length=M,n.sunShadowCascade.length=M,n.directionalShadow.length=T,n.directionalShadowMap.length=T,n.directionalShadowMatrix.length=T,n.pointShadow.length=E,n.pointShadowMap.length=E,n.pointShadowMatrix.length=E,n.spotShadow.length=R,n.spotShadowMap.length=R,n.spotLightMatrix.length=R+y-w,n.spotLightMap.length=y,n.numSpotLightShadowsWithMaps=w,n.numLightProbes=P,L.sunLength=p,L.directionalLength=g,L.pointLength=m,L.spotLength=S,L.rectAreaLength=C,L.hemiLength=_,L.numSunShadows=x,L.numDirectionalShadows=T,L.numPointShadows=E,L.numSpotShadows=R,L.numSpotMaps=y,L.numLightProbes=P,n.version=fv++)}function l(c,u){let f=0,h=0,p=0,x=0,M=0,g=0,m=u.matrixWorldInverse;for(let S=0,C=c.length;S<C;S++){let _=c[S];if(_.isSunLight){let T=n.sun[f];T.direction.setFromMatrixPosition(_.matrixWorld),T.direction.transformDirection(m),f++}else if(_.isDirectionalLight){let T=n.directional[h];T.direction.setFromMatrixPosition(_.matrixWorld),s.setFromMatrixPosition(_.target.matrixWorld),T.direction.sub(s),T.direction.transformDirection(m),h++}else if(_.isSpotLight){let T=n.spot[x];T.position.setFromMatrixPosition(_.matrixWorld),T.position.applyMatrix4(m),T.direction.setFromMatrixPosition(_.matrixWorld),s.setFromMatrixPosition(_.target.matrixWorld),T.direction.sub(s),T.direction.transformDirection(m),x++}else if(_.isRectAreaLight){let T=n.rectArea[M];T.position.setFromMatrixPosition(_.matrixWorld),T.position.applyMatrix4(m),a.identity(),r.copy(_.matrixWorld),r.premultiply(m),a.extractRotation(r),T.halfWidth.set(_.width*.5,0,0),T.halfHeight.set(0,_.height*.5,0),T.halfWidth.applyMatrix4(a),T.halfHeight.applyMatrix4(a),M++}else if(_.isPointLight){let T=n.point[p];T.position.setFromMatrixPosition(_.matrixWorld),T.position.applyMatrix4(m),p++}else if(_.isHemisphereLight){let T=n.hemi[g];T.direction.setFromMatrixPosition(_.matrixWorld),T.direction.transformDirection(m),g++}}}return{setup:o,setupView:l,state:n}}function Vd(i){let e=new mv(i),t=[],n=[],s=[];function r(h){f.camera=h,t.length=0,n.length=0,s.length=0}function a(h){t.push(h)}function o(h){n.push(h)}function l(h){s.push(h)}function c(){e.setup(t)}function u(h){e.setupView(t,h)}let f={lightsArray:t,shadowsArray:n,lightProbeGridArray:s,camera:null,lights:e,transmissionRenderTarget:{},textureUnits:0};return{init:r,state:f,setupLights:c,setupLightsView:u,pushLight:a,pushShadow:o,pushLightProbeGrid:l}}function gv(i){let e=new WeakMap;function t(s,r=0){let a=e.get(s),o;return a===void 0?(o=new Vd(i),e.set(s,[o])):r>=a.length?(o=new Vd(i),a.push(o)):o=a[r],o}function n(){e=new WeakMap}return{get:t,dispose:n}}var xv=`void main() {
+	gl_Position = vec4( position, 1.0 );
+}`,vv=`uniform sampler2D shadow_pass;
+uniform vec2 resolution;
+uniform float radius;
+void main() {
+	const float samples = float( VSM_SAMPLES );
+	float mean = 0.0;
+	float squared_mean = 0.0;
+	float uvStride = samples <= 1.0 ? 0.0 : 2.0 / ( samples - 1.0 );
+	float uvStart = samples <= 1.0 ? 0.0 : - 1.0;
+	for ( float i = 0.0; i < samples; i ++ ) {
+		float uvOffset = uvStart + i * uvStride;
+		#ifdef HORIZONTAL_PASS
+			vec2 distribution = texture2D( shadow_pass, ( gl_FragCoord.xy + vec2( uvOffset, 0.0 ) * radius ) / resolution ).rg;
+			mean += distribution.x;
+			squared_mean += distribution.y * distribution.y + distribution.x * distribution.x;
+		#else
+			float depth = texture2D( shadow_pass, ( gl_FragCoord.xy + vec2( 0.0, uvOffset ) * radius ) / resolution ).r;
+			mean += depth;
+			squared_mean += depth * depth;
+		#endif
+	}
+	mean = mean / samples;
+	squared_mean = squared_mean / samples;
+	float std_dev = sqrt( max( 0.0, squared_mean - mean * mean ) );
+	gl_FragColor = vec4( mean, std_dev, 0.0, 1.0 );
+}`,yv=[new I(1,0,0),new I(-1,0,0),new I(0,1,0),new I(0,-1,0),new I(0,0,1),new I(0,0,-1)],_v=[new I(0,-1,0),new I(0,-1,0),new I(0,0,1),new I(0,0,-1),new I(0,-1,0),new I(0,-1,0)],Wd=new Ft,ba=new I,vu=new I;function bv(i,e,t){let n=new Ys,s=new Me,r=new Me,a=new Wt,o=new Xo,l=new qo,c={},u=t.maxTextureSize,f={[di]:Yt,[Yt]:di,[qt]:qt},h=new pt({defines:{VSM_SAMPLES:8},uniforms:{shadow_pass:{value:null},resolution:{value:new Me},radius:{value:4}},vertexShader:xv,fragmentShader:vv}),p=h.clone();p.defines.HORIZONTAL_PASS=1;let x=new _t;x.setAttribute("position",new Nt(new Float32Array([-1,-1,.5,3,-1,.5,-1,3,.5]),3));let M=new Je(x,h),g=this;this.enabled=!1,this.autoUpdate=!0,this.needsUpdate=!1,this.type=ia;let m=this.type;this.render=function(E,R,y){if(g.enabled===!1||g.autoUpdate===!1&&g.needsUpdate===!1||E.length===0)return;this.type===kh&&(Ke("WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."),this.type=ia);let w=i.getRenderTarget(),P=i.getActiveCubeFace(),L=i.getActiveMipmapLevel(),B=i.state;B.setBlending(kn),B.buffers.depth.getReversed()===!0?B.buffers.color.setClear(0,0,0,0):B.buffers.color.setClear(1,1,1,1),B.buffers.depth.setTest(!0),B.setScissorTest(!1);let H=m!==this.type;H&&R.traverse(function(D){D.material&&(Array.isArray(D.material)?D.material.forEach(W=>W.needsUpdate=!0):D.material.needsUpdate=!0)});for(let D=0,W=E.length;D<W;D++){let K=E[D],J=K.shadow;if(J===void 0){Ke("WebGLShadowMap:",K,"has no shadow.");continue}if(J.autoUpdate===!1&&J.needsUpdate===!1)continue;s.copy(J.mapSize);let ne=J.getFrameExtents();s.multiply(ne),r.copy(J.mapSize),(s.x>u||s.y>u)&&(s.x>u&&(r.x=Math.floor(u/ne.x),s.x=r.x*ne.x,J.mapSize.x=r.x),s.y>u&&(r.y=Math.floor(u/ne.y),s.y=r.y*ne.y,J.mapSize.y=r.y));let Z=i.state.buffers.depth.getReversed();if(J.camera._reversedDepth=Z,J.map===null||H===!0){if(J.map!==null&&(J.map.depthTexture!==null&&(J.map.depthTexture.dispose(),J.map.depthTexture=null),J.map.dispose()),this.type===$s){if(K.isPointLight){Ke("WebGLShadowMap: VSM shadow maps are not supported for PointLights. Use PCF or BasicShadowMap instead.");continue}J.map=new jt(s.x,s.y,{format:Yi,type:un,minFilter:cn,magFilter:cn,generateMipmaps:!1}),J.map.texture.name=K.name+".shadowMap",J.map.depthTexture=new Bi(s.x,s.y,zn),J.map.depthTexture.name=K.name+".shadowMapDepth",J.map.depthTexture.format=ri,J.map.depthTexture.compareFunction=null,J.map.depthTexture.minFilter=ln,J.map.depthTexture.magFilter=ln}else K.isPointLight?(J.map=new Jl(s.x),J.map.depthTexture=new Fo(s.x,Qn)):(J.map=new jt(s.x,s.y),J.map.depthTexture=new Bi(s.x,s.y,Qn)),J.map.depthTexture.name=K.name+".shadowMap",J.map.depthTexture.format=ri,this.type===ia?(J.map.depthTexture.compareFunction=Z?Yl:ql,J.map.depthTexture.minFilter=cn,J.map.depthTexture.magFilter=cn):(J.map.depthTexture.compareFunction=null,J.map.depthTexture.minFilter=ln,J.map.depthTexture.magFilter=ln);J.camera.updateProjectionMatrix()}J.map.isWebGLCubeRenderTarget!==!0&&(J.map.width!==s.x||J.map.height!==s.y)&&J.map.setSize(s.x,s.y);let ee=J.map.isWebGLCubeRenderTarget?6:J.getViewportCount();K.isPointLight!==!0&&J.updateMatrices(K,y);for(let re=0;re<ee;re++){let Pe=J.getCamera(re);if(K.isPointLight){let Ie=J.camera,vt=J.matrix,ot=K.distance||Ie.far;ot!==Ie.far&&(Ie.far=ot,Ie.updateProjectionMatrix()),ba.setFromMatrixPosition(K.matrixWorld),Ie.position.copy(ba),vu.copy(Ie.position),vu.add(yv[re]),Ie.up.copy(_v[re]),Ie.lookAt(vu),Ie.updateMatrixWorld(),vt.makeTranslation(-ba.x,-ba.y,-ba.z),Wd.multiplyMatrices(Ie.projectionMatrix,Ie.matrixWorldInverse),J._frustum.setFromProjectionMatrix(Wd,Ie.coordinateSystem,Ie.reversedDepth)}if(J.map.isWebGLCubeRenderTarget)i.setRenderTarget(J.map,re),i.clear();else{re===0&&(i.setRenderTarget(J.map),i.clear());let Ie=J.getViewport(re);a.set(r.x*Ie.x,r.y*Ie.y,r.x*Ie.z,r.y*Ie.w),B.viewport(a)}n=J.getFrustum(re),_(R,y,Pe,K,this.type)}J.isPointLightShadow!==!0&&this.type===$s&&S(J,y),J.needsUpdate=!1}m=this.type,g.needsUpdate=!1,i.setRenderTarget(w,P,L)};function S(E,R){let y=e.update(M);h.defines.VSM_SAMPLES!==E.blurSamples&&(h.defines.VSM_SAMPLES=E.blurSamples,p.defines.VSM_SAMPLES=E.blurSamples,h.needsUpdate=!0,p.needsUpdate=!0),E.mapPass===null?E.mapPass=new jt(s.x,s.y,{format:Yi,type:un}):(E.mapPass.width!==E.map.width||E.mapPass.height!==E.map.height)&&E.mapPass.setSize(E.map.width,E.map.height),h.uniforms.shadow_pass.value=E.map.depthTexture,h.uniforms.resolution.value.set(E.map.width,E.map.height),h.uniforms.radius.value=E.radius,i.setRenderTarget(E.mapPass),i.clear(),i.renderBufferDirect(R,null,y,h,M,null),p.uniforms.shadow_pass.value=E.mapPass.texture,p.uniforms.resolution.value.set(E.map.width,E.map.height),p.uniforms.radius.value=E.radius,i.setRenderTarget(E.map),i.clear(),i.renderBufferDirect(R,null,y,p,M,null)}function C(E,R,y,w){let P=null,L=y.isPointLight===!0?E.customDistanceMaterial:E.customDepthMaterial;if(L!==void 0)P=L;else if(P=y.isPointLight===!0?l:o,i.localClippingEnabled&&R.clipShadows===!0&&Array.isArray(R.clippingPlanes)&&R.clippingPlanes.length!==0||R.displacementMap&&R.displacementScale!==0||R.alphaMap&&R.alphaTest>0||R.map&&R.alphaTest>0||R.alphaToCoverage===!0){let B=P.uuid,H=R.uuid,D=c[B];D===void 0&&(D={},c[B]=D);let W=D[H];W===void 0&&(W=P.clone(),D[H]=W,R.addEventListener("dispose",T)),P=W}if(P.visible=R.visible,P.wireframe=R.wireframe,w===$s?P.side=R.shadowSide!==null?R.shadowSide:R.side:P.side=R.shadowSide!==null?R.shadowSide:f[R.side],P.alphaMap=R.alphaMap,P.alphaTest=R.alphaToCoverage===!0?.5:R.alphaTest,P.map=R.map,P.clipShadows=R.clipShadows,P.clippingPlanes=R.clippingPlanes,P.clipIntersection=R.clipIntersection,P.displacementMap=R.displacementMap,P.displacementScale=R.displacementScale,P.displacementBias=R.displacementBias,P.wireframeLinewidth=R.wireframeLinewidth,P.linewidth=R.linewidth,y.isPointLight===!0&&P.isMeshDistanceMaterial===!0){let B=i.properties.get(P);B.light=y}return P}function _(E,R,y,w,P){if(E.visible===!1)return;if(E.layers.test(R.layers)&&(E.isMesh||E.isLine||E.isPoints)&&(E.castShadow||E.receiveShadow&&P===$s)&&(!E.frustumCulled||E.intersectsFrustum(n))){E.modelViewMatrix.multiplyMatrices(y.matrixWorldInverse,E.matrixWorld);let H=e.update(E),D=E.material;if(Array.isArray(D)){let W=H.groups;for(let K=0,J=W.length;K<J;K++){let ne=W[K],Z=D[ne.materialIndex];if(Z&&Z.visible){let ee=C(E,Z,w,P);E.onBeforeShadow(i,E,R,y,H,ee,ne),i.renderBufferDirect(y,null,H,ee,E,ne),E.onAfterShadow(i,E,R,y,H,ee,ne)}}}else if(D.visible){let W=C(E,D,w,P);E.onBeforeShadow(i,E,R,y,H,W,null),i.renderBufferDirect(y,null,H,W,E,null),E.onAfterShadow(i,E,R,y,H,W,null)}}let B=E.children;for(let H=0,D=B.length;H<D;H++)_(B[H],R,y,w,P)}function T(E){E.target.removeEventListener("dispose",T);for(let y in c){let w=c[y],P=E.target.uuid;P in w&&(w[P].dispose(),delete w[P])}}}function Mv(i,e){function t(){let O=!1,ve=new Wt,te=null,ye=new Wt(0,0,0,0);return{setMask:function(Te){te!==Te&&!O&&(i.colorMask(Te,Te,Te,Te),te=Te)},setLocked:function(Te){O=Te},setClear:function(Te,ae,Ge,Ue,Pt){Pt===!0&&(Te*=Ue,ae*=Ue,Ge*=Ue),ve.set(Te,ae,Ge,Ue),ye.equals(ve)===!1&&(i.clearColor(Te,ae,Ge,Ue),ye.copy(ve))},reset:function(){O=!1,te=null,ye.set(-1,0,0,0)}}}function n(){let O=!1,ve=!1,te=null,ye=null,Te=null;return{setReversed:function(ae){if(ve!==ae){let Ge=e.get("EXT_clip_control");ae?Ge.clipControlEXT(Ge.LOWER_LEFT_EXT,Ge.ZERO_TO_ONE_EXT):Ge.clipControlEXT(Ge.LOWER_LEFT_EXT,Ge.NEGATIVE_ONE_TO_ONE_EXT),ve=ae;let Ue=Te;Te=null,this.setClear(Ue)}},getReversed:function(){return ve},setTest:function(ae){ae?se(i.DEPTH_TEST):Ee(i.DEPTH_TEST)},setMask:function(ae){te!==ae&&!O&&(i.depthMask(ae),te=ae)},setFunc:function(ae){if(ve&&(ae=_d[ae]),ye!==ae){switch(ae){case _o:i.depthFunc(i.NEVER);break;case bo:i.depthFunc(i.ALWAYS);break;case Mo:i.depthFunc(i.LESS);break;case Hs:i.depthFunc(i.LEQUAL);break;case So:i.depthFunc(i.EQUAL);break;case Eo:i.depthFunc(i.GEQUAL);break;case wo:i.depthFunc(i.GREATER);break;case To:i.depthFunc(i.NOTEQUAL);break;default:i.depthFunc(i.LEQUAL)}ye=ae}},setLocked:function(ae){O=ae},setClear:function(ae){Te!==ae&&(Te=ae,ve&&(ae=1-ae),i.clearDepth(ae))},reset:function(){O=!1,te=null,ye=null,Te=null,ve=!1}}}function s(){let O=!1,ve=null,te=null,ye=null,Te=null,ae=null,Ge=null,Ue=null,Pt=null;return{setTest:function(wt){O||(wt?se(i.STENCIL_TEST):Ee(i.STENCIL_TEST))},setMask:function(wt){ve!==wt&&!O&&(i.stencilMask(wt),ve=wt)},setFunc:function(wt,gn,Un){(te!==wt||ye!==gn||Te!==Un)&&(i.stencilFunc(wt,gn,Un),te=wt,ye=gn,Te=Un)},setOp:function(wt,gn,Un){(ae!==wt||Ge!==gn||Ue!==Un)&&(i.stencilOp(wt,gn,Un),ae=wt,Ge=gn,Ue=Un)},setLocked:function(wt){O=wt},setClear:function(wt){Pt!==wt&&(i.clearStencil(wt),Pt=wt)},reset:function(){O=!1,ve=null,te=null,ye=null,Te=null,ae=null,Ge=null,Ue=null,Pt=null}}}let r=new t,a=new n,o=new s,l=new WeakMap,c=new WeakMap,u={},f={},h={},p=new WeakMap,x=[],M=null,g=!1,m=null,S=null,C=null,_=null,T=null,E=null,R=null,y=new he(0,0,0),w=0,P=!1,L=null,B=null,H=null,D=null,W=null,K=i.getParameter(i.MAX_COMBINED_TEXTURE_IMAGE_UNITS),J=!1,ne=0,Z=i.getParameter(i.VERSION);Z.indexOf("WebGL")!==-1?(ne=parseFloat(/^WebGL (\d)/.exec(Z)[1]),J=ne>=1):Z.indexOf("OpenGL ES")!==-1&&(ne=parseFloat(/^OpenGL ES (\d)/.exec(Z)[1]),J=ne>=2);let ee=null,re={},Pe=i.getParameter(i.SCISSOR_BOX),Ie=i.getParameter(i.VIEWPORT),vt=new Wt().fromArray(Pe),ot=new Wt().fromArray(Ie);function ut(O,ve,te,ye){let Te=new Uint8Array(4),ae=i.createTexture();i.bindTexture(O,ae),i.texParameteri(O,i.TEXTURE_MIN_FILTER,i.NEAREST),i.texParameteri(O,i.TEXTURE_MAG_FILTER,i.NEAREST);for(let Ge=0;Ge<te;Ge++)O===i.TEXTURE_3D||O===i.TEXTURE_2D_ARRAY?i.texImage3D(ve,0,i.RGBA,1,1,ye,0,i.RGBA,i.UNSIGNED_BYTE,Te):i.texImage2D(ve+Ge,0,i.RGBA,1,1,0,i.RGBA,i.UNSIGNED_BYTE,Te);return ae}let j={};j[i.TEXTURE_2D]=ut(i.TEXTURE_2D,i.TEXTURE_2D,1),j[i.TEXTURE_CUBE_MAP]=ut(i.TEXTURE_CUBE_MAP,i.TEXTURE_CUBE_MAP_POSITIVE_X,6),j[i.TEXTURE_2D_ARRAY]=ut(i.TEXTURE_2D_ARRAY,i.TEXTURE_2D_ARRAY,1,1),j[i.TEXTURE_3D]=ut(i.TEXTURE_3D,i.TEXTURE_3D,1,1),r.setClear(0,0,0,1),a.setClear(1),o.setClear(0),se(i.DEPTH_TEST),a.setFunc(Hs),oe(!1),le(Vc),se(i.CULL_FACE),at(kn);function se(O){u[O]!==!0&&(i.enable(O),u[O]=!0)}function Ee(O){u[O]!==!1&&(i.disable(O),u[O]=!1)}function Ve(O,ve){return h[O]!==ve?(i.bindFramebuffer(O,ve),h[O]=ve,O===i.DRAW_FRAMEBUFFER&&(h[i.FRAMEBUFFER]=ve),O===i.FRAMEBUFFER&&(h[i.DRAW_FRAMEBUFFER]=ve),!0):!1}function fe(O,ve){let te=x,ye=!1;if(O){te=p.get(ve),te===void 0&&(te=[],p.set(ve,te));let Te=O.textures;if(te.length!==Te.length||te[0]!==i.COLOR_ATTACHMENT0){for(let ae=0,Ge=Te.length;ae<Ge;ae++)te[ae]=i.COLOR_ATTACHMENT0+ae;te.length=Te.length,ye=!0}}else te[0]!==i.BACK&&(te[0]=i.BACK,ye=!0);ye&&i.drawBuffers(te)}function tt(O){return M!==O?(i.useProgram(O),M=O,!0):!1}let kt={[fs]:i.FUNC_ADD,[Hh]:i.FUNC_SUBTRACT,[Gh]:i.FUNC_REVERSE_SUBTRACT};kt[Vh]=i.MIN,kt[Wh]=i.MAX;let $e={[Xh]:i.ZERO,[qh]:i.ONE,[Yh]:i.SRC_COLOR,[qc]:i.SRC_ALPHA,[Qh]:i.SRC_ALPHA_SATURATE,[$h]:i.DST_COLOR,[Kh]:i.DST_ALPHA,[Zh]:i.ONE_MINUS_SRC_COLOR,[Yc]:i.ONE_MINUS_SRC_ALPHA,[jh]:i.ONE_MINUS_DST_COLOR,[Jh]:i.ONE_MINUS_DST_ALPHA,[ed]:i.CONSTANT_COLOR,[td]:i.ONE_MINUS_CONSTANT_COLOR,[nd]:i.CONSTANT_ALPHA,[id]:i.ONE_MINUS_CONSTANT_ALPHA};function at(O,ve,te,ye,Te,ae,Ge,Ue,Pt,wt){if(O===kn){g===!0&&(Ee(i.BLEND),g=!1);return}if(g===!1&&(se(i.BLEND),g=!0),O!==zh){if(O!==m||wt!==P){if((S!==fs||T!==fs)&&(i.blendEquation(i.FUNC_ADD),S=fs,T=fs),wt)switch(O){case js:i.blendFuncSeparate(i.ONE,i.ONE_MINUS_SRC_ALPHA,i.ONE,i.ONE_MINUS_SRC_ALPHA);break;case xt:i.blendFunc(i.ONE,i.ONE);break;case Wc:i.blendFuncSeparate(i.ZERO,i.ONE_MINUS_SRC_COLOR,i.ZERO,i.ONE);break;case Xc:i.blendFuncSeparate(i.DST_COLOR,i.ONE_MINUS_SRC_ALPHA,i.ZERO,i.ONE);break;default:Qe("WebGLState: Invalid blending: ",O);break}else switch(O){case js:i.blendFuncSeparate(i.SRC_ALPHA,i.ONE_MINUS_SRC_ALPHA,i.ONE,i.ONE_MINUS_SRC_ALPHA);break;case xt:i.blendFuncSeparate(i.SRC_ALPHA,i.ONE,i.ONE,i.ONE);break;case Wc:Qe("WebGLState: SubtractiveBlending requires material.premultipliedAlpha = true");break;case Xc:Qe("WebGLState: MultiplyBlending requires material.premultipliedAlpha = true");break;default:Qe("WebGLState: Invalid blending: ",O);break}C=null,_=null,E=null,R=null,y.set(0,0,0),w=0,m=O,P=wt}return}Te=Te||ve,ae=ae||te,Ge=Ge||ye,(ve!==S||Te!==T)&&(i.blendEquationSeparate(kt[ve],kt[Te]),S=ve,T=Te),(te!==C||ye!==_||ae!==E||Ge!==R)&&(i.blendFuncSeparate($e[te],$e[ye],$e[ae],$e[Ge]),C=te,_=ye,E=ae,R=Ge),(Ue.equals(y)===!1||Pt!==w)&&(i.blendColor(Ue.r,Ue.g,Ue.b,Pt),y.copy(Ue),w=Pt),m=O,P=!1}function St(O,ve){O.side===qt?Ee(i.CULL_FACE):se(i.CULL_FACE);let te=O.side===Yt;ve&&(te=!te),oe(te),O.blending===js&&O.transparent===!1?at(kn):at(O.blending,O.blendEquation,O.blendSrc,O.blendDst,O.blendEquationAlpha,O.blendSrcAlpha,O.blendDstAlpha,O.blendColor,O.blendAlpha,O.premultipliedAlpha),a.setFunc(O.depthFunc),a.setTest(O.depthTest),a.setMask(O.depthWrite),r.setMask(O.colorWrite);let ye=O.stencilWrite;o.setTest(ye),ye&&(o.setMask(O.stencilWriteMask),o.setFunc(O.stencilFunc,O.stencilRef,O.stencilFuncMask),o.setOp(O.stencilFail,O.stencilZFail,O.stencilZPass)),Le(O.polygonOffset,O.polygonOffsetFactor,O.polygonOffsetUnits),O.alphaToCoverage===!0?se(i.SAMPLE_ALPHA_TO_COVERAGE):Ee(i.SAMPLE_ALPHA_TO_COVERAGE)}function oe(O){L!==O&&(O?i.frontFace(i.CW):i.frontFace(i.CCW),L=O)}function le(O){O!==Oh?(se(i.CULL_FACE),O!==B&&(O===Vc?i.cullFace(i.BACK):O===Bh?i.cullFace(i.FRONT):i.cullFace(i.FRONT_AND_BACK))):Ee(i.CULL_FACE),B=O}function dt(O){O!==H&&(J&&i.lineWidth(O),H=O)}function Le(O,ve,te){O?(se(i.POLYGON_OFFSET_FILL),(D!==ve||W!==te)&&(D=ve,W=te,a.getReversed()&&(ve=-ve),i.polygonOffset(ve,te))):Ee(i.POLYGON_OFFSET_FILL)}function qe(O){O?se(i.SCISSOR_TEST):Ee(i.SCISSOR_TEST)}function nt(O){O===void 0&&(O=i.TEXTURE0+K-1),ee!==O&&(i.activeTexture(O),ee=O)}function F(O,ve,te){te===void 0&&(ee===null?te=i.TEXTURE0+K-1:te=ee);let ye=re[te];ye===void 0&&(ye={type:void 0,texture:void 0},re[te]=ye),(ye.type!==O||ye.texture!==ve)&&(ee!==te&&(i.activeTexture(te),ee=te),i.bindTexture(O,ve||j[O]),ye.type=O,ye.texture=ve)}function Xt(){let O=re[ee];O!==void 0&&O.type!==void 0&&(i.bindTexture(O.type,null),O.type=void 0,O.texture=void 0)}function Et(){try{i.compressedTexImage2D(...arguments)}catch(O){Qe("WebGLState:",O)}}function A(){try{i.compressedTexImage3D(...arguments)}catch(O){Qe("WebGLState:",O)}}function v(){try{i.texSubImage2D(...arguments)}catch(O){Qe("WebGLState:",O)}}function z(){try{i.texSubImage3D(...arguments)}catch(O){Qe("WebGLState:",O)}}function q(){try{i.compressedTexSubImage2D(...arguments)}catch(O){Qe("WebGLState:",O)}}function $(){try{i.compressedTexSubImage3D(...arguments)}catch(O){Qe("WebGLState:",O)}}function ue(){try{i.texStorage2D(...arguments)}catch(O){Qe("WebGLState:",O)}}function me(){try{i.texStorage3D(...arguments)}catch(O){Qe("WebGLState:",O)}}function Q(){try{i.texImage2D(...arguments)}catch(O){Qe("WebGLState:",O)}}function ie(){try{i.texImage3D(...arguments)}catch(O){Qe("WebGLState:",O)}}function xe(O){return f[O]!==void 0?f[O]:i.getParameter(O)}function He(O,ve){f[O]!==ve&&(i.pixelStorei(O,ve),f[O]=ve)}function be(O){vt.equals(O)===!1&&(i.scissor(O.x,O.y,O.z,O.w),vt.copy(O))}function pe(O){ot.equals(O)===!1&&(i.viewport(O.x,O.y,O.z,O.w),ot.copy(O))}function ke(O,ve){let te=c.get(ve);te===void 0&&(te=new WeakMap,c.set(ve,te));let ye=te.get(O);ye===void 0&&(ye=i.getUniformBlockIndex(ve,O.name),te.set(O,ye))}function Ye(O,ve){let ye=c.get(ve).get(O);l.get(ve)!==ye&&(i.uniformBlockBinding(ve,ye,O.__bindingPointIndex),l.set(ve,ye))}function st(){i.disable(i.BLEND),i.disable(i.CULL_FACE),i.disable(i.DEPTH_TEST),i.disable(i.POLYGON_OFFSET_FILL),i.disable(i.SCISSOR_TEST),i.disable(i.STENCIL_TEST),i.disable(i.SAMPLE_ALPHA_TO_COVERAGE),i.blendEquation(i.FUNC_ADD),i.blendFunc(i.ONE,i.ZERO),i.blendFuncSeparate(i.ONE,i.ZERO,i.ONE,i.ZERO),i.blendColor(0,0,0,0),i.colorMask(!0,!0,!0,!0),i.clearColor(0,0,0,0),i.depthMask(!0),i.depthFunc(i.LESS),a.setReversed(!1),i.clearDepth(1),i.stencilMask(4294967295),i.stencilFunc(i.ALWAYS,0,4294967295),i.stencilOp(i.KEEP,i.KEEP,i.KEEP),i.clearStencil(0),i.cullFace(i.BACK),i.frontFace(i.CCW),i.polygonOffset(0,0),i.activeTexture(i.TEXTURE0),i.bindFramebuffer(i.FRAMEBUFFER,null),i.bindFramebuffer(i.DRAW_FRAMEBUFFER,null),i.bindFramebuffer(i.READ_FRAMEBUFFER,null),i.useProgram(null),i.lineWidth(1),i.scissor(0,0,i.canvas.width,i.canvas.height),i.viewport(0,0,i.canvas.width,i.canvas.height),i.pixelStorei(i.PACK_ALIGNMENT,4),i.pixelStorei(i.UNPACK_ALIGNMENT,4),i.pixelStorei(i.UNPACK_FLIP_Y_WEBGL,!1),i.pixelStorei(i.UNPACK_PREMULTIPLY_ALPHA_WEBGL,!1),i.pixelStorei(i.UNPACK_COLORSPACE_CONVERSION_WEBGL,i.BROWSER_DEFAULT_WEBGL),i.pixelStorei(i.PACK_ROW_LENGTH,0),i.pixelStorei(i.PACK_SKIP_PIXELS,0),i.pixelStorei(i.PACK_SKIP_ROWS,0),i.pixelStorei(i.UNPACK_ROW_LENGTH,0),i.pixelStorei(i.UNPACK_IMAGE_HEIGHT,0),i.pixelStorei(i.UNPACK_SKIP_PIXELS,0),i.pixelStorei(i.UNPACK_SKIP_ROWS,0),i.pixelStorei(i.UNPACK_SKIP_IMAGES,0),u={},f={},ee=null,re={},h={},p=new WeakMap,x=[],M=null,g=!1,m=null,S=null,C=null,_=null,T=null,E=null,R=null,y=new he(0,0,0),w=0,P=!1,L=null,B=null,H=null,D=null,W=null,vt.set(0,0,i.canvas.width,i.canvas.height),ot.set(0,0,i.canvas.width,i.canvas.height),r.reset(),a.reset(),o.reset()}return{buffers:{color:r,depth:a,stencil:o},enable:se,disable:Ee,bindFramebuffer:Ve,drawBuffers:fe,useProgram:tt,setBlending:at,setMaterial:St,setFlipSided:oe,setCullFace:le,setLineWidth:dt,setPolygonOffset:Le,setScissorTest:qe,activeTexture:nt,bindTexture:F,unbindTexture:Xt,compressedTexImage2D:Et,compressedTexImage3D:A,texImage2D:Q,texImage3D:ie,pixelStorei:He,getParameter:xe,updateUBOMapping:ke,uniformBlockBinding:Ye,texStorage2D:ue,texStorage3D:me,texSubImage2D:v,texSubImage3D:z,compressedTexSubImage2D:q,compressedTexSubImage3D:$,scissor:be,viewport:pe,reset:st}}function Sv(i,e,t,n,s,r,a){let o=e.has("WEBGL_multisampled_render_to_texture")?e.get("WEBGL_multisampled_render_to_texture"):null,l=typeof navigator>"u"?!1:/OculusBrowser/g.test(navigator.userAgent),c=new Me,u=new WeakMap,f=new Set,h,p=new WeakMap,x=!1;try{x=typeof OffscreenCanvas<"u"&&new OffscreenCanvas(1,1).getContext("2d")!==null}catch{}function M(A,v){return x?new OffscreenCanvas(A,v):Ur("canvas")}function g(A,v,z){let q=1,$=Et(A);if(($.width>z||$.height>z)&&(q=z/Math.max($.width,$.height)),q<1)if(typeof HTMLImageElement<"u"&&A instanceof HTMLImageElement||typeof HTMLCanvasElement<"u"&&A instanceof HTMLCanvasElement||typeof ImageBitmap<"u"&&A instanceof ImageBitmap||typeof VideoFrame<"u"&&A instanceof VideoFrame){let ue=Math.floor(q*$.width),me=Math.floor(q*$.height);h===void 0&&(h=M(ue,me));let Q=v?M(ue,me):h;return Q.width=ue,Q.height=me,Q.getContext("2d").drawImage(A,0,0,ue,me),Ke("WebGLRenderer: Texture has been resized from ("+$.width+"x"+$.height+") to ("+ue+"x"+me+")."),Q}else return"data"in A&&Ke("WebGLRenderer: Image in DataTexture is too big ("+$.width+"x"+$.height+")."),A;return A}function m(A){return A.generateMipmaps}function S(A){i.generateMipmap(A)}function C(A){return A.isWebGLCubeRenderTarget?i.TEXTURE_CUBE_MAP:A.isWebGL3DRenderTarget?i.TEXTURE_3D:A.isWebGLArrayRenderTarget||A.isCompressedArrayTexture?i.TEXTURE_2D_ARRAY:i.TEXTURE_2D}function _(A,v,z,q,$,ue=!1){if(A!==null){if(i[A]!==void 0)return i[A];Ke("WebGLRenderer: Attempt to use non-existing WebGL internal format '"+A+"'")}let me;q&&(me=e.get("EXT_texture_norm16"),me||Ke("WebGLRenderer: Unable to use normalized textures without EXT_texture_norm16 extension"));let Q=v;if(v===i.RED&&(z===i.FLOAT&&(Q=i.R32F),z===i.HALF_FLOAT&&(Q=i.R16F),z===i.UNSIGNED_BYTE&&(Q=i.R8),z===i.UNSIGNED_SHORT&&me&&(Q=me.R16_EXT),z===i.SHORT&&me&&(Q=me.R16_SNORM_EXT)),v===i.RED_INTEGER&&(z===i.UNSIGNED_BYTE&&(Q=i.R8UI),z===i.UNSIGNED_SHORT&&(Q=i.R16UI),z===i.UNSIGNED_INT&&(Q=i.R32UI),z===i.BYTE&&(Q=i.R8I),z===i.SHORT&&(Q=i.R16I),z===i.INT&&(Q=i.R32I)),v===i.RG&&(z===i.FLOAT&&(Q=i.RG32F),z===i.HALF_FLOAT&&(Q=i.RG16F),z===i.UNSIGNED_BYTE&&(Q=i.RG8),z===i.UNSIGNED_SHORT&&me&&(Q=me.RG16_EXT),z===i.SHORT&&me&&(Q=me.RG16_SNORM_EXT)),v===i.RG_INTEGER&&(z===i.UNSIGNED_BYTE&&(Q=i.RG8UI),z===i.UNSIGNED_SHORT&&(Q=i.RG16UI),z===i.UNSIGNED_INT&&(Q=i.RG32UI),z===i.BYTE&&(Q=i.RG8I),z===i.SHORT&&(Q=i.RG16I),z===i.INT&&(Q=i.RG32I)),v===i.RGB_INTEGER&&(z===i.UNSIGNED_BYTE&&(Q=i.RGB8UI),z===i.UNSIGNED_SHORT&&(Q=i.RGB16UI),z===i.UNSIGNED_INT&&(Q=i.RGB32UI),z===i.BYTE&&(Q=i.RGB8I),z===i.SHORT&&(Q=i.RGB16I),z===i.INT&&(Q=i.RGB32I)),v===i.RGBA_INTEGER&&(z===i.UNSIGNED_BYTE&&(Q=i.RGBA8UI),z===i.UNSIGNED_SHORT&&(Q=i.RGBA16UI),z===i.UNSIGNED_INT&&(Q=i.RGBA32UI),z===i.BYTE&&(Q=i.RGBA8I),z===i.SHORT&&(Q=i.RGBA16I),z===i.INT&&(Q=i.RGBA32I)),v===i.RGB&&(z===i.UNSIGNED_SHORT&&me&&(Q=me.RGB16_EXT),z===i.SHORT&&me&&(Q=me.RGB16_SNORM_EXT),z===i.UNSIGNED_INT_5_9_9_9_REV&&(Q=i.RGB9_E5),z===i.UNSIGNED_INT_10F_11F_11F_REV&&(Q=i.R11F_G11F_B10F)),v===i.RGBA){let ie=ue?Dr:mt.getTransfer($);z===i.FLOAT&&(Q=i.RGBA32F),z===i.HALF_FLOAT&&(Q=i.RGBA16F),z===i.UNSIGNED_BYTE&&(Q=ie===Ct?i.SRGB8_ALPHA8:i.RGBA8),z===i.UNSIGNED_SHORT&&me&&(Q=me.RGBA16_EXT),z===i.SHORT&&me&&(Q=me.RGBA16_SNORM_EXT),z===i.UNSIGNED_SHORT_4_4_4_4&&(Q=i.RGBA4),z===i.UNSIGNED_SHORT_5_5_5_1&&(Q=i.RGB5_A1)}return(Q===i.R16F||Q===i.R32F||Q===i.RG16F||Q===i.RG32F||Q===i.RGBA16F||Q===i.RGBA32F)&&e.get("EXT_color_buffer_float"),Q}function T(A,v){let z;return A?v===null||v===Qn||v===tr?z=i.DEPTH24_STENCIL8:v===zn?z=i.DEPTH32F_STENCIL8:v===er&&(z=i.DEPTH24_STENCIL8,Ke("DepthTexture: 16 bit depth attachment is not supported with stencil. Using 24-bit attachment.")):v===null||v===Qn||v===tr?z=i.DEPTH_COMPONENT24:v===zn?z=i.DEPTH_COMPONENT32F:v===er&&(z=i.DEPTH_COMPONENT16),z}function E(A,v){return m(A)===!0||A.isFramebufferTexture&&A.minFilter!==ln&&A.minFilter!==cn?Math.log2(Math.max(v.width,v.height))+1:A.mipmaps!==void 0&&A.mipmaps.length>0?A.mipmaps.length:A.isCompressedTexture&&Array.isArray(A.image)?v.mipmaps.length:1}function R(A){let v=A.target;v.removeEventListener("dispose",R),w(v),v.isVideoTexture&&u.delete(v),v.isHTMLTexture&&f.delete(v)}function y(A){let v=A.target;v.removeEventListener("dispose",y),L(v)}function w(A){let v=n.get(A);if(v.__webglInit===void 0)return;let z=A.source,q=p.get(z);if(q){let $=q[v.__cacheKey];$.usedTimes--,$.usedTimes===0&&P(A),Object.keys(q).length===0&&p.delete(z)}n.remove(A)}function P(A){let v=n.get(A);i.deleteTexture(v.__webglTexture);let z=A.source,q=p.get(z);delete q[v.__cacheKey],a.memory.textures--}function L(A){let v=n.get(A);if(A.depthTexture&&(A.depthTexture.dispose(),n.remove(A.depthTexture)),A.isWebGLCubeRenderTarget)for(let q=0;q<6;q++){if(Array.isArray(v.__webglFramebuffer[q]))for(let $=0;$<v.__webglFramebuffer[q].length;$++)i.deleteFramebuffer(v.__webglFramebuffer[q][$]);else i.deleteFramebuffer(v.__webglFramebuffer[q]);v.__webglDepthbuffer&&i.deleteRenderbuffer(v.__webglDepthbuffer[q])}else{if(Array.isArray(v.__webglFramebuffer))for(let q=0;q<v.__webglFramebuffer.length;q++)i.deleteFramebuffer(v.__webglFramebuffer[q]);else i.deleteFramebuffer(v.__webglFramebuffer);if(v.__webglDepthbuffer&&i.deleteRenderbuffer(v.__webglDepthbuffer),v.__webglMultisampledFramebuffer&&i.deleteFramebuffer(v.__webglMultisampledFramebuffer),v.__webglColorRenderbuffer)for(let q=0;q<v.__webglColorRenderbuffer.length;q++)v.__webglColorRenderbuffer[q]&&i.deleteRenderbuffer(v.__webglColorRenderbuffer[q]);v.__webglDepthRenderbuffer&&i.deleteRenderbuffer(v.__webglDepthRenderbuffer)}let z=A.textures;for(let q=0,$=z.length;q<$;q++){let ue=n.get(z[q]);ue.__webglTexture&&(i.deleteTexture(ue.__webglTexture),a.memory.textures--),n.remove(z[q])}n.remove(A)}let B=0;function H(){B=0}function D(){return B}function W(A){B=A}function K(){let A=B;return A>=s.maxTextures&&Ke("WebGLTextures: Trying to use "+(A+1)+" texture units while this GPU supports only "+s.maxTextures),B+=1,A}function J(A){let v=[];return v.push(A.wrapS),v.push(A.wrapT),v.push(A.wrapR||0),v.push(A.magFilter),v.push(A.minFilter),v.push(A.anisotropy),v.push(A.internalFormat),v.push(A.format),v.push(A.type),v.push(A.generateMipmaps),v.push(A.premultiplyAlpha),v.push(A.flipY),v.push(A.unpackAlignment),v.push(A.colorSpace),v.join()}function ne(A,v){let z=n.get(A);if(A.isVideoTexture&&F(A),A.isRenderTargetTexture===!1&&A.isExternalTexture!==!0&&A.version>0&&z.__version!==A.version){let q=A.image;if(q===null)Ke("WebGLRenderer: Texture marked for update but no image data found.");else if(q.complete===!1)Ke("WebGLRenderer: Texture marked for update but image is incomplete");else{Ee(z,A,v);return}}else A.isExternalTexture&&(z.__webglTexture=A.sourceTexture?A.sourceTexture:null);t.bindTexture(i.TEXTURE_2D,z.__webglTexture,i.TEXTURE0+v)}function Z(A,v){let z=n.get(A);if(A.isRenderTargetTexture===!1&&A.version>0&&z.__version!==A.version){Ee(z,A,v);return}else A.isExternalTexture&&(z.__webglTexture=A.sourceTexture?A.sourceTexture:null);t.bindTexture(i.TEXTURE_2D_ARRAY,z.__webglTexture,i.TEXTURE0+v)}function ee(A,v){let z=n.get(A);if(A.isRenderTargetTexture===!1&&A.version>0&&z.__version!==A.version){Ee(z,A,v);return}t.bindTexture(i.TEXTURE_3D,z.__webglTexture,i.TEXTURE0+v)}function re(A,v){let z=n.get(A);if(A.isCubeDepthTexture!==!0&&A.version>0&&z.__version!==A.version){Ve(z,A,v);return}t.bindTexture(i.TEXTURE_CUBE_MAP,z.__webglTexture,i.TEXTURE0+v)}let Pe={[Ao]:i.REPEAT,[si]:i.CLAMP_TO_EDGE,[Co]:i.MIRRORED_REPEAT},Ie={[ln]:i.NEAREST,[ad]:i.NEAREST_MIPMAP_NEAREST,[ha]:i.NEAREST_MIPMAP_LINEAR,[cn]:i.LINEAR,[ll]:i.LINEAR_MIPMAP_NEAREST,[Xi]:i.LINEAR_MIPMAP_LINEAR},vt={[ud]:i.NEVER,[md]:i.ALWAYS,[hd]:i.LESS,[ql]:i.LEQUAL,[dd]:i.EQUAL,[Yl]:i.GEQUAL,[fd]:i.GREATER,[pd]:i.NOTEQUAL};function ot(A,v){if(v.type===zn&&e.has("OES_texture_float_linear")===!1&&(v.magFilter===cn||v.magFilter===ll||v.magFilter===ha||v.magFilter===Xi||v.minFilter===cn||v.minFilter===ll||v.minFilter===ha||v.minFilter===Xi)&&Ke("WebGLRenderer: Unable to use linear filtering with floating point textures. OES_texture_float_linear not supported on this device."),i.texParameteri(A,i.TEXTURE_WRAP_S,Pe[v.wrapS]),i.texParameteri(A,i.TEXTURE_WRAP_T,Pe[v.wrapT]),(A===i.TEXTURE_3D||A===i.TEXTURE_2D_ARRAY)&&i.texParameteri(A,i.TEXTURE_WRAP_R,Pe[v.wrapR]),i.texParameteri(A,i.TEXTURE_MAG_FILTER,Ie[v.magFilter]),i.texParameteri(A,i.TEXTURE_MIN_FILTER,Ie[v.minFilter]),v.compareFunction&&(i.texParameteri(A,i.TEXTURE_COMPARE_MODE,i.COMPARE_REF_TO_TEXTURE),i.texParameteri(A,i.TEXTURE_COMPARE_FUNC,vt[v.compareFunction])),e.has("EXT_texture_filter_anisotropic")===!0){if(v.magFilter===ln||v.minFilter!==ha&&v.minFilter!==Xi||v.type===zn&&e.has("OES_texture_float_linear")===!1)return;if(v.anisotropy>1||n.get(v).__currentAnisotropy){let z=e.get("EXT_texture_filter_anisotropic");i.texParameterf(A,z.TEXTURE_MAX_ANISOTROPY_EXT,Math.min(v.anisotropy,s.getMaxAnisotropy())),n.get(v).__currentAnisotropy=v.anisotropy}}}function ut(A,v){let z=!1;A.__webglInit===void 0&&(A.__webglInit=!0,v.addEventListener("dispose",R));let q=v.source,$=p.get(q);$===void 0&&($={},p.set(q,$));let ue=J(v);if(ue!==A.__cacheKey){$[ue]===void 0&&($[ue]={texture:i.createTexture(),usedTimes:0},a.memory.textures++,z=!0),$[ue].usedTimes++;let me=$[A.__cacheKey];me!==void 0&&($[A.__cacheKey].usedTimes--,me.usedTimes===0&&P(v)),A.__cacheKey=ue,A.__webglTexture=$[ue].texture}return z}function j(A,v,z){return Math.floor(Math.floor(A/z)/v)}function se(A,v,z,q){let ue=A.updateRanges;if(ue.length===0)t.texSubImage2D(i.TEXTURE_2D,0,0,0,v.width,v.height,z,q,v.data);else{ue.sort((He,be)=>He.start-be.start);let me=0;for(let He=1;He<ue.length;He++){let be=ue[me],pe=ue[He],ke=be.start+be.count,Ye=j(pe.start,v.width,4),st=j(be.start,v.width,4);pe.start<=ke+1&&Ye===st&&j(pe.start+pe.count-1,v.width,4)===Ye?be.count=Math.max(be.count,pe.start+pe.count-be.start):(++me,ue[me]=pe)}ue.length=me+1;let Q=t.getParameter(i.UNPACK_ROW_LENGTH),ie=t.getParameter(i.UNPACK_SKIP_PIXELS),xe=t.getParameter(i.UNPACK_SKIP_ROWS);t.pixelStorei(i.UNPACK_ROW_LENGTH,v.width);for(let He=0,be=ue.length;He<be;He++){let pe=ue[He],ke=Math.floor(pe.start/4),Ye=Math.ceil(pe.count/4),st=ke%v.width,O=Math.floor(ke/v.width),ve=Ye,te=1;t.pixelStorei(i.UNPACK_SKIP_PIXELS,st),t.pixelStorei(i.UNPACK_SKIP_ROWS,O),t.texSubImage2D(i.TEXTURE_2D,0,st,O,ve,te,z,q,v.data)}A.clearUpdateRanges(),t.pixelStorei(i.UNPACK_ROW_LENGTH,Q),t.pixelStorei(i.UNPACK_SKIP_PIXELS,ie),t.pixelStorei(i.UNPACK_SKIP_ROWS,xe)}}function Ee(A,v,z){let q=i.TEXTURE_2D;(v.isDataArrayTexture||v.isCompressedArrayTexture)&&(q=i.TEXTURE_2D_ARRAY),v.isData3DTexture&&(q=i.TEXTURE_3D);let $=ut(A,v),ue=v.source;t.bindTexture(q,A.__webglTexture,i.TEXTURE0+z);let me=n.get(ue);if(ue.version!==me.__version||$===!0){if(t.activeTexture(i.TEXTURE0+z),(typeof ImageBitmap<"u"&&v.image instanceof ImageBitmap)===!1){let te=mt.getPrimaries(mt.workingColorSpace),ye=v.colorSpace===Ai?null:mt.getPrimaries(v.colorSpace),Te=v.colorSpace===Ai||te===ye?i.NONE:i.BROWSER_DEFAULT_WEBGL;t.pixelStorei(i.UNPACK_FLIP_Y_WEBGL,v.flipY),t.pixelStorei(i.UNPACK_PREMULTIPLY_ALPHA_WEBGL,v.premultiplyAlpha),t.pixelStorei(i.UNPACK_COLORSPACE_CONVERSION_WEBGL,Te)}t.pixelStorei(i.UNPACK_ALIGNMENT,v.unpackAlignment);let ie=g(v.image,!1,s.maxTextureSize);ie=Xt(v,ie);let xe=r.convert(v.format,v.colorSpace),He=r.convert(v.type),be=_(v.internalFormat,xe,He,v.normalized,v.colorSpace,v.isVideoTexture);ot(q,v);let pe,ke=v.mipmaps,Ye=v.isVideoTexture!==!0,st=me.__version===void 0||$===!0,O=ue.dataReady,ve=E(v,ie);if(v.isDepthTexture)be=T(v.format===qi,v.type),st&&(Ye?t.texStorage2D(i.TEXTURE_2D,1,be,ie.width,ie.height):t.texImage2D(i.TEXTURE_2D,0,be,ie.width,ie.height,0,xe,He,null));else if(v.isDataTexture)if(ke.length>0){Ye&&st&&t.texStorage2D(i.TEXTURE_2D,ve,be,ke[0].width,ke[0].height);for(let te=0,ye=ke.length;te<ye;te++)pe=ke[te],Ye?O&&t.texSubImage2D(i.TEXTURE_2D,te,0,0,pe.width,pe.height,xe,He,pe.data):t.texImage2D(i.TEXTURE_2D,te,be,pe.width,pe.height,0,xe,He,pe.data);v.generateMipmaps=!1}else Ye?(st&&t.texStorage2D(i.TEXTURE_2D,ve,be,ie.width,ie.height),O&&se(v,ie,xe,He)):t.texImage2D(i.TEXTURE_2D,0,be,ie.width,ie.height,0,xe,He,ie.data);else if(v.isCompressedTexture)if(v.isCompressedArrayTexture){Ye&&st&&t.texStorage3D(i.TEXTURE_2D_ARRAY,ve,be,ke[0].width,ke[0].height,ie.depth);for(let te=0,ye=ke.length;te<ye;te++)if(pe=ke[te],v.format!==Hn)if(xe!==null)if(Ye){if(O)if(v.layerUpdates.size>0){let Te=ou(pe.width,pe.height,v.format,v.type);for(let ae of v.layerUpdates){let Ge=pe.data.subarray(ae*Te/pe.data.BYTES_PER_ELEMENT,(ae+1)*Te/pe.data.BYTES_PER_ELEMENT);t.compressedTexSubImage3D(i.TEXTURE_2D_ARRAY,te,0,0,ae,pe.width,pe.height,1,xe,Ge)}}else t.compressedTexSubImage3D(i.TEXTURE_2D_ARRAY,te,0,0,0,pe.width,pe.height,ie.depth,xe,pe.data)}else t.compressedTexImage3D(i.TEXTURE_2D_ARRAY,te,be,pe.width,pe.height,ie.depth,0,pe.data,0,0);else Ke("WebGLRenderer: Attempt to load unsupported compressed texture format in .uploadTexture()");else Ye?O&&t.texSubImage3D(i.TEXTURE_2D_ARRAY,te,0,0,0,pe.width,pe.height,ie.depth,xe,He,pe.data):t.texImage3D(i.TEXTURE_2D_ARRAY,te,be,pe.width,pe.height,ie.depth,0,xe,He,pe.data);v.layerUpdates.size>0&&v.clearLayerUpdates()}else{Ye&&st&&t.texStorage2D(i.TEXTURE_2D,ve,be,ke[0].width,ke[0].height);for(let te=0,ye=ke.length;te<ye;te++)pe=ke[te],v.format!==Hn?xe!==null?Ye?O&&t.compressedTexSubImage2D(i.TEXTURE_2D,te,0,0,pe.width,pe.height,xe,pe.data):t.compressedTexImage2D(i.TEXTURE_2D,te,be,pe.width,pe.height,0,pe.data):Ke("WebGLRenderer: Attempt to load unsupported compressed texture format in .uploadTexture()"):Ye?O&&t.texSubImage2D(i.TEXTURE_2D,te,0,0,pe.width,pe.height,xe,He,pe.data):t.texImage2D(i.TEXTURE_2D,te,be,pe.width,pe.height,0,xe,He,pe.data)}else if(v.isDataArrayTexture)if(Ye){if(st&&t.texStorage3D(i.TEXTURE_2D_ARRAY,ve,be,ie.width,ie.height,ie.depth),O)if(v.layerUpdates.size>0){let te=ou(ie.width,ie.height,v.format,v.type);for(let ye of v.layerUpdates){let Te=ie.data.subarray(ye*te/ie.data.BYTES_PER_ELEMENT,(ye+1)*te/ie.data.BYTES_PER_ELEMENT);t.texSubImage3D(i.TEXTURE_2D_ARRAY,0,0,0,ye,ie.width,ie.height,1,xe,He,Te)}v.clearLayerUpdates()}else t.texSubImage3D(i.TEXTURE_2D_ARRAY,0,0,0,0,ie.width,ie.height,ie.depth,xe,He,ie.data)}else t.texImage3D(i.TEXTURE_2D_ARRAY,0,be,ie.width,ie.height,ie.depth,0,xe,He,ie.data);else if(v.isData3DTexture)Ye?(st&&t.texStorage3D(i.TEXTURE_3D,ve,be,ie.width,ie.height,ie.depth),O&&t.texSubImage3D(i.TEXTURE_3D,0,0,0,0,ie.width,ie.height,ie.depth,xe,He,ie.data)):t.texImage3D(i.TEXTURE_3D,0,be,ie.width,ie.height,ie.depth,0,xe,He,ie.data);else if(v.isFramebufferTexture){if(st)if(Ye)t.texStorage2D(i.TEXTURE_2D,ve,be,ie.width,ie.height);else{let te=ie.width,ye=ie.height;for(let Te=0;Te<ve;Te++)t.texImage2D(i.TEXTURE_2D,Te,be,te,ye,0,xe,He,null),te>>=1,ye>>=1}}else if(v.isHTMLTexture){if("texElementImage2D"in i){let te=i.canvas;if(te.hasAttribute("layoutsubtree")||te.setAttribute("layoutsubtree","true"),ie.parentNode!==te){te.appendChild(ie),f.add(v),te.onpaint=ye=>{let Te=ye.changedElements;for(let ae of f)Te.includes(ae.image)&&(ae.needsUpdate=!0)},te.requestPaint();return}if(i.texElementImage2D.length===3)i.texElementImage2D(i.TEXTURE_2D,i.RGBA8,ie);else{let Te=i.RGBA,ae=i.RGBA,Ge=i.UNSIGNED_BYTE;i.texElementImage2D(i.TEXTURE_2D,0,Te,ae,Ge,ie)}i.texParameteri(i.TEXTURE_2D,i.TEXTURE_MIN_FILTER,i.LINEAR),i.texParameteri(i.TEXTURE_2D,i.TEXTURE_WRAP_S,i.CLAMP_TO_EDGE),i.texParameteri(i.TEXTURE_2D,i.TEXTURE_WRAP_T,i.CLAMP_TO_EDGE)}}else if(ke.length>0){if(Ye&&st){let te=Et(ke[0]);t.texStorage2D(i.TEXTURE_2D,ve,be,te.width,te.height)}for(let te=0,ye=ke.length;te<ye;te++)pe=ke[te],Ye?O&&t.texSubImage2D(i.TEXTURE_2D,te,0,0,xe,He,pe):t.texImage2D(i.TEXTURE_2D,te,be,xe,He,pe);v.generateMipmaps=!1}else if(Ye){if(st){let te=Et(ie);t.texStorage2D(i.TEXTURE_2D,ve,be,te.width,te.height)}O&&t.texSubImage2D(i.TEXTURE_2D,0,0,0,xe,He,ie)}else t.texImage2D(i.TEXTURE_2D,0,be,xe,He,ie);m(v)&&S(q),me.__version=ue.version,v.onUpdate&&v.onUpdate(v)}A.__version=v.version}function Ve(A,v,z){if(v.image.length!==6)return;let q=ut(A,v),$=v.source;t.bindTexture(i.TEXTURE_CUBE_MAP,A.__webglTexture,i.TEXTURE0+z);let ue=n.get($);if($.version!==ue.__version||q===!0){t.activeTexture(i.TEXTURE0+z);let me=mt.getPrimaries(mt.workingColorSpace),Q=v.colorSpace===Ai?null:mt.getPrimaries(v.colorSpace),ie=v.colorSpace===Ai||me===Q?i.NONE:i.BROWSER_DEFAULT_WEBGL;t.pixelStorei(i.UNPACK_FLIP_Y_WEBGL,v.flipY),t.pixelStorei(i.UNPACK_PREMULTIPLY_ALPHA_WEBGL,v.premultiplyAlpha),t.pixelStorei(i.UNPACK_ALIGNMENT,v.unpackAlignment),t.pixelStorei(i.UNPACK_COLORSPACE_CONVERSION_WEBGL,ie);let xe=v.isCompressedTexture||v.image[0].isCompressedTexture,He=v.image[0]&&v.image[0].isDataTexture,be=[];for(let ae=0;ae<6;ae++)!xe&&!He?be[ae]=g(v.image[ae],!0,s.maxCubemapSize):be[ae]=He?v.image[ae].image:v.image[ae],be[ae]=Xt(v,be[ae]);let pe=be[0],ke=r.convert(v.format,v.colorSpace),Ye=r.convert(v.type),st=_(v.internalFormat,ke,Ye,v.normalized,v.colorSpace),O=v.isVideoTexture!==!0,ve=ue.__version===void 0||q===!0,te=$.dataReady,ye=E(v,pe);ot(i.TEXTURE_CUBE_MAP,v);let Te;if(xe){O&&ve&&t.texStorage2D(i.TEXTURE_CUBE_MAP,ye,st,pe.width,pe.height);for(let ae=0;ae<6;ae++){Te=be[ae].mipmaps;for(let Ge=0;Ge<Te.length;Ge++){let Ue=Te[Ge];v.format!==Hn?ke!==null?O?te&&t.compressedTexSubImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,Ge,0,0,Ue.width,Ue.height,ke,Ue.data):t.compressedTexImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,Ge,st,Ue.width,Ue.height,0,Ue.data):Ke("WebGLRenderer: Attempt to load unsupported compressed texture format in .setTextureCube()"):O?te&&t.texSubImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,Ge,0,0,Ue.width,Ue.height,ke,Ye,Ue.data):t.texImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,Ge,st,Ue.width,Ue.height,0,ke,Ye,Ue.data)}}}else{if(Te=v.mipmaps,O&&ve){Te.length>0&&ye++;let ae=Et(be[0]);t.texStorage2D(i.TEXTURE_CUBE_MAP,ye,st,ae.width,ae.height)}for(let ae=0;ae<6;ae++)if(He){O?te&&t.texSubImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,0,0,0,be[ae].width,be[ae].height,ke,Ye,be[ae].data):t.texImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,0,st,be[ae].width,be[ae].height,0,ke,Ye,be[ae].data);for(let Ge=0;Ge<Te.length;Ge++){let Pt=Te[Ge].image[ae].image;O?te&&t.texSubImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,Ge+1,0,0,Pt.width,Pt.height,ke,Ye,Pt.data):t.texImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,Ge+1,st,Pt.width,Pt.height,0,ke,Ye,Pt.data)}}else{O?te&&t.texSubImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,0,0,0,ke,Ye,be[ae]):t.texImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,0,st,ke,Ye,be[ae]);for(let Ge=0;Ge<Te.length;Ge++){let Ue=Te[Ge];O?te&&t.texSubImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,Ge+1,0,0,ke,Ye,Ue.image[ae]):t.texImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+ae,Ge+1,st,ke,Ye,Ue.image[ae])}}}m(v)&&S(i.TEXTURE_CUBE_MAP),ue.__version=$.version,v.onUpdate&&v.onUpdate(v)}A.__version=v.version}function fe(A,v,z,q,$,ue){let me=r.convert(z.format,z.colorSpace),Q=r.convert(z.type),ie=_(z.internalFormat,me,Q,z.normalized,z.colorSpace),xe=n.get(v),He=n.get(z);if(He.__renderTarget=v,!xe.__hasExternalTextures){let be=Math.max(1,v.width>>ue),pe=Math.max(1,v.height>>ue);$===i.TEXTURE_3D||$===i.TEXTURE_2D_ARRAY?t.texImage3D($,ue,ie,be,pe,v.depth,0,me,Q,null):t.texImage2D($,ue,ie,be,pe,0,me,Q,null)}t.bindFramebuffer(i.FRAMEBUFFER,A),nt(v)?o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER,q,$,He.__webglTexture,0,qe(v)):($===i.TEXTURE_2D||$>=i.TEXTURE_CUBE_MAP_POSITIVE_X&&$<=i.TEXTURE_CUBE_MAP_NEGATIVE_Z)&&i.framebufferTexture2D(i.FRAMEBUFFER,q,$,He.__webglTexture,ue),t.bindFramebuffer(i.FRAMEBUFFER,null)}function tt(A,v,z){if(i.bindRenderbuffer(i.RENDERBUFFER,A),v.depthBuffer){let q=v.depthTexture,$=q&&q.isDepthTexture?q.type:null,ue=T(v.stencilBuffer,$),me=v.stencilBuffer?i.DEPTH_STENCIL_ATTACHMENT:i.DEPTH_ATTACHMENT;nt(v)?o.renderbufferStorageMultisampleEXT(i.RENDERBUFFER,qe(v),ue,v.width,v.height):z?i.renderbufferStorageMultisample(i.RENDERBUFFER,qe(v),ue,v.width,v.height):i.renderbufferStorage(i.RENDERBUFFER,ue,v.width,v.height),i.framebufferRenderbuffer(i.FRAMEBUFFER,me,i.RENDERBUFFER,A)}else{let q=v.textures;for(let $=0;$<q.length;$++){let ue=q[$],me=r.convert(ue.format,ue.colorSpace),Q=r.convert(ue.type),ie=_(ue.internalFormat,me,Q,ue.normalized,ue.colorSpace);nt(v)?o.renderbufferStorageMultisampleEXT(i.RENDERBUFFER,qe(v),ie,v.width,v.height):z?i.renderbufferStorageMultisample(i.RENDERBUFFER,qe(v),ie,v.width,v.height):i.renderbufferStorage(i.RENDERBUFFER,ie,v.width,v.height)}}i.bindRenderbuffer(i.RENDERBUFFER,null)}function kt(A,v,z){let q=v.isWebGLCubeRenderTarget===!0;if(t.bindFramebuffer(i.FRAMEBUFFER,A),!(v.depthTexture&&v.depthTexture.isDepthTexture))throw new Error("THREE.WebGLTextures: renderTarget.depthTexture must be an instance of THREE.DepthTexture.");let $=n.get(v.depthTexture);if($.__renderTarget=v,(!$.__webglTexture||v.depthTexture.image.width!==v.width||v.depthTexture.image.height!==v.height)&&(v.depthTexture.image.width=v.width,v.depthTexture.image.height=v.height,v.depthTexture.needsUpdate=!0),q){if($.__webglInit===void 0&&($.__webglInit=!0,v.depthTexture.addEventListener("dispose",R)),$.__webglTexture===void 0){$.__webglTexture=i.createTexture(),t.bindTexture(i.TEXTURE_CUBE_MAP,$.__webglTexture),ot(i.TEXTURE_CUBE_MAP,v.depthTexture);let xe=r.convert(v.depthTexture.format),He=r.convert(v.depthTexture.type),be;v.depthTexture.format===ri?be=i.DEPTH_COMPONENT24:v.depthTexture.format===qi&&(be=i.DEPTH24_STENCIL8);for(let pe=0;pe<6;pe++)i.texImage2D(i.TEXTURE_CUBE_MAP_POSITIVE_X+pe,0,be,v.width,v.height,0,xe,He,null)}}else ne(v.depthTexture,0);let ue=$.__webglTexture,me=qe(v),Q=q?i.TEXTURE_CUBE_MAP_POSITIVE_X+z:i.TEXTURE_2D,ie=v.depthTexture.format===qi?i.DEPTH_STENCIL_ATTACHMENT:i.DEPTH_ATTACHMENT;if(v.depthTexture.format===ri)nt(v)?o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER,ie,Q,ue,0,me):i.framebufferTexture2D(i.FRAMEBUFFER,ie,Q,ue,0);else if(v.depthTexture.format===qi)nt(v)?o.framebufferTexture2DMultisampleEXT(i.FRAMEBUFFER,ie,Q,ue,0,me):i.framebufferTexture2D(i.FRAMEBUFFER,ie,Q,ue,0);else throw new Error("THREE.WebGLTextures: Unknown depthTexture format.")}function $e(A){let v=n.get(A),z=A.isWebGLCubeRenderTarget===!0;if(v.__boundDepthTexture!==A.depthTexture){let q=A.depthTexture;if(v.__depthDisposeCallback&&v.__depthDisposeCallback(),q){let $=()=>{delete v.__boundDepthTexture,delete v.__depthDisposeCallback,q.removeEventListener("dispose",$)};q.addEventListener("dispose",$),v.__depthDisposeCallback=$}v.__boundDepthTexture=q}if(A.depthTexture&&!v.__autoAllocateDepthBuffer)if(z)for(let q=0;q<6;q++)kt(v.__webglFramebuffer[q],A,q);else{let q=A.texture.mipmaps;q&&q.length>0?kt(v.__webglFramebuffer[0],A,0):kt(v.__webglFramebuffer,A,0)}else if(z){v.__webglDepthbuffer=[];for(let q=0;q<6;q++)if(t.bindFramebuffer(i.FRAMEBUFFER,v.__webglFramebuffer[q]),v.__webglDepthbuffer[q]===void 0)v.__webglDepthbuffer[q]=i.createRenderbuffer(),tt(v.__webglDepthbuffer[q],A,!1);else{let $=A.stencilBuffer?i.DEPTH_STENCIL_ATTACHMENT:i.DEPTH_ATTACHMENT,ue=v.__webglDepthbuffer[q];i.bindRenderbuffer(i.RENDERBUFFER,ue),i.framebufferRenderbuffer(i.FRAMEBUFFER,$,i.RENDERBUFFER,ue)}}else{let q=A.texture.mipmaps;if(q&&q.length>0?t.bindFramebuffer(i.FRAMEBUFFER,v.__webglFramebuffer[0]):t.bindFramebuffer(i.FRAMEBUFFER,v.__webglFramebuffer),v.__webglDepthbuffer===void 0)v.__webglDepthbuffer=i.createRenderbuffer(),tt(v.__webglDepthbuffer,A,!1);else{let $=A.stencilBuffer?i.DEPTH_STENCIL_ATTACHMENT:i.DEPTH_ATTACHMENT,ue=v.__webglDepthbuffer;i.bindRenderbuffer(i.RENDERBUFFER,ue),i.framebufferRenderbuffer(i.FRAMEBUFFER,$,i.RENDERBUFFER,ue)}}t.bindFramebuffer(i.FRAMEBUFFER,null)}function at(A,v,z){let q=n.get(A);v!==void 0&&fe(q.__webglFramebuffer,A,A.texture,i.COLOR_ATTACHMENT0,i.TEXTURE_2D,0),z!==void 0&&$e(A)}function St(A){let v=A.texture,z=n.get(A),q=n.get(v);A.addEventListener("dispose",y);let $=A.textures,ue=A.isWebGLCubeRenderTarget===!0,me=$.length>1;if(me||(q.__webglTexture===void 0&&(q.__webglTexture=i.createTexture()),q.__version=v.version,a.memory.textures++),ue){z.__webglFramebuffer=[];for(let Q=0;Q<6;Q++)if(v.mipmaps&&v.mipmaps.length>0){z.__webglFramebuffer[Q]=[];for(let ie=0;ie<v.mipmaps.length;ie++)z.__webglFramebuffer[Q][ie]=i.createFramebuffer()}else z.__webglFramebuffer[Q]=i.createFramebuffer()}else{if(v.mipmaps&&v.mipmaps.length>0){z.__webglFramebuffer=[];for(let Q=0;Q<v.mipmaps.length;Q++)z.__webglFramebuffer[Q]=i.createFramebuffer()}else z.__webglFramebuffer=i.createFramebuffer();if(me)for(let Q=0,ie=$.length;Q<ie;Q++){let xe=n.get($[Q]);xe.__webglTexture===void 0&&(xe.__webglTexture=i.createTexture(),a.memory.textures++)}if(A.samples>0&&nt(A)===!1){z.__webglMultisampledFramebuffer=i.createFramebuffer(),z.__webglColorRenderbuffer=[],t.bindFramebuffer(i.FRAMEBUFFER,z.__webglMultisampledFramebuffer);for(let Q=0;Q<$.length;Q++){let ie=$[Q];z.__webglColorRenderbuffer[Q]=i.createRenderbuffer(),i.bindRenderbuffer(i.RENDERBUFFER,z.__webglColorRenderbuffer[Q]);let xe=r.convert(ie.format,ie.colorSpace),He=r.convert(ie.type),be=_(ie.internalFormat,xe,He,ie.normalized,ie.colorSpace,A.isXRRenderTarget===!0),pe=qe(A);i.renderbufferStorageMultisample(i.RENDERBUFFER,pe,be,A.width,A.height),i.framebufferRenderbuffer(i.FRAMEBUFFER,i.COLOR_ATTACHMENT0+Q,i.RENDERBUFFER,z.__webglColorRenderbuffer[Q])}i.bindRenderbuffer(i.RENDERBUFFER,null),A.depthBuffer&&(z.__webglDepthRenderbuffer=i.createRenderbuffer(),tt(z.__webglDepthRenderbuffer,A,!0)),t.bindFramebuffer(i.FRAMEBUFFER,null)}}if(ue){t.bindTexture(i.TEXTURE_CUBE_MAP,q.__webglTexture),ot(i.TEXTURE_CUBE_MAP,v);for(let Q=0;Q<6;Q++)if(v.mipmaps&&v.mipmaps.length>0)for(let ie=0;ie<v.mipmaps.length;ie++)fe(z.__webglFramebuffer[Q][ie],A,v,i.COLOR_ATTACHMENT0,i.TEXTURE_CUBE_MAP_POSITIVE_X+Q,ie);else fe(z.__webglFramebuffer[Q],A,v,i.COLOR_ATTACHMENT0,i.TEXTURE_CUBE_MAP_POSITIVE_X+Q,0);m(v)&&S(i.TEXTURE_CUBE_MAP),t.unbindTexture()}else if(me){for(let Q=0,ie=$.length;Q<ie;Q++){let xe=$[Q],He=n.get(xe),be=i.TEXTURE_2D;(A.isWebGL3DRenderTarget||A.isWebGLArrayRenderTarget)&&(be=A.isWebGL3DRenderTarget?i.TEXTURE_3D:i.TEXTURE_2D_ARRAY),t.bindTexture(be,He.__webglTexture),ot(be,xe),fe(z.__webglFramebuffer,A,xe,i.COLOR_ATTACHMENT0+Q,be,0),m(xe)&&S(be)}t.unbindTexture()}else{let Q=i.TEXTURE_2D;if((A.isWebGL3DRenderTarget||A.isWebGLArrayRenderTarget)&&(Q=A.isWebGL3DRenderTarget?i.TEXTURE_3D:i.TEXTURE_2D_ARRAY),t.bindTexture(Q,q.__webglTexture),ot(Q,v),v.mipmaps&&v.mipmaps.length>0)for(let ie=0;ie<v.mipmaps.length;ie++)fe(z.__webglFramebuffer[ie],A,v,i.COLOR_ATTACHMENT0,Q,ie);else fe(z.__webglFramebuffer,A,v,i.COLOR_ATTACHMENT0,Q,0);m(v)&&S(Q),t.unbindTexture()}A.depthBuffer&&$e(A)}function oe(A){let v=A.textures;for(let z=0,q=v.length;z<q;z++){let $=v[z];if(m($)){let ue=C(A),me=n.get($).__webglTexture;t.bindTexture(ue,me),S(ue),t.unbindTexture()}}}let le=[],dt=[];function Le(A){if(A.samples>0){if(nt(A)===!1){let v=A.textures,z=A.width,q=A.height,$=i.COLOR_BUFFER_BIT,ue=A.stencilBuffer?i.DEPTH_STENCIL_ATTACHMENT:i.DEPTH_ATTACHMENT,me=n.get(A),Q=v.length>1;if(Q)for(let xe=0;xe<v.length;xe++)t.bindFramebuffer(i.FRAMEBUFFER,me.__webglMultisampledFramebuffer),i.framebufferRenderbuffer(i.FRAMEBUFFER,i.COLOR_ATTACHMENT0+xe,i.RENDERBUFFER,null),t.bindFramebuffer(i.FRAMEBUFFER,me.__webglFramebuffer),i.framebufferTexture2D(i.DRAW_FRAMEBUFFER,i.COLOR_ATTACHMENT0+xe,i.TEXTURE_2D,null,0);t.bindFramebuffer(i.READ_FRAMEBUFFER,me.__webglMultisampledFramebuffer);let ie=A.texture.mipmaps;ie&&ie.length>0?t.bindFramebuffer(i.DRAW_FRAMEBUFFER,me.__webglFramebuffer[0]):t.bindFramebuffer(i.DRAW_FRAMEBUFFER,me.__webglFramebuffer);for(let xe=0;xe<v.length;xe++){if(A.resolveDepthBuffer&&(A.depthBuffer&&($|=i.DEPTH_BUFFER_BIT),A.stencilBuffer&&A.resolveStencilBuffer&&($|=i.STENCIL_BUFFER_BIT)),Q){i.framebufferRenderbuffer(i.READ_FRAMEBUFFER,i.COLOR_ATTACHMENT0,i.RENDERBUFFER,me.__webglColorRenderbuffer[xe]);let He=n.get(v[xe]).__webglTexture;i.framebufferTexture2D(i.DRAW_FRAMEBUFFER,i.COLOR_ATTACHMENT0,i.TEXTURE_2D,He,0)}i.blitFramebuffer(0,0,z,q,0,0,z,q,$,i.NEAREST),l===!0&&(le.length=0,dt.length=0,le.push(i.COLOR_ATTACHMENT0+xe),A.depthBuffer&&A.storeMultisampledDepthBuffer===!1&&(le.push(ue),dt.push(ue),i.invalidateFramebuffer(i.DRAW_FRAMEBUFFER,dt)),i.invalidateFramebuffer(i.READ_FRAMEBUFFER,le))}if(t.bindFramebuffer(i.READ_FRAMEBUFFER,null),t.bindFramebuffer(i.DRAW_FRAMEBUFFER,null),Q)for(let xe=0;xe<v.length;xe++){t.bindFramebuffer(i.FRAMEBUFFER,me.__webglMultisampledFramebuffer),i.framebufferRenderbuffer(i.FRAMEBUFFER,i.COLOR_ATTACHMENT0+xe,i.RENDERBUFFER,me.__webglColorRenderbuffer[xe]);let He=n.get(v[xe]).__webglTexture;t.bindFramebuffer(i.FRAMEBUFFER,me.__webglFramebuffer),i.framebufferTexture2D(i.DRAW_FRAMEBUFFER,i.COLOR_ATTACHMENT0+xe,i.TEXTURE_2D,He,0)}t.bindFramebuffer(i.DRAW_FRAMEBUFFER,me.__webglMultisampledFramebuffer)}else if(A.depthBuffer&&A.storeMultisampledDepthBuffer===!1&&l){let v=A.stencilBuffer?i.DEPTH_STENCIL_ATTACHMENT:i.DEPTH_ATTACHMENT;i.invalidateFramebuffer(i.DRAW_FRAMEBUFFER,[v])}}}function qe(A){return Math.min(s.maxSamples,A.samples)}function nt(A){let v=n.get(A);return A.samples>0&&e.has("WEBGL_multisampled_render_to_texture")===!0&&v.__useRenderToTexture!==!1}function F(A){let v=a.render.frame;u.get(A)!==v&&(u.set(A,v),A.update())}function Xt(A,v){let z=A.colorSpace,q=A.format,$=A.type;return A.isCompressedTexture===!0||A.isVideoTexture===!0||z!==Lr&&z!==Ai&&(mt.getTransfer(z)===Ct?(q!==Hn||$!==En)&&Ke("WebGLTextures: sRGB encoded textures have to use RGBAFormat and UnsignedByteType."):Qe("WebGLTextures: Unsupported texture color space:",z)),v}function Et(A){return typeof HTMLImageElement<"u"&&A instanceof HTMLImageElement?(c.width=A.naturalWidth||A.width,c.height=A.naturalHeight||A.height):typeof VideoFrame<"u"&&A instanceof VideoFrame?(c.width=A.displayWidth,c.height=A.displayHeight):(c.width=A.width,c.height=A.height),c}this.allocateTextureUnit=K,this.resetTextureUnits=H,this.getTextureUnits=D,this.setTextureUnits=W,this.setTexture2D=ne,this.setTexture2DArray=Z,this.setTexture3D=ee,this.setTextureCube=re,this.rebindTextures=at,this.setupRenderTarget=St,this.updateRenderTargetMipmap=oe,this.updateMultisampleRenderTarget=Le,this.setupDepthRenderbuffer=$e,this.setupFrameBufferTexture=fe,this.useMultisampledRTT=nt,this.isReversedDepthBuffer=function(){return t.buffers.depth.getReversed()}}function Ev(i,e){function t(n,s=Ai){let r,a=mt.getTransfer(s);if(n===En)return i.UNSIGNED_BYTE;if(n===ul)return i.UNSIGNED_SHORT_4_4_4_4;if(n===hl)return i.UNSIGNED_SHORT_5_5_5_1;if(n===$c)return i.UNSIGNED_INT_5_9_9_9_REV;if(n===jc)return i.UNSIGNED_INT_10F_11F_11F_REV;if(n===Kc)return i.BYTE;if(n===Jc)return i.SHORT;if(n===er)return i.UNSIGNED_SHORT;if(n===cl)return i.INT;if(n===Qn)return i.UNSIGNED_INT;if(n===zn)return i.FLOAT;if(n===un)return i.HALF_FLOAT;if(n===Qc)return i.ALPHA;if(n===eu)return i.RGB;if(n===Hn)return i.RGBA;if(n===ri)return i.DEPTH_COMPONENT;if(n===qi)return i.DEPTH_STENCIL;if(n===dl)return i.RED;if(n===fl)return i.RED_INTEGER;if(n===Yi)return i.RG;if(n===pl)return i.RG_INTEGER;if(n===ml)return i.RGBA_INTEGER;if(n===da||n===fa||n===pa||n===ma)if(a===Ct)if(r=e.get("WEBGL_compressed_texture_s3tc_srgb"),r!==null){if(n===da)return r.COMPRESSED_SRGB_S3TC_DXT1_EXT;if(n===fa)return r.COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT;if(n===pa)return r.COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT;if(n===ma)return r.COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT}else return null;else if(r=e.get("WEBGL_compressed_texture_s3tc"),r!==null){if(n===da)return r.COMPRESSED_RGB_S3TC_DXT1_EXT;if(n===fa)return r.COMPRESSED_RGBA_S3TC_DXT1_EXT;if(n===pa)return r.COMPRESSED_RGBA_S3TC_DXT3_EXT;if(n===ma)return r.COMPRESSED_RGBA_S3TC_DXT5_EXT}else return null;if(n===gl||n===xl||n===vl||n===yl)if(r=e.get("WEBGL_compressed_texture_pvrtc"),r!==null){if(n===gl)return r.COMPRESSED_RGB_PVRTC_4BPPV1_IMG;if(n===xl)return r.COMPRESSED_RGB_PVRTC_2BPPV1_IMG;if(n===vl)return r.COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;if(n===yl)return r.COMPRESSED_RGBA_PVRTC_2BPPV1_IMG}else return null;if(n===_l||n===bl||n===Ml||n===Sl||n===El||n===ga||n===wl)if(r=e.get("WEBGL_compressed_texture_etc"),r!==null){if(n===_l||n===bl)return a===Ct?r.COMPRESSED_SRGB8_ETC2:r.COMPRESSED_RGB8_ETC2;if(n===Ml)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ETC2_EAC:r.COMPRESSED_RGBA8_ETC2_EAC;if(n===Sl)return r.COMPRESSED_R11_EAC;if(n===El)return r.COMPRESSED_SIGNED_R11_EAC;if(n===ga)return r.COMPRESSED_RG11_EAC;if(n===wl)return r.COMPRESSED_SIGNED_RG11_EAC}else return null;if(n===Tl||n===Al||n===Cl||n===Rl||n===Pl||n===Il||n===Nl||n===Ll||n===Dl||n===Ul||n===Fl||n===Ol||n===Bl||n===kl)if(r=e.get("WEBGL_compressed_texture_astc"),r!==null){if(n===Tl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_4x4_KHR:r.COMPRESSED_RGBA_ASTC_4x4_KHR;if(n===Al)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_5x4_KHR:r.COMPRESSED_RGBA_ASTC_5x4_KHR;if(n===Cl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_5x5_KHR:r.COMPRESSED_RGBA_ASTC_5x5_KHR;if(n===Rl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_6x5_KHR:r.COMPRESSED_RGBA_ASTC_6x5_KHR;if(n===Pl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_6x6_KHR:r.COMPRESSED_RGBA_ASTC_6x6_KHR;if(n===Il)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_8x5_KHR:r.COMPRESSED_RGBA_ASTC_8x5_KHR;if(n===Nl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_8x6_KHR:r.COMPRESSED_RGBA_ASTC_8x6_KHR;if(n===Ll)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_8x8_KHR:r.COMPRESSED_RGBA_ASTC_8x8_KHR;if(n===Dl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_10x5_KHR:r.COMPRESSED_RGBA_ASTC_10x5_KHR;if(n===Ul)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_10x6_KHR:r.COMPRESSED_RGBA_ASTC_10x6_KHR;if(n===Fl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_10x8_KHR:r.COMPRESSED_RGBA_ASTC_10x8_KHR;if(n===Ol)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_10x10_KHR:r.COMPRESSED_RGBA_ASTC_10x10_KHR;if(n===Bl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_12x10_KHR:r.COMPRESSED_RGBA_ASTC_12x10_KHR;if(n===kl)return a===Ct?r.COMPRESSED_SRGB8_ALPHA8_ASTC_12x12_KHR:r.COMPRESSED_RGBA_ASTC_12x12_KHR}else return null;if(n===zl||n===Hl||n===Gl)if(r=e.get("EXT_texture_compression_bptc"),r!==null){if(n===zl)return a===Ct?r.COMPRESSED_SRGB_ALPHA_BPTC_UNORM_EXT:r.COMPRESSED_RGBA_BPTC_UNORM_EXT;if(n===Hl)return r.COMPRESSED_RGB_BPTC_SIGNED_FLOAT_EXT;if(n===Gl)return r.COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT_EXT}else return null;if(n===Vl||n===Wl||n===xa||n===Xl)if(r=e.get("EXT_texture_compression_rgtc"),r!==null){if(n===Vl)return r.COMPRESSED_RED_RGTC1_EXT;if(n===Wl)return r.COMPRESSED_SIGNED_RED_RGTC1_EXT;if(n===xa)return r.COMPRESSED_RED_GREEN_RGTC2_EXT;if(n===Xl)return r.COMPRESSED_SIGNED_RED_GREEN_RGTC2_EXT}else return null;return n===tr?i.UNSIGNED_INT_24_8:i[n]!==void 0?i[n]:null}return{convert:t}}var wv=`
+void main() {
+
+	gl_Position = vec4( position, 1.0 );
+
+}`,Tv=`
+uniform sampler2DArray depthColor;
+uniform float depthWidth;
+uniform float depthHeight;
+
+void main() {
+
+	vec2 coord = vec2( gl_FragCoord.x / depthWidth, gl_FragCoord.y / depthHeight );
+
+	if ( coord.x >= 1.0 ) {
+
+		gl_FragDepth = texture( depthColor, vec3( coord.x - 1.0, coord.y, 1 ) ).r;
+
+	} else {
+
+		gl_FragDepth = texture( depthColor, vec3( coord.x, coord.y, 0 ) ).r;
+
+	}
+
+}`,Tu=class{constructor(){this.texture=null,this.mesh=null,this.depthNear=0,this.depthFar=0}init(e,t){if(this.texture===null){let n=new Xr(e.texture);(e.depthNear!==t.depthNear||e.depthFar!==t.depthFar)&&(this.depthNear=e.depthNear,this.depthFar=e.depthFar),this.texture=n}}getMesh(e){if(this.texture!==null&&this.mesh===null){let t=e.cameras[0].viewport,n=new pt({vertexShader:wv,fragmentShader:Tv,uniforms:{depthColor:{value:this.texture},depthWidth:{value:t.z},depthHeight:{value:t.w}}});this.mesh=new Je(new Kr(20,20),n)}return this.mesh}reset(){this.texture=null,this.mesh=null}getDepthTexture(){return this.texture}},Au=class extends ai{constructor(e,t){super();let n=this,s=null,r=1,a=null,o="local-floor",l=1,c=null,u=null,f=null,h=null,p=null,x=null,M=typeof XRWebGLBinding<"u",g=new Tu,m={},S=t.getContextAttributes(),C=null,_=null,T=[],E=[],R=new Me,y=null,w=null,P=new $t;P.viewport=new Wt;let L=new $t;L.viewport=new Wt;let B=[P,L],H=new sl,D=null,W=null;this.cameraAutoUpdate=!0,this.enabled=!1,this.isPresenting=!1,this.getController=function(j){let se=T[j];return se===void 0&&(se=new Xs,T[j]=se),se.getTargetRaySpace()},this.getControllerGrip=function(j){let se=T[j];return se===void 0&&(se=new Xs,T[j]=se),se.getGripSpace()},this.getHand=function(j){let se=T[j];return se===void 0&&(se=new Xs,T[j]=se),se.getHandSpace()};function K(j){let se=E.indexOf(j.inputSource);if(se===-1)return;let Ee=T[se];Ee!==void 0&&(Ee.update(j.inputSource,j.frame,c||a),Ee.dispatchEvent({type:j.type,data:j.inputSource}))}function J(){s.removeEventListener("select",K),s.removeEventListener("selectstart",K),s.removeEventListener("selectend",K),s.removeEventListener("squeeze",K),s.removeEventListener("squeezestart",K),s.removeEventListener("squeezeend",K),s.removeEventListener("end",J),s.removeEventListener("inputsourceschange",ne);for(let j=0;j<T.length;j++){let se=E[j];se!==null&&(E[j]=null,T[j].disconnect(se))}D=null,W=null,g.reset();for(let j in m)delete m[j];if(e.setRenderTarget(C),p=null,h=null,f=null,s=null,_=null,ut.stop(),n.isPresenting=!1,e.setPixelRatio(y),e.setSize(R.width,R.height,!1),w!==null){let j=w.camera;j.fov=w.fov,j.zoom=w.zoom,j.updateProjectionMatrix(),w=null}n.dispatchEvent({type:"sessionend"})}this.setFramebufferScaleFactor=function(j){r=j,n.isPresenting===!0&&Ke("WebXRManager: Cannot change framebuffer scale while presenting.")},this.setReferenceSpaceType=function(j){o=j,n.isPresenting===!0&&Ke("WebXRManager: Cannot change reference space type while presenting.")},this.getReferenceSpace=function(){return c||a},this.setReferenceSpace=function(j){c=j},this.getBaseLayer=function(){return h!==null?h:p},this.getBinding=function(){return f===null&&M&&(f=new XRWebGLBinding(s,t)),f},this.getFrame=function(){return x},this.getSession=function(){return s},this.setSession=async function(j){if(s=j,s!==null){if(C=e.getRenderTarget(),s.addEventListener("select",K),s.addEventListener("selectstart",K),s.addEventListener("selectend",K),s.addEventListener("squeeze",K),s.addEventListener("squeezestart",K),s.addEventListener("squeezeend",K),s.addEventListener("end",J),s.addEventListener("inputsourceschange",ne),S.xrCompatible!==!0&&await t.makeXRCompatible(),y=e.getPixelRatio(),e.getSize(R),M&&"createProjectionLayer"in XRWebGLBinding.prototype){let Ee=null,Ve=null,fe=null;S.depth&&(fe=S.stencil?t.DEPTH24_STENCIL8:t.DEPTH_COMPONENT24,Ee=S.stencil?qi:ri,Ve=S.stencil?tr:Qn);let tt={colorFormat:t.RGBA8,depthFormat:fe,scaleFactor:r};f=this.getBinding(),h=f.createProjectionLayer(tt),s.updateRenderState({layers:[h]}),e.setPixelRatio(1),e.setSize(h.textureWidth,h.textureHeight,!1),_=new jt(h.textureWidth,h.textureHeight,{format:Hn,type:En,depthTexture:new Bi(h.textureWidth,h.textureHeight,Ve,void 0,void 0,void 0,void 0,void 0,void 0,Ee),stencilBuffer:S.stencil,colorSpace:e.outputColorSpace,samples:S.antialias?4:0,resolveDepthBuffer:h.ignoreDepthValues===!1,resolveStencilBuffer:h.ignoreDepthValues===!1,storeMultisampledDepthBuffer:h.ignoreDepthValues===!1,storeMultisampledStencilBuffer:h.ignoreDepthValues===!1})}else{let Ee={antialias:S.antialias,alpha:!0,depth:S.depth,stencil:S.stencil,framebufferScaleFactor:r};p=new XRWebGLLayer(s,t,Ee),s.updateRenderState({baseLayer:p}),e.setPixelRatio(1),e.setSize(p.framebufferWidth,p.framebufferHeight,!1),_=new jt(p.framebufferWidth,p.framebufferHeight,{format:Hn,type:En,colorSpace:e.outputColorSpace,stencilBuffer:S.stencil,resolveDepthBuffer:p.ignoreDepthValues===!1,resolveStencilBuffer:p.ignoreDepthValues===!1,storeMultisampledDepthBuffer:p.ignoreDepthValues===!1,storeMultisampledStencilBuffer:p.ignoreDepthValues===!1})}_.isXRRenderTarget=!0,this.setFoveation(l),c=null,a=await s.requestReferenceSpace(o),ut.setContext(s),ut.start(),n.isPresenting=!0,n.dispatchEvent({type:"sessionstart"})}},this.getEnvironmentBlendMode=function(){if(s!==null)return s.environmentBlendMode},this.getDepthTexture=function(){return g.getDepthTexture()};function ne(j){for(let se=0;se<j.removed.length;se++){let Ee=j.removed[se],Ve=E.indexOf(Ee);Ve>=0&&(E[Ve]=null,T[Ve].disconnect(Ee))}for(let se=0;se<j.added.length;se++){let Ee=j.added[se],Ve=E.indexOf(Ee);if(Ve===-1){for(let tt=0;tt<T.length;tt++)if(tt>=E.length){E.push(Ee),Ve=tt;break}else if(E[tt]===null){E[tt]=Ee,Ve=tt;break}if(Ve===-1)break}let fe=T[Ve];fe&&fe.connect(Ee)}}let Z=new I,ee=new I;function re(j,se,Ee){Z.setFromMatrixPosition(se.matrixWorld),ee.setFromMatrixPosition(Ee.matrixWorld);let Ve=Z.distanceTo(ee),fe=se.projectionMatrix.elements,tt=Ee.projectionMatrix.elements,kt=fe[14]/(fe[10]-1),$e=fe[14]/(fe[10]+1),at=(fe[9]+1)/fe[5],St=(fe[9]-1)/fe[5],oe=(fe[8]-1)/fe[0],le=(tt[8]+1)/tt[0],dt=kt*oe,Le=kt*le,qe=Ve/(-oe+le),nt=qe*-oe;if(se.matrixWorld.decompose(j.position,j.quaternion,j.scale),j.translateX(nt),j.translateZ(qe),j.matrixWorld.compose(j.position,j.quaternion,j.scale),j.matrixWorldInverse.copy(j.matrixWorld).invert(),fe[10]===-1)j.projectionMatrix.copy(se.projectionMatrix),j.projectionMatrixInverse.copy(se.projectionMatrixInverse);else{let F=kt+qe,Xt=$e+qe,Et=dt-nt,A=Le+(Ve-nt),v=at*$e/Xt*F,z=St*$e/Xt*F;j.projectionMatrix.makePerspective(Et,A,v,z,F,Xt),j.projectionMatrixInverse.copy(j.projectionMatrix).invert()}}function Pe(j,se){se===null?j.matrixWorld.copy(j.matrix):j.matrixWorld.multiplyMatrices(se.matrixWorld,j.matrix),j.matrixWorldInverse.copy(j.matrixWorld).invert()}this.updateCamera=function(j){if(s===null)return;let se=j.near,Ee=j.far;g.texture!==null&&(g.depthNear>0&&(se=g.depthNear),g.depthFar>0&&(Ee=g.depthFar)),H.near=L.near=P.near=se,H.far=L.far=P.far=Ee,(D!==H.near||W!==H.far)&&(s.updateRenderState({depthNear:H.near,depthFar:H.far}),D=H.near,W=H.far),H.layers.mask=j.layers.mask|6,P.layers.mask=H.layers.mask&-5,L.layers.mask=H.layers.mask&-3;let Ve=j.parent,fe=H.cameras;Pe(H,Ve);for(let tt=0;tt<fe.length;tt++)Pe(fe[tt],Ve);fe.length===2?re(H,P,L):H.projectionMatrix.copy(P.projectionMatrix),w===null&&j.isPerspectiveCamera&&(w={camera:j,fov:j.fov,zoom:j.zoom}),Ie(j,H,Ve)};function Ie(j,se,Ee){Ee===null?j.matrix.copy(se.matrixWorld):(j.matrix.copy(Ee.matrixWorld),j.matrix.invert(),j.matrix.multiply(se.matrixWorld)),j.matrix.decompose(j.position,j.quaternion,j.scale),j.updateMatrixWorld(!0),j.projectionMatrix.copy(se.projectionMatrix),j.projectionMatrixInverse.copy(se.projectionMatrixInverse),j.isPerspectiveCamera&&(j.fov=Fr*2*Math.atan(1/j.projectionMatrix.elements[5]),j.zoom=1)}this.getCamera=function(){return H},this.getFoveation=function(){if(!(h===null&&p===null))return l},this.setFoveation=function(j){l=j,h!==null&&(h.fixedFoveation=j),p!==null&&p.fixedFoveation!==void 0&&(p.fixedFoveation=j)},this.hasDepthSensing=function(){return g.texture!==null},this.getDepthSensingMesh=function(){return g.getMesh(H)},this.getCameraTexture=function(j){return m[j]};let vt=null;function ot(j,se){if(u=se.getViewerPose(c||a),x=se,u!==null){let Ee=u.views;p!==null&&(e.setRenderTargetFramebuffer(_,p.framebuffer),e.setRenderTarget(_));let Ve=!1;Ee.length!==H.cameras.length&&(H.cameras.length=0,Ve=!0);for(let $e=0;$e<Ee.length;$e++){let at=Ee[$e],St=null;if(p!==null)St=p.getViewport(at);else{let le=f.getViewSubImage(h,at);St=le.viewport,$e===0&&(e.setRenderTargetTextures(_,le.colorTexture,le.depthStencilTexture),e.setRenderTarget(_))}let oe=B[$e];oe===void 0&&(oe=new $t,oe.layers.enable($e),oe.viewport=new Wt,B[$e]=oe),oe.matrix.fromArray(at.transform.matrix),oe.matrix.decompose(oe.position,oe.quaternion,oe.scale),oe.projectionMatrix.fromArray(at.projectionMatrix),oe.projectionMatrixInverse.copy(oe.projectionMatrix).invert(),oe.viewport.set(St.x,St.y,St.width,St.height),$e===0&&(H.matrix.copy(oe.matrix),H.matrix.decompose(H.position,H.quaternion,H.scale)),Ve===!0&&H.cameras.push(oe)}let fe=s.enabledFeatures;if(fe&&fe.includes("depth-sensing")&&s.depthUsage=="gpu-optimized"&&M){f=n.getBinding();let $e=f.getDepthInformation(Ee[0]);$e&&$e.isValid&&$e.texture&&g.init($e,s.renderState)}if(fe&&fe.includes("camera-access")&&M){e.state.unbindTexture(),f=n.getBinding();for(let $e=0;$e<Ee.length;$e++){let at=Ee[$e].camera;if(at){let St=m[at];St||(St=new Xr,m[at]=St);let oe=f.getCameraImage(at);St.sourceTexture=oe}}}}for(let Ee=0;Ee<T.length;Ee++){let Ve=E[Ee],fe=T[Ee];Ve!==null&&fe!==void 0&&fe.update(Ve,se,c||a)}vt&&vt(j,se),se.detectedPlanes&&n.dispatchEvent({type:"planesdetected",data:se}),x=null}let ut=new Xd;ut.setAnimationLoop(ot),this.setAnimationLoop=function(j){vt=j},this.dispose=function(){}}},Av=new Ft,$d=new rt;$d.set(-1,0,0,0,1,0,0,0,1);function Cv(i,e){function t(g,m){g.matrixAutoUpdate===!0&&g.updateMatrix(),m.value.copy(g.matrix)}function n(g,m){m.color.getRGB(g.fogColor.value,su(i)),m.isFog?(g.fogNear.value=m.near,g.fogFar.value=m.far):m.isFogExp2&&(g.fogDensity.value=m.density)}function s(g,m,S,C,_){m.isNodeMaterial?m.uniformsNeedUpdate=!1:m.isMeshBasicMaterial?r(g,m):m.isMeshLambertMaterial?(r(g,m),m.envMap&&(g.envMapIntensity.value=m.envMapIntensity)):m.isMeshToonMaterial?(r(g,m),f(g,m)):m.isMeshPhongMaterial?(r(g,m),u(g,m),m.envMap&&(g.envMapIntensity.value=m.envMapIntensity)):m.isMeshStandardMaterial?(r(g,m),h(g,m),m.isMeshPhysicalMaterial&&p(g,m,_)):m.isMeshMatcapMaterial?(r(g,m),x(g,m)):m.isMeshDepthMaterial?r(g,m):m.isMeshDistanceMaterial?(r(g,m),M(g,m)):m.isMeshNormalMaterial?r(g,m):m.isLineBasicMaterial?(a(g,m),m.isLineDashedMaterial&&o(g,m)):m.isPointsMaterial?l(g,m,S,C):m.isSpriteMaterial?c(g,m):m.isShadowMaterial?(g.color.value.copy(m.color),g.opacity.value=m.opacity):m.isShaderMaterial&&(m.uniformsNeedUpdate=!1)}function r(g,m){g.opacity.value=m.opacity,m.color&&g.diffuse.value.copy(m.color),m.emissive&&g.emissive.value.copy(m.emissive).multiplyScalar(m.emissiveIntensity),m.map&&(g.map.value=m.map,t(m.map,g.mapTransform)),m.alphaMap&&(g.alphaMap.value=m.alphaMap,t(m.alphaMap,g.alphaMapTransform)),m.bumpMap&&(g.bumpMap.value=m.bumpMap,t(m.bumpMap,g.bumpMapTransform),g.bumpScale.value=m.bumpScale,m.side===Yt&&(g.bumpScale.value*=-1)),m.normalMap&&(g.normalMap.value=m.normalMap,t(m.normalMap,g.normalMapTransform),g.normalScale.value.copy(m.normalScale),m.side===Yt&&g.normalScale.value.negate()),m.displacementMap&&(g.displacementMap.value=m.displacementMap,t(m.displacementMap,g.displacementMapTransform),g.displacementScale.value=m.displacementScale,g.displacementBias.value=m.displacementBias),m.emissiveMap&&(g.emissiveMap.value=m.emissiveMap,t(m.emissiveMap,g.emissiveMapTransform)),m.specularMap&&(g.specularMap.value=m.specularMap,t(m.specularMap,g.specularMapTransform)),m.alphaTest>0&&(g.alphaTest.value=m.alphaTest);let S=e.get(m),C=S.envMap,_=S.envMapRotation;C&&(g.envMap.value=C,g.envMapRotation.value.setFromMatrix4(Av.makeRotationFromEuler(_)).transpose(),C.isCubeTexture&&C.isRenderTargetTexture===!1&&g.envMapRotation.value.premultiply($d),g.reflectivity.value=m.reflectivity,g.ior.value=m.ior,g.refractionRatio.value=m.refractionRatio),m.lightMap&&(g.lightMap.value=m.lightMap,g.lightMapIntensity.value=m.lightMapIntensity,t(m.lightMap,g.lightMapTransform)),m.aoMap&&(g.aoMap.value=m.aoMap,g.aoMapIntensity.value=m.aoMapIntensity,t(m.aoMap,g.aoMapTransform))}function a(g,m){g.diffuse.value.copy(m.color),g.opacity.value=m.opacity,m.map&&(g.map.value=m.map,t(m.map,g.mapTransform))}function o(g,m){g.dashSize.value=m.dashSize,g.totalSize.value=m.dashSize+m.gapSize,g.scale.value=m.scale}function l(g,m,S,C){g.diffuse.value.copy(m.color),g.opacity.value=m.opacity,g.size.value=m.size*S,g.scale.value=C*.5,m.map&&(g.map.value=m.map,t(m.map,g.uvTransform)),m.alphaMap&&(g.alphaMap.value=m.alphaMap,t(m.alphaMap,g.alphaMapTransform)),m.alphaTest>0&&(g.alphaTest.value=m.alphaTest)}function c(g,m){g.diffuse.value.copy(m.color),g.opacity.value=m.opacity,g.rotation.value=m.rotation,m.map&&(g.map.value=m.map,t(m.map,g.mapTransform)),m.alphaMap&&(g.alphaMap.value=m.alphaMap,t(m.alphaMap,g.alphaMapTransform)),m.alphaTest>0&&(g.alphaTest.value=m.alphaTest)}function u(g,m){g.specular.value.copy(m.specular),g.shininess.value=Math.max(m.shininess,1e-4)}function f(g,m){m.gradientMap&&(g.gradientMap.value=m.gradientMap)}function h(g,m){g.metalness.value=m.metalness,m.metalnessMap&&(g.metalnessMap.value=m.metalnessMap,t(m.metalnessMap,g.metalnessMapTransform)),g.roughness.value=m.roughness,m.roughnessMap&&(g.roughnessMap.value=m.roughnessMap,t(m.roughnessMap,g.roughnessMapTransform)),m.envMap&&(g.envMapIntensity.value=m.envMapIntensity)}function p(g,m,S){g.ior.value=m.ior,m.sheen>0&&(g.sheenColor.value.copy(m.sheenColor).multiplyScalar(m.sheen),g.sheenRoughness.value=m.sheenRoughness,m.sheenColorMap&&(g.sheenColorMap.value=m.sheenColorMap,t(m.sheenColorMap,g.sheenColorMapTransform)),m.sheenRoughnessMap&&(g.sheenRoughnessMap.value=m.sheenRoughnessMap,t(m.sheenRoughnessMap,g.sheenRoughnessMapTransform))),m.clearcoat>0&&(g.clearcoat.value=m.clearcoat,g.clearcoatRoughness.value=m.clearcoatRoughness,m.clearcoatMap&&(g.clearcoatMap.value=m.clearcoatMap,t(m.clearcoatMap,g.clearcoatMapTransform)),m.clearcoatRoughnessMap&&(g.clearcoatRoughnessMap.value=m.clearcoatRoughnessMap,t(m.clearcoatRoughnessMap,g.clearcoatRoughnessMapTransform)),m.clearcoatNormalMap&&(g.clearcoatNormalMap.value=m.clearcoatNormalMap,t(m.clearcoatNormalMap,g.clearcoatNormalMapTransform),g.clearcoatNormalScale.value.copy(m.clearcoatNormalScale),m.side===Yt&&g.clearcoatNormalScale.value.negate())),m.dispersion>0&&(g.dispersion.value=m.dispersion),m.retroreflectivity>0&&(g.retroreflectivity.value=m.retroreflectivity),m.iridescence>0&&(g.iridescence.value=m.iridescence,g.iridescenceIOR.value=m.iridescenceIOR,g.iridescenceThicknessMinimum.value=m.iridescenceThicknessRange[0],g.iridescenceThicknessMaximum.value=m.iridescenceThicknessRange[1],m.iridescenceMap&&(g.iridescenceMap.value=m.iridescenceMap,t(m.iridescenceMap,g.iridescenceMapTransform)),m.iridescenceThicknessMap&&(g.iridescenceThicknessMap.value=m.iridescenceThicknessMap,t(m.iridescenceThicknessMap,g.iridescenceThicknessMapTransform))),m.transmission>0&&(g.transmission.value=m.transmission,g.transmissionSamplerMap.value=S.texture,g.transmissionSamplerSize.value.set(S.width,S.height),m.transmissionMap&&(g.transmissionMap.value=m.transmissionMap,t(m.transmissionMap,g.transmissionMapTransform)),g.thickness.value=m.thickness,m.thicknessMap&&(g.thicknessMap.value=m.thicknessMap,t(m.thicknessMap,g.thicknessMapTransform)),g.attenuationDistance.value=m.attenuationDistance,g.attenuationColor.value.copy(m.attenuationColor)),m.anisotropy>0&&(g.anisotropyVector.value.set(m.anisotropy*Math.cos(m.anisotropyRotation),m.anisotropy*Math.sin(m.anisotropyRotation)),m.anisotropyMap&&(g.anisotropyMap.value=m.anisotropyMap,t(m.anisotropyMap,g.anisotropyMapTransform))),g.specularIntensity.value=m.specularIntensity,g.specularColor.value.copy(m.specularColor),m.specularColorMap&&(g.specularColorMap.value=m.specularColorMap,t(m.specularColorMap,g.specularColorMapTransform)),m.specularIntensityMap&&(g.specularIntensityMap.value=m.specularIntensityMap,t(m.specularIntensityMap,g.specularIntensityMapTransform))}function x(g,m){m.matcap&&(g.matcap.value=m.matcap)}function M(g,m){let S=e.get(m).light;g.referencePosition.value.setFromMatrixPosition(S.matrixWorld),g.nearDistance.value=S.shadow.camera.near,g.farDistance.value=S.shadow.camera.far}return{refreshFogUniforms:n,refreshMaterialUniforms:s}}function Rv(i,e,t,n){let s={},r={},a=[],o=i.getParameter(i.MAX_UNIFORM_BUFFER_BINDINGS);function l(_,T){let E=T.program;n.uniformBlockBinding(_,E)}function c(_,T){let E=s[_.id];E===void 0&&(g(_),E=u(_),s[_.id]=E,_.addEventListener("dispose",S));let R=T.program;n.updateUBOMapping(_,R);let y=e.render.frame;r[_.id]!==y&&(h(_),r[_.id]=y)}function u(_){let T=f();_.__bindingPointIndex=T;let E=i.createBuffer(),R=_.__size,y=_.usage;return i.bindBuffer(i.UNIFORM_BUFFER,E),i.bufferData(i.UNIFORM_BUFFER,R,y),i.bindBuffer(i.UNIFORM_BUFFER,null),i.bindBufferBase(i.UNIFORM_BUFFER,T,E),E}function f(){for(let _=0;_<o;_++)if(a.indexOf(_)===-1)return a.push(_),_;return Qe("WebGLRenderer: Maximum number of simultaneously usable uniforms groups reached."),0}function h(_){let T=s[_.id],E=_.uniforms,R=_.__cache;i.bindBuffer(i.UNIFORM_BUFFER,T);for(let y=0,w=E.length;y<w;y++){let P=E[y];if(Array.isArray(P))for(let L=0,B=P.length;L<B;L++)p(P[L],y,L,R);else p(P,y,0,R)}i.bindBuffer(i.UNIFORM_BUFFER,null)}function p(_,T,E,R){if(M(_,T,E,R)===!0){let y=_.__offset,w=_.value;if(Array.isArray(w)){let P=0;for(let L=0;L<w.length;L++){let B=w[L],H=m(B);x(B,_.__data,P),typeof B!="number"&&typeof B!="boolean"&&!B.isMatrix3&&!ArrayBuffer.isView(B)&&(P+=H.storage/Float32Array.BYTES_PER_ELEMENT)}}else x(w,_.__data,0);i.bufferSubData(i.UNIFORM_BUFFER,y,_.__data)}}function x(_,T,E){typeof _=="number"||typeof _=="boolean"?T[0]=_:_.isMatrix3?(T[0]=_.elements[0],T[1]=_.elements[1],T[2]=_.elements[2],T[3]=0,T[4]=_.elements[3],T[5]=_.elements[4],T[6]=_.elements[5],T[7]=0,T[8]=_.elements[6],T[9]=_.elements[7],T[10]=_.elements[8],T[11]=0):ArrayBuffer.isView(_)?T.set(new _.constructor(_.buffer,_.byteOffset,T.length)):_.toArray(T,E)}function M(_,T,E,R){let y=_.value,w=T+"_"+E;if(R[w]===void 0)return typeof y=="number"||typeof y=="boolean"?R[w]=y:ArrayBuffer.isView(y)?R[w]=y.slice():R[w]=y.clone(),!0;{let P=R[w];if(typeof y=="number"||typeof y=="boolean"){if(P!==y)return R[w]=y,!0}else{if(ArrayBuffer.isView(y))return!0;if(P.equals(y)===!1)return P.copy(y),!0}}return!1}function g(_){let T=_.uniforms,E=0,R=16;for(let w=0,P=T.length;w<P;w++){let L=Array.isArray(T[w])?T[w]:[T[w]];for(let B=0,H=L.length;B<H;B++){let D=L[B],W=Array.isArray(D.value)?D.value:[D.value];for(let K=0,J=W.length;K<J;K++){let ne=W[K],Z=m(ne),ee=E%R,re=ee%Z.boundary,Pe=ee+re;E+=re,Pe!==0&&R-Pe<Z.storage&&(E+=R-Pe),D.__data=new Float32Array(Z.storage/Float32Array.BYTES_PER_ELEMENT),D.__offset=E,E+=Z.storage}}}let y=E%R;return y>0&&(E+=R-y),_.__size=E,_.__cache={},this}function m(_){let T={boundary:0,storage:0};return typeof _=="number"||typeof _=="boolean"?(T.boundary=4,T.storage=4):_.isVector2?(T.boundary=8,T.storage=8):_.isVector3||_.isColor?(T.boundary=16,T.storage=12):_.isVector4?(T.boundary=16,T.storage=16):_.isMatrix3?(T.boundary=48,T.storage=48):_.isMatrix4?(T.boundary=64,T.storage=64):_.isTexture?Ke("WebGLRenderer: Texture samplers can not be part of an uniforms group."):ArrayBuffer.isView(_)?(T.boundary=16,T.storage=_.byteLength):Ke("WebGLRenderer: Unsupported uniform value type.",_),T}function S(_){let T=_.target;T.removeEventListener("dispose",S);let E=a.indexOf(T.__bindingPointIndex);a.splice(E,1),i.deleteBuffer(s[T.id]),delete s[T.id],delete r[T.id]}function C(){for(let _ in s)i.deleteBuffer(s[_]);a=[],s={},r={}}return{bind:l,update:c,dispose:C}}var Pv=new Uint16Array([12469,15057,12620,14925,13266,14620,13807,14376,14323,13990,14545,13625,14713,13328,14840,12882,14931,12528,14996,12233,15039,11829,15066,11525,15080,11295,15085,10976,15082,10705,15073,10495,13880,14564,13898,14542,13977,14430,14158,14124,14393,13732,14556,13410,14702,12996,14814,12596,14891,12291,14937,11834,14957,11489,14958,11194,14943,10803,14921,10506,14893,10278,14858,9960,14484,14039,14487,14025,14499,13941,14524,13740,14574,13468,14654,13106,14743,12678,14818,12344,14867,11893,14889,11509,14893,11180,14881,10751,14852,10428,14812,10128,14765,9754,14712,9466,14764,13480,14764,13475,14766,13440,14766,13347,14769,13070,14786,12713,14816,12387,14844,11957,14860,11549,14868,11215,14855,10751,14825,10403,14782,10044,14729,9651,14666,9352,14599,9029,14967,12835,14966,12831,14963,12804,14954,12723,14936,12564,14917,12347,14900,11958,14886,11569,14878,11247,14859,10765,14828,10401,14784,10011,14727,9600,14660,9289,14586,8893,14508,8533,15111,12234,15110,12234,15104,12216,15092,12156,15067,12010,15028,11776,14981,11500,14942,11205,14902,10752,14861,10393,14812,9991,14752,9570,14682,9252,14603,8808,14519,8445,14431,8145,15209,11449,15208,11451,15202,11451,15190,11438,15163,11384,15117,11274,15055,10979,14994,10648,14932,10343,14871,9936,14803,9532,14729,9218,14645,8742,14556,8381,14461,8020,14365,7603,15273,10603,15272,10607,15267,10619,15256,10631,15231,10614,15182,10535,15118,10389,15042,10167,14963,9787,14883,9447,14800,9115,14710,8665,14615,8318,14514,7911,14411,7507,14279,7198,15314,9675,15313,9683,15309,9712,15298,9759,15277,9797,15229,9773,15166,9668,15084,9487,14995,9274,14898,8910,14800,8539,14697,8234,14590,7790,14479,7409,14367,7067,14178,6621,15337,8619,15337,8631,15333,8677,15325,8769,15305,8871,15264,8940,15202,8909,15119,8775,15022,8565,14916,8328,14804,8009,14688,7614,14569,7287,14448,6888,14321,6483,14088,6171,15350,7402,15350,7419,15347,7480,15340,7613,15322,7804,15287,7973,15229,8057,15148,8012,15046,7846,14933,7611,14810,7357,14682,7069,14552,6656,14421,6316,14251,5948,14007,5528,15356,5942,15356,5977,15353,6119,15348,6294,15332,6551,15302,6824,15249,7044,15171,7122,15070,7050,14949,6861,14818,6611,14679,6349,14538,6067,14398,5651,14189,5311,13935,4958,15359,4123,15359,4153,15356,4296,15353,4646,15338,5160,15311,5508,15263,5829,15188,6042,15088,6094,14966,6001,14826,5796,14678,5543,14527,5287,14377,4985,14133,4586,13869,4257,15360,1563,15360,1642,15358,2076,15354,2636,15341,3350,15317,4019,15273,4429,15203,4732,15105,4911,14981,4932,14836,4818,14679,4621,14517,4386,14359,4156,14083,3795,13808,3437,15360,122,15360,137,15358,285,15355,636,15344,1274,15322,2177,15281,2765,15215,3223,15120,3451,14995,3569,14846,3567,14681,3466,14511,3305,14344,3121,14037,2800,13753,2467,15360,0,15360,1,15359,21,15355,89,15346,253,15325,479,15287,796,15225,1148,15133,1492,15008,1749,14856,1882,14685,1886,14506,1783,14324,1608,13996,1398,13702,1183]),fi=null;function Iv(){return fi===null&&(fi=new Hr(Pv,16,16,Yi,un),fi.name="DFG_LUT",fi.minFilter=cn,fi.magFilter=cn,fi.wrapS=si,fi.wrapT=si,fi.generateMipmaps=!1,fi.needsUpdate=!0),fi}var rr=class{constructor(e={}){let{canvas:t=xd(),context:n=null,depth:s=!0,stencil:r=!1,alpha:a=!1,antialias:o=!1,premultipliedAlpha:l=!0,preserveDrawingBuffer:c=!1,powerPreference:u="default",failIfMajorPerformanceCaveat:f=!1,reversedDepthBuffer:h=!1,outputBufferType:p=En}=e;this.isWebGLRenderer=!0;let x;if(n!==null){if(typeof WebGLRenderingContext<"u"&&n instanceof WebGLRenderingContext)throw new Error("THREE.WebGLRenderer: WebGL 1 is not supported since r163.");x=n.getContextAttributes().alpha}else x=a;let M=p,g=new Set([ml,pl,fl]),m=new Set([En,Qn,er,tr,ul,hl]),S=new Uint32Array(4),C=new Int32Array(4),_=new I,T=null,E=null,R=[],y=[],w=null;this.domElement=t,this.debug={checkShaderErrors:!0,diagnostics:{keywords:!1},onShaderError:null},this.autoClear=!0,this.autoClearColor=!0,this.autoClearDepth=!0,this.autoClearStencil=!0,this.sortObjects=!0,this.clippingPlanes=[],this.localClippingEnabled=!1,this.toneMapping=jn,this.toneMappingExposure=1,this.transmissionResolutionScale=1;let P=this,L=!1,B=null,H=null,D=null,W=null;this._outputColorSpace=on;let K=0,J=0,ne=null,Z=-1,ee=null,re=new Wt,Pe=new Wt,Ie=null,vt=new he(0),ot=0,ut=t.width,j=t.height,se=1,Ee=null,Ve=null,fe=new Wt(0,0,ut,j),tt=new Wt(0,0,ut,j),kt=!1,$e=new Ys,at=!1,St=!1,oe=new Ft,le=new I,dt=new Wt,Le={background:null,fog:null,environment:null,overrideMaterial:null,isScene:!0},qe=!1;function nt(){return ne===null?se:1}let F=n;function Xt(b,U){return t.getContext(b,U)}let Et,A,v,z,q,$,ue,me,Q,ie,xe,He,be,pe,ke,Ye,st,O,ve,te,ye,Te,ae;try{let b={alpha:!0,depth:s,stencil:r,antialias:o,premultipliedAlpha:l,preserveDrawingBuffer:c,powerPreference:u,failIfMajorPerformanceCaveat:f};if("setAttribute"in t&&t.setAttribute("data-engine",`three.js r${"186"}`),t.addEventListener("webglcontextlost",Pt,!1),t.addEventListener("webglcontextrestored",wt,!1),t.addEventListener("webglcontextcreationerror",gn,!1),F===null){let U="webgl2";if(F=Xt(U,b),F===null)throw Xt(U)?new Error("THREE.WebGLRenderer: Error creating WebGL context with your selected attributes."):new Error("THREE.WebGLRenderer: Error creating WebGL context.")}Ge()}catch(b){throw t.removeEventListener("webglcontextlost",Pt,!1),t.removeEventListener("webglcontextrestored",wt,!1),t.removeEventListener("webglcontextcreationerror",gn,!1),Qe("WebGLRenderer: "+b.message),b}function Ge(){Et=new Bg(F),Et.init(),ye=new Ev(F,Et),A=new Cg(F,Et,e,ye),v=new Mv(F,Et),A.reversedDepthBuffer&&h&&v.buffers.depth.setReversed(!0),H=F.createFramebuffer(),D=F.createFramebuffer(),W=F.createFramebuffer(),z=new Hg(F),q=new lv,$=new Sv(F,Et,v,q,A,ye,z),ue=new Og(P),me=new Vp(F),Te=new Tg(F,me),Q=new kg(F,me,z,Te),ie=new Vg(F,Q,me,Te,z),O=new Gg(F,A,$),ke=new Rg(q),xe=new ov(P,ue,Et,A,Te,ke),He=new Cv(P,q),be=new uv,pe=new gv(Et),st=new wg(P,ue,v,ie,x,l),Ye=new bv(P,ie,A),ae=new Rv(F,z,A,v),ve=new Ag(F,Et,z),te=new zg(F,Et,z),z.programs=xe.programs,P.capabilities=A,P.extensions=Et,P.properties=q,P.renderLists=be,P.shadowMap=Ye,P.state=v,P.info=z}M!==En&&(w=new Xg(M,t.width,t.height,o,s,r));let Ue=new Au(P,F);this.xr=Ue,this.getContext=function(){return F},this.getContextAttributes=function(){return F.getContextAttributes()},this.forceContextLoss=function(){let b=Et.get("WEBGL_lose_context");b&&b.loseContext()},this.forceContextRestore=function(){let b=Et.get("WEBGL_lose_context");b&&b.restoreContext()},this.getPixelRatio=function(){return se},this.setPixelRatio=function(b){b!==void 0&&(se=b,this.setSize(ut,j,!1))},this.getSize=function(b){return b.set(ut,j)},this.setSize=function(b,U,Y=!0){if(Ue.isPresenting){Ke("WebGLRenderer: Can't change size while VR device is presenting.");return}ut=b,j=U,t.width=Math.floor(b*se),t.height=Math.floor(U*se),Y===!0&&(t.style.width=b+"px",t.style.height=U+"px"),w!==null&&w.setSize(t.width,t.height),this.setViewport(0,0,b,U)},this.getDrawingBufferSize=function(b){return b.set(ut*se,j*se).floor()},this.setDrawingBufferSize=function(b,U,Y){ut=b,j=U,se=Y,t.width=Math.floor(b*Y),t.height=Math.floor(U*Y),this.setViewport(0,0,b,U)},this.setEffects=function(b){if(M===En){Qe("WebGLRenderer: setEffects() requires outputBufferType set to HalfFloatType or FloatType.");return}if(b){for(let U=0;U<b.length;U++)if(b[U].isOutputPass===!0){Ke("WebGLRenderer: OutputPass is not needed in setEffects(). Tone mapping and color space conversion are applied automatically.");break}}w.setEffects(b||[])},this.getCurrentViewport=function(b){return b.copy(re)},this.getViewport=function(b){return b.copy(fe)},this.setViewport=function(b,U,Y,V){b.isVector4?fe.set(b.x,b.y,b.z,b.w):fe.set(b,U,Y,V),v.viewport(re.copy(fe).multiplyScalar(se).round())},this.getScissor=function(b){return b.copy(tt)},this.setScissor=function(b,U,Y,V){b.isVector4?tt.set(b.x,b.y,b.z,b.w):tt.set(b,U,Y,V),v.scissor(Pe.copy(tt).multiplyScalar(se).round())},this.getScissorTest=function(){return kt},this.setScissorTest=function(b){v.setScissorTest(kt=b)},this.setOpaqueSort=function(b){Ee=b},this.setTransparentSort=function(b){Ve=b},this.getClearColor=function(b){return b.copy(st.getClearColor())},this.setClearColor=function(){st.setClearColor(...arguments)},this.getClearAlpha=function(){return st.getClearAlpha()},this.setClearAlpha=function(){st.setClearAlpha(...arguments)},this.clear=function(b=!0,U=!0,Y=!0){let V=0;if(b){let X=!1;if(ne!==null){let Se=ne.texture.format;X=g.has(Se)}if(X){let Se=ne.texture.type,Ae=m.has(Se),ge=st.getClearColor(),De=st.getClearAlpha(),ze=ge.r,lt=ge.g,ft=ge.b;Ae?(S[0]=ze,S[1]=lt,S[2]=ft,S[3]=De,F.clearBufferuiv(F.COLOR,0,S)):(C[0]=ze,C[1]=lt,C[2]=ft,C[3]=De,F.clearBufferiv(F.COLOR,0,C))}else V|=F.COLOR_BUFFER_BIT}U&&(V|=F.DEPTH_BUFFER_BIT,this.state.buffers.depth.setMask(!0)),Y&&(V|=F.STENCIL_BUFFER_BIT,this.state.buffers.stencil.setMask(4294967295)),V!==0&&F.clear(V)},this.clearColor=function(){this.clear(!0,!1,!1)},this.clearDepth=function(){this.clear(!1,!0,!1)},this.clearStencil=function(){this.clear(!1,!1,!0)},this.setNodesHandler=function(b){b.setRenderer(this),B=b},this.dispose=function(){t.removeEventListener("webglcontextlost",Pt,!1),t.removeEventListener("webglcontextrestored",wt,!1),t.removeEventListener("webglcontextcreationerror",gn,!1),st.dispose(),be.dispose(),pe.dispose(),q.dispose(),ue.dispose(),ie.dispose(),Te.dispose(),ae.dispose(),xe.dispose(),Ue.dispose(),Ue.removeEventListener("sessionstart",xr),Ue.removeEventListener("sessionend",Ca),mi.stop()};function Pt(b){b.preventDefault(),nu("WebGLRenderer: Context Lost."),L=!0}function wt(){nu("WebGLRenderer: Context Restored."),L=!1;let b=z.autoReset,U=Ye.enabled,Y=Ye.autoUpdate,V=Ye.needsUpdate,X=Ye.type;Ge(),z.autoReset=b,Ye.enabled=U,Ye.autoUpdate=Y,Ye.needsUpdate=V,Ye.type=X}function gn(b){Qe("WebGLRenderer: A WebGL context could not be created. Reason: ",b.statusMessage)}function Un(b){let U=b.target;U.removeEventListener("dispose",Un),Ta(U)}function Ta(b){ti(b),q.remove(b)}function ti(b){let U=q.get(b).programs;U!==void 0&&(U.forEach(function(Y){xe.releaseProgram(Y)}),b.isShaderMaterial&&xe.releaseShaderCache(b))}this.renderBufferDirect=function(b,U,Y,V,X,Se){U===null&&(U=Le);let Ae=X.isMesh&&X.matrixWorld.determinantAffine()<0,ge=Ia(b,U,Y,V,X);v.setMaterial(V,Ae);let De=Y.index,ze=1;if(V.wireframe===!0){if(De=Q.getWireframeAttribute(Y),De===void 0)return;ze=2}let lt=Y.drawRange,ft=Y.attributes.position,Ne=lt.start*ze,Mt=(lt.start+lt.count)*ze;Se!==null&&(Ne=Math.max(Ne,Se.start*ze),Mt=Math.min(Mt,(Se.start+Se.count)*ze)),De!==null?(Ne=Math.max(Ne,0),Mt=Math.min(Mt,De.count)):ft!=null&&(Ne=Math.max(Ne,0),Mt=Math.min(Mt,ft.count));let Vt=Mt-Ne;if(Vt<0||Vt===1/0)return;Te.setup(X,V,ge,Y,De);let Lt,Dt=ve;if(De!==null&&(Lt=me.get(De),Dt=te,Dt.setIndex(Lt)),X.isMesh)V.wireframe===!0?(v.setLineWidth(V.wireframeLinewidth*nt()),Dt.setMode(F.LINES)):Dt.setMode(F.TRIANGLES);else if(X.isLine){let Qt=V.linewidth;Qt===void 0&&(Qt=1),v.setLineWidth(Qt*nt()),X.isLineSegments?Dt.setMode(F.LINES):X.isLineLoop?Dt.setMode(F.LINE_LOOP):Dt.setMode(F.LINE_STRIP)}else X.isPoints?Dt.setMode(F.POINTS):X.isSprite&&Dt.setMode(F.TRIANGLES);if(X.isBatchedMesh)if(Et.get("WEBGL_multi_draw"))Dt.renderMultiDraw(X._multiDrawStarts,X._multiDrawCounts,X._multiDrawCount);else{let Qt=X._multiDrawStarts,Re=X._multiDrawCounts,Kt=X._multiDrawCount,yt=De?me.get(De).bytesPerElement:1,rn=q.get(V).currentProgram.getUniforms();for(let hn=0;hn<Kt;hn++)rn.setValue(F,"_gl_DrawID",hn),Dt.render(Qt[hn]/yt,Re[hn])}else if(X.isInstancedMesh)Dt.renderInstances(Ne,Vt,X.count);else if(Y.isInstancedBufferGeometry){let Qt=Y._maxInstanceCount!==void 0?Y._maxInstanceCount:1/0,Re=Math.min(Y.instanceCount,Qt);Dt.renderInstances(Ne,Vt,Re)}else Dt.render(Ne,Vt)};function Aa(b,U,Y,V){B!==null&&b.isNodeMaterial&&B.setObject(V,b),at===!0&&ke.setState(b,Y,!1),b.transparent===!0&&b.side===qt&&b.forceSinglePass===!1?(b.side=Yt,b.needsUpdate=!0,Es(b,U,V),b.side=di,b.needsUpdate=!0,Es(b,U,V),b.side=qt):Es(b,U,V)}this.compile=function(b,U,Y=null){Y===null&&(Y=b),B!==null&&B.renderStart(b,U,Y),E=pe.get(Y),E.init(U),y.push(E),Y.traverseVisible(function(X){X.isLight&&X.layers.test(U.layers)&&(E.pushLight(X),X.castShadow&&E.pushShadow(X))}),b!==Y&&b.traverseVisible(function(X){X.isLight&&X.layers.test(U.layers)&&(E.pushLight(X),X.castShadow&&E.pushShadow(X))}),E.setupLights(),B!==null&&B.updateLights(E.state.lightsArray),St=this.localClippingEnabled,at=ke.init(this.clippingPlanes,St),at===!0&&ke.setGlobalState(this.clippingPlanes,U),B!==null&&Ye.render(E.state.shadowsArray,Y,U);let V=new Set;return b.traverse(function(X){if(!(X.isMesh||X.isPoints||X.isLine||X.isSprite))return;let Se=X.material;if(Se)if(Array.isArray(Se))for(let Ae=0;Ae<Se.length;Ae++){let ge=Se[Ae];Aa(ge,Y,U,X),V.add(ge)}else Aa(Se,Y,U,X),V.add(Se)}),E=y.pop(),B!==null&&B.renderEnd(),V},this.compileAsync=function(b,U,Y=null){let V=this.compile(b,U,Y);return new Promise(X=>{function Se(){if(V.forEach(function(Ae){let De=q.get(Ae).currentProgram;(De===void 0||De.isReady())&&V.delete(Ae)}),V.size===0){X(b);return}setTimeout(Se,10)}Et.get("KHR_parallel_shader_compile")!==null?Se():setTimeout(Se,10)})};let gr=null;function nc(b){gr&&gr(b)}function xr(){mi.stop()}function Ca(){mi.start()}let mi=new Xd;mi.setAnimationLoop(nc),typeof self<"u"&&mi.setContext(self),this.setAnimationLoop=function(b){gr=b,Ue.setAnimationLoop(b),b===null?mi.stop():mi.start()},Ue.addEventListener("sessionstart",xr),Ue.addEventListener("sessionend",Ca),this.render=function(b,U){if(U!==void 0&&U.isCamera!==!0){Qe("WebGLRenderer.render: camera is not an instance of THREE.Camera.");return}if(L===!0)return;B!==null&&B.renderStart(b,U);let Y=Ue.enabled===!0&&Ue.isPresenting===!0,V=w!==null&&(ne===null||Y)&&w.begin(P,ne);if(b.matrixWorldAutoUpdate===!0&&b.updateMatrixWorld(),U.parent===null&&U.matrixWorldAutoUpdate===!0&&U.updateMatrixWorld(),Ue.enabled===!0&&Ue.isPresenting===!0&&(w===null||w.isCompositing()===!1)&&(Ue.cameraAutoUpdate===!0&&Ue.updateCamera(U),U=Ue.getCamera()),b.isScene===!0&&b.onBeforeRender(P,b,U,ne),E=pe.get(b,y.length),E.init(U),E.state.textureUnits=$.getTextureUnits(),y.push(E),oe.multiplyMatrices(U.projectionMatrix,U.matrixWorldInverse),$e.setFromProjectionMatrix(oe,Zn,U.reversedDepth),St=this.localClippingEnabled,at=ke.init(this.clippingPlanes,St),T=be.get(b,R.length),T.init(),R.push(T),Ue.enabled===!0&&Ue.isPresenting===!0){let Ae=P.xr.getDepthSensingMesh();Ae!==null&&es(Ae,U,-1/0,P.sortObjects)}es(b,U,0,P.sortObjects),T.finish(),B!==null&&B.updateLights(E.state.lightsArray),P.sortObjects===!0&&T.sort(Ee,Ve),qe=Ue.enabled===!1||Ue.isPresenting===!1||Ue.hasDepthSensing()===!1,qe&&st.addToRenderList(T,b),this.info.render.frame++,this.info.autoReset===!0&&this.info.reset(),at===!0&&ke.beginShadows();let X=E.state.shadowsArray;if(Ye.render(X,b,U),at===!0&&ke.endShadows(),(V&&w.hasRenderPass())===!1){let Ae=T.opaque,ge=T.transmissive;if(E.setupLights(),U.isArrayCamera){let De=U.cameras;if(ge.length>0)for(let ze=0,lt=De.length;ze<lt;ze++){let ft=De[ze];Ra(Ae,ge,b,ft)}qe&&st.render(b);for(let ze=0,lt=De.length;ze<lt;ze++){let ft=De[ze];bs(T,b,ft,ft.viewport)}}else ge.length>0&&Ra(Ae,ge,b,U),qe&&st.render(b),bs(T,b,U)}ne!==null&&J===0&&($.updateMultisampleRenderTarget(ne),$.updateRenderTargetMipmap(ne)),V&&w.end(P),b.isScene===!0&&b.onAfterRender(P,b,U),Te.resetDefaultState(),Z=-1,ee=null,y.pop(),y.length>0?(E=y[y.length-1],$.setTextureUnits(E.state.textureUnits),at===!0&&ke.setGlobalState(P.clippingPlanes,E.state.camera)):E=null,R.pop(),R.length>0?T=R[R.length-1]:T=null,B!==null&&B.renderEnd()};function es(b,U,Y,V){if(b.visible===!1)return;if(b.layers.test(U.layers)){if(b.isGroup)Y=b.renderOrder;else if(b.isLOD)b.autoUpdate===!0&&b.update(U);else if(b.isLightProbeGrid)E.pushLightProbeGrid(b);else if(b.isLight)E.pushLight(b),b.castShadow&&E.pushShadow(b);else if(b.isSprite){if(!b.frustumCulled||b.intersectsFrustum($e)){V&&dt.setFromMatrixPosition(b.matrixWorld).applyMatrix4(oe);let Ae=ie.update(b),ge=b.material;ge.visible&&T.push(b,Ae,ge,Y,dt.z,null,U)}}else if((b.isMesh||b.isLine||b.isPoints)&&(!b.frustumCulled||b.intersectsFrustum($e))){let Ae=ie.update(b),ge=b.material;if(V&&(b.boundingSphere!==void 0?(b.boundingSphere===null&&b.computeBoundingSphere(),dt.copy(b.boundingSphere.center)):(Ae.boundingSphere===null&&Ae.computeBoundingSphere(),dt.copy(Ae.boundingSphere.center)),dt.applyMatrix4(b.matrixWorld).applyMatrix4(oe)),Array.isArray(ge)){let De=Ae.groups;for(let ze=0,lt=De.length;ze<lt;ze++){let ft=De[ze],Ne=ge[ft.materialIndex];Ne&&Ne.visible&&T.push(b,Ae,Ne,Y,dt.z,ft,U)}}else ge.visible&&T.push(b,Ae,ge,Y,dt.z,null,U)}}let Se=b.children;for(let Ae=0,ge=Se.length;Ae<ge;Ae++)es(Se[Ae],U,Y,V)}function bs(b,U,Y,V){let{opaque:X,transmissive:Se,transparent:Ae}=b;E.setupLightsView(Y),at===!0&&ke.setGlobalState(P.clippingPlanes,Y),V&&v.viewport(re.copy(V)),X.length>0&&Ms(X,U,Y),Se.length>0&&Ms(Se,U,Y),Ae.length>0&&Ms(Ae,U,Y),v.buffers.depth.setTest(!0),v.buffers.depth.setMask(!0),v.buffers.color.setMask(!0),v.setPolygonOffset(!1)}function Ra(b,U,Y,V){if((Y.isScene===!0?Y.overrideMaterial:null)!==null)return;if(E.state.transmissionRenderTarget[V.id]===void 0){let Ne=Et.has("EXT_color_buffer_half_float")||Et.has("EXT_color_buffer_float");E.state.transmissionRenderTarget[V.id]=new jt(1,1,{generateMipmaps:!0,type:Ne?un:En,minFilter:Xi,samples:Math.max(4,A.samples),stencilBuffer:r,resolveDepthBuffer:!1,resolveStencilBuffer:!1,storeMultisampledDepthBuffer:!1,storeMultisampledStencilBuffer:!1,colorSpace:mt.workingColorSpace})}let Se=E.state.transmissionRenderTarget[V.id],Ae=V.viewport||re;Se.setSize(Ae.z*P.transmissionResolutionScale,Ae.w*P.transmissionResolutionScale);let ge=P.getRenderTarget(),De=P.getActiveCubeFace(),ze=P.getActiveMipmapLevel();P.setRenderTarget(Se),P.getClearColor(vt),ot=P.getClearAlpha(),ot<1&&P.setClearColor(16777215,.5),P.clear(),qe&&st.render(Y);let lt=P.toneMapping;P.toneMapping=jn;let ft=V.viewport;if(V.viewport!==void 0&&(V.viewport=void 0),E.setupLightsView(V),at===!0&&ke.setGlobalState(P.clippingPlanes,V),Ms(b,Y,V),$.updateMultisampleRenderTarget(Se),$.updateRenderTargetMipmap(Se),Et.has("WEBGL_multisampled_render_to_texture")===!1){let Ne=!1;for(let Mt=0,Vt=U.length;Mt<Vt;Mt++){let Lt=U[Mt],{object:Dt,geometry:Qt,material:Re,group:Kt}=Lt;if(Re.side===qt&&Dt.layers.test(V.layers)){let yt=Re.side;Re.side=Yt,Re.needsUpdate=!0,Ss(Dt,Y,V,Qt,Re,Kt),Re.side=yt,Re.needsUpdate=!0,Ne=!0}}Ne===!0&&($.updateMultisampleRenderTarget(Se),$.updateRenderTargetMipmap(Se))}P.setRenderTarget(ge,De,ze),P.setClearColor(vt,ot),ft!==void 0&&(V.viewport=ft),P.toneMapping=lt}function Ms(b,U,Y){let V=U.isScene===!0?U.overrideMaterial:null;for(let X=0,Se=b.length;X<Se;X++){let Ae=b[X],{object:ge,geometry:De,group:ze}=Ae,lt=Ae.material;lt.allowOverride===!0&&V!==null&&(lt=V),ge.layers.test(Y.layers)&&Ss(ge,U,Y,De,lt,ze)}}function Ss(b,U,Y,V,X,Se){B!==null&&X.isNodeMaterial&&B.setObject(b,X),b.onBeforeRender(P,U,Y,V,X,Se),b.modelViewMatrix.multiplyMatrices(Y.matrixWorldInverse,b.matrixWorld),b.normalMatrix.getNormalMatrix(b.modelViewMatrix),X.onBeforeRender(P,U,Y,V,b,Se),X.transparent===!0&&X.side===qt&&X.forceSinglePass===!1?(X.side=Yt,X.needsUpdate=!0,P.renderBufferDirect(Y,U,V,X,b,Se),X.side=di,X.needsUpdate=!0,P.renderBufferDirect(Y,U,V,X,b,Se),X.side=qt):P.renderBufferDirect(Y,U,V,X,b,Se),b.onAfterRender(P,U,Y,V,X,Se)}function Es(b,U,Y){U.isScene!==!0&&(U=Le);let V=q.get(b),X=E.state.lights,Se=E.state.shadowsArray,Ae=X.state.version,ge=xe.getParameters(b,X.state,Se,U,Y,E.state.lightProbeGridArray),De=xe.getProgramCacheKey(ge),ze=V.programs;V.environment=b.isMeshStandardMaterial||b.isMeshLambertMaterial||b.isMeshPhongMaterial?U.environment:null,V.fog=U.fog;let lt=b.isMeshStandardMaterial||b.isMeshLambertMaterial&&!b.envMap||b.isMeshPhongMaterial&&!b.envMap;V.envMap=ue.get(b.envMap||V.environment,lt),V.envMapRotation=V.environment!==null&&b.envMap===null?U.environmentRotation:b.envMapRotation,ze===void 0&&(b.addEventListener("dispose",Un),ze=new Map,V.programs=ze);let ft=ze.get(De);if(ft!==void 0){if(V.currentProgram===ft&&V.lightsStateVersion===Ae)return vr(b,ge),ft}else ge.uniforms=xe.getUniforms(b),B!==null&&b.isNodeMaterial&&B.build(b,Y,ge),b.onBeforeCompile(ge,P),ft=xe.acquireProgram(ge,De),ze.set(De,ft),V.uniforms=ge.uniforms;let Ne=V.uniforms;return(!b.isShaderMaterial&&!b.isRawShaderMaterial||b.clipping===!0)&&(Ne.clippingPlanes=ke.uniform),vr(b,ge),V.needsLights=ws(b),V.lightsStateVersion=Ae,V.needsLights&&(Ne.ambientLightColor.value=X.state.ambient,Ne.lightProbe.value=X.state.probe,Ne.sunLights.value=X.state.sun,Ne.sunLightShadows.value=X.state.sunShadow,Ne.directionalLights.value=X.state.directional,Ne.directionalLightShadows.value=X.state.directionalShadow,Ne.spotLights.value=X.state.spot,Ne.spotLightShadows.value=X.state.spotShadow,Ne.rectAreaLights.value=X.state.rectArea,Ne.ltc_1.value=X.state.rectAreaLTC1,Ne.ltc_2.value=X.state.rectAreaLTC2,Ne.pointLights.value=X.state.point,Ne.pointLightShadows.value=X.state.pointShadow,Ne.hemisphereLights.value=X.state.hemi,Ne.sunShadowMatrix.value=X.state.sunShadowMatrix,Ne.sunShadowCascade.value=X.state.sunShadowCascade,Ne.directionalShadowMatrix.value=X.state.directionalShadowMatrix,Ne.spotLightMatrix.value=X.state.spotLightMatrix,Ne.spotLightMap.value=X.state.spotLightMap,Ne.pointShadowMatrix.value=X.state.pointShadowMatrix),V.lightProbeGrid=E.state.lightProbeGridArray.length>0,V.currentProgram=ft,V.uniformsList=null,ft}function gi(b){if(b.uniformsList===null){let U=b.currentProgram.getUniforms();b.uniformsList=sr.seqWithValue(U.seq,b.uniforms)}return b.uniformsList}function vr(b,U){let Y=q.get(b);Y.outputColorSpace=U.outputColorSpace,Y.batching=U.batching,Y.batchingColor=U.batchingColor,Y.instancing=U.instancing,Y.instancingColor=U.instancingColor,Y.instancingMorph=U.instancingMorph,Y.skinning=U.skinning,Y.morphTargets=U.morphTargets,Y.morphNormals=U.morphNormals,Y.morphColors=U.morphColors,Y.morphTargetsCount=U.morphTargetsCount,Y.numClippingPlanes=U.numClippingPlanes,Y.numIntersection=U.numClipIntersection,Y.vertexAlphas=U.vertexAlphas,Y.vertexTangents=U.vertexTangents,Y.toneMapping=U.toneMapping}function Pa(b,U){if(b.length===0)return null;if(b.length===1)return b[0].texture!==null?b[0]:null;_.setFromMatrixPosition(U.matrixWorld);for(let Y=0,V=b.length;Y<V;Y++){let X=b[Y];if(X.texture!==null&&X.boundingBox.containsPoint(_))return X}return null}function Ia(b,U,Y,V,X){U.isScene!==!0&&(U=Le),$.resetTextureUnits();let Se=U.fog,Ae=V.isMeshStandardMaterial||V.isMeshLambertMaterial||V.isMeshPhongMaterial?U.environment:null,ge=ne===null?P.outputColorSpace:ne.isXRRenderTarget===!0?ne.texture.colorSpace:mt.workingColorSpace,De=V.isMeshStandardMaterial||V.isMeshLambertMaterial&&!V.envMap||V.isMeshPhongMaterial&&!V.envMap,ze=ue.get(V.envMap||Ae,De),lt=V.vertexColors===!0&&!!Y.attributes.color&&Y.attributes.color.itemSize===4,ft=!!Y.attributes.tangent&&(!!V.normalMap||V.anisotropy>0),Ne=!!Y.morphAttributes.position,Mt=!!Y.morphAttributes.normal,Vt=!!Y.morphAttributes.color,Lt=jn;V.toneMapped&&(ne===null||ne.isXRRenderTarget===!0)&&(Lt=P.toneMapping);let Dt=Y.morphAttributes.position||Y.morphAttributes.normal||Y.morphAttributes.color,Qt=Dt!==void 0?Dt.length:0,Re=q.get(V),Kt=E.state.lights;if(at===!0&&(St===!0||b!==ee)){let It=b===ee&&V.id===Z;ke.setState(V,b,It)}let yt=!1;V.version===Re.__version?(Re.needsLights&&Re.lightsStateVersion!==Kt.state.version||Re.outputColorSpace!==ge||X.isBatchedMesh&&Re.batching===!1||!X.isBatchedMesh&&Re.batching===!0||X.isBatchedMesh&&Re.batchingColor===!0&&X._colorsTexture===null||X.isBatchedMesh&&Re.batchingColor===!1&&X._colorsTexture!==null||X.isInstancedMesh&&Re.instancing===!1||!X.isInstancedMesh&&Re.instancing===!0||X.isSkinnedMesh&&Re.skinning===!1||!X.isSkinnedMesh&&Re.skinning===!0||X.isInstancedMesh&&Re.instancingColor===!0&&X.instanceColor===null||X.isInstancedMesh&&Re.instancingColor===!1&&X.instanceColor!==null||X.isInstancedMesh&&Re.instancingMorph===!0&&X.morphTexture===null||X.isInstancedMesh&&Re.instancingMorph===!1&&X.morphTexture!==null||Re.envMap!==ze||V.fog===!0&&Re.fog!==Se||Re.numClippingPlanes!==void 0&&(Re.numClippingPlanes!==ke.numPlanes||Re.numIntersection!==ke.numIntersection)||Re.vertexAlphas!==lt||Re.vertexTangents!==ft||Re.morphTargets!==Ne||Re.morphNormals!==Mt||Re.morphColors!==Vt||Re.toneMapping!==Lt||Re.morphTargetsCount!==Qt||!!Re.lightProbeGrid!=E.state.lightProbeGridArray.length>0)&&(yt=!0):(yt=!0,Re.__version=V.version);let rn=Re.currentProgram;yt===!0&&(rn=Es(V,U,X),B&&V.isNodeMaterial&&B.onUpdateProgram(V,rn,Re));let hn=!1,ni=!1,xi=!1,At=rn.getUniforms(),Ut=Re.uniforms;if(v.useProgram(rn.program)&&(hn=!0,ni=!0,xi=!0),V.id!==Z&&(Z=V.id,ni=!0),Re.needsLights){let It=Pa(E.state.lightProbeGridArray,X);Re.lightProbeGrid!==It&&(Re.lightProbeGrid=It,ni=!0)}if(hn||ee!==b){v.buffers.depth.getReversed()&&b.reversedDepth!==!0&&(b._reversedDepth=!0,b.updateProjectionMatrix()),At.setValue(F,"projectionMatrix",b.projectionMatrix),At.setValue(F,"viewMatrix",b.matrixWorldInverse);let Vn=At.map.cameraPosition;Vn!==void 0&&Vn.setValue(F,le.setFromMatrixPosition(b.matrixWorld)),A.logarithmicDepthBuffer&&At.setValue(F,"logDepthBufFC",2/(Math.log(b.far+1)/Math.LN2)),(V.isMeshPhongMaterial||V.isMeshToonMaterial||V.isMeshLambertMaterial||V.isMeshBasicMaterial||V.isMeshStandardMaterial||V.isShaderMaterial)&&At.setValue(F,"isOrthographic",b.isOrthographicCamera===!0),ee!==b&&(ee=b,ni=!0,xi=!0)}if(Re.needsLights&&(Kt.state.sunShadowMap.length>0&&At.setValue(F,"sunShadowMap",Kt.state.sunShadowMap,$),Kt.state.directionalShadowMap.length>0&&At.setValue(F,"directionalShadowMap",Kt.state.directionalShadowMap,$),Kt.state.spotShadowMap.length>0&&At.setValue(F,"spotShadowMap",Kt.state.spotShadowMap,$),Kt.state.pointShadowMap.length>0&&At.setValue(F,"pointShadowMap",Kt.state.pointShadowMap,$)),X.isSkinnedMesh){At.setOptional(F,X,"bindMatrix"),At.setOptional(F,X,"bindMatrixInverse");let It=X.skeleton;It&&(It.boneTexture===null&&It.computeBoneTexture(),At.setValue(F,"boneTexture",It.boneTexture,$))}X.isBatchedMesh&&(At.setOptional(F,X,"batchingTexture"),At.setValue(F,"batchingTexture",X._matricesTexture,$),At.setOptional(F,X,"batchingIdTexture"),At.setValue(F,"batchingIdTexture",X._indirectTexture,$),At.setOptional(F,X,"batchingColorTexture"),X._colorsTexture!==null&&At.setValue(F,"batchingColorTexture",X._colorsTexture,$));let Gn=Y.morphAttributes;if((Gn.position!==void 0||Gn.normal!==void 0||Gn.color!==void 0)&&O.update(X,Y,rn),(ni||Re.receiveShadow!==X.receiveShadow)&&(Re.receiveShadow=X.receiveShadow,At.setValue(F,"receiveShadow",X.receiveShadow)),(V.isMeshStandardMaterial||V.isMeshLambertMaterial||V.isMeshPhongMaterial)&&V.envMap===null&&U.environment!==null&&(Ut.envMapIntensity.value=U.environmentIntensity),Ut.dfgLUT!==void 0&&(Ut.dfgLUT.value=Iv()),ni){if(At.setValue(F,"toneMappingExposure",P.toneMappingExposure),Re.needsLights&&Na(Ut,xi),Se&&V.fog===!0&&He.refreshFogUniforms(Ut,Se),He.refreshMaterialUniforms(Ut,V,se,j,E.state.transmissionRenderTarget[b.id]),Re.needsLights&&Re.lightProbeGrid){let It=Re.lightProbeGrid;Ut.probesSH.value=It.texture,Ut.probesMin.value.copy(It.boundingBox.min),Ut.probesMax.value.copy(It.boundingBox.max),Ut.probesResolution.value.copy(It.resolution)}sr.upload(F,gi(Re),Ut,$)}if(V.isShaderMaterial&&V.uniformsNeedUpdate===!0&&(sr.upload(F,gi(Re),Ut,$),V.uniformsNeedUpdate=!1),V.isSpriteMaterial&&At.setValue(F,"center",X.center),At.setValue(F,"modelViewMatrix",X.modelViewMatrix),At.setValue(F,"normalMatrix",X.normalMatrix),At.setValue(F,"modelMatrix",X.matrixWorld),V.uniformsGroups!==void 0){let It=V.uniformsGroups;for(let Vn=0,vi=It.length;Vn<vi;Vn++){let yr=It[Vn];ae.update(yr,rn),ae.bind(yr,rn)}}return rn}function Na(b,U){b.ambientLightColor.needsUpdate=U,b.lightProbe.needsUpdate=U,b.sunLights.needsUpdate=U,b.sunLightShadows.needsUpdate=U,b.directionalLights.needsUpdate=U,b.directionalLightShadows.needsUpdate=U,b.pointLights.needsUpdate=U,b.pointLightShadows.needsUpdate=U,b.spotLights.needsUpdate=U,b.spotLightShadows.needsUpdate=U,b.rectAreaLights.needsUpdate=U,b.hemisphereLights.needsUpdate=U}function ws(b){return b.isMeshLambertMaterial||b.isMeshToonMaterial||b.isMeshPhongMaterial||b.isMeshStandardMaterial||b.isShadowMaterial||b.isShaderMaterial&&b.lights===!0}this.getActiveCubeFace=function(){return K},this.getActiveMipmapLevel=function(){return J},this.getRenderTarget=function(){return ne},this.setRenderTargetTextures=function(b,U,Y){let V=q.get(b);V.__autoAllocateDepthBuffer=b.resolveDepthBuffer===!1,V.__autoAllocateDepthBuffer===!1&&(V.__useRenderToTexture=!1),q.get(b.texture).__webglTexture=U,q.get(b.depthTexture).__webglTexture=V.__autoAllocateDepthBuffer?void 0:Y,V.__hasExternalTextures=!0},this.setRenderTargetFramebuffer=function(b,U){let Y=q.get(b);Y.__webglFramebuffer=U,Y.__useDefaultFramebuffer=U===void 0},this.setRenderTarget=function(b,U=0,Y=0){ne=b,K=U,J=Y;let V=null,X=!1,Se=!1;if(b){let ge=q.get(b);if(ge.__useDefaultFramebuffer!==void 0){v.bindFramebuffer(F.FRAMEBUFFER,ge.__webglFramebuffer),re.copy(b.viewport),Pe.copy(b.scissor),Ie=b.scissorTest,v.viewport(re),v.scissor(Pe),v.setScissorTest(Ie),Z=-1;return}else if(ge.__webglFramebuffer===void 0)$.setupRenderTarget(b);else if(ge.__hasExternalTextures)$.rebindTextures(b,q.get(b.texture).__webglTexture,q.get(b.depthTexture).__webglTexture);else if(b.depthBuffer){let lt=b.depthTexture;if(ge.__boundDepthTexture!==lt){if(lt!==null&&q.has(lt)&&(b.width!==lt.image.width||b.height!==lt.image.height))throw new Error("THREE.WebGLRenderer: Attached DepthTexture is initialized to the incorrect size.");$.setupDepthRenderbuffer(b)}}let De=b.texture;(De.isData3DTexture||De.isDataArrayTexture||De.isCompressedArrayTexture)&&(Se=!0);let ze=q.get(b).__webglFramebuffer;b.isWebGLCubeRenderTarget?(Array.isArray(ze[U])?V=ze[U][Y]:V=ze[U],X=!0):b.samples>0&&$.useMultisampledRTT(b)===!1?V=q.get(b).__webglMultisampledFramebuffer:Array.isArray(ze)?V=ze[Y]:V=ze,re.copy(b.viewport),Pe.copy(b.scissor),Ie=b.scissorTest}else re.copy(fe).multiplyScalar(se).floor(),Pe.copy(tt).multiplyScalar(se).floor(),Ie=kt;if(Y!==0&&(V=H),v.bindFramebuffer(F.FRAMEBUFFER,V)&&v.drawBuffers(b,V),v.viewport(re),v.scissor(Pe),v.setScissorTest(Ie),X){let ge=q.get(b.texture);F.framebufferTexture2D(F.FRAMEBUFFER,F.COLOR_ATTACHMENT0,F.TEXTURE_CUBE_MAP_POSITIVE_X+U,ge.__webglTexture,Y)}else if(Se){let ge=U;for(let De=0;De<b.textures.length;De++){let ze=q.get(b.textures[De]);F.framebufferTextureLayer(F.FRAMEBUFFER,F.COLOR_ATTACHMENT0+De,ze.__webglTexture,Y,ge)}}else if(b!==null&&Y!==0){let ge=q.get(b.texture);F.framebufferTexture2D(F.FRAMEBUFFER,F.COLOR_ATTACHMENT0,F.TEXTURE_2D,ge.__webglTexture,Y)}Z=-1};function La(b){let U=q.get(b);return(U.__readFormat!==b.format||U.__readType!==b.type)&&(U.__readFormat=b.format,U.__readType=b.type,U.__formatReadable=A.textureFormatReadable(b.format),U.__typeReadable=A.textureTypeReadable(b.type)),U}this.readRenderTargetPixels=function(b,U,Y,V,X,Se,Ae,ge=0){if(!(b&&b.isWebGLRenderTarget)){Qe("WebGLRenderer.readRenderTargetPixels: renderTarget is not THREE.WebGLRenderTarget.");return}let De=q.get(b).__webglFramebuffer;if(b.isWebGLCubeRenderTarget&&Ae!==void 0&&(De=De[Ae]),De){v.bindFramebuffer(F.FRAMEBUFFER,De);try{let ze=b.textures[ge],lt=ze.format,ft=ze.type;b.textures.length>1&&F.readBuffer(F.COLOR_ATTACHMENT0+ge);let Ne=La(ze);if(Ne.__formatReadable===!1){Qe("WebGLRenderer.readRenderTargetPixels: renderTarget is not in RGBA or implementation defined format.");return}if(Ne.__typeReadable===!1){Qe("WebGLRenderer.readRenderTargetPixels: renderTarget is not in UnsignedByteType or implementation defined type.");return}U>=0&&U<=b.width-V&&Y>=0&&Y<=b.height-X&&F.readPixels(U,Y,V,X,ye.convert(lt),ye.convert(ft),Se)}finally{let ze=ne!==null?q.get(ne).__webglFramebuffer:null;v.bindFramebuffer(F.FRAMEBUFFER,ze)}}},this.readRenderTargetPixelsAsync=async function(b,U,Y,V,X,Se,Ae,ge=0){if(!(b&&b.isWebGLRenderTarget))throw new Error("THREE.WebGLRenderer.readRenderTargetPixels: renderTarget is not THREE.WebGLRenderTarget.");let De=q.get(b).__webglFramebuffer;if(b.isWebGLCubeRenderTarget&&Ae!==void 0&&(De=De[Ae]),De)if(U>=0&&U<=b.width-V&&Y>=0&&Y<=b.height-X){v.bindFramebuffer(F.FRAMEBUFFER,De);let ze=b.textures[ge],lt=ze.format,ft=ze.type;b.textures.length>1&&F.readBuffer(F.COLOR_ATTACHMENT0+ge);let Ne=La(ze);if(Ne.__formatReadable===!1)throw new Error("THREE.WebGLRenderer.readRenderTargetPixelsAsync: renderTarget is not in RGBA or implementation defined format.");if(Ne.__typeReadable===!1)throw new Error("THREE.WebGLRenderer.readRenderTargetPixelsAsync: renderTarget is not in UnsignedByteType or implementation defined type.");let Mt=F.createBuffer();F.bindBuffer(F.PIXEL_PACK_BUFFER,Mt),F.bufferData(F.PIXEL_PACK_BUFFER,Se.byteLength,F.STREAM_READ),F.readPixels(U,Y,V,X,ye.convert(lt),ye.convert(ft),0),F.bindBuffer(F.PIXEL_PACK_BUFFER,null);let Vt=ne!==null?q.get(ne).__webglFramebuffer:null;v.bindFramebuffer(F.FRAMEBUFFER,Vt);let Lt=F.fenceSync(F.SYNC_GPU_COMMANDS_COMPLETE,0);return F.flush(),await yd(F,Lt,4),F.bindBuffer(F.PIXEL_PACK_BUFFER,Mt),F.getBufferSubData(F.PIXEL_PACK_BUFFER,0,Se),F.bindBuffer(F.PIXEL_PACK_BUFFER,null),F.deleteBuffer(Mt),F.deleteSync(Lt),Se}else throw new Error("THREE.WebGLRenderer.readRenderTargetPixelsAsync: requested read bounds are out of range.")},this.copyFramebufferToTexture=function(b,U=null,Y=0){let V=Math.pow(2,-Y),X=Math.floor(b.image.width*V),Se=Math.floor(b.image.height*V),Ae=U!==null?U.x:0,ge=U!==null?U.y:0;$.setTexture2D(b,0),F.copyTexSubImage2D(F.TEXTURE_2D,Y,0,0,Ae,ge,X,Se),v.unbindTexture()},this.copyTextureToTexture=function(b,U,Y=null,V=null,X=0,Se=0){let Ae,ge,De,ze,lt,ft,Ne,Mt,Vt,Lt=b.isCompressedTexture?b.mipmaps[Se]:b.image;if(Y!==null)Ae=Y.max.x-Y.min.x,ge=Y.max.y-Y.min.y,De=Y.isBox3?Y.max.z-Y.min.z:1,ze=Y.min.x,lt=Y.min.y,ft=Y.isBox3?Y.min.z:0;else{let Ut=Math.pow(2,-X);Ae=Math.floor(Lt.width*Ut),ge=Math.floor(Lt.height*Ut),b.isDataArrayTexture?De=Lt.depth:b.isData3DTexture?De=Math.floor(Lt.depth*Ut):De=1,ze=0,lt=0,ft=0}V!==null?(Ne=V.x,Mt=V.y,Vt=V.z):(Ne=0,Mt=0,Vt=0);let Dt=ye.convert(U.format),Qt=ye.convert(U.type),Re;U.isData3DTexture?($.setTexture3D(U,0),Re=F.TEXTURE_3D):U.isDataArrayTexture||U.isCompressedArrayTexture?($.setTexture2DArray(U,0),Re=F.TEXTURE_2D_ARRAY):($.setTexture2D(U,0),Re=F.TEXTURE_2D),v.activeTexture(F.TEXTURE0),v.pixelStorei(F.UNPACK_FLIP_Y_WEBGL,U.flipY),v.pixelStorei(F.UNPACK_PREMULTIPLY_ALPHA_WEBGL,U.premultiplyAlpha),v.pixelStorei(F.UNPACK_ALIGNMENT,U.unpackAlignment);let Kt=v.getParameter(F.UNPACK_ROW_LENGTH),yt=v.getParameter(F.UNPACK_IMAGE_HEIGHT),rn=v.getParameter(F.UNPACK_SKIP_PIXELS),hn=v.getParameter(F.UNPACK_SKIP_ROWS),ni=v.getParameter(F.UNPACK_SKIP_IMAGES);v.pixelStorei(F.UNPACK_ROW_LENGTH,Lt.width),v.pixelStorei(F.UNPACK_IMAGE_HEIGHT,Lt.height),v.pixelStorei(F.UNPACK_SKIP_PIXELS,ze),v.pixelStorei(F.UNPACK_SKIP_ROWS,lt),v.pixelStorei(F.UNPACK_SKIP_IMAGES,ft);let xi=b.isDataArrayTexture||b.isData3DTexture,At=U.isDataArrayTexture||U.isData3DTexture;if(b.isDepthTexture){let Ut=q.get(b),Gn=q.get(U),It=q.get(Ut.__renderTarget),Vn=q.get(Gn.__renderTarget);v.bindFramebuffer(F.READ_FRAMEBUFFER,It.__webglFramebuffer),v.bindFramebuffer(F.DRAW_FRAMEBUFFER,Vn.__webglFramebuffer);for(let vi=0;vi<De;vi++)xi&&(F.framebufferTextureLayer(F.READ_FRAMEBUFFER,F.COLOR_ATTACHMENT0,q.get(b).__webglTexture,X,ft+vi),F.framebufferTextureLayer(F.DRAW_FRAMEBUFFER,F.COLOR_ATTACHMENT0,q.get(U).__webglTexture,Se,Vt+vi)),F.blitFramebuffer(ze,lt,Ae,ge,Ne,Mt,Ae,ge,F.DEPTH_BUFFER_BIT,F.NEAREST);v.bindFramebuffer(F.READ_FRAMEBUFFER,null),v.bindFramebuffer(F.DRAW_FRAMEBUFFER,null)}else if(X!==0||b.isRenderTargetTexture||q.has(b)){let Ut=q.get(b),Gn=q.get(U);v.bindFramebuffer(F.READ_FRAMEBUFFER,D),v.bindFramebuffer(F.DRAW_FRAMEBUFFER,W);for(let It=0;It<De;It++)xi?F.framebufferTextureLayer(F.READ_FRAMEBUFFER,F.COLOR_ATTACHMENT0,Ut.__webglTexture,X,ft+It):F.framebufferTexture2D(F.READ_FRAMEBUFFER,F.COLOR_ATTACHMENT0,F.TEXTURE_2D,Ut.__webglTexture,X),At?F.framebufferTextureLayer(F.DRAW_FRAMEBUFFER,F.COLOR_ATTACHMENT0,Gn.__webglTexture,Se,Vt+It):F.framebufferTexture2D(F.DRAW_FRAMEBUFFER,F.COLOR_ATTACHMENT0,F.TEXTURE_2D,Gn.__webglTexture,Se),X!==0?F.blitFramebuffer(ze,lt,Ae,ge,Ne,Mt,Ae,ge,F.COLOR_BUFFER_BIT,F.NEAREST):At?F.copyTexSubImage3D(Re,Se,Ne,Mt,Vt+It,ze,lt,Ae,ge):F.copyTexSubImage2D(Re,Se,Ne,Mt,ze,lt,Ae,ge);v.bindFramebuffer(F.READ_FRAMEBUFFER,null),v.bindFramebuffer(F.DRAW_FRAMEBUFFER,null)}else At?b.isDataTexture||b.isData3DTexture?F.texSubImage3D(Re,Se,Ne,Mt,Vt,Ae,ge,De,Dt,Qt,Lt.data):U.isCompressedArrayTexture?F.compressedTexSubImage3D(Re,Se,Ne,Mt,Vt,Ae,ge,De,Dt,Lt.data):F.texSubImage3D(Re,Se,Ne,Mt,Vt,Ae,ge,De,Dt,Qt,Lt):b.isDataTexture?F.texSubImage2D(F.TEXTURE_2D,Se,Ne,Mt,Ae,ge,Dt,Qt,Lt.data):b.isCompressedTexture?F.compressedTexSubImage2D(F.TEXTURE_2D,Se,Ne,Mt,Lt.width,Lt.height,Dt,Lt.data):F.texSubImage2D(F.TEXTURE_2D,Se,Ne,Mt,Ae,ge,Dt,Qt,Lt);v.pixelStorei(F.UNPACK_ROW_LENGTH,Kt),v.pixelStorei(F.UNPACK_IMAGE_HEIGHT,yt),v.pixelStorei(F.UNPACK_SKIP_PIXELS,rn),v.pixelStorei(F.UNPACK_SKIP_ROWS,hn),v.pixelStorei(F.UNPACK_SKIP_IMAGES,ni),Se===0&&U.generateMipmaps&&F.generateMipmap(Re),v.unbindTexture()},this.initRenderTarget=function(b){q.get(b).__webglFramebuffer===void 0&&$.setupRenderTarget(b)},this.initTexture=function(b){b.isCubeTexture?$.setTextureCube(b,0):b.isData3DTexture?$.setTexture3D(b,0):b.isDataArrayTexture||b.isCompressedArrayTexture?$.setTexture2DArray(b,0):$.setTexture2D(b,0),v.unbindTexture()},this.resetState=function(){K=0,J=0,ne=null,v.reset(),Te.reset()},typeof __THREE_DEVTOOLS__<"u"&&__THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("observe",{detail:this}))}get coordinateSystem(){return Zn}get outputColorSpace(){return this._outputColorSpace}set outputColorSpace(e){this._outputColorSpace=e;let t=this.getContext();t.drawingBufferColorSpace=mt._getDrawingBufferColorSpace(e),t.unpackColorSpace=mt._getUnpackColorSpace()}};var or={name:"CopyShader",uniforms:{tDiffuse:{value:null},opacity:{value:1}},vertexShader:`
+
+		varying vec2 vUv;
+
+		void main() {
+
+			vUv = uv;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+		}`,fragmentShader:`
+
+		uniform float opacity;
+
+		uniform sampler2D tDiffuse;
+
+		varying vec2 vUv;
+
+		void main() {
+
+			vec4 texel = texture2D( tDiffuse, vUv );
+			gl_FragColor = opacity * texel;
+
+
+		}`};var Ln=class{constructor(){this.isPass=!0,this.enabled=!0,this.needsSwap=!0,this.clear=!1,this.renderToScreen=!1}setSize(){}render(){console.error("THREE.Pass: .render() must be implemented in derived pass.")}dispose(){}},Nv=new Vi(-1,1,1,-1,0,1),Cu=class extends _t{constructor(){super(),this.setAttribute("position",new et([-1,3,0,-1,-1,0,3,-1,0],3)),this.setAttribute("uv",new et([0,2,0,0,2,0],2))}},Lv=new Cu,Ki=class{constructor(e){this._mesh=new Je(Lv,e)}dispose(){this._mesh.geometry.dispose()}render(e){e.render(this._mesh,Nv)}get material(){return this._mesh.material}set material(e){this._mesh.material=e}};var lr=class extends Ln{constructor(e,t="tDiffuse"){super(),this.textureID=t,this.uniforms=null,this.material=null,e instanceof pt?(this.uniforms=e.uniforms,this.material=e):e&&(this.uniforms=Ci.clone(e.uniforms),this.material=new pt({name:e.name!==void 0?e.name:"unspecified",defines:Object.assign({},e.defines),uniforms:this.uniforms,vertexShader:e.vertexShader,fragmentShader:e.fragmentShader})),this._fsQuad=new Ki(this.material)}render(e,t,n){this.uniforms[this.textureID]&&(this.uniforms[this.textureID].value=n.texture),this._fsQuad.material=this.material,this.renderToScreen?(e.setRenderTarget(null),this._fsQuad.render(e)):(e.setRenderTarget(t),this.clear&&e.clear(e.autoClearColor,e.autoClearDepth,e.autoClearStencil),this._fsQuad.render(e))}dispose(){this.material.dispose(),this._fsQuad.dispose()}};var Sa=class extends Ln{constructor(e,t){super(),this.scene=e,this.camera=t,this.clear=!0,this.needsSwap=!1,this.inverse=!1}render(e,t,n){let s=e.getContext(),r=e.state;r.buffers.color.setMask(!1),r.buffers.depth.setMask(!1),r.buffers.color.setLocked(!0),r.buffers.depth.setLocked(!0);let a,o;this.inverse?(a=0,o=1):(a=1,o=0),r.buffers.stencil.setTest(!0),r.buffers.stencil.setOp(s.REPLACE,s.REPLACE,s.REPLACE),r.buffers.stencil.setFunc(s.ALWAYS,a,4294967295),r.buffers.stencil.setClear(o),r.buffers.stencil.setLocked(!0),e.setRenderTarget(n),this.clear&&e.clear(),e.render(this.scene,this.camera),e.setRenderTarget(t),this.clear&&e.clear(),e.render(this.scene,this.camera),r.buffers.color.setLocked(!1),r.buffers.depth.setLocked(!1),r.buffers.color.setMask(!0),r.buffers.depth.setMask(!0),r.buffers.stencil.setLocked(!1),r.buffers.stencil.setFunc(s.EQUAL,1,4294967295),r.buffers.stencil.setOp(s.KEEP,s.KEEP,s.KEEP),r.buffers.stencil.setLocked(!0)}},Ql=class extends Ln{constructor(){super(),this.needsSwap=!1}render(e){e.state.buffers.stencil.setLocked(!1),e.state.buffers.stencil.setTest(!1)}};var cr=class{constructor(e,t){if(this.renderer=e,this._pixelRatio=e.getPixelRatio(),t===void 0){let n=e.getSize(new Me);this._width=n.width,this._height=n.height,t=new jt(this._width*this._pixelRatio,this._height*this._pixelRatio,{type:un}),t.texture.name="EffectComposer.rt1"}else this._width=t.width,this._height=t.height;this.renderTarget1=t,this.renderTarget2=t.clone(),this.renderTarget2.texture.name="EffectComposer.rt2",this.writeBuffer=this.renderTarget1,this.readBuffer=this.renderTarget2,this.renderToScreen=!0,this.passes=[],this.copyPass=new lr(or),this.copyPass.material.blending=kn,this.timer=new ea}swapBuffers(){let e=this.readBuffer;this.readBuffer=this.writeBuffer,this.writeBuffer=e}addPass(e){this.passes.push(e),e.setSize(this._width*this._pixelRatio,this._height*this._pixelRatio)}insertPass(e,t){this.passes.splice(t,0,e),e.setSize(this._width*this._pixelRatio,this._height*this._pixelRatio)}removePass(e){let t=this.passes.indexOf(e);t!==-1&&this.passes.splice(t,1)}isLastEnabledPass(e){for(let t=e+1;t<this.passes.length;t++)if(this.passes[t].enabled)return!1;return!0}render(e){this.timer.update(),e===void 0&&(e=this.timer.getDelta());let t=this.renderer.getRenderTarget(),n=!1;for(let s=0,r=this.passes.length;s<r;s++){let a=this.passes[s];if(a.enabled!==!1){if(a.renderToScreen=this.renderToScreen&&this.isLastEnabledPass(s),a.render(this.renderer,this.writeBuffer,this.readBuffer,e,n),a.needsSwap){if(n){let o=this.renderer.getContext(),l=this.renderer.state.buffers.stencil;l.setFunc(o.NOTEQUAL,1,4294967295),this.copyPass.render(this.renderer,this.writeBuffer,this.readBuffer,e),l.setFunc(o.EQUAL,1,4294967295)}this.swapBuffers()}Sa!==void 0&&(a instanceof Sa?n=!0:a instanceof Ql&&(n=!1))}}this.renderer.setRenderTarget(t)}reset(e){if(e===void 0){let t=this.renderer.getSize(new Me);this._pixelRatio=this.renderer.getPixelRatio(),this._width=t.width,this._height=t.height,e=this.renderTarget1.clone(),e.setSize(this._width*this._pixelRatio,this._height*this._pixelRatio)}this.renderTarget1.dispose(),this.renderTarget2.dispose(),this.renderTarget1=e,this.renderTarget2=e.clone(),this.writeBuffer=this.renderTarget1,this.readBuffer=this.renderTarget2}setSize(e,t){this._width=e,this._height=t;let n=this._width*this._pixelRatio,s=this._height*this._pixelRatio;this.renderTarget1.setSize(n,s),this.renderTarget2.setSize(n,s);for(let r=0;r<this.passes.length;r++)this.passes[r].setSize(n,s)}setPixelRatio(e){this._pixelRatio=e,this.setSize(this._width,this._height)}dispose(){this.renderTarget1.dispose(),this.renderTarget2.dispose(),this.copyPass.dispose()}};var ur=class extends Ln{constructor(e,t,n=null,s=null,r=null){super(),this.scene=e,this.camera=t,this.overrideMaterial=n,this.clearColor=s,this.clearAlpha=r,this.clear=!0,this.clearDepth=!1,this.needsSwap=!1,this.isRenderPass=!0,this._oldClearColor=new he}render(e,t,n){let s=e.autoClear;e.autoClear=!1;let r,a;this.overrideMaterial!==null&&(a=this.scene.overrideMaterial,this.scene.overrideMaterial=this.overrideMaterial),this.clearColor!==null&&(e.getClearColor(this._oldClearColor),e.setClearColor(this.clearColor,e.getClearAlpha())),this.clearAlpha!==null&&(r=e.getClearAlpha(),e.setClearAlpha(this.clearAlpha)),this.clearDepth==!0&&e.clearDepth(),e.setRenderTarget(this.renderToScreen?null:n),this.clear===!0&&e.clear(e.autoClearColor,e.autoClearDepth,e.autoClearStencil),e.render(this.scene,this.camera),this.clearColor!==null&&e.setClearColor(this._oldClearColor),this.clearAlpha!==null&&e.setClearAlpha(r),this.overrideMaterial!==null&&(this.scene.overrideMaterial=a),e.autoClear=s}};var Qd={name:"LuminosityHighPassShader",uniforms:{tDiffuse:{value:null},luminosityThreshold:{value:1},smoothWidth:{value:1},defaultColor:{value:new he(0)},defaultOpacity:{value:0}},vertexShader:`
+
+		varying vec2 vUv;
+
+		void main() {
+
+			vUv = uv;
+
+			gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+		}`,fragmentShader:`
+
+		uniform sampler2D tDiffuse;
+		uniform vec3 defaultColor;
+		uniform float defaultOpacity;
+		uniform float luminosityThreshold;
+		uniform float smoothWidth;
+
+		varying vec2 vUv;
+
+		void main() {
+
+			vec4 texel = texture2D( tDiffuse, vUv );
+
+			float v = luminance( texel.xyz );
+
+			vec4 outputColor = vec4( defaultColor.rgb, defaultOpacity );
+
+			float alpha = smoothstep( luminosityThreshold, luminosityThreshold + smoothWidth, v );
+
+			gl_FragColor = mix( outputColor, texel, alpha );
+
+		}`};var Ji=class i extends Ln{constructor(e,t=1,n,s){super(),this.strength=t,this.radius=n,this.threshold=s,this.resolution=e!==void 0?new Me(e.x,e.y):new Me(256,256),this.clearColor=new he(0,0,0),this.needsSwap=!1,this.renderTargetsHorizontal=[],this.renderTargetsVertical=[],this.nMips=5;let r=Math.round(this.resolution.x/2),a=Math.round(this.resolution.y/2);this.renderTargetBright=new jt(r,a,{type:un,depthBuffer:!1}),this.renderTargetBright.texture.name="UnrealBloomPass.bright",this.renderTargetBright.texture.generateMipmaps=!1;for(let u=0;u<this.nMips;u++){let f=new jt(r,a,{type:un,depthBuffer:!1});f.texture.name="UnrealBloomPass.h"+u,f.texture.generateMipmaps=!1,this.renderTargetsHorizontal.push(f);let h=new jt(r,a,{type:un,depthBuffer:!1});h.texture.name="UnrealBloomPass.v"+u,h.texture.generateMipmaps=!1,this.renderTargetsVertical.push(h),r=Math.round(r/2),a=Math.round(a/2)}let o=Qd;this.highPassUniforms=Ci.clone(o.uniforms),this.highPassUniforms.luminosityThreshold.value=s,this.highPassUniforms.smoothWidth.value=.01,this.materialHighPassFilter=new pt({uniforms:this.highPassUniforms,vertexShader:o.vertexShader,fragmentShader:o.fragmentShader}),this.separableBlurMaterials=[];let l=[6,10,14,18,22];r=Math.round(this.resolution.x/2),a=Math.round(this.resolution.y/2);for(let u=0;u<this.nMips;u++)this.separableBlurMaterials.push(this._getSeparableBlurMaterial(l[u])),this.separableBlurMaterials[u].uniforms.invSize.value=new Me(1/r,1/a),r=Math.round(r/2),a=Math.round(a/2);this.compositeMaterial=this._getCompositeMaterial(this.nMips),this.compositeMaterial.uniforms.blurTexture1.value=this.renderTargetsVertical[0].texture,this.compositeMaterial.uniforms.blurTexture2.value=this.renderTargetsVertical[1].texture,this.compositeMaterial.uniforms.blurTexture3.value=this.renderTargetsVertical[2].texture,this.compositeMaterial.uniforms.blurTexture4.value=this.renderTargetsVertical[3].texture,this.compositeMaterial.uniforms.blurTexture5.value=this.renderTargetsVertical[4].texture,this.compositeMaterial.uniforms.bloomStrength.value=t,this.compositeMaterial.uniforms.bloomRadius.value=.1;let c=[1,.8,.6,.4,.2];this.compositeMaterial.uniforms.bloomFactors.value=c,this.bloomTintColors=[new I(1,1,1),new I(1,1,1),new I(1,1,1),new I(1,1,1),new I(1,1,1)],this.compositeMaterial.uniforms.bloomTintColors.value=this.bloomTintColors,this.copyUniforms=Ci.clone(or.uniforms),this.blendMaterial=new pt({uniforms:this.copyUniforms,vertexShader:or.vertexShader,fragmentShader:or.fragmentShader,premultipliedAlpha:!0,blending:xt,depthTest:!1,depthWrite:!1,transparent:!0}),this._oldClearColor=new he,this._oldClearAlpha=1,this._basic=new Ot,this._fsQuad=new Ki(null)}dispose(){for(let e=0;e<this.renderTargetsHorizontal.length;e++)this.renderTargetsHorizontal[e].dispose();for(let e=0;e<this.renderTargetsVertical.length;e++)this.renderTargetsVertical[e].dispose();this.renderTargetBright.dispose();for(let e=0;e<this.separableBlurMaterials.length;e++)this.separableBlurMaterials[e].dispose();this.compositeMaterial.dispose(),this.blendMaterial.dispose(),this._basic.dispose(),this._fsQuad.dispose()}setSize(e,t){let n=Math.round(e/2),s=Math.round(t/2);this.renderTargetBright.setSize(n,s);for(let r=0;r<this.nMips;r++)this.renderTargetsHorizontal[r].setSize(n,s),this.renderTargetsVertical[r].setSize(n,s),this.separableBlurMaterials[r].uniforms.invSize.value=new Me(1/n,1/s),n=Math.round(n/2),s=Math.round(s/2)}render(e,t,n,s,r){e.getClearColor(this._oldClearColor),this._oldClearAlpha=e.getClearAlpha();let a=e.autoClear;e.autoClear=!1,e.setClearColor(this.clearColor,0),r&&e.state.buffers.stencil.setTest(!1),this.renderToScreen&&(this._fsQuad.material=this._basic,this._basic.map=n.texture,e.setRenderTarget(null),e.clear(),this._fsQuad.render(e)),this.highPassUniforms.tDiffuse.value=n.texture,this.highPassUniforms.luminosityThreshold.value=this.threshold,this._fsQuad.material=this.materialHighPassFilter,e.setRenderTarget(this.renderTargetBright),e.clear(),this._fsQuad.render(e);let o=this.renderTargetBright;for(let l=0;l<this.nMips;l++)this._fsQuad.material=this.separableBlurMaterials[l],this.separableBlurMaterials[l].uniforms.colorTexture.value=o.texture,this.separableBlurMaterials[l].uniforms.direction.value=i.BlurDirectionX,e.setRenderTarget(this.renderTargetsHorizontal[l]),e.clear(),this._fsQuad.render(e),this.separableBlurMaterials[l].uniforms.colorTexture.value=this.renderTargetsHorizontal[l].texture,this.separableBlurMaterials[l].uniforms.direction.value=i.BlurDirectionY,e.setRenderTarget(this.renderTargetsVertical[l]),e.clear(),this._fsQuad.render(e),o=this.renderTargetsVertical[l];this._fsQuad.material=this.compositeMaterial,this.compositeMaterial.uniforms.bloomStrength.value=this.strength,this.compositeMaterial.uniforms.bloomRadius.value=this.radius,this.compositeMaterial.uniforms.bloomTintColors.value=this.bloomTintColors,e.setRenderTarget(this.renderTargetsHorizontal[0]),e.clear(),this._fsQuad.render(e),this._fsQuad.material=this.blendMaterial,this.copyUniforms.tDiffuse.value=this.renderTargetsHorizontal[0].texture,r&&e.state.buffers.stencil.setTest(!0),this.renderToScreen?(e.setRenderTarget(null),this._fsQuad.render(e)):(e.setRenderTarget(n),this._fsQuad.render(e)),e.setClearColor(this._oldClearColor,this._oldClearAlpha),e.autoClear=a}_getSeparableBlurMaterial(e){let t=[],n=e/3;for(let a=0;a<e;a++)t.push(.39894*Math.exp(-.5*a*a/(n*n))/n);let s=[],r=[];for(let a=1;a<e;a+=2){let o=t[a],l=a+1<e?t[a+1]:0,c=o+l;s.push((a*o+(a+1)*l)/c),r.push(c)}return new pt({defines:{KERNEL_PAIRS:s.length},uniforms:{colorTexture:{value:null},invSize:{value:new Me(.5,.5)},direction:{value:new Me(.5,.5)},centerWeight:{value:t[0]},gaussianOffsets:{value:s},gaussianWeights:{value:r}},vertexShader:`
+
+				varying vec2 vUv;
+
+				void main() {
+
+					vUv = uv;
+					gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+				}`,fragmentShader:`
+
+				#include <common>
+
+				varying vec2 vUv;
+
+				uniform sampler2D colorTexture;
+				uniform vec2 invSize;
+				uniform vec2 direction;
+				uniform float centerWeight;
+				uniform float gaussianOffsets[KERNEL_PAIRS];
+				uniform float gaussianWeights[KERNEL_PAIRS];
+
+				void main() {
+
+					vec3 diffuseSum = texture2D( colorTexture, vUv ).rgb * centerWeight;
+
+					for ( int i = 0; i < KERNEL_PAIRS; i ++ ) {
+
+						vec2 uvOffset = direction * invSize * gaussianOffsets[ i ];
+						vec3 sample1 = texture2D( colorTexture, vUv + uvOffset ).rgb;
+						vec3 sample2 = texture2D( colorTexture, vUv - uvOffset ).rgb;
+						diffuseSum += ( sample1 + sample2 ) * gaussianWeights[ i ];
+
+					}
+
+					gl_FragColor = vec4( diffuseSum, 1.0 );
+
+				}`})}_getCompositeMaterial(e){return new pt({defines:{NUM_MIPS:e},uniforms:{blurTexture1:{value:null},blurTexture2:{value:null},blurTexture3:{value:null},blurTexture4:{value:null},blurTexture5:{value:null},bloomStrength:{value:1},bloomFactors:{value:null},bloomTintColors:{value:null},bloomRadius:{value:0}},vertexShader:`
+
+				varying vec2 vUv;
+
+				void main() {
+
+					vUv = uv;
+					gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+				}`,fragmentShader:`
+
+				varying vec2 vUv;
+
+				uniform sampler2D blurTexture1;
+				uniform sampler2D blurTexture2;
+				uniform sampler2D blurTexture3;
+				uniform sampler2D blurTexture4;
+				uniform sampler2D blurTexture5;
+				uniform float bloomStrength;
+				uniform float bloomRadius;
+				uniform float bloomFactors[NUM_MIPS];
+				uniform vec3 bloomTintColors[NUM_MIPS];
+
+				float lerpBloomFactor( const in float factor ) {
+
+					float mirrorFactor = 1.2 - factor;
+					return mix( factor, mirrorFactor, bloomRadius );
+
+				}
+
+				void main() {
+
+					// 3.0 for backwards compatibility with previous alpha-based intensity
+					vec3 bloom = 3.0 * bloomStrength * (
+						lerpBloomFactor( bloomFactors[ 0 ] ) * bloomTintColors[ 0 ] * texture2D( blurTexture1, vUv ).rgb +
+						lerpBloomFactor( bloomFactors[ 1 ] ) * bloomTintColors[ 1 ] * texture2D( blurTexture2, vUv ).rgb +
+						lerpBloomFactor( bloomFactors[ 2 ] ) * bloomTintColors[ 2 ] * texture2D( blurTexture3, vUv ).rgb +
+						lerpBloomFactor( bloomFactors[ 3 ] ) * bloomTintColors[ 3 ] * texture2D( blurTexture4, vUv ).rgb +
+						lerpBloomFactor( bloomFactors[ 4 ] ) * bloomTintColors[ 4 ] * texture2D( blurTexture5, vUv ).rgb
+					);
+
+					float bloomAlpha = max( bloom.r, max( bloom.g, bloom.b ) );
+					gl_FragColor = vec4( bloom, bloomAlpha );
+
+				}`})}};Ji.BlurDirectionX=new Me(1,0);Ji.BlurDirectionY=new Me(0,1);var Ea={name:"OutputShader",uniforms:{tDiffuse:{value:null},toneMappingExposure:{value:1}},vertexShader:`
+		precision highp float;
+
+		uniform mat4 modelViewMatrix;
+		uniform mat4 projectionMatrix;
+
+		attribute vec3 position;
+		attribute vec2 uv;
+
+		varying vec2 vUv;
+
+		void main() {
+
+			vUv = uv;
+			gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+		}`,fragmentShader:`
+
+		precision highp float;
+
+		uniform sampler2D tDiffuse;
+
+		#include <tonemapping_pars_fragment>
+		#include <colorspace_pars_fragment>
+
+		varying vec2 vUv;
+
+		void main() {
+
+			gl_FragColor = texture2D( tDiffuse, vUv );
+
+			// tone mapping
+
+			#ifdef LINEAR_TONE_MAPPING
+
+				gl_FragColor.rgb = LinearToneMapping( gl_FragColor.rgb );
+
+			#elif defined( REINHARD_TONE_MAPPING )
+
+				gl_FragColor.rgb = ReinhardToneMapping( gl_FragColor.rgb );
+
+			#elif defined( CINEON_TONE_MAPPING )
+
+				gl_FragColor.rgb = CineonToneMapping( gl_FragColor.rgb );
+
+			#elif defined( ACES_FILMIC_TONE_MAPPING )
+
+				gl_FragColor.rgb = ACESFilmicToneMapping( gl_FragColor.rgb );
+
+			#elif defined( AGX_TONE_MAPPING )
+
+				gl_FragColor.rgb = AgXToneMapping( gl_FragColor.rgb );
+
+			#elif defined( NEUTRAL_TONE_MAPPING )
+
+				gl_FragColor.rgb = NeutralToneMapping( gl_FragColor.rgb );
+
+			#elif defined( CUSTOM_TONE_MAPPING )
+
+				gl_FragColor.rgb = CustomToneMapping( gl_FragColor.rgb );
+
+			#endif
+
+			// color space
+
+			#ifdef SRGB_TRANSFER
+
+				gl_FragColor = sRGBTransferOETF( gl_FragColor );
+
+			#endif
+
+		}`};var hr=class extends Ln{constructor(){super(),this.isOutputPass=!0,this.uniforms=Ci.clone(Ea.uniforms),this.material=new Ks({name:Ea.name,uniforms:this.uniforms,vertexShader:Ea.vertexShader,fragmentShader:Ea.fragmentShader}),this._fsQuad=new Ki(this.material),this._outputColorSpace=null,this._toneMapping=null}render(e,t,n){this.uniforms.tDiffuse.value=n.texture,this.uniforms.toneMappingExposure.value=e.toneMappingExposure,(this._outputColorSpace!==e.outputColorSpace||this._toneMapping!==e.toneMapping)&&(this._outputColorSpace=e.outputColorSpace,this._toneMapping=e.toneMapping,this.material.defines={},mt.getTransfer(this._outputColorSpace)===Ct&&(this.material.defines.SRGB_TRANSFER=""),this._toneMapping===sa?this.material.defines.LINEAR_TONE_MAPPING="":this._toneMapping===ra?this.material.defines.REINHARD_TONE_MAPPING="":this._toneMapping===aa?this.material.defines.CINEON_TONE_MAPPING="":this._toneMapping===Ti?this.material.defines.ACES_FILMIC_TONE_MAPPING="":this._toneMapping===la?this.material.defines.AGX_TONE_MAPPING="":this._toneMapping===ca?this.material.defines.NEUTRAL_TONE_MAPPING="":this._toneMapping===oa&&(this.material.defines.CUSTOM_TONE_MAPPING=""),this.material.needsUpdate=!0),this.renderToScreen===!0?(e.setRenderTarget(null),this._fsQuad.render(e)):(e.setRenderTarget(t),this.clear&&e.clear(e.autoClearColor,e.autoClearDepth,e.autoClearStencil),this._fsQuad.render(e))}dispose(){this.material.dispose(),this._fsQuad.dispose()}};var nn=[{id:"origin",no:"01",kicker:"PROLOGUE",cnKicker:"\u5E8F\u7AE0",short:"\u5FAE\u89C2\u5B87\u5B99",title:"\u7EC6\u80DE\uFF0C\u662F\u4E00\u4E2A\u5B87\u5B99",en:"THE CELL AS A MICROCOSM",body:"\u6B64\u523B\uFF0C\u4F60\u60AC\u505C\u5728\u4E00\u4E2A\u7EC6\u80DE\u7684\u8FB9\u754C\u4E4B\u5916\u3002\u5B83\u6CA1\u6709\u5927\u8111\uFF0C\u5374\u7EF4\u6301\u7740\u79E9\u5E8F\uFF1B\u6CA1\u6709\u56FE\u7EB8\uFF0C\u5374\u4E0D\u65AD\u91CD\u5EFA\u81EA\u5DF1\u3002\u63A5\u4E0B\u6765\u7684\u4E03\u5E55\uFF0C\u6211\u4EEC\u5C06\u7A7F\u8FC7\u5B83\u7684\u8D28\u819C\u3001\u9AA8\u67B6\u3001\u80FD\u91CF\u5DE5\u5382\u4E0E\u57FA\u56E0\u7EC4\u3002",facts:[{k:"\u4EBA\u4F53\u7EC6\u80DE",v:"\u7EA6 30 \u4E07\u4EBF"},{k:"\u5178\u578B\u76F4\u5F84",v:"10\u2013100 \xB5m"},{k:"\u9759\u606F\u819C\u7535\u4F4D",v:"\u221270 mV"}],readout:"WHOLE CELL / OPTICAL DARKFIELD",accent:"#7ff7e4",camera:{pos:[0,3,23.5],target:[0,.6,0],fov:42},duration:17e3,study:{textbook:{chapter:"\u7B2C\u4E00\u7AE0",title:"\u7EEA\u8BBA",pages:"1\u201317",sections:["\u7B2C\u4E00\u8282 \u7EC6\u80DE\u5B66\u4E0E\u7EC6\u80DE\u751F\u7269\u5B66","\u7B2C\u4E8C\u8282 \u7EC6\u80DE\u7684\u540C\u4E00\u6027\u4E0E\u591A\u6837\u6027"]},related:["\u7B2C\u4E8C\u7AE0 \u7EC6\u80DE\u751F\u7269\u5B66\u7814\u7A76\u65B9\u6CD5 \xB7 pp.18\u201339"],objectives:["\u7528\u7EC6\u80DE\u5B66\u8BF4\u89E3\u91CA\u201C\u7EC6\u80DE\u662F\u751F\u547D\u6D3B\u52A8\u7684\u57FA\u672C\u5355\u4F4D\u201D\u3002","\u4ECE\u6838\u819C\u3001\u7EC6\u80DE\u5668\u548C\u6838\u7CD6\u4F53\u7B49\u7ED3\u6784\u533A\u5206\u539F\u6838\u7EC6\u80DE\u4E0E\u771F\u6838\u7EC6\u80DE\u3002","\u4E86\u89E3\u7EC6\u80DE\u751F\u7269\u5B66\u4ECE\u5F62\u6001\u63CF\u8FF0\u8D70\u5411\u5206\u5B50\u673A\u5236\u7684\u7814\u7A76\u8DEF\u5F84\u3002"],visuals:[{color:"#7ff7e4",label:"\u534A\u900F\u660E\u5916\u58F3 = \u7EC6\u80DE\u8D28\u819C"},{color:"#c58cff",label:"\u4E2D\u592E\u7D2B\u6838 = \u7EC6\u80DE\u6838"},{color:"#9df5c1",label:"\u9752\u7EFF\u4E1D\u7F51 = \u7EC6\u80DE\u9AA8\u67B6"},{color:"#ffc177",label:"\u91D1\u8272\u80F6\u56CA = \u7EBF\u7C92\u4F53"}],concepts:[{term:"\u7EC6\u80DE\u5B66\u8BF4",en:"cell theory",def:"1838\u20141839 \u5E74\u7531\u65BD\u83B1\u767B\u548C\u65BD\u4E07\u786E\u7ACB\uFF1A\u4E00\u5207\u751F\u7269\u90FD\u7531\u7EC6\u80DE\u6784\u6210\uFF0C\u7EC6\u80DE\u662F\u7ED3\u6784\u548C\u529F\u80FD\u7684\u57FA\u672C\u5355\u4F4D\uFF1B\u540E\u6765\u9B4F\u5C14\u8096\u8865\u5145\u201C\u7EC6\u80DE\u6765\u81EA\u7EC6\u80DE\u201D\u3002"},{term:"\u539F\u6838\u7EC6\u80DE",en:"prokaryotic cell",def:"\u6CA1\u6709\u6838\u819C\u5305\u56F4\u7684\u7EC6\u80DE\u6838\uFF0CDNA \u96C6\u4E2D\u5728\u62DF\u6838\u533A\uFF1B\u7F3A\u5C11\u819C\u6027\u7EC6\u80DE\u5668\uFF0C\u6838\u7CD6\u4F53\u4E3A 70S\uFF0C\u4EE3\u8868\u4E3A\u7EC6\u83CC\u548C\u53E4\u83CC\u3002"},{term:"\u771F\u6838\u7EC6\u80DE",en:"eukaryotic cell",def:"\u5177\u6709\u6838\u819C\u3001\u771F\u6B63\u7684\u7EC6\u80DE\u6838\u548C\u591A\u79CD\u819C\u6027\u7EC6\u80DE\u5668\uFF1B\u6709\u7EC6\u80DE\u9AA8\u67B6\uFF0C\u6838\u7CD6\u4F53\u4E3A 80S\u3002"},{term:"\u7EC6\u80DE\u751F\u7269\u5B66",en:"cell biology",def:"\u5E94\u7528\u73B0\u4EE3\u7269\u7406\u3001\u5316\u5B66\u548C\u5206\u5B50\u751F\u7269\u5B66\u65B9\u6CD5\uFF0C\u5728\u7EC6\u80DE\u6C34\u5E73\u7814\u7A76\u751F\u547D\u6D3B\u52A8\u7684\u5B66\u79D1\uFF1B\u6838\u5FC3\u95EE\u9898\u662F\u7ED3\u6784\u5982\u4F55\u6267\u884C\u529F\u80FD\u3002"},{term:"\u6A21\u5F0F\u751F\u7269",en:"model organism",def:"\u56E0\u7E41\u6B96\u5FEB\u3001\u9057\u4F20\u64CD\u4F5C\u6210\u719F\u800C\u7528\u4E8E\u63ED\u793A\u4FDD\u5B88\u673A\u5236\u7684\u6750\u6599\uFF0C\u5982\u5927\u80A0\u6746\u83CC\u3001\u9175\u6BCD\u3001\u7EBF\u866B\u3001\u679C\u8747\u3001\u62DF\u5357\u82A5\u548C\u5C0F\u9F20\u3002"}],mechanism:["\u7EC6\u80DE\u5B66\u8BF4\u3001\u8FDB\u5316\u8BBA\u548C\u9057\u4F20\u5B66\u5171\u540C\u6784\u6210\u73B0\u4EE3\u751F\u7269\u5B66\u7684\u4E09\u5927\u57FA\u77F3\uFF1B\u7EC6\u80DE\u5B66\u8BF4\u628A\u5B8F\u89C2\u751F\u547D\u73B0\u8C61\u843D\u5230\u53EF\u89C2\u5BDF\u7684\u5355\u4F4D\u4E0A\u3002","\u539F\u6838\u4E0E\u771F\u6838\u7684\u5206\u754C\u4E0D\u53EA\u662F\u201C\u6709\u65E0\u7EC6\u80DE\u6838\u201D\uFF0C\u8FD8\u5305\u62EC\u5185\u819C\u7CFB\u7EDF\u3001\u7EC6\u80DE\u9AA8\u67B6\u548C\u6838\u7CD6\u4F53\u7C7B\u578B\u7684\u6574\u4F53\u5DEE\u5F02\u3002","\u73B0\u4EE3\u7EC6\u80DE\u751F\u7269\u5B66\u5E38\u6309\u201C\u89C2\u5BDF\u2014\u5206\u79BB\u2014\u5E72\u9884\u2014\u91CD\u5EFA\u201D\u63A8\u8FDB\uFF1A\u663E\u5FAE\u6210\u50CF\u3001\u4E9A\u7EC6\u80DE\u5206\u79BB\u3001\u6D3B\u7EC6\u80DE\u8367\u5149\u548C\u9057\u4F20\u64CD\u4F5C\u4E92\u76F8\u9A8C\u8BC1\u3002"],pitfalls:["\u75C5\u6BD2\u6CA1\u6709\u7EC6\u80DE\u7ED3\u6784\uFF0C\u4E0D\u80FD\u72EC\u7ACB\u5B8C\u6210\u65B0\u9648\u4EE3\u8C22\uFF0C\u4E0D\u5C5E\u4E8E\u7EC6\u80DE\uFF1B\u5B83\u662F\u975E\u7EC6\u80DE\u5F62\u6001\u7684\u751F\u547D\u4F53\u3002","\u201C\u539F\u6838\u7EC6\u80DE\u6CA1\u6709\u7EC6\u80DE\u5668\u201D\u4E0D\u51C6\u786E\uFF1A\u5B83\u6709\u6838\u7CD6\u4F53\uFF0C\u90E8\u5206\u8FD8\u6709\u5185\u819C\u8936\u76B1\uFF0C\u53EA\u662F\u6CA1\u6709\u7531\u819C\u5305\u56F4\u7684\u7EC6\u80DE\u6838\u548C\u5178\u578B\u819C\u6027\u7EC6\u80DE\u5668\u3002"],quiz:[{q:"\u7EC6\u80DE\u5B66\u8BF4\u7684\u6838\u5FC3\u5185\u5BB9\u662F\u4EC0\u4E48\uFF1F\u5B83\u4E3A\u4EC0\u4E48\u662F\u751F\u7269\u5B66\u7684\u57FA\u7840\u7406\u8BBA\uFF1F",a:"\u6240\u6709\u751F\u7269\u7531\u7EC6\u80DE\u6784\u6210\uFF1B\u7EC6\u80DE\u662F\u7ED3\u6784\u548C\u529F\u80FD\u7684\u57FA\u672C\u5355\u4F4D\uFF1B\u7EC6\u80DE\u6765\u81EA\u5DF2\u5B58\u5728\u7684\u7EC6\u80DE\u3002\u5B83\u628A\u751F\u7269\u754C\u7684\u7EDF\u4E00\u6027\u5EFA\u7ACB\u5728\u53EF\u89C2\u5BDF\u7684\u5355\u4F4D\u4E0A\uFF0C\u5E76\u4E0E\u8FDB\u5316\u8BBA\u3001\u9057\u4F20\u5B66\u5171\u540C\u6784\u6210\u73B0\u4EE3\u751F\u7269\u5B66\u7684\u57FA\u7840\u3002"},{q:"\u5217\u51FA\u81F3\u5C11\u4E09\u9879\u539F\u6838\u7EC6\u80DE\u4E0E\u771F\u6838\u7EC6\u80DE\u7684\u7ED3\u6784\u5DEE\u5F02\u3002",a:"\u539F\u6838\u7EC6\u80DE\u65E0\u6838\u819C\u548C\u771F\u6B63\u7684\u7EC6\u80DE\u6838\uFF0CDNA \u4F4D\u4E8E\u62DF\u6838\uFF1B\u65E0\u5178\u578B\u819C\u6027\u7EC6\u80DE\u5668\uFF1B\u6838\u7CD6\u4F53\u4E3A 70S\u3002\u771F\u6838\u7EC6\u80DE\u6709\u6838\u819C\u3001\u7EC6\u80DE\u6838\u548C\u5185\u819C\u7CFB\u7EDF\uFF0C\u6838\u7CD6\u4F53\u4E3A 80S\uFF0C\u5E76\u6709\u7EC6\u80DE\u9AA8\u67B6\u3002"}]}},{id:"membrane",no:"02",kicker:"BOUNDARY",cnKicker:"\u8FB9\u754C",short:"\u6D41\u52A8\u7684\u8FB9\u754C",title:"\u8FB9\u754C\uFF0C\u4ECE\u672A\u9759\u6B62",en:"A LIQUID LANGUAGE OF SELF",body:"\u8FB9\u754C\u4E0D\u662F\u5899\uFF0C\u800C\u662F\u4E00\u5C42\u6301\u7EED\u91CD\u5199\u7684\u754C\u9762\u3002\u7EC6\u80DE\u8D28\u819C\u539A\u7EA6 7.5 nm\uFF0C\u5176\u4E2D\u758F\u6C34\u6838\u5FC3\u53EA\u6709\u7EA6 3.5 nm\uFF0C\u5374\u628A\u201C\u81EA\u6211\u201D\u4E0E\u201C\u4E16\u754C\u201D\u5206\u5F00\uFF1B\u819C\u86CB\u767D\u5728\u5176\u4E2D\u6F02\u79FB\u3001\u805A\u96C6\u3001\u5F00\u5408\uFF0C\u628A\u6BCF\u4E00\u6B21\u4EA4\u6362\u7FFB\u8BD1\u6210\u751F\u547D\u7684\u8BED\u8A00\u3002",facts:[{k:"\u7EC6\u80DE\u8D28\u819C\u539A\u5EA6",v:"\u2248 7.5 nm"},{k:"\u758F\u6C34\u6838\u5FC3",v:"\u2248 3.5 nm"},{k:"\u80C6\u56FA\u9187",v:"\u53CC\u5411\u8C03\u8282\u6D41\u52A8\u6027"}],readout:"SURFACE SECTION / 7.5 nm",accent:"#67e8f9",camera:{pos:[.6,2.9,12.6],target:[0,2.3,7.2],fov:44},duration:19e3,study:{textbook:{chapter:"\u7B2C\u4E09\u7AE0",title:"\u7EC6\u80DE\u8D28\u819C",pages:"40\u201355",sections:["\u7B2C\u4E00\u8282 \u7EC6\u80DE\u8D28\u819C\u7684\u7ED3\u6784\u6A21\u578B\u4E0E\u57FA\u672C\u6210\u5206","\u7B2C\u4E8C\u8282 \u7EC6\u80DE\u8D28\u819C\u7684\u57FA\u672C\u7279\u5F81\u4E0E\u529F\u80FD"]},related:["\u7B2C\u56DB\u7AE0 \u7269\u8D28\u7684\u8DE8\u819C\u8FD0\u8F93 \xB7 pp.56\u201373","\u7B2C\u5341\u4E00\u7AE0 \u7EC6\u80DE\u4FE1\u53F7\u8F6C\u5BFC \xB7 pp.224\u2013260"],objectives:["\u8BF4\u51FA\u6D41\u52A8\u9576\u5D4C\u6A21\u578B\u7684\u57FA\u672C\u5185\u5BB9\uFF0C\u5E76\u89E3\u91CA\u652F\u6301\u5B83\u7684\u5B9E\u9A8C\u8BC1\u636E\u3002","\u6BD4\u8F83\u819C\u8102\u3001\u819C\u86CB\u767D\u548C\u7CD6\u7C7B\u5728\u8D28\u819C\u4E2D\u7684\u4F4D\u7F6E\u4E0E\u529F\u80FD\u3002","\u7528\u6D41\u52A8\u6027\u3001\u4E0D\u5BF9\u79F0\u6027\u548C\u9009\u62E9\u900F\u8FC7\u6027\u89E3\u91CA\u8D28\u819C\u7684\u751F\u7406\u7279\u5F81\u3002","\u533A\u5206\u7B80\u5355\u6269\u6563\u3001\u534F\u52A9\u6269\u6563\u3001\u4E3B\u52A8\u8FD0\u8F93\u548C\u819C\u6CE1\u8FD0\u8F93\u3002"],visuals:[{color:"#67e8f9",label:"\u9752\u8272\u7EC6\u6746 = \u78F7\u8102\u758F\u6C34\u5C3E\u90E8"},{color:"#b7fff4",label:"\u4EAE\u70B9 = \u78F7\u8102\u6781\u6027\u5934\u90E8"},{color:"#ffcf87",label:"\u80F6\u56CA/\u73AF = \u819C\u86CB\u767D\u4E0E\u901A\u9053"},{color:"#ffb36b",label:"\u5916\u56F4\u6BDB\u523A = \u7CD6\u843C"}],concepts:[{term:"\u6D41\u52A8\u9576\u5D4C\u6A21\u578B",en:"fluid mosaic model",def:"1972 \u5E74 Singer \u4E0E Nicolson \u63D0\u51FA\uFF1A\u819C\u8102\u5F62\u6210\u6D41\u52A8\u7684\u53CC\u5206\u5B50\u5C42\uFF0C\u819C\u86CB\u767D\u4EE5\u9576\u5D4C\u6216\u8D2F\u7A7F\u7684\u65B9\u5F0F\u5206\u5E03\u5176\u4E2D\uFF0C\u819C\u662F\u4E0D\u5BF9\u79F0\u3001\u53EF\u6D41\u52A8\u7684\u4E8C\u7EF4\u6DB2\u4F53\u3002"},{term:"\u819C\u8102",en:"membrane lipid",def:"\u4EE5\u78F7\u8102\u4E3A\u4E3B\uFF0C\u8FD8\u5305\u62EC\u7CD6\u8102\u548C\u80C6\u56FA\u9187\uFF1B\u4EB2\u6C34\u5934\u90E8\u671D\u5411\u6C34\u76F8\uFF0C\u758F\u6C34\u5C3E\u90E8\u5411\u5185\uFF0C\u5F62\u6210\u53CC\u5206\u5B50\u5C42\u3002"},{term:"\u819C\u86CB\u767D",en:"membrane protein",def:"\u6574\u5408\u819C\u86CB\u767D\u8DE8\u8D8A\u6216\u5D4C\u5165\u8102\u53CC\u5C42\uFF0C\u5916\u5468\u819C\u86CB\u767D\u9644\u7740\u5728\u819C\u8868\u9762\uFF1B\u5B83\u4EEC\u627F\u62C5\u8FD0\u8F93\u3001\u53D7\u4F53\u3001\u9176\u548C\u7ED3\u6784\u8FDE\u63A5\u7B49\u529F\u80FD\u3002"},{term:"\u819C\u7684\u4E0D\u5BF9\u79F0\u6027",en:"membrane asymmetry",def:"\u8102\u8D28\u3001\u86CB\u767D\u8D28\u548C\u7CD6\u94FE\u5728\u819C\u4E24\u4FA7\u7684\u5206\u5E03\u4E0D\u540C\uFF1B\u7CD6\u94FE\u901A\u5E38\u4F4D\u4E8E\u7EC6\u80DE\u5916\u4FA7\uFF0C\u5F62\u6210\u7CD6\u843C\u3002"},{term:"\u819C\u7684\u6D41\u52A8\u6027",en:"membrane fluidity",def:"\u819C\u8102\u548C\u819C\u86CB\u767D\u5728\u4E8C\u7EF4\u5E73\u9762\u5185\u7684\u4FA7\u5411\u8FD0\u52A8\u3002\u8102\u80AA\u9178\u4E0D\u9971\u548C\u5EA6\u3001\u94FE\u957F\u3001\u6E29\u5EA6\u548C\u80C6\u56FA\u9187\u90FD\u4F1A\u5F71\u54CD\u6D41\u52A8\u6027\u3002"},{term:"\u819C\u8F6C\u8FD0\u86CB\u767D",en:"membrane transport protein",def:"\u5305\u62EC\u901A\u9053\u86CB\u767D\u548C\u8F7D\u4F53\u86CB\u767D\uFF1B\u901A\u9053\u5F62\u6210\u4EB2\u6C34\u5B54\u9053\uFF0C\u8F7D\u4F53\u901A\u8FC7\u6784\u8C61\u53D8\u5316\u8F6C\u8FD0\u7269\u8D28\uFF0C\u6CF5\u5219\u6D88\u8017 ATP \u9006\u68AF\u5EA6\u8FD0\u8F93\u3002"},{term:"\u819C\u7535\u4F4D",en:"membrane potential",def:"\u819C\u4E24\u4FA7\u7535\u8377\u5206\u5E03\u4E0D\u5747\u5F62\u6210\u7684\u7535\u4F4D\u5DEE\uFF1B\u7531\u79BB\u5B50\u68AF\u5EA6\u548C\u819C\u5BF9\u5404\u79BB\u5B50\u7684\u76F8\u5BF9\u901A\u900F\u6027\u5171\u540C\u51B3\u5B9A\uFF0C\u9759\u606F\u65F6\u5185\u8D1F\u5916\u6B63\u3002"}],mechanism:["1925 \u5E74 Gorter \u4E0E Grendel \u53D1\u73B0\u7EA2\u7EC6\u80DE\u819C\u8102\u94FA\u5C55\u9762\u79EF\u4E3A\u7EC6\u80DE\u8868\u9762\u79EF\u7684 2 \u500D\uFF0C\u63D0\u793A\u8102\u8D28\u4EE5\u53CC\u5206\u5B50\u5C42\u6392\u5217\uFF1B\u6B64\u540E\u5355\u4F4D\u819C\u6A21\u578B\u3001\u51B7\u51BB\u8680\u523B\u548C\u7EC6\u80DE\u878D\u5408\u5B9E\u9A8C\u9010\u6B65\u652F\u6301\u6D41\u52A8\u9576\u5D4C\u6A21\u578B\u3002","\u819C\u86CB\u767D\u7684\u6D41\u52A8\u6027\u53EF\u7528\u7EC6\u80DE\u878D\u5408\u5B9E\u9A8C\u8BC1\u660E\uFF1A\u7528\u4E0D\u540C\u8367\u5149\u6297\u4F53\u6807\u8BB0\u4E24\u79CD\u7EC6\u80DE\uFF0C\u878D\u5408\u540E 40 \u5206\u949F\u8367\u5149\u5728\u819C\u4E0A\u5747\u5300\u5206\u5E03\u3002\u7EC6\u80DE\u9AA8\u67B6\u548C\u819C\u9AA8\u67B6\u4F1A\u628A\u90E8\u5206\u819C\u86CB\u767D\u951A\u5B9A\u5728\u7279\u5B9A\u533A\u57DF\u3002","\u8DE8\u819C\u8FD0\u8F93\u5206\u4E09\u6761\u8DEF\u7EBF\uFF1A\u88AB\u52A8\u8FD0\u8F93\uFF08\u7B80\u5355\u6269\u6563\u3001\u534F\u52A9\u6269\u6563\uFF09\u987A\u7535\u5316\u5B66\u68AF\u5EA6\uFF1B\u4E3B\u52A8\u8FD0\u8F93\uFF08\u5982 Na\u207A/K\u207A-ATP \u9176\uFF09\u6D88\u8017 ATP \u9006\u68AF\u5EA6\uFF1B\u80DE\u541E\u4E0E\u80DE\u5410\u5B8C\u6210\u5927\u5206\u5B50\u548C\u9897\u7C92\u7684\u819C\u6CE1\u8FD0\u8F93\u3002","Na\u207A/K\u207A-ATP \u9176\u6BCF\u6C34\u89E3 1 \u5206\u5B50 ATP\uFF0C\u628A 3 \u4E2A Na\u207A \u6CF5\u51FA\u30012 \u4E2A K\u207A \u6CF5\u5165\uFF0C\u7EF4\u6301\u7EC6\u80DE\u5185\u9AD8 K\u207A\u3001\u7EC6\u80DE\u5916\u9AD8 Na\u207A\uFF0C\u5E76\u4E3A\u819C\u7535\u4F4D\u548C\u6B21\u7EA7\u4E3B\u52A8\u8FD0\u8F93\u63D0\u4F9B\u80FD\u91CF\u3002"],pitfalls:["\u8D28\u819C\u539A\u7EA6 7.5 nm\uFF0C\u4E0D\u662F 5 nm\uFF1B\u5176\u4E2D\u758F\u6C34\u6838\u5FC3\u7EA6 3.5 nm\uFF0C\u4E24\u4FA7\u7684\u6781\u6027\u5934\u90E8\u548C\u86CB\u767D\u5C42\u5171\u540C\u6784\u6210\u5B8C\u6574\u819C\u539A\u3002","\u901A\u9053\u86CB\u767D\u4E0D\u6D88\u8017 ATP\uFF0C\u8F7D\u4F53\u86CB\u767D\u65E2\u53EF\u80FD\u534F\u52A9\u6269\u6563\u4E5F\u53EF\u80FD\u4E3B\u52A8\u8FD0\u8F93\uFF1B\u5224\u65AD\u8FD0\u8F93\u65B9\u5F0F\u8981\u770B\u662F\u5426\u9006\u7535\u5316\u5B66\u68AF\u5EA6\u3001\u662F\u5426\u9700\u8981\u80FD\u91CF\u3002","\u819C\u86CB\u767D\u5E76\u975E\u90FD\u80FD\u81EA\u7531\u6269\u6563\uFF1A\u8BB8\u591A\u86CB\u767D\u53D7\u819C\u9AA8\u67B6\u3001\u7EC6\u80DE\u8FDE\u63A5\u6216\u8102\u7B4F\u9650\u5236\uFF0C\u8FD0\u52A8\u8303\u56F4\u660E\u663E\u5C0F\u4E8E\u4EBA\u5DE5\u8102\u53CC\u5C42\u3002"],quiz:[{q:"\u7EA2\u7EC6\u80DE\u819C\u8102\u94FA\u5C55\u9762\u79EF\u662F\u5B8C\u6574\u7EA2\u7EC6\u80DE\u8868\u9762\u79EF\u7684 2 \u500D\uFF0C\u8FD9\u4E00\u7ED3\u679C\u8BF4\u660E\u4E86\u4EC0\u4E48\uFF1F",a:"\u8BF4\u660E\u819C\u8102\u5728\u5929\u7136\u819C\u4E2D\u4EE5\u53CC\u5206\u5B50\u5C42\u5F62\u5F0F\u6392\u5217\uFF1A\u6BCF\u5C42\u8102\u8D28\u94FA\u5C55\u5F00\u6765\u7EA6\u4E3A\u539F\u7EC6\u80DE\u8868\u9762\u79EF\uFF0C\u4E24\u5C42\u76F8\u52A0\u5373 2 \u500D\u3002"},{q:"\u7528\u7EC6\u80DE\u878D\u5408\u5B9E\u9A8C\u5982\u4F55\u8BC1\u660E\u819C\u86CB\u767D\u5177\u6709\u6D41\u52A8\u6027\uFF1F",a:"\u7528\u4E0D\u540C\u989C\u8272\u8367\u5149\u6297\u4F53\u5206\u522B\u6807\u8BB0\u4E24\u79CD\u7EC6\u80DE\u7684\u819C\u86CB\u767D\uFF0C\u8BF1\u5BFC\u7EC6\u80DE\u878D\u5408\uFF1B\u77ED\u65F6\u95F4\u5185\u4E24\u79CD\u8367\u5149\u5728\u878D\u5408\u7EC6\u80DE\u8868\u9762\u6DF7\u5408\u5E76\u5747\u5300\u5206\u5E03\uFF0C\u8BF4\u660E\u819C\u86CB\u767D\u80FD\u5728\u819C\u5E73\u9762\u5185\u81EA\u7531\u6269\u6563\u3002"},{q:"Na\u207A/K\u207A-ATP \u9176\u7684\u5DE5\u4F5C\u65B9\u5F0F\u548C\u751F\u7406\u610F\u4E49\u662F\u4EC0\u4E48\uFF1F",a:"\u6BCF\u6C34\u89E3 1 \u4E2A ATP\uFF0C\u6CF5\u51FA 3 \u4E2A Na\u207A\u3001\u6CF5\u5165 2 \u4E2A K\u207A\uFF0C\u5EFA\u7ACB\u5E76\u7EF4\u6301\u7EC6\u80DE\u5185\u5916 Na\u207A\u3001K\u207A \u6D53\u5EA6\u5DEE\uFF0C\u7EF4\u6301\u819C\u7535\u4F4D\uFF0C\u5E76\u4E3A\u8461\u8404\u7CD6\u3001\u6C28\u57FA\u9178\u7B49\u6B21\u7EA7\u4E3B\u52A8\u8FD0\u8F93\u63D0\u4F9B\u9A71\u52A8\u529B\u3002"}]}},{id:"cytoskeleton",no:"03",kicker:"TENSEGRITY",cnKicker:"\u5F20\u529B",short:"\u7EC6\u80DE\u9AA8\u67B6",title:"\u6CA1\u6709\u9AA8\u9ABC\uFF0C\u5374\u6709\u5F20\u529B",en:"A CONTINUOUSLY REWRITTEN SCAFFOLD",body:"\u7EC6\u80DE\u6CA1\u6709\u9AA8\u9ABC\uFF0C\u5374\u62E5\u6709\u5F20\u529B\u3002\u5FAE\u4E1D\u3001\u5FAE\u7BA1\u4E0E\u4E2D\u95F4\u4E1D\u7EC4\u6210\u4E00\u5F20\u4E0D\u65AD\u91CD\u5851\u7684\u7F51\uFF1B\u5206\u5B50\u9A6C\u8FBE\u6CBF\u8F68\u9053\u884C\u8D70\uFF0C\u628A\u7269\u8D28\u3001\u4FE1\u53F7\u4E0E\u529B\uFF0C\u4E00\u8D77\u642C\u8FD0\u5230\u9700\u8981\u7684\u5730\u65B9\u3002",facts:[{k:"\u5FAE\u4E1D",v:"\u2248 7 nm"},{k:"\u5FAE\u7BA1\u5916\u5F84",v:"\u2248 24 nm"},{k:"\u4E2D\u95F4\u4E1D",v:"\u2248 10 nm"}],readout:"CYTOSOL / FIBER TRACT",accent:"#9df5c1",camera:{pos:[3,1.2,5.7],target:[.3,.6,.4],fov:50},duration:18e3,study:{textbook:{chapter:"\u7B2C\u516B\u7AE0",title:"\u7EC6\u80DE\u9AA8\u67B6",pages:"144\u2013176",sections:["\u7B2C\u4E00\u8282 \u5FAE\u4E1D\u4E0E\u7EC6\u80DE\u8FD0\u52A8","\u7B2C\u4E8C\u8282 \u5FAE\u7BA1\u53CA\u5176\u529F\u80FD","\u7B2C\u4E09\u8282 \u4E2D\u95F4\u4E1D"]},related:["\u7B2C\u5341\u4E8C\u7AE0 \u7EC6\u80DE\u5468\u671F\u4E0E\u7EC6\u80DE\u5206\u88C2 \xB7 pp.261\u2013285\uFF08\u7EBA\u9524\u4F53\u4E0E\u67D3\u8272\u4F53\u8FD0\u52A8\uFF09"],objectives:["\u6BD4\u8F83\u5FAE\u4E1D\u3001\u5FAE\u7BA1\u548C\u4E2D\u95F4\u4E1D\u7684\u7EC4\u6210\u3001\u76F4\u5F84\u3001\u6781\u6027\u4E0E\u7EC4\u88C5\u65B9\u5F0F\u3002","\u89E3\u91CA\u8E0F\u8F66\u884C\u4E3A\u3001\u52A8\u6001\u4E0D\u7A33\u5B9A\u6027\u548C\u5206\u5B50\u9A6C\u8FBE\u7684\u65B9\u5411\u6027\u3002","\u628A\u7EC6\u80DE\u9AA8\u67B6\u4E0E\u7EC6\u80DE\u5F62\u6001\u3001\u8FD0\u52A8\u3001\u7269\u8D28\u8FD0\u8F93\u548C\u5206\u88C2\u8054\u7CFB\u8D77\u6765\u3002"],visuals:[{color:"#9df5c1",label:"\u9752\u7EFF\u7EC6\u7EBF = \u5FAE\u4E1D\uFF08\u808C\u52A8\u86CB\u767D\u4E1D\uFF09"},{color:"#67e8f9",label:"\u4EAE\u9752\u7EC6\u7BA1 = \u5FAE\u7BA1"},{color:"#b7a3ff",label:"\u7D2B\u8272\u7C97\u7F06 = \u4E2D\u95F4\u4E1D"},{color:"#f2ffd0",label:"\u79FB\u52A8\u5149\u70B9 = \u5206\u5B50\u9A6C\u8FBE"}],concepts:[{term:"\u5FAE\u4E1D",en:"microfilament / actin filament",def:"\u7531\u808C\u52A8\u86CB\u767D\u4E9A\u57FA\u7EC4\u6210\u7684\u76F4\u5F84\u7EA6 7 nm \u7684\u87BA\u65CB\u7EA4\u7EF4\uFF1B\u6709\u6781\u6027\uFF0C\u53C2\u4E0E\u7EC6\u80DE\u5F62\u6001\u3001\u8FD0\u52A8\u3001\u6536\u7F29\u73AF\u548C\u5FAE\u7ED2\u6BDB\u3002"},{term:"\u5FAE\u7BA1",en:"microtubule",def:"\u7531 \u03B1/\u03B2 \u5FAE\u7BA1\u86CB\u767D\u4E8C\u805A\u4F53\u7EC4\u6210\u7684\u76F4\u5F84\u7EA6 24 nm \u7684\u4E2D\u7A7A\u7BA1\uFF1B\u6709\u6781\u6027\uFF0C\u53C2\u4E0E\u7269\u8D28\u8FD0\u8F93\u3001\u7EA4\u6BDB\u8FD0\u52A8\u548C\u7EBA\u9524\u4F53\u3002"},{term:"\u4E2D\u95F4\u4E1D",en:"intermediate filament",def:"\u76F4\u5F84\u7EA6 10 nm \u7684\u7EF3\u7D22\u72B6\u7EA4\u7EF4\uFF0C\u7531\u89D2\u86CB\u767D\u3001\u6CE2\u5F62\u86CB\u767D\u3001\u5C42\u7C98\u8FDE\u86CB\u767D\u7B49\u7EC4\u6210\uFF1B\u65E0\u6781\u6027\u3001\u6297\u62C9\u529B\uFF0C\u4E3B\u8981\u627F\u62C5\u673A\u68B0\u652F\u6491\u3002"},{term:"\u8E0F\u8F66\u884C\u4E3A",en:"treadmilling",def:"\u808C\u52A8\u86CB\u767D\u5728\u5FAE\u4E1D\u6B63\u6781\u805A\u5408\u3001\u5728\u8D1F\u6781\u89E3\u805A\uFF0C\u4F7F\u7EA4\u7EF4\u957F\u5EA6\u57FA\u672C\u4E0D\u53D8\u800C\u4E9A\u57FA\u6301\u7EED\u6D41\u52A8\u7684\u73B0\u8C61\u3002"},{term:"\u52A8\u6001\u4E0D\u7A33\u5B9A\u6027",en:"dynamic instability",def:"\u5FAE\u7BA1\u6B63\u6781\u5728\u751F\u957F\u4E0E\u5FEB\u901F\u89E3\u805A\u4E4B\u95F4\u968F\u673A\u5207\u6362\uFF1BGTP \u5E3D\u7684\u5B58\u5728\u4FC3\u8FDB\u751F\u957F\uFF0CGTP \u6C34\u89E3\u540E\u5FAE\u7BA1\u5BB9\u6613 catastrophe\u3002"},{term:"\u5206\u5B50\u9A6C\u8FBE",en:"molecular motor",def:"\u628A ATP \u6C34\u89E3\u7684\u5316\u5B66\u80FD\u8F6C\u5316\u4E3A\u673A\u68B0\u8FD0\u52A8\u7684\u86CB\u767D\uFF1B\u808C\u7403\u86CB\u767D\u6CBF\u5FAE\u4E1D\u8FD0\u52A8\uFF0C\u9A71\u52A8\u86CB\u767D\u5411\u5FAE\u7BA1\u6B63\u6781\u3001\u52A8\u529B\u86CB\u767D\u5411\u8D1F\u6781\u8FD0\u52A8\u3002"},{term:"\u4E2D\u5FC3\u4F53",en:"centrosome",def:"\u7531\u4E00\u5BF9\u4E2D\u5FC3\u7C92\u548C\u5468\u56F4\u57FA\u8D28\u7EC4\u6210\uFF0C\u662F\u52A8\u7269\u7EC6\u80DE\u7684\u5FAE\u7BA1\u7EC4\u7EC7\u4E2D\u5FC3\uFF08MTOC\uFF09\uFF1B\u03B3-\u5FAE\u7BA1\u86CB\u767D\u53C2\u4E0E\u5FAE\u7BA1\u6210\u6838\u3002"}],mechanism:["\u5FAE\u4E1D\u7EC4\u88C5\u6709\u6781\u6027\uFF1AATP-\u808C\u52A8\u86CB\u767D\u4E3B\u8981\u5728\u6B63\u6781\u52A0\u5165\uFF0C\u8D1F\u6781\u89E3\u805A\uFF1B\u8E0F\u8F66\u884C\u4E3A\u4F7F\u5FAE\u4E1D\u80FD\u5728\u4FDD\u6301\u957F\u5EA6\u7684\u540C\u65F6\u5FEB\u901F\u66F4\u65B0\u3002\u808C\u7403\u86CB\u767D II \u4E0E\u5FAE\u4E1D\u5F62\u6210\u6536\u7F29\u7CFB\u7EDF\uFF0C\u53C2\u4E0E\u5E94\u529B\u7EA4\u7EF4\u548C\u80DE\u8D28\u5206\u88C2\u3002","\u5FAE\u7BA1\u7531 13 \u6761\u539F\u7EA4\u7EF4\u56F4\u6210\u7BA1\u58C1\uFF1B\u4E2D\u5FC3\u4F53\u4E0A\u7684 \u03B3-\u5FAE\u7BA1\u86CB\u767D\u73AF\u590D\u5408\u7269\u542F\u52A8\u6210\u6838\u3002\u5FAE\u7BA1\u6B63\u6781\u5411\u5916\u5EF6\u4F38\uFF0C\u52A8\u6001\u4E0D\u7A33\u5B9A\u6027\u4F7F\u5176\u80FD\u5FEB\u901F\u641C\u7D22\u7A7A\u95F4\u3002","\u5206\u5B50\u9A6C\u8FBE\u5177\u6709\u65B9\u5411\u6027\uFF1A\u5927\u591A\u6570\u9A71\u52A8\u86CB\u767D\u5411\u5FAE\u7BA1\u6B63\u6781\u79FB\u52A8\uFF0C\u52A8\u529B\u86CB\u767D\u5411\u8D1F\u6781\u79FB\u52A8\uFF1B\u808C\u7403\u86CB\u767D\u6CBF\u5FAE\u4E1D\u8FD0\u52A8\u3002\u7EBA\u9524\u4F53\u540E\u671F B \u4F9D\u8D56 kinesin-5 \u5728\u53CD\u5411\u5E73\u884C\u6781\u5FAE\u7BA1\u4E0A\u6ED1\u52A8\uFF0C\u628A\u4E24\u6781\u63A8\u5F00\u3002","\u4E2D\u95F4\u4E1D\u4E0D\u4F9D\u8D56\u9A6C\u8FBE\uFF0C\u4E5F\u6CA1\u6709\u660E\u663E\u6781\u6027\uFF1B\u5B83\u4EEC\u901A\u8FC7\u6A2A\u5411\u4EA4\u8054\u548C\u7EC6\u80DE\u8FDE\u63A5\u628A\u76F8\u90BB\u7EC6\u80DE\u3001\u7EC6\u80DE\u6838\u548C\u80DE\u5916\u57FA\u8D28\u8FDE\u6210\u673A\u68B0\u7F51\u7EDC\u3002"],pitfalls:["\u4E09\u7C7B\u9AA8\u67B6\u90FD\u6709\u6781\u6027\uFF1F\u9519\u8BEF\u3002\u5FAE\u4E1D\u548C\u5FAE\u7BA1\u6709\u6781\u6027\uFF0C\u4E2D\u95F4\u4E1D\u6CA1\u6709\u6781\u6027\uFF0C\u4E5F\u4E0D\u4F5C\u4E3A\u5206\u5B50\u9A6C\u8FBE\u7684\u8F68\u9053\u3002","\u5FAE\u4E1D\u6B63\u6781\u901A\u5E38\u9760\u8FD1\u7EC6\u80DE\u819C\uFF1B\u5FAE\u7BA1\u6B63\u6781\u901A\u5E38\u80CC\u79BB\u4E2D\u5FC3\u4F53\u3002\u5224\u65AD\u9A71\u52A8\u86CB\u767D/\u52A8\u529B\u86CB\u767D\u65B9\u5411\u65F6\u8981\u5148\u786E\u5B9A\u7EA4\u7EF4\u6781\u6027\u3002","\u7D2B\u6749\u9187\u7A33\u5B9A\u5FAE\u7BA1\u3001\u6291\u5236\u89E3\u805A\uFF0C\u4F7F\u7EC6\u80DE\u505C\u6EDE\u5728 M \u671F\uFF1B\u79CB\u6C34\u4ED9\u7D20\u5219\u6291\u5236\u5FAE\u7BA1\u805A\u5408\u3002\u4E24\u8005\u90FD\u4F1A\u5E72\u6270\u7EBA\u9524\u4F53\uFF0C\u4F46\u4E0D\u662F\u540C\u4E00\u673A\u5236\u3002"],quiz:[{q:"\u5FAE\u4E1D\u3001\u5FAE\u7BA1\u548C\u4E2D\u95F4\u4E1D\u5728\u76F4\u5F84\u3001\u6781\u6027\u548C\u4E3B\u8981\u529F\u80FD\u4E0A\u6709\u4EC0\u4E48\u4E0D\u540C\uFF1F",a:"\u5FAE\u4E1D\u7EA6 7 nm\u3001\u6709\u6781\u6027\uFF0C\u4E3B\u8981\u7531\u808C\u52A8\u86CB\u767D\u7EC4\u6210\uFF0C\u53C2\u4E0E\u8FD0\u52A8\u4E0E\u6536\u7F29\uFF1B\u5FAE\u7BA1\u7EA6 24 nm\u3001\u6709\u6781\u6027\uFF0C\u53C2\u4E0E\u8FD0\u8F93\u548C\u7EBA\u9524\u4F53\uFF1B\u4E2D\u95F4\u4E1D\u7EA6 10 nm\u3001\u65E0\u6781\u6027\uFF0C\u4E3B\u8981\u63D0\u4F9B\u673A\u68B0\u652F\u6491\u3002"},{q:"\u4E3A\u4EC0\u4E48\u8BF4\u5FAE\u7BA1\u5177\u6709\u52A8\u6001\u4E0D\u7A33\u5B9A\u6027\uFF1F\u5B83\u5728\u6709\u4E1D\u5206\u88C2\u4E2D\u6709\u4EC0\u4E48\u610F\u4E49\uFF1F",a:"\u5FAE\u7BA1\u6B63\u6781\u53EF\u5728\u751F\u957F\u4E0E\u5FEB\u901F\u89E3\u805A\u4E4B\u95F4\u5207\u6362\uFF0C\u53D7 GTP \u5E3D\u8C03\u63A7\u3002\u8FD9\u79CD\u5FEB\u901F\u641C\u7D22\u4F7F\u7EBA\u9524\u4F53\u5FAE\u7BA1\u80FD\u6355\u6349\u52A8\u7C92\uFF0C\u5E76\u5728\u5206\u88C2\u4E0D\u540C\u9636\u6BB5\u8FC5\u901F\u91CD\u7EC4\u3002"},{q:"\u9A71\u52A8\u86CB\u767D\u548C\u52A8\u529B\u86CB\u767D\u5206\u522B\u5411\u5FAE\u7BA1\u7684\u54EA\u4E00\u7AEF\u79FB\u52A8\uFF1F",a:"\u5927\u591A\u6570\u9A71\u52A8\u86CB\u767D\u5411\u5FAE\u7BA1\u6B63\u6781\uFF08\u5916\u5468\u65B9\u5411\uFF09\u79FB\u52A8\uFF1B\u52A8\u529B\u86CB\u767D\u5411\u5FAE\u7BA1\u8D1F\u6781\uFF08\u4E2D\u5FC3\u4F53\u65B9\u5411\uFF09\u79FB\u52A8\u3002"}]}},{id:"mitochondria",no:"04",kicker:"CHEMIOSMOSIS",cnKicker:"\u80FD\u91CF",short:"\u80FD\u91CF\u68AF\u5EA6",title:"\u80FD\u91CF\uFF0C\u4EE5\u68AF\u5EA6\u7684\u5F62\u5F0F\u5B58\u5728",en:"THE PROTON GRADIENT ENGINE",body:"\u80FD\u91CF\u5E76\u4E0D\u603B\u662F\u88AB\u50A8\u5B58\u5728\u5206\u5B50\u91CC\uFF0C\u5B83\u4E5F\u53EF\u4EE5\u662F\u4E00\u9053\u68AF\u5EA6\u3002\u7EBF\u7C92\u4F53\u5185\u819C\u6298\u53E0\u6210\u5D74\uFF0C\u628A\u8D28\u5B50\u6CF5\u5230\u819C\u95F4\u9699\uFF1B\u8D28\u5B50\u987A\u68AF\u5EA6\u56DE\u6D41\uFF0C\u8F6C\u52A8 ATP \u5408\u9176\uFF0C\u50CF\u6C34\u8F6E\u673A\u4E00\u6837\u628A\u52BF\u80FD\u538B\u8FDB\u5316\u5B66\u952E\u3002",facts:[{k:"\u5185\u819C\u9762\u79EF",v:"\u2248 \u5916\u819C 5 \u500D"},{k:"\u5FC3\u78F7\u8102",v:"\u2248 \u5185\u819C\u78F7\u8102 20%"},{k:"ATP \u5408\u9176",v:"F\u2080F\u2081 \u65CB\u8F6C\u50AC\u5316"}],readout:"ORGANELLE CLUSTER / \u0394pH",accent:"#ffc177",camera:{pos:[7.4,2,8],target:[4.4,.2,2.4],fov:46},duration:19e3,study:{textbook:{chapter:"\u7B2C\u4E03\u7AE0",title:"\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53",pages:"117\u2013143",sections:["\u7B2C\u4E00\u8282 \u7EBF\u7C92\u4F53\u4E0E\u6C27\u5316\u78F7\u9178\u5316","\u7B2C\u4E8C\u8282 \u53F6\u7EFF\u4F53\u4E0E\u5149\u5408\u4F5C\u7528","\u7B2C\u4E09\u8282 \u534A\u81EA\u4E3B\u6027\u53CA\u5176\u8D77\u6E90"]},related:["\u7B2C\u4E8C\u7AE0 \u7EC6\u80DE\u751F\u7269\u5B66\u7814\u7A76\u65B9\u6CD5 \xB7 pp.18\u201339\uFF08\u7EBF\u7C92\u4F53\u5206\u79BB\u4E0E\u547C\u5438\u6D4B\u5B9A\uFF09"],objectives:["\u753B\u51FA\u7EBF\u7C92\u4F53\u7684\u56DB\u4E2A\u533A\u5BA4\uFF0C\u8BF4\u660E\u5916\u819C\u3001\u5185\u819C\u3001\u819C\u95F4\u9699\u548C\u57FA\u8D28\u7684\u529F\u80FD\u5206\u5DE5\u3002","\u7528\u5316\u5B66\u6E17\u900F\u5047\u8BF4\u89E3\u91CA\u7535\u5B50\u4F20\u9012\u3001\u8D28\u5B50\u68AF\u5EA6\u548C ATP \u5408\u6210\u4E4B\u95F4\u7684\u8026\u5408\u3002","\u7406\u89E3\u7EBF\u7C92\u4F53\u534A\u81EA\u4E3B\u6027\u3001\u878D\u5408/\u5206\u88C2\u4EE5\u53CA\u6BCD\u7CFB\u9057\u4F20\u3002"],visuals:[{color:"#ffc177",label:"\u91D1\u8272\u80F6\u56CA = \u7EBF\u7C92\u4F53"},{color:"#ffe4a4",label:"\u5185\u90E8\u6761\u7EB9 = \u5185\u819C\u5D74"},{color:"#85fff2",label:"\u9752\u84DD\u7C92\u5B50 = \u819C\u95F4\u9699\u8D28\u5B50"},{color:"#ffbf6b",label:"\u91D1\u8272\u7206\u53D1 = ATP"}],concepts:[{term:"\u5916\u819C",en:"outer membrane",def:"\u5E73\u6ED1\u7684\u5355\u4F4D\u819C\uFF0C\u542B\u5B54\u86CB\u767D\uFF0C\u901A\u900F\u6027\u9AD8\uFF1B\u5C0F\u5206\u5B50\u548C\u4EE3\u8C22\u7269\u53EF\u8F83\u81EA\u7531\u901A\u8FC7\u3002"},{term:"\u5185\u819C\u4E0E\u5D74",en:"inner membrane / cristae",def:"\u86CB\u767D\u8D28/\u8102\u8D28\u6BD4\u9AD8\u3001\u5BCC\u542B\u5FC3\u78F7\u8102\u3001\u901A\u900F\u6027\u4F4E\uFF1B\u5411\u5185\u6298\u53E0\u6210\u5D74\uFF0C\u663E\u8457\u589E\u52A0\u6C27\u5316\u78F7\u9178\u5316\u7684\u53CD\u5E94\u9762\u79EF\u3002"},{term:"\u819C\u95F4\u9699",en:"intermembrane space",def:"\u5916\u819C\u4E0E\u5185\u819C\u4E4B\u95F4\u7684\u7A7A\u95F4\uFF0C\u5BBD\u7EA6 6\u20138 nm\uFF1B\u7535\u5B50\u4F20\u9012\u94FE\u6CF5\u51FA\u7684 H\u207A \u5728\u6B64\u79EF\u7D2F\uFF0C\u5F62\u6210\u8D28\u5B50\u68AF\u5EA6\u3002"},{term:"\u7EBF\u7C92\u4F53\u57FA\u8D28",en:"matrix",def:"\u542B\u4E09\u7FA7\u9178\u5FAA\u73AF\u9176\u3001\u8102\u80AA\u9178\u6C27\u5316\u9176\u3001\u7EBF\u7C92\u4F53 DNA\u3001RNA \u548C\u6838\u7CD6\u4F53\uFF1B\u662F\u7EBF\u7C92\u4F53\u57FA\u56E0\u8868\u8FBE\u548C\u591A\u79CD\u4EE3\u8C22\u7684\u53CD\u5E94\u573A\u6240\u3002"},{term:"\u7535\u5B50\u4F20\u9012\u94FE",en:"electron transport chain",def:"\u5185\u819C\u4E0A\u7684\u590D\u5408\u4F53 I\u2013IV \u5C06 NADH/FADH\u2082 \u7684\u7535\u5B50\u9010\u7EA7\u4F20\u9012\uFF0C\u5E76\u6CF5\u51FA H\u207A\uFF1BO\u2082 \u662F\u6700\u7EC8\u7535\u5B50\u53D7\u4F53\uFF0C\u751F\u6210 H\u2082O\u3002"},{term:"\u5316\u5B66\u6E17\u900F",en:"chemiosmosis",def:"\u7535\u5B50\u4F20\u9012\u5EFA\u7ACB\u7684\u8DE8\u5185\u819C H\u207A \u7535\u5316\u5B66\u68AF\u5EA6\u9A71\u52A8 ATP \u5408\u9176\u65CB\u8F6C\uFF0C\u4F7F ADP \u4E0E Pi \u5408\u6210 ATP\u3002"},{term:"\u7EBF\u7C92\u4F53DNA",en:"mtDNA",def:"\u73AF\u72B6\u53CC\u94FE DNA\uFF0C\u7F16\u7801\u90E8\u5206\u547C\u5438\u94FE\u86CB\u767D\u548C rRNA/tRNA\uFF1B\u590D\u5236\u4E0E\u8F6C\u5F55\u4F9D\u8D56\u6838\u57FA\u56E0\u4EA7\u7269\uFF0C\u5448\u6BCD\u7CFB\u9057\u4F20\u3002"}],mechanism:["\u7CD6\u9175\u89E3\u5728\u7EC6\u80DE\u8D28\u4E2D\u4EA7\u751F\u4E19\u916E\u9178\uFF1B\u4E19\u916E\u9178\u8FDB\u5165\u7EBF\u7C92\u4F53\u57FA\u8D28\uFF0C\u7ECF\u4E19\u916E\u9178\u8131\u6C22\u9176\u590D\u5408\u4F53\u8F6C\u4E3A\u4E59\u9170 CoA\uFF0C\u8FDB\u5165\u4E09\u7FA7\u9178\u5FAA\u73AF\uFF0C\u751F\u6210 NADH\u3001FADH\u2082 \u548C\u5C11\u91CF ATP/GTP\u3002","NADH \u548C FADH\u2082 \u628A\u7535\u5B50\u4EA4\u7ED9\u5185\u819C\u4E0A\u7684\u7535\u5B50\u4F20\u9012\u94FE\uFF1B\u590D\u5408\u4F53 I\u3001III\u3001IV \u5C06 H\u207A \u6CF5\u5230\u819C\u95F4\u9699\uFF0C\u5F62\u6210\u8DE8\u5185\u819C\u8D28\u5B50\u52A8\u529B\u52BF\u3002","H\u207A \u7ECF ATP \u5408\u9176 F\u2080 \u90E8\u5206\u56DE\u6D41\uFF0C\u9A71\u52A8 F\u2081 \u5934\u90E8\u65CB\u8F6C\uFF0C\u4F7F ADP + Pi \u2192 ATP\u3002\u82E5\u5185\u819C\u5BF9 H\u207A \u81EA\u7531\u901A\u900F\uFF0C\u68AF\u5EA6\u6D88\u5931\uFF0C\u6C27\u5316\u4E0E\u78F7\u9178\u5316\u89E3\u5076\u8054\u3002","\u5D74\u589E\u52A0\u5185\u819C\u9762\u79EF\uFF1B\u7EBF\u7C92\u4F53\u901A\u8FC7\u878D\u5408\u4E0E\u5206\u88C2\u7EF4\u6301\u7F51\u7EDC\uFF0C\u53D7\u635F\u7EBF\u7C92\u4F53\u53EF\u7ECF\u7EBF\u7C92\u4F53\u81EA\u566C\u6E05\u9664\u3002"],pitfalls:["\u4E09\u7FA7\u9178\u5FAA\u73AF\u5728\u7EBF\u7C92\u4F53\u57FA\u8D28\uFF0C\u7535\u5B50\u4F20\u9012\u94FE\u5728\u7EBF\u7C92\u4F53\u5185\u819C\uFF1B\u4E0D\u662F\u6240\u6709\u6709\u6C27\u547C\u5438\u6B65\u9AA4\u90FD\u5728\u57FA\u8D28\u5B8C\u6210\u3002","O\u2082 \u4E0D\u76F4\u63A5\u4E0E\u8461\u8404\u7CD6\u53CD\u5E94\uFF0C\u800C\u662F\u5728\u7535\u5B50\u4F20\u9012\u94FE\u672B\u7AEF\u63A5\u53D7\u7535\u5B50\u751F\u6210\u6C34\uFF1B\u7F3A\u6C27\u6216\u590D\u5408\u4F53 IV \u88AB\u6291\u5236\u65F6\uFF0C\u7535\u5B50\u4F20\u9012\u548C ATP \u5408\u6210\u90FD\u4F1A\u53D7\u963B\u3002","\u7EBF\u7C92\u4F53\u6709 DNA \u548C\u6838\u7CD6\u4F53\uFF0C\u4F46\u591A\u6570\u86CB\u767D\u7531\u6838\u57FA\u56E0\u7F16\u7801\u3001\u5728\u7EC6\u80DE\u8D28\u5408\u6210\u540E\u8FD0\u5165\uFF0C\u56E0\u6B64\u53EA\u662F\u201C\u534A\u81EA\u4E3B\u201D\u3002"],quiz:[{q:"\u4E3A\u4EC0\u4E48\u7EBF\u7C92\u4F53\u5185\u819C\u5FC5\u987B\u5BF9 H\u207A \u5177\u6709\u4F4E\u901A\u900F\u6027\uFF1F",a:"\u4F4E\u901A\u900F\u6027\u4F7F\u7535\u5B50\u4F20\u9012\u6CF5\u51FA\u7684 H\u207A \u80FD\u5728\u819C\u95F4\u9699\u79EF\u7D2F\uFF0C\u5EFA\u7ACB\u7535\u5316\u5B66\u68AF\u5EA6\uFF1BH\u207A \u53EA\u80FD\u7ECF ATP \u5408\u9176\u56DE\u6D41\uFF0C\u4ECE\u800C\u628A\u6C27\u5316\u91CA\u653E\u7684\u80FD\u91CF\u8026\u5408\u5230 ATP \u5408\u6210\u3002"},{q:"\u6C30\u5316\u7269\u6291\u5236\u7EC6\u80DE\u8272\u7D20 c \u6C27\u5316\u9176\uFF08\u590D\u5408\u4F53 IV\uFF09\u540E\uFF0CATP \u5408\u6210\u4E3A\u4EC0\u4E48\u505C\u6B62\uFF1F",a:"\u590D\u5408\u4F53 IV \u4E0D\u80FD\u628A\u7535\u5B50\u4F20\u7ED9 O\u2082\uFF0C\u7535\u5B50\u4F20\u9012\u94FE\u963B\u65AD\uFF0CH\u207A \u6CF5\u51FA\u505C\u6B62\uFF0C\u8D28\u5B50\u68AF\u5EA6\u9010\u6E10\u6D88\u5931\uFF0CATP \u5408\u9176\u5931\u53BB\u9A71\u52A8\u529B\u3002"},{q:"\u7EBF\u7C92\u4F53\u201C\u534A\u81EA\u4E3B\u6027\u201D\u7684\u542B\u4E49\u662F\u4EC0\u4E48\uFF1F",a:"\u7EBF\u7C92\u4F53\u62E5\u6709\u81EA\u5DF1\u7684\u73AF\u72B6 DNA\u3001\u6838\u7CD6\u4F53\u548C\u90E8\u5206\u57FA\u56E0\u8868\u8FBE\u7CFB\u7EDF\uFF0C\u80FD\u5408\u6210\u5C11\u6570\u86CB\u767D\uFF1B\u4F46\u7EDD\u5927\u591A\u6570\u7EBF\u7C92\u4F53\u86CB\u767D\u7531\u6838\u57FA\u56E0\u7F16\u7801\uFF0C\u56E0\u6B64\u5176\u9057\u4F20\u548C\u529F\u80FD\u53D7\u6838\u57FA\u56E0\u7EC4\u63A7\u5236\u3002"}]}},{id:"nucleus",no:"05",kicker:"GENOME",cnKicker:"\u9057\u4F20",short:"\u6838\u5185\u6697\u623F",title:"\u4E24\u7C73 DNA\uFF0C\u6298\u53E0\u6210\u6697\u623F",en:"THE GENOME, CONTINUOUSLY READ",body:"\u4E24\u7C73\u957F\u7684 DNA\uFF0C\u88AB\u6298\u53E0\u8FDB\u76F4\u5F84\u7EA6 5\u201310 \u5FAE\u7C73\u7684\u6697\u623F\u3002\u67D3\u8272\u8D28\u4E0D\u65AD\u6298\u53E0\u3001\u89E3\u5F00\uFF1B\u6838\u5B54\u50CF\u6D77\u5173\uFF0C\u628A RNA \u4E0E\u86CB\u767D\u7684\u901A\u884C\u63A7\u5236\u5728\u7EB3\u7C73\u5C3A\u5EA6\u3002\u8FD9\u91CC\u6CA1\u6709\u9759\u6B62\u7684\u56FE\u7EB8\uFF0C\u53EA\u6709\u6301\u7EED\u88AB\u8BFB\u53D6\u7684\u62D3\u6251\u3002",facts:[{k:"\u4EBA\u7C7B\u7EC6\u80DE DNA",v:"\u2248 2 m"},{k:"\u7EC6\u80DE\u6838\u76F4\u5F84",v:"5\u201310 \xB5m"},{k:"\u6838\u5B54\u590D\u5408\u4F53\u5916\u5F84",v:"\u2248 120 nm"}],readout:"NUCLEAR INTERIOR / 4Pi",accent:"#d9a8ff",camera:{pos:[2.2,1.4,8.2],target:[0,.2,0],fov:42},duration:19e3,study:{textbook:{chapter:"\u7B2C\u4E5D\u7AE0",title:"\u7EC6\u80DE\u6838\u4E0E\u67D3\u8272\u8D28",pages:"177\u2013212",sections:["\u7B2C\u4E00\u8282 \u6838\u88AB\u819C","\u7B2C\u4E8C\u8282 \u67D3\u8272\u8D28","\u7B2C\u4E09\u8282 \u67D3\u8272\u8D28\u590D\u5236\u4E0E\u8868\u8FBE","\u7B2C\u56DB\u8282 \u67D3\u8272\u4F53","\u7B2C\u4E94\u8282 \u6838\u4EC1\u4E0E\u6838\u4F53"]},related:["\u7B2C\u5341\u7AE0 \u6838\u7CD6\u4F53 \xB7 pp.213\u2013223","\u7B2C\u5341\u4E8C\u7AE0 \u7EC6\u80DE\u5468\u671F\u4E0E\u7EC6\u80DE\u5206\u88C2 \xB7 pp.261\u2013285"],objectives:["\u8BF4\u660E\u6838\u88AB\u819C\u3001\u6838\u5B54\u590D\u5408\u4F53\u548C\u6838\u7EA4\u5C42\u7684\u7ED3\u6784\u5173\u7CFB\u3002","\u4ECE DNA + \u7EC4\u86CB\u767D\u7684\u89D2\u5EA6\u89E3\u91CA\u6838\u5C0F\u4F53\u300130 nm \u7EA4\u7EF4\u548C\u67D3\u8272\u8D28\u9AD8\u7EA7\u7ED3\u6784\u3002","\u533A\u5206\u5E38\u67D3\u8272\u8D28\u4E0E\u5F02\u67D3\u8272\u8D28\uFF0C\u7406\u89E3\u6838\u4EC1\u5728\u6838\u7CD6\u4F53\u53D1\u751F\u4E2D\u7684\u4F5C\u7528\u3002"],visuals:[{color:"#c58cff",label:"\u7D2B\u8272\u7403\u4F53 = \u7EC6\u80DE\u6838"},{color:"#8ff5ff",label:"\u8868\u9762\u5706\u73AF = \u6838\u5B54\u590D\u5408\u4F53"},{color:"#ff9bdd",label:"\u7C89\u7D2B\u4E1D\u7EBF = \u67D3\u8272\u8D28"},{color:"#b04a78",label:"\u6697\u7EA2\u56E2\u5757 = \u6838\u4EC1"}],concepts:[{term:"\u6838\u88AB\u819C",en:"nuclear envelope",def:"\u7531\u5185\u819C\u548C\u5916\u819C\u7EC4\u6210\u7684\u53CC\u5C42\u819C\uFF0C\u5916\u819C\u4E0E\u5185\u8D28\u7F51\u76F8\u8FDE\uFF1B\u4E24\u5C42\u819C\u4E4B\u95F4\u7684\u7A7A\u95F4\u79F0\u6838\u5468\u95F4\u9699\u3002"},{term:"\u6838\u5B54\u590D\u5408\u4F53",en:"nuclear pore complex, NPC",def:"\u8DE8\u8D8A\u6838\u88AB\u819C\u7684\u5927\u578B\u86CB\u767D\u590D\u5408\u4F53\uFF0C\u5916\u5F84\u7EA6 120 nm\uFF1B\u5C0F\u5206\u5B50\u53EF\u6269\u6563\u901A\u8FC7\uFF0C\u5927\u5206\u5B50\u9700\u6838\u5B9A\u4F4D\u4FE1\u53F7\u7B49\u4ECB\u5BFC\u7684\u4E3B\u52A8\u8FD0\u8F93\u3002"},{term:"\u6838\u7EA4\u5C42",en:"nuclear lamina",def:"\u7D27\u8D34\u6838\u819C\u5185\u4FA7\u7684\u4E2D\u95F4\u4E1D\u7F51\u7EDC\uFF0C\u4E3B\u8981\u7531\u6838\u7EA4\u5C42\u86CB\u767D\uFF08lamin\uFF09\u7EC4\u6210\uFF0C\u652F\u6491\u6838\u819C\u5E76\u53C2\u4E0E\u67D3\u8272\u8D28\u5B9A\u4F4D\u3002"},{term:"\u67D3\u8272\u8D28",en:"chromatin",def:"DNA \u4E0E\u7EC4\u86CB\u767D\u3001\u975E\u7EC4\u86CB\u767D\u7EC4\u6210\u7684\u590D\u5408\u7269\uFF1B\u662F\u9057\u4F20\u4FE1\u606F\u7684\u50A8\u5B58\u5F62\u5F0F\uFF0C\u4E5F\u662F\u590D\u5236\u3001\u8F6C\u5F55\u548C\u4FEE\u590D\u7684\u6A21\u677F\u3002"},{term:"\u6838\u5C0F\u4F53",en:"nucleosome",def:"\u7531 H2A\u3001H2B\u3001H3\u3001H4 \u5404\u4E24\u5206\u5B50\u7EC4\u6210\u7684\u7EC4\u86CB\u767D\u516B\u805A\u4F53\uFF0C\u5916\u52A0\u7EA6 147 bp DNA \u7F20\u7ED5\u7EA6 1.75 \u5708\u5F62\u6210\uFF1B\u662F\u67D3\u8272\u8D28\u7684\u57FA\u672C\u7ED3\u6784\u5355\u4F4D\u3002"},{term:"\u5E38\u67D3\u8272\u8D28\u4E0E\u5F02\u67D3\u8272\u8D28",en:"euchromatin / heterochromatin",def:"\u5E38\u67D3\u8272\u8D28\u8F83\u677E\u6563\u3001\u8F6C\u5F55\u6D3B\u8DC3\uFF1B\u5F02\u67D3\u8272\u8D28\u8F83\u6D53\u7F29\u3001\u8F6C\u5F55\u53D7\u6291\u5236\uFF0C\u591A\u5206\u5E03\u5728\u6838\u819C\u5185\u4FA7\u3002"},{term:"\u6838\u4EC1",en:"nucleolus",def:"\u6838\u5185\u65E0\u819C\u5305\u56F4\u7684\u81F4\u5BC6\u7ED3\u6784\uFF0C\u662F rRNA \u57FA\u56E0\u8F6C\u5F55\u3001rRNA \u52A0\u5DE5\u548C\u6838\u7CD6\u4F53\u4E9A\u57FA\u7EC4\u88C5\u7684\u573A\u6240\u3002"}],mechanism:["\u6838\u88AB\u819C\u628A\u6838\u5185\u8F6C\u5F55\u4E0E\u7EC6\u80DE\u8D28\u7FFB\u8BD1\u5206\u9694\u5F00\uFF1B\u5916\u819C\u4E0E\u5185\u8D28\u7F51\u8FDE\u7EED\uFF0C\u6838\u5B54\u590D\u5408\u4F53\u662F\u6838\u8D28\u4EA4\u6362\u7684\u552F\u4E00\u901A\u9053\u3002\u6838\u7EA4\u5C42\u4F4D\u4E8E\u5185\u819C\u5185\u4FA7\uFF0C\u4E3A\u6838\u819C\u63D0\u4F9B\u673A\u68B0\u652F\u6491\u3002","\u6838\u5C0F\u4F53\u76D8\u7ED5\u5F62\u6210 11 nm \u7684\u201C\u4E32\u73E0\u201D\u7ED3\u6784\uFF0C\u518D\u6298\u53E0\u6210\u7EA6 30 nm \u7684\u87BA\u7EBF\u7BA1\uFF1B\u66F4\u9AD8\u5C42\u6B21\u7684\u73AF\u951A\u5B9A\u5728\u6838\u9AA8\u67B6\u4E0A\uFF0C\u5F62\u6210\u67D3\u8272\u8D28\u73AF\u3002","\u67D3\u8272\u8D28\u590D\u5236\u5728 S \u671F\u8FDB\u884C\uFF1B\u590D\u5236\u8D77\u70B9\u3001\u7740\u4E1D\u7C92\u548C\u7AEF\u7C92\u662F\u67D3\u8272\u4F53\u7684\u4E09\u4E2A\u529F\u80FD\u5143\u4EF6\u3002\u6709\u4E1D\u5206\u88C2\u65F6\u67D3\u8272\u8D28\u9AD8\u5EA6\u51DD\u7F29\u6210\u67D3\u8272\u4F53\uFF0C\u4FBF\u4E8E\u5206\u914D\u3002","\u6838\u4EC1\u7EC4\u7EC7\u533A\uFF08NOR\uFF09\u8F6C\u5F55 rRNA \u524D\u4F53\uFF0C\u52A0\u5DE5\u540E\u4E0E\u6838\u7CD6\u4F53\u86CB\u767D\u7EC4\u88C5\u6210\u6838\u7CD6\u4F53\u5927\u5C0F\u4E9A\u57FA\uFF0C\u518D\u7ECF\u6838\u5B54\u8F93\u51FA\u5230\u7EC6\u80DE\u8D28\u3002"],pitfalls:["\u6838\u5B54\u590D\u5408\u4F53\u5916\u5F84\u7EA6 120 nm\uFF0C\u4F46\u6709\u6548\u8FD0\u8F93\u901A\u9053\u8FDC\u5C0F\u4E8E\u6B64\uFF1B\u5C0F\u5206\u5B50\u53EF\u88AB\u52A8\u6269\u6563\uFF0C\u5927\u5206\u5B50\u9700\u8981\u4FE1\u53F7\u5E8F\u5217\u548C Ran-GTP \u53C2\u4E0E\u7684\u4E3B\u52A8\u8FD0\u8F93\u3002","\u67D3\u8272\u8D28\u4E0D\u7B49\u4E8E\u67D3\u8272\u4F53\uFF1A\u67D3\u8272\u8D28\u662F\u95F4\u671F DNA-\u86CB\u767D\u590D\u5408\u7269\u7684\u5B58\u5728\u5F62\u5F0F\uFF0C\u67D3\u8272\u4F53\u662F\u5206\u88C2\u671F\u9AD8\u5EA6\u51DD\u7F29\u7684\u5F62\u6001\uFF1B\u4E8C\u8005\u662F\u540C\u4E00\u7269\u8D28\u7684\u4E0D\u540C\u72B6\u6001\u3002","\u6838\u4EC1\u4E0D\u662F\u6709\u819C\u7EC6\u80DE\u5668\uFF0C\u4E5F\u4E0D\u7B49\u4E8E\u201C\u7EC6\u80DE\u6838\u201D\uFF1B\u5B83\u53EA\u662F\u6838\u5185\u4E00\u4E2A\u65E0\u819C\u7684\u533A\u57DF\uFF0C\u4E0E\u6838\u7CD6\u4F53\u53D1\u751F\u6709\u5173\u3002"],quiz:[{q:"\u6838\u5B54\u590D\u5408\u4F53\u5982\u4F55\u517C\u987E\u201C\u9009\u62E9\u6027\u201D\u548C\u201C\u9AD8\u901A\u91CF\u201D\u8FD0\u8F93\uFF1F",a:"\u5C0F\u5206\u5B50\u548C\u79BB\u5B50\u53EF\u7ECF\u5B54\u9053\u88AB\u52A8\u6269\u6563\uFF1B\u5927\u5206\u5B50\u4F9D\u8D56\u6838\u5B9A\u4F4D\u4FE1\u53F7/\u6838\u8F93\u51FA\u4FE1\u53F7\u4E0E\u8F6C\u8FD0\u53D7\u4F53\uFF0C\u5E76\u5728 Ran-GTP \u68AF\u5EA6\u4E0B\u5B8C\u6210\u5B9A\u5411\u8FD0\u8F93\uFF0C\u56E0\u6B64\u65E2\u80FD\u9AD8\u6548\u901A\u884C\uFF0C\u53C8\u80FD\u4E25\u683C\u7B5B\u9009\u3002"},{q:"\u6838\u5C0F\u4F53\u7684\u7EC4\u6210\u662F\u4EC0\u4E48\uFF1F\u5B83\u5982\u4F55\u5E2E\u52A9 DNA \u538B\u7F29\uFF1F",a:"\u7531 H2A\u3001H2B\u3001H3\u3001H4 \u5404\u4E24\u5206\u5B50\u7EC4\u6210\u7EC4\u86CB\u767D\u516B\u805A\u4F53\uFF0C\u7EA6 147 bp DNA \u7F20\u7ED5\u7EA6 1.75 \u5708\u3002\u6838\u5C0F\u4F53\u4E32\u73E0\u518D\u6298\u53E0\u4E3A 30 nm \u7EA4\u7EF4\uFF0C\u9010\u7EA7\u538B\u7F29 DNA\u3002"},{q:"\u5E38\u67D3\u8272\u8D28\u4E0E\u5F02\u67D3\u8272\u8D28\u5728\u7ED3\u6784\u548C\u529F\u80FD\u4E0A\u6709\u4F55\u533A\u522B\uFF1F",a:"\u5E38\u67D3\u8272\u8D28\u8F83\u677E\u6563\u3001\u67D3\u8272\u6D45\u3001\u8F6C\u5F55\u6D3B\u8DC3\uFF1B\u5F02\u67D3\u8272\u8D28\u9AD8\u5EA6\u6D53\u7F29\u3001\u67D3\u8272\u6DF1\u3001\u8F6C\u5F55\u53D7\u6291\u5236\uFF0C\u5E38\u5206\u5E03\u5728\u6838\u819C\u5185\u4FA7\u6216\u6838\u4EC1\u5468\u56F4\u3002"}]}},{id:"endomembrane",no:"06",kicker:"SECRETION",cnKicker:"\u5206\u6CCC",short:"\u5185\u819C\u6CB3\u6D41",title:"\u7269\u8D28\u6CBF\u7740\u819C\u6539\u5F62",en:"THE SECRETORY RIVER",body:"\u7269\u8D28\u6CBF\u7740\u819C\uFF0C\u6539\u5199\u81EA\u5DF1\u7684\u5F62\u72B6\u3002\u5185\u8D28\u7F51\u6298\u53E0\u86CB\u767D\uFF0C\u9AD8\u5C14\u57FA\u4F53\u4FEE\u526A\u5E76\u5206\u62E3\uFF0C\u56CA\u6CE1\u51FA\u82BD\u3001\u7A7F\u884C\u3001\u878D\u5408\u3002\u6BCF\u4E00\u6B21\u819C\u878D\u5408\uFF0C\u90FD\u662F\u4E00\u6B21\u7CBE\u786E\u7684\u6295\u9012\uFF0C\u4E5F\u662F\u4E00\u6B21\u8EAB\u4EFD\u7684\u4EA4\u6362\u3002",facts:[{k:"\u987A\u5411\u8FD0\u8F93",v:"COPII \xB7 ER\u2192Golgi"},{k:"\u9006\u5411\u8FD0\u8F93",v:"COPI \xB7 Golgi\u2192ER"},{k:"\u819C\u878D\u5408",v:"SNARE \u4ECB\u5BFC"}],readout:"SECRETORY ROUTE / LIVE",accent:"#ffb36b",camera:{pos:[-7.8,3,8.2],target:[-3.2,.2,1.2],fov:46},duration:19e3,study:{textbook:{chapter:"\u7B2C\u4E94\u7AE0",title:"\u7EC6\u80DE\u8D28\u57FA\u8D28\u4E0E\u5185\u819C\u7CFB\u7EDF",pages:"74\u201399",sections:["\u7B2C\u4E00\u8282 \u7EC6\u80DE\u8D28\u57FA\u8D28\u53CA\u5176\u529F\u80FD","\u7B2C\u4E8C\u8282 \u7EC6\u80DE\u5185\u819C\u7CFB\u7EDF\u53CA\u5176\u529F\u80FD"]},related:["\u7B2C\u516D\u7AE0 \u86CB\u767D\u8D28\u5206\u9009\u4E0E\u819C\u6CE1\u8FD0\u8F93 \xB7 pp.100\u2013116","\u7B2C\u5341\u7AE0 \u6838\u7CD6\u4F53 \xB7 pp.213\u2013223"],objectives:["\u8BF4\u660E\u5185\u8D28\u7F51\u3001\u9AD8\u5C14\u57FA\u4F53\u548C\u6EB6\u9176\u4F53\u7684\u7ED3\u6784\u5206\u5DE5\u3002","\u7528\u4FE1\u53F7\u80BD\u5047\u8BF4\u89E3\u91CA\u5206\u6CCC\u86CB\u767D\u5982\u4F55\u8FDB\u5165\u5185\u8D28\u7F51\u3002","\u533A\u5206 COPII\u3001COPI \u548C\u7F51\u683C\u86CB\u767D\u5305\u88AB\u819C\u6CE1\u7684\u8FD0\u8F93\u65B9\u5411\u3002","\u7406\u89E3 M6P \u5206\u9009\u548C SNARE \u878D\u5408\u5728\u86CB\u767D\u8D28\u6295\u9012\u4E2D\u7684\u4F5C\u7528\u3002"],visuals:[{color:"#ffc073",label:"\u7425\u73C0\u7BA1\u7F51 = \u5185\u8D28\u7F51"},{color:"#ffa252",label:"\u53E0\u5C42\u5F27 = \u9AD8\u5C14\u57FA\u4F53"},{color:"#ffcf87",label:"\u5C0F\u5149\u7403 = \u8FD0\u8F93\u56CA\u6CE1"},{color:"#d66572",label:"\u7EA2\u8272\u5C0F\u7403 = \u6EB6\u9176\u4F53"}],concepts:[{term:"\u5185\u819C\u7CFB\u7EDF",en:"endomembrane system",def:"\u7531\u5185\u8D28\u7F51\u3001\u9AD8\u5C14\u57FA\u4F53\u3001\u6EB6\u9176\u4F53\u3001\u5185\u4F53\u3001\u5206\u6CCC\u6CE1\u7B49\u819C\u6027\u7EC6\u80DE\u5668\u7EC4\u6210\u7684\u52A8\u6001\u7F51\u7EDC\uFF0C\u901A\u8FC7\u819C\u6CE1\u8FD0\u8F93\u4EA4\u6362\u7269\u8D28\u3002"},{term:"\u5185\u8D28\u7F51",en:"endoplasmic reticulum, ER",def:"\u7531\u7BA1\u72B6\u548C\u6241\u56CA\u72B6\u819C\u56F4\u6210\u7684\u8FDE\u7EED\u4E09\u7EF4\u7F51\u7EDC\uFF1B\u7C97\u9762 ER \u9644\u7740\u6838\u7CD6\u4F53\uFF0C\u8D1F\u8D23\u5206\u6CCC\u86CB\u767D\u548C\u819C\u86CB\u767D\u7684\u5408\u6210\u3001\u6298\u53E0\u4E0E\u7CD6\u57FA\u5316\uFF1B\u5149\u9762 ER \u53C2\u4E0E\u8102\u8D28\u5408\u6210\u548C\u89E3\u6BD2\u3002"},{term:"\u9AD8\u5C14\u57FA\u4F53",en:"Golgi apparatus",def:"\u7531\u987A\u9762\u3001\u4E2D\u95F4\u533A\u548C\u53CD\u9762\u6241\u56CA\u7EC4\u6210\u7684\u6781\u6027\u7EC6\u80DE\u5668\uFF1B\u5BF9\u86CB\u767D\u8D28\u8FDB\u884C\u7CD6\u57FA\u5316\u4FEE\u9970\u3001\u5206\u9009\u548C\u5305\u88C5\uFF0C\u5E76\u5408\u6210\u90E8\u5206\u591A\u7CD6\u3002"},{term:"\u6EB6\u9176\u4F53",en:"lysosome",def:"\u542B\u591A\u79CD\u9178\u6027\u6C34\u89E3\u9176\u7684\u819C\u6027\u7EC6\u80DE\u5668\uFF0CpH \u7EA6 4.5\u20135\uFF1B\u8D1F\u8D23\u964D\u89E3\u7EC6\u80DE\u5185\u541E\u7269\u3001\u8001\u65E7\u7EC6\u80DE\u5668\u548C\u751F\u7269\u5927\u5206\u5B50\u3002"},{term:"\u4FE1\u53F7\u80BD",en:"signal peptide",def:"\u5206\u6CCC\u86CB\u767D N \u7AEF\u7684\u4E00\u6BB5\u758F\u6C34\u5E8F\u5217\uFF0C\u88AB\u4FE1\u53F7\u8BC6\u522B\u9897\u7C92\uFF08SRP\uFF09\u8BC6\u522B\uFF0C\u5F15\u5BFC\u6838\u7CD6\u4F53\u590D\u5408\u4F53\u5230\u5185\u8D28\u7F51\uFF0C\u5B9E\u73B0\u5171\u7FFB\u8BD1\u8F6C\u8FD0\u3002"},{term:"COPII \u4E0E COPI",en:"COPII / COPI vesicles",def:"COPII \u5305\u88AB\u819C\u6CE1\u4ECB\u5BFC ER\u2192\u9AD8\u5C14\u57FA\u4F53\u7684\u987A\u5411\u8FD0\u8F93\uFF1BCOPI \u4ECB\u5BFC\u9AD8\u5C14\u57FA\u4F53\u2192ER \u7684\u9006\u5411\u8FD0\u8F93\uFF0C\u5E76\u56DE\u6536\u9003\u9038\u7684 ER \u9A7B\u7559\u86CB\u767D\u3002"},{term:"SNARE",en:"SNARE complex",def:"\u4ECB\u5BFC\u819C\u6CE1\u4E0E\u9776\u819C\u878D\u5408\u7684\u86CB\u767D\u5BB6\u65CF\uFF1Bv-SNARE \u4E0E t-SNARE \u5F62\u6210\u56DB\u87BA\u65CB\u675F\uFF0C\u62C9\u8FD1\u4E24\u5C42\u819C\u5E76\u89E6\u53D1\u878D\u5408\u3002"}],mechanism:["\u5206\u6CCC\u86CB\u767D N \u7AEF\u7684\u4FE1\u53F7\u80BD\u88AB SRP \u8BC6\u522B\uFF0C\u7FFB\u8BD1\u6682\u65F6\u505C\u987F\uFF1BSRP \u4E0E ER \u819C\u4E0A\u7684 SRP \u53D7\u4F53\u7ED3\u5408\uFF0C\u6838\u7CD6\u4F53\u505C\u9760\u5728\u6613\u4F4D\u5B50\uFF08translocon\uFF09\u4E0A\uFF0C\u80BD\u94FE\u8FB9\u5408\u6210\u8FB9\u8FDB\u5165 ER \u8154\u3002\u4FE1\u53F7\u80BD\u968F\u540E\u88AB\u4FE1\u53F7\u80BD\u9176\u5207\u9664\u3002","\u8FDB\u5165 ER \u7684\u86CB\u767D\u5728\u4F34\u4FA3\u86CB\u767D\u548C\u6298\u53E0\u9176\u5E2E\u52A9\u4E0B\u6298\u53E0\uFF0C\u5E76\u8FDB\u884C N-\u8FDE\u63A5\u7CD6\u57FA\u5316\uFF1B\u672A\u6B63\u786E\u6298\u53E0\u7684\u86CB\u767D\u7ECF ERAD \u9014\u5F84\u53CD\u5411\u8F6C\u8FD0\u5230\u7EC6\u80DE\u8D28\u964D\u89E3\u3002","COPII \u5728 ER \u51FA\u53E3\u4F4D\u70B9\u51FA\u82BD\uFF0C\u628A\u8D27\u7269\u8FD0\u5F80\u9AD8\u5C14\u57FA\u4F53\uFF1BCOPI \u4ECE\u9AD8\u5C14\u57FA\u4F53\u51FA\u82BD\uFF0C\u56DE\u6536 ER \u9A7B\u7559\u86CB\u767D\uFF08KDEL \u4FE1\u53F7\uFF09\u3002\u7F51\u683C\u86CB\u767D\u5305\u88AB\u819C\u6CE1\u53C2\u4E0E TGN\u2192\u5185\u4F53/\u6EB6\u9176\u4F53\u4EE5\u53CA\u5185\u541E\u3002","\u6EB6\u9176\u4F53\u6C34\u89E3\u9176\u5728\u987A\u9762\u9AD8\u5C14\u57FA\u4F53\u83B7\u5F97\u7518\u9732\u7CD6-6-\u78F7\u9178\uFF08M6P\uFF09\u6807\u8BB0\uFF0C\u88AB M6P \u53D7\u4F53\u8BC6\u522B\u5E76\u5206\u9009\u5230\u5185\u4F53\uFF0C\u6700\u7EC8\u5728\u9178\u6027\u73AF\u5883\u4E2D\u91CA\u653E\u3002Rab \u86CB\u767D\u548C SNARE \u4FDD\u8BC1\u819C\u6CE1\u5B9A\u5411\u505C\u9760\u4E0E\u878D\u5408\u3002"],pitfalls:["COPII \u662F ER\u2192Golgi \u7684\u987A\u5411\u8FD0\u8F93\uFF0CCOPI \u662F Golgi\u2192ER \u7684\u9006\u5411\u8FD0\u8F93\uFF1B\u65B9\u5411\u4E0D\u8981\u8BB0\u53CD\u3002","\u5206\u6CCC\u86CB\u767D\u8FDB\u5165 ER \u662F\u5171\u7FFB\u8BD1\u8F6C\u8FD0\uFF1B\u7EBF\u7C92\u4F53\u3001\u53F6\u7EFF\u4F53\u86CB\u767D\u591A\u4E3A\u7FFB\u8BD1\u5B8C\u6210\u540E\u8FDB\u884C\u540E\u7FFB\u8BD1\u8F6C\u8FD0\u3002","\u9AD8\u5C14\u57FA\u4F53\u4E0D\u53EA\u662F\u201C\u5305\u88C5\u8F66\u95F4\u201D\uFF0C\u5B83\u8FD8\u662F\u7CD6\u57FA\u5316\u4FEE\u9970\u3001\u86CB\u767D\u8D28\u5206\u9009\u548C\u6EB6\u9176\u4F53\u9176\u6807\u8BB0\u7684\u5173\u952E\u573A\u6240\u3002"],quiz:[{q:"\u4FE1\u53F7\u80BD\u5047\u8BF4\u7684\u6838\u5FC3\u5185\u5BB9\u662F\u4EC0\u4E48\uFF1F",a:"\u5206\u6CCC\u86CB\u767D N \u7AEF\u4FE1\u53F7\u80BD\u88AB SRP \u8BC6\u522B\uFF0CSRP-\u6838\u7CD6\u4F53\u590D\u5408\u4F53\u7ED3\u5408 ER \u819C\u4E0A\u7684 SRP \u53D7\u4F53\uFF0C\u4F7F\u65B0\u751F\u80BD\u94FE\u5728\u6613\u4F4D\u5B50\u5904\u8FDB\u5165 ER \u8154\uFF1B\u4FE1\u53F7\u80BD\u968F\u540E\u88AB\u5207\u9664\uFF0C\u86CB\u767D\u5728 ER \u8154\u4E2D\u6298\u53E0\u548C\u4FEE\u9970\u3002"},{q:"\u6EB6\u9176\u4F53\u6C34\u89E3\u9176\u5982\u4F55\u88AB\u51C6\u786E\u5206\u9009\u5230\u6EB6\u9176\u4F53\uFF1F",a:"\u5728\u987A\u9762\u9AD8\u5C14\u57FA\u4F53\uFF0C\u6C34\u89E3\u9176\u83B7\u5F97\u7518\u9732\u7CD6-6-\u78F7\u9178\uFF08M6P\uFF09\u6807\u8BB0\uFF1BM6P \u53D7\u4F53\u5728 TGN \u8BC6\u522B\u5E76\u5305\u88C5\u6210\u7F51\u683C\u86CB\u767D\u819C\u6CE1\uFF0C\u8FD0\u9001\u5230\u5185\u4F53\uFF0C\u9178\u6027\u73AF\u5883\u4F7F\u9176\u4E0E\u53D7\u4F53\u89E3\u79BB\u5E76\u8FDB\u5165\u6EB6\u9176\u4F53\u3002"},{q:"COPII \u548C COPI \u819C\u6CE1\u5206\u522B\u627F\u62C5\u4EC0\u4E48\u8FD0\u8F93\u65B9\u5411\uFF1F",a:"COPII \u4ECB\u5BFC ER\u2192\u9AD8\u5C14\u57FA\u4F53\u7684\u987A\u5411\u8FD0\u8F93\uFF1BCOPI \u4ECB\u5BFC\u9AD8\u5C14\u57FA\u4F53\u2192ER \u7684\u9006\u5411\u8FD0\u8F93\uFF0C\u56DE\u6536 ER \u9A7B\u7559\u86CB\u767D\u5E76\u7EF4\u6301\u819C\u6210\u5206\u5E73\u8861\u3002"}]}},{id:"mitosis",no:"07",kicker:"MITOSIS",cnKicker:"\u5206\u88C2",short:"\u4E00\u5206\u4E3A\u4E8C",title:"\u628A\u5B87\u5B99\u4EA4\u7ED9\u4E24\u4E2A\u672A\u6765",en:"ONE COSMOS, TWO FUTURES",body:"\u5206\u88C2\uFF0C\u662F\u628A\u540C\u4E00\u4E2A\u5B87\u5B99\u4EA4\u7ED9\u4E24\u4E2A\u672A\u6765\u3002\u67D3\u8272\u8D28\u51DD\u7F29\u6210\u67D3\u8272\u4F53\uFF0C\u7EBA\u9524\u4F53\u4ECE\u4E24\u6781\u4F38\u5165\uFF1B\u52A8\u7C92\u88AB\u5FAE\u7BA1\u6355\u83B7\uFF0C\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u5728\u68C0\u9A8C\u70B9\u7684\u51DD\u89C6\u4E0B\u5206\u79BB\uFF0C\u76F4\u5230\u4E24\u4E2A\u5B50\u7EC6\u80DE\u5404\u81EA\u62E5\u6709\u5B8C\u6574\u7684\u57FA\u56E0\u7EC4\u3002",facts:[{k:"\u4EBA\u7C7B\u67D3\u8272\u4F53",v:"46 \u6761"},{k:"\u590D\u5236\u540E\u67D3\u8272\u5355\u4F53",v:"92 \u6761"},{k:"\u8D28\u91CF\u63A7\u5236",v:"SAC \u68C0\u9A8C\u70B9"}],readout:"SPINDLE ASSEMBLY / SAC",accent:"#ff74b7",camera:{pos:[0,1.3,15.5],target:[0,0,0],fov:40},duration:23e3,study:{textbook:{chapter:"\u7B2C\u5341\u4E8C\u7AE0",title:"\u7EC6\u80DE\u5468\u671F\u4E0E\u7EC6\u80DE\u5206\u88C2",pages:"261\u2013285",sections:["\u7B2C\u4E00\u8282 \u7EC6\u80DE\u5468\u671F","\u7B2C\u4E8C\u8282 \u7EC6\u80DE\u5206\u88C2"]},related:["\u7B2C\u5341\u4E09\u7AE0 \u7EC6\u80DE\u589E\u6B96\u8C03\u63A7\u4E0E\u764C\u7EC6\u80DE \xB7 pp.287\u2013306"],objectives:["\u6982\u8FF0\u7EC6\u80DE\u5468\u671F\u56DB\u4E2A\u65F6\u76F8\u53CA\u4E09\u4E2A\u5173\u952E\u68C0\u9A8C\u70B9\u3002","\u6309\u987A\u5E8F\u8BF4\u51FA\u6709\u4E1D\u5206\u88C2\u5404\u671F\u7684\u4E3B\u8981\u4E8B\u4EF6\uFF0C\u533A\u5206\u540E\u671F A \u548C\u540E\u671F B\u3002","\u89E3\u91CA CDK1-cyclin B\u3001APC/C\u3001separase \u548C SAC \u5982\u4F55\u63A7\u5236\u67D3\u8272\u4F53\u5206\u79BB\u3002"],visuals:[{color:"#ff6ab4",label:"\u7C89/\u9752 X \u5F62\u4F53 = \u59D0\u59B9\u67D3\u8272\u5355\u4F53"},{color:"#83f8ff",label:"\u653E\u5C04\u7EC6\u7EBF = \u7EBA\u9524\u4F53\u5FAE\u7BA1"},{color:"#7dfff0",label:"\u4E24\u7AEF\u4EAE\u7403 = \u4E2D\u5FC3\u4F53/\u7EBA\u9524\u4F53\u6781"},{color:"#8a7cff",label:"\u4E24\u4FA7\u7403\u4F53 = \u6B63\u5728\u5F62\u6210\u7684\u5B50\u6838"}],concepts:[{term:"\u7EC6\u80DE\u5468\u671F",en:"cell cycle",def:"\u7EC6\u80DE\u4ECE\u4E00\u6B21\u5206\u88C2\u7ED3\u675F\u5230\u4E0B\u4E00\u6B21\u5206\u88C2\u7ED3\u675F\u6240\u7ECF\u5386\u7684\u8FC7\u7A0B\uFF0C\u5206\u4E3A G1\u3001S\u3001G2 \u548C M \u671F\uFF1BDNA \u590D\u5236\u5728 S \u671F\u5B8C\u6210\u3002"},{term:"\u68C0\u9A8C\u70B9",en:"cell cycle checkpoint",def:"\u76D1\u6D4B\u5173\u952E\u4E8B\u4EF6\u662F\u5426\u5B8C\u6210\u7684\u63A7\u5236\u70B9\uFF0C\u5982 G1/S\u3001G2/M \u548C\u7EBA\u9524\u4F53\u7EC4\u88C5\u68C0\u9A8C\u70B9\uFF1B\u5F02\u5E38\u65F6\u6682\u505C\u5468\u671F\u4EE5\u4FEE\u590D\u6216\u89E6\u53D1\u6B7B\u4EA1\u3002"},{term:"MPF",en:"maturation/mitosis promoting factor",def:"\u7531 CDK1 \u4E0E cyclin B \u7EC4\u6210\u7684\u590D\u5408\u4F53\uFF0C\u9A71\u52A8 G2/M \u8F6C\u6362\uFF1Bcyclin B \u7684\u5408\u6210\u3001\u5B9A\u4F4D\u548C\u964D\u89E3\u51B3\u5B9A\u5176\u6D3B\u6027\u3002"},{term:"\u51DD\u7F29\u86CB\u767D\u4E0E\u9ECF\u8FDE\u86CB\u767D",en:"condensin / cohesin",def:"SMC \u86CB\u767D\u590D\u5408\u4F53\uFF1B\u51DD\u7F29\u86CB\u767D\u4FC3\u8FDB\u67D3\u8272\u4F53\u51DD\u7F29\uFF0C\u9ECF\u8FDE\u86CB\u767D\u628A\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u9ECF\u5728\u4E00\u8D77\uFF0C\u76F4\u5230\u540E\u671F\u88AB separase \u5207\u5272\u3002"},{term:"\u52A8\u7C92",en:"kinetochore",def:"\u4F4D\u4E8E\u67D3\u8272\u4F53\u7740\u4E1D\u7C92\u4E24\u4FA7\u7684\u86CB\u767D\u590D\u5408\u4F53\uFF0C\u8FDE\u63A5\u7740\u4E1D\u7C92 DNA \u4E0E\u7EBA\u9524\u4F53\u5FAE\u7BA1\uFF0C\u5E76\u53C2\u4E0E SAC \u4FE1\u53F7\u3002"},{term:"SAC",en:"spindle assembly checkpoint",def:"\u76D1\u6D4B\u6240\u6709\u52A8\u7C92\u662F\u5426\u88AB\u5FAE\u7BA1\u6B63\u786E\u8FDE\u63A5\uFF1B\u672A\u8FDE\u63A5\u65F6\u6291\u5236 APC/C\uFF0C\u963B\u6B62\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u63D0\u524D\u5206\u79BB\u3002"},{term:"\u540E\u671F A / \u540E\u671F B",en:"anaphase A / anaphase B",def:"\u540E\u671F A \u662F\u52A8\u7C92\u5FAE\u7BA1\u7F29\u77ED\u3001\u67D3\u8272\u4F53\u5411\u4E24\u6781\u79FB\u52A8\uFF1B\u540E\u671F B \u662F\u6781\u5FAE\u7BA1\u6ED1\u52A8\u548C\u5EF6\u957F\uFF0C\u628A\u4E24\u6781\u63A8\u5F00\u3002"}],mechanism:["G1 \u671F\u51C6\u5907 DNA \u590D\u5236\uFF0CS \u671F\u5B8C\u6210 DNA \u590D\u5236\uFF0CG2 \u671F\u68C0\u67E5\u590D\u5236\u5B8C\u6574\u6027\u5E76\u50A8\u5907\u5206\u88C2\u6240\u9700\u7269\u8D28\uFF0CM \u671F\u5B8C\u6210\u6838\u5206\u88C2\u548C\u80DE\u8D28\u5206\u88C2\u3002G1/S\u3001G2/M \u548C SAC \u662F\u4E09\u4E2A\u5173\u952E\u63A7\u5236\u70B9\u3002","CDK1-cyclin B\uFF08MPF\uFF09\u5728 G2/M \u8F6C\u6362\u65F6\u88AB\u6FC0\u6D3B\uFF0C\u78F7\u9178\u5316\u51DD\u7F29\u86CB\u767D\u3001\u6838\u7EA4\u5C42\u86CB\u767D\u548C\u7EBA\u9524\u4F53\u76F8\u5173\u86CB\u767D\uFF0C\u63A8\u52A8\u67D3\u8272\u4F53\u51DD\u7F29\u3001\u6838\u819C\u89E3\u4F53\u4E0E\u7EBA\u9524\u4F53\u7EC4\u88C5\u3002","\u524D\u4E2D\u671F\uFF0C\u7EBA\u9524\u4F53\u5FAE\u7BA1\u6355\u83B7\u52A8\u7C92\uFF1B\u672A\u8FDE\u63A5\u7684\u52A8\u7C92\u4EA7\u751F Mad/Bub \u4FE1\u53F7\uFF0C\u6291\u5236 APC/C\u3002\u6240\u6709\u67D3\u8272\u4F53\u6392\u5217\u5230\u8D64\u9053\u9762\u540E\uFF0CSAC \u89E3\u9664\uFF0CAPC/C \u6CDB\u7D20\u5316 securin\uFF0C\u91CA\u653E separase\uFF0C\u5207\u5272\u9ECF\u8FDE\u86CB\u767D\uFF0C\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u5206\u79BB\u3002","\u540E\u671F A \u7531\u52A8\u7C92\u5FAE\u7BA1\u7F29\u77ED\u9A71\u52A8\uFF1B\u540E\u671F B \u7531 kinesin-5 \u7B49\u53CC\u6781\u9A6C\u8FBE\u5728\u53CD\u5411\u5E73\u884C\u6781\u5FAE\u7BA1\u4E0A\u6ED1\u52A8\uFF0C\u63A8\u5F00\u4E24\u6781\u3002\u672B\u671F\u6838\u819C\u91CD\u5EFA\uFF0C\u80DE\u8D28\u5206\u88C2\u7531\u808C\u52A8\u86CB\u767D-\u808C\u7403\u86CB\u767D II \u6536\u7F29\u73AF\u5B8C\u6210\u3002"],pitfalls:["DNA \u590D\u5236\u53D1\u751F\u5728 S \u671F\uFF0C\u4E0D\u662F M \u671F\uFF1B\u6709\u4E1D\u5206\u88C2\u53EA\u8D1F\u8D23\u628A\u5DF2\u590D\u5236\u7684\u67D3\u8272\u4F53\u5206\u914D\u3002","\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u5728\u540E\u671F\u5206\u79BB\uFF0C\u4E0D\u662F\u524D\u671F\uFF1B\u524D\u671F\u53D1\u751F\u7684\u662F\u67D3\u8272\u8D28\u51DD\u7F29\u548C\u7EBA\u9524\u4F53\u5F00\u59CB\u5F62\u6210\u3002","SAC \u4E0D\u662F\u201C\u68C0\u67E5\u67D3\u8272\u4F53\u662F\u5426\u51DD\u7F29\u201D\uFF0C\u800C\u662F\u68C0\u67E5\u52A8\u7C92\u4E0E\u5FAE\u7BA1\u7684\u8FDE\u63A5\u548C\u5F20\u529B\uFF1BSAC \u5931\u6548\u4F1A\u5BFC\u81F4\u975E\u6574\u500D\u4F53\u3002","\u6709\u4E1D\u5206\u88C2\u4EA7\u751F\u4E24\u4E2A\u9057\u4F20\u7269\u8D28\u76F8\u540C\u7684\u5B50\u7EC6\u80DE\uFF1B\u51CF\u6570\u5206\u88C2\u53D1\u751F\u540C\u6E90\u91CD\u7EC4\u548C\u4E24\u6B21\u8FDE\u7EED\u5206\u88C2\uFF0C\u4EA7\u751F\u5355\u500D\u4F53\u7EC6\u80DE\u3002"],quiz:[{q:"\u5982\u679C SAC \u5931\u6548\uFF0C\u7EC6\u80DE\u53EF\u80FD\u51FA\u73B0\u4EC0\u4E48\u540E\u679C\uFF1F",a:"\u672A\u6B63\u786E\u8FDE\u63A5\u7684\u67D3\u8272\u4F53\u53EF\u80FD\u5728\u540E\u671F\u63D0\u524D\u5206\u79BB\uFF0C\u5BFC\u81F4\u5B50\u7EC6\u80DE\u67D3\u8272\u4F53\u6570\u76EE\u5F02\u5E38\uFF08\u975E\u6574\u500D\u4F53\uFF09\uFF0C\u5E76\u53EF\u80FD\u4FC3\u8FDB\u80BF\u7624\u53D1\u751F\u3002"},{q:"APC/C \u5982\u4F55\u89E6\u53D1\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u5206\u79BB\uFF1F",a:"APC/C \u6CDB\u7D20\u5316 securin\uFF0C\u4F7F\u5176\u88AB\u86CB\u767D\u9176\u4F53\u964D\u89E3\uFF1B\u91CA\u653E\u7684 separase \u5207\u5272\u9ECF\u8FDE\u86CB\u767D\uFF0C\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u56E0\u6B64\u5931\u53BB\u9ECF\u8FDE\u5E76\u5206\u79BB\u3002"},{q:"\u6BD4\u8F83\u540E\u671F A \u548C\u540E\u671F B \u7684\u9A71\u52A8\u673A\u5236\u3002",a:"\u540E\u671F A \u4E3B\u8981\u9760\u52A8\u7C92\u5FAE\u7BA1\u7F29\u77ED\uFF0C\u628A\u67D3\u8272\u4F53\u62C9\u5411\u4E24\u6781\uFF1B\u540E\u671F B \u4E3B\u8981\u9760\u6781\u5FAE\u7BA1\u6ED1\u52A8\u548C\u5EF6\u957F\uFF0C\u628A\u4E24\u6781\u63A8\u5F00\uFF0C\u4E8C\u8005\u5171\u540C\u5B8C\u6210\u67D3\u8272\u4F53\u5206\u914D\u3002"}]}}],Ru={membrane:[1,1,.2,.16,.28,.22,.1],lipids:[1,1,.18,.08,.1,.1,.04],proteins:[.9,1,.2,.1,.18,.16,.04],particles:[1,.55,.9,.55,.72,.72,.42],cytoskeleton:[.55,.2,1,.28,.36,.52,.38],mitochondria:[.78,.1,.3,1,.18,.14,.08],nucleus:[1,.16,.3,.1,1,.2,.1],endomembrane:[.62,.08,.25,.08,.35,1,.12],mitosis:[0,0,0,0,0,0,1]};var $i=`
+vec3 ca_mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec4 ca_mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+vec4 ca_permute(vec4 x) { return ca_mod289(((x * 34.0) + 1.0) * x); }
+vec4 ca_taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+float ca_snoise(vec3 v) {
+  const vec2 C = vec2(1.0 / 6.0, 1.0 / 3.0);
+  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+  vec3 i  = floor(v + dot(v, C.yyy));
+  vec3 x0 = v - i + dot(i, C.xxx);
+  vec3 g = step(x0.yzx, x0.xyz);
+  vec3 l = 1.0 - g;
+  vec3 i1 = min(g.xyz, l.zxy);
+  vec3 i2 = max(g.xyz, l.zxy);
+  vec3 x1 = x0 - i1 + C.xxx;
+  vec3 x2 = x0 - i2 + C.yyy;
+  vec3 x3 = x0 - D.yyy;
+  i = ca_mod289(i);
+  vec4 p = ca_permute(ca_permute(ca_permute(
+      i.z + vec4(0.0, i1.z, i2.z, 1.0))
+      + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+      + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+  float n_ = 0.142857142857;
+  vec3 ns = n_ * D.wyz - D.xzx;
+  vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+  vec4 x_ = floor(j * ns.z);
+  vec4 y_ = floor(j - 7.0 * x_);
+  vec4 x = x_ * ns.x + ns.yyyy;
+  vec4 y = y_ * ns.x + ns.yyyy;
+  vec4 h = 1.0 - abs(x) - abs(y);
+  vec4 b0 = vec4(x.xy, y.xy);
+  vec4 b1 = vec4(x.zw, y.zw);
+  vec4 s0 = floor(b0) * 2.0 + 1.0;
+  vec4 s1 = floor(b1) * 2.0 + 1.0;
+  vec4 sh = -step(h, vec4(0.0));
+  vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+  vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+  vec3 p0 = vec3(a0.xy, h.x);
+  vec3 p1 = vec3(a0.zw, h.y);
+  vec3 p2 = vec3(a1.xy, h.z);
+  vec3 p3 = vec3(a1.zw, h.w);
+  vec4 norm = ca_taylorInvSqrt(vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3)));
+  p0 *= norm.x;
+  p1 *= norm.y;
+  p2 *= norm.z;
+  p3 *= norm.w;
+  vec4 m = max(0.6 - vec4(dot(x0, x0), dot(x1, x1), dot(x2, x2), dot(x3, x3)), 0.0);
+  m = m * m;
+  return 42.0 * dot(m * m, vec4(dot(p0, x0), dot(p1, x1), dot(p2, x2), dot(p3, x3)));
+}
+
+float ca_fbm(vec3 p) {
+  float f = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 5; i++) {
+    f += a * ca_snoise(p);
+    p = p * 2.02 + 11.7;
+    a *= 0.5;
+  }
+  return f;
+}
+`,ef=`
+uniform float uTime;
+uniform float uAmp;
+varying vec3 vN;
+varying vec3 vV;
+varying vec3 vPos;
+varying float vNoise;
+${$i}
+void main() {
+  vec3 p = position;
+  vec3 dir = normalize(position);
+  float n = ca_fbm(dir * 2.15 + vec3(0.0, uTime * 0.055, 0.0));
+  float breath = sin(uTime * 0.72 + position.y * 0.55 + position.x * 0.31);
+  p += normal * (n * uAmp + breath * 0.025);
+  vec4 wp = modelMatrix * vec4(p, 1.0);
+  vN = normalize(mat3(modelMatrix) * normal);
+  vV = normalize(cameraPosition - wp.xyz);
+  vPos = p;
+  vNoise = n;
+  gl_Position = projectionMatrix * viewMatrix * wp;
+}
+`,tf=`
+uniform float uTime;
+uniform float uOpacity;
+uniform vec3 uColorA;
+uniform vec3 uColorB;
+uniform vec3 uRim;
+varying vec3 vN;
+varying vec3 vV;
+varying vec3 vPos;
+varying float vNoise;
+${$i}
+void main() {
+  vec3 N = normalize(vN);
+  vec3 V = normalize(vV);
+  float fres = pow(1.0 - clamp(abs(dot(N, V)), 0.0, 1.0), 2.3);
+  float flow = 0.5 + 0.5 * sin(vPos.y * 1.9 + vPos.x * 1.4 - vNoise * 4.2 + uTime * 0.5);
+  float veins = smoothstep(0.42, 0.82, ca_fbm(vPos * 1.05 + vec3(0.0, uTime * 0.045, 0.0)) * 0.5 + 0.5);
+  float micro = 0.5 + 0.5 * sin(vPos.z * 8.0 + vPos.y * 3.0 + uTime * 1.1);
+  vec3 col = mix(uColorA, uColorB, flow * 0.55 + veins * 0.45);
+  col += uRim * (fres * 1.15 + flow * 0.06 + micro * 0.02);
+  float alpha = (0.024 + fres * 0.4 + veins * 0.055) * uOpacity;
+  if (alpha < 0.004) discard;
+  gl_FragColor = vec4(col, alpha);
+}
+`,dr=`
+varying vec3 vN;
+varying vec3 vV;
+varying vec3 vPos;
+void main() {
+  vec4 wp = modelMatrix * vec4(position, 1.0);
+  vN = normalize(mat3(modelMatrix) * normal);
+  vV = normalize(cameraPosition - wp.xyz);
+  vPos = position;
+  gl_Position = projectionMatrix * viewMatrix * wp;
+}
+`,fr=`
+uniform vec3 uColor;
+uniform vec3 uColorB;
+uniform float uOpacity;
+uniform float uTime;
+uniform float uPower;
+varying vec3 vN;
+varying vec3 vV;
+varying vec3 vPos;
+void main() {
+  float fres = pow(1.0 - clamp(abs(dot(normalize(vN), normalize(vV))), 0.0, 1.0), uPower);
+  float band = 0.5 + 0.5 * sin(vPos.y * 5.0 + vPos.x * 2.0 - uTime * 0.8);
+  vec3 col = mix(uColor, uColorB, band * 0.45);
+  col *= (0.72 + fres * 1.5);
+  float alpha = uOpacity * (fres * 0.75 + 0.014);
+  gl_FragColor = vec4(col, alpha);
+}
+`,nf=`
+uniform float uTime;
+uniform vec3 uColorA;
+uniform vec3 uColorB;
+varying vec3 vCol;
+varying float vPulse;
+void main() {
+  vec3 p = position;
+  vec3 ip = vec3(instanceMatrix[3][0], instanceMatrix[3][1], instanceMatrix[3][2]);
+  float ph = uTime * 0.72 + ip.x * 1.35 + ip.y * 2.1 + ip.z * 1.65;
+  p.x += sin(ph) * 0.04;
+  p.z += cos(ph * 0.91) * 0.04;
+  p.y += sin(ph * 0.47) * 0.025;
+  vec4 wp = modelMatrix * instanceMatrix * vec4(p, 1.0);
+  vCol = mix(uColorA, uColorB, 0.5 + 0.5 * sin(ph * 0.55));
+  vPulse = 0.62 + 0.38 * sin(ph);
+  gl_Position = projectionMatrix * viewMatrix * wp;
+}
+`,sf=`
+uniform float uOpacity;
+varying vec3 vCol;
+varying float vPulse;
+void main() {
+  gl_FragColor = vec4(vCol * (1.25 + vPulse * 0.9), uOpacity * vPulse);
+}
+`,Pu=`
+uniform float uTime;
+uniform float uPixelRatio;
+uniform float uSize;
+uniform float uOpacity;
+uniform float uDrift;
+attribute float aSeed;
+attribute float aScale;
+varying float vSeed;
+varying float vAlpha;
+${$i}
+void main() {
+  vSeed = aSeed;
+  vec3 p = position;
+  float ang = uTime * (0.025 + aSeed * 0.055);
+  float c = cos(ang);
+  float s = sin(ang);
+  p.xz = mat2(c, -s, s, c) * p.xz;
+  float n1 = ca_snoise(position * 0.18 + vec3(0.0, uTime * 0.05, 0.0));
+  float n2 = ca_snoise(position * 0.16 + vec3(17.0, uTime * 0.04, 3.0));
+  p += vec3(n1, n2, ca_snoise(position * 0.2 + vec3(3.0, uTime * 0.03, 7.0))) * uDrift;
+  vec4 mv = modelViewMatrix * vec4(p, 1.0);
+  gl_Position = projectionMatrix * mv;
+  float depth = max(-mv.z, 0.1);
+  gl_PointSize = clamp(uSize * aScale * uPixelRatio * (230.0 / depth), 1.0, 20.0);
+  vAlpha = smoothstep(0.0, 1.6, depth);
+}
+`,Iu=`
+uniform float uOpacity;
+varying float vSeed;
+varying float vAlpha;
+void main() {
+  vec2 c = gl_PointCoord - 0.5;
+  float d = length(c);
+  float core = smoothstep(0.5, 0.0, d);
+  float halo = smoothstep(0.5, 0.12, d) * 0.35;
+  vec3 col = mix(vec3(0.30, 0.96, 0.88), vec3(1.0, 0.35, 0.68), smoothstep(0.52, 0.9, fract(vSeed * 13.71)));
+  col = mix(col, vec3(1.0, 0.72, 0.36), smoothstep(0.87, 0.995, fract(vSeed * 7.31)) * 0.8);
+  gl_FragColor = vec4(col, (core + halo) * vAlpha * uOpacity);
+}
+`,rf=`
+uniform float uTime;
+varying vec3 vN;
+varying vec3 vV;
+varying vec3 vPos;
+varying float vNoise;
+${$i}
+void main() {
+  vec3 p = position;
+  float n = ca_fbm(normalize(position) * 1.35 + vec3(0.0, uTime * 0.04, 0.0));
+  p += normal * n * 0.065;
+  vec4 wp = modelMatrix * vec4(p, 1.0);
+  vN = normalize(mat3(modelMatrix) * normal);
+  vV = normalize(cameraPosition - wp.xyz);
+  vPos = p;
+  vNoise = n;
+  gl_Position = projectionMatrix * viewMatrix * wp;
+}
+`,af=`
+uniform float uTime;
+uniform float uOpacity;
+uniform vec3 uColorA;
+uniform vec3 uColorB;
+uniform vec3 uColorC;
+varying vec3 vN;
+varying vec3 vV;
+varying vec3 vPos;
+varying float vNoise;
+${$i}
+void main() {
+  vec3 N = normalize(vN);
+  vec3 V = normalize(vV);
+  float fres = pow(1.0 - clamp(abs(dot(N, V)), 0.0, 1.0), 2.0);
+  float n = ca_fbm(vPos * 0.78 + vec3(0.0, uTime * 0.07, 4.0));
+  float veins = smoothstep(-0.2, 0.55, n);
+  float filament = smoothstep(0.55, 0.9, ca_fbm(vPos * 2.1 + vec3(3.0, uTime * 0.03, 0.0)) * 0.5 + 0.5);
+  vec3 col = mix(uColorA, uColorB, veins * 0.8);
+  col += uColorC * (pow(fres, 1.7) * 1.25 + filament * 0.12);
+  col += uColorB * pow(max(0.0, sin(vPos.y * 3.4 + vPos.x * 1.7 + uTime * 0.65)), 8.0) * 0.12;
+  gl_FragColor = vec4(col, uOpacity);
+}
+`,of=`
+uniform float uTime;
+varying vec3 vN;
+varying vec3 vV;
+varying vec3 vLocal;
+${$i}
+void main() {
+  vec3 p = position;
+  float pulse = ca_snoise(normalize(position) * 2.0 + vec3(0.0, uTime * 0.25, 0.0));
+  p += normal * pulse * 0.018;
+  vec4 wp = modelMatrix * vec4(p, 1.0);
+  vN = normalize(mat3(modelMatrix) * normal);
+  vV = normalize(cameraPosition - wp.xyz);
+  vLocal = position;
+  gl_Position = projectionMatrix * viewMatrix * wp;
+}
+`,lf=`
+uniform float uTime;
+uniform float uOpacity;
+uniform vec3 uColorA;
+uniform vec3 uColorB;
+uniform vec3 uColorC;
+varying vec3 vN;
+varying vec3 vV;
+varying vec3 vLocal;
+void main() {
+  vec3 N = normalize(vN);
+  vec3 V = normalize(vV);
+  float fres = pow(1.0 - clamp(abs(dot(N, V)), 0.0, 1.0), 2.0);
+  float ribs = 0.5 + 0.5 * sin(vLocal.y * 19.0 + sin(vLocal.x * 8.5 + uTime * 1.15) * 1.9 + vLocal.z * 5.0);
+  float ribs2 = pow(ribs, 3.0);
+  vec3 col = mix(uColorA, uColorB, ribs * 0.62 + 0.2);
+  col += uColorC * (ribs2 * 1.1 + fres * 0.9);
+  float alpha = uOpacity * (0.65 + fres * 0.25);
+  gl_FragColor = vec4(col, alpha);
+}
+`,cf=`
+varying vec2 vUv;
+varying vec3 vN;
+varying vec3 vV;
+void main() {
+  vec4 wp = modelMatrix * vec4(position, 1.0);
+  vUv = uv;
+  vN = normalize(mat3(modelMatrix) * normal);
+  vV = normalize(cameraPosition - wp.xyz);
+  gl_Position = projectionMatrix * viewMatrix * wp;
+}
+`,uf=`
+uniform float uTime;
+uniform float uOpacity;
+uniform vec3 uColorA;
+uniform vec3 uColorB;
+varying vec2 vUv;
+varying vec3 vN;
+varying vec3 vV;
+void main() {
+  float fres = pow(1.0 - clamp(abs(dot(normalize(vN), normalize(vV))), 0.0, 1.0), 2.0);
+  float dash = smoothstep(0.22, 0.95, sin(vUv.x * 40.0 - uTime * 2.6 + vUv.y * 7.0) * 0.5 + 0.5);
+  vec3 col = mix(uColorA, uColorB, vUv.x * 0.62 + 0.15);
+  col += uColorB * (dash * 1.15 + fres * 1.3);
+  float alpha = uOpacity * (0.22 + dash * 0.58 + fres * 0.28);
+  gl_FragColor = vec4(col, alpha);
+}
+`,Nu=`
+attribute float aT;
+attribute float aSeed;
+varying float vT;
+varying float vSeed;
+void main() {
+  vT = aT;
+  vSeed = aSeed;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`,Lu=`
+uniform float uTime;
+uniform float uOpacity;
+uniform vec3 uColorA;
+uniform vec3 uColorB;
+varying float vT;
+varying float vSeed;
+void main() {
+  float pulse = 0.5 + 0.5 * sin(vT * 28.0 - uTime * 1.9 + vSeed * 6.283);
+  vec3 col = mix(uColorA, uColorB, pulse * 0.7 + vSeed * 0.3);
+  float alpha = uOpacity * (0.16 + 0.62 * pulse);
+  gl_FragColor = vec4(col * (1.0 + pulse * 0.6), alpha);
+}
+`,hf=`
+varying vec3 vDir;
+void main() {
+  vDir = normalize(position);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`,df=`
+uniform float uTime;
+uniform float uOpacity;
+varying vec3 vDir;
+${$i}
+void main() {
+  vec3 d = normalize(vDir);
+  float horizon = smoothstep(-0.75, 0.85, d.y);
+  vec3 col = mix(vec3(0.0025, 0.006, 0.011), vec3(0.008, 0.028, 0.046), horizon);
+  float n = ca_fbm(d * 3.1 + vec3(0.0, uTime * 0.009, 0.0));
+  float cloud = pow(max(n * 0.5 + 0.5, 0.0), 3.0);
+  col += vec3(0.025, 0.12, 0.145) * cloud * 1.2;
+  float ribbon = smoothstep(0.67, 0.94, sin(d.x * 4.2 + d.y * 5.8 + n * 2.2 + uTime * 0.025) * 0.5 + 0.5);
+  col += vec3(0.20, 0.025, 0.13) * ribbon * 0.32;
+  float glow = smoothstep(0.45, 1.0, 1.0 - abs(d.x * 0.6 + d.y * 0.3));
+  col += vec3(0.012, 0.055, 0.06) * glow * 0.5;
+  gl_FragColor = vec4(col * uOpacity, 1.0);
+}
+`,ff=`
+varying vec2 vUv;
+varying vec3 vN;
+varying vec3 vV;
+void main() {
+  vec4 wp = modelMatrix * vec4(position, 1.0);
+  vUv = uv;
+  vN = normalize(mat3(modelMatrix) * normal);
+  vV = normalize(cameraPosition - wp.xyz);
+  gl_Position = projectionMatrix * viewMatrix * wp;
+}
+`,pf=`
+uniform float uTime;
+uniform float uOpacity;
+uniform vec3 uColor;
+varying vec2 vUv;
+varying vec3 vN;
+varying vec3 vV;
+${$i}
+void main() {
+  float facing = abs(dot(normalize(vN), normalize(vV)));
+  float fall = smoothstep(0.0, 0.25, vUv.y) * (1.0 - smoothstep(0.55, 1.0, vUv.y));
+  float n = ca_fbm(vec3(vUv * vec2(6.0, 2.4), uTime * 0.07));
+  float wisps = 0.5 + 0.5 * n;
+  float alpha = uOpacity * fall * (0.08 + facing * 0.42) * (0.45 + wisps * 0.75);
+  gl_FragColor = vec4(uColor * (1.1 + wisps * 0.9), alpha);
+}
+`,mf=`
+uniform sampler2D tDiffuse;
+uniform vec2 uResolution;
+uniform float uTime;
+uniform float uFlash;
+uniform float uIntensity;
+uniform float uGrain;
+uniform float uLetterbox;
+varying vec2 vUv;
+
+float ca_hash(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
+}
+
+void main() {
+  vec2 uv = vUv;
+  vec2 c = uv - 0.5;
+  float r = length(c);
+  vec2 dir = normalize(c + 0.00001);
+  float lens = r * r * 0.008 * uIntensity;
+  vec2 warped = uv + dir * lens;
+  float ca = 0.0014 + r * 0.0022;
+  ca *= uIntensity;
+  vec3 col;
+  col.r = texture2D(tDiffuse, warped + dir * ca).r;
+  col.g = texture2D(tDiffuse, warped).g;
+  col.b = texture2D(tDiffuse, warped - dir * ca).b;
+
+  // A lens-side focus falloff: the optical centre stays sharp while the
+  // periphery is softened, like a wide-open macro lens.
+  vec3 blur = vec3(0.0);
+  float total = 0.0;
+  for (int i = 0; i < 7; i++) {
+    float f = float(i) / 6.0;
+    float w = 1.0 - f;
+    blur += texture2D(tDiffuse, warped - dir * r * r * 0.022 * f).rgb * w;
+    total += w;
+  }
+  blur /= total;
+  col = mix(col, blur, smoothstep(0.22, 0.9, r) * 0.5 * uIntensity);
+
+  col += vec3(0.18, 0.48, 0.54) * uFlash * (0.12 + r * 0.56);
+  float grain = ca_hash(gl_FragCoord.xy + uTime * 61.0) - 0.5;
+  col += grain * uGrain * (0.4 + uIntensity * 0.6);
+  float vig = smoothstep(1.06, 0.24, r);
+  col *= mix(1.0, vig, 0.7);
+  float luma = dot(col, vec3(0.299, 0.587, 0.114));
+  col = mix(col, vec3(luma), 0.045);
+  col *= vec3(0.965, 1.015, 1.03);
+  col = max(col, vec3(0.0));
+  gl_FragColor = vec4(col, 1.0);
+}
+`;var Dn=Math.PI*2,Ri=8.2,gf=new I(0,1,0),Uv=new I(1,0,0),Fv=new I(0,1,0),Ov=`
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`;function Bv(i){let e=i>>>0;return function(){e|=0,e=e+1831565813|0;let n=Math.imul(e^e>>>15,1|e);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}function Du(i){let e=[],t=Math.PI*(3-Math.sqrt(5));for(let n=0;n<i;n+=1){let s=1-n/Math.max(1,i-1)*2,r=Math.sqrt(Math.max(0,1-s*s)),a=t*n;e.push(new I(Math.cos(a)*r,s,Math.sin(a)*r))}return e}function wn(i,e,t){return Math.max(e,Math.min(t,i))}function Uu(i,e,t){let n=wn((t-i)/(e-i),0,1);return n*n*(3-2*n)}function _n(i){let e=i()*2-1,t=i()*Dn,n=Math.sqrt(Math.max(0,1-e*e));return new I(Math.cos(t)*n,e,Math.sin(t)*n)}function kv(i,e,t,n,s=1){let r=new Rt(i,e,t),a=r.attributes.position,o=new I;for(let l=0;l<a.count;l+=1){o.fromBufferAttribute(a,l).normalize();let c=Math.sin(o.x*4.2+s)*Math.cos(o.y*3.6-s*.4)*.55+Math.sin(o.z*6.7+s*2.1)*.25;o.multiplyScalar(i+c*n),a.setXYZ(l,o.x,o.y,o.z)}return a.needsUpdate=!0,r.computeVertexNormals(),r}function xf(i,e={}){if(!i)throw new Error("Cell Atlas: no host element.");let t=Bv(1372459435),n={value:0},s={value:1},r=new Oe,a=new Oe;r.add(a);let o;try{o=new rr({antialias:!1,alpha:!1,powerPreference:"high-performance",stencil:!1})}catch(N){throw new Error(`Cell Atlas: WebGL could not start (${N.message}).`)}if(!o.getContext())throw new Error("Cell Atlas: WebGL is unavailable in this browser.");let l=Math.min(window.devicePixelRatio||1,1.5);o.setPixelRatio(l),o.outputColorSpace=on,o.toneMapping=Ti,o.toneMappingExposure=.84,o.setClearColor(132619,1),o.domElement.className="ca-webgl",o.domElement.setAttribute("aria-hidden","true"),o.domElement.style.cssText="position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;",i.appendChild(o.domElement);let c=new wi;c.background=new he(132619),c.fog=new ls(132619,.017),c.add(r);let u=new $t(42,1,.04,140);u.position.set(0,3,23.5);let f=new cr(o),h=new ur(c,u),p=new Ji(new Me(1,1),.42,.55,.28),x=new lr({uniforms:{tDiffuse:{value:null},uResolution:{value:new Me(1,1)},uTime:{value:0},uFlash:{value:1},uIntensity:{value:1},uGrain:{value:.028},uLetterbox:{value:0}},vertexShader:Ov,fragmentShader:mf}),M=new hr;f.addPass(h),f.addPass(p),f.addPass(x),f.addPass(M);let g=null;try{let N=document.createElement("canvas");N.width=1024,N.height=512;let k=N.getContext("2d"),G=k.createLinearGradient(0,0,0,512);G.addColorStop(0,"#01050a"),G.addColorStop(.45,"#04141c"),G.addColorStop(.7,"#031019"),G.addColorStop(1,"#010306"),k.fillStyle=G,k.fillRect(0,0,1024,512);let _e=[[180,230,260,"rgba(26, 210, 198, 0.38)"],[820,150,230,"rgba(255, 66, 158, 0.26)"],[520,390,190,"rgba(255, 168, 69, 0.16)"],[940,410,170,"rgba(74, 100, 255, 0.22)"]];for(let[je,Tt,Bt,Tn]of _e){let bn=k.createRadialGradient(je,Tt,0,je,Tt,Bt);bn.addColorStop(0,Tn),bn.addColorStop(1,"rgba(0,0,0,0)"),k.fillStyle=bn,k.fillRect(je-Bt,Tt-Bt,Bt*2,Bt*2)}let Fe=new Wr(N);Fe.mapping=Qs,Fe.colorSpace=on;let We=new Zi(o);We.compileEquirectangularShader(),g=We.fromEquirectangular(Fe).texture,c.environment=g,Fe.dispose(),We.dispose()}catch{}let m=new hs(1590362,656137,.8);c.add(m);let S=new ds(10485745,.95);S.position.set(9,12,10),c.add(S);let C=new Sn(4191712,110,42,2);C.position.set(8,7,8),c.add(C);let _=new Sn(16727711,85,40,2);_.position.set(-9,-3,6),c.add(_);let T=new Sn(16755544,70,34,2);T.position.set(-4,-1,2),c.add(T);let E=new Qr(9435391,170,55,.62,.92,1.6);E.position.set(0,18,4),E.target.position.set(0,0,0),c.add(E),c.add(E.target);let R=new Map;function y(N,k){let G=R.get(N);G||(G={name:N,weight:0,target:0,objects:[],mats:[]},R.set(N,G)),G.objects.push(k),k.traverse(_e=>{if(!_e.material)return;let Fe=Array.isArray(_e.material)?_e.material:[_e.material];for(let We of Fe){if(!We||G.mats.some(Tt=>Tt.mat===We))continue;let je=We.uniforms&&We.uniforms.uOpacity?We.uniforms.uOpacity.value:null;G.mats.push({mat:We,baseOpacity:We.opacity,baseEmissive:We.emissiveIntensity===void 0?1:We.emissiveIntensity,baseColor:We.color?We.color.clone():null,shaderOpacity:je})}})}function w(N,k){let G=wn(k,0,1),_e=G>.012;for(let Fe of N.objects)Fe.visible=_e;if(_e)for(let Fe of N.mats){let We=Fe.mat;Fe.shaderOpacity!==null?We.uniforms.uOpacity.value=Fe.shaderOpacity*G:We.transparent&&(We.opacity=Fe.baseOpacity*G),We.emissiveIntensity!==void 0&&(We.emissiveIntensity=Fe.baseEmissive*(.25+.75*G)),Fe.baseColor&&We.color&&We.color.copy(Fe.baseColor).multiplyScalar(.4+.6*G)}}let P=new Oe;c.add(P);let L=new pt({uniforms:{uTime:n,uOpacity:{value:1}},vertexShader:hf,fragmentShader:df,side:Yt,depthWrite:!1,fog:!1}),B=new Je(new Rt(72,64,40),L);B.frustumCulled=!1,P.add(B);let H=2600,D=new Float32Array(H*3),W=new Float32Array(H),K=new Float32Array(H);for(let N=0;N<H;N+=1){let k=_n(t),G=19+t()*44;D[N*3]=k.x*G,D[N*3+1]=k.y*G,D[N*3+2]=k.z*G,W[N]=t(),K[N]=.25+t()*.85}let J=new _t;J.setAttribute("position",new Nt(D,3)),J.setAttribute("aSeed",new Nt(W,1)),J.setAttribute("aScale",new Nt(K,1));let ne=new pt({uniforms:{uTime:n,uPixelRatio:s,uSize:{value:1},uOpacity:{value:.42},uDrift:{value:.25}},vertexShader:Pu,fragmentShader:Iu,transparent:!0,depthWrite:!1,blending:xt,fog:!1}),Z=new vn(J,ne);Z.frustumCulled=!1,P.add(Z);let ee=new Oe;P.add(ee);let re=[{pos:[0,16,2],scale:[1.25,1.1,1.25],rot:[0,0,-.16],color:1806238,opacity:.1},{pos:[-13,7,-8],scale:[.75,.85,.75],rot:[.3,.2,.64],color:5000144,opacity:.07},{pos:[12,4,8],scale:[.6,.8,.6],rot:[-.24,0,-.7],color:13187973,opacity:.06}];for(let N of re){let k=new pt({uniforms:{uTime:n,uOpacity:{value:N.opacity},uColor:{value:new he(N.color)}},vertexShader:ff,fragmentShader:pf,transparent:!0,depthWrite:!1,side:qt,blending:xt,fog:!1}),G=new Je(new ki(8.5,25,40,1,!0),k);G.position.fromArray(N.pos),G.scale.fromArray(N.scale),G.rotation.set(...N.rot),ee.add(G)}let Pe=new Oe;a.add(Pe);let Ie=new pt({uniforms:{uTime:n,uOpacity:{value:.8},uAmp:{value:.14},uColorA:{value:new he(676450)},uColorB:{value:new he(10169452)},uRim:{value:new he(9371626)}},vertexShader:ef,fragmentShader:tf,transparent:!0,depthWrite:!1,side:qt,blending:xt}),vt=new Je(new Zs(Ri,5),Ie);vt.renderOrder=3,Pe.add(vt);let ot=new Bn({color:740181,roughness:.18,metalness:.04,transmission:.84,thickness:2.3,ior:1.33,clearcoat:1,clearcoatRoughness:.14,iridescence:.72,iridescenceIOR:1.3,iridescenceThicknessRange:[120,460],attenuationColor:new he(750448),attenuationDistance:3.5,envMapIntensity:1.15,transparent:!0,opacity:.28,depthWrite:!1}),ut=new Je(new Rt(Ri-.09,96,64),ot);ut.renderOrder=1,Pe.add(ut);let j=new pt({uniforms:{uTime:n,uOpacity:{value:.13},uColor:{value:new he(2081986)},uColorB:{value:new he(10173069)},uPower:{value:2.8}},vertexShader:dr,fragmentShader:fr,transparent:!0,depthWrite:!1,side:Yt,blending:xt}),se=new Je(new Rt(Ri-.3,64,48),j);Pe.add(se);let Ee=new Oe;a.add(Ee);let Ve=Du(1500),fe=new zt,tt=new Be(.026,.038,.36,4,1,!1),kt=new pt({uniforms:{uTime:n,uOpacity:{value:.48},uColorA:{value:new he(3000768)},uColorB:{value:new he(16741559)}},vertexShader:nf,fragmentShader:sf,transparent:!0,depthWrite:!1,blending:xt}),$e=new Jn(tt,kt,Ve.length);$e.frustumCulled=!1;for(let N=0;N<Ve.length;N+=1){let k=Ve[N];fe.position.copy(k).multiplyScalar(Ri+.03),fe.quaternion.setFromUnitVectors(gf,k),fe.rotateY(t()*Dn);let G=.72+t()*.7;fe.scale.set(G,G,G),fe.updateMatrix(),$e.setMatrixAt(N,fe.matrix)}$e.instanceMatrix.needsUpdate=!0,Ee.add($e);let at=new Float32Array(Ve.length*3);for(let N=0;N<Ve.length;N+=1){let k=Ve[N].clone().multiplyScalar(Ri+.22);at[N*3]=k.x,at[N*3+1]=k.y,at[N*3+2]=k.z}let St=new _t;St.setAttribute("position",new Nt(at,3));let oe=new Rn({color:10485745,size:.085,sizeAttenuation:!0,transparent:!0,opacity:.36,depthWrite:!1,blending:xt}),le=new vn(St,oe);le.frustumCulled=!1,Ee.add(le);let dt=new Oe;a.add(dt);let Le=Du(30),qe=new $n(.145,.42,5,12),nt=new In(.27,.052,6,18),F=new Rt(.085,10,8),Xt=[new Bn({color:7337437,emissive:1740156,emissiveIntensity:.62,roughness:.3,metalness:.15,transmission:.28,thickness:.4,clearcoat:1,clearcoatRoughness:.2,transparent:!0,opacity:.78,envMapIntensity:1.05}),new Bn({color:16758891,emissive:9257489,emissiveIntensity:.58,roughness:.28,metalness:.2,transmission:.24,thickness:.4,clearcoat:1,clearcoatRoughness:.16,transparent:!0,opacity:.78,envMapIntensity:1.05}),new Bn({color:12488191,emissive:5515148,emissiveIntensity:.55,roughness:.32,metalness:.1,transmission:.2,thickness:.35,clearcoat:.9,clearcoatRoughness:.22,transparent:!0,opacity:.78,envMapIntensity:1})];for(let N=0;N<Le.length;N+=1){let k=Le[N],G=new Oe;G.position.copy(k).multiplyScalar(Ri-.03),G.quaternion.setFromUnitVectors(gf,k),G.rotateY(t()*Dn);let _e=.78+t()*.8;G.scale.setScalar(_e);let Fe=Xt[N%Xt.length],We=new Je(qe,Fe);We.position.y=.28,G.add(We);let je=new Je(nt,Fe);je.rotation.x=Math.PI*.5,je.position.y=.02,G.add(je);let Tt=2+Math.floor(t()*3);for(let Bt=0;Bt<Tt;Bt+=1){let Tn=new Je(F,Fe);Tn.position.set((t()-.5)*.44,.7+t()*.4,(t()-.5)*.44),G.add(Tn)}dt.add(G)}let Et=180,A=new Float32Array(Et*3);for(let N=0;N<Et;N+=1){let G=_n(t).multiplyScalar(Ri+.38+t()*.38);A.set([G.x,G.y,G.z],N*3)}let v=new _t;v.setAttribute("position",new Nt(A,3));let z=new Rn({color:16765327,size:.07,sizeAttenuation:!0,transparent:!0,opacity:.36,depthWrite:!1,blending:xt}),q=new vn(v,z);q.frustumCulled=!1,dt.add(q);let $=new Oe;a.add($);let ue=3400,me=new Float32Array(ue*3),Q=new Float32Array(ue),ie=new Float32Array(ue);for(let N=0;N<ue;N+=1){let k=_n(t),G=Math.pow(t(),.62)*(Ri-.45),_e=k.multiplyScalar(G);me[N*3]=_e.x,me[N*3+1]=_e.y,me[N*3+2]=_e.z,Q[N]=t(),ie[N]=.25+Math.pow(t(),3)*1.6}let xe=new _t;xe.setAttribute("position",new Nt(me,3)),xe.setAttribute("aSeed",new Nt(Q,1)),xe.setAttribute("aScale",new Nt(ie,1));let He=new pt({uniforms:{uTime:n,uPixelRatio:s,uSize:{value:.38},uOpacity:{value:.48},uDrift:{value:.42}},vertexShader:Pu,fragmentShader:Iu,transparent:!0,depthWrite:!1,blending:xt}),be=new vn(xe,He);be.frustumCulled=!1,$.add(be);let pe=new Oe;a.add(pe);let ke=[],Ye=[],st=[],O=[],ve=[];for(let N=0;N<76;N+=1){let k=[],_e=_n(t).multiplyScalar(2.9+t()*4.6);k.push(_e);let Fe=_n(t).multiplyScalar(1.2+t()*2.3);k.push(_e.clone().multiplyScalar(.58).add(Fe));let We=_n(t).multiplyScalar(2.8+t()*4.7);k.push(We);let je=_n(t).multiplyScalar(2.8+t()*4.7);k.push(je);let Tt=new yn(k,!1,"catmullrom",.5);ke.push(Tt);let Bt=[];for(let Pi=0;Pi<140;Pi+=1)Bt.push(Tt.getPoint(Pi/139));Ye.push(Bt);let Tn=34,bn=t(),Xa=Tt.getPoint(0);for(let Pi=1;Pi<Tn;Pi+=1){let sh=Pi/(Tn-1),qa=Tt.getPoint(sh);st.push(Xa.x,Xa.y,Xa.z,qa.x,qa.y,qa.z),O.push((Pi-1)/(Tn-1),sh),ve.push(bn,bn),Xa=qa}}let te=new _t;te.setAttribute("position",new et(st,3)),te.setAttribute("aT",new et(O,1)),te.setAttribute("aSeed",new et(ve,1));let ye=new pt({uniforms:{uTime:n,uOpacity:{value:.3},uColorA:{value:new he(1820861)},uColorB:{value:new he(10420152)}},vertexShader:Nu,fragmentShader:Lu,transparent:!0,depthWrite:!1,blending:xt}),Te=new Oi(te,ye);Te.frustumCulled=!1,pe.add(Te);let ae=new Ot({color:7995376,transparent:!0,opacity:.07,depthWrite:!1,blending:xt});for(let N=0;N<10;N+=1){let k=ke[Math.floor(t()*ke.length)],G=new Je(new hi(k,70,.016+t()*.018,4,!1),ae);pe.add(G)}let Ge=new Ot({color:12035071,transparent:!0,opacity:.17,depthWrite:!1,blending:xt});for(let N=0;N<20;N+=1){let k=[],G=t()*Dn;for(let We=0;We<4;We+=1){let je=3.1+t()*4.3;G+=.4+t()*.75,k.push(new I(Math.cos(G)*je,-3.8+t()*7.6,Math.sin(G)*je))}let _e=new yn(k,!1,"catmullrom",.5),Fe=new Je(new hi(_e,72,.022+t()*.02,4,!1),Ge);pe.add(Fe)}let Ue=240,Pt=new Float32Array(Ue*3),wt=[];for(let N=0;N<Ue;N+=1){let k=Math.floor(t()*ke.length);wt.push({samples:Ye[k],offset:t(),speed:.012+t()*.035,radial:new I(t()-.5,t()-.5,t()-.5).multiplyScalar(.16)})}let gn=new _t;gn.setAttribute("position",new Nt(Pt,3));let Un=new Rn({color:13172722,size:.105,sizeAttenuation:!0,transparent:!0,opacity:.5,depthWrite:!1,blending:xt}),Ta=new vn(gn,Un);Ta.frustumCulled=!1,pe.add(Ta);let ti=new Oe;a.add(ti);let Aa=new pt({uniforms:{uTime:n,uOpacity:{value:.92},uColorA:{value:new he(4922224)},uColorB:{value:new he(12797092)},uColorC:{value:new he(9434623)}},vertexShader:rf,fragmentShader:af,transparent:!0,depthWrite:!0}),gr=new Je(new Rt(2.5,96,64),Aa);ti.add(gr);let nc=new pt({uniforms:{uTime:n,uOpacity:{value:.28},uColor:{value:new he(9397247)},uColorB:{value:new he(5633507)},uPower:{value:2.2}},vertexShader:dr,fragmentShader:fr,transparent:!0,depthWrite:!1,side:qt,blending:xt}),xr=new Je(new Rt(2.78,64,48),nc);ti.add(xr);let Ca=kv(.82,32,24,.07,3.1),mi=new pn({color:7151704,emissive:5049407,emissiveIntensity:1,roughness:.46,metalness:.1,transparent:!0,opacity:.84}),es=new Je(Ca,mi);es.position.set(.62,.38,.22),ti.add(es);let bs=88,Ra=new In(.105,.022,6,14),Ms=new Ot({color:10214655,transparent:!0,opacity:.3,depthWrite:!1,blending:xt}),Ss=new Jn(Ra,Ms,bs),Es=Du(bs);for(let N=0;N<bs;N+=1){let k=Es[N];fe.position.copy(k).multiplyScalar(2.79),fe.quaternion.setFromUnitVectors(new I(0,0,1),k),fe.rotateZ(t()*Dn),fe.scale.setScalar(.8+t()*.65),fe.updateMatrix(),Ss.setMatrixAt(N,fe.matrix)}Ss.instanceMatrix.needsUpdate=!0,ti.add(Ss);let gi=new Oe;ti.add(gi);let vr=[],Pa=[],Ia=[],Na=[];for(let N=0;N<34;N+=1){let k=[],_e=_n(t).multiplyScalar(.5+t()*1.5);k.push(_e);for(let Bt=0;Bt<3;Bt+=1){let Tn=_n(t).multiplyScalar(.55+t()*1.6);k.push(Tn)}let Fe=new yn(k,!1,"catmullrom",.55),We=30,je=t(),Tt=Fe.getPoint(0);for(let Bt=1;Bt<We;Bt+=1){let Tn=Bt/(We-1),bn=Fe.getPoint(Tn);vr.push(Tt.x,Tt.y,Tt.z,bn.x,bn.y,bn.z),Pa.push((Bt-1)/(We-1),Tn),Ia.push(je,je),Tt=bn,Na.push(bn.x,bn.y,bn.z)}}let ws=new _t;ws.setAttribute("position",new et(vr,3)),ws.setAttribute("aT",new et(Pa,1)),ws.setAttribute("aSeed",new et(Ia,1));let La=new pt({uniforms:{uTime:n,uOpacity:{value:.3},uColorA:{value:new he(16735168)},uColorB:{value:new he(9141247)}},vertexShader:Nu,fragmentShader:Lu,transparent:!0,depthWrite:!1,blending:xt}),b=new Oi(ws,La);b.frustumCulled=!1,gi.add(b);let U=new _t;U.setAttribute("position",new et(Na,3));let Y=new Rn({color:16751581,size:.028,sizeAttenuation:!0,transparent:!0,opacity:.42,depthWrite:!1,blending:xt}),V=new vn(U,Y);V.frustumCulled=!1,gi.add(V);let X=new Je(new Zs(2.66,2),new Ot({color:9397247,wireframe:!0,transparent:!0,opacity:.025,depthWrite:!1,blending:xt}));gi.add(X);let Se=new Sn(11820287,12,10,2);Se.position.set(0,0,0),ti.add(Se);let Ae=new Oe;a.add(Ae);let ge=[[4.6,1.8,2.4],[5.6,-.8,1],[4.2,-2.2,3.8],[6.4,1,-1.2],[3.8,2.8,-2.6],[2,-4.2,2.2],[-3,4,3],[-5.2,-2.8,-2],[.5,5,1]],De=new pt({uniforms:{uTime:n,uOpacity:{value:.76},uColorA:{value:new he(8007441)},uColorB:{value:new he(16752202)},uColorC:{value:new he(16770212)}},vertexShader:of,fragmentShader:lf,transparent:!0,depthWrite:!0}),ze=new pt({uniforms:{uTime:n,uOpacity:{value:.15},uColor:{value:new he(16754255)},uColorB:{value:new he(5437413)},uPower:{value:2.6}},vertexShader:dr,fragmentShader:fr,transparent:!0,depthWrite:!1,side:Yt,blending:xt}),lt=new $n(.42,1.5,6,18),ft=new $n(.5,1.55,6,18);for(let N=0;N<ge.length;N+=1){let k=new Oe;k.position.fromArray(ge[N]),k.rotation.set(t()*Dn,t()*Dn,t()*Dn),k.scale.set(.8+t()*.45,.82+t()*.55,.8+t()*.45);let G=new Je(lt,De);k.add(G);let _e=new Je(ft,ze);k.add(_e),Ae.add(k)}let Ne=520,Mt=new Float32Array(Ne*3),Vt=[];for(let N=0;N<Ne;N+=1){let k=new I().fromArray(ge[Math.floor(t()*ge.length)]);Vt.push({center:k,angle:t()*Dn,radius:.72+t()*.8,speed:.15+t()*.55,y:(t()-.5)*1.8})}let Lt=new _t;Lt.setAttribute("position",new Nt(Mt,3));let Dt=new Rn({color:8781810,size:.06,sizeAttenuation:!0,transparent:!0,opacity:.46,depthWrite:!1,blending:xt}),Qt=new vn(Lt,Dt);Qt.frustumCulled=!1,Ae.add(Qt);let Re=96,Kt=new Float32Array(Re*3),yt=new Float32Array(Re),rn=[];for(let N=0;N<Re;N+=1)rn.push({center:new I().fromArray(ge[Math.floor(t()*ge.length)]),dir:_n(t),age:t()*3,life:2+t()*3,speed:.35+t()*.9}),yt[N]=rn[N].age/rn[N].life;let hn=new _t;hn.setAttribute("position",new Nt(Kt,3)),hn.setAttribute("aLife",new Nt(yt,1));let ni=new pt({uniforms:{uPixelRatio:s,uSize:{value:1.4},uOpacity:{value:.5}},vertexShader:`
+      uniform float uPixelRatio;
+      uniform float uSize;
+      attribute float aLife;
+      varying float vLife;
+      void main() {
+        vLife = aLife;
+        vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        gl_Position = projectionMatrix * mv;
+        gl_PointSize = uSize * uPixelRatio * (1.0 - aLife) * (180.0 / max(-mv.z, 0.1));
+      }
+    `,fragmentShader:`
+      uniform float uOpacity;
+      varying float vLife;
+      void main() {
+        vec2 c = gl_PointCoord - 0.5;
+        float d = length(c);
+        float core = smoothstep(0.5, 0.02, d);
+        gl_FragColor = vec4(vec3(1.0, 0.82, 0.4) * (1.4 + (1.0 - vLife)), core * uOpacity * (1.0 - vLife));
+      }
+    `,transparent:!0,depthWrite:!1,blending:xt}),xi=new vn(hn,ni);xi.frustumCulled=!1,Ae.add(xi);let At=new Sn(16751687,20,16,2);At.position.set(4.9,.2,1.8),Ae.add(At);let Ut=new Oe;a.add(Ut);let Gn=new pt({uniforms:{uTime:n,uOpacity:{value:.38},uColorA:{value:new he(1799531)},uColorB:{value:new he(16760947)}},vertexShader:cf,fragmentShader:uf,transparent:!0,depthWrite:!1,blending:xt}),It=[];for(let N=0;N<13;N+=1){let k=[],G=t()*Dn,_e=-1.8+t()*3.4,Fe=3.2+t()*1.7;for(let Tt=0;Tt<4;Tt+=1){G+=.38+t()*.72;let Bt=Fe+Math.sin(G*2.1+N)*.5;k.push(new I(Math.cos(G)*Bt-.5,_e+Math.sin(G*1.3)*.5,Math.sin(G)*Bt)),_e+=(t()-.5)*1.2}let We=new yn(k,!1,"catmullrom",.5);It.push(We);let je=new Je(new hi(We,110,.038+t()*.045,6,!1),Gn);Ut.add(je)}let Vn=440,vi=new Float32Array(Vn*3);for(let N=0;N<Vn;N+=1){let G=It[Math.floor(t()*It.length)].getPoint(t()),_e=_n(t).multiplyScalar(.03+t()*.07);G.add(_e),vi.set([G.x,G.y,G.z],N*3)}let yr=new _t;yr.setAttribute("position",new Nt(vi,3));let Pf=new Rn({color:16767648,size:.045,sizeAttenuation:!0,transparent:!0,opacity:.42,depthWrite:!1,blending:xt}),zu=new vn(yr,Pf);zu.frustumCulled=!1,Ut.add(zu);let Da=new Oe;Da.position.set(-3.35,-.25,.75),Da.rotation.set(.36,.85,.2),Ut.add(Da);let If=new pn({color:16753234,emissive:10239244,emissiveIntensity:.7,roughness:.34,metalness:.16,transparent:!0,opacity:.55});for(let N=0;N<6;N+=1){let k=1.13-N*.08,G=Math.PI*(1.18+N*.025),_e=new Je(new In(k,.048,8,80,G),If);_e.position.z=(N-2.5)*.16,_e.rotation.z=-G*.5+Math.PI*.5,Da.add(_e)}let Ua=[];for(let N=0;N<18;N+=1){let k=new I(-3.4+(t()-.5)*1.2,.3+(t()-.5)*1.2,1.1+(t()-.5)*1.2),G=new I(-3.5+(t()-.5)*.8,-.3+(t()-.5)*.8,1.1+(t()-.5)*.8),_e=k.clone().lerp(G,.5).add(_n(t).multiplyScalar(.8));Ua.push(new yn([k,_e,G]))}for(let N=0;N<22;N+=1){let k=new I(-3.5,-.25,.8),G=_n(t);G.x=Math.abs(G.x)*.8+.1,G.z=Math.abs(G.z)*.8+.1;let _e=G.normalize().multiplyScalar(Ri-.2),Fe=k.clone().lerp(_e,.5).add(_n(t).multiplyScalar(1.6));Ua.push(new yn([k,Fe,_e]))}let Nf=new Rt(.115,12,9),Lf=[new Bn({color:16764807,emissive:13396511,emissiveIntensity:.9,roughness:.22,metalness:.05,transmission:.45,thickness:.2,transparent:!0,opacity:.62,envMapIntensity:1}),new Bn({color:9437168,emissive:1346692,emissiveIntensity:.9,roughness:.2,metalness:.05,transmission:.4,thickness:.2,transparent:!0,opacity:.6,envMapIntensity:1})],Hu=[];for(let N=0;N<40;N+=1){let k=new Je(Nf,Lf[N%2]),G=Ua[N%Ua.length],_e={mesh:k,route:G,offset:t(),speed:.018+t()*.03,phase:t()*Dn};Hu.push(_e),Ut.add(k)}let Df=new Rt(.16,16,12),Uf=new pn({color:14050674,emissive:7017762,emissiveIntensity:.72,roughness:.32,metalness:.08,transparent:!0,opacity:.78});for(let N=0;N<9;N+=1){let k=new Je(Df,Uf);k.position.set(-3.5+(t()-.5)*1.9,-.55+(t()-.5)*1.7,.9+(t()-.5)*1.7),k.scale.setScalar(.75+t()*.9),Ut.add(k)}let ts=new Oe;ts.scale.setScalar(1.16),a.add(ts);let Ff=new $n(.075,.4,4,10),Of=[new pn({color:16738996,emissive:11869551,emissiveIntensity:.7,roughness:.3,metalness:.15,transparent:!0,opacity:.85}),new pn({color:7600639,emissive:1478300,emissiveIntensity:.7,roughness:.28,metalness:.16,transparent:!0,opacity:.85})],Fa=[];for(let N=0;N<14;N+=1){let k=N/14*Dn+.12,G=new I((t()-.5)*.35,Math.cos(k)*1.28,Math.sin(k)*1.28);for(let _e of[-1,1]){let Fe=new Oe,We=Of[_e>0?0:1];for(let je=0;je<2;je+=1){let Tt=new Je(Ff,We);Tt.rotation.z=(je===0?1:-1)*.58,Tt.position.x=(je===0?1:-1)*.1,Fe.add(Tt)}Fe.position.copy(G).add(new I(_e*.1,_e*.045,0)),ts.add(Fe),Fa.push({group:Fe,meta:Fe.position.clone(),side:_e,phase:t()*Dn,baseScale:.82+t()*.35})}}let Bf=new Float32Array(Fa.length*2*3),Oa=new _t;Oa.setAttribute("position",new Nt(Bf,3));let Gu=new cs({color:8648959,transparent:!0,opacity:.2,depthWrite:!1,blending:xt}),Vu=new Oi(Oa,Gu);Vu.frustumCulled=!1,ts.add(Vu);let kf=new pt({uniforms:{uTime:n,uOpacity:{value:.55},uColor:{value:new he(8257520)},uColorB:{value:new he(16738996)},uPower:{value:2.1}},vertexShader:dr,fragmentShader:fr,transparent:!0,depthWrite:!1,blending:xt}),ic=[];for(let N of[-4.8,4.8]){let k=new Je(new Rt(.22,18,12),kf);k.position.set(N,0,0),ts.add(k),ic.push(k)}let zf=new pt({uniforms:{uTime:n,uOpacity:{value:.28},uColor:{value:new he(9075967)},uColorB:{value:new he(7012317)},uPower:{value:2.3}},vertexShader:dr,fragmentShader:fr,transparent:!0,depthWrite:!1,side:qt,blending:xt}),sc=[];for(let N of[-3.8,3.8]){let k=new Je(new Rt(.95,32,24),zf);k.position.set(N,0,0),k.scale.setScalar(.01),ts.add(k),sc.push(k)}y("membrane",Pe),y("lipids",Ee),y("proteins",dt),y("particles",$),y("cytoskeleton",pe),y("nucleus",ti),y("mitochondria",Ae),y("endomembrane",Ut),y("mitosis",ts);let ce={time:0,chapter:0,chapterStart:0,paused:!1,brightness:.58,flash:1,yaw:0,yawTarget:0,pitch:0,pitchTarget:0,pointerX:0,pointerY:0,pointerTargetX:0,pointerTargetY:0,zoom:1,zoomTarget:1,distanceScale:1,dragging:!1,dragDistance:0,lastPointerX:0,lastPointerY:0},Ba=new I().fromArray(nn[0].camera.pos),ns=new I().fromArray(nn[0].camera.target),Hf=new I,Wu=new I,ka=new I,_r=new I,za=nn[0].camera.fov;for(let N of R.values())N.weight=Ru[N.name][ce.chapter],N.target=N.weight,w(N,N.weight);function Xu(N,k=!1){let G=wn(N,0,nn.length-1);ce.chapter=G,ce.chapterStart=ce.time,ce.flash=1,ce.yawTarget=0,ce.pitchTarget=0,ce.zoomTarget=1,ce.pointerTargetX=0,ce.pointerTargetY=0,Ba.fromArray(nn[G].camera.pos),ns.fromArray(nn[G].camera.target),za=nn[G].camera.fov;for(let _e of R.values())_e.target=Ru[_e.name][G],k&&(_e.weight=_e.target,w(_e,_e.weight));k&&(u.position.copy(Ba),ka.copy(ns),u.lookAt(ka),u.fov=za,u.updateProjectionMatrix())}function Gf(N){let k=1-Math.exp(-N*1.55);for(let G of R.values())Math.abs(G.target-G.weight)<6e-4||(G.weight+=(G.target-G.weight)*k,w(G,G.weight))}function qu(N){let k=wn(Number(N)||.58,.3,1);ce.brightness=k,o.toneMappingExposure=.55+k*.5,p.strength=.14+k*.46}function Vf(N){ce.yaw+=(ce.yawTarget-ce.yaw)*(1-Math.exp(-N*4)),ce.pitch+=(ce.pitchTarget-ce.pitch)*(1-Math.exp(-N*4)),ce.zoom+=(ce.zoomTarget-ce.zoom)*(1-Math.exp(-N*3.2)),ce.pointerX+=(ce.pointerTargetX-ce.pointerX)*(1-Math.exp(-N*2.5)),ce.pointerY+=(ce.pointerTargetY-ce.pointerY)*(1-Math.exp(-N*2.5));let k=Ba.distanceTo(ns),G=Math.max(1.4,k*wn(ce.zoom,.42,1.75)*ce.distanceScale),_e=Hf.copy(ns);_r.copy(Ba).sub(ns),_r.normalize().multiplyScalar(G),_r.applyAxisAngle(Fv,ce.yaw),_r.applyAxisAngle(Uv,ce.pitch),_e.copy(ns).add(_r);let Fe=ce.dragging?0:wn((G-5.5)/16,0,1);_e.x+=ce.pointerX*G*.018*Fe+Math.sin(ce.time*.21)*.05,_e.y+=-ce.pointerY*G*.013*Fe+Math.cos(ce.time*.17)*.04,u.position.lerp(_e,1-Math.exp(-N*1.5)),Wu.copy(ns),ka.lerp(Wu,1-Math.exp(-N*1.6)),u.lookAt(ka),u.fov+=(za-u.fov)*(1-Math.exp(-N*1.4)),u.updateProjectionMatrix()}function Wf(N){let k=1+Math.sin(ce.time*.64)*.006;vt.scale.setScalar(k),ut.scale.setScalar(k)}function Xf(N){gi.rotation.y+=N*.018,gi.rotation.x=Math.sin(ce.time*.09)*.12,es.rotation.y+=N*.05,xr.rotation.y-=N*.012}function qf(){for(let N=0;N<wt.length;N+=1){let k=wt[N],G=(k.offset+ce.time*k.speed)%1;if(!Number.isFinite(G)||!k.samples||k.samples.length<2)continue;let _e=Math.max(0,Math.min(1,G))*(k.samples.length-1),Fe=Math.floor(_e),We=Math.min(k.samples.length-1,Fe+1),je=_e-Fe,Tt=k.samples[Fe],Bt=k.samples[We];Pt[N*3]=Tt.x+(Bt.x-Tt.x)*je+k.radial.x,Pt[N*3+1]=Tt.y+(Bt.y-Tt.y)*je+k.radial.y,Pt[N*3+2]=Tt.z+(Bt.z-Tt.z)*je+k.radial.z}gn.attributes.position.needsUpdate=!0}function Yf(N){for(let k=0;k<Vt.length;k+=1){let G=Vt[k],_e=G.angle+ce.time*G.speed,Fe=G.radius*(.82+Math.sin(ce.time*.4+G.angle)*.14);Mt[k*3]=G.center.x+Math.cos(_e)*Fe,Mt[k*3+1]=G.center.y+G.y+Math.sin(_e*1.7)*.35,Mt[k*3+2]=G.center.z+Math.sin(_e)*Fe}Lt.attributes.position.needsUpdate=!0;for(let k=0;k<rn.length;k+=1){let G=rn[k];G.age+=N,G.age>G.life&&(G.age=0,G.dir=_n(t),G.center.fromArray(ge[Math.floor(t()*ge.length)]));let _e=wn(G.age/G.life,0,1),Fe=G.center.clone().addScaledVector(G.dir,G.age*G.speed);Kt[k*3]=Fe.x,Kt[k*3+1]=Fe.y+Math.sin(G.age*1.7+k)*.1,Kt[k*3+2]=Fe.z,yt[k]=_e}hn.attributes.position.needsUpdate=!0,hn.attributes.aLife.needsUpdate=!0,At.intensity=15+Math.sin(ce.time*1.7)*5}function Zf(){let N=ce.time;for(let k of Hu){let G=(k.offset+N*k.speed)%1;if(!Number.isFinite(G))continue;let _e=k.route.getPoint(G);k.mesh.position.copy(_e);let Fe=.3+.95*Math.sin(Math.PI*G);k.mesh.scale.setScalar(Fe),k.mesh.rotation.y+=.008,k.mesh.rotation.x+=.004}Gn.uniforms.uTime.value=N}let Yu=new I,Ha=new I;function Kf(){if(ce.chapter!==6)return;let N=Math.max(0,ce.time-ce.chapterStart)%12,k=Uu(0,2.6,N),G=Uu(5.2,9.4,N),_e=Uu(7.4,10.8,N),Fe=Oa.attributes.position.array;for(let We=0;We<Fa.length;We+=1){let je=Fa[We],Tt=je.side*(3.45+.22*Math.sin(je.phase));Yu.set(Tt,je.meta.y*.78,je.meta.z*.78),je.group.position.lerpVectors(je.meta,Yu,G),je.group.position.y+=Math.sin(N*2+je.phase)*.045,je.group.position.z+=Math.cos(N*1.7+je.phase)*.045;let Bt=.28+.72*k;je.group.scale.setScalar(Bt*je.baseScale),je.group.rotation.z=Math.sin(je.phase+G*1.8)*.34,Ha.set(je.side*4.8,0,0),Fe[We*6]=Ha.x,Fe[We*6+1]=Ha.y,Fe[We*6+2]=Ha.z,Fe[We*6+3]=je.group.position.x,Fe[We*6+4]=je.group.position.y,Fe[We*6+5]=je.group.position.z}Oa.attributes.position.needsUpdate=!0,Gu.opacity=.07+.17*k;for(let We=0;We<sc.length;We+=1){let je=.01+_e*(.92+Math.sin(ce.time*1.6+We)*.05);sc[We].scale.setScalar(je)}ic[0].scale.setScalar(.85+Math.sin(ce.time*2.2)*.12),ic[1].scale.setScalar(.85+Math.cos(ce.time*2.1)*.12)}let rc=0,Ga=!1,Zu=!1,Ku=performance.now();function Ju(N){if(!(N.button!==void 0&&N.button!==0)&&(ce.dragging=!0,ce.dragDistance=0,ce.lastPointerX=N.clientX,ce.lastPointerY=N.clientY,ce.pointerTargetX=0,ce.pointerTargetY=0,o.domElement.setPointerCapture))try{o.domElement.setPointerCapture(N.pointerId)}catch{}}function $u(N){let k=i.getBoundingClientRect();if(k.width>0&&k.height>0&&(ce.pointerTargetX=wn((N.clientX-k.left)/k.width*2-1,-1,1),ce.pointerTargetY=wn((N.clientY-k.top)/k.height*2-1,-1,1)),!ce.dragging)return;let G=N.clientX-ce.lastPointerX,_e=N.clientY-ce.lastPointerY;ce.lastPointerX=N.clientX,ce.lastPointerY=N.clientY,ce.dragDistance+=Math.abs(G)+Math.abs(_e),!(ce.dragDistance<3)&&(ce.yawTarget=wn(ce.yawTarget+G*.0021,-.8,.8),ce.pitchTarget=wn(ce.pitchTarget+_e*.0016,-.22,.22))}function Va(N){if(ce.dragging=!1,o.domElement.releasePointerCapture&&N.pointerId!==void 0)try{o.domElement.releasePointerCapture(N.pointerId)}catch{}}function ju(){ce.pointerTargetX=0,ce.pointerTargetY=0}function Qu(N){N.preventDefault();let k=N.deltaMode===1?N.deltaY*16:N.deltaMode===2?N.deltaY*400:N.deltaY,G=wn(k*.0012,-.18,.18);ce.zoomTarget=wn(ce.zoomTarget*Math.exp(G),.42,1.75)}function eh(N){N.preventDefault(),th()}function th(){ce.yawTarget=0,ce.pitchTarget=0,ce.zoomTarget=1,ce.pointerTargetX=0,ce.pointerTargetY=0}o.domElement.addEventListener("pointerdown",Ju),o.domElement.addEventListener("pointermove",$u),o.domElement.addEventListener("pointerup",Va),o.domElement.addEventListener("pointercancel",Va),o.domElement.addEventListener("pointerleave",ju),o.domElement.addEventListener("wheel",Qu,{passive:!1}),o.domElement.addEventListener("dblclick",eh);function br(){if(Ga)return;let N=Math.max(1,i.clientWidth),k=Math.max(1,i.clientHeight),G=Math.min(window.devicePixelRatio||1,1.5);o.setPixelRatio(G),o.setSize(N,k,!0),f.setPixelRatio(G),f.setSize(N,k),u.aspect=N/k,u.updateProjectionMatrix(),s.value=G,x.uniforms.uResolution.value.set(N*G,k*G)}let Wa=typeof ResizeObserver<"u"?new ResizeObserver(br):null;Wa&&Wa.observe(i),window.addEventListener("resize",br);function nh(){requestAnimationFrame(br)}document.addEventListener("fullscreenchange",nh),br();function ih(N){if(Ga||(rc=requestAnimationFrame(ih),Zu))return;let k=Math.min((N-Ku)/1e3,.05);Ku=N;let G=ce.paused?.14:1;ce.time+=k*G,n.value=ce.time,x.uniforms.uTime.value=ce.time,ce.flash=Math.max(0,ce.flash-k*1.8),x.uniforms.uFlash.value=ce.flash*.45,x.uniforms.uGrain.value=ce.paused?.016:.022,ce.paused||(a.rotation.y+=k*.013,P.rotation.y+=k*.0035,ee.rotation.y+=k*.006,Z.rotation.y+=k*.002),Gf(k),Vf(k),Wf(k),Xf(k),qf(),Yf(k*G),Zf(),Kf();try{f.render()}catch(_e){Zu=!0,typeof e.onError=="function"&&e.onError(_e);return}e.didRender||(e.didRender=!0,typeof e.onReady=="function"&&e.onReady())}Xu(0,!0),qu(ce.brightness),u.aspect=Math.max(1,i.clientWidth)/Math.max(1,i.clientHeight),u.fov=za,u.updateProjectionMatrix(),x.uniforms.uResolution.value.set(Math.max(1,i.clientWidth)*l,Math.max(1,i.clientHeight)*l),rc=requestAnimationFrame(ih);function Jf(){if(Ga)return;Ga=!0,cancelAnimationFrame(rc),o.domElement.removeEventListener("pointerdown",Ju),o.domElement.removeEventListener("pointermove",$u),o.domElement.removeEventListener("pointerup",Va),o.domElement.removeEventListener("pointercancel",Va),o.domElement.removeEventListener("pointerleave",ju),o.domElement.removeEventListener("wheel",Qu),o.domElement.removeEventListener("dblclick",eh),window.removeEventListener("resize",br),document.removeEventListener("fullscreenchange",nh),Wa&&Wa.disconnect();let N=new Set,k=new Set;c.traverse(G=>{if(G.geometry&&N.add(G.geometry),G.material){let _e=Array.isArray(G.material)?G.material:[G.material];for(let Fe of _e)Fe&&k.add(Fe)}});for(let G of N)try{G.dispose()}catch{}for(let G of k)try{G.map&&G.map.dispose(),G.dispose()}catch{}g&&g.dispose();try{p.dispose()}catch{}try{f.dispose()}catch{}o.dispose();try{o.forceContextLoss()}catch{}o.domElement.parentNode===i&&i.removeChild(o.domElement)}return{setChapter(N){Xu(N,!1)},setPaused(N){ce.paused=!!N},setBrightness(N){qu(N)},setDistanceScale(N){ce.distanceScale=wn(Number(N)||1,.6,3)},resetView(){th()},pulse(){ce.flash=Math.min(1.6,ce.flash+.9)},getChapter(){return ce.chapter},dispose:Jf,renderer:o,scene:c}}var vf=[{id:"ch01",no:"\u7B2C\u4E00\u7AE0",title:"\u7EEA\u8BBA",pages:"1\u201317",scene:0,overview:"\u4ECE\u7EC6\u80DE\u7684\u53D1\u73B0\u3001\u7EC6\u80DE\u5B66\u8BF4\u7684\u5EFA\u7ACB\u5230\u73B0\u4EE3\u7EC6\u80DE\u751F\u7269\u5B66\u7684\u5F62\u6210\uFF0C\u5EFA\u7ACB\u201C\u7EC6\u80DE\u662F\u751F\u547D\u6D3B\u52A8\u57FA\u672C\u5355\u4F4D\u201D\u7684\u6846\u67B6\uFF0C\u5E76\u8BA4\u8BC6\u7EC6\u80DE\u7684\u540C\u4E00\u6027\u4E0E\u591A\u6837\u6027\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u5B66\u4E0E\u7EC6\u80DE\u751F\u7269\u5B66",pages:"1\u20135",outline:["\u7EC6\u80DE\u7684\u53D1\u73B0","\u7EC6\u80DE\u5B66\u8BF4\u7684\u5EFA\u7ACB\u53CA\u5176\u610F\u4E49","\u4ECE\u7ECF\u5178\u7EC6\u80DE\u5B66\u5230\u5B9E\u9A8C\u7EC6\u80DE\u5B66\u65F6\u671F","\u7EC6\u80DE\u751F\u7269\u5B66\u5B66\u79D1\u7684\u5F62\u6210\u4E0E\u53D1\u5C55"],summary:"\u7EC6\u80DE\u751F\u7269\u5B66\u4ECE\u663E\u5FAE\u5F62\u6001\u63CF\u8FF0\u53D1\u5C55\u800C\u6765\uFF0C\u5728\u7EC6\u80DE\u5B66\u8BF4\u3001\u5B9E\u9A8C\u7EC6\u80DE\u5B66\u548C\u5206\u5B50\u751F\u7269\u5B66\u7684\u57FA\u7840\u4E0A\uFF0C\u5F62\u6210\u7814\u7A76\u7EC6\u80DE\u7ED3\u6784\u3001\u529F\u80FD\u4E0E\u751F\u547D\u6D3B\u52A8\u89C4\u5F8B\u7684\u7EFC\u5408\u5B66\u79D1\u3002",points:["1665 \u5E74 Hooke \u89C2\u5BDF\u5230\u7EC6\u80DE\u58C1\u5E76\u547D\u540D\u201Ccell\u201D\uFF1BLeeuwenhoek \u968F\u540E\u89C2\u5BDF\u5230\u6D3B\u7EC6\u80DE\u3002","1838\u20141839 \u5E74 Schleiden \u4E0E Schwann \u5EFA\u7ACB\u7EC6\u80DE\u5B66\u8BF4\uFF1BVirchow \u8865\u5145\u201C\u7EC6\u80DE\u6765\u81EA\u7EC6\u80DE\u201D\u3002","20 \u4E16\u7EAA\u4E2D\u53F6\u4EE5\u540E\uFF0C\u7535\u5B50\u663E\u5FAE\u955C\u3001\u5206\u5B50\u751F\u7269\u5B66\u548C\u6D3B\u7EC6\u80DE\u6210\u50CF\u628A\u7EC6\u80DE\u7814\u7A76\u63A8\u8FDB\u5230\u7EC6\u80DE\u5668\u4E0E\u5206\u5B50\u673A\u5236\u5C42\u9762\u3002"],terms:[{t:"\u7EC6\u80DE\u5B66\u8BF4",d:"\u4E00\u5207\u751F\u7269\u7531\u7EC6\u80DE\u6784\u6210\uFF1B\u7EC6\u80DE\u662F\u7ED3\u6784\u548C\u529F\u80FD\u7684\u57FA\u672C\u5355\u4F4D\uFF1B\u7EC6\u80DE\u6765\u81EA\u5DF2\u5B58\u5728\u7684\u7EC6\u80DE\u3002"},{t:"\u7EC6\u80DE\u751F\u7269\u5B66",d:"\u5E94\u7528\u73B0\u4EE3\u7269\u7406\u3001\u5316\u5B66\u548C\u5206\u5B50\u751F\u7269\u5B66\u65B9\u6CD5\uFF0C\u5728\u7EC6\u80DE\u6C34\u5E73\u7814\u7A76\u751F\u547D\u6D3B\u52A8\u7684\u5B66\u79D1\u3002"}],check:{q:"\u7EC6\u80DE\u5B66\u8BF4\u4E3A\u4EC0\u4E48\u662F\u751F\u7269\u5B66\u7684\u57FA\u7840\u7406\u8BBA\uFF1F",a:"\u5B83\u628A\u751F\u7269\u754C\u7684\u7EDF\u4E00\u6027\u5EFA\u7ACB\u5728\u53EF\u89C2\u5BDF\u7684\u7EC6\u80DE\u5355\u4F4D\u4E0A\uFF0C\u5E76\u4E0E\u8FDB\u5316\u8BBA\u3001\u9057\u4F20\u5B66\u4E00\u8D77\u6784\u6210\u73B0\u4EE3\u751F\u7269\u5B66\u7684\u57FA\u7840\uFF1B\u540E\u7EED\u7814\u7A76\u90FD\u53EF\u5728\u7EC6\u80DE\u5C42\u9762\u8FFD\u6EAF\u7ED3\u6784\u4E0E\u529F\u80FD\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u7EC6\u80DE\u7684\u540C\u4E00\u6027\u4E0E\u591A\u6837\u6027",pages:"5\u201317",outline:["\u7EC6\u80DE\u662F\u751F\u547D\u6D3B\u52A8\u7684\u57FA\u672C\u5355\u4F4D","\u7EC6\u80DE\u7684\u57FA\u672C\u7C7B\u578B","\u75C5\u6BD2\u53CA\u5176\u4E0E\u7EC6\u80DE\u7684\u5173\u7CFB"],summary:"\u6240\u6709\u7EC6\u80DE\u5171\u4EAB\u9057\u4F20\u5BC6\u7801\u3001\u819C\u7ED3\u6784\u548C\u80FD\u91CF\u4EE3\u8C22\u7B49\u57FA\u672C\u673A\u5236\uFF0C\u4F46\u539F\u6838\u4E0E\u771F\u6838\u7EC6\u80DE\u5728\u6838\u819C\u3001\u5185\u819C\u7CFB\u7EDF\u548C\u7EC6\u80DE\u9AA8\u67B6\u4E0A\u5B58\u5728\u6839\u672C\u5DEE\u5F02\u3002",points:["\u539F\u6838\u7EC6\u80DE\u6CA1\u6709\u6838\u819C\u5305\u56F4\u7684\u7EC6\u80DE\u6838\uFF0CDNA \u96C6\u4E2D\u5728\u62DF\u6838\uFF1B\u6838\u7CD6\u4F53\u4E3A 70S\uFF0C\u65E0\u5178\u578B\u819C\u6027\u7EC6\u80DE\u5668\u3002","\u771F\u6838\u7EC6\u80DE\u6709\u771F\u6B63\u7684\u7EC6\u80DE\u6838\u3001\u5185\u819C\u7CFB\u7EDF\u548C\u7EC6\u80DE\u9AA8\u67B6\uFF0C\u6838\u7CD6\u4F53\u4E3A 80S\u3002","\u75C5\u6BD2\u6CA1\u6709\u7EC6\u80DE\u7ED3\u6784\uFF0C\u53EA\u80FD\u4F9D\u8D56\u6D3B\u7EC6\u80DE\u590D\u5236\uFF0C\u662F\u4ECB\u4E8E\u751F\u547D\u4E0E\u975E\u751F\u547D\u4E4B\u95F4\u7684\u975E\u7EC6\u80DE\u5F62\u6001\u3002"],terms:[{t:"\u539F\u6838\u7EC6\u80DE",d:"\u65E0\u6838\u819C\u548C\u771F\u6B63\u7EC6\u80DE\u6838\u7684\u7EC6\u80DE\uFF0C\u4EE3\u8868\u4E3A\u7EC6\u83CC\u4E0E\u53E4\u83CC\u3002"},{t:"\u771F\u6838\u7EC6\u80DE",d:"\u5177\u6709\u6838\u819C\u3001\u7EC6\u80DE\u6838\u548C\u591A\u79CD\u819C\u6027\u7EC6\u80DE\u5668\u7684\u7EC6\u80DE\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u8BF4\u201C\u539F\u6838\u7EC6\u80DE\u6CA1\u6709\u7EC6\u80DE\u5668\u201D\u5E76\u4E0D\u51C6\u786E\uFF1F",a:"\u539F\u6838\u7EC6\u80DE\u6709\u6838\u7CD6\u4F53\uFF0C\u90E8\u5206\u8FD8\u6709\u5185\u819C\u8936\u76B1\uFF1B\u53EA\u662F\u6CA1\u6709\u7531\u819C\u5305\u56F4\u7684\u7EC6\u80DE\u6838\u548C\u5178\u578B\u819C\u6027\u7EC6\u80DE\u5668\u3002"}}]},{id:"ch02",no:"\u7B2C\u4E8C\u7AE0",title:"\u7EC6\u80DE\u751F\u7269\u5B66\u7814\u7A76\u65B9\u6CD5",pages:"18\u201339",scene:0,overview:"\u7EC6\u80DE\u751F\u7269\u5B66\u4F9D\u8D56\u201C\u770B\u5F97\u89C1\u3001\u5206\u5F97\u5F00\u3001\u6D4B\u5F97\u51C6\u3001\u6539\u5F97\u52A8\u201D\u7684\u65B9\u6CD5\u4F53\u7CFB\uFF1A\u663E\u5FAE\u6210\u50CF\u3001\u4E9A\u7EC6\u80DE\u5206\u79BB\u3001\u7EC6\u80DE\u57F9\u517B\u4E0E\u5206\u5B50\u5E72\u9884\u5171\u540C\u6784\u6210\u8BC1\u636E\u94FE\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u5F62\u6001\u7ED3\u6784\u7684\u89C2\u5BDF\u65B9\u6CD5",pages:"18\u201330",outline:["\u5149\u5B66\u663E\u5FAE\u955C","\u7535\u5B50\u663E\u5FAE\u955C","\u626B\u63CF\u96A7\u9053\u663E\u5FAE\u955C"],summary:"\u663E\u5FAE\u6280\u672F\u7684\u5173\u952E\u6307\u6807\u662F\u5206\u8FA8\u7387\uFF0C\u800C\u4E0D\u53EA\u662F\u653E\u5927\u500D\u6570\uFF1B\u4E0D\u540C\u663E\u5FAE\u65B9\u6CD5\u5728\u6D3B\u7EC6\u80DE\u3001\u8D85\u5FAE\u7ED3\u6784\u548C\u8868\u9762\u5F62\u8C8C\u4E4B\u95F4\u5404\u6709\u53D6\u820D\u3002",points:["\u5149\u5B66\u663E\u5FAE\u955C\u5206\u8FA8\u7387\u7684\u7406\u8BBA\u6781\u9650\u53D7\u884D\u5C04\u9650\u5236\uFF1B\u8367\u5149\u3001\u5171\u805A\u7126\u548C\u8D85\u5206\u8FA8\u6280\u672F\u63D0\u9AD8\u4E86\u5BF9\u6BD4\u5EA6\u4E0E\u5B9A\u4F4D\u7CBE\u5EA6\u3002","\u900F\u5C04\u7535\u955C\uFF08TEM\uFF09\u89C2\u5BDF\u8D85\u8584\u5207\u7247\u7684\u5185\u90E8\u7ED3\u6784\uFF1B\u626B\u63CF\u7535\u955C\uFF08SEM\uFF09\u89C2\u5BDF\u8868\u9762\u5F62\u8C8C\u3002","\u626B\u63CF\u96A7\u9053\u663E\u5FAE\u955C\u548C\u539F\u5B50\u529B\u663E\u5FAE\u955C\u53EF\u5728\u7EB3\u7C73\u5C3A\u5EA6\u63A2\u6D4B\u8868\u9762\uFF0C\u4F46\u6837\u54C1\u4E0E\u6210\u50CF\u6761\u4EF6\u8981\u6C42\u9AD8\u3002"],terms:[{t:"\u5206\u8FA8\u7387",d:"\u80FD\u533A\u5206\u4E24\u4E2A\u76F8\u90BB\u7269\u70B9\u7684\u6700\u5C0F\u8DDD\u79BB\uFF1B\u662F\u663E\u5FAE\u6210\u50CF\u7684\u6838\u5FC3\u6307\u6807\u3002"},{t:"\u8367\u5149\u663E\u5FAE\u955C",d:"\u7528\u8367\u5149\u63A2\u9488\u6807\u8BB0\u7279\u5B9A\u5206\u5B50\uFF0C\u5728\u6697\u80CC\u666F\u4E0B\u89C2\u5BDF\u5176\u5206\u5E03\u4E0E\u52A8\u6001\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u7535\u5B50\u663E\u5FAE\u955C\u7684\u5206\u8FA8\u7387\u9AD8\u4E8E\u5149\u5B66\u663E\u5FAE\u955C\uFF1F",a:"\u7535\u5B50\u7684\u5FB7\u5E03\u7F57\u610F\u6CE2\u957F\u8FDC\u5C0F\u4E8E\u53EF\u89C1\u5149\uFF0C\u53D7\u884D\u5C04\u9650\u5236\u66F4\u5C0F\uFF1B\u540C\u65F6\u7535\u955C\u7528\u7535\u78C1\u900F\u955C\u805A\u7126\u7535\u5B50\u675F\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u7EC6\u80DE\u53CA\u5176\u7EC4\u5206\u7684\u5206\u6790\u65B9\u6CD5",pages:"30\u201332",outline:["\u7528\u8D85\u79BB\u5FC3\u6280\u672F\u5206\u79BB\u7EC6\u80DE\u7EC4\u5206","\u7279\u5F02\u86CB\u767D\u6297\u539F\u7684\u5B9A\u4F4D\u4E0E\u5B9A\u6027","\u7EC6\u80DE\u5185\u7279\u5F02\u6838\u9178\u7684\u5B9A\u4F4D\u4E0E\u5B9A\u6027","\u7EC6\u80DE\u6210\u5206\u7684\u5206\u6790\u4E0E\u7EC6\u80DE\u5206\u9009\u6280\u672F"],summary:"\u628A\u7EC6\u80DE\u7834\u788E\u3001\u5206\u7EA7\u5206\u79BB\uFF0C\u518D\u7ED3\u5408\u6297\u4F53\u3001\u6838\u9178\u63A2\u9488\u548C\u6D41\u5F0F\u5206\u9009\uFF0C\u53EF\u5728\u7EC6\u80DE\u5668\u4E0E\u5355\u7EC6\u80DE\u6C34\u5E73\u5EFA\u7ACB\u6210\u5206\u2014\u5B9A\u4F4D\u2014\u529F\u80FD\u5BF9\u5E94\u5173\u7CFB\u3002",points:["\u5DEE\u901F\u79BB\u5FC3\u6309\u9897\u7C92\u5927\u5C0F\u548C\u5BC6\u5EA6\u5206\u79BB\u7EC6\u80DE\u6838\u3001\u7EBF\u7C92\u4F53\u3001\u5FAE\u7C92\u4F53\u7B49\u7EC4\u5206\uFF1B\u5BC6\u5EA6\u68AF\u5EA6\u79BB\u5FC3\u53EF\u8FDB\u4E00\u6B65\u7EAF\u5316\u3002","\u514D\u75AB\u8367\u5149/\u514D\u75AB\u7535\u955C\u7528\u7279\u5F02\u6297\u4F53\u5B9A\u4F4D\u86CB\u767D\uFF1B\u539F\u4F4D\u6742\u4EA4\u7528\u6838\u9178\u63A2\u9488\u5B9A\u4F4D DNA \u6216 RNA\u3002","\u6D41\u5F0F\u7EC6\u80DE\u672F\u53EF\u5BF9\u5355\u7EC6\u80DE\u8FDB\u884C\u5B9A\u91CF\u5206\u6790\u4E0E\u5206\u9009\uFF0C\u7EC4\u5B66\u65B9\u6CD5\u53EF\u5E76\u884C\u8BFB\u53D6\u8F6C\u5F55\u672C\u3001\u86CB\u767D\u548C\u4EE3\u8C22\u7269\u3002"],terms:[{t:"\u5DEE\u901F\u79BB\u5FC3",d:"\u901A\u8FC7\u9010\u7EA7\u63D0\u9AD8\u79BB\u5FC3\u529B\uFF0C\u628A\u4E0D\u540C\u5927\u5C0F\u548C\u5BC6\u5EA6\u7684\u7EC6\u80DE\u7EC4\u5206\u4F9D\u6B21\u6C89\u6DC0\u5206\u79BB\u3002"},{t:"\u514D\u75AB\u7EC6\u80DE\u5316\u5B66",d:"\u7528\u5E26\u6807\u8BB0\u7684\u6297\u4F53\u5728\u7EC6\u80DE\u539F\u4F4D\u68C0\u6D4B\u7279\u5B9A\u6297\u539F\u7684\u5206\u5E03\u3002"}],check:{q:"\u5206\u79BB\u7EBF\u7C92\u4F53\u65F6\u4E3A\u4EC0\u4E48\u8981\u4F7F\u7528\u7B49\u6E17\u7F13\u51B2\u6DB2\u548C\u86CB\u767D\u9176\u6291\u5236\u5242\uFF1F",a:"\u7B49\u6E17\u6761\u4EF6\u4FDD\u62A4\u7EC6\u80DE\u5668\u5F62\u6001\u4E0E\u819C\u5B8C\u6574\u6027\uFF0C\u86CB\u767D\u9176\u6291\u5236\u5242\u51CF\u5C11\u86CB\u767D\u964D\u89E3\uFF1B\u4F4E\u6E29\u64CD\u4F5C\u4E5F\u6709\u52A9\u4E8E\u4FDD\u6301\u6D3B\u6027\u3002"}},{no:"\u7B2C\u4E09\u8282",title:"\u7EC6\u80DE\u57F9\u517B\u4E0E\u7EC6\u80DE\u5DE5\u7A0B",pages:"32\u201335",outline:["\u7EC6\u80DE\u57F9\u517B","\u7EC6\u80DE\u5DE5\u7A0B"],summary:"\u4F53\u5916\u57F9\u517B\u4F7F\u7EC6\u80DE\u6210\u4E3A\u53EF\u64CD\u63A7\u7684\u5B9E\u9A8C\u7CFB\u7EDF\uFF1B\u7EC6\u80DE\u878D\u5408\u3001\u57FA\u56E0\u8F6C\u79FB\u548C\u57FA\u56E0\u7F16\u8F91\u5219\u628A\u89C2\u5BDF\u63A8\u8FDB\u5230\u529F\u80FD\u5E72\u9884\u3002",points:["\u539F\u4EE3\u57F9\u517B\u6765\u81EA\u7EC4\u7EC7\u76F4\u63A5\u5206\u79BB\u7684\u7EC6\u80DE\uFF0C\u7EC6\u80DE\u7CFB\u53EF\u957F\u671F\u4F20\u4EE3\u4F46\u53EF\u80FD\u53D1\u751F\u8868\u578B\u6F02\u79FB\u3002","\u57F9\u517B\u9700\u8981\u5408\u9002\u7684\u57F9\u517B\u57FA\u3001\u8840\u6E05/\u751F\u957F\u56E0\u5B50\u3001\u6E29\u5EA6\u3001pH \u548C\u65E0\u83CC\u73AF\u5883\uFF1B\u63A5\u89E6\u6291\u5236\u4E0E\u5BC6\u5EA6\u9650\u5236\u5F71\u54CD\u751F\u957F\u3002","\u7EC6\u80DE\u878D\u5408\u3001\u8F6C\u57FA\u56E0\u3001RNA \u5E72\u6270\u548C CRISPR \u57FA\u56E0\u7F16\u8F91\u53EF\u7528\u4E8E\u6784\u5EFA\u75BE\u75C5\u6A21\u578B\u3001\u751F\u4EA7\u86CB\u767D\u548C\u89E3\u6790\u57FA\u56E0\u529F\u80FD\u3002"],terms:[{t:"\u539F\u4EE3\u57F9\u517B",d:"\u76F4\u63A5\u4ECE\u7EC4\u7EC7\u5206\u79BB\u5E76\u9996\u6B21\u57F9\u517B\u7684\u7EC6\u80DE\uFF0C\u901A\u5E38\u66F4\u63A5\u8FD1\u4F53\u5185\u8868\u578B\u3002"},{t:"\u7EC6\u80DE\u7CFB",d:"\u80FD\u5728\u4F53\u5916\u957F\u671F\u4F20\u4EE3\u3001\u5177\u6709\u76F8\u5BF9\u7A33\u5B9A\u8868\u578B\u7684\u7EC6\u80DE\u7FA4\u4F53\u3002"}],check:{q:"\u539F\u4EE3\u7EC6\u80DE\u4E0E\u8FDE\u7EED\u7EC6\u80DE\u7CFB\u5404\u6709\u4EC0\u4E48\u4F18\u7F3A\u70B9\uFF1F",a:"\u539F\u4EE3\u7EC6\u80DE\u66F4\u63A5\u8FD1\u4F53\u5185\u72B6\u6001\uFF0C\u4F46\u4F20\u4EE3\u6709\u9650\u3001\u6279\u6B21\u5DEE\u5F02\u5927\uFF1B\u8FDE\u7EED\u7EC6\u80DE\u7CFB\u53EF\u957F\u671F\u6269\u589E\u3001\u91CD\u590D\u6027\u597D\uFF0C\u4F46\u53EF\u80FD\u79EF\u7D2F\u9057\u4F20\u4E0E\u8868\u578B\u6539\u53D8\u3002"}},{no:"\u7B2C\u56DB\u8282",title:"\u7EC6\u80DE\u53CA\u751F\u7269\u5927\u5206\u5B50\u7684\u52A8\u6001\u53D8\u5316",pages:"35\u201339",outline:["\u8367\u5149\u6F02\u767D\u6062\u590D\u6280\u672F","\u9175\u6BCD\u53CC\u6742\u4EA4\u6280\u672F","\u8367\u5149\u5171\u632F\u80FD\u91CF\u8F6C\u79FB\u6280\u672F","\u653E\u5C04\u81EA\u663E\u5F71\u6280\u672F"],summary:"\u6D3B\u7EC6\u80DE\u52A8\u6001\u7814\u7A76\u8981\u56DE\u7B54\u201C\u5206\u5B50\u5728\u54EA\u91CC\u3001\u548C\u8C01\u4F5C\u7528\u3001\u505C\u7559\u591A\u4E45\u3001\u5982\u4F55\u79FB\u52A8\u201D\uFF0C\u9700\u8981\u65F6\u95F4\u5206\u8FA8\u7684\u6807\u8BB0\u4E0E\u6270\u52A8\u65B9\u6CD5\u3002",points:["FRAP \u7528\u5F3A\u5149\u6F02\u767D\u5C40\u90E8\u8367\u5149\uFF0C\u6D4B\u91CF\u8367\u5149\u6062\u590D\u901F\u5EA6\uFF0C\u63A8\u65AD\u5206\u5B50\u7684\u6269\u6563\u4E0E\u7ED3\u5408\u52A8\u529B\u5B66\u3002","FRET \u901A\u8FC7\u4E24\u4E2A\u8367\u5149\u57FA\u56E2\u7684\u80FD\u91CF\u8F6C\u79FB\uFF0C\u68C0\u6D4B\u7EB3\u7C73\u5C3A\u5EA6\u7684\u5206\u5B50\u95F4\u8DDD\u79BB\u4E0E\u76F8\u4E92\u4F5C\u7528\u3002","\u9175\u6BCD\u53CC\u6742\u4EA4\u7B5B\u9009\u86CB\u767D\u2014\u86CB\u767D\u76F8\u4E92\u4F5C\u7528\uFF1B\u653E\u5C04\u81EA\u663E\u5F71\u8FFD\u8E2A\u653E\u5C04\u6027\u6807\u8BB0\u5206\u5B50\u7684\u5408\u6210\u3001\u8FD0\u8F93\u4E0E\u5B9A\u4F4D\u3002"],terms:[{t:"FRAP",d:"\u8367\u5149\u6F02\u767D\u540E\u6062\u590D\u6280\u672F\uFF0C\u7528\u6062\u590D\u66F2\u7EBF\u8BC4\u4F30\u5206\u5B50\u8FD0\u52A8\u4E0E\u4EA4\u6362\u901F\u7387\u3002"},{t:"FRET",d:"\u8367\u5149\u5171\u632F\u80FD\u91CF\u8F6C\u79FB\uFF0C\u53EF\u62A5\u544A\u7EB3\u7C73\u5C3A\u5EA6\u5185\u7684\u5206\u5B50\u90BB\u8FD1\u4E0E\u6784\u8C61\u53D8\u5316\u3002"}],check:{q:"FRAP \u6062\u590D\u5F88\u5FEB\u662F\u5426\u4E00\u5B9A\u8BF4\u660E\u5206\u5B50\u6269\u6563\u5FEB\uFF1F",a:"\u4E0D\u4E00\u5B9A\u3002\u6062\u590D\u901F\u5EA6\u8FD8\u53D7\u7ED3\u5408/\u89E3\u79BB\u3001\u7EC6\u80DE\u533A\u5BA4\u548C\u5149\u6591\u5927\u5C0F\u5F71\u54CD\uFF1B\u9700\u7ED3\u5408\u6A21\u578B\u548C\u5BF9\u7167\u5B9E\u9A8C\u89E3\u91CA\u3002"}}]},{id:"ch03",no:"\u7B2C\u4E09\u7AE0",title:"\u7EC6\u80DE\u8D28\u819C",pages:"40\u201355",scene:1,overview:"\u7EC6\u80DE\u8D28\u819C\u662F\u539A\u5EA6\u7EA6 7.5 nm \u7684\u6D41\u52A8\u9576\u5D4C\u754C\u9762\uFF0C\u7531\u819C\u8102\u3001\u819C\u86CB\u767D\u548C\u7CD6\u7C7B\u7EC4\u6210\uFF0C\u8D1F\u8D23\u8FB9\u754C\u3001\u8FD0\u8F93\u3001\u4FE1\u53F7\u3001\u8BC6\u522B\u4E0E\u8FDE\u63A5\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u8D28\u819C\u7684\u7ED3\u6784\u6A21\u578B\u4E0E\u57FA\u672C\u6210\u5206",pages:"40\u201349",outline:["\u7EC6\u80DE\u8D28\u819C\u7684\u7ED3\u6784\u6A21\u578B","\u819C\u8102","\u819C\u86CB\u767D"],summary:"\u4ECE\u4E09\u660E\u6CBB\u6A21\u578B\u3001\u5355\u4F4D\u819C\u6A21\u578B\u5230\u6D41\u52A8\u9576\u5D4C\u6A21\u578B\uFF0C\u5B9E\u9A8C\u8BC1\u636E\u9010\u6B65\u786E\u7ACB\u4E86\u201C\u8102\u53CC\u5C42\u4E3A\u9AA8\u67B6\u3001\u86CB\u767D\u8D28\u9576\u5D4C\u5176\u4E2D\u201D\u7684\u819C\u7ED3\u6784\u3002",points:["\u6D41\u52A8\u9576\u5D4C\u6A21\u578B\u7531 Singer \u4E0E Nicolson \u4E8E 1972 \u5E74\u63D0\u51FA\uFF1A\u819C\u8102\u5F62\u6210\u53EF\u6D41\u52A8\u7684\u53CC\u5C42\uFF0C\u819C\u86CB\u767D\u4EE5\u9576\u5D4C\u6216\u8D2F\u7A7F\u65B9\u5F0F\u5206\u5E03\u3002","\u819C\u8102\u4EE5\u78F7\u8102\u4E3A\u4E3B\uFF0C\u8FD8\u542B\u80C6\u56FA\u9187\u548C\u7CD6\u8102\uFF1B\u4EB2\u6C34\u5934\u90E8\u671D\u5411\u6C34\u76F8\uFF0C\u758F\u6C34\u5C3E\u90E8\u5411\u5185\u3002","\u819C\u86CB\u767D\u5206\u4E3A\u6574\u5408\u819C\u86CB\u767D\u548C\u5916\u5468\u819C\u86CB\u767D\uFF0C\u627F\u62C5\u8FD0\u8F93\u3001\u53D7\u4F53\u3001\u9176\u3001\u8BC6\u522B\u548C\u7ED3\u6784\u8FDE\u63A5\u7B49\u529F\u80FD\u3002"],terms:[{t:"\u6D41\u52A8\u9576\u5D4C\u6A21\u578B",d:"\u819C\u8102\u53CC\u5C42\u4E3A\u6D41\u52A8\u9AA8\u67B6\u3001\u86CB\u767D\u8D28\u9576\u5D4C\u5176\u4E2D\u7684\u4E0D\u5BF9\u79F0\u4E8C\u7EF4\u6DB2\u4F53\u6A21\u578B\u3002"},{t:"\u6574\u5408\u819C\u86CB\u767D",d:"\u5D4C\u5165\u6216\u8D2F\u7A7F\u8102\u53CC\u5C42\u7684\u819C\u86CB\u767D\uFF0C\u901A\u5E38\u9700\u8981\u53BB\u57A2\u5242\u624D\u80FD\u5206\u79BB\u3002"}],check:{q:"\u7EA2\u7EC6\u80DE\u819C\u8102\u94FA\u5C55\u9762\u79EF\u4E3A\u7EC6\u80DE\u8868\u9762\u79EF\u7684 2 \u500D\uFF0C\u8BF4\u660E\u4E86\u4EC0\u4E48\uFF1F",a:"\u8BF4\u660E\u819C\u8102\u4EE5\u53CC\u5206\u5B50\u5C42\u6392\u5217\uFF1A\u6BCF\u4E00\u5C42\u7684\u8102\u8D28\u94FA\u5C55\u5F00\u6765\u7EA6\u4E3A\u539F\u7EC6\u80DE\u8868\u9762\u79EF\uFF0C\u4E24\u5C42\u76F8\u52A0\u4E3A 2 \u500D\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u7EC6\u80DE\u8D28\u819C\u7684\u57FA\u672C\u7279\u5F81\u4E0E\u529F\u80FD",pages:"49\u201355",outline:["\u819C\u7684\u6D41\u52A8\u6027","\u819C\u7684\u4E0D\u5BF9\u79F0\u6027","\u7EC6\u80DE\u8D28\u819C\u76F8\u5173\u7684\u819C\u9AA8\u67B6","\u7EC6\u80DE\u8D28\u819C\u7684\u57FA\u672C\u529F\u80FD"],summary:"\u819C\u662F\u52A8\u6001\u3001\u4E0D\u5BF9\u79F0\u7684\u4E8C\u7EF4\u6D41\u4F53\uFF1B\u819C\u9AA8\u67B6\u548C\u7EC6\u80DE\u9AA8\u67B6\u9650\u5236\u86CB\u767D\u8FD0\u52A8\uFF0C\u4F7F\u819C\u5728\u4FDD\u6301\u6D41\u52A8\u6027\u7684\u540C\u65F6\u5177\u6709\u533A\u57DF\u79E9\u5E8F\u3002",points:["\u819C\u8102\u7684\u4FA7\u5411\u8FD0\u52A8\u53D7\u8102\u80AA\u9178\u4E0D\u9971\u548C\u5EA6\u3001\u94FE\u957F\u3001\u6E29\u5EA6\u548C\u80C6\u56FA\u9187\u5F71\u54CD\uFF1B\u80C6\u56FA\u9187\u5BF9\u6D41\u52A8\u6027\u6709\u53CC\u5411\u8C03\u8282\u3002","\u819C\u86CB\u767D\u53EF\u5728\u819C\u5E73\u9762\u6269\u6563\uFF0C\u4F46\u5E38\u88AB\u819C\u9AA8\u67B6\u3001\u7EC6\u80DE\u8FDE\u63A5\u6216\u8102\u7B4F\u9650\u5236\u5728\u7279\u5B9A\u533A\u57DF\u3002","\u819C\u7684\u4E0D\u5BF9\u79F0\u6027\u4F53\u73B0\u5728\u8102\u8D28\u3001\u86CB\u767D\u548C\u7CD6\u94FE\u7684\u5206\u5E03\u5DEE\u5F02\uFF1B\u7CD6\u94FE\u4E3B\u8981\u4F4D\u4E8E\u7EC6\u80DE\u5916\u4FA7\uFF0C\u5F62\u6210\u7CD6\u843C\u3002","\u57FA\u672C\u529F\u80FD\u5305\u62EC\u754C\u5B9A\u8FB9\u754C\u3001\u9009\u62E9\u6027\u8FD0\u8F93\u3001\u4FE1\u53F7\u63A5\u6536\u3001\u7EC6\u80DE\u8BC6\u522B\u4E0E\u8FDE\u63A5\u3001\u7EF4\u6301\u819C\u7535\u4F4D\u3002"],terms:[{t:"\u819C\u7684\u6D41\u52A8\u6027",d:"\u819C\u8102\u548C\u819C\u86CB\u767D\u5728\u4E8C\u7EF4\u5E73\u9762\u5185\u7684\u4FA7\u5411\u8FD0\u52A8\u80FD\u529B\u3002"},{t:"\u819C\u9AA8\u67B6",d:"\u9644\u7740\u5728\u819C\u5185\u4FA7\u3001\u652F\u6491\u819C\u5F62\u72B6\u5E76\u9650\u5236\u819C\u86CB\u767D\u8FD0\u52A8\u7684\u86CB\u767D\u7F51\u7EDC\u3002"}],check:{q:"\u80C6\u56FA\u9187\u5982\u4F55\u5F71\u54CD\u819C\u7684\u6D41\u52A8\u6027\uFF1F",a:"\u5728\u8F83\u9AD8\u6E29\u5EA6\u4E0B\u80C6\u56FA\u9187\u9650\u5236\u78F7\u8102\u5C3E\u5DF4\u8FD0\u52A8\u3001\u964D\u4F4E\u6D41\u52A8\u6027\uFF1B\u5728\u4F4E\u6E29\u4E0B\u5B83\u53C8\u80FD\u963B\u6B62\u8102\u8D28\u7D27\u5BC6\u5806\u79EF\uFF0C\u7EF4\u6301\u6D41\u52A8\u72B6\u6001\uFF0C\u5448\u53CC\u5411\u8C03\u8282\u3002"}}]},{id:"ch04",no:"\u7B2C\u56DB\u7AE0",title:"\u7269\u8D28\u7684\u8DE8\u819C\u8FD0\u8F93",pages:"56\u201373",scene:1,overview:"\u7EC6\u80DE\u8D28\u819C\u7684\u9009\u62E9\u900F\u8FC7\u6027\u7531\u819C\u8F6C\u8FD0\u86CB\u767D\u3001\u79BB\u5B50\u68AF\u5EA6\u548C\u819C\u7535\u4F4D\u5171\u540C\u5B9E\u73B0\uFF1B\u5C0F\u5206\u5B50\u8FD0\u8F93\u4E0E\u819C\u6CE1\u8FD0\u8F93\u5206\u5DE5\u534F\u4F5C\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u819C\u8F6C\u8FD0\u86CB\u767D\u4E0E\u5C0F\u5206\u5B50\u53CA\u79BB\u5B50\u7684\u8DE8\u819C\u8FD0\u8F93",pages:"56\u201362",outline:["\u819C\u8F6C\u8FD0\u86CB\u767D","\u5C0F\u5206\u5B50\u53CA\u79BB\u5B50\u7684\u8DE8\u819C\u8FD0\u8F93\u7C7B\u578B"],summary:"\u8102\u53CC\u5C42\u5BF9\u5E26\u7535\u548C\u6781\u6027\u5206\u5B50\u57FA\u672C\u4E0D\u901A\u900F\uFF1B\u901A\u9053\u86CB\u767D\u548C\u8F7D\u4F53\u86CB\u767D\u4F7F\u79BB\u5B50\u3001\u7CD6\u548C\u6C28\u57FA\u9178\u80FD\u591F\u987A\u6D53\u5EA6\u6216\u7535\u5316\u5B66\u68AF\u5EA6\u8DE8\u819C\u3002",points:["\u7B80\u5355\u6269\u6563\u9002\u7528\u4E8E\u8102\u6EB6\u6027\u5C0F\u5206\u5B50\u548C\u5C0F\u7684\u4E0D\u5E26\u7535\u5206\u5B50\uFF1B\u534F\u52A9\u6269\u6563\u9700\u8981\u901A\u9053\u6216\u8F7D\u4F53\uFF0C\u4ECD\u987A\u7535\u5316\u5B66\u68AF\u5EA6\u3002","\u901A\u9053\u86CB\u767D\u5F62\u6210\u4EB2\u6C34\u5B54\u9053\uFF0C\u8F7D\u4F53\u86CB\u767D\u901A\u8FC7\u6784\u8C61\u53D8\u5316\u8F6C\u8FD0\u5E95\u7269\uFF1B\u4E24\u8005\u90FD\u5177\u6709\u9009\u62E9\u6027\u3002","Na\u207A/K\u207A \u7B49\u79BB\u5B50\u7684\u4E0D\u5747\u5300\u5206\u5E03\u5F62\u6210\u819C\u7535\u4F4D\uFF0C\u9759\u606F\u65F6\u819C\u5185\u8D1F\u3001\u819C\u5916\u6B63\u3002"],terms:[{t:"\u901A\u9053\u86CB\u767D",d:"\u5728\u819C\u4E0A\u5F62\u6210\u4EB2\u6C34\u5B54\u9053\u3001\u5141\u8BB8\u7279\u5B9A\u79BB\u5B50\u6216\u5206\u5B50\u5FEB\u901F\u901A\u8FC7\u7684\u819C\u86CB\u767D\u3002"},{t:"\u8F7D\u4F53\u86CB\u767D",d:"\u901A\u8FC7\u6784\u8C61\u53D8\u5316\u628A\u5E95\u7269\u8DE8\u819C\u8F6C\u8FD0\u7684\u819C\u86CB\u767D\uFF0C\u53EF\u4ECB\u5BFC\u88AB\u52A8\u6216\u4E3B\u52A8\u8FD0\u8F93\u3002"}],check:{q:"\u534F\u52A9\u6269\u6563\u4E0E\u7B80\u5355\u6269\u6563\u7684\u6839\u672C\u5171\u540C\u70B9\u662F\u4EC0\u4E48\uFF1F",a:"\u4E24\u8005\u90FD\u987A\u7535\u5316\u5B66\u68AF\u5EA6\u3001\u4E0D\u9700\u8981\u7EC6\u80DE\u76F4\u63A5\u6D88\u8017 ATP\uFF1B\u533A\u522B\u662F\u534F\u52A9\u6269\u6563\u9700\u8981\u819C\u8F6C\u8FD0\u86CB\u767D\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"ATP \u9A71\u52A8\u6CF5\u4E0E\u4E3B\u52A8\u8FD0\u8F93",pages:"62\u201368",outline:["P \u578B\u6CF5","V \u578B\u8D28\u5B50\u6CF5\u548C F \u578B\u8D28\u5B50\u6CF5","ABC \u8D85\u5BB6\u65CF","\u79BB\u5B50\u8DE8\u819C\u8F6C\u8FD0\u4E0E\u819C\u7535\u4F4D"],summary:"\u4E3B\u52A8\u8FD0\u8F93\u9006\u7535\u5316\u5B66\u68AF\u5EA6\u8FDB\u884C\uFF0C\u9700\u8981 ATP \u6216\u5176\u5B83\u80FD\u6E90\uFF1B\u6CF5\u86CB\u767D\u5EFA\u7ACB\u5E76\u7EF4\u6301\u79BB\u5B50\u68AF\u5EA6\uFF0C\u662F\u819C\u7535\u4F4D\u548C\u6B21\u7EA7\u8FD0\u8F93\u7684\u57FA\u7840\u3002",points:["P \u578B ATP \u9176\u5728\u8F6C\u8FD0\u5FAA\u73AF\u4E2D\u53D1\u751F\u78F7\u9178\u5316\uFF0C\u5982 Na\u207A/K\u207A-ATP \u9176\u3001Ca\xB2\u207A-ATP \u9176\u3002","V \u578B\u8D28\u5B50\u6CF5\u4E3B\u8981\u4F4D\u4E8E\u6DB2\u6CE1/\u6EB6\u9176\u4F53\u819C\uFF1BF \u578B\u8D28\u5B50\u6CF5\u5229\u7528\u8D28\u5B50\u68AF\u5EA6\u5408\u6210 ATP\uFF0C\u4E5F\u89C1\u4E8E\u7EC6\u83CC\u8D28\u819C\u3002","ABC \u8F6C\u8FD0\u86CB\u767D\u5229\u7528 ATP \u8F6C\u8FD0\u591A\u79CD\u5E95\u7269\uFF1BNa\u207A/K\u207A \u6CF5\u6BCF\u6C34\u89E3 1 \u4E2A ATP \u6CF5\u51FA 3 \u4E2A Na\u207A\u3001\u6CF5\u5165 2 \u4E2A K\u207A\u3002"],terms:[{t:"P \u578B ATP \u9176",d:"\u5728\u8F6C\u8FD0\u8FC7\u7A0B\u4E2D\u5F62\u6210\u78F7\u9178\u5316\u4E2D\u95F4\u4F53\u7684\u4E00\u7C7B\u79BB\u5B50\u6CF5\u3002"},{t:"Na\u207A/K\u207A-ATP \u9176",d:"\u7EF4\u6301\u7EC6\u80DE\u5185\u9AD8 K\u207A\u3001\u7EC6\u80DE\u5916\u9AD8 Na\u207A \u7684\u4E3B\u52A8\u8FD0\u8F93\u6CF5\uFF0C\u53C2\u4E0E\u819C\u7535\u4F4D\u4E0E\u6B21\u7EA7\u8FD0\u8F93\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48 Na\u207A/K\u207A \u6CF5\u662F\u751F\u7535\u6027\u7684\uFF1F",a:"\u6BCF\u5FAA\u73AF\u51C0\u6CF5\u51FA 1 \u4E2A\u6B63\u7535\u8377\uFF083 Na\u207A \u51FA\u30012 K\u207A \u5165\uFF09\uFF0C\u4F7F\u819C\u5916\u66F4\u6B63\uFF0C\u53C2\u4E0E\u7EF4\u6301\u9759\u606F\u819C\u7535\u4F4D\u3002"}},{no:"\u7B2C\u4E09\u8282",title:"\u80DE\u541E\u4F5C\u7528\u4E0E\u80DE\u5410\u4F5C\u7528",pages:"68\u201373",outline:["\u80DE\u541E\u4F5C\u7528\u7684\u7C7B\u578B","\u80DE\u541E\u4F5C\u7528\u4E0E\u7EC6\u80DE\u4FE1\u53F7\u8F6C\u5BFC","\u80DE\u5410\u4F5C\u7528"],summary:"\u5927\u5206\u5B50\u548C\u9897\u7C92\u4E0D\u80FD\u76F4\u63A5\u7A7F\u8FC7\u8102\u53CC\u5C42\uFF0C\u7EC6\u80DE\u901A\u8FC7\u819C\u7684\u5185\u9677\u3001\u56CA\u6CE1\u5F62\u6210\u548C\u5916\u6392\u5B8C\u6210\u6444\u53D6\u4E0E\u5206\u6CCC\u3002",points:["\u80DE\u541E\u5305\u62EC\u541E\u566C\u3001\u80DE\u996E\u548C\u53D7\u4F53\u4ECB\u5BFC\u7684\u80DE\u541E\uFF1B\u7F51\u683C\u86CB\u767D\u53C2\u4E0E\u8BB8\u591A\u53D7\u4F53\u2014\u914D\u4F53\u590D\u5408\u7269\u7684\u5185\u541E\u3002","\u5185\u4F53\u5206\u9009\u51B3\u5B9A\u53D7\u4F53\u662F\u88AB\u56DE\u6536\u8FD8\u662F\u8FDB\u5165\u6EB6\u9176\u4F53\u964D\u89E3\uFF1B\u80DE\u541E\u4E5F\u53C2\u4E0E\u4FE1\u53F7\u8F6C\u5BFC\u7684\u8C03\u63A7\u3002","\u80DE\u5410\u901A\u8FC7\u5206\u6CCC\u56CA\u6CE1\u4E0E\u8D28\u819C\u878D\u5408\uFF0C\u628A\u5185\u5BB9\u7269\u91CA\u653E\u5230\u7EC6\u80DE\u5916\uFF0C\u540C\u65F6\u8865\u5145\u819C\u6210\u5206\u3002"],terms:[{t:"\u80DE\u541E\u4F5C\u7528",d:"\u8D28\u819C\u5185\u9677\u5F62\u6210\u56CA\u6CE1\uFF0C\u5C06\u7EC6\u80DE\u5916\u7269\u8D28\u6444\u5165\u7EC6\u80DE\u7684\u8FC7\u7A0B\u3002"},{t:"\u80DE\u5410\u4F5C\u7528",d:"\u7EC6\u80DE\u5185\u56CA\u6CE1\u4E0E\u8D28\u819C\u878D\u5408\uFF0C\u628A\u5185\u5BB9\u7269\u91CA\u653E\u5230\u7EC6\u80DE\u5916\u7684\u8FC7\u7A0B\u3002"}],check:{q:"\u53D7\u4F53\u4ECB\u5BFC\u7684\u80DE\u541E\u4E3A\u4EC0\u4E48\u5177\u6709\u9AD8\u5EA6\u9009\u62E9\u6027\uFF1F",a:"\u914D\u4F53\u5148\u4E0E\u8D28\u819C\u4E0A\u7684\u7279\u5F02\u53D7\u4F53\u7ED3\u5408\uFF0C\u53D7\u4F53\u2014\u914D\u4F53\u590D\u5408\u7269\u5728\u819C\u5FAE\u533A\u5BCC\u96C6\u540E\u88AB\u7F51\u683C\u86CB\u767D\u7B49\u5305\u88AB\uFF0C\u5F62\u6210\u5BCC\u96C6\u7279\u5B9A\u8D27\u7269\u7684\u56CA\u6CE1\u3002"}}]},{id:"ch05",no:"\u7B2C\u4E94\u7AE0",title:"\u7EC6\u80DE\u8D28\u57FA\u8D28\u4E0E\u5185\u819C\u7CFB\u7EDF",pages:"74\u201399",scene:5,overview:"\u7EC6\u80DE\u8D28\u57FA\u8D28\u4E0E\u5185\u819C\u7CFB\u7EDF\u5171\u540C\u7EC4\u7EC7\u7EC6\u80DE\u5185\u533A\u5BA4\uFF1A\u5185\u8D28\u7F51\u3001\u9AD8\u5C14\u57FA\u4F53\u548C\u6EB6\u9176\u4F53\u5728\u7ED3\u6784\u3001\u529F\u80FD\u53D1\u751F\u4E0A\u76F8\u4E92\u5173\u8054\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u8D28\u57FA\u8D28\u53CA\u5176\u529F\u80FD",pages:"75\u201378",outline:["\u7EC6\u80DE\u8D28\u57FA\u8D28\u7684\u6DB5\u4E49","\u7EC6\u80DE\u8D28\u57FA\u8D28\u7684\u529F\u80FD"],summary:"\u7EC6\u80DE\u8D28\u57FA\u8D28\u4E0D\u662F\u201C\u80CC\u666F\u6DB2\u4F53\u201D\uFF0C\u800C\u662F\u5305\u542B\u4EE3\u8C22\u9176\u3001\u6838\u7CD6\u4F53\u3001\u7EC6\u80DE\u9AA8\u67B6\u548C\u4FE1\u53F7\u5206\u5B50\u7684\u9AD8\u5EA6\u7EC4\u7EC7\u5316\u533A\u5BA4\u3002",points:["\u7EC6\u80DE\u8D28\u57FA\u8D28\u5360\u7EC6\u80DE\u4F53\u79EF\u7684\u5F88\u5927\u6BD4\u4F8B\uFF0C\u662F\u7CD6\u9175\u89E3\u3001\u86CB\u767D\u7FFB\u8BD1\u548C\u591A\u79CD\u4FE1\u53F7\u53CD\u5E94\u53D1\u751F\u7684\u573A\u6240\u3002","\u7EC6\u80DE\u9AA8\u67B6\u548C\u819C\u7ED3\u5408\u4F4D\u70B9\u4F7F\u57FA\u8D28\u4E2D\u7684\u9176\u548CmRNA\u5F62\u6210\u533A\u57DF\u5316\u7EC4\u7EC7\uFF0C\u63D0\u9AD8\u53CD\u5E94\u6548\u7387\u3002","\u57FA\u8D28\u8FD8\u53C2\u4E0E\u86CB\u767D\u8D28\u6298\u53E0\u3001\u4FEE\u9970\u3001\u8FD0\u8F93\u548C\u964D\u89E3\uFF0C\u5E76\u8C03\u8282\u7EC6\u80DE\u5F62\u6001\u4E0E\u8FD0\u52A8\u3002"],terms:[{t:"\u7EC6\u80DE\u8D28\u57FA\u8D28",d:"\u7EC6\u80DE\u8D28\u4E2D\u9664\u7EC6\u80DE\u5668\u548C\u5185\u542B\u7269\u4EE5\u5916\u7684\u80F6\u72B6\u4ECB\u8D28\uFF0C\u542B\u9176\u3001\u6838\u7CD6\u4F53\u3001\u79BB\u5B50\u548C\u4EE3\u8C22\u7269\u3002"},{t:"\u7EC6\u80DE\u8D28",d:"\u8D28\u819C\u4EE5\u5185\u3001\u6838\u819C\u4EE5\u5916\u7684\u5168\u90E8\u5185\u5BB9\uFF0C\u5305\u62EC\u7EC6\u80DE\u8D28\u57FA\u8D28\u4E0E\u7EC6\u80DE\u5668\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u8BF4\u7EC6\u80DE\u8D28\u57FA\u8D28\u5177\u6709\u201C\u533A\u5BA4\u5316\u201D\u7279\u5F81\uFF1F",a:"\u7EC6\u80DE\u9AA8\u67B6\u3001\u819C\u8868\u9762\u548C\u86CB\u767D\u590D\u5408\u7269\u628A\u9176\u4E0E\u5E95\u7269\u7EC4\u7EC7\u6210\u5C40\u90E8\u5FAE\u533A\uFF0C\u4F7F\u4EE3\u8C22\u548C\u4FE1\u53F7\u53CD\u5E94\u5728\u7A7A\u95F4\u4E0A\u6709\u5E8F\uFF0C\u800C\u4E0D\u662F\u5747\u5300\u7A00\u91CA\u7684\u6EB6\u6DB2\u53CD\u5E94\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u7EC6\u80DE\u5185\u819C\u7CFB\u7EDF\u53CA\u5176\u529F\u80FD",pages:"78\u201399",outline:["\u5185\u8D28\u7F51\u7684\u7ED3\u6784\u4E0E\u529F\u80FD","\u9AD8\u5C14\u57FA\u4F53\u7684\u5F62\u6001\u7ED3\u6784\u4E0E\u529F\u80FD","\u6EB6\u9176\u4F53\u7684\u7ED3\u6784\u4E0E\u529F\u80FD"],summary:"\u5185\u8D28\u7F51\u3001\u9AD8\u5C14\u57FA\u4F53\u548C\u6EB6\u9176\u4F53\u901A\u8FC7\u819C\u6CE1\u8FD0\u8F93\u8FDE\u6210\u52A8\u6001\u7F51\u7EDC\uFF0C\u5B8C\u6210\u86CB\u767D\u8D28\u4E0E\u8102\u8D28\u5408\u6210\u3001\u4FEE\u9970\u3001\u5206\u9009\u548C\u964D\u89E3\u3002",points:["\u7C97\u9762\u5185\u8D28\u7F51\u9644\u7740\u6838\u7CD6\u4F53\uFF0C\u5408\u6210\u5206\u6CCC\u86CB\u767D\u548C\u819C\u86CB\u767D\uFF1B\u5149\u9762\u5185\u8D28\u7F51\u53C2\u4E0E\u8102\u8D28\u5408\u6210\u3001\u89E3\u6BD2\u548C\u9499\u50A8\u5B58\u3002","\u9AD8\u5C14\u57FA\u4F53\u7531\u987A\u9762\u3001\u4E2D\u95F4\u533A\u3001\u53CD\u9762\u6241\u56CA\u7EC4\u6210\uFF0C\u662F\u7CD6\u57FA\u5316\u4FEE\u9970\u3001\u5206\u9009\u548C\u5305\u88C5\u7684\u67A2\u7EBD\u3002","\u6EB6\u9176\u4F53\u542B\u9178\u6027\u6C34\u89E3\u9176\uFF0C\u5728\u4F4E pH \u4E0B\u964D\u89E3\u5185\u541E\u7269\u3001\u7EC6\u80DE\u5668\u548C\u5927\u5206\u5B50\uFF1B\u81EA\u566C\u628A\u7EC6\u80DE\u8D28\u6210\u5206\u9001\u5165\u6EB6\u9176\u4F53\u3002"],terms:[{t:"\u5185\u8D28\u7F51",d:"\u7531\u7BA1\u72B6\u548C\u6241\u56CA\u72B6\u819C\u6784\u6210\u7684\u8FDE\u7EED\u7F51\u7EDC\uFF0C\u53C2\u4E0E\u86CB\u767D\u8D28\u4E0E\u8102\u8D28\u5408\u6210\u3002"},{t:"\u6EB6\u9176\u4F53",d:"\u542B\u9178\u6027\u6C34\u89E3\u9176\u7684\u819C\u6027\u7EC6\u80DE\u5668\uFF0C\u662F\u7EC6\u80DE\u5185\u964D\u89E3\u7684\u4E3B\u8981\u573A\u6240\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u6EB6\u9176\u4F53\u9176\u4E0D\u4F1A\u5728\u5408\u6210\u540E\u7ACB\u5373\u6D88\u5316\u7EC6\u80DE\u81EA\u8EAB\uFF1F",a:"\u8FD9\u4E9B\u9176\u5728 ER/\u9AD8\u5C14\u57FA\u4F53\u4E2D\u5408\u6210\u5E76\u6807\u8BB0\uFF0C\u7ECF M6P \u53D7\u4F53\u5206\u9009\u8FDB\u5165\u5185\u4F53/\u6EB6\u9176\u4F53\uFF1B\u53EA\u6709\u5728\u9178\u6027\u73AF\u5883\u4E2D\u624D\u5145\u5206\u6FC0\u6D3B\uFF0C\u4E14\u591A\u6570\u4EE5\u9176\u539F\u5F62\u5F0F\u5B58\u5728\u3002"}}]},{id:"ch06",no:"\u7B2C\u516D\u7AE0",title:"\u86CB\u767D\u8D28\u5206\u9009\u4E0E\u819C\u6CE1\u8FD0\u8F93",pages:"100\u2013116",scene:5,overview:"\u86CB\u767D\u8D28\u5E26\u6709\u5206\u9009\u4FE1\u53F7\uFF0C\u7EC6\u80DE\u901A\u8FC7\u95E8\u63A7\u8F6C\u8FD0\u3001\u8DE8\u819C\u8F6C\u8FD0\u548C\u819C\u6CE1\u8FD0\u8F93\u628A\u5B83\u4EEC\u9001\u5230\u6B63\u786E\u533A\u5BA4\uFF1B\u819C\u6CE1\u8FD0\u8F93\u9700\u8981\u5305\u88AB\u3001Rab \u548C SNARE \u534F\u540C\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u5185\u86CB\u767D\u8D28\u7684\u5206\u9009",pages:"100\u2013107",outline:["\u4FE1\u53F7\u5047\u8BF4\u4E0E\u86CB\u767D\u8D28\u5206\u9009\u4FE1\u53F7","\u86CB\u767D\u8D28\u5206\u9009\u8F6C\u8FD0\u7684\u57FA\u672C\u9014\u5F84\u4E0E\u7C7B\u578B","\u86CB\u767D\u8D28\u5411\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53\u7684\u5206\u9009"],summary:"\u5206\u9009\u4FE1\u53F7\u51B3\u5B9A\u86CB\u767D\u8D28\u7684\u53BB\u5411\uFF1B\u5206\u6CCC\u86CB\u767D\u5728\u7FFB\u8BD1\u540C\u65F6\u8FDB\u5165 ER\uFF0C\u800C\u7EBF\u7C92\u4F53/\u53F6\u7EFF\u4F53\u86CB\u767D\u591A\u5728\u540E\u7FFB\u8BD1\u9636\u6BB5\u88AB\u8F6C\u8FD0\u3002",points:["\u4FE1\u53F7\u80BD\u5047\u8BF4\uFF1AN \u7AEF\u4FE1\u53F7\u80BD\u88AB SRP \u8BC6\u522B\uFF0CSRP-\u6838\u7CD6\u4F53\u590D\u5408\u4F53\u7ED3\u5408 ER \u819C\u4E0A\u7684 SRP \u53D7\u4F53\uFF0C\u4F7F\u65B0\u751F\u80BD\u94FE\u8FDB\u5165\u6613\u4F4D\u5B50\u3002","\u86CB\u767D\u8D28\u5206\u9009\u5305\u62EC\u95E8\u63A7\u8F6C\u8FD0\uFF08\u6838\u5B54\uFF09\u3001\u8DE8\u819C\u8F6C\u8FD0\uFF08ER\u3001\u7EBF\u7C92\u4F53\u3001\u53F6\u7EFF\u4F53\uFF09\u548C\u819C\u6CE1\u8FD0\u8F93\uFF08\u5185\u819C\u7CFB\u7EDF\u4E0E\u5206\u6CCC\uFF09\u3002","\u7EBF\u7C92\u4F53\u86CB\u767D\u901A\u5E38\u5E26\u6709 N \u7AEF\u7684\u524D\u5BFC\u80BD\uFF0C\u5728\u7FFB\u8BD1\u5B8C\u6210\u540E\u4E0E\u7EBF\u7C92\u4F53\u5916\u819C\u53D7\u4F53\u7ED3\u5408\u5E76\u88AB\u5BFC\u5165\u3002"],terms:[{t:"\u4FE1\u53F7\u80BD",d:"\u5F15\u5BFC\u65B0\u751F\u86CB\u767D\u8FDB\u5165\u7279\u5B9A\u533A\u5BA4\u7684\u77ED\u80BD\u5E8F\u5217\uFF0C\u5E38\u4F4D\u4E8E N \u7AEF\u3002"},{t:"SRP",d:"\u4FE1\u53F7\u8BC6\u522B\u9897\u7C92\uFF0C\u8BC6\u522B\u4FE1\u53F7\u80BD\u5E76\u6682\u505C\u7FFB\u8BD1\u3001\u628A\u6838\u7CD6\u4F53\u5E26\u5230 ER \u819C\u3002"}],check:{q:"\u5206\u6CCC\u86CB\u767D\u4E0E\u7EBF\u7C92\u4F53\u86CB\u767D\u8FDB\u5165\u76F8\u5E94\u533A\u5BA4\u7684\u65F6\u95F4\u6709\u4EC0\u4E48\u4E0D\u540C\uFF1F",a:"\u5206\u6CCC\u86CB\u767D\u5728\u7FFB\u8BD1\u540C\u65F6\uFF08\u5171\u7FFB\u8BD1\uFF09\u8FDB\u5165 ER\uFF1B\u7EBF\u7C92\u4F53\u86CB\u767D\u591A\u5728\u7FFB\u8BD1\u5B8C\u6210\u540E\uFF08\u540E\u7FFB\u8BD1\uFF09\u8FDB\u5165\u7EBF\u7C92\u4F53\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u7EC6\u80DE\u5185\u819C\u6CE1\u8FD0\u8F93",pages:"107\u2013116",outline:["\u819C\u6CE1\u8FD0\u8F93\u6982\u8FF0","COPII \u5305\u88AB\u819C\u6CE1\u7684\u88C5\u914D\u53CA\u8FD0\u8F93","COPI \u5305\u88AB\u819C\u6CE1\u7684\u88C5\u914D\u53CA\u8FD0\u8F93","\u7F51\u683C\u86CB\u767D/\u63A5\u5934\u86CB\u767D\u5305\u88AB\u819C\u6CE1\u7684\u88C5\u914D\u4E0E\u8FD0\u8F93","\u8F6C\u8FD0\u819C\u6CE1\u4E0E\u9776\u819C\u7684\u951A\u5B9A\u548C\u878D\u5408"],summary:"\u819C\u6CE1\u8FD0\u8F93\u901A\u8FC7\u4E0D\u540C\u5305\u88AB\u86CB\u767D\u5F62\u6210\u5B9A\u5411\u56CA\u6CE1\uFF0C\u518D\u7531 Rab \u548C SNARE \u4FDD\u8BC1\u505C\u9760\u4E0E\u878D\u5408\u7684\u7279\u5F02\u6027\uFF0C\u5B8C\u6210\u987A\u5411\u4E0E\u9006\u5411\u8FD0\u8F93\u3002",points:["COPII \u4ECB\u5BFC ER\u2192\u9AD8\u5C14\u57FA\u4F53\u7684\u987A\u5411\u8FD0\u8F93\uFF1BCOPI \u4ECB\u5BFC\u9AD8\u5C14\u57FA\u4F53\u2192ER \u7684\u9006\u5411\u8FD0\u8F93\uFF0C\u5E76\u56DE\u6536 ER \u9A7B\u7559\u86CB\u767D\u3002","\u7F51\u683C\u86CB\u767D\u4E0E\u63A5\u5934\u86CB\u767D\u4ECB\u5BFC TGN\u2192\u5185\u4F53/\u6EB6\u9176\u4F53\u4EE5\u53CA\u53D7\u4F53\u4ECB\u5BFC\u7684\u5185\u541E\u3002","Rab \u86CB\u767D\u8BC6\u522B\u9776\u819C\uFF0CSNARE \u5F62\u6210\u56DB\u87BA\u65CB\u675F\u62C9\u8FD1\u5E76\u878D\u5408\u4E24\u5C42\u819C\uFF1BM6P \u6807\u8BB0\u628A\u6C34\u89E3\u9176\u5206\u9009\u5230\u6EB6\u9176\u4F53\u3002"],terms:[{t:"COPII",d:"\u5728 ER \u51FA\u53E3\u4F4D\u70B9\u5F62\u6210\u3001\u4ECB\u5BFC ER\u2192\u9AD8\u5C14\u57FA\u4F53\u987A\u5411\u8FD0\u8F93\u7684\u5305\u88AB\u86CB\u767D\u590D\u5408\u4F53\u3002"},{t:"SNARE",d:"\u4ECB\u5BFC\u819C\u6CE1\u4E0E\u9776\u819C\u878D\u5408\u7684\u86CB\u767D\u5BB6\u65CF\uFF0Cv-SNARE \u4E0E t-SNARE \u5F62\u6210\u5377\u66F2\u87BA\u65CB\u675F\u3002"}],check:{q:"COPII \u4E0E COPI \u7684\u8FD0\u8F93\u65B9\u5411\u5206\u522B\u662F\u4EC0\u4E48\uFF1F",a:"COPII \u4ECE ER \u5230\u9AD8\u5C14\u57FA\u4F53\uFF08\u987A\u5411\uFF09\uFF1BCOPI \u4ECE\u9AD8\u5C14\u57FA\u4F53\u56DE\u5230 ER\uFF08\u9006\u5411\uFF09\uFF0C\u4E5F\u53C2\u4E0E\u9AD8\u5C14\u57FA\u4F53\u5185\u90E8\u7684\u9006\u5411\u8FD0\u8F93\u3002"}}]},{id:"ch07",no:"\u7B2C\u4E03\u7AE0",title:"\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53",pages:"117\u2013143",scene:3,overview:"\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53\u662F\u534A\u81EA\u4E3B\u6027\u80FD\u91CF\u8F6C\u6362\u7EC6\u80DE\u5668\uFF0C\u5206\u522B\u901A\u8FC7\u6C27\u5316\u78F7\u9178\u5316\u548C\u5149\u5408\u4F5C\u7528\u5EFA\u7ACB\u8D28\u5B50\u68AF\u5EA6\u5E76\u5408\u6210 ATP\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EBF\u7C92\u4F53\u4E0E\u6C27\u5316\u78F7\u9178\u5316",pages:"117\u2013126",outline:["\u7EBF\u7C92\u4F53\u7684\u57FA\u672C\u5F62\u6001\u53CA\u52A8\u6001\u7279\u5F81","\u7EBF\u7C92\u4F53\u7684\u8D85\u5FAE\u7ED3\u6784","\u6C27\u5316\u78F7\u9178\u5316","\u7EBF\u7C92\u4F53\u4E0E\u75BE\u75C5"],summary:"\u7EBF\u7C92\u4F53\u7531\u5916\u819C\u3001\u5185\u819C\u3001\u819C\u95F4\u9699\u548C\u57FA\u8D28\u7EC4\u6210\uFF1B\u7535\u5B50\u4F20\u9012\u94FE\u6CF5\u51FA\u8D28\u5B50\uFF0CATP \u5408\u9176\u5229\u7528\u8D28\u5B50\u56DE\u6D41\u5408\u6210 ATP\u3002",points:["\u5916\u819C\u542B\u5B54\u86CB\u767D\u3001\u901A\u900F\u6027\u9AD8\uFF1B\u5185\u819C\u5BCC\u542B\u5FC3\u78F7\u8102\u3001\u901A\u900F\u6027\u4F4E\uFF0C\u5E76\u6298\u53E0\u6210\u5D74\uFF0C\u663E\u8457\u6269\u5927\u53CD\u5E94\u9762\u79EF\u3002","\u4E09\u7FA7\u9178\u5FAA\u73AF\u5728\u57FA\u8D28\u4E2D\u8FDB\u884C\uFF0C\u751F\u6210 NADH/FADH\u2082\uFF1B\u7535\u5B50\u7ECF\u590D\u5408\u4F53 I\u2013IV \u4F20\u7ED9 O\u2082\uFF0C\u5E76\u6CF5\u51FA H\u207A\u3002","H\u207A \u7ECF ATP \u5408\u9176 F\u2080F\u2081 \u56DE\u6D41\uFF0C\u9A71\u52A8 ADP + Pi \u5408\u6210 ATP\uFF1B\u7EBF\u7C92\u4F53\u529F\u80FD\u969C\u788D\u53EF\u5BFC\u81F4\u591A\u79CD\u75BE\u75C5\u3002"],terms:[{t:"\u5D74",d:"\u7EBF\u7C92\u4F53\u5185\u819C\u5411\u57FA\u8D28\u6298\u53E0\u5F62\u6210\u7684\u7ED3\u6784\uFF0C\u6269\u5927\u6C27\u5316\u78F7\u9178\u5316\u7684\u53CD\u5E94\u9762\u79EF\u3002"},{t:"\u5316\u5B66\u6E17\u900F",d:"\u8DE8\u5185\u819C\u8D28\u5B50\u68AF\u5EA6\u9A71\u52A8 ATP \u5408\u9176\u65CB\u8F6C\u3001\u628A ADP \u78F7\u9178\u5316\u4E3A ATP \u7684\u8FC7\u7A0B\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u7EBF\u7C92\u4F53\u5185\u819C\u5BF9\u8D28\u5B50\u4F4E\u901A\u900F\u6027\u662F\u6C27\u5316\u78F7\u9178\u5316\u7684\u524D\u63D0\uFF1F",a:"\u4F4E\u901A\u900F\u6027\u4F7F\u7535\u5B50\u4F20\u9012\u6CF5\u51FA\u7684 H\u207A \u80FD\u5728\u819C\u95F4\u9699\u79EF\u7D2F\uFF0C\u5F62\u6210\u8D28\u5B50\u52A8\u529B\u52BF\uFF1BH\u207A \u53EA\u80FD\u7ECF ATP \u5408\u9176\u56DE\u6D41\uFF0C\u4ECE\u800C\u628A\u80FD\u91CF\u8026\u5408\u5230 ATP \u5408\u6210\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u53F6\u7EFF\u4F53\u4E0E\u5149\u5408\u4F5C\u7528",pages:"126\u2013137",outline:["\u53F6\u7EFF\u4F53\u7684\u57FA\u672C\u5F62\u6001\u53CA\u52A8\u6001\u7279\u5F81","\u53F6\u7EFF\u4F53\u7684\u8D85\u5FAE\u7ED3\u6784","\u5149\u5408\u4F5C\u7528"],summary:"\u53F6\u7EFF\u4F53\u7531\u53CC\u5C42\u819C\u3001\u7C7B\u56CA\u4F53\u819C\u7CFB\u7EDF\u548C\u57FA\u8D28\u7EC4\u6210\uFF1B\u5149\u53CD\u5E94\u5728\u7C7B\u56CA\u4F53\u819C\u4E0A\u751F\u6210 ATP \u4E0E NADPH\uFF0C\u6697\u53CD\u5E94\u5728\u57FA\u8D28\u4E2D\u56FA\u5B9A CO\u2082\u3002",points:["\u7C7B\u56CA\u4F53\u819C\u4E0A\u5206\u5E03\u5149\u7CFB\u7EDF I\u3001II\u3001\u7EC6\u80DE\u8272\u7D20 b6f \u548C ATP \u5408\u9176\uFF1B\u57FA\u7C92\u7531\u7C7B\u56CA\u4F53\u5806\u53E0\u5F62\u6210\u3002","\u5149\u7CFB\u7EDF\u5438\u6536\u5149\u80FD\u5E76\u63A8\u52A8\u7535\u5B50\u4F20\u9012\uFF0C\u4EA7\u751F ATP \u548C NADPH\uFF0C\u540C\u65F6\u88C2\u89E3\u6C34\u91CA\u653E O\u2082\u3002","Calvin \u5FAA\u73AF\u5229\u7528 ATP \u548C NADPH \u56FA\u5B9A CO\u2082\uFF0C\u751F\u6210\u4E09\u78B3\u7CD6\u5E76\u518D\u751F RuBP\u3002"],terms:[{t:"\u7C7B\u56CA\u4F53",d:"\u53F6\u7EFF\u4F53\u5185\u90E8\u7531\u819C\u56F4\u6210\u7684\u6241\u56CA\uFF0C\u5806\u53E0\u5F62\u6210\u57FA\u7C92\uFF0C\u662F\u5149\u53CD\u5E94\u7684\u573A\u6240\u3002"},{t:"Calvin \u5FAA\u73AF",d:"\u5229\u7528 ATP \u4E0E NADPH \u56FA\u5B9A CO\u2082\u3001\u5408\u6210\u7CD6\u7C7B\u7684\u78B3\u540C\u5316\u5FAA\u73AF\u3002"}],check:{q:"\u5149\u5408\u4F5C\u7528\u7684\u5149\u53CD\u5E94\u548C\u6697\u53CD\u5E94\u5206\u522B\u53D1\u751F\u5728\u54EA\u91CC\uFF1F",a:"\u5149\u53CD\u5E94\u5728\u7C7B\u56CA\u4F53\u819C\u4E0A\u8FDB\u884C\uFF1B\u6697\u53CD\u5E94\uFF08Calvin \u5FAA\u73AF\uFF09\u5728\u53F6\u7EFF\u4F53\u57FA\u8D28\u4E2D\u8FDB\u884C\u3002"}},{no:"\u7B2C\u4E09\u8282",title:"\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53\u7684\u534A\u81EA\u4E3B\u6027\u53CA\u5176\u8D77\u6E90",pages:"137\u2013143",outline:["\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53\u7684\u534A\u81EA\u4E3B\u6027","\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53\u7684\u8D77\u6E90"],summary:"\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53\u6709\u81EA\u8EAB DNA\u3001\u6838\u7CD6\u4F53\u548C\u90E8\u5206\u57FA\u56E0\u8868\u8FBE\u7CFB\u7EDF\uFF0C\u4F46\u591A\u6570\u86CB\u767D\u7531\u6838\u57FA\u56E0\u7F16\u7801\uFF1B\u5185\u5171\u751F\u5B66\u8BF4\u89E3\u91CA\u5176\u8FDB\u5316\u6765\u6E90\u3002",points:["\u7EBF\u7C92\u4F53/\u53F6\u7EFF\u4F53 DNA \u4E3A\u73AF\u72B6\uFF0C\u7F16\u7801\u90E8\u5206\u547C\u5438\u94FE\u6216\u5149\u5408\u94FE\u86CB\u767D\u4EE5\u53CA rRNA\u3001tRNA\u3002","\u7EDD\u5927\u591A\u6570\u7EC6\u80DE\u5668\u86CB\u767D\u7531\u6838\u57FA\u56E0\u7F16\u7801\u3001\u5728\u7EC6\u80DE\u8D28\u6838\u7CD6\u4F53\u5408\u6210\u540E\u88AB\u5BFC\u5165\u3002","\u5185\u5171\u751F\u5B66\u8BF4\u8BA4\u4E3A\u5B83\u4EEC\u8D77\u6E90\u4E8E\u88AB\u771F\u6838\u7EC6\u80DE\u541E\u566C\u7684\u7EC6\u83CC/\u84DD\u7EC6\u83CC\uFF1B\u7EBF\u7C92\u4F53 DNA \u591A\u4E3A\u6BCD\u7CFB\u9057\u4F20\u3002"],terms:[{t:"\u534A\u81EA\u4E3B\u6027",d:"\u7EC6\u80DE\u5668\u62E5\u6709\u90E8\u5206\u81EA\u8EAB\u9057\u4F20\u7CFB\u7EDF\uFF0C\u4F46\u591A\u6570\u86CB\u767D\u4ECD\u4F9D\u8D56\u6838\u57FA\u56E0\u3002"},{t:"\u5185\u5171\u751F\u5B66\u8BF4",d:"\u7EBF\u7C92\u4F53\u548C\u53F6\u7EFF\u4F53\u8D77\u6E90\u4E8E\u88AB\u5BBF\u4E3B\u7EC6\u80DE\u541E\u566C\u7684\u7EC6\u83CC\u6216\u84DD\u7EC6\u83CC\u7684\u5B66\u8BF4\u3002"}],check:{q:"\u7EBF\u7C92\u4F53\u201C\u534A\u81EA\u4E3B\u201D\u8868\u73B0\u5728\u54EA\u4E9B\u65B9\u9762\uFF1F",a:"\u5B83\u6709\u81EA\u8EAB\u73AF\u72B6 DNA\u3001\u6838\u7CD6\u4F53\u548C\u90E8\u5206\u57FA\u56E0\u8868\u8FBE\uFF0C\u4F46\u591A\u6570\u7EBF\u7C92\u4F53\u86CB\u767D\u7531\u6838\u57FA\u56E0\u7F16\u7801\u5E76\u5BFC\u5165\uFF0C\u590D\u5236\u4E0E\u5206\u88C2\u4E5F\u53D7\u6838\u57FA\u56E0\u8C03\u63A7\u3002"}}]},{id:"ch08",no:"\u7B2C\u516B\u7AE0",title:"\u7EC6\u80DE\u9AA8\u67B6",pages:"144\u2013176",scene:2,overview:"\u7EC6\u80DE\u9AA8\u67B6\u7531\u5FAE\u4E1D\u3001\u5FAE\u7BA1\u548C\u4E2D\u95F4\u4E1D\u7EC4\u6210\uFF0C\u7EF4\u6301\u5F62\u6001\u3001\u4EA7\u751F\u529B\u3001\u7EC4\u7EC7\u7EC6\u80DE\u5668\u5E76\u652F\u6301\u8FD0\u52A8\uFF1B\u4E09\u7C7B\u7EA4\u7EF4\u7684\u7EC4\u6210\u3001\u6781\u6027\u548C\u52A8\u529B\u5B66\u5404\u4E0D\u76F8\u540C\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u5FAE\u4E1D\u4E0E\u7EC6\u80DE\u8FD0\u52A8",pages:"144\u2013156",outline:["\u5FAE\u4E1D\u7684\u7EC4\u6210\u53CA\u5176\u7EC4\u88C5","\u5FAE\u4E1D\u7F51\u7EDC\u7ED3\u6784\u7684\u8C03\u8282\u4E0E\u7EC6\u80DE\u8FD0\u52A8","\u808C\u7403\u86CB\u767D\uFF1A\u4F9D\u8D56\u4E8E\u5FAE\u4E1D\u7684\u5206\u5B50\u9A6C\u8FBE","\u808C\u7EC6\u80DE\u7684\u6536\u7F29\u8FD0\u52A8"],summary:"\u5FAE\u4E1D\u662F\u808C\u52A8\u86CB\u767D\u7EC4\u6210\u7684\u6781\u6027\u7EA4\u7EF4\uFF0C\u901A\u8FC7\u8E0F\u8F66\u884C\u4E3A\u548C\u9A6C\u8FBE\u86CB\u767D\u4EA7\u751F\u6536\u7F29\u3001\u8FD0\u52A8\u4E0E\u5F62\u6001\u53D8\u5316\u3002",points:["\u5FAE\u4E1D\u76F4\u5F84\u7EA6 7 nm\uFF0C\u7531 ATP-\u808C\u52A8\u86CB\u767D\u805A\u5408\u800C\u6210\uFF1B\u6B63\u6781\u805A\u5408\u3001\u8D1F\u6781\u89E3\u805A\u5F62\u6210\u8E0F\u8F66\u884C\u4E3A\u3002","\u808C\u7403\u86CB\u767D\u6CBF\u5FAE\u4E1D\u8FD0\u52A8\uFF0C\u808C\u7403\u86CB\u767D II \u4E0E\u808C\u52A8\u86CB\u767D\u5F62\u6210\u6536\u7F29\u7CFB\u7EDF\uFF0C\u53C2\u4E0E\u5E94\u529B\u7EA4\u7EF4\u548C\u80DE\u8D28\u5206\u88C2\u3002","\u5FAE\u4E1D\u7F51\u7EDC\u5728\u7EC6\u80DE\u76AE\u5C42\u5BCC\u96C6\uFF0C\u901A\u8FC7\u6210\u6838\u3001\u4EA4\u8054\u3001\u5207\u65AD\u548C\u52A0\u5E3D\u86CB\u767D\u52A8\u6001\u91CD\u5851\u3002"],terms:[{t:"\u5FAE\u4E1D",d:"\u7531\u808C\u52A8\u86CB\u767D\u4E9A\u57FA\u7EC4\u6210\u7684\u76F4\u5F84\u7EA6 7 nm \u7684\u87BA\u65CB\u7EA4\u7EF4\u3002"},{t:"\u8E0F\u8F66\u884C\u4E3A",d:"\u5FAE\u4E1D\u6B63\u6781\u805A\u5408\u3001\u8D1F\u6781\u89E3\u805A\uFF0C\u4E9A\u57FA\u6301\u7EED\u6D41\u52A8\u800C\u957F\u5EA6\u57FA\u672C\u4E0D\u53D8\u7684\u73B0\u8C61\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u5FAE\u4E1D\u9700\u8981 ATP \u624D\u80FD\u7EF4\u6301\u52A8\u6001\u7EC4\u88C5\uFF1F",a:"ATP-\u808C\u52A8\u86CB\u767D\u7684\u805A\u5408\u4E0E ATP \u6C34\u89E3\u9A71\u52A8\u4E9A\u57FA\u5FAA\u73AF\uFF1BATP \u7ED3\u5408\u72B6\u6001\u4FC3\u8FDB\u6B63\u6781\u6DFB\u52A0\uFF0C\u6C34\u89E3\u540E\u4FC3\u8FDB\u8D1F\u6781\u89E3\u805A\uFF0C\u5F62\u6210\u8E0F\u8F66\u884C\u4E3A\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u5FAE\u7BA1\u53CA\u5176\u529F\u80FD",pages:"156\u2013171",outline:["\u5FAE\u7BA1\u7684\u7ED3\u6784\u7EC4\u5206\u4E0E\u6781\u6027","\u5FAE\u7BA1\u7684\u7EC4\u88C5\u4E0E\u89E3\u805A","\u5FAE\u7BA1\u7EC4\u7EC7\u4E2D\u5FC3","\u5FAE\u7BA1\u7684\u52A8\u529B\u5B66\u6027\u8D28","\u5FAE\u7BA1\u7ED3\u5408\u86CB\u767D","\u5FAE\u7BA1\u5BF9\u7EC6\u80DE\u7ED3\u6784\u7684\u7EC4\u7EC7\u4F5C\u7528","\u7EC6\u80DE\u5185\u4F9D\u8D56\u4E8E\u5FAE\u7BA1\u7684\u7269\u8D28\u8FD0\u8F93","\u7EA4\u6BDB\u548C\u97AD\u6BDB\u7684\u7ED3\u6784\u4E0E\u529F\u80FD","\u7EBA\u9524\u4F53\u548C\u67D3\u8272\u4F53\u8FD0\u52A8"],summary:"\u5FAE\u7BA1\u662F \u03B1/\u03B2 \u5FAE\u7BA1\u86CB\u767D\u4E8C\u805A\u4F53\u7EC4\u6210\u7684\u4E2D\u7A7A\u7BA1\uFF0C\u5177\u6709\u52A8\u6001\u4E0D\u7A33\u5B9A\u6027\u548C\u6781\u6027\uFF0C\u662F\u8FD0\u8F93\u8F68\u9053\u4E0E\u7EBA\u9524\u4F53\u7684\u6838\u5FC3\u3002",points:["\u5FAE\u7BA1\u5916\u5F84\u7EA6 24 nm\u3001\u5185\u5F84\u7EA6 15 nm\uFF0C\u7531 13 \u6761\u539F\u7EA4\u7EF4\u56F4\u6210\uFF1B\u6B63\u6781\u591A\u671D\u5411\u5916\u5468\uFF0C\u8D1F\u6781\u9760\u8FD1\u4E2D\u5FC3\u4F53\u3002","\u5FAE\u7BA1\u6B63\u6781\u5728\u751F\u957F\u4E0E\u5FEB\u901F\u89E3\u805A\u4E4B\u95F4\u5207\u6362\uFF08\u52A8\u6001\u4E0D\u7A33\u5B9A\u6027\uFF09\uFF0C\u53D7 GTP \u5E3D\u548C\u5FAE\u7BA1\u7ED3\u5408\u86CB\u767D\u8C03\u63A7\u3002","\u9A71\u52A8\u86CB\u767D\u591A\u5411\u6B63\u6781\u3001\u52A8\u529B\u86CB\u767D\u5411\u8D1F\u6781\u8FD0\u8F93\u8D27\u7269\uFF1B\u5FAE\u7BA1\u8FD8\u6784\u6210\u7EA4\u6BDB\u3001\u97AD\u6BDB\u548C\u7EBA\u9524\u4F53\u3002"],terms:[{t:"\u5FAE\u7BA1",d:"\u7531 \u03B1/\u03B2 \u5FAE\u7BA1\u86CB\u767D\u4E8C\u805A\u4F53\u7EC4\u6210\u7684\u6781\u6027\u4E2D\u7A7A\u7BA1\uFF0C\u76F4\u5F84\u7EA6 24 nm\u3002"},{t:"\u52A8\u6001\u4E0D\u7A33\u5B9A\u6027",d:"\u5FAE\u7BA1\u6B63\u6781\u5728\u751F\u957F\u4E0E\u5FEB\u901F\u89E3\u805A\u4E4B\u95F4\u968F\u673A\u5207\u6362\u7684\u884C\u4E3A\u3002"}],check:{q:"\u7D2B\u6749\u9187\u4E3A\u4EC0\u4E48\u80FD\u6291\u5236\u7EC6\u80DE\u5206\u88C2\uFF1F",a:"\u7D2B\u6749\u9187\u7A33\u5B9A\u5FAE\u7BA1\u3001\u6291\u5236\u5176\u89E3\u805A\uFF0C\u4F7F\u7EBA\u9524\u4F53\u5FAE\u7BA1\u65E0\u6CD5\u6B63\u5E38\u91CD\u7EC4\uFF0C\u7EC6\u80DE\u505C\u6EDE\u4E8E M \u671F\u5E76\u89E6\u53D1\u51CB\u4EA1\u3002"}},{no:"\u7B2C\u4E09\u8282",title:"\u4E2D\u95F4\u4E1D",pages:"171\u2013176",outline:["\u4E2D\u95F4\u4E1D\u7684\u4E3B\u8981\u7C7B\u578B\u548C\u7EC4\u6210\u6210\u5206","\u4E2D\u95F4\u4E1D\u7684\u7EC4\u88C5\u4E0E\u8868\u8FBE","\u4E2D\u95F4\u4E1D\u4E0E\u5176\u4ED6\u7EC6\u80DE\u7ED3\u6784\u7684\u8054\u7CFB"],summary:"\u4E2D\u95F4\u4E1D\u662F\u76F4\u5F84\u7EA6 10 nm\u3001\u65E0\u6781\u6027\u3001\u6297\u62C9\u529B\u7684\u7EF3\u7D22\u72B6\u7EA4\u7EF4\uFF0C\u4E3B\u8981\u627F\u62C5\u673A\u68B0\u652F\u6491\u5E76\u628A\u7EC6\u80DE\u4E0E\u7EC6\u80DE\u3001\u7EC6\u80DE\u4E0E\u57FA\u8D28\u8FDE\u63A5\u8D77\u6765\u3002",points:["\u4E2D\u95F4\u4E1D\u7531\u89D2\u86CB\u767D\u3001\u6CE2\u5F62\u86CB\u767D\u3001\u7ED3\u86CB\u767D\u3001\u795E\u7ECF\u4E1D\u86CB\u767D\u548C\u6838\u7EA4\u5C42\u86CB\u767D\u7B49\u7EC4\u6210\uFF0C\u5177\u6709\u7EC4\u7EC7\u7279\u5F02\u6027\u3002","\u4E2D\u95F4\u4E1D\u65E0\u6781\u6027\u3001\u4E0D\u4F9D\u8D56\u5206\u5B50\u9A6C\u8FBE\uFF0C\u4F46\u80FD\u901A\u8FC7\u6A2A\u5411\u4EA4\u8054\u5F62\u6210\u7F51\u7EDC\uFF0C\u6297\u673A\u68B0\u5E94\u529B\u3002","\u89D2\u86CB\u767D\u53C2\u4E0E\u6865\u7C92/\u534A\u6865\u7C92\u8FDE\u63A5\uFF1B\u6838\u7EA4\u5C42\u86CB\u767D\u7EC4\u6210\u6838\u7EA4\u5C42\uFF0C\u652F\u6491\u6838\u819C\u3002"],terms:[{t:"\u4E2D\u95F4\u4E1D",d:"\u76F4\u5F84\u7EA6 10 nm\u3001\u65E0\u6781\u6027\u3001\u6297\u62C9\u529B\u7684\u7EC6\u80DE\u9AA8\u67B6\u7EA4\u7EF4\u3002"},{t:"\u6838\u7EA4\u5C42\u86CB\u767D",d:"\u7EC4\u6210\u6838\u7EA4\u5C42\u7684\u4E00\u7C7B\u4E2D\u95F4\u4E1D\u86CB\u767D\uFF0C\u4F4D\u4E8E\u6838\u819C\u5185\u4FA7\u3002"}],check:{q:"\u4E2D\u95F4\u4E1D\u4E0E\u5FAE\u4E1D\u3001\u5FAE\u7BA1\u5728\u6781\u6027\u548C\u9A6C\u8FBE\u4F7F\u7528\u4E0A\u6709\u4EC0\u4E48\u4E0D\u540C\uFF1F",a:"\u4E2D\u95F4\u4E1D\u6CA1\u6709\u660E\u663E\u6781\u6027\uFF0C\u4E5F\u4E0D\u4F5C\u4E3A\u5206\u5B50\u9A6C\u8FBE\u7684\u8F68\u9053\uFF1B\u5FAE\u4E1D\u548C\u5FAE\u7BA1\u6709\u6781\u6027\uFF0C\u5E76\u5206\u522B\u4E0E\u808C\u7403\u86CB\u767D\u3001\u9A71\u52A8\u86CB\u767D/\u52A8\u529B\u86CB\u767D\u914D\u5408\u3002"}}]}];var yf=[{id:"ch09",no:"\u7B2C\u4E5D\u7AE0",title:"\u7EC6\u80DE\u6838\u4E0E\u67D3\u8272\u8D28",pages:"177\u2013212",scene:4,overview:"\u7EC6\u80DE\u6838\u662F\u9057\u4F20\u4FE1\u606F\u50A8\u5B58\u3001\u590D\u5236\u4E0E\u8F6C\u5F55\u8C03\u63A7\u7684\u4E2D\u5FC3\uFF1B\u6838\u88AB\u819C\u3001\u67D3\u8272\u8D28\u3001\u6838\u4EC1\u548C\u6838\u57FA\u8D28\u5171\u540C\u6784\u6210\u9AD8\u5EA6\u7EC4\u7EC7\u7684\u6838\u5185\u7A7A\u95F4\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u6838\u88AB\u819C",pages:"178\u2013185",outline:["\u6838\u819C","\u6838\u5B54\u590D\u5408\u4F53","\u6838\u7EA4\u5C42"],summary:"\u6838\u88AB\u819C\u7531\u5185\u5916\u4E24\u5C42\u819C\u7EC4\u6210\uFF0C\u5916\u819C\u4E0E\u5185\u8D28\u7F51\u8FDE\u7EED\uFF1B\u6838\u5B54\u590D\u5408\u4F53\u63A7\u5236\u6838\u8D28\u4EA4\u6362\uFF0C\u6838\u7EA4\u5C42\u4E3A\u6838\u819C\u63D0\u4F9B\u673A\u68B0\u652F\u6491\u3002",points:["\u6838\u819C\u662F\u53CC\u5C42\u819C\uFF0C\u4E24\u5C42\u4E4B\u95F4\u7684\u6838\u5468\u95F4\u9699\u4E0E\u5185\u8D28\u7F51\u8154\u76F8\u901A\u3002","\u6838\u5B54\u590D\u5408\u4F53\u5916\u5F84\u7EA6 120 nm\uFF1B\u5C0F\u5206\u5B50\u53EF\u6269\u6563\uFF0C\u5927\u5206\u5B50\u9700\u6838\u5B9A\u4F4D\u4FE1\u53F7/\u6838\u8F93\u51FA\u4FE1\u53F7\u548C Ran-GTP \u53C2\u4E0E\u4E3B\u52A8\u8FD0\u8F93\u3002","\u6838\u7EA4\u5C42\u7531 lamin \u4E2D\u95F4\u4E1D\u7EC4\u6210\uFF0C\u4F4D\u4E8E\u5185\u819C\u5185\u4FA7\uFF0C\u652F\u6491\u6838\u819C\u5E76\u53C2\u4E0E\u67D3\u8272\u8D28\u5B9A\u4F4D\u3002"],terms:[{t:"\u6838\u5B54\u590D\u5408\u4F53",d:"\u8DE8\u8D8A\u6838\u88AB\u819C\u3001\u4ECB\u5BFC\u6838\u8D28\u4EA4\u6362\u7684\u5927\u578B\u86CB\u767D\u590D\u5408\u4F53\u3002"},{t:"\u6838\u7EA4\u5C42",d:"\u7D27\u8D34\u6838\u819C\u5185\u4FA7\u7684 lamin \u4E2D\u95F4\u4E1D\u7F51\u7EDC\uFF0C\u4E3A\u6838\u819C\u63D0\u4F9B\u652F\u6491\u3002"}],check:{q:"\u6838\u5B54\u590D\u5408\u4F53\u5982\u4F55\u517C\u987E\u9AD8\u901A\u91CF\u4E0E\u9009\u62E9\u6027\uFF1F",a:"\u5C0F\u5206\u5B50\u548C\u79BB\u5B50\u53EF\u7ECF\u5B54\u9053\u88AB\u52A8\u6269\u6563\uFF1B\u5927\u5206\u5B50\u4F9D\u8D56\u6838\u5B9A\u4F4D/\u8F93\u51FA\u4FE1\u53F7\u3001\u8F6C\u8FD0\u53D7\u4F53\u548C Ran-GTP \u68AF\u5EA6\u8FDB\u884C\u4E3B\u52A8\u8FD0\u8F93\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u67D3\u8272\u8D28",pages:"185\u2013195",outline:["\u67D3\u8272\u8D28 DNA","\u67D3\u8272\u8D28\u86CB\u767D","\u6838\u5C0F\u4F53","\u67D3\u8272\u8D28\u7EC4\u88C5","\u67D3\u8272\u8D28\u7C7B\u578B"],summary:"\u67D3\u8272\u8D28\u7531 DNA\u3001\u7EC4\u86CB\u767D\u548C\u975E\u7EC4\u86CB\u767D\u7EC4\u6210\uFF1B\u6838\u5C0F\u4F53\u662F\u57FA\u672C\u7ED3\u6784\u5355\u4F4D\uFF0C\u8FDB\u4E00\u6B65\u6298\u53E0\u5F62\u6210 30 nm \u7EA4\u7EF4\u548C\u9AD8\u7EA7\u7ED3\u6784\u3002",points:["\u6838\u5C0F\u4F53\u6838\u5FC3\u7531 H2A\u3001H2B\u3001H3\u3001H4 \u5404\u4E24\u5206\u5B50\u7EC4\u6210\u7EC4\u86CB\u767D\u516B\u805A\u4F53\uFF0C\u7EA6 147 bp DNA \u7F20\u7ED5\u7EA6 1.75 \u5708\u3002","\u6838\u5C0F\u4F53\u4E32\u73E0\u6298\u53E0\u6210\u7EA6 30 nm \u87BA\u7EBF\u7BA1\uFF0C\u518D\u5F62\u6210\u73AF\u72B6\u7ED3\u6784\u57DF\u548C\u66F4\u9AD8\u5C42\u6B21\u7684\u67D3\u8272\u8D28\u3002","\u5E38\u67D3\u8272\u8D28\u8F83\u677E\u6563\u3001\u8F6C\u5F55\u6D3B\u8DC3\uFF1B\u5F02\u67D3\u8272\u8D28\u8F83\u6D53\u7F29\u3001\u8F6C\u5F55\u53D7\u6291\u5236\u3002"],terms:[{t:"\u67D3\u8272\u8D28",d:"DNA \u4E0E\u7EC4\u86CB\u767D\u3001\u975E\u7EC4\u86CB\u767D\u7EC4\u6210\u7684\u590D\u5408\u7269\uFF0C\u662F\u9057\u4F20\u4FE1\u606F\u7684\u50A8\u5B58\u5F62\u5F0F\u3002"},{t:"\u6838\u5C0F\u4F53",d:"\u7531\u7EC4\u86CB\u767D\u516B\u805A\u4F53\u548C\u7EA6 147 bp DNA \u7EC4\u6210\u7684\u67D3\u8272\u8D28\u57FA\u672C\u7ED3\u6784\u5355\u4F4D\u3002"}],check:{q:"\u6838\u5C0F\u4F53\u5982\u4F55\u5E2E\u52A9 DNA \u538B\u7F29\uFF1F",a:"DNA \u7F20\u7ED5\u7EC4\u86CB\u767D\u516B\u805A\u4F53\u5F62\u6210 11 nm \u4E32\u73E0\uFF0C\u518D\u6298\u53E0\u6210 30 nm \u7EA4\u7EF4\uFF0C\u5E76\u901A\u8FC7\u73AF\u951A\u5B9A\u7B49\u9AD8\u7EA7\u7ED3\u6784\u9010\u7EA7\u538B\u7F29\u3002"}},{no:"\u7B2C\u4E09\u8282",title:"\u67D3\u8272\u8D28\u7684\u590D\u5236\u4E0E\u8868\u8FBE",pages:"195\u2013203",outline:["\u67D3\u8272\u8D28\u7684\u590D\u5236\u4E0E\u4FEE\u590D","\u67D3\u8272\u8D28\u7684\u6FC0\u6D3B\u4E0E\u5931\u6D3B","\u67D3\u8272\u8D28\u4E0E\u57FA\u56E0\u8868\u8FBE\u8C03\u63A7","\u67D3\u8272\u8D28\u7684\u4E09\u7EF4\u52A8\u6001\u5206\u5E03\u4E0E\u7EC6\u80DE ID"],summary:"\u67D3\u8272\u8D28\u5728 S \u671F\u590D\u5236\u3001\u5728\u635F\u4F24\u65F6\u4FEE\u590D\uFF0C\u5E76\u901A\u8FC7\u7EC4\u86CB\u767D\u4FEE\u9970\u3001DNA \u7532\u57FA\u5316\u548C\u4E09\u7EF4\u6298\u53E0\u8C03\u63A7\u57FA\u56E0\u8868\u8FBE\u3002",points:["DNA \u590D\u5236\u4ECE\u590D\u5236\u8D77\u70B9\u8D77\u59CB\uFF0C\u53CC\u5411\u8FDB\u884C\uFF1B\u590D\u5236\u53C9\u4E0E\u7EC4\u86CB\u767D\u88C5\u914D\u3001\u67D3\u8272\u8D28\u6210\u719F\u8026\u5408\u3002","DNA \u7532\u57FA\u5316\u3001\u7EC4\u86CB\u767D\u4E59\u9170\u5316/\u7532\u57FA\u5316\u548C\u67D3\u8272\u8D28\u91CD\u5851\u6539\u53D8\u53EF\u53CA\u6027\uFF0C\u6784\u6210\u8868\u89C2\u9057\u4F20\u8C03\u63A7\u3002","\u67D3\u8272\u8D28\u5F62\u6210\u62D3\u6251\u5173\u8054\u7ED3\u6784\u57DF\uFF08TAD\uFF09\u548C\u73AF\uFF0C\u4E09\u7EF4\u6784\u8C61\u5F71\u54CD\u589E\u5F3A\u5B50\u2014\u542F\u52A8\u5B50\u901A\u8BAF\u3002"],terms:[{t:"\u590D\u5236\u8D77\u70B9",d:"DNA \u590D\u5236\u8D77\u59CB\u7684\u7279\u5B9A\u5E8F\u5217\uFF0C\u67D3\u8272\u4F53\u53EF\u542B\u591A\u4E2A\u590D\u5236\u8D77\u70B9\u3002"},{t:"\u8868\u89C2\u9057\u4F20",d:"\u4E0D\u6539\u53D8 DNA \u5E8F\u5217\u3001\u4F46\u53EF\u9057\u4F20\u5730\u5F71\u54CD\u57FA\u56E0\u8868\u8FBE\u7684\u67D3\u8272\u8D28\u4FEE\u9970\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u540C\u6837\u7684 DNA \u5E8F\u5217\u53EF\u4EE5\u4EA7\u751F\u4E0D\u540C\u7EC6\u80DE\u7C7B\u578B\uFF1F",a:"\u4E0D\u540C\u7EC6\u80DE\u8868\u8FBE\u4E0D\u540C\u7684\u8F6C\u5F55\u56E0\u5B50\uFF0C\u5E76\u5EFA\u7ACB\u4E0D\u540C\u7684 DNA \u7532\u57FA\u5316\u3001\u7EC4\u86CB\u767D\u4FEE\u9970\u548C\u67D3\u8272\u8D28\u4E09\u7EF4\u7ED3\u6784\uFF0C\u4F7F\u540C\u4E00\u57FA\u56E0\u7EC4\u7684\u4E0D\u540C\u57FA\u56E0\u88AB\u9009\u62E9\u6027\u5F00\u542F\u6216\u5173\u95ED\u3002"}},{no:"\u7B2C\u56DB\u8282",title:"\u67D3\u8272\u4F53",pages:"203\u2013208",outline:["\u67D3\u8272\u4F53\u7684\u5F62\u6001\u7ED3\u6784","\u67D3\u8272\u4F53\u7684\u529F\u80FD\u5143\u4EF6","\u67D3\u8272\u4F53\u5E26\u578B","\u7279\u6B8A\u67D3\u8272\u4F53"],summary:"\u67D3\u8272\u4F53\u662F\u5206\u88C2\u671F\u9AD8\u5EA6\u51DD\u7F29\u7684\u67D3\u8272\u8D28\uFF0C\u5177\u6709\u7740\u4E1D\u7C92\u3001\u7AEF\u7C92\u548C\u590D\u5236\u8D77\u70B9\u4E09\u4E2A\u529F\u80FD\u5143\u4EF6\uFF0C\u53EF\u901A\u8FC7\u5E26\u578B\u8FDB\u884C\u8BC6\u522B\u4E0E\u6838\u578B\u5206\u6790\u3002",points:["\u7740\u4E1D\u7C92\u8FDE\u63A5\u52A8\u7C92\u4E0E\u7EBA\u9524\u4F53\u5FAE\u7BA1\uFF1B\u7AEF\u7C92\u4FDD\u62A4\u67D3\u8272\u4F53\u672B\u7AEF\u5E76\u53C2\u4E0E\u590D\u5236\u8870\u8001\uFF1B\u590D\u5236\u8D77\u70B9\u4FDD\u8BC1 DNA \u590D\u5236\u3002","\u4EBA\u7C7B\u4F53\u7EC6\u80DE\u6709 46 \u6761\u67D3\u8272\u4F53\uFF0822 \u5BF9\u5E38\u67D3\u8272\u4F53 + XX/XY\uFF09\uFF0C\u6838\u578B\u5206\u6790\u7528\u4E8E\u68C0\u6D4B\u6570\u76EE\u548C\u7ED3\u6784\u5F02\u5E38\u3002","\u591A\u7EBF\u67D3\u8272\u4F53\u548C\u706F\u5237\u67D3\u8272\u4F53\u662F\u7279\u6B8A\u53D1\u80B2\u9636\u6BB5\u7684\u5DE8\u5927\u67D3\u8272\u4F53\uFF0C\u4FBF\u4E8E\u7814\u7A76\u57FA\u56E0\u8868\u8FBE\u4E0E\u67D3\u8272\u4F53\u7ED3\u6784\u3002"],terms:[{t:"\u7740\u4E1D\u7C92",d:"\u67D3\u8272\u4F53\u4E0A\u8FDE\u63A5\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u3001\u7EC4\u88C5\u52A8\u7C92\u7684\u533A\u57DF\u3002"},{t:"\u7AEF\u7C92",d:"\u67D3\u8272\u4F53\u672B\u7AEF\u7684\u91CD\u590D\u5E8F\u5217\u4E0E\u86CB\u767D\u590D\u5408\u4F53\uFF0C\u4FDD\u62A4\u672B\u7AEF\u5E76\u9650\u5236\u590D\u5236\u6027\u8870\u8001\u3002"}],check:{q:"\u67D3\u8272\u4F53\u7684\u4E09\u4E2A\u529F\u80FD\u5143\u4EF6\u662F\u4EC0\u4E48\uFF1F",a:"DNA \u590D\u5236\u8D77\u70B9\u3001\u7740\u4E1D\u7C92\u548C\u7AEF\u7C92\uFF1B\u5B83\u4EEC\u5206\u522B\u4FDD\u8BC1\u590D\u5236\u3001\u5206\u914D\u548C\u672B\u7AEF\u7A33\u5B9A\u3002"}},{no:"\u7B2C\u4E94\u8282",title:"\u6838\u4EC1\u4E0E\u6838\u4F53",pages:"208\u2013211",outline:["\u6838\u4EC1\u7684\u7ED3\u6784","\u6838\u4EC1\u7684\u529F\u80FD","\u6838\u4EC1\u7684\u52A8\u6001\u5468\u671F\u53D8\u5316","\u6838\u4F53"],summary:"\u6838\u4EC1\u662F\u65E0\u819C\u7ED3\u6784\u7684\u6838\u5185\u533A\u57DF\uFF0C\u56F4\u7ED5 rRNA \u57FA\u56E0\u7EC4\u7EC7\uFF0C\u5B8C\u6210 rRNA \u8F6C\u5F55\u3001\u52A0\u5DE5\u548C\u6838\u7CD6\u4F53\u4E9A\u57FA\u7EC4\u88C5\u3002",points:["\u6838\u4EC1\u7EC4\u7EC7\u533A\uFF08NOR\uFF09\u542B rRNA \u57FA\u56E0\uFF1BRNA \u805A\u5408\u9176 I \u8F6C\u5F55 rRNA \u524D\u4F53\uFF0C\u52A0\u5DE5\u540E\u4E0E\u6838\u7CD6\u4F53\u86CB\u767D\u7EC4\u88C5\u3002","\u6838\u4EC1\u5728\u7EC6\u80DE\u5468\u671F\u4E2D\u52A8\u6001\u53D8\u5316\uFF1A\u5206\u88C2\u671F\u89E3\u4F53\uFF0C\u5206\u88C2\u540E\u91CD\u65B0\u5F62\u6210\u3002","\u6838\u4F53\u662F\u6838\u5185\u591A\u79CD\u65E0\u819C\u5C0F\u4F53\uFF0C\u53C2\u4E0E\u526A\u63A5\u3001\u8F6C\u5F55\u548C\u5E94\u6FC0\u53CD\u5E94\u7684\u7EC4\u7EC7\u3002"],terms:[{t:"\u6838\u4EC1",d:"\u6838\u5185\u5408\u6210 rRNA\u3001\u7EC4\u88C5\u6838\u7CD6\u4F53\u4E9A\u57FA\u7684\u65E0\u819C\u7ED3\u6784\u3002"},{t:"NOR",d:"\u542B\u6709 rRNA \u57FA\u56E0\u3001\u7EC4\u7EC7\u6838\u4EC1\u5F62\u6210\u7684\u67D3\u8272\u4F53\u533A\u57DF\u3002"}],check:{q:"\u6838\u4EC1\u4E3A\u4EC0\u4E48\u6CA1\u6709\u819C\u5374\u80FD\u88AB\u8BC6\u522B\uFF1F",a:"\u6838\u4EC1\u7531 rRNA \u57FA\u56E0\u3001\u8F6C\u5F55\u673A\u5668\u3001rRNA\u3001\u6838\u7CD6\u4F53\u86CB\u767D\u548C\u591A\u79CD\u6838\u4EC1\u86CB\u767D\u9AD8\u5EA6\u5BCC\u96C6\u5F62\u6210\uFF0C\u5177\u6709\u4E0D\u540C\u4E8E\u6838\u57FA\u8D28\u7684\u5BC6\u5EA6\u548C\u5206\u5B50\u7EC4\u6210\uFF0C\u56E0\u6B64\u53EF\u5728\u663E\u5FAE\u955C\u4E0B\u8BC6\u522B\u3002"}},{no:"\u7B2C\u516D\u8282",title:"\u6838\u57FA\u8D28",pages:"211\u2013212",outline:["\u6838\u57FA\u8D28"],summary:"\u6838\u57FA\u8D28\u662F\u6838\u5185\u9664\u67D3\u8272\u8D28\u3001\u6838\u819C\u548C\u6838\u4EC1\u5916\u7684\u86CB\u767D\u6027\u7F51\u7EDC\uFF0C\u53C2\u4E0E\u67D3\u8272\u8D28\u7EC4\u7EC7\u3001\u8F6C\u5F55\u3001\u590D\u5236\u548C RNA \u52A0\u5DE5\u3002",points:["\u6838\u57FA\u8D28\u4E0D\u662F\u5747\u5300\u6EB6\u6DB2\uFF0C\u800C\u662F\u7531\u7EA4\u7EF4\u86CB\u767D\u548C\u590D\u5408\u7269\u6784\u6210\u7684\u52A8\u6001\u7F51\u7EDC\u3002","\u5B83\u4E0E\u6838\u7EA4\u5C42\u3001\u6838\u5B54\u548C\u67D3\u8272\u8D28\u76F8\u4E92\u4F5C\u7528\uFF0C\u4E3A\u6838\u5185\u53CD\u5E94\u63D0\u4F9B\u7A7A\u95F4\u7EC4\u7EC7\u3002","\u6838\u57FA\u8D28\u86CB\u767D\u53C2\u4E0E\u57FA\u56E0\u8868\u8FBE\u8C03\u63A7\u548C DNA \u590D\u5236\uFF0C\u662F\u6838\u5185\u7ED3\u6784\u7814\u7A76\u7684\u91CD\u8981\u90E8\u5206\u3002"],terms:[{t:"\u6838\u57FA\u8D28",d:"\u6838\u5185\u9664\u67D3\u8272\u8D28\u3001\u6838\u819C\u3001\u6838\u4EC1\u5916\u7684\u7EA4\u7EF4\u86CB\u767D\u7F51\u7EDC\u4E0E\u53EF\u6EB6\u6027\u6210\u5206\u3002"}],check:{q:"\u6838\u57FA\u8D28\u4E0E\u6838\u7EA4\u5C42\u6709\u4EC0\u4E48\u533A\u522B\uFF1F",a:"\u6838\u7EA4\u5C42\u662F\u7D27\u8D34\u6838\u819C\u5185\u4FA7\u7684 lamin \u4E2D\u95F4\u4E1D\u7F51\u7EDC\uFF1B\u6838\u57FA\u8D28\u662F\u8D2F\u7A7F\u6838\u5185\u7684\u66F4\u5E7F\u6CDB\u86CB\u767D\u7F51\u7EDC\uFF0C\u4E8C\u8005\u6709\u8054\u7CFB\u4F46\u8303\u56F4\u4E0D\u540C\u3002"}}]},{id:"ch10",no:"\u7B2C\u5341\u7AE0",title:"\u6838\u7CD6\u4F53",pages:"213\u2013223",scene:5,overview:"\u6838\u7CD6\u4F53\u662F\u628A mRNA \u7684\u9057\u4F20\u4FE1\u606F\u7FFB\u8BD1\u6210\u86CB\u767D\u8D28\u7684\u5206\u5B50\u673A\u5668\uFF1B\u539F\u6838\u4E0E\u771F\u6838\u6838\u7CD6\u4F53\u5728\u5927\u5C0F\u3001\u7EC4\u6210\u548C RNA \u542B\u91CF\u4E0A\u6709\u5DEE\u5F02\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u6838\u7CD6\u4F53\u7684\u7C7B\u578B\u4E0E\u7ED3\u6784",pages:"214\u2013218",outline:["\u6838\u7CD6\u4F53\u7684\u57FA\u672C\u7C7B\u578B\u4E0E\u5316\u5B66\u7EC4\u6210","\u6838\u7CD6\u4F53\u7684\u7ED3\u6784","\u6838\u7CD6\u4F53\u86CB\u767D\u8D28\u4E0E rRNA \u7684\u529F\u80FD"],summary:"\u6838\u7CD6\u4F53\u7531\u5927\u5C0F\u4E24\u4E2A\u4E9A\u57FA\u7EC4\u6210\uFF0C\u542B rRNA \u4E0E\u6838\u7CD6\u4F53\u86CB\u767D\uFF1BrRNA \u4E0D\u4EC5\u6784\u5EFA\u9AA8\u67B6\uFF0C\u8FD8\u76F4\u63A5\u53C2\u4E0E\u80BD\u952E\u5F62\u6210\u548C\u7FFB\u8BD1\u8C03\u63A7\u3002",points:["\u539F\u6838\u6838\u7CD6\u4F53\u4E3A 70S\uFF0850S + 30S\uFF09\uFF0C\u771F\u6838\u6838\u7CD6\u4F53\u4E3A 80S\uFF0860S + 40S\uFF09\u3002","\u6838\u7CD6\u4F53\u6709 A\u3001P\u3001E \u4E09\u4E2A tRNA \u7ED3\u5408\u4F4D\u70B9\uFF0CmRNA \u7ED3\u5408\u4F4D\u70B9\u4F4D\u4E8E\u5C0F\u4E9A\u57FA\u3002","rRNA \u6784\u6210\u6838\u7CD6\u4F53\u6838\u5FC3\u5E76\u50AC\u5316\u80BD\u952E\u5F62\u6210\uFF0C\u6838\u7CD6\u4F53\u86CB\u767D\u591A\u4F4D\u4E8E\u8868\u9762\uFF0C\u53C2\u4E0E\u7EC4\u88C5\u4E0E\u529F\u80FD\u8C03\u8282\u3002"],terms:[{t:"\u6838\u7CD6\u4F53",d:"\u7531 rRNA \u4E0E\u86CB\u767D\u8D28\u7EC4\u6210\u3001\u6267\u884C\u86CB\u767D\u8D28\u5408\u6210\u7684\u6838\u7CD6\u6838\u86CB\u767D\u590D\u5408\u4F53\u3002"},{t:"rRNA",d:"\u6838\u7CD6\u4F53 RNA\uFF0C\u6784\u6210\u6838\u7CD6\u4F53\u9AA8\u67B6\u5E76\u53C2\u4E0E\u50AC\u5316\u4E0E\u8BC6\u522B\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u8BF4\u6838\u7CD6\u4F53\u662F\u6838\u9176\uFF1F",a:"\u6838\u7CD6\u4F53\u7684\u50AC\u5316\u6838\u5FC3\u7531 rRNA \u6784\u6210\uFF0C\u80BD\u952E\u5F62\u6210\u4E3B\u8981\u7531 rRNA \u50AC\u5316\uFF1B\u86CB\u767D\u8D28\u66F4\u591A\u53C2\u4E0E\u7ED3\u6784\u548C\u8C03\u8282\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u591A\u6838\u7CD6\u4F53\u4E0E\u86CB\u767D\u8D28\u7684\u5408\u6210",pages:"218\u2013223",outline:["\u591A\u6838\u7CD6\u4F53","\u86CB\u767D\u8D28\u7684\u5408\u6210","\u6838\u7CD6\u4F53\u4E0E RNA \u4E16\u754C"],summary:"\u591A\u4E2A\u6838\u7CD6\u4F53\u53EF\u540C\u65F6\u7FFB\u8BD1\u540C\u4E00\u6761 mRNA \u5F62\u6210\u591A\u6838\u7CD6\u4F53\uFF1B\u7FFB\u8BD1\u5206\u4E3A\u8D77\u59CB\u3001\u5EF6\u4F38\u548C\u7EC8\u6B62\uFF0C\u9700\u8981 tRNA\u3001\u8D77\u59CB\u56E0\u5B50\u548C\u80FD\u91CF\u3002",points:["\u8D77\u59CB\u9636\u6BB5\u5C0F\u4E9A\u57FA\u3001\u8D77\u59CB tRNA \u4E0E mRNA \u7EC4\u88C5\uFF0C\u8BC6\u522B\u8D77\u59CB\u5BC6\u7801\u5B50\uFF1B\u5EF6\u4F38\u9636\u6BB5\u6309\u5BC6\u7801\u5B50\u2014\u53CD\u5BC6\u7801\u5B50\u914D\u5BF9\u6DFB\u52A0\u6C28\u57FA\u9178\u3002","\u7EC8\u6B62\u5BC6\u7801\u5B50\u7531\u91CA\u653E\u56E0\u5B50\u8BC6\u522B\uFF0C\u80BD\u94FE\u91CA\u653E\uFF0C\u6838\u7CD6\u4F53\u89E3\u4F53\u5E76\u53EF\u91CD\u590D\u4F7F\u7528\u3002","\u591A\u6838\u7CD6\u4F53\u80FD\u63D0\u9AD8\u540C\u4E00\u6761 mRNA \u7684\u7FFB\u8BD1\u6548\u7387\uFF1BrRNA \u7684\u50AC\u5316\u4E0E\u4FE1\u606F\u8BC6\u522B\u652F\u6301\u201CRNA \u4E16\u754C\u201D\u5047\u8BF4\u3002"],terms:[{t:"\u591A\u6838\u7CD6\u4F53",d:"\u540C\u4E00\u6761 mRNA \u4E0A\u591A\u4E2A\u6838\u7CD6\u4F53\u540C\u65F6\u7FFB\u8BD1\u5F62\u6210\u7684\u590D\u5408\u4F53\u3002"},{t:"\u6838\u9176",d:"\u5177\u6709\u50AC\u5316\u6D3B\u6027\u7684 RNA \u5206\u5B50\u3002"}],check:{q:"\u591A\u6838\u7CD6\u4F53\u5982\u4F55\u63D0\u9AD8\u86CB\u767D\u8D28\u5408\u6210\u6548\u7387\uFF1F",a:"\u591A\u4E2A\u6838\u7CD6\u4F53\u540C\u65F6\u7ED3\u5408\u540C\u4E00\u6761 mRNA\uFF0C\u4ECE\u4E0D\u540C\u4F4D\u7F6E\u5E76\u884C\u7FFB\u8BD1\uFF0C\u663E\u8457\u63D0\u9AD8\u5355\u4F4D\u65F6\u95F4\u5185\u5408\u6210\u7684\u86CB\u767D\u91CF\u3002"}}]},{id:"ch11",no:"\u7B2C\u5341\u4E00\u7AE0",title:"\u7EC6\u80DE\u4FE1\u53F7\u8F6C\u5BFC",pages:"224\u2013260",scene:1,overview:"\u7EC6\u80DE\u901A\u8FC7\u4FE1\u53F7\u5206\u5B50\u3001\u53D7\u4F53\u548C\u80DE\u5185\u4FE1\u53F7\u7F51\u7EDC\u611F\u77E5\u73AF\u5883\u5E76\u4F5C\u51FA\u53CD\u5E94\uFF1B\u4FE1\u53F7\u8F6C\u5BFC\u5177\u6709\u7279\u5F02\u6027\u3001\u653E\u5927\u6027\u548C\u7F51\u7EDC\u6574\u5408\u6027\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u901A\u4FE1\u4E0E\u4FE1\u53F7\u8F6C\u5BFC",pages:"224\u2013233",outline:["\u7EC6\u80DE\u901A\u4FE1","\u7EC6\u80DE\u7684\u4FE1\u53F7\u5206\u5B50\u4E0E\u53D7\u4F53","\u4FE1\u53F7\u8F6C\u5BFC\u7CFB\u7EDF\u53CA\u5176\u7279\u6027"],summary:"\u7EC6\u80DE\u901A\u4FE1\u5305\u62EC\u65C1\u5206\u6CCC\u3001\u81EA\u5206\u6CCC\u3001\u5185\u5206\u6CCC\u548C\u63A5\u89E6\u4F9D\u8D56\u7B49\u65B9\u5F0F\uFF1B\u53D7\u4F53\u628A\u80DE\u5916\u4FE1\u53F7\u8F6C\u6362\u4E3A\u80DE\u5185\u7B2C\u4E8C\u4FE1\u4F7F\u548C\u6FC0\u9176\u7EA7\u8054\u3002",points:["\u4FE1\u53F7\u5206\u5B50\u53EF\u4E3A\u6FC0\u7D20\u3001\u751F\u957F\u56E0\u5B50\u3001\u795E\u7ECF\u9012\u8D28\u3001\u6C14\u4F53\u5206\u5B50\u6216\u819C\u7ED3\u5408\u914D\u4F53\uFF1B\u53D7\u4F53\u5305\u62EC G \u86CB\u767D\u5076\u8054\u53D7\u4F53\u3001\u9176\u8054\u53D7\u4F53\u548C\u6838\u53D7\u4F53\u3002","\u4FE1\u53F7\u8F6C\u5BFC\u5177\u6709\u7279\u5F02\u6027\u3001\u653E\u5927\u6027\u3001\u9002\u5E94\u6027\u548C\u7F51\u7EDC\u6574\u5408\u6027\u3002","\u53D7\u4F53\u6FC0\u6D3B\u540E\u5E38\u901A\u8FC7\u7B2C\u4E8C\u4FE1\u4F7F\uFF08cAMP\u3001Ca\xB2\u207A\u3001IP3\u3001DAG\uFF09\u548C\u86CB\u767D\u78F7\u9178\u5316\u7EA7\u8054\u4F20\u9012\u4FE1\u53F7\u3002"],terms:[{t:"\u53D7\u4F53",d:"\u7279\u5F02\u6027\u8BC6\u522B\u4FE1\u53F7\u5206\u5B50\u5E76\u5C06\u5176\u8F6C\u6362\u4E3A\u80DE\u5185\u4FE1\u53F7\u7684\u86CB\u767D\u3002"},{t:"\u7B2C\u4E8C\u4FE1\u4F7F",d:"\u53D7\u4F53\u6FC0\u6D3B\u540E\u5728\u7EC6\u80DE\u5185\u751F\u6210\u3001\u653E\u5927\u5E76\u4F20\u9012\u4FE1\u53F7\u7684\u5C0F\u5206\u5B50\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u4FE1\u53F7\u8F6C\u5BFC\u9700\u8981\u201C\u653E\u5927\u201D\u548C\u201C\u7EC8\u6B62\u201D\u4E24\u4E2A\u73AF\u8282\uFF1F",a:"\u653E\u5927\u4F7F\u5C11\u91CF\u914D\u4F53\u4EA7\u751F\u663E\u8457\u7EC6\u80DE\u53CD\u5E94\uFF1B\u7EC8\u6B62\uFF08\u53D7\u4F53\u8131\u654F\u3001\u78F7\u9178\u9176\u3001\u7B2C\u4E8C\u4FE1\u4F7F\u964D\u89E3\uFF09\u4FDD\u8BC1\u4FE1\u53F7\u6709\u65F6\u9650\uFF0C\u907F\u514D\u6301\u7EED\u6FC0\u6D3B\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"G \u86CB\u767D\u5076\u8054\u53D7\u4F53\u53CA\u5176\u4ECB\u5BFC\u7684\u4FE1\u53F7\u8F6C\u5BFC",pages:"233\u2013244",outline:["G \u86CB\u767D\u5076\u8054\u53D7\u4F53\u7684\u7ED3\u6784\u4E0E\u4F5C\u7528\u673A\u5236","G \u86CB\u767D\u5076\u8054\u53D7\u4F53\u6240\u4ECB\u5BFC\u7684\u7EC6\u80DE\u4FE1\u53F7\u901A\u8DEF"],summary:"GPCR \u662F\u4E03\u6B21\u8DE8\u819C\u53D7\u4F53\uFF0C\u6FC0\u6D3B\u5F02\u4E09\u805A\u4F53 G \u86CB\u767D\uFF1B\u4E0D\u540C G \u86CB\u767D\u8C03\u8282\u817A\u82F7\u9178\u73AF\u5316\u9176\u3001\u78F7\u8102\u9176 C \u6216\u79BB\u5B50\u901A\u9053\u3002",points:["\u914D\u4F53\u7ED3\u5408 GPCR \u540E\uFF0C\u53D7\u4F53\u4F5C\u4E3A GEF \u4FC3\u8FDB G\u03B1 \u91CA\u653E GDP\u3001\u7ED3\u5408 GTP\uFF0CG\u03B1 \u4E0E G\u03B2\u03B3 \u5206\u79BB\u5E76\u6FC0\u6D3B\u4E0B\u6E38\u6548\u5E94\u5668\u3002","Gs \u6FC0\u6D3B\u817A\u82F7\u9178\u73AF\u5316\u9176\uFF0C\u63D0\u9AD8 cAMP\u3001\u6FC0\u6D3B PKA\uFF1BGi \u6291\u5236\u817A\u82F7\u9178\u73AF\u5316\u9176\uFF1BGq \u6FC0\u6D3B PLC\uFF0C\u4EA7\u751F IP3 \u4E0E DAG\uFF0C\u5347\u9AD8\u80DE\u8D28 Ca\xB2\u207A\u3002","GTP \u6C34\u89E3\u4F7F G\u03B1 \u5931\u6D3B\u5E76\u91CD\u65B0\u7ED3\u5408 G\u03B2\u03B3\uFF0C\u4FE1\u53F7\u7EC8\u6B62\u3002"],terms:[{t:"GPCR",d:"\u4E03\u6B21\u8DE8\u819C\u3001\u5076\u8054\u5F02\u4E09\u805A\u4F53 G \u86CB\u767D\u7684\u53D7\u4F53\u5BB6\u65CF\u3002"},{t:"G \u86CB\u767D",d:"\u7531 \u03B1\u3001\u03B2\u3001\u03B3 \u4E9A\u57FA\u7EC4\u6210\u3001\u7ED3\u5408 GTP/GDP \u7684\u5206\u5B50\u5F00\u5173\u3002"}],check:{q:"G \u86CB\u767D\u5982\u4F55\u5145\u5F53\u5206\u5B50\u5F00\u5173\uFF1F",a:"G\u03B1 \u7ED3\u5408 GTP \u65F6\u6FC0\u6D3B\uFF0C\u7ED3\u5408 GDP \u65F6\u5931\u6D3B\uFF1B\u53D7\u4F53\u4FC3\u8FDB GDP\u2192GTP \u4EA4\u6362\uFF0CG\u03B1 \u5185\u5728 GTP \u9176\u6D3B\u6027\u4F7F\u4FE1\u53F7\u81EA\u52A8\u7EC8\u6B62\u3002"}},{no:"\u7B2C\u4E09\u8282",title:"\u4ECB\u5BFC\u5E76\u8C03\u63A7\u7EC6\u80DE\u57FA\u56E0\u8868\u8FBE\u7684\u53D7\u4F53\u53CA\u5176\u4FE1\u53F7\u901A\u8DEF",pages:"244\u2013257",outline:["\u9176\u8054\u53D7\u4F53\u53CA\u5176\u4ECB\u5BFC\u7684\u7EC6\u80DE\u4FE1\u53F7\u8F6C\u5BFC\u901A\u8DEF","\u5176\u4ED6\u8C03\u63A7\u57FA\u56E0\u8868\u8FBE\u7684\u7EC6\u80DE\u8868\u9762\u53D7\u4F53\u53CA\u5176\u4ECB\u5BFC\u7684\u4FE1\u53F7\u8F6C\u5BFC\u901A\u8DEF"],summary:"\u9176\u8054\u53D7\u4F53\uFF08\u5982 RTK\uFF09\u548C\u591A\u79CD\u53D1\u80B2\u4FE1\u53F7\u901A\u8DEF\u901A\u8FC7\u6FC0\u9176\u7EA7\u8054\u3001\u8F6C\u5F55\u56E0\u5B50\u5165\u6838\uFF0C\u6539\u53D8\u57FA\u56E0\u8868\u8FBE\u7A0B\u5E8F\u3002",points:["RTK \u914D\u4F53\u7ED3\u5408\u5BFC\u81F4\u53D7\u4F53\u4E8C\u805A\u5316\u3001\u81EA\u78F7\u9178\u5316\uFF0C\u62DB\u52DF GRB2/SOS\uFF0C\u6FC0\u6D3B Ras-MAPK \u7EA7\u8054\uFF0C\u8C03\u63A7\u589E\u6B96\u4E0E\u5206\u5316\u3002","JAK-STAT\u3001TGF-\u03B2/Smad\u3001Wnt/\u03B2-catenin\u3001Hedgehog\u3001Notch \u7B49\u901A\u8DEF\u628A\u80DE\u5916\u4FE1\u53F7\u8F6C\u5316\u4E3A\u8F6C\u5F55\u8C03\u63A7\u3002","\u6838\u53D7\u4F53\u53EF\u76F4\u63A5\u7ED3\u5408\u8102\u6EB6\u6027\u914D\u4F53\u5E76\u4F5C\u4E3A\u8F6C\u5F55\u56E0\u5B50\uFF1B\u4FE1\u53F7\u6700\u7EC8\u6C47\u805A\u5230\u57FA\u56E0\u8868\u8FBE\u548C\u7EC6\u80DE\u884C\u4E3A\u3002"],terms:[{t:"RTK",d:"\u53D7\u4F53\u916A\u6C28\u9178\u6FC0\u9176\uFF0C\u914D\u4F53\u7ED3\u5408\u540E\u81EA\u78F7\u9178\u5316\u5E76\u542F\u52A8\u80DE\u5185\u4FE1\u53F7\u7EA7\u8054\u3002"},{t:"MAPK",d:"\u4E1D\u88C2\u539F\u6D3B\u5316\u86CB\u767D\u6FC0\u9176\u7EA7\u8054\uFF0C\u8C03\u63A7\u589E\u6B96\u3001\u5206\u5316\u548C\u5E94\u6FC0\u53CD\u5E94\u3002"}],check:{q:"RTK \u6FC0\u6D3B Ras \u7684\u57FA\u672C\u6B65\u9AA4\u662F\u4EC0\u4E48\uFF1F",a:"\u914D\u4F53\u8BF1\u5BFC RTK \u4E8C\u805A\u5316\u4E0E\u81EA\u78F7\u9178\u5316\uFF0C\u78F7\u9178\u916A\u6C28\u9178\u62DB\u52DF GRB2-SOS\uFF1BSOS \u4FC3\u8FDB Ras \u91CA\u653E GDP\u3001\u7ED3\u5408 GTP\uFF0CRas \u6FC0\u6D3B Raf-MEK-ERK \u7EA7\u8054\u3002"}},{no:"\u7B2C\u56DB\u8282",title:"\u7EC6\u80DE\u4FE1\u53F7\u8F6C\u5BFC\u7684\u6574\u5408\u4E0E\u63A7\u5236",pages:"257\u2013260",outline:["\u7EC6\u80DE\u5BF9\u4FE1\u53F7\u7684\u5E94\u7B54\u53CD\u5E94\u5177\u6709\u53D1\u6563\u6027\u6216\u6536\u655B\u6027\u7279\u5F81","\u86CB\u767D\u6FC0\u9176\u7684\u7F51\u7EDC\u6574\u5408\u4FE1\u606F","\u4FE1\u53F7\u7684\u63A7\u5236\uFF1A\u53D7\u4F53\u7684\u8131\u654F\u4E0E\u4E0B\u8C03"],summary:"\u4FE1\u53F7\u901A\u8DEF\u4E0D\u662F\u7EBF\u6027\u7BA1\u9053\uFF0C\u800C\u662F\u53D1\u6563\u3001\u6536\u655B\u548C\u4EA4\u53C9\u8C03\u63A7\u7684\u7F51\u7EDC\uFF1B\u53D7\u4F53\u8131\u654F\u3001\u5185\u541E\u548C\u964D\u89E3\u63A7\u5236\u4FE1\u53F7\u5F3A\u5EA6\u4E0E\u6301\u7EED\u65F6\u95F4\u3002",points:["\u4E00\u4E2A\u53D7\u4F53\u53EF\u6FC0\u6D3B\u591A\u6761\u901A\u8DEF\uFF08\u53D1\u6563\uFF09\uFF0C\u591A\u6761\u901A\u8DEF\u4E5F\u53EF\u6C47\u805A\u5230\u540C\u4E00\u6548\u5E94\u5668\uFF08\u6536\u655B\uFF09\u3002","\u86CB\u767D\u6FC0\u9176\u548C\u78F7\u9178\u9176\u7F51\u7EDC\u901A\u8FC7\u6B63\u8D1F\u53CD\u9988\u3001\u652F\u67B6\u86CB\u767D\u548C\u4E9A\u7EC6\u80DE\u5B9A\u4F4D\u6574\u5408\u4FE1\u53F7\u3002","\u53D7\u4F53\u78F7\u9178\u5316\u3001\u6291\u5236\u86CB\u767D\u7ED3\u5408\u3001\u5185\u541E\u548C\u964D\u89E3\u4F7F\u53D7\u4F53\u8131\u654F\u6216\u4E0B\u8C03\uFF0C\u907F\u514D\u8FC7\u5EA6\u6FC0\u6D3B\u3002"],terms:[{t:"\u4FE1\u53F7\u53D1\u6563",d:"\u4E00\u4E2A\u4FE1\u53F7\u6216\u53D7\u4F53\u6FC0\u6D3B\u591A\u6761\u4E0B\u6E38\u901A\u8DEF\u7684\u73B0\u8C61\u3002"},{t:"\u53D7\u4F53\u8131\u654F",d:"\u53D7\u4F53\u5728\u6301\u7EED\u523A\u6FC0\u4E0B\u53CD\u5E94\u6027\u4E0B\u964D\u7684\u8FC7\u7A0B\u3002"}],check:{q:"\u53D7\u4F53\u8131\u654F\u548C\u53D7\u4F53\u4E0B\u8C03\u6709\u4EC0\u4E48\u533A\u522B\uFF1F",a:"\u8131\u654F\u662F\u53D7\u4F53\u529F\u80FD\u5728\u77ED\u671F\u5185\u88AB\u6291\u5236\uFF08\u5982\u78F7\u9178\u5316\u3001\u6291\u5236\u86CB\u767D\u7ED3\u5408\uFF09\uFF0C\u53D7\u4F53\u6570\u91CF\u672A\u5FC5\u51CF\u5C11\uFF1B\u4E0B\u8C03\u901A\u5E38\u6307\u53D7\u4F53\u5185\u541E\u548C\u964D\u89E3\u5BFC\u81F4\u6570\u91CF\u4E0B\u964D\u3002"}}]},{id:"ch12",no:"\u7B2C\u5341\u4E8C\u7AE0",title:"\u7EC6\u80DE\u5468\u671F\u4E0E\u7EC6\u80DE\u5206\u88C2",pages:"261\u2013285",scene:6,overview:"\u7EC6\u80DE\u5468\u671F\u6309 G1\u2192S\u2192G2\u2192M \u6709\u5E8F\u63A8\u8FDB\uFF0C\u5E76\u7531\u68C0\u9A8C\u70B9\u76D1\u63A7\uFF1B\u6709\u4E1D\u5206\u88C2\u548C\u51CF\u6570\u5206\u88C2\u901A\u8FC7\u7EBA\u9524\u4F53\u4E0E\u9ECF\u8FDE\u86CB\u767D\u5B8C\u6210\u67D3\u8272\u4F53\u5206\u914D\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u5468\u671F",pages:"261\u2013269",outline:["\u7EC6\u80DE\u5468\u671F\u6982\u8FF0","\u7EC6\u80DE\u5468\u671F\u4E2D\u5404\u4E0D\u540C\u65F6\u76F8\u53CA\u5176\u4E3B\u8981\u4E8B\u4EF6","\u7EC6\u80DE\u5468\u671F\u540C\u6B65\u5316","\u7279\u6B8A\u7684\u7EC6\u80DE\u5468\u671F"],summary:"\u7EC6\u80DE\u5468\u671F\u5206\u4E3A G1\u3001S\u3001G2\u3001M \u56DB\u671F\uFF1BS \u671F\u5B8C\u6210 DNA \u590D\u5236\uFF0CG2/M \u68C0\u9A8C\u70B9\u51B3\u5B9A\u662F\u5426\u8FDB\u5165\u5206\u88C2\u3002",points:["G1 \u671F\u7EC6\u80DE\u751F\u957F\u5E76\u51C6\u5907\u590D\u5236\uFF1BS \u671F DNA \u590D\u5236\u548C\u7EC4\u86CB\u767D\u5408\u6210\uFF1BG2 \u671F\u68C0\u67E5\u590D\u5236\u5B8C\u6574\u6027\uFF1BM \u671F\u5B8C\u6210\u6838\u5206\u88C2\u4E0E\u80DE\u8D28\u5206\u88C2\u3002","G1/S\u3001G2/M \u548C\u7EBA\u9524\u4F53\u7EC4\u88C5\u68C0\u9A8C\u70B9\uFF08SAC\uFF09\u76D1\u63A7\u5173\u952E\u4E8B\u4EF6\u3002","\u7EC6\u80DE\u5468\u671F\u540C\u6B65\u5316\u548C\u7279\u6B8A\u7EC6\u80DE\u5468\u671F\uFF08\u5982\u65E9\u671F\u80DA\u80CE\u3001\u4F11\u7720\u7EC6\u80DE\uFF09\u662F\u7814\u7A76\u5468\u671F\u8C03\u63A7\u7684\u91CD\u8981\u4F53\u7CFB\u3002"],terms:[{t:"\u7EC6\u80DE\u5468\u671F",d:"\u7EC6\u80DE\u4ECE\u4E00\u6B21\u5206\u88C2\u7ED3\u675F\u5230\u4E0B\u4E00\u6B21\u5206\u88C2\u7ED3\u675F\u6240\u7ECF\u5386\u7684\u5168\u8FC7\u7A0B\u3002"},{t:"\u68C0\u9A8C\u70B9",d:"\u76D1\u63A7\u5173\u952E\u4E8B\u4EF6\u662F\u5426\u5B8C\u6210\u3001\u51B3\u5B9A\u7EC6\u80DE\u5468\u671F\u662F\u5426\u7EE7\u7EED\u7684\u63A7\u5236\u70B9\u3002"}],check:{q:"DNA \u590D\u5236\u53D1\u751F\u5728\u54EA\u4E2A\u65F6\u76F8\uFF1F",a:"S \u671F\uFF1BM \u671F\u53EA\u8D1F\u8D23\u628A\u5DF2\u590D\u5236\u7684\u67D3\u8272\u4F53\u5206\u914D\u5230\u5B50\u7EC6\u80DE\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u7EC6\u80DE\u5206\u88C2",pages:"269\u2013285",outline:["\u6709\u4E1D\u5206\u88C2","\u51CF\u6570\u5206\u88C2"],summary:"\u6709\u4E1D\u5206\u88C2\u901A\u8FC7\u524D\u671F\u51DD\u7F29\u3001\u524D\u4E2D\u671F\u6355\u83B7\u3001\u4E2D\u671F\u6392\u5217\u3001\u540E\u671F\u5206\u79BB\u548C\u672B\u671F\u91CD\u5EFA\u5B8C\u6210\u67D3\u8272\u4F53\u5206\u914D\uFF1B\u51CF\u6570\u5206\u88C2\u589E\u52A0\u540C\u6E90\u91CD\u7EC4\u548C\u4E24\u6B21\u5206\u88C2\u3002",points:["\u524D\u671F\u7531\u51DD\u7F29\u86CB\u767D\u4FC3\u8FDB\u67D3\u8272\u4F53\u51DD\u7F29\uFF1B\u524D\u4E2D\u671F\u6838\u819C\u89E3\u4F53\u3001\u52A8\u7C92\u88AB\u5FAE\u7BA1\u6355\u83B7\uFF1B\u4E2D\u671F\u67D3\u8272\u4F53\u6392\u5217\u5728\u8D64\u9053\u9762\u3002","SAC \u76D1\u63A7\u52A8\u7C92\u8FDE\u63A5\uFF0C\u5168\u90E8\u6B63\u786E\u8FDE\u63A5\u540E APC/C \u6FC0\u6D3B\u3001separase \u5207\u5272\u9ECF\u8FDE\u86CB\u767D\uFF0C\u59D0\u59B9\u67D3\u8272\u5355\u4F53\u5206\u79BB\uFF08\u540E\u671F A/B\uFF09\u3002","\u672B\u671F\u6838\u819C\u91CD\u5EFA\u3001\u80DE\u8D28\u5206\u88C2\u7531\u808C\u52A8\u86CB\u767D\u2014\u808C\u7403\u86CB\u767D\u6536\u7F29\u73AF\u5B8C\u6210\uFF1B\u51CF\u6570\u5206\u88C2\u53D1\u751F\u540C\u6E90\u91CD\u7EC4\u5E76\u6709\u4E24\u6B21\u8FDE\u7EED\u5206\u88C2\u3002"],terms:[{t:"\u6709\u4E1D\u5206\u88C2",d:"\u4EA7\u751F\u4E24\u4E2A\u9057\u4F20\u7269\u8D28\u76F8\u540C\u7684\u5B50\u7EC6\u80DE\u7684\u6838\u5206\u88C2\u8FC7\u7A0B\u3002"},{t:"\u51CF\u6570\u5206\u88C2",d:"\u53D1\u751F\u4E00\u6B21 DNA \u590D\u5236\u3001\u4E24\u6B21\u8FDE\u7EED\u5206\u88C2\uFF0C\u4EA7\u751F\u5355\u500D\u4F53\u7EC6\u80DE\u7684\u7279\u6B8A\u5206\u88C2\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48 SAC \u5931\u6548\u4F1A\u5BFC\u81F4\u975E\u6574\u500D\u4F53\uFF1F",a:"SAC \u5931\u6548\u65F6\u672A\u6B63\u786E\u8FDE\u63A5\u7684\u67D3\u8272\u4F53\u53EF\u80FD\u63D0\u524D\u5206\u79BB\uFF0C\u5B50\u7EC6\u80DE\u83B7\u5F97\u9519\u8BEF\u6570\u91CF\u7684\u67D3\u8272\u4F53\uFF0C\u5F62\u6210\u975E\u6574\u500D\u4F53\u3002"}}]},{id:"ch13",no:"\u7B2C\u5341\u4E09\u7AE0",title:"\u7EC6\u80DE\u589E\u6B96\u8C03\u63A7\u4E0E\u764C\u7EC6\u80DE",pages:"287\u2013306",scene:6,overview:"\u7EC6\u80DE\u589E\u6B96\u53D7 CDK-cyclin\u3001\u68C0\u9A8C\u70B9\u548C\u4FE1\u53F7\u7F51\u7EDC\u4E25\u683C\u63A7\u5236\uFF1B\u764C\u7EC6\u80DE\u7A81\u7834\u8FD9\u4E9B\u9650\u5236\uFF0C\u83B7\u5F97\u6301\u7EED\u589E\u6B96\u3001\u4FB5\u88AD\u548C\u8F6C\u79FB\u80FD\u529B\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u589E\u6B96\u8C03\u63A7",pages:"287\u2013298",outline:["MPF \u7684\u53D1\u73B0\u53CA\u5176\u4F5C\u7528","p34cdc2 \u6FC0\u9176\u7684\u53D1\u73B0\u53CA\u5176\u4E0E MPF \u7684\u5173\u7CFB","\u5468\u671F\u86CB\u767D","CDK \u548C CDK \u6291\u5236\u56E0\u5B50","\u7EC6\u80DE\u5468\u671F\u8FD0\u8F6C\u8C03\u63A7","\u5176\u4ED6\u56E0\u7D20\u5728\u7EC6\u80DE\u5468\u671F\u8C03\u63A7\u4E2D\u7684\u4F5C\u7528"],summary:"MPF \u7531 CDK1 \u4E0E cyclin B \u7EC4\u6210\uFF0C\u9A71\u52A8 G2/M \u8F6C\u6362\uFF1B\u4E0D\u540C cyclin-CDK \u7EC4\u5408\u548C CKI \u7CBE\u786E\u63A7\u5236\u5404\u65F6\u76F8\u3002",points:["CDK1-cyclin B\uFF08MPF\uFF09\u6FC0\u6D3B\u540E\u78F7\u9178\u5316\u51DD\u7F29\u86CB\u767D\u3001\u6838\u7EA4\u5C42\u86CB\u767D\u7B49\uFF0C\u63A8\u52A8\u67D3\u8272\u4F53\u51DD\u7F29\u548C\u6838\u819C\u89E3\u4F53\u3002","cyclin \u7684\u5408\u6210\u4E0E\u964D\u89E3\u51B3\u5B9A CDK \u6D3B\u6027\uFF1BCKI \u6291\u5236 CDK\uFF0C\u68C0\u9A8C\u70B9\u901A\u8FC7\u78F7\u9178\u5316\u8C03\u63A7 CDK \u6D3B\u6027\u3002","APC/C \u6CDB\u7D20\u5316 cyclin B \u548C securin\uFF0C\u4F7F CDK \u5931\u6D3B\u3001separase \u91CA\u653E\uFF0C\u63A8\u52A8\u540E\u671F\u548C\u5468\u671F\u9000\u51FA\u3002"],terms:[{t:"MPF",d:"CDK1 \u4E0E cyclin B \u7EC4\u6210\u7684\u4FC3\u6210\u719F/\u4FC3\u5206\u88C2\u56E0\u5B50\u3002"},{t:"CKI",d:"CDK \u6291\u5236\u56E0\u5B50\uFF0C\u8D1F\u8C03\u63A7\u7EC6\u80DE\u5468\u671F\u63A8\u8FDB\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48 cyclin \u5FC5\u987B\u88AB\u964D\u89E3\uFF0C\u7EC6\u80DE\u624D\u80FD\u9000\u51FA M \u671F\uFF1F",a:"cyclin B \u964D\u89E3\u4F7F CDK1 \u5931\u6D3B\uFF0C\u67D3\u8272\u4F53\u53BB\u51DD\u7F29\u3001\u6838\u819C\u91CD\u5EFA\u548C\u80DE\u8D28\u5206\u88C2\u624D\u80FD\u5B8C\u6210\uFF1B\u5426\u5219\u7EC6\u80DE\u4F1A\u505C\u6EDE\u5728\u6709\u4E1D\u5206\u88C2\u72B6\u6001\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u764C\u7EC6\u80DE",pages:"298\u2013306",outline:["\u764C\u7EC6\u80DE\u7684\u57FA\u672C\u7279\u5F81","\u764C\u57FA\u56E0\u4E0E\u6291\u764C\u57FA\u56E0","\u80BF\u7624\u7684\u53D1\u751F\u662F\u57FA\u56E0\u7A81\u53D8\u9010\u6E10\u79EF\u7D2F\u7684\u7ED3\u679C","\u80BF\u7624\u5E72\u7EC6\u80DE","\u80BF\u7624\u7684\u6CBB\u7597"],summary:"\u764C\u7EC6\u80DE\u5177\u6709\u6301\u7EED\u589E\u6B96\u3001\u9003\u907F\u751F\u957F\u6291\u5236\u3001\u62B5\u6297\u51CB\u4EA1\u3001\u4FB5\u88AD\u8F6C\u79FB\u548C\u57FA\u56E0\u7EC4\u4E0D\u7A33\u5B9A\u7B49\u7279\u5F81\uFF0C\u901A\u5E38\u6E90\u4E8E\u591A\u6B65\u57FA\u56E0\u7A81\u53D8\u79EF\u7D2F\u3002",points:["\u764C\u57FA\u56E0\u529F\u80FD\u83B7\u5F97\u6027\u7A81\u53D8\u4FC3\u8FDB\u589E\u6B96\uFF1B\u6291\u764C\u57FA\u56E0\u529F\u80FD\u7F3A\u5931\u89E3\u9664\u751F\u957F\u6291\u5236\u548C\u51CB\u4EA1\u3002","\u80BF\u7624\u53D1\u751F\u662F\u591A\u6B65\u7A81\u53D8\u79EF\u7D2F\u7684\u7ED3\u679C\uFF0C\u6D89\u53CA\u589E\u6B96\u3001\u51CB\u4EA1\u3001DNA \u4FEE\u590D\u3001\u8840\u7BA1\u751F\u6210\u548C\u514D\u75AB\u9003\u9038\u3002","\u80BF\u7624\u5E72\u7EC6\u80DE\u5047\u8BF4\u8BA4\u4E3A\u90E8\u5206\u7EC6\u80DE\u5177\u6709\u81EA\u6211\u66F4\u65B0\u548C\u5206\u5316\u80FD\u529B\uFF1B\u9776\u5411\u6CBB\u7597\u3001\u514D\u75AB\u6CBB\u7597\u548C\u8054\u5408\u6CBB\u7597\u662F\u91CD\u8981\u65B9\u5411\u3002"],terms:[{t:"\u764C\u57FA\u56E0",d:"\u4FC3\u8FDB\u7EC6\u80DE\u589E\u6B96\u6216\u5B58\u6D3B\u7684\u57FA\u56E0\uFF0C\u5176\u6FC0\u6D3B\u53EF\u9A71\u52A8\u80BF\u7624\u53D1\u751F\u3002"},{t:"\u6291\u764C\u57FA\u56E0",d:"\u6B63\u5E38\u60C5\u51B5\u4E0B\u6291\u5236\u589E\u6B96\u6216\u4FC3\u8FDB\u51CB\u4EA1\u3001\u4FEE\u590D\u7684\u57FA\u56E0\uFF0C\u529F\u80FD\u7F3A\u5931\u6613\u81F4\u764C\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u80BF\u7624\u901A\u5E38\u9700\u8981\u591A\u4E2A\u57FA\u56E0\u7A81\u53D8\u624D\u80FD\u5F62\u6210\uFF1F",a:"\u7EC6\u80DE\u6709\u591A\u91CD\u5B89\u5168\u673A\u5236\uFF08\u589E\u6B96\u6291\u5236\u3001\u51CB\u4EA1\u3001DNA \u4FEE\u590D\u3001\u514D\u75AB\u76D1\u63A7\uFF09\uFF0C\u5355\u4E00\u7A81\u53D8\u901A\u5E38\u4E0D\u8DB3\u4EE5\u7A81\u7834\u5168\u90E8\u9650\u5236\uFF1B\u591A\u6B65\u7A81\u53D8\u9010\u6B65\u79EF\u7D2F\u624D\u5F62\u6210\u6076\u6027\u8868\u578B\u3002"}}]},{id:"ch14",no:"\u7B2C\u5341\u56DB\u7AE0",title:"\u7EC6\u80DE\u5206\u5316\u4E0E\u5E72\u7EC6\u80DE",pages:"307\u2013322",scene:4,overview:"\u7EC6\u80DE\u5206\u5316\u662F\u57FA\u56E0\u9009\u62E9\u6027\u8868\u8FBE\u4EA7\u751F\u7279\u5316\u7EC6\u80DE\u7684\u8FC7\u7A0B\uFF1B\u5E72\u7EC6\u80DE\u901A\u8FC7\u81EA\u6211\u66F4\u65B0\u548C\u591A\u5411\u5206\u5316\u7EF4\u6301\u7EC4\u7EC7\u4FEE\u590D\u4E0E\u53D1\u80B2\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u5206\u5316",pages:"308\u2013313",outline:["\u7EC6\u80DE\u5206\u5316\u7684\u57FA\u672C\u6982\u5FF5","\u5F71\u54CD\u7EC6\u80DE\u5206\u5316\u7684\u56E0\u7D20"],summary:"\u5206\u5316\u7EC6\u80DE\u5F62\u6001\u3001\u7ED3\u6784\u548C\u529F\u80FD\u7279\u5316\uFF0C\u4F46\u901A\u5E38\u4FDD\u7559\u5B8C\u6574\u57FA\u56E0\u7EC4\uFF1B\u8F6C\u5F55\u56E0\u5B50\u3001\u4FE1\u53F7\u548C\u8868\u89C2\u9057\u4F20\u5171\u540C\u51B3\u5B9A\u5206\u5316\u65B9\u5411\u3002",points:["\u7EC6\u80DE\u5206\u5316\u662F\u57FA\u56E0\u9009\u62E9\u6027\u8868\u8FBE\u7684\u7ED3\u679C\uFF0C\u5206\u5316\u7EC6\u80DE\u6838\u4ECD\u5177\u6709\u53D1\u80B2\u5168\u80FD\u6027\uFF08\u5982\u690D\u7269\u7EC6\u80DE\u3001\u514B\u9686\u52A8\u7269\uFF09\u3002","\u7EC6\u80DE\u8D28\u51B3\u5B9A\u5B50\u3001\u8BF1\u5BFC\u4FE1\u53F7\u3001\u4F4D\u7F6E\u4FE1\u606F\u548C\u8868\u89C2\u9057\u4F20\u4FEE\u9970\u5F71\u54CD\u5206\u5316\u65B9\u5411\u3002","\u8F6C\u5206\u5316/\u53BB\u5206\u5316\u662F\u5206\u5316\u72B6\u6001\u7684\u53EF\u5851\u6027\u8868\u73B0\uFF0C\u5728\u518D\u751F\u548C\u75BE\u75C5\u4E2D\u5177\u6709\u91CD\u8981\u610F\u4E49\u3002"],terms:[{t:"\u7EC6\u80DE\u5206\u5316",d:"\u7EC6\u80DE\u5728\u5F62\u6001\u3001\u7ED3\u6784\u548C\u529F\u80FD\u4E0A\u4EA7\u751F\u7A33\u5B9A\u5DEE\u5F02\u7684\u8FC7\u7A0B\u3002"},{t:"\u8868\u89C2\u9057\u4F20",d:"\u4E0D\u6539\u53D8 DNA \u5E8F\u5217\u800C\u6539\u53D8\u57FA\u56E0\u8868\u8FBE\u72B6\u6001\u7684\u67D3\u8272\u8D28\u4FEE\u9970\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u5206\u5316\u7EC6\u80DE\u901A\u5E38\u4ECD\u542B\u5B8C\u6574\u57FA\u56E0\u7EC4\uFF1F",a:"\u5206\u5316\u4E3B\u8981\u7531\u57FA\u56E0\u9009\u62E9\u6027\u8868\u8FBE\u548C\u67D3\u8272\u8D28\u72B6\u6001\u51B3\u5B9A\uFF0CDNA \u5E8F\u5217\u901A\u5E38\u4E0D\u53D8\uFF1B\u6838\u79FB\u690D\u5B9E\u9A8C\u4E5F\u8BC1\u660E\u5206\u5316\u6838\u53EF\u88AB\u91CD\u7F16\u7A0B\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u5E72\u7EC6\u80DE",pages:"313\u2013322",outline:["\u5E72\u7EC6\u80DE\u6982\u5FF5\u53CA\u5176\u5206\u7C7B","\u80DA\u80CE\u5E72\u7EC6\u80DE","\u6210\u4F53\u5E72\u7EC6\u80DE","\u7EC6\u80DE\u547D\u8FD0\u91CD\u7F16\u7A0B\u4E0E\u8BF1\u5BFC\u6027\u591A\u80FD\u5E72\u7EC6\u80DE","\u8C31\u7CFB\u91CD\u7F16\u7A0B","\u5E72\u7EC6\u80DE\u5E94\u7528"],summary:"\u5E72\u7EC6\u80DE\u5177\u6709\u81EA\u6211\u66F4\u65B0\u548C\u591A\u5411\u5206\u5316\u80FD\u529B\uFF1B\u80DA\u80CE\u5E72\u7EC6\u80DE\u3001\u6210\u4F53\u5E72\u7EC6\u80DE\u548C iPSC \u5728\u518D\u751F\u533B\u5B66\u4E0E\u75BE\u75C5\u5EFA\u6A21\u4E2D\u5404\u6709\u4F18\u52BF\u4E0E\u9650\u5236\u3002",points:["\u6309\u53D1\u80B2\u6F5C\u80FD\u5206\u4E3A\u5168\u80FD\u3001\u591A\u80FD\u3001\u591A\u80FD\u548C\u5355\u80FD\u5E72\u7EC6\u80DE\uFF1B\u6309\u6765\u6E90\u5206\u4E3A\u80DA\u80CE\u5E72\u7EC6\u80DE\u548C\u6210\u4F53\u5E72\u7EC6\u80DE\u3002","\u80DA\u80CE\u5E72\u7EC6\u80DE\u6765\u81EA\u56CA\u80DA\u5185\u7EC6\u80DE\u56E2\uFF0C\u53EF\u5206\u5316\u6210\u4E09\u4E2A\u80DA\u5C42\uFF1B\u6210\u4F53\u5E72\u7EC6\u80DE\u5B58\u5728\u4E8E\u591A\u79CD\u7EC4\u7EC7\uFF0C\u8D1F\u8D23\u65E5\u5E38\u4FEE\u590D\u3002","iPSC \u901A\u8FC7\u5BFC\u5165\u91CD\u7F16\u7A0B\u56E0\u5B50\u628A\u4F53\u7EC6\u80DE\u8F6C\u4E3A\u591A\u80FD\u72B6\u6001\uFF1B\u8C31\u7CFB\u91CD\u7F16\u7A0B\u76F4\u63A5\u8F6C\u4E3A\u76EE\u6807\u7EC6\u80DE\u7C7B\u578B\uFF0C\u907F\u514D\u591A\u80FD\u9636\u6BB5\u3002"],terms:[{t:"\u5E72\u7EC6\u80DE",d:"\u5177\u6709\u81EA\u6211\u66F4\u65B0\u548C\u5206\u5316\u6F5C\u80FD\u3001\u80FD\u4EA7\u751F\u591A\u79CD\u7EC6\u80DE\u7684\u672A\u5206\u5316\u7EC6\u80DE\u3002"},{t:"iPSC",d:"\u8BF1\u5BFC\u6027\u591A\u80FD\u5E72\u7EC6\u80DE\uFF0C\u7531\u4F53\u7EC6\u80DE\u91CD\u7F16\u7A0B\u83B7\u5F97\u7684\u591A\u80FD\u7EC6\u80DE\u3002"}],check:{q:"\u80DA\u80CE\u5E72\u7EC6\u80DE\u4E0E iPSC \u7684\u4E3B\u8981\u5DEE\u522B\u662F\u4EC0\u4E48\uFF1F",a:"\u6765\u6E90\u4E0D\u540C\uFF1AESC \u6765\u81EA\u80DA\u80CE\u5185\u7EC6\u80DE\u56E2\uFF0CiPSC \u7531\u4F53\u7EC6\u80DE\u91CD\u7F16\u7A0B\u83B7\u5F97\uFF1BiPSC \u907F\u514D\u4E86\u80DA\u80CE\u6765\u6E90\u7684\u4F26\u7406\u95EE\u9898\uFF0C\u4F46\u9700\u5173\u6CE8\u91CD\u7F16\u7A0B\u5B8C\u6574\u6027\u548C\u81F4\u7624\u6027\u3002"}}]},{id:"ch15",no:"\u7B2C\u5341\u4E94\u7AE0",title:"\u7EC6\u80DE\u8870\u8001\u4E0E\u7EC6\u80DE\u7A0B\u5E8F\u6027\u6B7B\u4EA1",pages:"323\u2013338",scene:0,overview:"\u7EC6\u80DE\u8870\u8001\u662F\u4E0D\u53EF\u9006\u7684\u589E\u6B96\u505C\u6EDE\uFF1B\u7A0B\u5E8F\u6027\u6B7B\u4EA1\uFF08\u5C24\u5176\u51CB\u4EA1\uFF09\u662F\u53D7\u57FA\u56E0\u8C03\u63A7\u7684\u4E3B\u52A8\u6E05\u9664\u8FC7\u7A0B\uFF0C\u5BF9\u53D1\u80B2\u548C\u7EC4\u7EC7\u7A33\u6001\u81F3\u5173\u91CD\u8981\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u8870\u8001",pages:"323\u2013327",outline:["\u7EC6\u80DE\u8870\u8001\u7684\u6982\u5FF5","\u7EC6\u80DE\u590D\u5236\u8870\u8001\u7684\u7279\u5F81","\u7EC6\u80DE\u590D\u5236\u8870\u8001\u7684\u673A\u5236","\u7EC6\u80DE\u8870\u8001\u4E0E\u4E2A\u4F53\u8870\u8001"],summary:"\u590D\u5236\u6027\u8870\u8001\u7531\u7AEF\u7C92\u7F29\u77ED\u3001DNA \u635F\u4F24\u53CD\u5E94\u548C\u7EC6\u80DE\u5468\u671F\u6291\u5236\u56E0\u5B50\u79EF\u7D2F\u9A71\u52A8\uFF1B\u8870\u8001\u7EC6\u80DE\u53EF\u5206\u6CCC SASP \u5F71\u54CD\u7EC4\u7EC7\u5FAE\u73AF\u5883\u3002",points:["\u7AEF\u7C92\u968F\u590D\u5236\u7F29\u77ED\uFF0C\u89E6\u53D1 DNA \u635F\u4F24\u53CD\u5E94\uFF0Cp53/p21 \u548C p16/Rb \u901A\u8DEF\u4F7F\u7EC6\u80DE\u5468\u671F\u505C\u6EDE\u3002","\u8870\u8001\u7EC6\u80DE\u5F62\u6001\u53D8\u5927\u3001\u589E\u6B96\u505C\u6B62\u4F46\u4ECD\u5B58\u6D3B\uFF0C\u5E38\u51FA\u73B0 SA-\u03B2-gal \u9633\u6027\u548C SASP\u3002","SASP \u53EF\u62DB\u52DF\u514D\u75AB\u7EC6\u80DE\u6E05\u9664\u8870\u8001\u7EC6\u80DE\uFF0C\u4F46\u957F\u671F\u79EF\u7D2F\u4F1A\u4FC3\u8FDB\u6162\u6027\u708E\u75C7\u548C\u4E2A\u4F53\u8870\u8001\u3002"],terms:[{t:"\u590D\u5236\u6027\u8870\u8001",d:"\u7EC6\u80DE\u56E0\u7AEF\u7C92\u7F29\u77ED\u548C DNA \u635F\u4F24\u53CD\u5E94\u800C\u6C38\u4E45\u9000\u51FA\u7EC6\u80DE\u5468\u671F\u3002"},{t:"SASP",d:"\u8870\u8001\u76F8\u5173\u5206\u6CCC\u8868\u578B\uFF0C\u8870\u8001\u7EC6\u80DE\u5206\u6CCC\u7684\u708E\u75C7\u56E0\u5B50\u548C\u57FA\u8D28\u9176\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u7AEF\u7C92\u7F29\u77ED\u4F1A\u89E6\u53D1\u7EC6\u80DE\u8870\u8001\uFF1F",a:"\u7AEF\u7C92\u8FC7\u77ED\u4F1A\u88AB\u8BC6\u522B\u4E3A DNA \u53CC\u94FE\u65AD\u88C2\uFF0C\u6FC0\u6D3B p53/p21 \u7B49\u901A\u8DEF\uFF0C\u4F7F\u7EC6\u80DE\u5468\u671F\u505C\u6EDE\uFF1B\u8FD9\u662F\u9632\u6B62\u67D3\u8272\u4F53\u4E0D\u7A33\u5B9A\u7684\u4E00\u79CD\u4FDD\u62A4\u673A\u5236\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u7EC6\u80DE\u7A0B\u5E8F\u6027\u6B7B\u4EA1",pages:"327\u2013338",outline:["\u591A\u79CD\u5F62\u5F0F\u7684\u7EC6\u80DE\u6B7B\u4EA1\u53CA\u5176\u751F\u7269\u5B66\u610F\u4E49","\u7EC6\u80DE\u51CB\u4EA1\u7684\u8FC7\u7A0B\u53CA\u5206\u5B50\u673A\u5236","\u7EC6\u80DE\u7A0B\u5E8F\u6027\u574F\u6B7B\u7684\u5206\u5B50\u673A\u5236","\u690D\u7269\u7EC6\u80DE\u7A0B\u5E8F\u6027\u6B7B\u4EA1\u7684\u5206\u5B50\u673A\u5236"],summary:"\u51CB\u4EA1\u5177\u6709\u7EC6\u80DE\u76B1\u7F29\u3001\u67D3\u8272\u8D28\u51DD\u96C6\u3001\u51CB\u4EA1\u5C0F\u4F53\u5F62\u6210\u7B49\u7279\u5F81\uFF0C\u4F9D\u8D56 caspase \u7EA7\u8054\uFF1B\u7A0B\u5E8F\u6027\u574F\u6B7B\u662F\u53D7\u8C03\u63A7\u7684\u574F\u6B7B\u6837\u6B7B\u4EA1\u3002",points:["\u51CB\u4EA1\u5206\u4E3A\u5185\u6E90\u6027\uFF08\u7EBF\u7C92\u4F53\uFF09\u548C\u5916\u6E90\u6027\uFF08\u6B7B\u4EA1\u53D7\u4F53\uFF09\u901A\u8DEF\uFF0Ccaspase-8/9 \u6FC0\u6D3B\u6267\u884C\u8005 caspase-3/7\u3002","Bcl-2 \u5BB6\u65CF\u8C03\u63A7\u7EBF\u7C92\u4F53\u5916\u819C\u901A\u900F\u6027\uFF1Bcytochrome c \u91CA\u653E\u4FC3\u8FDB\u51CB\u4EA1\u4F53\u5F62\u6210\u548C caspase \u6FC0\u6D3B\u3002","\u51CB\u4EA1\u4E0D\u5F15\u53D1\u708E\u75C7\uFF0C\u800C\u574F\u6B7B/\u7A0B\u5E8F\u6027\u574F\u6B7B\u5E38\u4F34\u968F\u819C\u7834\u88C2\u548C\u708E\u75C7\uFF1B\u690D\u7269\u4E5F\u5B58\u5728\u7A0B\u5E8F\u6027\u6B7B\u4EA1\u3002"],terms:[{t:"\u7EC6\u80DE\u51CB\u4EA1",d:"\u53D7\u57FA\u56E0\u8C03\u63A7\u3001\u4E0D\u5F15\u8D77\u708E\u75C7\u7684\u7A0B\u5E8F\u6027\u7EC6\u80DE\u6B7B\u4EA1\u3002"},{t:"caspase",d:"\u534A\u80F1\u6C28\u9178\u86CB\u767D\u9176\u5BB6\u65CF\uFF0C\u6267\u884C\u51CB\u4EA1\u7684\u7EA7\u8054\u53CD\u5E94\u3002"}],check:{q:"\u51CB\u4EA1\u4E0E\u574F\u6B7B\u5728\u5F62\u6001\u548C\u708E\u75C7\u53CD\u5E94\u4E0A\u6709\u4EC0\u4E48\u4E0D\u540C\uFF1F",a:"\u51CB\u4EA1\u7EC6\u80DE\u76B1\u7F29\u3001\u67D3\u8272\u8D28\u51DD\u96C6\u3001\u5F62\u6210\u51CB\u4EA1\u5C0F\u4F53\uFF0C\u88AB\u541E\u566C\u540E\u901A\u5E38\u4E0D\u5F15\u53D1\u708E\u75C7\uFF1B\u574F\u6B7B\u7EC6\u80DE\u80BF\u80C0\u3001\u819C\u7834\u88C2\u3001\u5185\u5BB9\u7269\u91CA\u653E\uFF0C\u5E38\u5F15\u8D77\u708E\u75C7\u3002"}}]},{id:"ch16",no:"\u7B2C\u5341\u516D\u7AE0",title:"\u7EC6\u80DE\u7684\u793E\u4F1A\u8054\u7CFB",pages:"339\u2013358",scene:1,overview:"\u591A\u7EC6\u80DE\u751F\u7269\u901A\u8FC7\u7EC6\u80DE\u8FDE\u63A5\u3001\u7EC6\u80DE\u9ECF\u7740\u5206\u5B50\u548C\u7EC6\u80DE\u5916\u57FA\u8D28\u5F62\u6210\u7EC4\u7EC7\uFF1B\u8FD9\u4E9B\u7ED3\u6784\u65E2\u63D0\u4F9B\u673A\u68B0\u8FDE\u63A5\uFF0C\u4E5F\u4F20\u9012\u4FE1\u53F7\u3002",sections:[{no:"\u7B2C\u4E00\u8282",title:"\u7EC6\u80DE\u8FDE\u63A5",pages:"339\u2013345",outline:["\u5C01\u95ED\u8FDE\u63A5","\u951A\u5B9A\u8FDE\u63A5","\u901A\u4FE1\u8FDE\u63A5"],summary:"\u7EC6\u80DE\u8FDE\u63A5\u5206\u4E3A\u5C01\u95ED\u8FDE\u63A5\u3001\u951A\u5B9A\u8FDE\u63A5\u548C\u901A\u4FE1\u8FDE\u63A5\uFF0C\u5206\u522B\u63A7\u5236\u7269\u8D28\u901A\u900F\u3001\u63D0\u4F9B\u673A\u68B0\u8FDE\u63A5\u548C\u5B9E\u73B0\u7EC6\u80DE\u95F4\u901A\u8BAF\u3002",points:["\u7D27\u5BC6\u8FDE\u63A5\u5C01\u95ED\u7EC6\u80DE\u95F4\u9699\u3001\u9650\u5236\u7269\u8D28\u65C1\u8DEF\u6269\u6563\uFF0C\u5E76\u9694\u79BB\u9876\u7AEF\u4E0E\u57FA\u5E95\u819C\u533A\u57DF\u3002","\u951A\u5B9A\u8FDE\u63A5\u5305\u62EC\u9ECF\u7740\u5E26\u3001\u6865\u7C92\u548C\u534A\u6865\u7C92\uFF0C\u901A\u8FC7\u7EC6\u80DE\u9AA8\u67B6\u628A\u76F8\u90BB\u7EC6\u80DE\u6216\u7EC6\u80DE\u4E0E\u57FA\u8D28\u8FDE\u63A5\u8D77\u6765\u3002","\u95F4\u9699\u8FDE\u63A5\u7531\u8FDE\u63A5\u86CB\u767D\u6784\u6210\uFF0C\u5141\u8BB8\u79BB\u5B50\u548C\u5C0F\u5206\u5B50\u5728\u7EC6\u80DE\u95F4\u76F4\u63A5\u4F20\u9012\uFF0C\u534F\u8C03\u7EC4\u7EC7\u53CD\u5E94\u3002"],terms:[{t:"\u7D27\u5BC6\u8FDE\u63A5",d:"\u5C01\u95ED\u76F8\u90BB\u7EC6\u80DE\u95F4\u9699\u3001\u9650\u5236\u65C1\u8DEF\u6269\u6563\u7684\u7EC6\u80DE\u8FDE\u63A5\u3002"},{t:"\u95F4\u9699\u8FDE\u63A5",d:"\u7531\u8FDE\u63A5\u86CB\u767D\u6784\u6210\u7684\u901A\u9053\uFF0C\u5141\u8BB8\u5C0F\u5206\u5B50\u5728\u7EC6\u80DE\u95F4\u76F4\u63A5\u4EA4\u6362\u3002"}],check:{q:"\u6865\u7C92\u548C\u534A\u6865\u7C92\u5728\u8FDE\u63A5\u5BF9\u8C61\u4E0A\u6709\u4EC0\u4E48\u4E0D\u540C\uFF1F",a:"\u6865\u7C92\u8FDE\u63A5\u76F8\u90BB\u4E24\u4E2A\u7EC6\u80DE\u7684\u4E2D\u95F4\u4E1D\u7F51\u7EDC\uFF1B\u534A\u6865\u7C92\u8FDE\u63A5\u4E0A\u76AE\u7EC6\u80DE\u4E0E\u57FA\u5E95\u819C\uFF0C\u4E00\u4FA7\u662F\u7EC6\u80DE\u4E2D\u95F4\u4E1D\uFF0C\u53E6\u4E00\u4FA7\u662F\u7EC6\u80DE\u5916\u57FA\u8D28\u3002"}},{no:"\u7B2C\u4E8C\u8282",title:"\u7EC6\u80DE\u9ECF\u7740\u53CA\u5176\u5206\u5B50\u57FA\u7840",pages:"345\u2013350",outline:["\u9499\u9ECF\u86CB\u767D","\u9009\u62E9\u7D20","\u514D\u75AB\u7403\u86CB\u767D\u8D85\u5BB6\u65CF","\u6574\u8054\u86CB\u767D"],summary:"\u7EC6\u80DE\u9ECF\u7740\u5206\u5B50\u901A\u8FC7\u540C\u4EB2\u6216\u5F02\u4EB2\u7ED3\u5408\u4ECB\u5BFC\u7EC6\u80DE\u8BC6\u522B\u3001\u7EC4\u7EC7\u6784\u5EFA\u548C\u514D\u75AB\u7EC6\u80DE\u8FC1\u79FB\uFF1B\u4E0D\u540C\u5BB6\u65CF\u5206\u5DE5\u4E0D\u540C\u3002",points:["\u9499\u9ECF\u86CB\u767D\u4F9D\u8D56 Ca\xB2\u207A \u4ECB\u5BFC\u540C\u4EB2\u6027\u9ECF\u7740\uFF0C\u662F\u7EC4\u7EC7\u5F62\u6210\u548C\u4E0A\u76AE\u5B8C\u6574\u6027\u7684\u6838\u5FC3\u3002","\u9009\u62E9\u7D20\u8BC6\u522B\u7CD6\u914D\u4F53\uFF0C\u53C2\u4E0E\u767D\u7EC6\u80DE\u6EDA\u52A8\u548C\u708E\u75C7\u52DF\u96C6\uFF1B\u514D\u75AB\u7403\u86CB\u767D\u8D85\u5BB6\u65CF\u6210\u5458\u53C2\u4E0E\u591A\u79CD\u7EC6\u80DE\u8BC6\u522B\u3002","\u6574\u8054\u86CB\u767D\u4ECB\u5BFC\u7EC6\u80DE\u4E0E\u7EC6\u80DE\u5916\u57FA\u8D28\u7684\u9ECF\u7740\uFF0C\u5E76\u8FDE\u63A5\u7EC6\u80DE\u9AA8\u67B6\u4E0E\u4FE1\u53F7\u901A\u8DEF\u3002"],terms:[{t:"\u9499\u9ECF\u86CB\u767D",d:"Ca\xB2\u207A \u4F9D\u8D56\u7684\u7EC6\u80DE\u2014\u7EC6\u80DE\u9ECF\u7740\u5206\u5B50\uFF0C\u4ECB\u5BFC\u540C\u4EB2\u6027\u7ED3\u5408\u3002"},{t:"\u6574\u8054\u86CB\u767D",d:"\u4ECB\u5BFC\u7EC6\u80DE\u4E0E\u7EC6\u80DE\u5916\u57FA\u8D28\u9ECF\u7740\u3001\u5E76\u4F20\u9012\u80DE\u5185\u5916\u4FE1\u53F7\u7684\u53D7\u4F53\u5BB6\u65CF\u3002"}],check:{q:"\u4E3A\u4EC0\u4E48\u9009\u62E9\u7D20\u9002\u5408\u4ECB\u5BFC\u767D\u7EC6\u80DE\u5728\u8840\u7BA1\u5185\u76AE\u7684\u6EDA\u52A8\uFF1F",a:"\u9009\u62E9\u7D20\u4E0E\u7CD6\u914D\u4F53\u7684\u7ED3\u5408\u5FEB\u901F\u3001\u4F4E\u4EB2\u548C\u529B\u4E14\u53EF\u9006\uFF0C\u9002\u5408\u5728\u8840\u6D41\u4E2D\u5F62\u6210\u77ED\u6682\u9ECF\u9644\u4E0E\u6EDA\u52A8\uFF0C\u968F\u540E\u7531\u6574\u8054\u86CB\u767D\u4ECB\u5BFC\u7A33\u5B9A\u9ECF\u9644\u3002"}},{no:"\u7B2C\u4E09\u8282",title:"\u7EC6\u80DE\u5916\u57FA\u8D28",pages:"350\u2013358",outline:["\u80F6\u539F","\u5F39\u6027\u86CB\u767D","\u7CD6\u80FA\u805A\u7CD6\u548C\u86CB\u767D\u805A\u7CD6","\u7EA4\u8FDE\u86CB\u767D\u548C\u5C42\u7C98\u8FDE\u86CB\u767D","\u57FA\u819C\u4E0E\u7EC6\u80DE\u5916\u88AB","\u690D\u7269\u7EC6\u80DE\u58C1"],summary:"\u7EC6\u80DE\u5916\u57FA\u8D28\u7531\u80F6\u539F\u3001\u5F39\u6027\u86CB\u767D\u3001\u86CB\u767D\u805A\u7CD6\u548C\u9ECF\u7740\u7CD6\u86CB\u767D\u7EC4\u6210\uFF0C\u63D0\u4F9B\u673A\u68B0\u652F\u6491\u3001\u7EC4\u7EC7\u5206\u9694\u548C\u4FE1\u53F7\u8C03\u63A7\u3002",points:["\u80F6\u539F\u662F\u542B\u91CF\u6700\u4E30\u5BCC\u7684\u7ED3\u6784\u86CB\u767D\uFF0C\u63D0\u4F9B\u6297\u62C9\u5F3A\u5EA6\uFF1B\u5F39\u6027\u86CB\u767D\u8D4B\u4E88\u7EC4\u7EC7\u5F39\u6027\u3002","\u7CD6\u80FA\u805A\u7CD6/\u86CB\u767D\u805A\u7CD6\u9AD8\u5EA6\u6C34\u5408\uFF0C\u5F62\u6210\u51DD\u80F6\u72B6\u57FA\u8D28\u5E76\u8C03\u8282\u751F\u957F\u56E0\u5B50\uFF1B\u7EA4\u8FDE\u86CB\u767D\u548C\u5C42\u7C98\u8FDE\u86CB\u767D\u4ECB\u5BFC\u7EC6\u80DE\u9ECF\u7740\u3002","\u57FA\u819C\u662F\u7279\u5316\u7684\u7EC6\u80DE\u5916\u57FA\u8D28\uFF0C\u652F\u6491\u4E0A\u76AE\u5E76\u53C2\u4E0E\u4FE1\u53F7\uFF1B\u690D\u7269\u7EC6\u80DE\u58C1\u4EE5\u7EA4\u7EF4\u7D20\u4E3A\u4E3B\uFF0C\u63D0\u4F9B\u652F\u6301\u548C\u5F62\u6001\u3002"],terms:[{t:"\u80F6\u539F",d:"\u7EC6\u80DE\u5916\u57FA\u8D28\u4E2D\u542B\u91CF\u6700\u4E30\u5BCC\u7684\u7EA4\u7EF4\u72B6\u7ED3\u6784\u86CB\u767D\uFF0C\u63D0\u4F9B\u6297\u62C9\u5F3A\u5EA6\u3002"},{t:"\u5C42\u7C98\u8FDE\u86CB\u767D",d:"\u57FA\u819C\u7684\u4E3B\u8981\u7CD6\u86CB\u767D\uFF0C\u4ECB\u5BFC\u7EC6\u80DE\u4E0E\u57FA\u8D28\u7684\u9ECF\u7740\u548C\u4FE1\u53F7\u3002"}],check:{q:"\u7EC6\u80DE\u5916\u57FA\u8D28\u53EA\u63D0\u4F9B\u673A\u68B0\u652F\u6491\u5417\uFF1F",a:"\u4E0D\u53EA\u3002\u5B83\u8FD8\u80FD\u7ED3\u5408\u5E76\u50A8\u5B58\u751F\u957F\u56E0\u5B50\u3001\u8C03\u8282\u7EC6\u80DE\u9ECF\u7740\u548C\u4FE1\u53F7\u3001\u5F71\u54CD\u7EC6\u80DE\u589E\u6B96\u3001\u5206\u5316\u3001\u8FC1\u79FB\u548C\u5B58\u6D3B\u3002"}}]}];var ji=[...vf,...yf],ec=ji.reduce((i,e)=>i+e.sections.length,0),zv=[0,2,7,6,8,4,11];function _f(i){return zv[i]??0}var Qi=[{id:"prokaryote-eukaryote",no:"01",title:"\u539F\u6838\u7EC6\u80DE / \u771F\u6838\u7EC6\u80DE",en:"TWO ARCHITECTURES OF LIFE",book:0,sections:["\u7B2C\u4E8C\u8282"],accent:"#7ff7e4",summary:"\u540C\u4E00\u5957\u751F\u547D\u903B\u8F91\uFF0C\u4E24\u6761\u4E0D\u540C\u7684\u7A7A\u95F4\u7EC4\u7EC7\u8DEF\u7EBF\uFF1A\u539F\u6838\u7EC6\u80DE\u7528\u62DF\u6838\u4E0E\u7D27\u51D1\u7684\u7EC6\u80DE\u8D28\u5B8C\u6210\u4E00\u5207\uFF0C\u771F\u6838\u7EC6\u80DE\u7528\u819C\u6027\u533A\u5BA4\u628A\u53CD\u5E94\u5206\u5F00\u3002",points:["\u539F\u6838\u7EC6\u80DE\u6CA1\u6709\u6838\u819C\uFF0CDNA \u96C6\u4E2D\u5728\u62DF\u6838\u533A","\u771F\u6838\u7EC6\u80DE\u4EE5\u6838\u819C\u3001\u5185\u819C\u7CFB\u7EDF\u548C\u7EC6\u80DE\u9AA8\u67B6\u7EC4\u7EC7\u533A\u5BA4","\u6838\u7CD6\u4F53\u3001\u819C\u548C\u80FD\u91CF\u4EE3\u8C22\u662F\u4E24\u8005\u5171\u4EAB\u7684\u5E95\u5C42\u673A\u5236"]},{id:"membrane-mosaic",no:"02",title:"\u7EC6\u80DE\u8D28\u819C\u7684\u6D41\u52A8\u9576\u5D4C",en:"A LIQUID MOSAIC",book:2,sections:["\u7B2C\u4E00\u8282","\u7B2C\u4E8C\u8282"],accent:"#65e6d8",summary:"\u819C\u4E0D\u662F\u4E00\u5835\u5899\uFF0C\u800C\u662F\u4E00\u7247\u4E8C\u7EF4\u6D41\u4F53\uFF1A\u8102\u8D28\u63D0\u4F9B\u6D41\u52A8\u6027\uFF0C\u86CB\u767D\u8D28\u63D0\u4F9B\u529F\u80FD\uFF0C\u7CD6\u94FE\u671D\u5411\u5916\u4FA7\u5F62\u6210\u8BC6\u522B\u5C42\u3002",points:["\u78F7\u8102\u53CC\u5206\u5B50\u5C42\u662F\u819C\u7684\u57FA\u672C\u9AA8\u67B6","\u6574\u5408\u819C\u86CB\u767D\u7A7F\u8D8A\u8102\u53CC\u5C42\uFF0C\u5916\u5468\u819C\u86CB\u767D\u9644\u7740\u5728\u8868\u9762","\u819C\u7684\u4E0D\u5BF9\u79F0\u6027\u4E0E\u6D41\u52A8\u6027\u5171\u540C\u51B3\u5B9A\u8FD0\u8F93\u3001\u8BC6\u522B\u548C\u4FE1\u53F7\u529F\u80FD"]},{id:"transport",no:"03",title:"\u8DE8\u819C\u8FD0\u8F93\uFF1A\u901A\u9053\u4E0E\u6CF5",en:"CHANNELS, CARRIERS & PUMPS",book:3,sections:["\u7B2C\u4E00\u8282","\u7B2C\u4E8C\u8282"],accent:"#8dd7ff",summary:"\u901A\u9053\u8BA9\u79BB\u5B50\u987A\u68AF\u5EA6\u5FEB\u901F\u901A\u8FC7\uFF0C\u6CF5\u7528 ATP \u9006\u68AF\u5EA6\u5EFA\u7ACB\u5E76\u7EF4\u6301\u7535\u5316\u5B66\u68AF\u5EA6\uFF1B\u4E24\u8005\u5171\u540C\u5851\u9020\u819C\u7535\u4F4D\u4E0E\u6B21\u7EA7\u8FD0\u8F93\u3002",points:["\u901A\u9053\u86CB\u767D\u5F62\u6210\u4EB2\u6C34\u5B54\u9053\uFF0C\u9009\u62E9\u6027\u5F3A\u3001\u8F6C\u8FD0\u5FEB","P \u578B\u6CF5\u901A\u8FC7\u78F7\u9178\u5316\u6784\u8C61\u53D8\u5316\u9006\u68AF\u5EA6\u8F6C\u8FD0\u79BB\u5B50","Na\u207A/K\u207A \u6CF5\u6BCF\u6C34\u89E3 1 \u4E2A ATP \u51C0\u6CF5\u51FA 1 \u4E2A\u6B63\u7535\u8377\uFF0C\u53C2\u4E0E\u819C\u7535\u4F4D"]},{id:"endomembrane",no:"04",title:"\u5185\u819C\u7CFB\u7EDF\u4E0E\u819C\u6CE1\u8FD0\u8F93",en:"THE SECRETORY RIVER",book:4,sections:["\u7B2C\u4E8C\u8282"],maps:[{book:4,sections:["\u7B2C\u4E8C\u8282"]},{book:5,sections:["\u7B2C\u4E00\u8282","\u7B2C\u4E8C\u8282"]}],accent:"#ffb27a",summary:"\u5185\u8D28\u7F51\u3001\u9AD8\u5C14\u57FA\u4F53\u548C\u6EB6\u9176\u4F53\u901A\u8FC7\u819C\u6CE1\u8FDE\u6210\u4E00\u6761\u52A8\u6001\u6CB3\u6D41\uFF1A\u86CB\u767D\u8D28\u5728 ER \u5408\u6210\uFF0C\u5728\u9AD8\u5C14\u57FA\u4F53\u4FEE\u9970\u5206\u9009\uFF0C\u6700\u7EC8\u62B5\u8FBE\u6EB6\u9176\u4F53\u6216\u7EC6\u80DE\u5916\u3002",points:["\u7C97\u9762 ER \u5408\u6210\u5E76\u521D\u6B65\u6298\u53E0\u5206\u6CCC\u86CB\u767D\u548C\u819C\u86CB\u767D","\u9AD8\u5C14\u57FA\u4F53\u5B8C\u6210\u7CD6\u57FA\u5316\u3001\u5206\u9009\u4E0E\u5305\u88C5","COPII/COPI\u3001Rab \u4E0E SNARE \u4FDD\u8BC1\u819C\u6CE1\u5B9A\u5411\u8FD0\u8F93\u548C\u878D\u5408"]},{id:"mito-chloro",no:"05",title:"\u7EBF\u7C92\u4F53 / \u53F6\u7EFF\u4F53",en:"TWO ENERGY CONVERTERS",book:6,sections:["\u7B2C\u4E00\u8282","\u7B2C\u4E8C\u8282","\u7B2C\u4E09\u8282"],accent:"#ffb36b",summary:"\u7EBF\u7C92\u4F53\u628A\u5316\u5B66\u80FD\u8F6C\u6210\u8D28\u5B50\u68AF\u5EA6\uFF0C\u53F6\u7EFF\u4F53\u628A\u5149\u80FD\u8F6C\u6210\u5316\u5B66\u80FD\uFF1B\u4E24\u8005\u90FD\u7528\u819C\u4E0A\u7684\u7535\u5B50\u4F20\u9012\u94FE\u548C ATP \u5408\u9176\u5B8C\u6210\u80FD\u91CF\u8F6C\u6362\u3002",points:["\u7EBF\u7C92\u4F53\u5185\u819C\u6298\u53E0\u6210\u5D74\uFF0C\u6269\u5927\u6C27\u5316\u78F7\u9178\u5316\u9762\u79EF","\u53F6\u7EFF\u4F53\u7C7B\u56CA\u4F53\u5806\u53E0\u6210\u57FA\u7C92\uFF0C\u627F\u8F7D\u5149\u53CD\u5E94","\u4E24\u8005\u90FD\u6709\u81EA\u8EAB DNA\uFF0C\u6309\u5185\u5171\u751F\u5B66\u8BF4\u8D77\u6E90\u4E8E\u7EC6\u83CC/\u84DD\u7EC6\u83CC"]},{id:"cytoskeleton",no:"06",title:"\u7EC6\u80DE\u9AA8\u67B6\u4E09\u7EA4\u7EF4",en:"THE LIVING SCAFFOLD",book:7,sections:["\u7B2C\u4E00\u8282","\u7B2C\u4E8C\u8282","\u7B2C\u4E09\u8282"],accent:"#9ee7ff",summary:"\u5FAE\u4E1D\u3001\u5FAE\u7BA1\u548C\u4E2D\u95F4\u4E1D\u5728\u76F4\u5F84\u3001\u6781\u6027\u3001\u52A8\u529B\u5B66\u548C\u529B\u5B66\u89D2\u8272\u4E0A\u5206\u5DE5\u4E0D\u540C\uFF0C\u5374\u5171\u540C\u628A\u7EC6\u80DE\u7EC4\u7EC7\u6210\u6709\u5F20\u529B\u3001\u53EF\u8FD0\u52A8\u3001\u80FD\u8FD0\u8F93\u7684\u6574\u4F53\u3002",points:["\u5FAE\u4E1D\u76F4\u5F84\u7EA6 7 nm\uFF0C\u6709\u6781\u6027\uFF0C\u808C\u7403\u86CB\u767D\u6CBF\u5176\u8FD0\u52A8","\u5FAE\u7BA1\u76F4\u5F84\u7EA6 24 nm\uFF0C\u52A8\u6001\u4E0D\u7A33\u5B9A\uFF0C\u662F\u8FD0\u8F93\u8F68\u9053\u548C\u7EBA\u9524\u4F53\u9AA8\u67B6","\u4E2D\u95F4\u4E1D\u76F4\u5F84\u7EA6 10 nm\uFF0C\u65E0\u6781\u6027\uFF0C\u4E3B\u8981\u627F\u62C5\u6297\u62C9\u529B"]},{id:"nucleus",no:"07",title:"\u7EC6\u80DE\u6838\u4E0E\u67D3\u8272\u8D28",en:"THE GENOME, CONTINUOUSLY READ",book:8,sections:["\u7B2C\u4E00\u8282","\u7B2C\u4E8C\u8282","\u7B2C\u4E09\u8282","\u7B2C\u56DB\u8282","\u7B2C\u4E94\u8282","\u7B2C\u516D\u8282"],accent:"#d3a4ff",summary:"\u6838\u88AB\u819C\u628A\u8F6C\u5F55\u4E0E\u7FFB\u8BD1\u5728\u7A7A\u95F4\u4E0A\u5206\u5F00\uFF0C\u6838\u5B54\u63A7\u5236\u5927\u5206\u5B50\u4EA4\u6362\uFF0C\u67D3\u8272\u8D28\u5728\u6838\u5185\u6298\u53E0\u6210\u52A8\u6001\u7684\u4E09\u7EF4\u8C03\u63A7\u7F51\u7EDC\u3002",points:["\u6838\u5B54\u590D\u5408\u4F53\u63A7\u5236\u6838\u8D28\u4EA4\u6362\uFF0C\u6838\u7EA4\u5C42\u652F\u6491\u6838\u819C","\u6838\u5C0F\u4F53\u662F\u67D3\u8272\u8D28\u7684\u57FA\u672C\u5355\u4F4D\uFF0C\u7EA6 147 bp DNA \u7F20\u7ED5\u7EC4\u86CB\u767D\u516B\u805A\u4F53","\u6838\u4EC1\u7EC4\u7EC7 rRNA \u8F6C\u5F55\u3001\u52A0\u5DE5\u4E0E\u6838\u7CD6\u4F53\u4E9A\u57FA\u7EC4\u88C5"]},{id:"ribosome",no:"08",title:"\u6838\u7CD6\u4F53\u4E0E\u7FFB\u8BD1",en:"THE TRANSLATION MACHINE",book:9,sections:["\u7B2C\u4E00\u8282","\u7B2C\u4E8C\u8282"],accent:"#8cf0c8",summary:"\u6838\u7CD6\u4F53\u628A mRNA \u7684\u78B1\u57FA\u5E8F\u5217\u7FFB\u8BD1\u6210\u86CB\u767D\u8D28\uFF1A\u5C0F\u4E9A\u57FA\u8BC6\u522B mRNA\uFF0C\u5927\u4E9A\u57FA\u50AC\u5316\u80BD\u952E\u5F62\u6210\uFF0CtRNA \u6309\u5BC6\u7801\u5B50\u9012\u9001\u6C28\u57FA\u9178\u3002",points:["\u539F\u6838\u6838\u7CD6\u4F53\u4E3A 70S\uFF0C\u771F\u6838\u6838\u7CD6\u4F53\u4E3A 80S","rRNA \u6784\u6210\u50AC\u5316\u6838\u5FC3\uFF0C\u80BD\u952E\u5F62\u6210\u4E3B\u8981\u7531 rRNA \u50AC\u5316","\u591A\u6838\u7CD6\u4F53\u8BA9\u540C\u4E00\u6761 mRNA \u540C\u65F6\u88AB\u591A\u4E2A\u6838\u7CD6\u4F53\u7FFB\u8BD1"]},{id:"light-microscopy",no:"09",batch:2,title:"\u5149\u5B66\u663E\u5FAE\u4E0E\u8367\u5149\u6210\u50CF",en:"LIGHT & FLUORESCENCE MICROSCOPY",book:1,sections:["\u7B2C\u4E00\u8282"],accent:"#8fe8ff",summary:"\u5149\u7A7F\u8FC7\u6837\u54C1\uFF0C\u88AB\u7269\u955C\u6536\u96C6\u3001\u6EE4\u7247\u7B5B\u9009\u540E\u6210\u50CF\uFF1B\u8367\u5149\u6807\u8BB0\u8BA9\u7279\u5B9A\u5206\u5B50\u4ECE\u80CC\u666F\u4E2D\u201C\u4EAE\u8D77\u6765\u201D\uFF0C\u5171\u805A\u7126\u5219\u7528\u70B9\u626B\u63CF\u53BB\u6389\u7126\u5916\u5149\u3002",points:["\u5206\u8FA8\u7387\u53D7\u884D\u5C04\u6781\u9650\u9650\u5236\uFF0C\u653E\u5927\u500D\u6570\u4E0D\u7B49\u4E8E\u5206\u8FA8\u7387","\u8367\u5149\u6EE4\u7247\u628A\u6FC0\u53D1\u5149\u548C\u53D1\u5C04\u5149\u5206\u5F00\uFF0C\u6697\u80CC\u666F\u4E0A\u53EA\u770B\u89C1\u6807\u8BB0\u5206\u5B50","\u5171\u805A\u7126\u9488\u5B54\u6291\u5236\u7126\u5916\u8367\u5149\uFF0C\u8D85\u5206\u8FA8\u65B9\u6CD5\u8FDB\u4E00\u6B65\u7A81\u7834\u884D\u5C04\u6781\u9650"]},{id:"electron-microscopy",no:"10",batch:2,title:"\u7535\u5B50\u663E\u5FAE\u955C",en:"ELECTRON MICROSCOPY",book:1,sections:["\u7B2C\u4E00\u8282"],accent:"#aab8ff",summary:"\u7535\u5B50\u675F\u5728\u771F\u7A7A\u67F1\u4E2D\u88AB\u7535\u78C1\u900F\u955C\u805A\u7126\uFF0C\u7A7F\u8FC7\u8D85\u8584\u6837\u54C1\u6216\u626B\u63CF\u8868\u9762\uFF1B\u6CE2\u957F\u66F4\u77ED\uFF0C\u4F7F\u5206\u8FA8\u7387\u8FDB\u5165\u7EB3\u7C73\u5C3A\u5EA6\u3002",points:["TEM \u8BA9\u7535\u5B50\u7A7F\u900F\u8D85\u8584\u5207\u7247\uFF0C\u89C2\u5BDF\u7EC6\u80DE\u5185\u90E8\u8D85\u5FAE\u7ED3\u6784","SEM \u6536\u96C6\u8868\u9762\u4E8C\u6B21\u7535\u5B50\uFF0C\u91CD\u5EFA\u6837\u54C1\u8868\u9762\u5F62\u8C8C","\u6837\u54C1\u9700\u56FA\u5B9A\u3001\u8131\u6C34\u3001\u5305\u57CB\u3001\u5207\u7247\u548C\u67D3\u8272\uFF0C\u6D3B\u7EC6\u80DE\u4E0D\u80FD\u76F4\u63A5\u89C2\u5BDF"]},{id:"centrifugation",no:"11",batch:2,title:"\u5DEE\u901F\u79BB\u5FC3\u4E0E\u4E9A\u7EC6\u80DE\u5206\u79BB",en:"DIFFERENTIAL CENTRIFUGATION",book:1,sections:["\u7B2C\u4E8C\u8282"],accent:"#ffcf8a",summary:"\u7EC6\u80DE\u88AB\u7834\u788E\u540E\uFF0C\u4E0D\u540C\u5927\u5C0F\u548C\u5BC6\u5EA6\u7684\u7EC6\u80DE\u5668\u5728\u79BB\u5FC3\u573A\u4E2D\u5206\u5C42\uFF1B\u9010\u6B65\u63D0\u9AD8\u79BB\u5FC3\u529B\uFF0C\u5C31\u80FD\u628A\u7EC6\u80DE\u6838\u3001\u7EBF\u7C92\u4F53\u3001\u5FAE\u7C92\u4F53\u7B49\u4F9D\u6B21\u5206\u79BB\u3002",points:["\u4F4E\u901F\u79BB\u5FC3\u5148\u6C89\u6DC0\u7EC6\u80DE\u6838\u548C\u672A\u7834\u788E\u7EC6\u80DE","\u63D0\u9AD8\u8F6C\u901F\u4F9D\u6B21\u6C89\u6DC0\u7EBF\u7C92\u4F53\u3001\u6EB6\u9176\u4F53\u3001\u5FAE\u7C92\u4F53","\u5BC6\u5EA6\u68AF\u5EA6\u79BB\u5FC3\u53EF\u8FDB\u4E00\u6B65\u7EAF\u5316\u540C\u4E00\u7EC6\u80DE\u5668"]},{id:"cell-culture",no:"12",batch:2,title:"\u7EC6\u80DE\u57F9\u517B",en:"CELL CULTURE",book:1,sections:["\u7B2C\u4E09\u8282"],accent:"#9ff2c0",summary:"\u7EC6\u80DE\u5728\u65E0\u83CC\u3001\u6052\u6E29\u3001\u5408\u9002\u57F9\u517B\u57FA\u548C\u6C14\u4F53\u73AF\u5883\u4E2D\u8D34\u58C1\u6216\u60AC\u6D6E\u751F\u957F\uFF1B\u57F9\u517B\u74F6\u628A\u201C\u4F53\u5185\u73AF\u5883\u201D\u538B\u7F29\u6210\u4E00\u4E2A\u53EF\u89C2\u5BDF\u3001\u53EF\u5E72\u9884\u7684\u5C0F\u7CFB\u7EDF\u3002",points:["\u539F\u4EE3\u7EC6\u80DE\u66F4\u63A5\u8FD1\u4F53\u5185\u72B6\u6001\uFF0C\u8FDE\u7EED\u7EC6\u80DE\u7CFB\u53EF\u957F\u671F\u4F20\u4EE3","\u57F9\u517B\u57FA\u63D0\u4F9B\u8425\u517B\u3001\u751F\u957F\u56E0\u5B50\u548C\u7F13\u51B2\u4F53\u7CFB\uFF0C\u9700\u5B9A\u671F\u6362\u6DB2","\u65E0\u83CC\u64CD\u4F5C\u3001\u6E29\u5EA6\u548C CO\u2082 \u6D53\u5EA6\u51B3\u5B9A\u57F9\u517B\u662F\u5426\u6210\u529F"]},{id:"frap",no:"13",batch:2,title:"FRAP \u8367\u5149\u6F02\u767D\u6062\u590D",en:"FLUORESCENCE RECOVERY AFTER PHOTOBLEACHING",book:1,sections:["\u7B2C\u56DB\u8282"],accent:"#71f0d4",summary:"\u7528\u5F3A\u6FC0\u5149\u628A\u4E00\u5C0F\u5757\u8367\u5149\u533A\u57DF\u6F02\u767D\uFF0C\u518D\u89C2\u5BDF\u5468\u56F4\u672A\u6F02\u767D\u5206\u5B50\u6269\u6563\u8FDB\u6765\uFF1B\u6062\u590D\u66F2\u7EBF\u80FD\u62A5\u544A\u5206\u5B50\u7684\u8FD0\u52A8\u901F\u5EA6\u4E0E\u7ED3\u5408\u72B6\u6001\u3002",points:["\u6F02\u767D\u533A\u8367\u5149\u6062\u590D\u901F\u5EA6\u53CD\u6620\u5206\u5B50\u6269\u6563\u548C\u4EA4\u6362","\u6062\u590D\u4E0D\u5B8C\u6574\u63D0\u793A\u5B58\u5728\u4E0D\u6613\u79FB\u52A8\u7684\u7ED3\u5408\u6C60","FRAP \u9002\u5408\u7814\u7A76\u819C\u86CB\u767D\u3001\u6838\u86CB\u767D\u548C\u7EC6\u80DE\u8D28\u5206\u5B50\u7684\u52A8\u6001"]},{id:"fret",no:"14",batch:2,title:"FRET \u8367\u5149\u5171\u632F\u80FD\u91CF\u8F6C\u79FB",en:"F\xD6RSTER RESONANCE ENERGY TRANSFER",book:1,sections:["\u7B2C\u56DB\u8282"],accent:"#ff9fc9",summary:"\u4E24\u4E2A\u8367\u5149\u57FA\u56E2\u8DB3\u591F\u9760\u8FD1\u65F6\uFF0C\u4F9B\u4F53\u628A\u80FD\u91CF\u65E0\u8F90\u5C04\u5730\u4F20\u7ED9\u53D7\u4F53\uFF1B\u53D7\u4F53\u53D1\u5149\u660E\u6697\u53D8\u5316\uFF0C\u53EF\u8BFB\u51FA\u7EB3\u7C73\u5C3A\u5EA6\u7684\u5206\u5B50\u90BB\u8FD1\u4E0E\u6784\u8C61\u53D8\u5316\u3002",points:["FRET \u6548\u7387\u968F\u8DDD\u79BB\u7684\u516D\u6B21\u65B9\u8870\u51CF\uFF0C\u4F5C\u7528\u8303\u56F4\u7EA6 1\u201310 nm","\u4F9B\u4F53\u53D1\u5C04\u4E0B\u964D\u3001\u53D7\u4F53\u53D1\u5C04\u589E\u5F3A\u662F\u7ECF\u5178\u8BFB\u51FA","\u53EF\u6784\u5EFA FRET \u63A2\u9488\u68C0\u6D4B\u86CB\u767D\u4E92\u4F5C\u3001\u9499\u79BB\u5B50\u548C\u6784\u8C61\u53D8\u5316"]}],lM=Qi.length;function Fu(i){return Qi.find(e=>e.id===i)||Qi[0]}function bf(i,e){let t=Number(String(i||"").replace("ch",""))-1;return Qi.filter(n=>(n.maps||[{book:n.book,sections:n.sections}]).some(r=>r.book===t&&r.sections.includes(e)))}var tc=class extends wi{constructor(){super(),this.name="RoomEnvironment",this.position.y=-3.5;let e=new Pn;e.deleteAttribute("uv");let t=new pn({side:Yt}),n=new pn,s=new Sn(16777215,900,28,2);s.position.set(.418,16.199,.3),this.add(s);let r=new Je(e,t);r.position.set(-.757,13.219,.717),r.scale.set(31.713,28.305,28.591),this.add(r);let a=new Jn(e,n,6),o=new zt;o.position.set(-10.906,2.009,1.846),o.rotation.set(0,-.195,0),o.scale.set(2.328,7.905,4.651),o.updateMatrix(),a.setMatrixAt(0,o.matrix),o.position.set(-5.607,-.754,-.758),o.rotation.set(0,.994,0),o.scale.set(1.97,1.534,3.955),o.updateMatrix(),a.setMatrixAt(1,o.matrix),o.position.set(6.167,.857,7.803),o.rotation.set(0,.561,0),o.scale.set(3.927,6.285,3.687),o.updateMatrix(),a.setMatrixAt(2,o.matrix),o.position.set(-2.017,.018,6.124),o.rotation.set(0,.333,0),o.scale.set(2.002,4.566,2.064),o.updateMatrix(),a.setMatrixAt(3,o.matrix),o.position.set(2.291,-.756,-2.621),o.rotation.set(0,-.286,0),o.scale.set(1.546,1.552,1.496),o.updateMatrix(),a.setMatrixAt(4,o.matrix),o.position.set(-2.193,-.369,-5.547),o.rotation.set(0,.516,0),o.scale.set(3.875,3.487,2.986),o.updateMatrix(),a.setMatrixAt(5,o.matrix),this.add(a);let l=new Je(e,pr(50));l.position.set(-16.116,14.37,8.208),l.scale.set(.1,2.428,2.739),this.add(l);let c=new Je(e,pr(50));c.position.set(-16.109,18.021,-8.207),c.scale.set(.1,2.425,2.751),this.add(c);let u=new Je(e,pr(17));u.position.set(14.904,12.198,-1.832),u.scale.set(.15,4.265,6.331),this.add(u);let f=new Je(e,pr(43));f.position.set(-.462,8.89,14.52),f.scale.set(4.38,5.441,.088),this.add(f);let h=new Je(e,pr(20));h.position.set(3.235,11.486,-12.541),h.scale.set(2.5,2,.1),this.add(h);let p=new Je(e,pr(100));p.position.set(0,20,0),p.scale.set(1,.1,1),this.add(p)}dispose(){let e=new Set;this.traverse(t=>{t.isMesh&&(e.add(t.geometry),e.add(t.material))});for(let t of e)t.dispose()}};function pr(i){return new Jr({color:0,emissive:16777215,emissiveIntensity:i})}var ct=Math.PI*2;function Ze(i,e={}){return new pn({color:i,roughness:e.roughness??.36,metalness:e.metalness??.18,transparent:e.transparent??!1,opacity:e.opacity??1,emissive:e.emissive??0,emissiveIntensity:e.emissiveIntensity??1,side:e.side??di})}function vs(i,e=1.6){return new pn({color:i,emissive:i,emissiveIntensity:e,roughness:.28,metalness:.1,transparent:!0,opacity:.92})}function sn(i,e=.18,t={}){return new Bn({color:i,transparent:!0,opacity:e,roughness:.16,metalness:.05,clearcoat:1,clearcoatRoughness:.2,ior:1.33,side:qt,depthWrite:!1,...t})}function de(i,e,t,n,s,r){let a=new Je(i,e);return t&&a.position.set(t[0],t[1],t[2]),n&&a.rotation.set(n[0],n[1],n[2]),r&&a.scale.set(r[0],r[1],r[2]),s.add(a),a}function Xe(i,e,t,n,s={}){let r=s.glass?sn(t,s.opacity??.3):s.glow?vs(t,s.glow):Ze(t,s);return de(new Rt(e,s.segments??24,s.rings??16),r,n,null,i,s.scale)}function ei(i,e,t,n,s,r,a={}){return de(new $n(e,t,6,14),a.glass?sn(n,a.opacity??.2):Ze(n,a),s,r,i,a.scale)}function it(i,e,t,n,s,r,a,o={}){let l=o.glass?sn(s,o.opacity??.2):o.glow?vs(s,o.glow):Ze(s,o);return de(new Pn(e,t,n),l,r,a,i)}function bt(i,e,t,n,s,r,a={}){return de(new In(e,t,12,40,a.arc??ct),a.glow?vs(n,a.glow):Ze(n,a),s,r,i)}function Zt(i,e,t,n,s={}){let r=new yn(e.map(o=>new I(...o)),!1,"catmullrom",.4),a=new hi(r,s.segments??64,t,8,!1);return de(a,s.glow?vs(n,s.glow):Ze(n,s),null,null,i)}function Ce(i,e,t,n=""){i.userData.labels||(i.userData.labels=[]),i.userData.labels.push({text:e,sub:n,position:new I(...t)})}function ys(i){let e=i>>>0;return()=>{e=e+1831565813|0;let t=Math.imul(e^e>>>15,1|e);return t=t+Math.imul(t^t>>>7,61|t)^t,((t^t>>>14)>>>0)/4294967296}}function Hv(i,e){return i.userData.distance=e,i}function xs(i,e,t,n,s,r=[0,0,0],a=7){let o=new Oe;o.position.set(...s),o.rotation.set(...r),de(new Be(e,e,t,28),Ze(n,{metalness:.55,roughness:.35}),[0,0,0],null,o);for(let l=0;l<a;l+=1){let c=-t/2+(l+.5)*(t/a);bt(o,e*.98,.009,14221303,[0,c,0],[Math.PI/2,0,0],{transparent:!0,opacity:.25})}return i.add(o),o}function Mf(i,e,t,n,s,r=[0,0,0]){let a=new Oe;return a.position.set(...s),a.rotation.set(...r),de(new Be(e,e,t,28),sn(n,.28,{depthWrite:!1}),[0,0,0],null,a),bt(a,e+.015,.018,12582128,[0,t/2,0],[Math.PI/2,0,0],{transparent:!0,opacity:.5}),bt(a,e+.015,.018,12582128,[0,-t/2,0],[Math.PI/2,0,0],{transparent:!0,opacity:.5}),i.add(a),a}function wa(i,e,t,n,s,r=[0,0,0]){let a=new Oe;return a.position.set(...s),a.rotation.set(...r),it(a,e+.12,t+.12,.055,662304,[0,0,0],null,{metalness:.45}),it(a,e,t,.045,n,[0,0,.01],null,{glow:.45}),i.add(a),a}function Sf(i,e,t,n,s,r=[0,0,0],a=.2){return de(new Be(e*.55,e,t,16,1,!0),new Ot({color:n,transparent:!0,opacity:a,side:qt,depthWrite:!1,blending:xt}),s,r,i)}function Gv(){let i=new Oe;i.userData.distance=14.2;let e=new Oe;e.position.set(-3.35,.35,0),de(new Rt(1.45,44,30),sn(4905672,.15),null,null,e,[1.25,1,1]),de(new Rt(1.52,24,16),new Ot({color:6219991,wireframe:!0,transparent:!0,opacity:.075}),null,null,e,[1.25,1,1]);let t=ys(12);for(let o=0;o<42;o+=1){let l=t()*ct,c=Math.acos(2*t()-1),u=1.05+t()*.18;Xe(e,.035,9435103,[Math.cos(l)*Math.sin(c)*u*1.2,Math.cos(c)*u,Math.sin(l)*Math.sin(c)*u],{glow:1.4,segments:8,rings:6})}Zt(e,[[-.7,.2,.1],[-.3,.65,-.2],[.25,.15,.25],[.6,-.3,-.05],[.1,-.55,.1],[-.35,-.1,-.25],[-.75,.35,.05]],.08,6484704,{glow:1.6,segments:80});for(let o=0;o<2;o+=1){let l=[];for(let c=0;c<18;c+=1){let u=c/17*ct+o*2.2;l.push([-.05+Math.cos(u)*(.42+o*.18),.15+Math.sin(u)*.34,.2+Math.sin(u*2)*.22])}Zt(e,l,.026,9371605,{glow:.8,segments:44})}for(let o=0;o<9;o+=1){let l=o/9*ct;Xe(e,.05,16765322,[Math.cos(l)*.72,-.2+Math.sin(l*2)*.32,Math.sin(l)*.56],{glow:.6,segments:8,rings:6})}let s=[];for(let o=0;o<7;o+=1)s.push([-1.35-o*.22,.05+Math.sin(o*.9)*.3,.25*Math.sin(o*1.4)]);Zt(e,s,.035,7391487,{glow:1.2,segments:60});for(let o=0;o<9;o+=1){let l=o/9*ct;Zt(e,[[1.15*Math.cos(l),.5*Math.sin(l),.55],[1.6*Math.cos(l),.72*Math.sin(l),.8],[1.82*Math.cos(l),.82*Math.sin(l),.92]],.018,10217689,{opacity:.6,transparent:!0,segments:12})}i.add(e);let r=new Oe;r.position.set(2.85,.1,0),de(new Rt(2.15,52,34),sn(10192623,.12),null,null,r),de(new Rt(2.22,28,18),new Ot({color:12495359,wireframe:!0,transparent:!0,opacity:.06}),null,null,r),Xe(r,.96,13474559,[.2,.25,.05],{glass:!0,opacity:.35}),Xe(r,.32,16754393,[.45,.35,.25],{glow:1.6}),Zt(r,[[-.1,-.2,1.65],[.7,.1,1.2],[1.05,-.5,.65],[.45,-.9,.25],[-.25,-.55,.65],[-.8,-.9,1.05],[-.7,-.35,1.55]],.055,16761994,{glow:.9,segments:80});for(let o=0;o<3;o+=1)ei(r,.24,.75,16751458,[1.25+o*.06,.65-o*.48,-.45+o*.18],[Math.PI/2,.6,.4],{glow:.8});for(let o=0;o<3;o+=1){let l=o/3*ct;Xe(r,.15,16765580,[Math.cos(l)*1.4,-.75,Math.sin(l)*1.15],{glow:1.4,segments:14,rings:10})}for(let o=0;o<4;o+=1)de(new In(.55,.045,8,34,Math.PI*1.15),Ze(9302756,{transparent:!0,opacity:.7}),[.55,-.8+o*.13,1],[Math.PI/2,0,.25],r);for(let o=0;o<14;o+=1){let l=o/14*ct,c=Math.acos(1-2*((o+.5)/14)),u=[Math.cos(l)*Math.sin(c)*2.01,Math.cos(c)*2.01,Math.sin(l)*Math.sin(c)*2.01];de(new In(.13,.025,6,16),Ze(16765422,{transparent:!0,opacity:.8}),u,[0,0,0],r).lookAt(0,0,0)}for(let o=0;o<7;o+=1){let l=[];for(let c=0;c<16;c+=1){let u=c/15,f=u*ct+o*.7;l.push([Math.cos(f)*(1.1+u*.8)*(o%2?1:-1),-1.1+u*1.9,Math.sin(f*1.3)*(.8+u*.6)])}Zt(r,l,.018,9434343,{glow:.35,transparent:!0,opacity:.55,segments:40})}for(let o=0;o<4;o+=1)Xe(r,.09,16765066,[-1.3+o*.8,-1.05+o%2*.3,.6],{glow:.5,segments:10,rings:7});return i.add(r),Ce(i,"\u539F\u6838\u7EC6\u80DE",[-3.35,2.1,0],"PROKARYOTE"),Ce(i,"\u62DF\u6838 DNA",[-4.1,0,.5],"NUCLEOID"),Ce(i,"70S \u6838\u7CD6\u4F53",[-2.2,-1.2,.5],"RIBOSOME"),Ce(i,"\u771F\u6838\u7EC6\u80DE",[2.85,2.75,0],"EUKARYOTE"),Ce(i,"\u7EC6\u80DE\u6838",[3.2,.3,1.2],"NUCLEUS"),Ce(i,"\u7EBF\u7C92\u4F53",[4.35,-.6,.2],"MITOCHONDRION"),Ce(i,"\u5185\u819C\u7CFB\u7EDF",[1.1,-1.8,1],"ENDOMEMBRANE"),Hv(i,14.2)}function Vv(){let i=new Oe;i.userData.distance=11.2;let e=18,t=5,n=new Rt(.105,14,10),s=new $n(.035,.32,4,8),r=new Jn(n,Ze(3852474,{transparent:!0,opacity:.82,emissive:870982,emissiveIntensity:.2}),e*t*2),a=new Jn(s,Ze(2325110,{transparent:!0,opacity:.48}),e*t*4),o=new zt,l=0,c=0;for(let h=0;h<e;h+=1)for(let p=0;p<t;p+=1){let x=(h-(e-1)/2)*.34,M=(p-(t-1)/2)*.34;for(let g of[-1,1]){o.position.set(x,g*.28,M),o.rotation.set(0,0,0),o.scale.set(1,1,1),o.updateMatrix(),r.setMatrixAt(l,o.matrix),l+=1;for(let m of[-.065,.065])o.position.set(x+m,g*.5,M),o.rotation.set(0,0,0),o.scale.set(1,1,1),o.updateMatrix(),a.setMatrixAt(c,o.matrix),c+=1}(h+p)%7===0&&de(new Be(.045,.045,.5,6),Ze(16764538,{emissive:7162388,emissiveIntensity:.3}),[x+.05,.1,M],[0,0,.3],i)}i.add(r,a);let u=[8052735,16756950,16765066,11117823];for(let h=0;h<5;h+=1){let p=-2.2+h*1.05;ei(i,.16,.8,u[h%u.length],[p,0,.02],[0,0,0],{transparent:!0,opacity:.9,glow:.55}),Xe(i,.17,u[(h+1)%u.length],[p,.58,.02],{glow:1.2,segments:12,rings:8})}for(let h=0;h<5;h+=1){let p=-2.3+h*1.12;ei(i,.1,.3,h%2?10194175:16752585,[p,.68,.28],[Math.PI/2,.2,.4],{transparent:!0,opacity:.65}),ei(i,.08,.26,8186073,[p+.5,-.7,-.25],[Math.PI/2,-.2,-.3],{transparent:!0,opacity:.55})}for(let h=0;h<24;h+=1){let p=h/24*ct;Xe(i,.026,10218751,[Math.cos(p)*(1.3+h%4*.4),1+h%3*.16,Math.sin(p)*.8],{glow:.4,segments:6,rings:4})}for(let h=0;h<4;h+=1)Zt(i,[[-2.4+h*1.5,-.78,-.3],[-2.35+h*1.5,-1.2,-.35],[-2.2+h*1.5,-1.55,-.2]],.02,7791316,{glow:.25,transparent:!0,opacity:.45,segments:14});let f=de(new Be(.36,.36,1.05,24,1,!0),sn(8841471,.3),[.9,0,.05],null,i);f.material.side=qt,bt(i,.36,.06,10284287,[.9,.52,.05],[Math.PI/2,0,0],{glow:1.2}),bt(i,.36,.06,10284287,[.9,-.52,.05],[Math.PI/2,0,0],{glow:1.2});for(let h=0;h<18;h+=1){let p=h/18*ct;Zt(i,[[-2.6+h%3*.08,.62,-.8+h%5*.35],[-2.45+Math.cos(p)*.18,.95+h%4*.12,-.8+h%5*.35+Math.sin(p)*.12]],.018,16752585,{glow:.8,transparent:!0,opacity:.7,segments:8})}for(let h=0;h<22;h+=1){let p=h/22*ct;Xe(i,.045,16759006,[1.95+Math.cos(p)*.25,.78+h%3*.12,-.4+Math.sin(p)*.25],{glow:1.1,segments:8,rings:6})}return Ce(i,"\u78F7\u8102\u53CC\u5206\u5B50\u5C42",[-2.7,-.9,.4],"PHOSPHOLIPID BILAYER"),Ce(i,"\u6574\u5408\u819C\u86CB\u767D",[2.65,.2,.2],"INTEGRAL PROTEIN"),Ce(i,"\u901A\u9053\u86CB\u767D",[.9,1.05,.2],"CHANNEL"),Ce(i,"\u7CD6\u843C",[-1.55,1.25,.3],"GLYCOCALYX"),Ce(i,"\u80C6\u56FA\u9187",[-1.3,.15,-.6],"CHOLESTEROL"),i}function Wv(){let i=new Oe;i.userData.distance=11.4,de(new Pn(6.4,.28,2.5),Ze(1794399,{transparent:!0,opacity:.42,emissive:734515,emissiveIntensity:.6}),[0,0,0],null,i);for(let a=0;a<30;a+=1){let o=-3+a/29*6;for(let l of[-1.1,1.1])Xe(i,.04,7464150,[o,.23,l],{glow:.5,segments:7,rings:5})}for(let a=0;a<18;a+=1){let o=-3+a/17*6;for(let l of[-.65,0,.65])Xe(i,.028,4832693,[o,.16,l],{glow:.25,segments:6,rings:4}),Xe(i,.028,4832693,[o,-.16,l],{glow:.25,segments:6,rings:4})}let e=de(new Be(.46,.46,1.15,26,1,!0),sn(9166079,.26),[-1.65,0,0],null,i);e.material.side=qt,bt(i,.46,.065,10808063,[-1.65,.58,0],[Math.PI/2,0,0],{glow:1.3}),bt(i,.46,.065,10808063,[-1.65,-.58,0],[Math.PI/2,0,0],{glow:1.3});let t=new Oe;t.position.set(1.65,0,0),ei(t,.42,.85,16758127,[0,.05,0],null,{glow:.4}),ei(t,.18,.5,16768157,[-.28,.55,0],[0,0,-.35],{glow:.8}),ei(t,.18,.5,16768157,[.28,.55,0],[0,0,.35],{glow:.8}),Xe(t,.16,16770726,[0,-.65,0],{glow:1.8}),i.add(t);let n=[],s=[7919871,16765580,11707135],r=ys(77);for(let a=0;a<18;a+=1){let o=Xe(i,.07,s[a%3],[-2.8+r()*5.6,-1.8+r()*3.6,-.7+r()*1.4],{glow:1.5,segments:10,rings:8});n.push({mesh:o,x:o.position.x,z:o.position.z,phase:r()*ct,speed:.3+r()*.6})}return i.userData.update=a=>{n.forEach((o,l)=>{let c=-1.8+(a*o.speed+o.phase)%(Math.PI*2)/(Math.PI*2)*3.6;o.mesh.position.set(o.x+Math.sin(a*.5+l)*.12,c,o.z),o.mesh.material.emissiveIntensity=1.2+Math.sin(a*2+l)*.5}),t.children[1].rotation.z=-.35+Math.sin(a*.9)*.08,t.children[2].rotation.z=.35-Math.sin(a*.9)*.08},Ce(i,"\u901A\u9053\u86CB\u767D",[-1.65,1.15,.2],"CHANNEL"),Ce(i,"Na\u207A/K\u207A \u6CF5",[1.7,1.35,.2],"P-TYPE PUMP"),Ce(i,"ATP",[1.65,-1.05,.35],"ENERGY"),Ce(i,"\u819C\u7535\u4F4D",[3.1,-.4,.4],"MEMBRANE POTENTIAL"),Ce(i,"\u7EC6\u80DE\u5916",[-2.9,1.55,.1],"EXTRACELLULAR"),Ce(i,"\u7EC6\u80DE\u8D28",[-2.9,-1.6,.1],"CYTOPLASM"),i}function Xv(){let i=new Oe;i.userData.distance=12.6,Zt(i,[[-3,.2,.1],[-2.4,.9,-.3],[-1.7,.2,.4],[-2.2,-.6,-.2],[-3,-.7,.3],[-3.35,0,-.1],[-2.8,.45,.5],[-2.2,1,0]],.075,7661272,{glow:.9,segments:110});for(let r=0;r<12;r+=1)Xe(i,.045,10158047,[-2.9+r%4*.34,.55+r%3*.24,-.25+r%2*.4],{glow:1.2,segments:8,rings:6});for(let r=0;r<5;r+=1)de(new Be(1.02-r*.07,.9-r*.06,.1,36),Ze(16757870,{transparent:!0,opacity:.82}),[.35,.8-r*.2,0],[.15,0,.06],i),bt(i,.86-r*.06,.035,16765853,[.35,.86-r*.2,0],[Math.PI/2,0,.06],{transparent:!0,opacity:.55});let t=new yn([new I(-1.3,.1,.25),new I(-.7,.45,.1),new I(.9,-.1,.45),new I(2.25,.15,.1)]),n=[];for(let r=0;r<7;r+=1){let a=Xe(i,.14+r%2*.035,r%2?16764804:9433569,[0,0,0],{glow:.9,segments:14,rings:10});n.push({mesh:a,offset:r/7});for(let o=0;o<5;o+=1){let l=o/5*ct;Xe(a,.025,12386281,[Math.cos(l)*.17,Math.sin(l)*.14,Math.cos(l*2)*.1],{glow:.35,segments:6,rings:4})}}let s=Xe(i,.72,12942079,[2.65,.05,.1],{glass:!0,opacity:.42});s.material=sn(12942079,.38);for(let r=0;r<16;r+=1){let a=r/16*ct;Xe(i,.045,16766090,[2.65+Math.cos(a)*.45,.05+Math.sin(a*2)*.32,.1+Math.sin(a)*.38],{glow:1.1,segments:8,rings:6})}return i.userData.update=r=>{n.forEach(a=>{let o=(a.offset+r*.035)%1,l=t.getPoint(o);a.mesh.position.copy(l),a.mesh.material.emissiveIntensity=.7+Math.sin(r*2.5+a.offset*8)*.3})},Ce(i,"\u5185\u8D28\u7F51",[-2.7,1.45,.2],"ENDOPLASMIC RETICULUM"),Ce(i,"\u9AD8\u5C14\u57FA\u4F53",[.35,1.25,.1],"GOLGI APPARATUS"),Ce(i,"\u8F6C\u8FD0\u819C\u6CE1",[.95,-.95,.5],"TRANSPORT VESICLE"),Ce(i,"\u6EB6\u9176\u4F53",[2.65,-.95,.2],"LYSOSOME"),i}function qv(){let i=new Oe;i.userData.distance=12.8;let e=new Oe;e.position.set(-2.25,.1,0),ei(e,1.05,1.35,16754533,[0,0,0],[0,0,.05],{glass:!0,opacity:.12}),ei(e,.88,1.08,16765071,[0,0,0],[0,0,.05],{glass:!0,opacity:.12});for(let s=0;s<7;s+=1){let r=-.85+s*.28,a=[];for(let o=0;o<12;o+=1){let l=o/11;a.push([-.62+l*1.24,r+Math.sin(l*ct*1.4+s)*.09,Math.sin(l*ct+s*.5)*.38])}Zt(e,a,.035,16757870,{glow:.45,segments:46})}for(let s=0;s<18;s+=1){let r=s/18*ct;Xe(e,.035,16769186,[Math.cos(r)*1.08,-1.1+s%7*.32,Math.sin(r)*.38],{glow:.8,segments:7,rings:5})}for(let s=0;s<7;s+=1){let r=s/7*ct;ei(e,.04,.16,16768410,[Math.cos(r)*.9,-1+s%4*.55,Math.sin(r)*.32],[0,0,0],{glow:.45})}let t=[];for(let s=0;s<20;s+=1){let r=s/19*ct;t.push([Math.cos(r)*.38,.3+Math.sin(r*2)*.18,Math.sin(r)*.22])}Zt(e,t,.025,11141083,{glow:.5,segments:50}),i.add(e);let n=new Oe;n.position.set(2.15,.05,0),de(new Rt(1.55,44,30),sn(6543777,.13),null,null,n,[1.15,1.28,.86]),de(new Rt(1.58,24,16),new Ot({color:9106105,wireframe:!0,transparent:!0,opacity:.055}),null,null,n,[1.15,1.28,.86]);for(let s=0;s<3;s+=1){let r=-.55+s*.56;for(let a=0;a<5;a+=1)de(new Be(.43,.43,.035,28),Ze(6083724,{emissive:1527088,emissiveIntensity:.22,transparent:!0,opacity:.9}),[r,-.55+a*.17,.05],[.12,.3,-.18],n);for(let a=0;a<5;a+=1)bt(n,.4,.022,12779474,[r,-.55+a*.17,.05],[Math.PI/2+.12,.3,-.18],{transparent:!0,opacity:.28})}for(let s=0;s<3;s+=1)Zt(n,[[-.7+s*.5,-.4,-.4],[-.35+s*.5,.1,.2],[0+s*.3,.55,.35]],.022,11138491,{glow:.25,transparent:!0,opacity:.45,segments:30});Xe(n,.28,16773575,[.75,-.55,.2],{glass:!0,opacity:.38});for(let s=0;s<4;s+=1){let r=de(new ki(.55,3.4,12,1,!0),new Ot({color:16771496,transparent:!0,opacity:.018,side:qt,depthWrite:!1}),[2.1+s*.1,1.9,.2],[.2,0,-.45],i);r.renderOrder=-1}return i.add(n),i.userData.update=s=>{e.rotation.z=Math.sin(s*.25)*.03,n.rotation.y=Math.sin(s*.22)*.08},Ce(i,"\u7EBF\u7C92\u4F53",[-2.25,1.85,.2],"MITOCHONDRION"),Ce(i,"\u5D74",[-1.45,.85,.45],"CRISTAE"),Ce(i,"\u53F6\u7EFF\u4F53",[2.15,2.25,.2],"CHLOROPLAST"),Ce(i,"\u7C7B\u56CA\u4F53 / \u57FA\u7C92",[2.8,-.9,.6],"THYLAKOID / GRANA"),i}function Yv(){let i=new Oe;i.userData.distance=12.2,((t,n,s,r,a,o)=>{for(let l of[0,Math.PI]){let c=[];for(let u=0;u<=40;u+=1){let f=u/40,h=-3+f*6,p=f*ct*o+l;c.push([h,t+Math.cos(p)*r,Math.sin(p)*r])}Zt(i,c,s,n,{glow:.65,segments:120})}})(1.25,6875867,.07,.23,6,7);for(let t=0;t<9;t+=1){let n=-2.7+t*.65;Xe(i,.055,11075568,[n,1.25+Math.sin(t*1.7)*.23,Math.cos(t*1.7)*.23],{glow:.35,segments:8,rings:6})}for(let t=0;t<5;t+=1)Xe(i,.12,16761965,[-2.2+t*1.1,1.5+t%2*.12,.25],{glow:1.1,segments:12,rings:8});de(new Be(.28,.28,6,28,1,!0),sn(8177919,.24),[0,-.55,0],[0,0,Math.PI/2],i);for(let t=0;t<7;t+=1)bt(i,.28,.025,11001855,[-2.7+t*.9,-.55,0],[0,Math.PI/2,0],{transparent:!0,opacity:.55});for(let t=0;t<3;t+=1){let n=[];for(let s=0;s<30;s+=1){let r=s/29,a=r*ct*1.2+t;n.push([-2.8+r*5.6,-.55+Math.cos(a)*.26,Math.sin(a)*.26])}Zt(i,n,.018,12118271,{glow:.3,transparent:!0,opacity:.5,segments:60})}for(let t=0;t<5;t+=1)Zt(i,[[-1.2+t*.6,.75,.1],[-1.15+t*.6,.1,.2],[-1.1+t*.6,-.45,.1]],.015,16763277,{glow:.3,transparent:!0,opacity:.55,segments:12});for(let t=0;t<4;t+=1)Xe(i,.1,10194175,[-1.9+t*1.2,-.32,.3],{glow:1.2,segments:12,rings:8});for(let t=0;t<3;t+=1){let n=[];for(let s=0;s<=38;s+=1){let r=s/38,a=-3+r*6,o=r*ct*4+t/3*ct;n.push([a,-1.75+Math.cos(o)*.18,Math.sin(o)*.18])}Zt(i,n,.045,t===1?16752585:12046289,{glow:.5,segments:110})}return Ce(i,"\u5FAE\u4E1D",[-2,2.05,.4],"ACTIN FILAMENT \xB7 7 nm"),Ce(i,"\u5FAE\u7BA1",[.1,-1.45,.5],"MICROTUBULE \xB7 24 nm"),Ce(i,"\u4E2D\u95F4\u4E1D",[2.2,-1.35,.4],"INTERMEDIATE FILAMENT \xB7 10 nm"),Ce(i,"\u5206\u5B50\u9A6C\u8FBE",[1.3,1.55,.45],"MOLECULAR MOTOR"),i}function Zv(){let i=new Oe;i.userData.distance=12.4,de(new Rt(2.2,52,36),sn(12162815,.13),null,null,i),de(new Rt(2.23,26,18),new Ot({color:13942783,wireframe:!0,transparent:!0,opacity:.07}),null,null,i),de(new Rt(2.08,24,16),new Ot({color:16762602,wireframe:!0,transparent:!0,opacity:.035}),null,null,i);let e=ys(404);for(let t=0;t<14;t+=1){let n=e()*ct,s=Math.acos(2*e()-1),r=[Math.cos(n)*Math.sin(s)*2.21,Math.cos(s)*2.21,Math.sin(n)*Math.sin(s)*2.21];bt(i,.12,.03,16765681,r,[0,0,0],{glow:.3,transparent:!0,opacity:.5}).lookAt(0,0,0),Xe(i,.028,16769783,r,{glow:.35,segments:7,rings:5})}for(let t=0;t<5;t+=1){let n=[];for(let s=0;s<22;s+=1){let r=s/21,a=r*ct*1.3+t;n.push([Math.cos(a)*(.4+r*1.2)+(t-2)*.18,(r-.5)*1.7+Math.sin(r*ct+t)*.22,Math.sin(a)*(.4+r*1.2)+(t%2?.3:-.25)])}Zt(i,n,.04,t%2?16754393:13284351,{glow:.3,segments:90})}for(let t=0;t<22;t+=1){let n=t/22*ct,s=.35+t%5*.2;Xe(i,.06,16761061,[Math.cos(n)*s,Math.sin(n*1.8)*.75,Math.sin(n)*s],{glow:.45,segments:9,rings:6})}Xe(i,.58,16748483,[.45,-.2,.3],{glass:!0,opacity:.5});for(let t=0;t<8;t+=1){let n=t/8*ct;Xe(i,.055,16769192,[.45+Math.cos(n)*.35,-.2+Math.sin(n*2)*.25,.3+Math.sin(n)*.35],{glow:.5,segments:8,rings:6})}for(let t=0;t<7;t+=1){let n=t/7*ct;Xe(i,.09+t%3*.02,11631576,[Math.cos(n)*1.5,-1+t%3*.8,Math.sin(n)*1.2],{glass:!0,opacity:.38,segments:10,rings:7})}return Xe(i,.18,10283007,[-1.3,.75,.65],{glass:!0,opacity:.35}),Ce(i,"\u6838\u88AB\u819C",[-2.25,1.25,.4],"NUCLEAR ENVELOPE"),Ce(i,"\u6838\u5B54",[1.65,1.55,.8],"NUCLEAR PORE"),Ce(i,"\u67D3\u8272\u8D28",[-.9,-.85,1.3],"CHROMATIN"),Ce(i,"\u6838\u4EC1",[.45,-.2,1],"NUCLEOLUS"),i}function Kv(){let i=new Oe;i.userData.distance=10.8;let e=[];for(let o=0;o<=60;o+=1){let l=o/60;e.push([-3.3+l*6.6,-.55+Math.sin(l*ct*1.2)*.1,Math.cos(l*ct)*.16])}Zt(i,e,.07,16757611,{glow:.35,segments:150});let t=[7923414,16762220,12756735,16749762];for(let o=0;o<26;o+=1){let l=o/25,c=e[Math.round(l*60)];Xe(i,.055,t[o%4],[c[0]+.04,c[1]+.11,c[2]],{glow:.45,segments:8,rings:6})}let n=new Oe;n.position.set(.25,.55,0),de(new Rt(1.08,40,28),Ze(6444980,{roughness:.42,transparent:!0,opacity:.88}),null,null,n,[1.15,.78,1]),de(new Rt(1.09,24,14),new Ot({color:11905279,wireframe:!0,transparent:!0,opacity:.08}),null,null,n,[1.15,.78,1]),i.add(n);let s=new Oe;s.position.set(.25,-.28,0),de(new Rt(.95,36,24),Ze(4169112,{roughness:.45,transparent:!0,opacity:.9}),null,null,s,[1.1,.56,.9]),i.add(s);for(let o=0;o<10;o+=1){let l=o/10*ct;Xe(n,.055,10457855,[Math.cos(l)*1.06,Math.sin(l*2)*.45,Math.sin(l)*.94],{transparent:!0,opacity:.7,segments:7,rings:5})}for(let o=0;o<8;o+=1){let l=o/8*ct;Xe(s,.045,7660759,[Math.cos(l)*.96,Math.sin(l*2)*.3,Math.sin(l)*.82],{transparent:!0,opacity:.65,segments:7,rings:5})}for(let o=0;o<3;o+=1)bt(i,.14,.03,16769699,[-.22+o*.25,.05,.82],[0,0,0],{glow:1.2,transparent:!0,opacity:.7});let r=[];for(let o=0;o<2;o+=1){let l=-.5+o*.9,c=[[l,-.35,.1],[l-.12,.2,.55],[l+.05,.8,.75],[l+.35,1.05,.5]];Zt(i,c,.055,o?16754895:9431039,{glow:.4,segments:40}),Xe(i,.12,o?16752331:7659519,[l+.35,1.05,.5],{glow:.5,segments:12,rings:8})}let a=[];for(let o=0;o<20;o+=1){let l=o/19;a.push([1.15+Math.sin(l*ct*1.2)*.28,1+l*1.5,.2+Math.cos(l*ct)*.2])}Zt(i,a,.055,16765580,{glow:.4,segments:50});for(let o=0;o<8;o+=1){let l=o/8;Xe(i,.06,16760951,[1.15+Math.sin(l*ct*1.2)*.28,1+l*1.5,.2+Math.cos(l*ct)*.2],{glow:.5,segments:8,rings:6})}return i.userData.update=o=>{n.rotation.z=Math.sin(o*.35)*.015,s.rotation.z=-Math.sin(o*.35)*.01},Ce(i,"\u5927\u4E9A\u57FA",[.9,1.45,.4],"LARGE SUBUNIT"),Ce(i,"\u5C0F\u4E9A\u57FA",[-.45,-.9,.4],"SMALL SUBUNIT"),Ce(i,"mRNA",[-2.5,-.4,.4],"MESSENGER RNA"),Ce(i,"tRNA",[-.7,1.2,.6],"TRANSFER RNA"),Ce(i,"\u65B0\u751F\u80BD\u94FE",[1.8,1.8,.3],"POLYPEPTIDE"),Ce(i,"A / P / E \u4F4D\u70B9",[.55,.1,.95],"SITES"),i}function Jv(){let i=new Oe;i.userData.distance=12.4;for(let r of[-1.9,1.9])for(let a of[-.85,.85])de(new Be(.2,.24,.18,18),Ze(860968,{metalness:.5}),[r,-2.05,a],null,i);it(i,4.7,.28,2.5,1522240,[0,-1.86,0],null,{metalness:.65,roughness:.32}),it(i,4.25,.12,2.2,2381404,[0,-1.68,0],null,{metalness:.55}),de(new Be(.5,.55,.28,32),Ze(1058862,{metalness:.6}),[0,-1.5,0],null,i),de(new Be(.34,.34,.16,32),Ze(9368319,{emissive:1997713,emissiveIntensity:.9}),[0,-1.33,0],null,i),Mf(i,.42,.08,10152703,[0,-1.18,0]),it(i,.5,3.15,.62,1919568,[-1.7,-.25,0],null,{metalness:.55,roughness:.35}),it(i,.72,.55,.62,1919568,[-1.35,1.2,0],null,{metalness:.55}),it(i,1,.34,.68,2182997,[0,1.02,0],null,{metalness:.5}),xs(i,.3,.14,2776419,[-2.02,-.15,.18],[0,0,Math.PI/2],8),xs(i,.24,.12,2776419,[-2.02,-.55,.18],[0,0,Math.PI/2],7),it(i,3.15,.14,1.95,1986646,[0,-.43,0],null,{metalness:.55}),it(i,1.9,.045,1,11137775,[0,-.33,.05],null,{glass:!0,opacity:.2}),it(i,1.4,.025,.62,13237503,[.05,-.3,.05],null,{glass:!0,opacity:.24}),it(i,.34,.045,.62,7051934,[-.75,-.3,.05],null,{metalness:.5}),it(i,.34,.045,.62,7051934,[.78,-.3,.05],null,{metalness:.5}),xs(i,.16,.1,4685186,[1.72,-.43,.55],[0,0,Math.PI/2],6),xs(i,.13,.09,4685186,[1.72,-.43,.18],[0,0,Math.PI/2],6);let e=ys(91);for(let r=0;r<24;r+=1){let a=-.55+e()*1.1,o=-.22+e()*.48,l=Xe(i,.04+e()*.022,r%4?6681261:16745405,[a,-.275,o],{glow:.6,segments:10,rings:7});l.scale.y=.55}de(new Be(.38,.46,.3,28),Ze(2843240,{metalness:.55}),[0,-.72,0],null,i),bt(i,.4,.025,10155759,[0,-.58,0],[Math.PI/2,0,0],{transparent:!0,opacity:.55});for(let r=0;r<5;r+=1)bt(i,.34-r*.02,.01,8579300,[0,-.83+r*.035,0],[Math.PI/2,0,0],{transparent:!0,opacity:.28});let t=de(new ki(.62,1.2,32,1,!0),new Ot({color:9103871,transparent:!0,opacity:.075,side:qt,depthWrite:!1,blending:xt}),[0,-.95,0],[0,Math.PI,0],i);t.renderOrder=-1;let n=new Oe;n.position.set(0,.22,0),de(new Be(.62,.52,.18,32),Ze(2842469,{metalness:.6}),[0,0,0],null,n),bt(n,.55,.025,9300964,[0,-.09,0],[Math.PI/2,0,0],{transparent:!0,opacity:.45}),[{x:-.32,z:.2,len:.62,ring:6744028},{x:.3,z:.24,len:.48,ring:16757613},{x:.12,z:-.28,len:.78,ring:10463743}].forEach(r=>{de(new Be(.14,.11,r.len,20),Ze(10139832,{metalness:.55}),[r.x,-.35,r.z],[0,0,0],n),bt(n,.15,.018,r.ring,[r.x,-.35-r.len/2,r.z],[Math.PI/2,0,0],{glow:.5,transparent:!0,opacity:.75})}),i.add(n),de(new Be(.26,.3,1.25,28),Ze(2842469,{metalness:.55}),[0,1.65,0],null,i),it(i,.95,.32,.7,1853004,[0,2.28,0],null,{metalness:.5});for(let r of[-.28,.28])de(new Be(.16,.18,.62,22),Ze(2907234,{metalness:.5}),[r,2.56,-.02],[.12,0,r>0?-.14:.14],i),Mf(i,.13,.045,8839167,[r,2.88,-.04]);de(new Be(.2,.24,.42,22),Ze(1918282,{metalness:.55}),[0,2.2,-.48],[Math.PI/2,0,0],i),de(new Be(.14,.14,.08,20),Ze(6806757,{emissive:1925488,emissiveIntensity:.4}),[0,2.2,-.72],[Math.PI/2,0,0],i),it(i,1.1,.78,.9,1853004,[1.25,.45,.72],null,{transparent:!0,opacity:.62}),it(i,.78,.035,.55,10325247,[1.25,.45,.72],[0,0,.72],{glow:.5,transparent:!0,opacity:.68});for(let r=0;r<3;r+=1)de(new Be(.045,.045,.94,8),Ze(r===0?6088191:16748231,{emissive:r===0?1331812:6297659,emissiveIntensity:.45}),[1.1+r*.14,1.02,.72],[.28,0,.25],i);Sf(i,.05,1.15,6482431,[1.25,.12,.42],[.5,0,.25],.22),Sf(i,.07,1.28,16752585,[1.25,1.12,.42],[-.35,0,-.25],.18);for(let r=0;r<8;r+=1){let a=r/8*ct;de(new Be(.035,.035,.035,8),Ze(8956328,{metalness:.7}),[Math.cos(a)*1.95,-1.69,Math.sin(a)*.9],[Math.PI/2,0,0],i)}return Ce(i,"\u5149\u6E90 / \u89C6\u573A\u5149\u9611",[-1.25,-1.42,.55],"LIGHT SOURCE"),Ce(i,"\u805A\u5149\u955C / \u8F7D\u7269\u53F0",[1.05,-.38,.65],"CONDENSER / STAGE"),Ce(i,"\u7269\u955C\u8F6C\u76D8",[-.82,.22,.48],"NOSEPIECE"),Ce(i,"\u8367\u5149\u6EE4\u5757",[1.65,.75,.65],"FILTER CUBE"),Ce(i,"\u76EE\u955C / \u76F8\u673A",[0,2.95,.1],"EYEPIECE / CAMERA"),Ce(i,"\u6837\u54C1 / \u8367\u5149\u6807\u8BB0",[0,.12,.72],"SAMPLE"),i.userData.update=r=>{t.material.opacity=.055+Math.sin(r*2)*.018},i}function $v(){let i=new Oe;i.userData.distance=12.8;for(let n of[-1.7,1.7])for(let s of[-1,1])de(new Be(.18,.22,.18,16),Ze(726056,{metalness:.5}),[n,-2.05,s],null,i);it(i,4.2,.32,2.7,1318202,[0,-1.86,0],null,{metalness:.6}),it(i,3.6,.2,2.2,2108752,[0,-1.66,0],null,{metalness:.5}),wa(i,1.3,.6,7336662,[.75,-1.15,1.18],[.05,0,0]);for(let n=0;n<3;n+=1)xs(i,.12,.08,7508152,[-.65+n*.36,-1.24,1.2],[Math.PI/2,0,0],5);it(i,1.3,.08,.35,660520,[-.62,-1.43,1.16],null,{metalness:.4}),de(new Be(1.05,1.12,4.9,40,1,!0),sn(8886527,.07),[0,.45,0],null,i);let e=de(new Be(1,1,4.6,40,1,!0),new Ot({color:9215720,wireframe:!0,transparent:!0,opacity:.055}),[0,.45,0],null,i);e.renderOrder=3;for(let n=0;n<5;n+=1){let s=-1.5+n*1.05;de(new Be(1.08,1.08,.12,40),Ze(2898528,{metalness:.65}),[0,s,0],null,i),bt(i,1.06,.035,10466559,[0,s,0],[Math.PI/2,0,0],{transparent:!0,opacity:.4})}de(new Be(.34,.48,.68,28),Ze(6387888,{metalness:.55}),[0,3.48,0],null,i),de(new Be(.16,.26,.36,20),Ze(2110048,{metalness:.6}),[0,3.9,0],null,i),Xe(i,.11,14148351,[0,3.62,0],{glow:1.2,segments:12,rings:8}),bt(i,.5,.04,11715583,[0,3.12,0],[Math.PI/2,0,0],{glow:.6}),bt(i,.66,.035,7374279,[0,2.55,0],[Math.PI/2,0,0],{transparent:!0,opacity:.5});for(let n=0;n<3;n+=1){let s=de(new Be(.48,.48,.025,28),Ze(3754876,{metalness:.4}),[0,2.18-n*.62,0],null,i);Xe(i,.055,9428991,[0,2.18-n*.62+.018,0],{glow:.6,segments:8,rings:5}),s.renderOrder=1}for(let n=0;n<5;n+=1)bt(i,.74,.025,9677567,[0,1.62-n*.11,0],[Math.PI/2,0,0],{transparent:!0,opacity:.5});de(new Be(.22,.22,.9,20),sn(11846911,.2),[1.55,.38,0],[0,0,Math.PI/2],i),de(new Be(.28,.28,.32,20),Ze(3031148,{metalness:.6}),[1.15,.38,0],[0,0,Math.PI/2],i),it(i,1.8,.06,1.15,2569050,[0,.06,0],null,{metalness:.55});for(let n=0;n<5;n+=1)Xe(i,.045,11070207,[-.48+n*.22,.13,-.1+n%2*.22],{glow:.7,segments:8,rings:5});de(new Be(.62,.74,.32,28),Ze(2109272,{metalness:.55}),[0,-.82,0],null,i),bt(i,.62,.04,8626431,[0,-.98,0],[Math.PI/2,0,0],{transparent:!0,opacity:.55}),it(i,1.65,.1,1.25,1120822,[0,-1.35,.08],null,{metalness:.5}),wa(i,1.25,.85,5238963,[0,-1.26,.42],[Math.PI/2,0,0]),de(new Be(.35,.42,1,24),Ze(2769248,{metalness:.5}),[-1.65,-.75,.15],null,i),bt(i,.4,.05,6719400,[-1.65,-.3,.15],[Math.PI/2,0,0],{transparent:!0,opacity:.5}),Zt(i,[[-1.65,-1.05,.1],[-1.3,-1.3,.1],[-.4,-1.5,.1]],.055,3495279,{metalness:.5,segments:20});let t=de(new Be(.028,.1,4.5,16),new Ot({color:11188479,transparent:!0,opacity:.3,blending:xt,depthWrite:!1}),[0,1,0],null,i);return Ce(i,"\u7535\u5B50\u67AA / \u706F\u4E1D",[0,4.15,.2],"ELECTRON GUN"),Ce(i,"\u9633\u6781 / \u5149\u9611",[-.95,2.75,.35],"ANODE / APERTURE"),Ce(i,"\u7535\u78C1\u900F\u955C",[-1.2,1.25,.35],"MAGNETIC LENS"),Ce(i,"\u6837\u54C1\u6746",[1.6,1,.3],"SPECIMEN HOLDER"),Ce(i,"\u89C2\u5BDF\u5C4F / \u76F8\u673A",[0,-1.75,.55],"VIEWING SCREEN"),Ce(i,"\u63A7\u5236\u53F0",[.7,-1,1.35],"CONTROL CONSOLE"),i.userData.update=n=>{t.material.opacity=.22+Math.sin(n*4.2)*.06},i}function jv(){let i=new Oe;i.userData.distance=11.8;for(let n of[-2,2])for(let s of[-1.1,1.1])de(new Be(.18,.23,.2,16),Ze(794660,{metalness:.5}),[n,-2.1,s],null,i);it(i,5.3,.34,3.7,1321777,[0,-1.9,0],null,{metalness:.6}),it(i,4.8,.16,3.2,2311757,[0,-1.7,0],null,{metalness:.5}),it(i,2.65,.9,.38,1059633,[0,-1.12,1.55],null,{metalness:.55}),wa(i,1.15,.42,7337429,[-.45,-1.02,1.76],[.04,0,0]),xs(i,.16,.1,5014153,[.85,-1,1.78],[Math.PI/2,0,0],6),xs(i,.11,.08,5014153,[1.15,-1,1.78],[Math.PI/2,0,0],5),it(i,.75,.14,.05,2981752,[.55,-1.18,1.75],null,{glow:.5}),de(new Be(2.85,3,.85,64,1,!0),sn(8119516,.08),[0,-.65,0],null,i),bt(i,2.85,.06,6003102,[0,-.24,0],[Math.PI/2,0,0],{metalness:.6,transparent:!0,opacity:.6}),bt(i,2.95,.05,6003102,[0,-1.02,0],[Math.PI/2,0,0],{metalness:.6,transparent:!0,opacity:.55}),de(new Be(2.6,2.6,.08,64,1,!0),sn(10351848,.1),[0,0,0],null,i),de(new In(2.55,.035,8,72),Ze(8382167,{transparent:!0,opacity:.5,emissive:2060393,emissiveIntensity:.4}),[0,.01,0],[Math.PI/2,0,0],i),de(new Be(.18,.18,.25,16),Ze(5144453,{metalness:.5}),[0,.2,0],null,i);let e=new Oe;e.position.y=.05,de(new Be(.52,.62,.55,32),Ze(4156531,{metalness:.65,roughness:.3}),[0,0,0],null,e),bt(e,.53,.05,9234137,[0,.25,0],[Math.PI/2,0,0],{transparent:!0,opacity:.55});let t=[];for(let n=0;n<6;n+=1){let s=new Oe;s.rotation.y=n/6*ct,it(s,1.75,.11,.42,3497316,[.95,.06,0],null,{metalness:.6});for(let o of[-.24,.24])de(new Be(.055,.055,.18,10),Ze(11989476,{metalness:.55}),[1.55,.04,o],[Math.PI/2,0,0],s);let r=new Oe;r.position.set(1.65,.1,0),r.rotation.z=-.82,de(new Be(.24,.2,1.55,24,1,!0),sn(13038828,.24),[0,.36,0],null,r),de(new Be(.26,.24,.16,24),Ze(6065297,{metalness:.55}),[0,1.17,0],null,r),bt(r,.24,.025,12124146,[0,1.27,0],[Math.PI/2,0,0],{transparent:!0,opacity:.55});let a=[8378367,16757870,10482352];for(let o=0;o<3;o+=1)de(new Be(.18,.18,.28,18),Ze(a[o],{transparent:!0,opacity:.78,emissive:a[o],emissiveIntensity:.1}),[0,.48-o*.3,0],null,r);de(new Be(.13,.15,.1,14),Ze(14090227,{glow:.25}),[0,-.37,0],null,r),s.add(r),e.add(s),t.push(r)}return i.add(e),Ce(i,"\u8F6C\u5B50 / \u540A\u6876",[-1.9,1.25,.3],"ROTOR / BUCKET"),Ce(i,"\u5BC6\u5EA6\u68AF\u5EA6",[2.25,1,.45],"DENSITY GRADIENT"),Ce(i,"\u7EC6\u80DE\u6838\u6C89\u6DC0",[2.05,.35,.45],"NUCLEAR PELLET"),Ce(i,"\u7EBF\u7C92\u4F53 / \u5FAE\u7C92\u4F53",[2.35,-.4,.3],"ORGANELLES"),Ce(i,"\u8F6C\u901F\u63A7\u5236",[-1.65,-1.1,1.8],"SPEED CONTROL"),i.userData.update=n=>{e.rotation.y=n*1.15,t.forEach((s,r)=>{s.rotation.z=-.82-Math.sin(n*2.2+r)*.018})},i}function Qv(){let i=new Oe;i.userData.distance=11.2,it(i,5.6,.18,3.2,794660,[0,-1.28,0],null,{metalness:.45}),it(i,4.6,.12,2.5,1586746,[0,-1.16,0],null,{metalness:.35}),it(i,4.2,.14,2.35,7457216,[0,-1.05,0],null,{glass:!0,opacity:.22}),it(i,4.05,1.85,2.2,10282972,[0,0,0],null,{glass:!0,opacity:.075}),it(i,4.05,.09,2.2,9102039,[0,.92,0],null,{glass:!0,opacity:.16});for(let s of[-2.02,2.02])for(let r of[-1.1,1.1])it(i,.07,1.95,.07,8902349,[s,-.05,r],null,{transparent:!0,opacity:.4});for(let s of[-1.1,1.1])it(i,4.05,.07,.07,8902349,[0,.92,s],null,{transparent:!0,opacity:.4});de(new Be(.3,.4,1.1,28),sn(12189683,.15),[2.25,.88,0],[0,0,-.56],i),de(new Be(.38,.35,.28,28),Ze(2846057,{metalness:.35}),[2.75,1.2,0],[0,0,-.56],i);let e=new Oe;e.position.set(2.88,1.27,0),e.rotation.z=-.56,de(new Be(.39,.39,.32,28),Ze(7322288,{metalness:.35}),[0,0,0],null,e);for(let s=0;s<8;s+=1)bt(e,.39,.012,13828084,[0,-.12+s*.033,0],[Math.PI/2,0,0],{transparent:!0,opacity:.35});de(new Be(.16,.16,.06,20),Ze(2709845,{metalness:.45}),[0,.18,0],null,e),i.add(e);for(let s=0;s<7;s+=1)it(i,.12,.025,.02,13107189,[-1.7+s*.18,-.3,1.12],null,{transparent:!0,opacity:.45}),it(i,.12,.025,.02,13107189,[-1.7+s*.18,-.52,1.12],null,{transparent:!0,opacity:.45});it(i,3.9,.48,2.05,1863016,[0,-.68,0],null,{transparent:!0,opacity:.23}),it(i,3.9,.025,2.05,9434594,[0,-.43,0],null,{transparent:!0,opacity:.18});let t=ys(222);for(let s=0;s<18;s+=1)Xe(i,.022+t()*.02,13238259,[-1.7+t()*3.4,-.36+t()*.22,-.85+t()*1.7],{glow:.2,segments:7,rings:5});for(let s=0;s<62;s+=1){let r=-1.65+t()*3.3,a=-.82+t()*1.64,o=-.91+(t()-.5)*.022,l=Xe(i,.07+t()*.035,s%5===0?16755413:7924401,[r,o,a],{glow:.25,segments:12,rings:8});if(l.scale.y=.5,Xe(i,.026,7059880,[r,o+.035,a],{glow:.15,segments:7,rings:5}),s%9===0){let c=r+.12,u=Xe(i,.065,9433789,[c,o+.01,a+.05],{glow:.22,segments:10,rings:7});u.scale.y=.5}}for(let s=0;s<7;s+=1)Xe(i,.05,10148036,[-1.2+t()*2.4,-.28+t()*.8,-.4+t()*.8],{glow:.18,segments:8,rings:6});let n=new Oe;return n.position.set(-1.15,1.9,.25),n.rotation.z=.3,de(new Be(.055,.09,2,16),Ze(12906472,{transparent:!0,opacity:.6}),[0,0,0],null,n),Xe(n,.28,10347479,[0,.95,0],{glass:!0,opacity:.35,segments:20,rings:14}),de(new Be(.09,.055,.22,14),Ze(14090228,{transparent:!0,opacity:.65}),[0,-1.1,0],null,n),Xe(n,.065,10352101,[0,-1.28,0],{glow:.55,segments:10,rings:7}),i.add(n),Ce(i,"T \u57F9\u517B\u74F6",[-1.7,1.15,.5],"T-FLASK"),Ce(i,"\u6EE4\u819C\u76D6",[2.85,1.65,.2],"FILTER CAP"),Ce(i,"\u57F9\u517B\u57FA / \u6DB2\u9762",[.35,-.3,.8],"MEDIUM / MENISCUS"),Ce(i,"\u8D34\u58C1\u7EC6\u80DE\u5355\u5C42",[-.8,-1.05,.5],"CELL MONOLAYER"),Ce(i,"\u79FB\u6DB2\u7BA1 / \u65E0\u83CC\u64CD\u4F5C",[-1.6,2.35,.3],"PIPETTE / STERILE"),i.userData.update=s=>{n.position.y=1.9+Math.sin(s*.5)*.02},i}function ey(){let i=new Oe;i.userData.distance=11,it(i,6.1,.2,3.1,729125,[0,-1.35,0],null,{metalness:.45}),it(i,4.8,.06,2.4,9296851,[0,-1.17,0],null,{glass:!0,opacity:.16}),it(i,4.8,.03,2.4,12910583,[0,-1.13,0],null,{glass:!0,opacity:.1}),de(new Rt(2,56,34),sn(6412478,.14),[0,-.72,0],null,i,[1.35,.3,1]),bt(i,2,.025,8843223,[0,-.72,0],[Math.PI/2,0,0],{transparent:!0,opacity:.35}),de(new Rt(.48,32,20),Ze(11898111,{transparent:!0,opacity:.68}),[-.58,-.62,.02],null,i),Xe(i,.19,16755672,[-.58,-.62,.02],{glow:.35,segments:16,rings:10});let e=ys(781),t=[];for(let u=0;u<120;u+=1){let f=e()*ct,h=.55+Math.sqrt(e())*1.25,p=Xe(i,.022+e()*.018,8257490,[Math.cos(f)*h,-.48+e()*.055,Math.sin(f)*h*.72],{glow:.5,segments:7,rings:5});t.push(p)}let n=new Oe;n.position.set(.72,-.4,.08);let s=de(new qr(.5,40),new Ot({color:10354656,transparent:!0,opacity:.8,side:qt,depthWrite:!1}),[0,0,0],[-Math.PI/2,0,0],n);bt(n,.56,.018,16777215,[0,.01,0],[Math.PI/2,0,0],{glow:.5,transparent:!0,opacity:.65}),bt(n,.76,.01,10485736,[0,.02,0],[Math.PI/2,0,0],{transparent:!0,opacity:.22}),i.add(n),de(new Be(.42,.34,.6,28),Ze(8116176,{metalness:.4}),[.72,1.25,.08],null,i),de(new Be(.27,.27,.42,24),Ze(2775646,{metalness:.55}),[.72,1.7,.08],null,i),bt(i,.43,.03,10284002,[.72,1.55,.08],[Math.PI/2,0,0],{transparent:!0,opacity:.5});let r=de(new Be(.02,.09,1.65,14),new Ot({color:16744392,transparent:!0,opacity:.35,blending:xt,depthWrite:!1}),[.72,.48,.08],null,i);for(let u=0;u<3;u+=1)bt(i,.62+u*.13,.01,16752585,[.72,-.36+u*.1,.08],[Math.PI/2,0,0],{transparent:!0,opacity:.14});let a=new Oe;a.position.set(2.25,-.05,.15),a.rotation.y=-.32,wa(a,1.16,.82,732458,[0,0,0]),it(a,.012,.52,.012,7780522,[-.42,-.02,.045],null,{transparent:!0,opacity:.6}),it(a,.84,.01,.012,7780522,[0,-.27,.045],null,{transparent:!0,opacity:.6});let o=[];for(let u=0;u<=24;u+=1){let f=u/24,h=-.26+(f<.2?.02:f<.32?.02-(f-.2)*.8:.02+Math.min(.42,(f-.32)*.7));o.push(new I(-.4+f*.78,h,.05))}let l=new yn(o);de(new hi(l,60,.01,6,!1),vs(8257486,.5),null,null,a);let c=Xe(a,.035,16766078,[o[0].x,o[0].y,.07],{glow:1,segments:10,rings:7});return i.add(a),i.userData.update=u=>{let f=u%6.2,h;f<2.2?h=1:f<2.6?h=1-(f-2.2)/.4:h=Math.min(1,(f-2.6)/3.6),s.material.opacity=.08+h*.8,s.material.color.setHSL(.44,.8,.52+h*.28),r.material.opacity=f>2.12&&f<2.58?.5:.05,t.forEach((M,g)=>{M.material.emissiveIntensity=.22+(.38+Math.sin(u*1.5+g)*.15)*(.25+h*.55)});let p=Math.min(1,Math.max(0,f<2.2?.1:f<2.6?.1+(f-2.2)/.4*.22:.32+(f-2.6)/3.6*.68)),x=l.getPoint(p);c.position.set(x.x,x.y,.07)},Ce(i,"\u8367\u5149\u6807\u8BB0\u7EC6\u80DE",[-1.85,.35,.4],"FLUORESCENT CELL"),Ce(i,"\u7269\u955C",[1.45,1.45,.2],"OBJECTIVE"),Ce(i,"\u6F02\u767D\u533A ROI",[1.55,-.15,.2],"BLEACH ROI"),Ce(i,"\u6FC0\u5149\u8109\u51B2",[1.55,1,.1],"LASER PULSE"),Ce(i,"\u6062\u590D\u66F2\u7EBF",[2.25,-.85,.35],"RECOVERY"),i}function ty(){let i=new Oe;i.userData.distance=11.4,it(i,6,.2,3.1,729125,[0,-1.45,0],null,{metalness:.45}),it(i,5.35,.22,2.2,1723214,[0,-.88,0],null,{transparent:!0,opacity:.65});for(let l=0;l<16;l+=1){let c=-2.4+l*.32;for(let u of[-.82,.82])Xe(i,.04,7333333,[c,-.72,u],{glow:.22,segments:7,rings:5}),Xe(i,.035,4958116,[c,-1.02,u],{glow:.15,segments:6,rings:4})}for(let l of[-.42,.42]){de(new Be(.16,.2,1.05,20),Ze(7439570,{transparent:!0,opacity:.85}),[l,-.25,0],null,i),Xe(i,.3,8164575,[l,.45,.02],{transparent:!0,opacity:.76,segments:22,rings:14}),Xe(i,.17,10399999,[l,.68,.02],{transparent:!0,opacity:.65,segments:14,rings:9}),de(new Be(.075,.1,.55,14),Ze(5466277,{metalness:.2}),[l,-1.05,0],null,i);for(let c=0;c<3;c+=1)bt(i,.18,.015,10201855,[l,-.65+c*.22,0],[Math.PI/2,0,0],{transparent:!0,opacity:.28})}ei(i,.11,.5,9545196,[0,.16,0],[0,0,Math.PI/2],{transparent:!0,opacity:.7});let e=new Oe;e.position.set(-.42,.95,.12),Xe(e,.23,5038847,[0,0,0],{glow:1,segments:28,rings:18}),bt(e,.3,.022,10418175,[0,0,0],[Math.PI/2,0,0],{transparent:!0,opacity:.6});for(let l=0;l<4;l+=1){let c=l/4*ct;Xe(e,.055,7071487,[Math.cos(c)*.25,.06,Math.sin(c)*.25],{glow:.5,segments:8,rings:5})}i.add(e);let t=new Oe;t.position.set(.42,.95,.12),Xe(t,.23,16757854,[0,0,0],{glow:.5,segments:28,rings:18}),bt(t,.3,.022,16767131,[0,0,0],[Math.PI/2,0,0],{transparent:!0,opacity:.6});for(let l=0;l<4;l+=1){let c=l/4*ct+.3;Xe(t,.05,16764805,[Math.cos(c)*.25,-.06,Math.sin(c)*.25],{glow:.35,segments:8,rings:5})}i.add(t);for(let l=0;l<4;l+=1)bt(i,.28+l*.1,.012,7796191,[0,.95,.12],[Math.PI/2,0,0],{transparent:!0,opacity:.28-l*.05});it(i,.78,.012,.012,10483682,[0,1.34,.12],null,{transparent:!0,opacity:.45});for(let l of[-.42,.42])it(i,.012,.12,.012,10483682,[l,1.3,.12],null,{transparent:!0,opacity:.45});let n=de(new Be(.035,.12,2.15,14),new Ot({color:6154495,transparent:!0,opacity:.24,blending:xt,depthWrite:!1}),[-.42,1.95,.12],null,i),s=de(new Be(.035,.14,2.1,14),new Ot({color:16757854,transparent:!0,opacity:.18,blending:xt,depthWrite:!1}),[.42,1.95,.12],null,i),r=new Oe;r.position.set(2.45,.15,.25),r.rotation.y=-.35,wa(r,1.22,.9,731431,[0,0,0]),it(r,.7,.01,.012,8439991,[0,-.27,.05],null,{transparent:!0,opacity:.5});let a=de(new Pn(.16,.5,.035),vs(5630463,.45),[-.19,-.27,.06],null,r),o=de(new Pn(.16,.5,.035),vs(16757854,.45),[.19,-.27,.06],null,r);return a.geometry.translate(0,.25,0),o.geometry.translate(0,.25,0),i.add(r),i.userData.update=l=>{let c=Math.sin(l*1.8);e.rotation.y=l*.35,t.rotation.y=-l*.35,e.children[0].material.emissiveIntensity=.55+Math.max(0,-c)*.45,t.children[0].material.emissiveIntensity=.4+Math.max(0,c)*.65,n.material.opacity=.18+Math.max(0,-c)*.08,s.material.opacity=.1+Math.max(0,c)*.12,a.scale.y=.35+Math.max(0,-c)*.55,o.scale.y=.35+Math.max(0,c)*.55},Ce(i,"\u4F9B\u4F53\u8367\u5149\u56E2",[-1.3,1.55,.3],"DONOR"),Ce(i,"\u53D7\u4F53\u8367\u5149\u56E2",[1.35,1.55,.3],"ACCEPTOR"),Ce(i,"\u80FD\u91CF\u8F6C\u79FB",[0,1.32,.4],"ENERGY TRANSFER"),Ce(i,"\u8DDD\u79BB 1\u201310 nm",[0,-.28,.5],"DISTANCE"),Ce(i,"\u4F9B\u4F53\u53D1\u5C04 \u2193 / \u53D7\u4F53\u53D1\u5C04 \u2191",[2.35,-.4,.4],"SPECTRAL SHIFT"),i}var ny={"prokaryote-eukaryote":Gv,"membrane-mosaic":Vv,transport:Wv,endomembrane:Xv,"mito-chloro":qv,cytoskeleton:Yv,nucleus:Zv,ribosome:Kv,"light-microscopy":Jv,"electron-microscopy":$v,centrifugation:jv,"cell-culture":Qv,frap:ey,fret:ty};function Ef(i){i.traverse(e=>{e.geometry&&e.geometry.dispose(),e.material&&(Array.isArray(e.material)?e.material:[e.material]).forEach(n=>n.dispose())})}function wf(i,e={}){let{onReady:t,onError:n,onModelChange:s}=e,r=()=>Math.max(320,i.clientWidth||window.innerWidth),a=()=>Math.max(320,i.clientHeight||window.innerHeight),o=new rr({antialias:!0,alpha:!1,powerPreference:"high-performance"});o.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5)),o.setSize(r(),a()),o.outputColorSpace=on,o.toneMapping=Ti,o.toneMappingExposure=.42,o.domElement.className="cm-canvas",i.appendChild(o.domElement);let l=new wi;l.background=new he(132874),l.fog=new ls(132874,.026);let c=new $t(38,r()/a(),.1,80);c.position.set(0,2.4,13),c.lookAt(0,0,0);let u=new Zi(o);u.compileEquirectangularShader();let f=u.fromScene(new tc,.05).texture;l.environment=f,l.add(new hs(8186332,1380648,.52));let h=new ds(15269881,1.45);h.position.set(4,8,7),l.add(h);let p=new Sn(5826786,8,22,2);p.position.set(-5,1,3),l.add(p);let x=new Sn(16744392,6.5,18,2);x.position.set(5,2,-4),l.add(x);let M=new Je(new In(4.85,.01,6,120),new Ot({color:8386532,transparent:!0,opacity:.2}));M.position.y=-3.18,M.rotation.x=Math.PI/2,l.add(M);let g=new na(18,36,1391676,795684);g.position.y=-3.2,g.material.transparent=!0,g.material.opacity=.1,l.add(g);let m=new _t,S=520,C=new Float32Array(S*3),_=ys(912);for(let Le=0;Le<S;Le+=1)C[Le*3]=(_()-.5)*22,C[Le*3+1]=(_()-.5)*11,C[Le*3+2]=(_()-.5)*18;m.setAttribute("position",new Nt(C,3));let T=new vn(m,new Rn({color:10287337,size:.022,transparent:!0,opacity:.32,depthWrite:!1}));l.add(T);let E=new Oe;l.add(E);let R=new cr(o);R.addPass(new ur(l,c));let y=new Ji(new Me(r(),a()),.16,.42,.97);R.addPass(y),R.addPass(new hr);let w=document.createElement("div");w.className="cm-label-layer",i.appendChild(w);let P=[],L=null,B=[],H=13,D=13,W=.15,K=.15,J=0,ne=0,Z=!1,ee=0,re=0,Pe=!0,Ie=!1,vt=!1,ot=new ta;function ut(){w.textContent="",P.length=0}function j(Le){ut(),B=Le||[],B.forEach(qe=>{let nt=document.createElement("div");nt.className="cm-label",nt.innerHTML=`<i></i><span><b>${qe.text}</b>${qe.sub?`<em>${qe.sub}</em>`:""}</span>`,w.appendChild(nt),P.push({el:nt,position:qe.position})})}function se(){let Le=r(),qe=a(),nt=new I;P.forEach((F,Xt)=>{nt.copy(F.position).applyMatrix4(E.matrixWorld).project(c);let Et=nt.z>-1&&nt.z<1&&Math.abs(nt.x)<1.3&&Math.abs(nt.y)<1.3,A=(nt.x*.5+.5)*Le,v=(-nt.y*.5+.5)*qe;F.el.style.opacity=Et?"1":"0",F.el.style.transform=`translate(${A}px, ${v}px) translate(-50%, -50%)`,F.el.style.zIndex=String(10+Xt)})}function Ee(Le){let qe=Fu(Le),nt=ny[qe.id];nt&&(L&&(E.remove(L),Ef(L)),L=nt(),L.userData.modelId=qe.id,E.add(L),B=L.userData.labels||[],j(B),H=L.userData.distance||13,D=H,W=.15,K=.15,J=0,ne=0,s&&s(qe),Ie||(Ie=!0,t&&t(qe)))}function Ve(){K=.15,ne=0,D=L?.userData.distance||13}function fe(Le){Pe=!!Le}function tt(){let Le=r(),qe=a();o.setSize(Le,qe),R.setSize(Le,qe),c.aspect=Le/qe,c.updateProjectionMatrix()}let kt=new ResizeObserver(tt);kt.observe(i);function $e(Le){Z=!0,ee=Le.clientX,re=Le.clientY,o.domElement.setPointerCapture?.(Le.pointerId)}function at(Le){if(!Z)return;let qe=Le.clientX-ee,nt=Le.clientY-re;ee=Le.clientX,re=Le.clientY,K+=qe*.006,ne=Math.max(-.65,Math.min(.65,ne+nt*.005))}function St(){Z=!1}function oe(Le){Le.preventDefault(),D=Math.max(7,Math.min(21,D+Le.deltaY*.008))}o.domElement.addEventListener("pointerdown",$e),window.addEventListener("pointermove",at),window.addEventListener("pointerup",St),o.domElement.addEventListener("wheel",oe,{passive:!1});let le=window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;function dt(){if(vt)return;let Le=Math.min(ot.getDelta(),.05),qe=ot.elapsedTime;Pe&&!Z&&!le&&(K+=Le*.1),W+=(K-W)*.09,J+=(ne-J)*.09,H+=(D-H)*.08,E.rotation.y=W,E.rotation.x=J;let nt=c.aspect<1?Math.min(1.8,1/Math.max(c.aspect,.55)):1;c.position.z=H*nt,c.position.y=2.4+J*1.3,c.lookAt(0,0,0),E.updateMatrixWorld(!0),L?.userData.update&&L.userData.update(qe,Le),T.rotation.y=qe*.008,se(),R.render(),o.setAnimationLoop(null),requestAnimationFrame(dt)}return Ee(Qi[0].id),requestAnimationFrame(dt),{setModel:Ee,resetView:Ve,setAutoRotate:fe,setExposure(Le){let qe=Math.max(.2,Math.min(.8,Number(Le)||.42));o.toneMappingExposure=qe},getSpec:()=>L&&Fu(L.userData.modelId),dispose(){vt=!0,kt.disconnect(),o.domElement.removeEventListener("pointerdown",$e),window.removeEventListener("pointermove",at),window.removeEventListener("pointerup",St),o.domElement.removeEventListener("wheel",oe),L&&Ef(L),o.setAnimationLoop(null),R.dispose(),o.dispose(),u.dispose(),l.environment?.dispose?.(),o.domElement.parentNode===i&&i.removeChild(o.domElement),w.parentNode===i&&i.removeChild(w)}}}var d=null,_s=null,mr=null,Tf=.58,iy={launcherTitle:"Cell Atlas",launcherAria:"Open Cell Atlas",close:"Close Cell Atlas",play:"Play",pause:"Pause",replay:"Replay",prev:"Previous chapter",next:"Next chapter",fullscreen:"Enter fullscreen",exitFullscreen:"Exit fullscreen",brightness:"Brightness",brightnessHint:"Brightness (\u2212 / =)",resetView:"Reset view",resetViewHint:"Reset view (R)",study:"Study notes",studyTitle:"Study notes",closeStudy:"Close study notes",textbookAlignment:"Textbook",bookTitle:"Full textbook",bookSubtitle:"Section-by-section study",openBook:"Open section library",closeBook:"Close section library",jumpScene:"View related movement",bookCta:"Section-by-section study",bookCtaSub:"16 chapters \xB7 44 sections",selfCheck:"Self-check",chapterOf:"Chapter",objectives:"Learning objectives",concepts:"Key concepts",mechanism:"Mechanism",pitfalls:"Common traps",quiz:"Self-check",visuals:"Visual legend",related:"Related chapters",showAnswer:"Show answer",hideAnswer:"Hide answer",answer:"Answer",textbookSections:"Textbook sections",studyCitation:"Study summary aligned with Ding Mingxiao et al., Cell Biology, 5th ed., Higher Education Press, 2020 (ISBN 978-7-04-047157-1). Defer to the textbook.",auto:"AUTO",hold:"HOLD",hint:"Drag to look \xB7 Scroll to zoom \xB7 T opens study notes",enter:"Enter the cell",loading:"Calibrating optical field",chapter:"Chapter",errorTitle:"The optical field could not start",errorBody:"This browser could not create a WebGL context. Try a current browser with hardware acceleration enabled, then reopen the atlas.",dialog:"Cell Atlas \u2014 a cinematic journey through the living cell"},Af={launcherTitle:"\u7EC6\u80DE\u56FE\u8C31",launcherAria:"\u6253\u5F00\u7EC6\u80DE\u56FE\u8C31",close:"\u5173\u95ED\u7EC6\u80DE\u56FE\u8C31",play:"\u64AD\u653E",pause:"\u6682\u505C",replay:"\u91CD\u65B0\u64AD\u653E",prev:"\u4E0A\u4E00\u7AE0",next:"\u4E0B\u4E00\u7AE0",fullscreen:"\u8FDB\u5165\u5168\u5C4F",exitFullscreen:"\u9000\u51FA\u5168\u5C4F",brightness:"\u4EAE\u5EA6",brightnessHint:"\u4EAE\u5EA6\uFF08\u2212 / =\uFF09",resetView:"\u91CD\u7F6E\u89C6\u89D2",resetViewHint:"\u91CD\u7F6E\u89C6\u89D2\uFF08R\uFF09",study:"\u5B66\u4E60\u624B\u518C",studyTitle:"\u5B66\u4E60\u624B\u518C",closeStudy:"\u5173\u95ED\u5B66\u4E60\u624B\u518C",textbookAlignment:"\u6559\u6750\u5BF9\u7167",bookTitle:"\u6559\u6750\u5206\u8282",bookSubtitle:"\u6309\u8282\u5B66\u4E60",openBook:"\u6253\u5F00\u5168\u4E66\u5206\u8282",closeBook:"\u5173\u95ED\u5168\u4E66\u5206\u8282",jumpScene:"\u770B\u5BF9\u5E94\u753B\u9762",bookCta:"\u5168\u4E66\u5206\u8282\u5B66\u4E60",bookCtaSub:"16 \u7AE0 \xB7 44 \u8282",selfCheck:"\u81EA\u6D4B",chapterOf:"\u7AE0\u8282",objectives:"\u5B66\u4E60\u76EE\u6807",concepts:"\u6838\u5FC3\u6982\u5FF5",mechanism:"\u673A\u5236\u62C6\u89E3",pitfalls:"\u6613\u9519\u70B9",quiz:"\u81EA\u6D4B",visuals:"\u753B\u9762\u56FE\u4F8B",related:"\u76F8\u5173\u7AE0\u8282",showAnswer:"\u5C55\u5F00\u7B54\u6848",hideAnswer:"\u6536\u8D77\u7B54\u6848",answer:"\u7B54\u6848",textbookSections:"\u6559\u6750\u5C0F\u8282",studyCitation:"\u4F9D\u636E\u4E01\u660E\u5B5D\u7B49\u300A\u7EC6\u80DE\u751F\u7269\u5B66\u300B\u7B2C5\u7248\uFF08\u9AD8\u7B49\u6559\u80B2\u51FA\u7248\u793E\uFF0C2020\uFF0CISBN 978-7-04-047157-1\uFF09\u76F8\u5173\u7AE0\u8282\u6574\u7406\uFF1B\u672C\u9875\u4E3A\u5B66\u4E60\u6458\u8981\uFF0C\u8BF7\u4EE5\u539F\u4E66\u4E3A\u51C6\u3002",auto:"\u81EA\u52A8\u6F2B\u6E38",hold:"\u5DF2\u6682\u505C",hint:"\u62D6\u52A8\u73AF\u89C6 \xB7 \u6EDA\u8F6E\u7F29\u653E \xB7 \u6309 T \u6253\u5F00\u5B66\u4E60\u624B\u518C",enter:"\u8FDB\u5165\u7EC6\u80DE",loading:"\u6B63\u5728\u6821\u51C6\u5149\u5B66\u573A",chapter:"\u7AE0\u8282",errorTitle:"\u5149\u5B66\u573A\u672A\u80FD\u542F\u52A8",errorBody:"\u5F53\u524D\u6D4F\u89C8\u5668\u65E0\u6CD5\u521B\u5EFA WebGL \u4E0A\u4E0B\u6587\u3002\u8BF7\u5C1D\u8BD5\u5F00\u542F\u786C\u4EF6\u52A0\u901F\u7684\u73B0\u4EE3\u6D4F\u89C8\u5668\uFF0C\u7136\u540E\u91CD\u65B0\u6253\u5F00\u7EC6\u80DE\u56FE\u8C31\u3002",dialog:"\u7EC6\u80DE\u56FE\u8C31 \u2014\u2014 \u4E00\u573A\u7A7F\u8FC7\u6D3B\u7EC6\u80DE\u7684\u89C6\u89C9\u6F2B\u6E38"};function sy(){let i=!1,e=new Set;return{get:()=>i,set(t){let n=!!t;if(n!==i){i=n;for(let s of e)s()}},subscribe(t){return e.add(t),()=>e.delete(t)}}}function Cf(i,e){if(!mr)return e;try{let t=mr.bind("cell-atlas")(i);return t===i?e:t}catch{return e}}function Ou(){let[i,e]=d.useState(_s.get());return d.useEffect(()=>_s.subscribe(()=>e(_s.get())),[]),i}function Bu(){let[,i]=d.useReducer(e=>e+1,0);return d.useEffect(()=>{if(!(!mr||typeof mr.subscribe!="function"))return mr.subscribe(()=>i())},[]),d.useCallback((e,t)=>Cf(e,t),[])}function Gt({name:i,size:e=18}){let t={width:e,height:e,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:1.5,strokeLinecap:"round",strokeLinejoin:"round","aria-hidden":!0};switch(i){case"close":return d.createElement("svg",{...t},d.createElement("path",{d:"M6 6 18 18M18 6 6 18"}));case"prev":return d.createElement("svg",{...t},d.createElement("path",{d:"m14.5 6-6 6 6 6"}),d.createElement("path",{d:"M6.5 6v12",opacity:"0.4"}));case"next":return d.createElement("svg",{...t},d.createElement("path",{d:"m9.5 6 6 6-6 6"}),d.createElement("path",{d:"M17.5 6v12",opacity:"0.4"}));case"pause":return d.createElement("svg",{...t},d.createElement("path",{d:"M8.5 6v12M15.5 6v12"}));case"play":return d.createElement("svg",{...t},d.createElement("path",{d:"M8.5 5.8 18 12l-9.5 6.2Z",fill:"currentColor",stroke:"none"}));case"replay":return d.createElement("svg",{...t},d.createElement("path",{d:"M5 12a7 7 0 1 0 2.2-5.1"}),d.createElement("path",{d:"M5 5.3V10h4.7"}));case"expand":return d.createElement("svg",{...t},d.createElement("path",{d:"M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"}));case"collapse":return d.createElement("svg",{...t},d.createElement("path",{d:"M4 9h5V4M20 9h-5V4M4 15h5v5M20 15h-5v5"}));case"arrow":return d.createElement("svg",{...t},d.createElement("path",{d:"M4 12h15M13 6l6 6-6 6"}));case"sun":return d.createElement("svg",{...t},d.createElement("circle",{cx:"12",cy:"12",r:"3.6"}),d.createElement("path",{d:"M12 3.2v2.1M12 18.7v2.1M3.2 12h2.1M18.7 12h2.1M5.8 5.8l1.5 1.5M16.7 16.7l1.5 1.5M18.2 5.8l-1.5 1.5M7.3 16.7l-1.5 1.5"}));case"reset":return d.createElement("svg",{...t},d.createElement("circle",{cx:"12",cy:"12",r:"3.2"}),d.createElement("path",{d:"M12 3v3.4M12 17.6V21M3 12h3.4M17.6 12H21"}),d.createElement("path",{d:"M6.2 6.2a8.2 8.2 0 0 1 11.6 0",opacity:"0.45"}));case"book":return d.createElement("svg",{...t},d.createElement("path",{d:"M4 5.2c2.7-.9 5.3-.9 8 1.1v13c-2.7-2-5.3-2-8-1.1Z"}),d.createElement("path",{d:"M20 5.2c-2.7-.9-5.3-.9-8 1.1v13c2.7-2 5.3-2 8-1.1Z"}),d.createElement("path",{d:"M12 6.3v13",opacity:"0.5"}));case"plus":return d.createElement("svg",{...t},d.createElement("path",{d:"M12 6v12M6 12h12"}));case"minus":return d.createElement("svg",{...t},d.createElement("path",{d:"M6 12h12"}));default:return null}}function ku({className:i=""}){return d.createElement("svg",{className:i,viewBox:"0 0 64 64",fill:"none","aria-hidden":"true",focusable:"false"},d.createElement("circle",{cx:"32",cy:"32",r:"25",stroke:"currentColor",strokeOpacity:"0.28",strokeDasharray:"1.5 4"}),d.createElement("circle",{cx:"32",cy:"32",r:"19",stroke:"currentColor",strokeOpacity:"0.6",strokeWidth:"1.1"}),d.createElement("ellipse",{cx:"32",cy:"32",rx:"25",ry:"10",transform:"rotate(-28 32 32)",stroke:"#7ff7e4",strokeOpacity:"0.7",strokeWidth:"1.1"}),d.createElement("path",{d:"M17 41c6-3 10-9 15-10 6-1 9 5 16 3",stroke:"currentColor",strokeOpacity:"0.4",strokeWidth:"1.1",strokeLinecap:"round"}),d.createElement("circle",{cx:"32",cy:"32",r:"7.4",fill:"#7ff7e4",fillOpacity:"0.16",stroke:"#7ff7e4",strokeWidth:"1"}),d.createElement("circle",{cx:"32",cy:"32",r:"2.5",fill:"#7ff7e4"}),d.createElement("circle",{cx:"45",cy:"26",r:"1.6",fill:"#ff9fc9"}),d.createElement("circle",{cx:"21",cy:"37",r:"1.2",fill:"#ffd08a"}),d.createElement("circle",{cx:"39",cy:"44",r:"1",fill:"#bda8ff",fillOpacity:"0.9"}))}function ry(i){let e=Ou(),t=Bu();return d.createElement(d.Fragment,null,d.createElement("style",null,my),d.createElement("button",{type:"button",className:`ca-launcher ${e?"is-open":""}`,title:t("launcherTitle","\u7EC6\u80DE\u56FE\u8C31"),"aria-label":t("launcherAria","\u6253\u5F00\u7EC6\u80DE\u56FE\u8C31"),"aria-pressed":e,onClick:()=>_s.set(!0),"data-wide":i&&i.wide?"true":"false"},d.createElement("span",{className:"ca-launcher-halo","aria-hidden":"true"}),d.createElement(ku,{className:"ca-launcher-mark"}),d.createElement("span",{className:"ca-launcher-dot","aria-hidden":"true"})))}function ay(){let i=Ou(),e=Bu();return d.createElement(d.Fragment,null,d.createElement("style",null,py),d.createElement("button",{type:"button",className:`ca-header-entry ${i?"is-open":""}`,title:e("launcherTitle","\u7EC6\u80DE\u56FE\u8C31"),"aria-label":e("launcherAria","\u6253\u5F00\u7EC6\u80DE\u56FE\u8C31"),"aria-haspopup":"dialog",onClick:()=>_s.set(!0)},d.createElement("span",{className:"ca-header-entry-mark-wrap"},d.createElement(ku,{className:"ca-header-entry-mark"}),d.createElement("span",{className:"ca-header-entry-live","aria-hidden":"true"})),d.createElement("span",{className:"ca-header-entry-text"},d.createElement("span",{className:"ca-header-entry-cn"},e("launcherTitle","\u7EC6\u80DE\u56FE\u8C31")),d.createElement("span",{className:"ca-header-entry-en"},"CELL ATLAS")),d.createElement(Gt,{name:"arrow",size:13})))}function oy(i){return{origin:"12.4 \xB5m",membrane:"0.4 \xB5m",cytoskeleton:"3.2 \xB5m",mitochondria:"1.6 \xB5m",nucleus:"6.8 \xB5m",endomembrane:"2.4 \xB5m",mitosis:"9.1 \xB5m"}[i.id]||"\u2014"}function ly({item:i,index:e,t}){let[n,s]=d.useState(!1);return d.createElement("div",{className:`ca-quiz ${n?"is-open":""}`},d.createElement("button",{type:"button",className:"ca-quiz-q",onClick:()=>s(r=>!r),"aria-expanded":n},d.createElement("span",{className:"ca-quiz-no"},"Q",String(e+1).padStart(2,"0")),d.createElement("span",{className:"ca-quiz-text"},i.q),d.createElement(Gt,{name:n?"minus":"plus",size:15})),n&&d.createElement("div",{className:"ca-quiz-a"},d.createElement("span",{className:"ca-quiz-a-label"},t("answer","\u7B54\u6848")),d.createElement("p",null,i.a)))}function cy({chapter:i,onClose:e,onOpenBook:t,onOpenModel:n,t:s}){let r=i.study;return d.createElement("div",{className:"ca-study-backdrop",role:"presentation",onMouseDown:a=>{a.target===a.currentTarget&&e()}},d.createElement("section",{className:"ca-study-panel",id:"ca-study-panel",role:"dialog","aria-modal":"true","aria-labelledby":"ca-study-title",tabIndex:-1,autoFocus:!0},d.createElement("header",{className:"ca-study-head"},d.createElement("div",{className:"ca-study-heading"},d.createElement("div",{className:"ca-study-eyebrow"},"STUDY NOTES / ",s("studyTitle","\u5B66\u4E60\u624B\u518C")),d.createElement("h2",{id:"ca-study-title"},r.textbook.chapter," \xB7 ",r.textbook.title),d.createElement("div",{className:"ca-study-meta"},"\u300A\u7EC6\u80DE\u751F\u7269\u5B66\u300B\u7B2C 5 \u7248 \xB7 \u4E01\u660E\u5B5D \u7B49 \xB7 \u9AD8\u7B49\u6559\u80B2\u51FA\u7248\u793E \xB7 pp.",r.textbook.pages)),d.createElement("button",{type:"button",className:"ca-iconbtn ca-study-close",onClick:e,"aria-label":s("closeStudy","\u5173\u95ED\u5B66\u4E60\u624B\u518C"),title:s("closeStudy","\u5173\u95ED\u5B66\u4E60\u624B\u518C")},d.createElement(Gt,{name:"close"}))),d.createElement("div",{className:"ca-study-scroll"},d.createElement("button",{type:"button",className:"ca-study-book-cta",onClick:t},d.createElement("span",{className:"ca-study-book-cta-icon"},d.createElement(Gt,{name:"book",size:17})),d.createElement("span",{className:"ca-study-book-cta-copy"},d.createElement("b",null,s("bookCta","\u5168\u4E66\u5206\u8282\u5B66\u4E60")),d.createElement("em",null,ji.length," \u7AE0 \xB7 ",ec," \u8282 \xB7 \u6309\u8282\u7CBE\u8BFB + \u81EA\u6D4B")),d.createElement("span",{className:"ca-study-book-cta-key"},"B"),d.createElement(Gt,{name:"arrow",size:14})),d.createElement("div",{className:"ca-study-model-index"},d.createElement("div",{className:"ca-study-model-head"},d.createElement("span",null,"3D \u6A21\u578B"),d.createElement("em",null,"\u70B9\u51FB\u540D\u79F0\u76F4\u63A5\u89C2\u5BDF")),d.createElement("div",{className:"ca-study-model-links"},[{label:"\u7ED3\u6784\u6A21\u578B",batch:1},{label:"\u5B9E\u9A8C\u65B9\u6CD5",batch:2}].map(a=>d.createElement("div",{className:"ca-study-model-group",key:a.label},d.createElement("div",{className:"ca-study-model-group-label"},a.label),d.createElement("div",{className:"ca-study-model-group-links"},Qi.filter(o=>(o.batch||1)===a.batch).map(o=>{let l=ji[o.book];return d.createElement("button",{type:"button",key:o.id,className:"ca-study-model-link",onClick:()=>n({modelId:o.id,book:o.book,section:o.sections[0],chapterTitle:l.title}),title:`${o.en} \xB7 ${l.no} ${l.title}`},d.createElement("span",null,o.no),o.title)})))))),d.createElement("section",{className:"ca-study-section"},d.createElement("div",{className:"ca-study-label"},d.createElement("span",null,"01"),d.createElement("b",null,s("objectives","\u5B66\u4E60\u76EE\u6807")),d.createElement("em",null,"OBJECTIVES")),d.createElement("ul",{className:"ca-study-objectives"},r.objectives.map(a=>d.createElement("li",{key:a},a)))),d.createElement("section",{className:"ca-study-section"},d.createElement("div",{className:"ca-study-label"},d.createElement("span",null,"02"),d.createElement("b",null,s("concepts","\u6838\u5FC3\u6982\u5FF5")),d.createElement("em",null,"KEY CONCEPTS")),d.createElement("dl",{className:"ca-concepts"},r.concepts.map(a=>d.createElement("div",{className:"ca-concept",key:a.term},d.createElement("dt",null,d.createElement("span",null,a.term),d.createElement("em",null,a.en)),d.createElement("dd",null,a.def))))),d.createElement("section",{className:"ca-study-section"},d.createElement("div",{className:"ca-study-label"},d.createElement("span",null,"03"),d.createElement("b",null,s("mechanism","\u673A\u5236\u62C6\u89E3")),d.createElement("em",null,"MECHANISM")),d.createElement("ol",{className:"ca-study-mechanism"},r.mechanism.map(a=>d.createElement("li",{key:a},a)))),d.createElement("section",{className:"ca-study-section"},d.createElement("div",{className:"ca-study-label"},d.createElement("span",null,"04"),d.createElement("b",null,s("pitfalls","\u6613\u9519\u70B9")),d.createElement("em",null,"COMMON TRAPS")),d.createElement("ul",{className:"ca-study-traps"},r.pitfalls.map(a=>d.createElement("li",{key:a},a)))),d.createElement("section",{className:"ca-study-section"},d.createElement("div",{className:"ca-study-label"},d.createElement("span",null,"05"),d.createElement("b",null,s("quiz","\u81EA\u6D4B")),d.createElement("em",null,"SELF-CHECK")),d.createElement("div",{className:"ca-quiz-list"},r.quiz.map((a,o)=>d.createElement(ly,{key:a.q,item:a,index:o,t:s})))),d.createElement("section",{className:"ca-study-section"},d.createElement("div",{className:"ca-study-label"},d.createElement("span",null,"06"),d.createElement("b",null,s("visuals","\u753B\u9762\u56FE\u4F8B")),d.createElement("em",null,"VISUAL LEGEND")),d.createElement("div",{className:"ca-visuals"},r.visuals.map(a=>d.createElement("div",{className:"ca-visual",key:a.label},d.createElement("span",{className:"ca-visual-dot",style:{background:a.color,color:a.color}}),d.createElement("span",null,a.label))))),d.createElement("section",{className:"ca-study-section"},d.createElement("div",{className:"ca-study-label"},d.createElement("span",null,"07"),d.createElement("b",null,s("related","\u76F8\u5173\u7AE0\u8282")),d.createElement("em",null,"READ FURTHER")),d.createElement("ul",{className:"ca-related"},r.related.map(a=>d.createElement("li",{key:a},a))),d.createElement("div",{className:"ca-study-sections"},d.createElement("span",null,s("textbookSections","\u6559\u6750\u5C0F\u8282")),r.textbook.sections.map(a=>d.createElement("em",{key:a},a)))),d.createElement("footer",{className:"ca-study-footer"},d.createElement("span",{className:"ca-study-footer-mark"},"5"),d.createElement("p",null,s("studyCitation","\u4F9D\u636E\u4E01\u660E\u5B5D\u7B49\u300A\u7EC6\u80DE\u751F\u7269\u5B66\u300B\u7B2C5\u7248\uFF08\u9AD8\u7B49\u6559\u80B2\u51FA\u7248\u793E\uFF0C2020\uFF09\u76F8\u5173\u7AE0\u8282\u6574\u7406\uFF1B\u672C\u9875\u4E3A\u5B66\u4E60\u6458\u8981\uFF0C\u8BF7\u4EE5\u539F\u4E66\u4E3A\u51C6\u3002"))))))}function uy({initialChapter:i,onClose:e,onJump:t,onOpenModel:n,t:s}){let[r,a]=d.useState(Math.max(0,Math.min(ji.length-1,i||0))),[o,l]=d.useState(0),c=ji[r];return d.useEffect(()=>{l(0)},[r]),d.createElement("div",{className:"ca-book-backdrop",role:"presentation",onMouseDown:u=>{u.target===u.currentTarget&&e()}},d.createElement("section",{className:"ca-book-panel",role:"dialog","aria-modal":"true","aria-labelledby":"ca-book-title",tabIndex:-1,autoFocus:!0},d.createElement("header",{className:"ca-book-head"},d.createElement("div",{className:"ca-book-heading"},d.createElement("div",{className:"ca-book-eyebrow"},"FULL TEXTBOOK / ",s("bookTitle","\u6559\u6750\u5206\u8282")),d.createElement("h2",{id:"ca-book-title"},s("bookSubtitle","\u6309\u8282\u5B66\u4E60"),d.createElement("span",null,ji.length," \u7AE0 \xB7 ",ec," \u8282")),d.createElement("div",{className:"ca-book-meta"},"\u300A\u7EC6\u80DE\u751F\u7269\u5B66\u300B\u7B2C 5 \u7248 \xB7 \u4E01\u660E\u5B5D \u7B49 \xB7 \u9AD8\u7B49\u6559\u80B2\u51FA\u7248\u793E \xB7 2020")),d.createElement("button",{type:"button",className:"ca-iconbtn ca-book-close",onClick:e,"aria-label":s("closeBook","\u5173\u95ED\u5168\u4E66\u5206\u8282"),title:s("closeBook","\u5173\u95ED\u5168\u4E66\u5206\u8282")},d.createElement(Gt,{name:"close"}))),d.createElement("div",{className:"ca-book-body"},d.createElement("nav",{className:"ca-book-nav","aria-label":s("chapterOf","\u7AE0\u8282")},ji.map((u,f)=>d.createElement("button",{type:"button",key:u.id,className:`ca-book-navitem ${f===r?"is-active":""}`,onClick:()=>a(f),"aria-current":f===r?"true":void 0},d.createElement("span",{className:"ca-book-nav-no"},u.no),d.createElement("span",{className:"ca-book-nav-title"},u.title),d.createElement("em",null,u.sections.length," \u8282"),u.scene!==null&&u.scene!==void 0&&d.createElement("i",null,"\u753B\u9762 ",String(u.scene+1).padStart(2,"0"))))),d.createElement("div",{className:"ca-book-main"},d.createElement("div",{className:"ca-book-chapterhead"},d.createElement("div",null,d.createElement("div",{className:"ca-book-kicker"},c.no," ",d.createElement("span",null,"/")," ",c.sections.length," \u8282 ",d.createElement("span",null,"/")," pp.",c.pages),d.createElement("h3",null,c.title),d.createElement("p",null,c.overview)),c.scene!==null&&c.scene!==void 0&&d.createElement("button",{type:"button",className:"ca-book-jump",onClick:()=>t(c.scene)},s("jumpScene","\u770B\u5BF9\u5E94\u753B\u9762"),d.createElement(Gt,{name:"arrow",size:14}))),d.createElement("div",{className:"ca-book-sections"},c.sections.map((u,f)=>{let h=f===o,p=bf(c.id,u.no);return d.createElement("article",{className:`ca-book-section ${h?"is-open":""}`,key:`${c.id}-${u.no}`},d.createElement("button",{type:"button",className:"ca-book-section-head",onClick:()=>l(h?-1:f),"aria-expanded":h},d.createElement("span",{className:"ca-book-section-no"},u.no),d.createElement("span",{className:"ca-book-section-title"},u.title),d.createElement("span",{className:"ca-book-section-pages"},"pp.",u.pages),d.createElement(Gt,{name:h?"minus":"plus",size:15})),h&&d.createElement("div",{className:"ca-book-section-body"},p.length>0&&d.createElement("div",{className:"ca-book-model-row"},p.map(x=>d.createElement("button",{type:"button",className:"ca-book-model-btn",key:x.id,onClick:()=>n({modelId:x.id,book:r,section:u.no,chapterTitle:c.title})},d.createElement("span",null,"3D"),x.title,d.createElement(Gt,{name:"arrow",size:13})))),d.createElement("div",{className:"ca-book-outline"},u.outline.map(x=>d.createElement("span",{key:x},x))),d.createElement("p",{className:"ca-book-summary"},u.summary),d.createElement("ul",{className:"ca-book-points"},u.points.map(x=>d.createElement("li",{key:x},x))),d.createElement("dl",{className:"ca-book-terms"},u.terms.map(x=>d.createElement("div",{key:x.t},d.createElement("dt",null,x.t),d.createElement("dd",null,x.d)))),d.createElement("details",{className:"ca-book-check"},d.createElement("summary",null,d.createElement("span",null,s("selfCheck","\u81EA\u6D4B")),u.check.q),d.createElement("p",null,u.check.a))))})),d.createElement("footer",{className:"ca-book-foot"},"\u4F9D\u636E\u300A\u7EC6\u80DE\u751F\u7269\u5B66\u300B\u7B2C 5 \u7248\u76F8\u5173\u7AE0\u8282\u6574\u7406 \xB7 \u5171 ",ec," \u8282 \xB7 \u4EE5\u539F\u4E66\u4E3A\u51C6")))))}function hy({context:i,onClose:e,t}){let n=d.useRef(null),s=d.useRef(null),[r,a]=d.useState(null),[o,l]=d.useState(null);return d.useEffect(()=>{let c=!0;try{let u=wf(n.current,{onModelChange:f=>{c&&a(f)},onError:f=>{c&&l(f&&f.message?f.message:String(f))}});s.current=u,u.setModel(i.modelId)}catch(u){l(u&&u.message?u.message:String(u))}return()=>{c=!1,s.current&&(s.current.dispose(),s.current=null)}},[i.modelId]),d.createElement("div",{className:"ca-model-backdrop",role:"presentation"},d.createElement("section",{className:"ca-model-panel",role:"dialog","aria-modal":"true","aria-label":r?r.title:"3D model"},d.createElement("div",{className:"ca-model-stage",ref:n}),d.createElement("header",{className:"ca-model-head"},d.createElement("div",null,d.createElement("div",{className:"ca-model-eyebrow"},"SECTION MODEL / 3D SPECIMEN"),d.createElement("h2",null,r?r.title:"\u6B63\u5728\u6784\u5EFA\u6A21\u578B"),d.createElement("div",{className:"ca-model-meta"},i.section," \xB7 ",i.chapterTitle)),d.createElement("button",{type:"button",className:"ca-iconbtn",onClick:e,"aria-label":t("closeBook","\u5173\u95ED")},d.createElement(Gt,{name:"close"}))),r&&d.createElement("div",{className:"ca-model-caption"},d.createElement("div",{className:"ca-model-en"},r.en),d.createElement("p",null,r.summary),d.createElement("ul",null,r.points.map(c=>d.createElement("li",{key:c},c)))),d.createElement("div",{className:"ca-model-hint"},"\u62D6\u52A8\u65CB\u8F6C \xB7 \u6EDA\u8F6E\u7F29\u653E"),d.createElement("div",{className:"ca-model-actions"},d.createElement("button",{type:"button",onClick:()=>s.current?.resetView()},"\u91CD\u7F6E\u89C6\u89D2"),d.createElement("button",{type:"button",onClick:e},"\u8FD4\u56DE\u5168\u4E66")),o&&d.createElement("div",{className:"ca-model-error"},d.createElement("b",null,"3D \u6A21\u578B\u672A\u80FD\u542F\u52A8"),d.createElement("span",null,o))))}function dy(){let i=Bu(),e=d.useRef(null),t=d.useRef(null),n=d.useRef(null),s=d.useRef(null),r=d.useRef({}),a=d.useRef([]),o=typeof window<"u"&&window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches,[l,c]=d.useState(0),[u,f]=d.useState(!o),[h,p]=d.useState(0),[x,M]=d.useState(()=>{try{let oe=Number(window.localStorage.getItem("cell-atlas.brightness"));if(Number.isFinite(oe)&&oe>=.3&&oe<=1)return oe}catch{}return Tf}),[g,m]=d.useState(!1),[S,C]=d.useState(null),[_,T]=d.useState("in"),[E,R]=d.useState(0),[y,w]=d.useState(!1),[P,L]=d.useState(!1),[B,H]=d.useState(0),[D,W]=d.useState(null),[K,J]=d.useState(!1),ne=nn[l],Z=ne.study,ee=!u&&l===nn.length-1&&h>.995;d.useEffect(()=>{let oe=document.activeElement,le=document.body.style.overflow;document.body.style.overflow="hidden";let dt=!0;try{let Le=xf(t.current,{onReady:()=>{dt&&m(!0)},onError:qe=>{dt&&C(qe&&qe.message?qe.message:String(qe))}});n.current=Le}catch(Le){C(Le&&Le.message?Le.message:String(Le))}return()=>{dt=!1,document.body.style.overflow=le,n.current&&(n.current.dispose(),n.current=null);for(let Le of a.current)window.clearTimeout(Le);if(a.current=[],oe&&typeof oe.focus=="function")try{oe.focus({preventScroll:!0})}catch{}}},[]),d.useEffect(()=>{n.current&&n.current.setChapter(l)},[l]),d.useEffect(()=>{n.current&&n.current.setPaused(!u)},[u]),d.useEffect(()=>{n.current&&n.current.setBrightness(x);try{window.localStorage.setItem("cell-atlas.brightness",String(x))}catch{}},[x]),d.useEffect(()=>{let oe=window.setTimeout(()=>{T(le=>le)},2800);return a.current.push(oe),()=>window.clearTimeout(oe)},[]),d.useEffect(()=>{if(_!=="out")return;let oe=window.setTimeout(()=>T("gone"),720);return a.current.push(oe),()=>window.clearTimeout(oe)},[_]),d.useEffect(()=>{if(_!=="gone")return;let oe=window.setTimeout(()=>{if(s.current)try{s.current.focus({preventScroll:!0})}catch{}},100);return a.current.push(oe),()=>window.clearTimeout(oe)},[_]),d.useEffect(()=>{if(!u||_!=="gone"||S||y)return;let oe=0,le=0,dt=performance.now(),Le=ne.duration,qe=nt=>{let F=Math.min(1,(nt-dt)/Le);if(nt-le>70&&(le=nt,p(F)),F>=1){p(1),l<nn.length-1?(c(Xt=>Math.min(nn.length-1,Xt+1)),p(0)):f(!1);return}oe=window.requestAnimationFrame(qe)};return oe=window.requestAnimationFrame(qe),()=>window.cancelAnimationFrame(oe)},[l,u,_,S,y,ne.duration]);let re=d.useCallback(()=>{T(oe=>oe==="in"?"out":oe),n.current&&n.current.pulse()},[]),Pe=d.useCallback(()=>{document.fullscreenElement&&document.exitFullscreen&&document.exitFullscreen().catch(()=>{}),_s.set(!1)},[]),Ie=d.useCallback(oe=>{let le=Math.max(0,Math.min(nn.length-1,oe));c(le),p(0)},[]),vt=d.useCallback(oe=>{c(le=>Math.max(0,Math.min(nn.length-1,le+oe))),p(0)},[]),ot=d.useCallback(()=>{if(!u&&ee){c(0),p(0),f(!0);return}f(!u)},[u,ee]),ut=d.useCallback(()=>{document.fullscreenElement?document.exitFullscreen&&document.exitFullscreen().catch(()=>{}):e.current&&e.current.requestFullscreen&&e.current.requestFullscreen().catch(()=>{})},[]),j=d.useCallback(oe=>{let le=Math.max(.3,Math.min(1,Math.round(Number(oe)*100)/100));M(Number.isFinite(le)?le:Tf)},[]),se=d.useCallback(oe=>{M(le=>Math.max(.3,Math.min(1,Math.round((le+oe)*100)/100)))},[]),Ee=d.useCallback(()=>{n.current&&n.current.resetView()},[]),Ve=d.useCallback(()=>{f(!1),w(!0)},[]),fe=d.useCallback(()=>{w(!1)},[]),tt=d.useCallback(()=>{f(!1),w(!1),H(_f(l)),L(!0)},[l]),kt=d.useCallback(()=>{L(!1)},[]),$e=d.useCallback(oe=>{f(!1),n.current?.setPaused?.(!0),W(oe)},[]),at=d.useCallback(()=>{n.current?.setPaused?.(!1),W(null)},[]);r.current={close:Pe,step:vt,togglePlay:ot,toggleFullscreen:ut,nudgeBrightness:se,resetView:Ee,openStudy:Ve,closeStudy:fe,openBook:tt,closeBook:kt,openModel:$e,closeModel:at,studyOpen:y,bookOpen:P,modelView:D},d.useEffect(()=>{let oe=le=>{let dt=le.target&&le.target.tagName;if(!(dt==="INPUT"||dt==="TEXTAREA"||le.target&&le.target.isContentEditable)){if(r.current.modelView){le.key==="Escape"&&(le.preventDefault(),r.current.closeModel());return}if(r.current.bookOpen){(le.key==="Escape"||le.key.toLowerCase()==="b")&&(le.preventDefault(),r.current.closeBook());return}if(le.key==="Escape"){le.preventDefault(),r.current.studyOpen?r.current.closeStudy():r.current.close();return}if(le.key.toLowerCase()==="b"){le.preventDefault(),r.current.openBook();return}if(le.key.toLowerCase()==="t"){le.preventDefault(),r.current.studyOpen?r.current.closeStudy():r.current.openStudy();return}r.current.studyOpen||dt==="BUTTON"||dt==="A"||(le.key==="ArrowRight"?(le.preventDefault(),r.current.step(1)):le.key==="ArrowLeft"?(le.preventDefault(),r.current.step(-1)):le.key===" "||le.key==="Spacebar"?(le.preventDefault(),r.current.togglePlay()):le.key.toLowerCase()==="f"?(le.preventDefault(),r.current.toggleFullscreen()):le.key==="-"||le.key==="_"?(le.preventDefault(),r.current.nudgeBrightness(-.06)):le.key==="="||le.key==="+"?(le.preventDefault(),r.current.nudgeBrightness(.06)):le.key.toLowerCase()==="r"&&(le.preventDefault(),r.current.resetView()))}};return window.addEventListener("keydown",oe),()=>window.removeEventListener("keydown",oe)},[]),d.useEffect(()=>{let oe=()=>J(!!document.fullscreenElement);return document.addEventListener("fullscreenchange",oe),()=>document.removeEventListener("fullscreenchange",oe)},[]);let St=typeof document<"u"&&!!(document.fullscreenEnabled||document.webkitFullscreenEnabled);return d.createElement("div",{ref:e,className:`ca-root ${g?"is-ready":""}`,style:{"--ca-accent":ne.accent},role:"dialog","aria-modal":"true","aria-label":i("dialog","\u7EC6\u80DE\u56FE\u8C31 \u2014\u2014 \u4E00\u573A\u7A7F\u8FC7\u6D3B\u7EC6\u80DE\u7684\u89C6\u89C9\u6F2B\u6E38")},d.createElement("style",null,gy),d.createElement("div",{className:"ca-fallback","aria-hidden":"true"},d.createElement("div",{className:"ca-fallback-cell"}),d.createElement("div",{className:"ca-fallback-glow"})),d.createElement("div",{className:`ca-canvas ${g?"is-ready":""}`,ref:t}),d.createElement("div",{className:"ca-grain","aria-hidden":"true"}),d.createElement("div",{className:"ca-scanlines","aria-hidden":"true"}),d.createElement("div",{className:"ca-vignette","aria-hidden":"true"}),d.createElement("div",{className:"ca-frame","aria-hidden":"true"},d.createElement("span",{className:"ca-corner ca-corner-tl"}),d.createElement("span",{className:"ca-corner ca-corner-tr"}),d.createElement("span",{className:"ca-corner ca-corner-bl"}),d.createElement("span",{className:"ca-corner ca-corner-br"})),d.createElement("div",{className:"ca-reticle","aria-hidden":"true"}),d.createElement("div",{className:"ca-ui"},d.createElement("header",{className:"ca-header"},d.createElement("div",{className:"ca-brand"},d.createElement(ku,{className:"ca-brand-mark"}),d.createElement("div",{className:"ca-brand-text"},d.createElement("div",{className:"ca-wordmark"},"CELL ",d.createElement("span",null,"ATLAS")),d.createElement("div",{className:"ca-wordmark-cn"},"\u7EC6\u80DE\u56FE\u8C31 \xB7 \u4E00\u6B21\u5173\u4E8E\u8FB9\u754C\u7684\u6F2B\u6E38"))),d.createElement("div",{className:"ca-topreadout"},d.createElement("span",{className:"ca-live-dot"}),d.createElement("span",null,"LIVE SPECIMEN"),d.createElement("span",{className:"ca-topreadout-sep"},"/"),d.createElement("span",null,ne.readout)),d.createElement("div",{className:"ca-topright"},d.createElement("button",{type:"button",className:"ca-book-btn",onClick:tt,"aria-label":i("openBook","\u6253\u5F00\u5168\u4E66\u5206\u8282"),title:`${i("openBook","\u6253\u5F00\u5168\u4E66\u5206\u8282")} \xB7 B`},d.createElement(Gt,{name:"book",size:15})),d.createElement("button",{type:"button",className:"ca-study-toggle",onClick:Ve,"aria-expanded":y,"aria-controls":"ca-study-panel",title:`${i("studyTitle","\u5B66\u4E60\u624B\u518C")} \xB7 T`},d.createElement(Gt,{name:"book",size:14}),d.createElement("span",null,i("study","\u5B66\u4E60"))),d.createElement("div",{className:"ca-counter","aria-label":`${i("chapter","\u7AE0\u8282")} ${l+1}`},d.createElement("b",null,ne.no),d.createElement("span",null,"/ ",String(nn.length).padStart(2,"0"))),d.createElement("button",{type:"button",className:"ca-iconbtn",onClick:Pe,ref:s,"aria-label":i("close","\u5173\u95ED\u7EC6\u80DE\u56FE\u8C31"),title:i("close","\u5173\u95ED\u7EC6\u80DE\u56FE\u8C31")},d.createElement(Gt,{name:"close"})))),d.createElement("main",{className:"ca-stage"},d.createElement("div",{className:"ca-readout","aria-hidden":"true"},d.createElement("div",null,ne.readout),d.createElement("div",{className:"ca-readout-sub"},"FOCUS ",oy(ne)," ",d.createElement("span",null,"/")," SECTION 0.",l+2," \xB5m")),d.createElement("article",{className:"ca-caption",key:ne.id},d.createElement("div",{className:"ca-kicker"},d.createElement("span",{className:"ca-kicker-line"}),d.createElement("span",null,ne.kicker," ",d.createElement("span",{className:"ca-kicker-slash"},"/")," ",ne.cnKicker)),d.createElement("h1",null,ne.title),d.createElement("div",{className:"ca-en"},ne.en),d.createElement("button",{type:"button",className:"ca-textbook-chip",onClick:Ve,"aria-label":`${i("study","\u5B66\u4E60\u624B\u518C")}\uFF1A${i("textbookAlignment","\u6559\u6750\u5BF9\u7167")}\uFF0C${Z.textbook.chapter} ${Z.textbook.title}\uFF0Cpp.${Z.textbook.pages}`,title:`${i("study","\u5B66\u4E60\u624B\u518C")} \xB7 T`},d.createElement("span",{className:"ca-textbook-chip-icon"},d.createElement(Gt,{name:"book",size:17})),d.createElement("span",{className:"ca-textbook-chip-main"},d.createElement("span",{className:"ca-textbook-chip-top"},d.createElement("b",null,i("study","\u5B66\u4E60\u624B\u518C")),d.createElement("em",null,i("textbookAlignment","\u6559\u6750\u5BF9\u7167")," \xB7 ",Z.textbook.chapter," ",Z.textbook.title)),d.createElement("span",{className:"ca-textbook-chip-sub"},"pp.",Z.textbook.pages," \xB7 \u5B66\u4E60\u76EE\u6807 / \u673A\u5236\u62C6\u89E3 / \u81EA\u6D4B")),d.createElement("span",{className:"ca-textbook-chip-key"},"T"),d.createElement(Gt,{name:"arrow",size:14})),d.createElement("p",{className:"ca-body"},ne.body),d.createElement("div",{className:"ca-facts"},ne.facts.map((oe,le)=>d.createElement("div",{className:"ca-fact",key:oe.k,style:{"--i":le}},d.createElement("div",{className:"ca-fact-k"},oe.k),d.createElement("div",{className:"ca-fact-v"},oe.v))))),d.createElement("nav",{className:"ca-rail","aria-label":"Chapters"},nn.map((oe,le)=>d.createElement("button",{type:"button",key:oe.id,className:le===l?"is-active":"","data-complete":le<l?"true":"false",onClick:()=>Ie(le),"aria-label":`${oe.no} ${oe.short}`,"aria-current":le===l?"step":void 0},d.createElement("span",{className:"ca-rail-title"},oe.short),d.createElement("span",{className:"ca-rail-line"}),d.createElement("span",{className:"ca-rail-no"},oe.no)))),d.createElement("div",{className:"ca-spine","aria-hidden":"true"},d.createElement("span",null,"HOMO SAPIENS"),d.createElement("span",null,"CELLULAR SPECIMEN / 001"))),d.createElement("footer",{className:"ca-footer"},d.createElement("div",{className:"ca-auto"},d.createElement("span",{className:`ca-auto-dot ${u?"is-live":""}`}),d.createElement("span",{className:"ca-auto-label"},u?i("auto","\u81EA\u52A8\u6F2B\u6E38"):i("hold","\u5DF2\u6682\u505C")),d.createElement("span",{className:"ca-auto-sep"},"/"),d.createElement("span",{className:"ca-hint"},d.createElement("kbd",null,"T"),d.createElement("span",null,i("study","\u5B66\u4E60\u624B\u518C")))),d.createElement("div",{className:"ca-timeline",role:"group","aria-label":"Timeline"},nn.map((oe,le)=>{let dt=le<l?1:le===l?h:0;return d.createElement("button",{type:"button",key:oe.id,className:`ca-seg ${le===l?"is-active":""}`,onClick:()=>Ie(le),"aria-label":`${oe.no} ${oe.short}`},d.createElement("span",{className:"ca-seg-track"},d.createElement("span",{className:"ca-seg-fill",style:{transform:`scaleX(${dt})`}})),d.createElement("span",{className:"ca-seg-label"},oe.no))})),d.createElement("div",{className:"ca-controls"},d.createElement("label",{className:"ca-lum",title:i("brightnessHint","\u4EAE\u5EA6\uFF08\u2212 / =\uFF09")},d.createElement(Gt,{name:"sun",size:13}),d.createElement("input",{type:"range",min:"0.3",max:"1",step:"0.01",value:x,onChange:oe=>j(oe.target.value),"aria-label":i("brightness","\u4EAE\u5EA6")}),d.createElement("span",{className:"ca-lum-value","aria-hidden":"true"},Math.round(x*100))),d.createElement("button",{type:"button",className:"ca-ctrl ca-ctrl-quiet",onClick:Ee,"aria-label":i("resetView","\u91CD\u7F6E\u89C6\u89D2"),title:i("resetViewHint","\u91CD\u7F6E\u89C6\u89D2\uFF08R\uFF09")},d.createElement(Gt,{name:"reset"})),d.createElement("button",{type:"button",className:"ca-ctrl",onClick:()=>vt(-1),disabled:l===0,"aria-label":i("prev","\u4E0A\u4E00\u7AE0"),title:i("prev","\u4E0A\u4E00\u7AE0")},d.createElement(Gt,{name:"prev"})),d.createElement("button",{type:"button",className:"ca-ctrl ca-ctrl-primary",onClick:ot,"aria-label":ee?i("replay","\u91CD\u65B0\u64AD\u653E"):u?i("pause","\u6682\u505C"):i("play","\u64AD\u653E"),title:ee?i("replay","\u91CD\u65B0\u64AD\u653E"):u?i("pause","\u6682\u505C"):i("play","\u64AD\u653E")},d.createElement(Gt,{name:ee?"replay":u?"pause":"play"})),d.createElement("button",{type:"button",className:"ca-ctrl",onClick:()=>vt(1),disabled:l===nn.length-1,"aria-label":i("next","\u4E0B\u4E00\u7AE0"),title:i("next","\u4E0B\u4E00\u7AE0")},d.createElement(Gt,{name:"next"})),St&&d.createElement("button",{type:"button",className:"ca-ctrl ca-ctrl-quiet",onClick:ut,"aria-label":K?i("exitFullscreen","\u9000\u51FA\u5168\u5C4F"):i("fullscreen","\u8FDB\u5165\u5168\u5C4F"),title:K?i("exitFullscreen","\u9000\u51FA\u5168\u5C4F"):i("fullscreen","\u8FDB\u5165\u5168\u5C4F")},d.createElement(Gt,{name:K?"collapse":"expand"}))))),_!=="gone"&&d.createElement("div",{className:`ca-intro ${_==="out"?"is-out":""}`,"aria-hidden":_==="out"},d.createElement("div",{className:"ca-intro-grid","aria-hidden":"true"}),d.createElement("div",{className:`ca-intro-inner ${E>0?"is-guide":""}`},E===0&&d.createElement("div",{className:"ca-intro-step"},d.createElement("div",{className:"ca-intro-welcome"},"\u6B22\u8FCE\u6765\u5230\u7EC6\u80DE\u7684\u4E16\u754C"),d.createElement("div",{className:"ca-intro-eyebrow"},"AN INTERACTIVE CELL ATLAS \xB7 MMXXVI"),d.createElement("h2",null,d.createElement("span",{className:"ca-intro-fill"},"CELL"),d.createElement("span",{className:"ca-intro-slash"},"/"),d.createElement("span",{className:"ca-intro-outline"},"ATLAS")),d.createElement("div",{className:"ca-intro-cn"},"\u7EC6\u80DE\u56FE\u8C31"),d.createElement("div",{className:"ca-intro-sub"},"\u4E00\u573A\u4ECE\u8D28\u819C\u5230\u57FA\u56E0\u7EC4\u7684\u4E03\u5E55\u89C6\u89C9\u6F2B\u6E38"),d.createElement("div",{className:"ca-intro-quick"},d.createElement("div",null,d.createElement("kbd",null,"T"),d.createElement("b",null,"\u5B66\u4E60\u624B\u518C"),d.createElement("em",null,"\u76EE\u6807 \xB7 \u6982\u5FF5 \xB7 \u673A\u5236 \xB7 \u81EA\u6D4B")),d.createElement("div",null,d.createElement("kbd",null,"B"),d.createElement("b",null,"\u5168\u4E66\u5206\u8282"),d.createElement("em",null,"16 \u7AE0 \xB7 44 \u8282 \xB7 3D \u6A21\u578B")),d.createElement("div",null,d.createElement("kbd",null,"\u2194"),d.createElement("b",null,"\u81EA\u7531\u89C2\u5BDF"),d.createElement("em",null,"\u62D6\u52A8\u65CB\u8F6C \xB7 \u6EDA\u8F6E\u7F29\u653E"))),d.createElement("div",{className:"ca-intro-actions"},d.createElement("button",{type:"button",className:"ca-enter",onClick:()=>R(1)},d.createElement("span",null,"\u5148\u770B\u4F7F\u7528\u8BF4\u660E"),d.createElement(Gt,{name:"arrow",size:15})),d.createElement("span",{className:"ca-intro-count"},"01 / 03"))),E===1&&d.createElement("div",{className:"ca-intro-step ca-intro-guide"},d.createElement("div",{className:"ca-intro-eyebrow"},"HOW TO USE / \u4F7F\u7528\u8BF4\u660E"),d.createElement("h2",{className:"ca-guide-title"},"\u6309 ",d.createElement("kbd",null,"T"),"\uFF0C\u6253\u5F00\u5B66\u4E60\u624B\u518C"),d.createElement("div",{className:"ca-guide-grid"},d.createElement("div",{className:"ca-guide-mock","aria-hidden":"true"},d.createElement("div",{className:"ca-guide-mock-head"},d.createElement("span",null,"STUDY NOTES"),d.createElement("b",null,"\u5B66\u4E60\u624B\u518C"),d.createElement("kbd",null,"T")),d.createElement("div",{className:"ca-guide-mock-body"},d.createElement("div",{className:"ca-guide-mini-label"},"\u5B66\u4E60\u76EE\u6807"),d.createElement("p",null,"\u8BF4\u51FA\u6D41\u52A8\u9576\u5D4C\u6A21\u578B\uFF0C\u5E76\u89E3\u91CA\u652F\u6301\u5B83\u7684\u5B9E\u9A8C\u8BC1\u636E\u3002"),d.createElement("div",{className:"ca-guide-mini-label"},"\u6838\u5FC3\u6982\u5FF5"),d.createElement("p",null,"\u78F7\u8102\u53CC\u5206\u5B50\u5C42 / \u6574\u5408\u819C\u86CB\u767D / \u819C\u7684\u4E0D\u5BF9\u79F0\u6027"),d.createElement("div",{className:"ca-guide-mini-label"},"\u673A\u5236\u62C6\u89E3"),d.createElement("p",null,"\u819C\u8102\u6D41\u52A8\u6027 \u2192 \u86CB\u767D\u8FD0\u52A8 \u2192 \u9009\u62E9\u900F\u8FC7\u4E0E\u4FE1\u53F7\u63A5\u6536"),d.createElement("div",{className:"ca-guide-mini-label"},"\u6613\u9519\u70B9"),d.createElement("p",null,"\u6D41\u52A8\u6027\u4E0D\u662F\u201C\u6240\u6709\u86CB\u767D\u90FD\u80FD\u81EA\u7531\u6F02\u79FB\u201D\uFF0C\u819C\u9AA8\u67B6\u548C\u8FDE\u63A5\u4F1A\u9650\u5236\u8FD0\u52A8\u3002"),d.createElement("div",{className:"ca-guide-mini-label"},"\u81EA\u6D4B"),d.createElement("p",null,"\u4E3A\u4EC0\u4E48\u80C6\u56FA\u9187\u5BF9\u819C\u6D41\u52A8\u6027\u6709\u53CC\u5411\u8C03\u8282\uFF1F"))),d.createElement("div",{className:"ca-guide-copy"},d.createElement("div",{className:"ca-guide-block"},d.createElement("span",null,"01"),d.createElement("div",null,d.createElement("b",null,"T \u6253\u5F00\u7684\u62BD\u5C49\u91CC\u6709\u4EC0\u4E48"),d.createElement("p",null,"\u5B66\u4E60\u76EE\u6807\u3001\u6838\u5FC3\u6982\u5FF5\u3001\u673A\u5236\u62C6\u89E3\u3001\u6613\u9519\u70B9\u3001\u753B\u9762\u56FE\u4F8B\u3001\u76F8\u5173\u7AE0\u8282\uFF0C\u4EE5\u53CA\u53EF\u5C55\u5F00\u7684\u81EA\u6D4B\u7B54\u6848\uFF1B\u6BCF\u9875\u90FD\u5E26\u6559\u6750\u9875\u7801\u3002"))),d.createElement("div",{className:"ca-guide-block"},d.createElement("span",null,"02"),d.createElement("div",null,d.createElement("b",null,"\u4ECE\u54EA\u91CC\u6253\u5F00"),d.createElement("p",null,"\u6309 T\uFF1B\u70B9\u53F3\u4E0A\u89D2\u7684\u300C\u5B66\u4E60\u624B\u518C\u300D\uFF1B\u6216\u70B9\u7AE0\u8282\u6807\u9898\u4E0B\u65B9\u7684\u300C\u5B66\u4E60\u624B\u518C \xB7 \u6559\u6750\u5BF9\u7167\u300D\u5927\u6309\u94AE\u3002\u5173\u95ED\u540E\u56DE\u5230\u539F\u4F4D\u3002"))),d.createElement("div",{className:"ca-guide-block"},d.createElement("span",null,"03"),d.createElement("div",null,d.createElement("b",null,"\u81EA\u52A8\u6F2B\u6E38\u4F1A\u6682\u505C"),d.createElement("p",null,"\u6253\u5F00\u624B\u518C\u3001\u5168\u4E66\u5206\u8282\u6216 3D \u6A21\u578B\u65F6\uFF0C\u81EA\u52A8\u6F2B\u6E38\u4F1A\u6682\u505C\uFF1B\u5173\u95ED\u540E\u624B\u52A8\u7EE7\u7EED\u3002"))))),d.createElement("div",{className:"ca-intro-actions"},d.createElement("button",{type:"button",className:"ca-intro-secondary",onClick:()=>R(0)},"\u2190 \u8FD4\u56DE"),d.createElement("button",{type:"button",className:"ca-enter",onClick:()=>R(2)},d.createElement("span",null,"\u4E0B\u4E00\u6B65\uFF1A\u5168\u4E66\u4E0E\u64CD\u4F5C"),d.createElement(Gt,{name:"arrow",size:15})),d.createElement("span",{className:"ca-intro-count"},"02 / 03"))),E===2&&d.createElement("div",{className:"ca-intro-step ca-intro-guide ca-intro-controls"},d.createElement("div",{className:"ca-intro-eyebrow"},"NAVIGATION & CONTROLS / \u5168\u4E66\u4E0E\u64CD\u4F5C"),d.createElement("h2",{className:"ca-guide-title"},"\u6309 ",d.createElement("kbd",null,"B"),"\uFF0C\u8FDB\u5165 16 \u7AE0 44 \u8282"),d.createElement("div",{className:"ca-controls-grid"},d.createElement("div",{className:"ca-guide-mock ca-book-mock","aria-hidden":"true"},d.createElement("div",{className:"ca-guide-mock-head"},d.createElement("span",null,"BOOK INDEX"),d.createElement("b",null,"\u5168\u4E66\u5206\u8282"),d.createElement("kbd",null,"B")),d.createElement("div",{className:"ca-book-mock-body"},d.createElement("div",{className:"ca-book-mock-row"},d.createElement("span",null,"01"),"\u7EEA\u8BBA",d.createElement("em",null,"2 \u8282")),d.createElement("div",{className:"ca-book-mock-row"},d.createElement("span",null,"02"),"\u7EC6\u80DE\u751F\u7269\u5B66\u7814\u7A76\u65B9\u6CD5",d.createElement("em",null,"4 \u8282")),d.createElement("div",{className:"ca-book-mock-row is-active"},d.createElement("span",null,"03"),"\u7EC6\u80DE\u8D28\u819C",d.createElement("em",null,"2 \u8282")),d.createElement("div",{className:"ca-book-mock-row"},d.createElement("span",null,"04"),"\u7269\u8D28\u7684\u8DE8\u819C\u8FD0\u8F93",d.createElement("em",null,"3 \u8282")),d.createElement("div",{className:"ca-book-mock-row"},d.createElement("span",null,"05"),"\u7EC6\u80DE\u8D28\u57FA\u8D28\u4E0E\u5185\u819C\u7CFB\u7EDF",d.createElement("em",null,"2 \u8282")),d.createElement("div",{className:"ca-book-mock-row"},d.createElement("span",null,"06"),"\u86CB\u767D\u8D28\u5206\u9009\u4E0E\u819C\u6CE1\u8FD0\u8F93",d.createElement("em",null,"2 \u8282")),d.createElement("div",{className:"ca-book-mock-section"},d.createElement("span",null,"\u7B2C\u4E00\u8282"),"\u7EC6\u80DE\u8D28\u819C\u7684\u7ED3\u6784\u6A21\u578B\u4E0E\u57FA\u672C\u6210\u5206",d.createElement("em",null,"3D \u6A21\u578B")))),d.createElement("div",{className:"ca-guide-copy"},d.createElement("div",{className:"ca-guide-block"},d.createElement("span",null,"01"),d.createElement("div",null,d.createElement("b",null,"\u5DE6\u4FA7\u7AE0\u8282\uFF0C\u53F3\u4FA7\u5C0F\u8282"),d.createElement("p",null,"\u6309 B \u6216\u70B9\u53F3\u4E0A\u89D2\u4E66\u672C\u56FE\u6807\u6253\u5F00\u5168\u4E66\u3002\u5DE6\u4FA7 16 \u7AE0\u53EF\u4EE5\u5207\u6362\uFF0C\u53F3\u4FA7\u5217\u51FA\u6BCF\u4E00\u8282\uFF1B\u641C\u7D22\u6846\u53EF\u7B5B\u7AE0\u8282\u548C\u5C0F\u8282\u3002"))),d.createElement("div",{className:"ca-guide-block"},d.createElement("span",null,"02"),d.createElement("div",null,d.createElement("b",null,"\u6BCF\u8282\u90FD\u6709\u5B8C\u6574\u5B66\u4E60\u5361"),d.createElement("p",null,"\u6559\u6750\u9875\u7801\u3001\u5C0F\u8282\u63D0\u7EB2\u3001\u5185\u5BB9\u5B9A\u4F4D\u3001\u673A\u5236\u8981\u70B9\u3001\u5173\u952E\u672F\u8BED\u3001\u53EF\u5C55\u5F00\u81EA\u6D4B\uFF1B\u9875\u9762\u652F\u6301\u76F4\u63A5\u6253\u5370\u3002"))),d.createElement("div",{className:"ca-guide-block"},d.createElement("span",null,"03"),d.createElement("div",null,d.createElement("b",null,"\u6A21\u578B\u540D\u5B57\u5C31\u662F\u5165\u53E3"),d.createElement("p",null,"\u7AE0\u8282\u9876\u90E8\u548C\u6BCF\u4E2A\u5C0F\u8282\u4F1A\u663E\u793A 3D \u6A21\u578B\u540D\u79F0\uFF08\u7ED3\u6784 + \u5B9E\u9A8C\u65B9\u6CD5\uFF09\u3002\u70B9\u51FB\u540D\u79F0\u76F4\u63A5\u89C2\u5BDF\uFF0C\u5173\u95ED\u540E\u56DE\u5230\u8BE5\u5C0F\u8282\u3002"))),d.createElement("div",{className:"ca-guide-block"},d.createElement("span",null,"04"),d.createElement("div",null,d.createElement("b",null,"\u89C2\u5BDF\u52A8\u4F5C\u4E0E\u4EAE\u5EA6"),d.createElement("p",null,"\u62D6\u52A8\u65CB\u8F6C\u3001\u6EDA\u8F6E\u7F29\u653E\u3001\u53CC\u51FB\u91CD\u7F6E\uFF1B\u6A21\u578B\u9875\u53F3\u4E0B\u89D2\u6709 20\u201370 \u7684\u4EAE\u5EA6\u6ED1\u6746\uFF0C\u4E3B\u573A\u666F\u4E5F\u53EF\u7528 \u2212 / = \u8C03\u4EAE\u5EA6\u3002"))))),d.createElement("div",{className:"ca-intro-keymap"},d.createElement("div",null,d.createElement("kbd",null,"\u2190"),d.createElement("kbd",null,"\u2192"),d.createElement("b",null,"\u5207\u6362\u7AE0\u8282")),d.createElement("div",null,d.createElement("kbd",null,"Space"),d.createElement("b",null,"\u6682\u505C / \u7EE7\u7EED")),d.createElement("div",null,d.createElement("kbd",null,"T"),d.createElement("b",null,"\u5B66\u4E60\u624B\u518C")),d.createElement("div",null,d.createElement("kbd",null,"B"),d.createElement("b",null,"\u5168\u4E66\u5206\u8282")),d.createElement("div",null,d.createElement("kbd",null,"F"),d.createElement("b",null,"\u5168\u5C4F")),d.createElement("div",null,d.createElement("kbd",null,"R"),d.createElement("b",null,"\u91CD\u7F6E\u89C6\u89D2")),d.createElement("div",null,d.createElement("kbd",null,"\u2212"),d.createElement("kbd",null,"="),d.createElement("b",null,"\u964D\u4F4E / \u63D0\u9AD8\u4EAE\u5EA6")),d.createElement("div",null,d.createElement("kbd",null,"\u53CC\u51FB"),d.createElement("b",null,"\u91CD\u7F6E\u89C6\u89D2"))),d.createElement("div",{className:"ca-intro-actions"},d.createElement("button",{type:"button",className:"ca-intro-secondary",onClick:()=>R(1)},"\u2190 \u8FD4\u56DE"),d.createElement("button",{type:"button",className:"ca-enter",onClick:re},d.createElement("span",null,i("enter","\u8FDB\u5165\u7EC6\u80DE")),d.createElement(Gt,{name:"arrow",size:15})),d.createElement("span",{className:"ca-intro-count"},"03 / 03")))),d.createElement("div",{className:"ca-intro-skip"},"\u6309 T \u5B66\u4E60\u624B\u518C \xB7 B \u5168\u4E66\u5206\u8282 \xB7 \u62D6\u52A8\u65CB\u8F6C")),y&&!S&&d.createElement(cy,{chapter:ne,onClose:fe,onOpenBook:tt,onOpenModel:$e,t:i}),P&&!S&&d.createElement(uy,{initialChapter:B,onClose:kt,onJump:oe=>{L(!1),Ie(oe)},onOpenModel:$e,t:i}),D&&d.createElement(hy,{context:D,onClose:at,t:i}),S&&d.createElement("div",{className:"ca-error",role:"alert"},d.createElement("div",{className:"ca-error-card"},d.createElement("div",{className:"ca-error-no"},"ERR / WEBGL"),d.createElement("h2",null,i("errorTitle","\u5149\u5B66\u573A\u672A\u80FD\u542F\u52A8")),d.createElement("p",null,i("errorBody","\u5F53\u524D\u6D4F\u89C8\u5668\u65E0\u6CD5\u521B\u5EFA WebGL \u4E0A\u4E0B\u6587\u3002\u8BF7\u5C1D\u8BD5\u5F00\u542F\u786C\u4EF6\u52A0\u901F\u7684\u73B0\u4EE3\u6D4F\u89C8\u5668\uFF0C\u7136\u540E\u91CD\u65B0\u6253\u5F00\u7EC6\u80DE\u56FE\u8C31\u3002")),d.createElement("div",{className:"ca-error-detail"},S),d.createElement("div",{className:"ca-error-actions"},d.createElement("button",{type:"button",className:"ca-enter",onClick:()=>window.location.reload()},d.createElement("span",null,"RELOAD")),d.createElement("button",{type:"button",className:"ca-ctrl ca-ctrl-primary",onClick:Pe,"aria-label":i("close","\u5173\u95ED")},d.createElement(Gt,{name:"close"}))))))}function fy(){return Ou()?d.createElement(dy,null):null}function Rf(i){return d=i,_s=sy(),{inject:["slots"],apply(e){let t=e.get("locale");if(t){mr=t;try{e.effect(()=>t.register("cell-atlas","en",iy)),e.effect(()=>t.register("cell-atlas","zh",Af)),e.effect(()=>t.register("cell-atlas","zh-CN",Af))}catch{}}e.slots.inject("conversation.header.leading",()=>e.slots.register({name:"conversation.header.leading"},ay)),e.slots.inject("sidebar.footer.action",()=>e.slots.register({name:"sidebar.footer.action",id:"cell-atlas-launcher",order:22,label:()=>Cf("launcherTitle","\u7EC6\u80DE\u56FE\u8C31")},ry)),e.slots.inject("shell.overlay",()=>e.slots.register({name:"shell.overlay",id:"cell-atlas-overlay",order:60},fy))}}}var py=`
+.ca-header-entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 9px 0 5px;
+  margin-right: 8px;
+  border: 1px solid var(--dsw-alias-border-l1);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--dsw-alias-brand-primary) 5%, transparent);
+  color: var(--dsw-alias-label-secondary);
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+  flex: none;
+  min-width: 0;
+  transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.ca-header-entry:hover,
+.ca-header-entry:focus-visible {
+  color: var(--dsw-alias-label-primary);
+  border-color: color-mix(in srgb, var(--dsw-alias-brand-primary) 55%, var(--dsw-alias-border-l1));
+  background: color-mix(in srgb, var(--dsw-alias-brand-primary) 10%, var(--dsw-alias-bg-layer-1));
+  transform: translateY(-1px);
+  outline: none;
+}
+.ca-header-entry:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--dsw-alias-brand-primary) 28%, transparent);
+}
+.ca-header-entry.is-open {
+  border-color: var(--dsw-alias-brand-primary);
+  background: color-mix(in srgb, var(--dsw-alias-brand-primary) 12%, var(--dsw-alias-bg-layer-1));
+  color: var(--dsw-alias-label-primary);
+}
+.ca-header-entry-mark-wrap {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.ca-header-entry-mark {
+  width: 21px;
+  height: 21px;
+  color: var(--dsw-alias-label-primary);
+  opacity: .82;
+}
+.ca-header-entry-live {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--dsw-alias-brand-primary);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--dsw-alias-brand-primary) 70%, transparent);
+}
+.ca-header-entry-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  line-height: 1;
+}
+.ca-header-entry-cn {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  color: var(--dsw-alias-label-primary);
+  white-space: nowrap;
+}
+.ca-header-entry-en {
+  margin-top: 3px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 6px;
+  letter-spacing: .2em;
+  color: var(--dsw-alias-label-secondary);
+  white-space: nowrap;
+}
+.ca-header-entry > svg {
+  flex: none;
+  opacity: .42;
+  margin-left: 1px;
+}
+@media (max-width: 760px) {
+  .ca-header-entry {
+    width: 30px;
+    padding: 0;
+    justify-content: center;
+    margin-right: 4px;
+  }
+  .ca-header-entry-text,
+  .ca-header-entry > svg {
+    display: none;
+  }
+}
+`,my=`
+.ca-launcher {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--dsw-alias-label-secondary);
+  cursor: pointer;
+  transition: color .22s ease, background .22s ease, border-color .22s ease, transform .22s ease;
+  overflow: visible;
+}
+.ca-launcher:hover,
+.ca-launcher:focus-visible {
+  color: var(--dsw-alias-label-primary);
+  background: color-mix(in srgb, var(--dsw-alias-brand-primary) 12%, transparent);
+  border-color: var(--dsw-alias-border-l1);
+  outline: none;
+}
+.ca-launcher.is-open {
+  color: var(--dsw-alias-brand-primary);
+  border-color: color-mix(in srgb, var(--dsw-alias-brand-primary) 40%, transparent);
+  background: color-mix(in srgb, var(--dsw-alias-brand-primary) 10%, transparent);
+}
+.ca-launcher-mark {
+  width: 21px;
+  height: 21px;
+  position: relative;
+  z-index: 2;
+  transition: transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.ca-launcher:hover .ca-launcher-mark { transform: rotate(14deg) scale(1.06); }
+.ca-launcher-halo {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--dsw-alias-brand-primary) 32%, transparent), transparent 70%);
+  filter: blur(5px);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.ca-launcher:hover .ca-launcher-halo { opacity: .9; }
+.ca-launcher-dot {
+  position: absolute;
+  right: 4px;
+  bottom: 5px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--dsw-alias-brand-primary);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--dsw-alias-brand-primary) 80%, transparent);
+  opacity: .7;
+}
+`,gy=`
+.ca-root {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  overflow: hidden;
+  pointer-events: auto;
+  background: #02060b;
+  color: #e8fbf7;
+  font-family: "Inter", "SF Pro Display", "Segoe UI", system-ui, "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  isolation: isolate;
+}
+.ca-root *,
+.ca-root *::before,
+.ca-root *::after { box-sizing: border-box; }
+.ca-root button { font: inherit; color: inherit; }
+.ca-root ::selection { background: rgba(127,247,228,.3); color: #fff; }
+
+.ca-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(45% 48% at 50% 52%, rgba(13,92,96,.45), transparent 70%),
+    radial-gradient(30% 36% at 30% 38%, rgba(151,33,99,.16), transparent 75%),
+    radial-gradient(35% 40% at 68% 64%, rgba(71,55,180,.16), transparent 75%),
+    #02060b;
+}
+.ca-fallback-cell {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(60vw, 60vh);
+  height: min(60vw, 60vh);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(127,247,228,.2);
+  background: radial-gradient(circle at 36% 30%, rgba(45,219,205,.22), rgba(20,76,96,.13) 45%, rgba(4,12,18,.05) 70%);
+  box-shadow: 0 0 120px rgba(31,182,201,.22), inset 0 0 90px rgba(127,247,228,.1);
+  filter: blur(.4px);
+  animation: caFallbackBreath 8s ease-in-out infinite;
+}
+.ca-fallback-cell::before,
+.ca-fallback-cell::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px solid rgba(255,110,180,.16);
+  transform: rotate(24deg) scaleY(.42);
+}
+.ca-fallback-cell::after {
+  inset: 28%;
+  border-color: rgba(127,247,228,.22);
+  transform: rotate(-38deg) scaleY(.5);
+}
+.ca-fallback-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28vw;
+  height: 28vw;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,93,173,.2), rgba(127,247,228,.08) 40%, transparent 68%);
+  filter: blur(30px);
+}
+@keyframes caFallbackBreath {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: .82; }
+  50% { transform: translate(-50%, -50%) scale(1.035); opacity: 1; }
+}
+
+.ca-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.ca-canvas canvas { opacity: 0; transition: opacity 1.6s cubic-bezier(.2,.7,.2,1); cursor: grab; }
+.ca-canvas.is-ready canvas { opacity: 1; }
+.ca-canvas canvas:active { cursor: grabbing; }
+
+.ca-grain,
+.ca-scanlines,
+.ca-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ca-grain {
+  z-index: 3;
+  opacity: .16;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+.ca-scanlines {
+  z-index: 3;
+  opacity: .16;
+  background: repeating-linear-gradient(to bottom, rgba(215,255,248,.055) 0, rgba(215,255,248,.055) 1px, transparent 1px, transparent 3px);
+  animation: caScanDrift 16s linear infinite;
+}
+@keyframes caScanDrift { from { background-position-y: 0; } to { background-position-y: 120px; } }
+.ca-vignette {
+  z-index: 3;
+  background:
+    linear-gradient(90deg, rgba(1,5,9,.56) 0%, rgba(1,5,9,.14) 24%, transparent 44%, transparent 72%, rgba(1,5,9,.34) 100%),
+    radial-gradient(ellipse at 50% 50%, transparent 54%, rgba(0,4,8,.52) 100%);
+}
+
+.ca-frame { position: absolute; inset: 12px; z-index: 4; pointer-events: none; }
+.ca-corner {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-color: rgba(127,247,228,.28);
+  border-style: solid;
+}
+.ca-corner-tl { left: 0; top: 0; border-width: 1px 0 0 1px; }
+.ca-corner-tr { right: 0; top: 0; border-width: 1px 1px 0 0; }
+.ca-corner-bl { left: 0; bottom: 0; border-width: 0 0 1px 1px; }
+.ca-corner-br { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
+
+.ca-reticle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  z-index: 4;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(127,247,228,.13);
+  pointer-events: none;
+  opacity: .55;
+}
+.ca-reticle::before,
+.ca-reticle::after {
+  content: "";
+  position: absolute;
+  background: rgba(127,247,228,.24);
+}
+.ca-reticle::before { width: 10px; height: 1px; left: 11px; top: 16px; }
+.ca-reticle::after { width: 1px; height: 10px; left: 16px; top: 11px; }
+
+.ca-ui {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 32px 20px;
+  pointer-events: none;
+}
+.ca-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  flex: none;
+}
+.ca-brand { display: flex; align-items: center; gap: 11px; }
+.ca-brand-mark {
+  width: 37px;
+  height: 37px;
+  color: rgba(232,251,247,.66);
+  filter: drop-shadow(0 0 12px rgba(127,247,228,.14));
+  flex: none;
+}
+.ca-wordmark {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: .35em;
+  color: rgba(232,251,247,.78);
+  white-space: nowrap;
+}
+.ca-wordmark span { color: var(--ca-accent); }
+.ca-wordmark-cn {
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: .12em;
+  color: rgba(201,233,228,.44);
+  white-space: nowrap;
+}
+.ca-topreadout {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .22em;
+  color: rgba(201,233,228,.42);
+  white-space: nowrap;
+}
+.ca-topreadout-sep { opacity: .35; }
+.ca-live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ca-accent);
+  box-shadow: 0 0 9px var(--ca-accent);
+  animation: caLivePulse 2.4s ease-in-out infinite;
+}
+@keyframes caLivePulse {
+  0%, 100% { opacity: .35; transform: scale(.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+.ca-topright { display: flex; align-items: center; gap: 12px; }
+.ca-study-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 42px;
+  padding: 0 17px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 42%, rgba(127,247,228,.18));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ca-accent) 8%, rgba(3,12,16,.58));
+  color: var(--ca-accent);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  pointer-events: auto;
+  flex: none;
+  transition: color .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.ca-study-toggle:hover,
+.ca-study-toggle:focus-visible {
+  color: #fff;
+  border-color: var(--ca-accent);
+  background: rgba(17,46,48,.52);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--ca-accent) 16%, transparent);
+  outline: none;
+}
+.ca-study-toggle[aria-expanded="true"] {
+  color: var(--ca-accent);
+  border-color: color-mix(in srgb, var(--ca-accent) 55%, transparent);
+  background: color-mix(in srgb, var(--ca-accent) 9%, rgba(3,12,16,.5));
+}
+.ca-study-toggle > svg { flex: none; opacity: .8; }
+.ca-book-btn {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  flex: none;
+  border: 1px solid rgba(127,247,228,.2);
+  border-radius: 50%;
+  background: rgba(3,12,16,.3);
+  color: var(--ca-accent);
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+  transition: color .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.ca-book-btn:hover,
+.ca-book-btn:focus-visible {
+  color: #fff;
+  border-color: var(--ca-accent);
+  background: rgba(17,46,48,.52);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--ca-accent) 18%, transparent);
+  outline: none;
+}
+.ca-counter {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: rgba(201,233,228,.42);
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+.ca-counter b {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: .05em;
+  color: var(--ca-accent);
+}
+.ca-iconbtn {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(127,247,228,.2);
+  background: rgba(3,12,16,.3);
+  color: rgba(232,251,247,.82);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: border-color .25s ease, background .25s ease, color .25s ease, transform .25s ease;
+  pointer-events: auto;
+}
+.ca-iconbtn:hover,
+.ca-iconbtn:focus-visible {
+  color: #fff;
+  border-color: var(--ca-accent);
+  background: rgba(17,46,48,.52);
+  transform: rotate(90deg);
+  outline: none;
+}
+
+.ca-stage { position: relative; flex: 1; min-height: 0; }
+
+.ca-caption {
+  position: absolute;
+  left: 0;
+  bottom: clamp(38px, 7vh, 88px);
+  width: min(570px, 47vw);
+  pointer-events: none;
+  z-index: 2;
+}
+.ca-caption::before {
+  content: "";
+  position: absolute;
+  inset: -30px -70px -30px -38px;
+  z-index: -1;
+  background: radial-gradient(ellipse at 18% 52%, rgba(1,6,10,.72), rgba(1,6,10,.24) 48%, transparent 72%);
+  filter: blur(10px);
+}
+.ca-caption > * {
+  animation: caCaptionIn .95s cubic-bezier(.16,.84,.24,1) both;
+}
+.ca-caption > *:nth-child(1) { animation-delay: .03s; }
+.ca-caption > *:nth-child(2) { animation-delay: .1s; }
+.ca-caption > *:nth-child(3) { animation-delay: .16s; }
+.ca-caption > *:nth-child(4) { animation-delay: .22s; }
+.ca-caption > *:nth-child(5) { animation-delay: .3s; }
+@keyframes caCaptionIn {
+  from { opacity: 0; transform: translateY(20px); filter: blur(7px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.ca-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .3em;
+  color: var(--ca-accent);
+  text-transform: uppercase;
+}
+.ca-kicker-line {
+  display: inline-block;
+  width: 34px;
+  height: 1px;
+  background: var(--ca-accent);
+  box-shadow: 0 0 8px var(--ca-accent);
+}
+.ca-kicker-slash { color: rgba(201,233,228,.32); margin: 0 3px; }
+.ca-caption h1 {
+  margin: 17px 0 9px;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", SimSun, serif;
+  font-size: clamp(38px, 4.25vw, 62px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: .025em;
+  color: #dcefe9;
+  text-shadow: 0 4px 28px rgba(0,0,0,.58), 0 0 44px rgba(127,247,228,.05);
+}
+.ca-en {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .27em;
+  color: rgba(201,233,228,.42);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ca-textbook-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 440px);
+  min-height: 54px;
+  margin: 0 0 17px;
+  padding: 9px 12px 9px 10px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 45%, rgba(127,247,228,.16));
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--ca-accent) 9%, rgba(5,18,21,.62)), rgba(4,14,18,.4));
+  color: rgba(232,251,247,.8);
+  font-family: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+  text-align: left;
+  box-shadow: inset 2px 0 0 color-mix(in srgb, var(--ca-accent) 70%, transparent);
+  transition: border-color .25s ease, background .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.ca-textbook-chip:hover,
+.ca-textbook-chip:focus-visible {
+  border-color: color-mix(in srgb, var(--ca-accent) 70%, transparent);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--ca-accent) 14%, rgba(6,22,24,.74)), rgba(5,18,21,.5));
+  box-shadow:
+    inset 2px 0 0 var(--ca-accent),
+    0 0 22px color-mix(in srgb, var(--ca-accent) 10%, transparent);
+  outline: none;
+  transform: translateY(-1px);
+}
+.ca-textbook-chip-icon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 38%, transparent);
+  border-radius: 6px;
+  color: var(--ca-accent);
+  background: color-mix(in srgb, var(--ca-accent) 7%, transparent);
+}
+.ca-textbook-chip-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ca-textbook-chip-top {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.ca-textbook-chip-top > b {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  color: rgba(240,255,251,.92);
+  white-space: nowrap;
+}
+.ca-textbook-chip-top > em {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8.5px;
+  font-style: normal;
+  letter-spacing: .05em;
+  color: var(--ca-accent);
+  opacity: .75;
+  white-space: nowrap;
+}
+.ca-textbook-chip-sub {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  line-height: 1.5;
+  letter-spacing: .04em;
+  color: rgba(201,233,228,.44);
+  white-space: nowrap;
+}
+.ca-textbook-chip-key {
+  flex: none;
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(201,233,228,.28);
+  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 10px;
+  color: rgba(232,251,247,.68);
+  background: rgba(2,10,14,.35);
+}
+.ca-textbook-chip > svg {
+  flex: none;
+  color: var(--ca-accent);
+  opacity: .55;
+}
+.ca-body {
+  margin: 0;
+  max-width: 520px;
+  font-size: 13.5px;
+  line-height: 1.92;
+  letter-spacing: .035em;
+  color: rgba(216,241,236,.66);
+  text-wrap: pretty;
+}
+.ca-facts {
+  display: flex;
+  gap: 30px;
+  margin-top: 23px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(127,247,228,.16);
+  max-width: 540px;
+}
+.ca-fact { min-width: 0; animation: caCaptionIn .9s cubic-bezier(.16,.84,.24,1) both; animation-delay: calc(.32s + var(--i) * .08s); }
+.ca-fact-k {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .14em;
+  color: rgba(201,233,228,.38);
+  white-space: nowrap;
+}
+.ca-fact-v {
+  margin-top: 5px;
+  font-size: 13px;
+  letter-spacing: .03em;
+  color: rgba(232,251,247,.8);
+  white-space: nowrap;
+}
+.ca-fact-v::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--ca-accent);
+  box-shadow: 0 0 8px var(--ca-accent);
+  vertical-align: 2px;
+}
+
+.ca-readout {
+  position: absolute;
+  right: 0;
+  top: 2px;
+  text-align: right;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .18em;
+  line-height: 1.8;
+  color: rgba(201,233,228,.38);
+  white-space: nowrap;
+}
+.ca-readout-sub { color: rgba(201,233,228,.24); }
+.ca-readout-sub span { opacity: .5; margin: 0 3px; }
+
+.ca-rail {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 13px;
+  z-index: 2;
+}
+.ca-rail button {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 9px;
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: rgba(201,233,228,.42);
+  cursor: pointer;
+  opacity: .62;
+  transition: color .3s ease, opacity .3s ease;
+  outline: none;
+}
+.ca-rail button:hover,
+.ca-rail button:focus-visible { color: var(--ca-accent); opacity: 1; }
+.ca-rail button.is-active { color: var(--ca-accent); opacity: 1; }
+.ca-rail-no {
+  width: 18px;
+  text-align: right;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .05em;
+}
+.ca-rail-line {
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  opacity: .55;
+  transition: width .35s ease, box-shadow .35s ease;
+}
+.ca-rail button.is-active .ca-rail-line {
+  width: 38px;
+  box-shadow: 0 0 9px var(--ca-accent);
+  opacity: 1;
+}
+.ca-rail-title {
+  font-size: 10px;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(7px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.ca-rail button.is-active .ca-rail-title,
+.ca-rail button:hover .ca-rail-title,
+.ca-rail button:focus-visible .ca-rail-title {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ca-spine {
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  writing-mode: vertical-rl;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  letter-spacing: .28em;
+  color: rgba(201,233,228,.22);
+  opacity: .8;
+  pointer-events: none;
+}
+
+.ca-footer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: none;
+  padding-top: 13px;
+  border-top: 1px solid rgba(127,247,228,.12);
+}
+.ca-auto {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 250px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: .12em;
+  color: rgba(201,233,228,.52);
+}
+.ca-auto-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,233,228,.4);
+  background: transparent;
+  transition: background .3s ease, border-color .3s ease;
+}
+.ca-auto-dot.is-live {
+  background: var(--ca-accent);
+  border-color: var(--ca-accent);
+  box-shadow: 0 0 8px var(--ca-accent);
+  animation: caLivePulse 2s ease-in-out infinite;
+}
+.ca-auto-label { color: rgba(232,251,247,.72); white-space: nowrap; }
+.ca-auto-sep { opacity: .3; }
+.ca-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  opacity: 1;
+  font-size: 9.5px;
+  color: rgba(201,233,228,.68);
+}
+.ca-hint kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 45%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--ca-accent) 70%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ca-accent) 7%, rgba(2,10,14,.6));
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  line-height: 1;
+  color: var(--ca-accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--ca-accent) 12%, transparent);
+}
+
+.ca-timeline {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  min-width: 160px;
+}
+.ca-seg {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 3px 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: .55;
+  transition: opacity .3s ease;
+}
+.ca-seg:hover,
+.ca-seg:focus-visible,
+.ca-seg.is-active { opacity: 1; outline: none; }
+.ca-seg-track {
+  position: relative;
+  display: block;
+  height: 2px;
+  background: rgba(201,233,228,.17);
+  overflow: hidden;
+}
+.ca-seg-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ca-accent);
+  transform-origin: left center;
+  box-shadow: 0 0 8px var(--ca-accent);
+  transition: transform .12s linear;
+}
+.ca-seg-label {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  letter-spacing: .1em;
+  color: rgba(201,233,228,.34);
+  text-align: left;
+}
+.ca-seg.is-active .ca-seg-label { color: var(--ca-accent); }
+.ca-seg[data-complete="true"] .ca-seg-fill { background: rgba(201,233,228,.42); box-shadow: none; }
+
+.ca-controls { display: flex; align-items: center; gap: 7px; pointer-events: auto; }
+.ca-lum {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid rgba(201,233,228,.13);
+  border-radius: 999px;
+  background: rgba(2,10,14,.28);
+  color: rgba(201,233,228,.44);
+  pointer-events: auto;
+  flex: none;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+.ca-lum > svg { flex: none; opacity: .7; }
+.ca-lum input[type="range"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 56px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.ca-lum input[type="range"]::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(201,233,228,.25);
+}
+.ca-lum input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 9px;
+  height: 9px;
+  margin-top: -3.5px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ca-accent);
+  box-shadow: 0 0 7px color-mix(in srgb, var(--ca-accent) 65%, transparent);
+}
+.ca-lum input[type="range"]::-moz-range-track {
+  height: 2px;
+  border: 0;
+  border-radius: 2px;
+  background: rgba(201,233,228,.25);
+}
+.ca-lum input[type="range"]::-moz-range-thumb {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ca-accent);
+  box-shadow: 0 0 7px color-mix(in srgb, var(--ca-accent) 65%, transparent);
+}
+.ca-lum:focus-within,
+.ca-lum:hover { border-color: rgba(201,233,228,.32); color: rgba(232,251,247,.7); }
+.ca-lum-value {
+  width: 16px;
+  text-align: right;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  letter-spacing: .04em;
+  color: rgba(201,233,228,.45);
+}
+.ca-ctrl {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(201,233,228,.18);
+  background: rgba(2,10,14,.28);
+  color: rgba(232,251,247,.74);
+  cursor: pointer;
+  transition: color .22s ease, border-color .22s ease, background .22s ease, transform .22s ease;
+  backdrop-filter: blur(8px);
+}
+.ca-ctrl:hover,
+.ca-ctrl:focus-visible {
+  color: #fff;
+  border-color: var(--ca-accent);
+  background: rgba(14,40,42,.5);
+  outline: none;
+}
+.ca-ctrl:active { transform: scale(.94); }
+.ca-ctrl:disabled { opacity: .24; cursor: default; }
+.ca-ctrl:disabled:hover { color: rgba(232,251,247,.74); border-color: rgba(201,233,228,.18); background: rgba(2,10,14,.28); }
+.ca-ctrl-primary {
+  width: 39px;
+  height: 39px;
+  color: #03110f;
+  border-color: transparent;
+  background: var(--ca-accent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--ca-accent) 36%, transparent);
+}
+.ca-ctrl-primary:hover,
+.ca-ctrl-primary:focus-visible {
+  color: #03110f;
+  background: var(--ca-accent);
+  border-color: transparent;
+  box-shadow: 0 0 28px color-mix(in srgb, var(--ca-accent) 55%, transparent);
+}
+.ca-ctrl-quiet { border-color: transparent; background: transparent; }
+
+.ca-study-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0,4,8,.6);
+  backdrop-filter: blur(10px);
+  pointer-events: auto;
+  animation: caStudyFade .28s ease both;
+}
+@keyframes caStudyFade { from { opacity: 0; } to { opacity: 1; } }
+.ca-study-panel {
+  position: relative;
+  width: min(600px, 94vw);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--ca-accent) 7%, transparent), transparent 44%),
+    linear-gradient(165deg, rgba(7,19,24,.985), rgba(2,7,11,.995));
+  border-left: 1px solid rgba(127,247,228,.22);
+  box-shadow: -42px 0 110px rgba(0,0,0,.55);
+  animation: caStudyIn .48s cubic-bezier(.2,.82,.2,1) both;
+}
+@keyframes caStudyIn {
+  from { transform: translateX(45px); opacity: .3; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.ca-study-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ca-accent), transparent 70%);
+  opacity: .8;
+  z-index: 2;
+}
+.ca-study-panel:focus { outline: none; }
+.ca-study-head {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid rgba(127,247,228,.14);
+}
+.ca-study-heading { min-width: 0; }
+.ca-study-eyebrow {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .28em;
+  color: var(--ca-accent);
+  text-transform: uppercase;
+  opacity: .85;
+}
+.ca-study-head h2 {
+  margin: 9px 0 9px;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", SimSun, serif;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: .03em;
+  color: rgba(232,251,247,.92);
+}
+.ca-study-meta {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  line-height: 1.7;
+  letter-spacing: .06em;
+  color: rgba(201,233,228,.4);
+}
+.ca-study-close { flex: none; width: 34px; height: 34px; }
+.ca-study-close:hover { transform: rotate(90deg); }
+.ca-study-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 28px 38px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(127,247,228,.22) transparent;
+}
+.ca-study-scroll::-webkit-scrollbar { width: 6px; }
+.ca-study-scroll::-webkit-scrollbar-track { background: transparent; }
+.ca-study-scroll::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: rgba(127,247,228,.2);
+}
+.ca-study-book-cta {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  margin: 18px 0 2px;
+  padding: 10px 11px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 40%, rgba(127,247,228,.14));
+  border-radius: 8px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--ca-accent) 10%, rgba(5,18,21,.62)), rgba(4,14,18,.4));
+  color: rgba(232,251,247,.8);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 2px 0 0 color-mix(in srgb, var(--ca-accent) 70%, transparent);
+  transition: border-color .25s ease, background .25s ease, transform .25s ease;
+}
+.ca-study-book-cta:hover,
+.ca-study-book-cta:focus-visible {
+  border-color: var(--ca-accent);
+  background: color-mix(in srgb, var(--ca-accent) 12%, rgba(5,18,21,.7));
+  transform: translateY(-1px);
+  outline: none;
+}
+.ca-study-book-cta-icon {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 38%, transparent);
+  border-radius: 6px;
+  color: var(--ca-accent);
+  background: color-mix(in srgb, var(--ca-accent) 7%, transparent);
+}
+.ca-study-book-cta-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ca-study-book-cta-copy b { font-size: 13px; font-weight: 500; letter-spacing: .05em; color: rgba(240,255,251,.92); }
+.ca-study-book-cta-copy em { font-family: var(--mono); font-size: 8px; font-style: normal; color: rgba(201,233,228,.45); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ca-study-book-cta-key {
+  flex: none;
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(201,233,228,.25);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(232,251,247,.55);
+}
+.ca-study-book-cta > svg { flex: none; color: var(--ca-accent); opacity: .55; }
+.ca-study-model-index {
+  margin-top: 12px;
+  padding: 10px 11px;
+  border: 1px solid rgba(127,247,228,.12);
+  border-radius: 7px;
+  background: rgba(4,14,18,.32);
+}
+.ca-study-model-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.ca-study-model-head > span { font-family: var(--mono); font-size: 8px; letter-spacing: .14em; color: var(--ca-accent); opacity: .72; }
+.ca-study-model-head > em { font-family: var(--mono); font-size: 7px; font-style: normal; color: rgba(201,233,228,.34); }
+.ca-study-model-links { display: flex; flex-direction: column; gap: 8px; }
+.ca-study-model-group-label { margin-bottom: 4px; font-family: var(--mono); font-size: 6.5px; letter-spacing: .12em; color: rgba(201,233,228,.32); }
+.ca-study-model-group-links { display: flex; flex-wrap: wrap; gap: 5px; }
+.ca-study-model-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 7px;
+  border: 1px solid rgba(127,247,228,.13);
+  border-radius: 4px;
+  background: transparent;
+  color: rgba(232,251,247,.68);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.ca-study-model-link > span { color: var(--ca-accent); opacity: .55; font-size: 7px; }
+.ca-study-model-link:hover,
+.ca-study-model-link:focus-visible { border-color: var(--ca-accent); color: var(--ca-accent); background: color-mix(in srgb, var(--ca-accent) 8%, transparent); outline: none; }
+.ca-study-section {
+  padding-top: 24px;
+}
+.ca-study-section + .ca-study-section {
+  margin-top: 24px;
+  border-top: 1px solid rgba(127,247,228,.12);
+}
+.ca-study-label {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin-bottom: 14px;
+}
+.ca-study-label > span {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  color: var(--ca-accent);
+  opacity: .75;
+}
+.ca-study-label > b {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  color: rgba(232,251,247,.85);
+}
+.ca-study-label > em {
+  margin-left: auto;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  font-style: normal;
+  letter-spacing: .18em;
+  color: rgba(201,233,228,.26);
+}
+.ca-study-objectives {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ca-study-objectives li {
+  position: relative;
+  margin: 10px 0;
+  padding-left: 22px;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: rgba(220,242,236,.76);
+}
+.ca-study-objectives li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .78em;
+  width: 11px;
+  height: 1px;
+  background: var(--ca-accent);
+  box-shadow: 0 0 6px var(--ca-accent);
+}
+.ca-concepts { margin: 0; }
+.ca-concept {
+  display: grid;
+  grid-template-columns: 158px minmax(0, 1fr);
+  gap: 18px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(127,247,228,.09);
+}
+.ca-concept:first-child { border-top: 0; padding-top: 0; }
+.ca-concept dt {
+  margin: 0;
+  min-width: 0;
+}
+.ca-concept dt > span {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.5;
+  letter-spacing: .03em;
+  color: rgba(232,251,247,.88);
+}
+.ca-concept dt > em {
+  display: block;
+  margin-top: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: .04em;
+  color: var(--ca-accent);
+  opacity: .56;
+  overflow-wrap: anywhere;
+}
+.ca-concept dd {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.82;
+  color: rgba(210,236,230,.62);
+}
+.ca-study-mechanism {
+  counter-reset: ca-step;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ca-study-mechanism li {
+  counter-increment: ca-step;
+  position: relative;
+  margin: 12px 0;
+  padding-left: 30px;
+  font-size: 12px;
+  line-height: 1.85;
+  color: rgba(210,236,230,.68);
+}
+.ca-study-mechanism li::before {
+  content: counter(ca-step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 19px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 42%, transparent);
+  border-radius: 50%;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  color: var(--ca-accent);
+  opacity: .8;
+}
+.ca-study-traps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ca-study-traps li {
+  position: relative;
+  margin: 10px 0;
+  padding: 5px 0 5px 14px;
+  border-left: 1px solid rgba(255,116,183,.42);
+  font-size: 12px;
+  line-height: 1.8;
+  color: rgba(220,242,236,.7);
+}
+.ca-study-traps li::before {
+  content: "!";
+  position: absolute;
+  left: -5px;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #081218;
+  color: #ff8fc1;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+}
+.ca-quiz-list { display: flex; flex-direction: column; gap: 8px; }
+.ca-quiz {
+  border: 1px solid rgba(127,247,228,.12);
+  border-radius: 6px;
+  background: rgba(4,13,17,.35);
+  overflow: hidden;
+  transition: border-color .25s ease, background .25s ease;
+}
+.ca-quiz.is-open {
+  border-color: color-mix(in srgb, var(--ca-accent) 28%, rgba(127,247,228,.12));
+  background: rgba(5,17,21,.5);
+}
+.ca-quiz-q {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 12px;
+  border: 0;
+  background: transparent;
+  color: rgba(232,251,247,.8);
+  text-align: left;
+  cursor: pointer;
+}
+.ca-quiz-q:focus-visible { outline: 1px solid var(--ca-accent); outline-offset: -1px; }
+.ca-quiz-no {
+  flex: none;
+  padding-top: 2px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  letter-spacing: .06em;
+  color: var(--ca-accent);
+  opacity: .7;
+}
+.ca-quiz-text {
+  flex: 1;
+  font-size: 12px;
+  line-height: 1.75;
+  color: rgba(232,251,247,.8);
+}
+.ca-quiz-q > svg { flex: none; margin-top: 2px; opacity: .45; }
+.ca-quiz-a {
+  display: flex;
+  gap: 10px;
+  padding: 0 12px 13px 38px;
+  animation: caQuizIn .3s ease both;
+}
+@keyframes caQuizIn { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: translateY(0); } }
+.ca-quiz-a-label {
+  flex: none;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: .06em;
+  color: var(--ca-accent);
+  padding-top: 2px;
+  opacity: .75;
+}
+.ca-quiz-a p {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.82;
+  color: rgba(201,233,228,.62);
+}
+.ca-visuals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 8px;
+}
+.ca-visual {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 9px;
+  border: 1px solid rgba(127,247,228,.12);
+  border-radius: 4px;
+  background: rgba(4,14,18,.35);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: .03em;
+  color: rgba(210,236,230,.66);
+}
+.ca-visual-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+  flex: none;
+}
+.ca-related {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}.ca-related li {
+  position: relative;
+  margin: 8px 0;
+  padding-left: 17px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 8px;
+  line-height: 1.8;
+  letter-spacing: .04em;
+  color: rgba(201,233,228,.52);
+}
+.ca-related li::before {
+  content: "\u2197";
+  position: absolute;
+  left: 0;
+  color: var(--ca-accent);
+  opacity: .55;
+}
+.ca-study-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 17px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(127,247,228,.1);
+}
+.ca-study-sections > span {
+  width: 100%;
+  margin-bottom: 2px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+  letter-spacing: .14em;
+  color: rgba(201,233,228,.3);
+}
+.ca-study-sections > em {
+  padding: 3px 7px;
+  border: 1px solid rgba(127,247,228,.12);
+  border-radius: 4px;
+  font-style: normal;
+  font-size: 9px;
+  line-height: 1.5;
+  color: rgba(201,233,228,.46);
+}
+.ca-study-footer {
+  display: flex;
+  gap: 14px;
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(127,247,228,.12);
+}
+.ca-study-footer-mark {
+  flex: none;
+  width: 26px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(127,247,228,.2);
+  border-radius: 3px;
+  font-family: "Songti SC", "Noto Serif SC", "STSong", serif;
+  font-size: 15px;
+  color: var(--ca-accent);
+  opacity: .65;
+}
+.ca-study-footer p {
+  margin: 0;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  line-height: 1.8;
+  letter-spacing: .02em;
+  color: rgba(201,233,228,.3);
+}
+
+.ca-book-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0,4,8,.74);
+  backdrop-filter: blur(12px);
+  pointer-events: auto;
+  animation: caStudyFade .28s ease both;
+}
+.ca-book-panel {
+  width: min(1180px, 96vw);
+  height: min(900px, 92vh);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(127,247,228,.22);
+  border-radius: 10px;
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--ca-accent) 7%, transparent), transparent 42%),
+    linear-gradient(165deg, rgba(6,18,23,.995), rgba(2,7,11,.998));
+  box-shadow: 0 30px 120px rgba(0,0,0,.65);
+  animation: caBookIn .45s cubic-bezier(.2,.82,.2,1) both;
+}
+.ca-book-panel:focus { outline: none; }
+@keyframes caBookIn {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.ca-book-head {
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid rgba(127,247,228,.14);
+  position: relative;
+}
+.ca-book-head::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 170px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ca-accent), transparent);
+  opacity: .8;
+}
+.ca-book-heading { min-width: 0; }
+.ca-book-eyebrow {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .28em;
+  color: var(--ca-accent);
+  opacity: .85;
+}
+.ca-book-head h2 {
+  margin: 8px 0 7px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 400;
+  letter-spacing: .03em;
+  color: rgba(232,251,247,.94);
+}
+.ca-book-head h2 span {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: var(--ca-accent);
+  opacity: .65;
+}
+.ca-book-meta {
+  font-family: var(--mono);
+  font-size: 8px;
+  line-height: 1.7;
+  color: rgba(201,233,228,.38);
+}
+.ca-book-close { flex: none; width: 34px; height: 34px; }
+.ca-book-body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+}
+.ca-book-nav {
+  overflow-y: auto;
+  padding: 10px;
+  border-right: 1px solid rgba(127,247,228,.12);
+  background: rgba(2,9,13,.34);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(127,247,228,.2) transparent;
+}
+.ca-book-navitem {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 2px 7px;
+  align-items: center;
+  padding: 8px 9px;
+  margin-bottom: 3px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(201,233,228,.55);
+  text-align: left;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.ca-book-navitem:hover,
+.ca-book-navitem:focus-visible {
+  color: rgba(232,251,247,.88);
+  background: rgba(127,247,228,.05);
+  outline: none;
+}
+.ca-book-navitem.is-active {
+  color: var(--ca-accent);
+  border-color: color-mix(in srgb, var(--ca-accent) 35%, transparent);
+  background: color-mix(in srgb, var(--ca-accent) 8%, rgba(4,14,18,.45));
+}
+.ca-book-nav-no {
+  grid-row: 1 / 3;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .02em;
+  color: currentColor;
+  opacity: .65;
+}
+.ca-book-nav-title {
+  font-size: 11px;
+  line-height: 1.45;
+  color: currentColor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ca-book-navitem em,
+.ca-book-navitem i {
+  font-family: var(--mono);
+  font-size: 7px;
+  font-style: normal;
+  line-height: 1.5;
+  color: rgba(201,233,228,.3);
+}
+.ca-book-navitem i { color: var(--ca-accent); opacity: .55; }
+.ca-book-main {
+  overflow-y: auto;
+  padding: 24px 28px 34px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(127,247,228,.2) transparent;
+}
+.ca-book-main::-webkit-scrollbar { width: 6px; }
+.ca-book-main::-webkit-scrollbar-thumb { background: rgba(127,247,228,.2); border-radius: 6px; }
+.ca-book-chapterhead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(127,247,228,.12);
+}
+.ca-book-kicker {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .12em;
+  color: var(--ca-accent);
+  opacity: .7;
+}
+.ca-book-kicker span { color: rgba(201,233,228,.24); margin: 0 5px; }
+.ca-book-chapterhead h3 {
+  margin: 8px 0 7px;
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: .03em;
+  color: rgba(232,251,247,.94);
+}
+.ca-book-chapterhead p {
+  margin: 0;
+  max-width: 720px;
+  font-size: 12px;
+  line-height: 1.85;
+  color: rgba(210,236,230,.62);
+}
+.ca-book-jump {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 40%, transparent);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--ca-accent) 6%, transparent);
+  color: var(--ca-accent);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .06em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ca-book-jump:hover { background: color-mix(in srgb, var(--ca-accent) 13%, transparent); }
+.ca-book-sections { padding-top: 15px; }
+.ca-book-section {
+  border-bottom: 1px solid rgba(127,247,228,.1);
+}
+.ca-book-section.is-open { background: rgba(127,247,228,.018); }
+.ca-book-section-head {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 13px 2px;
+  border: 0;
+  background: transparent;
+  color: rgba(232,251,247,.82);
+  text-align: left;
+  cursor: pointer;
+}
+.ca-book-section-head:hover { color: #fff; }
+.ca-book-section-no {
+  flex: none;
+  width: 40px;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--ca-accent);
+  opacity: .7;
+}
+.ca-book-section-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  letter-spacing: .03em;
+}
+.ca-book-section-pages {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 7px;
+  color: rgba(201,233,228,.32);
+}
+.ca-book-section-head > svg { flex: none; opacity: .45; }
+.ca-book-section-body {
+  padding: 0 2px 20px 52px;
+  animation: caQuizIn .3s ease both;
+}
+.ca-book-outline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 6px;
+  margin-bottom: 13px;
+}
+.ca-book-outline > span {
+  padding: 3px 7px;
+  border: 1px solid rgba(127,247,228,.12);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: rgba(201,233,228,.46);
+}
+.ca-book-summary {
+  margin: 0 0 13px;
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: rgba(220,242,236,.76);
+}
+.ca-book-points {
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+  counter-reset: ca-book-point;
+}
+.ca-book-points li {
+  counter-increment: ca-book-point;
+  position: relative;
+  padding-left: 24px;
+  margin: 7px 0;
+  font-size: 11.5px;
+  line-height: 1.8;
+  color: rgba(210,236,230,.66);
+}
+.ca-book-points li::before {
+  content: counter(ca-book-point, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 3px;
+  font-family: var(--mono);
+  font-size: 7px;
+  color: var(--ca-accent);
+  opacity: .65;
+}
+.ca-book-terms {
+  margin: 0 0 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.ca-book-terms > div {
+  padding: 8px 10px;
+  border: 1px solid rgba(127,247,228,.09);
+  border-radius: 4px;
+  background: rgba(4,14,18,.3);
+}
+.ca-book-terms dt {
+  font-size: 11px;
+  color: rgba(232,251,247,.84);
+}
+.ca-book-terms dd {
+  margin: 4px 0 0;
+  font-size: 10.5px;
+  line-height: 1.7;
+  color: rgba(201,233,228,.54);
+}
+.ca-book-check {
+  padding: 9px 11px;
+  border: 1px solid rgba(127,247,228,.12);
+  border-radius: 5px;
+  background: rgba(4,14,18,.3);
+}
+.ca-book-check summary {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 11px;
+  line-height: 1.7;
+  color: rgba(232,251,247,.72);
+}
+.ca-book-check summary::-webkit-details-marker { display: none; }
+.ca-book-check summary > span {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--ca-accent);
+  opacity: .75;
+}
+.ca-book-check[open] summary { color: rgba(232,251,247,.9); }
+.ca-book-check p {
+  margin: 9px 0 0 38px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: rgba(201,233,228,.62);
+}
+.ca-book-foot {
+  margin-top: 22px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(127,247,228,.1);
+  font-family: var(--mono);
+  font-size: 7px;
+  line-height: 1.7;
+  color: rgba(201,233,228,.28);
+}
+
+.ca-book-model-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }
+.ca-book-model-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  margin-top: 0;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 28%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ca-accent) 5%, transparent);
+  color: rgba(232,251,247,.72);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .03em;
+  text-align: left;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.ca-book-model-btn:hover,
+.ca-book-model-btn:focus-visible {
+  border-color: var(--ca-accent);
+  color: var(--ca-accent);
+  background: color-mix(in srgb, var(--ca-accent) 10%, transparent);
+  outline: none;
+}
+.ca-book-model-btn > span {
+  flex: none;
+  padding: 2px 5px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 38%, transparent);
+  border-radius: 3px;
+  color: var(--ca-accent);
+  font-size: 6px;
+}
+.ca-book-model-btn > svg { margin-left: auto; opacity: .55; }
+
+.ca-model-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: #02070a;
+  animation: caStudyFade .3s ease both;
+}
+.ca-model-panel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #02070a;
+}
+.ca-model-stage { position: absolute; inset: 0; z-index: 1; }
+.ca-model-stage .cm-canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.ca-model-stage .cm-canvas:active { cursor: grabbing; }
+.ca-model-stage .cm-label-layer { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.ca-model-stage .cm-label { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 7px; white-space: nowrap; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8)); transition: opacity .25s ease; }
+.ca-model-stage .cm-label i { width: 5px; height: 5px; flex: none; border-radius: 50%; background: var(--ca-accent); box-shadow: 0 0 9px var(--ca-accent); }
+.ca-model-stage .cm-label span { display: flex; flex-direction: column; gap: 1px; padding: 3px 7px; border: 1px solid rgba(127,247,228,.14); border-radius: 3px; background: rgba(2,8,11,.58); backdrop-filter: blur(6px); }
+.ca-model-stage .cm-label b { font-size: 11px; font-weight: 400; letter-spacing: .04em; color: rgba(240,255,251,.92); }
+.ca-model-stage .cm-label em { font-family: var(--mono); font-size: 7px; font-style: normal; letter-spacing: .07em; color: rgba(204,235,228,.4); }
+.ca-model-head {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 4;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 28px 30px;
+  background: linear-gradient(180deg, rgba(2,7,10,.82), transparent);
+  pointer-events: none;
+}
+.ca-model-head > div { min-width: 0; }
+.ca-model-eyebrow { font-family: var(--mono); font-size: 8px; letter-spacing: .26em; color: var(--ca-accent); opacity: .8; }
+.ca-model-head h2 { margin: 8px 0 6px; font-family: var(--serif); font-size: clamp(26px, 3.2vw, 42px); font-weight: 300; letter-spacing: .03em; color: rgba(238,251,247,.95); }
+.ca-model-meta { font-family: var(--mono); font-size: 8px; letter-spacing: .06em; color: rgba(204,235,228,.4); }
+.ca-model-head .ca-iconbtn { pointer-events: auto; flex: none; }
+.ca-model-caption {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  z-index: 4;
+  width: min(500px, 48vw);
+  padding: 18px 20px;
+  border: 1px solid rgba(127,247,228,.14);
+  border-radius: 7px;
+  background: rgba(2,10,13,.66);
+  backdrop-filter: blur(14px);
+}
+.ca-model-en { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; color: var(--ca-accent); opacity: .7; }
+.ca-model-caption p { margin: 10px 0 13px; font-size: 14px; line-height: 1.9; color: rgba(204,235,228,.7); }
+.ca-model-caption ul { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.ca-model-caption li { position: relative; padding-left: 16px; font-size: 12.5px; line-height: 1.75; color: rgba(204,235,228,.6); }
+.ca-model-caption li::before { content: ""; position: absolute; left: 0; top: .62em; width: 7px; height: 1px; background: var(--ca-accent); opacity: .6; }
+.ca-model-hint { position: absolute; right: 28px; bottom: 78px; z-index: 4; font-family: var(--mono); font-size: 7px; letter-spacing: .08em; color: rgba(204,235,228,.3); pointer-events: none; }
+.ca-model-actions { position: absolute; right: 28px; bottom: 28px; z-index: 4; display: flex; gap: 6px; }
+.ca-model-actions button { height: 31px; padding: 0 11px; border: 1px solid rgba(127,247,228,.18); border-radius: 999px; background: rgba(2,10,13,.55); color: rgba(232,251,247,.7); font-family: var(--mono); font-size: 8px; cursor: pointer; backdrop-filter: blur(10px); }
+.ca-model-actions button:hover { border-color: var(--ca-accent); color: var(--ca-accent); }
+.ca-model-error { position: absolute; inset: 0; z-index: 8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 30px; background: rgba(2,7,10,.9); text-align: center; }
+.ca-model-error b { font-family: var(--serif); font-size: 28px; font-weight: 400; color: #ffe8f2; }
+.ca-model-error span { max-width: 520px; font-size: 12px; line-height: 1.8; color: rgba(204,235,228,.55); }
+
+@media (max-width: 880px) {
+  .ca-model-head { padding: 16px 16px 24px; }
+  .ca-model-head h2 { font-size: 25px; }
+  .ca-model-caption { left: 16px; right: 16px; bottom: 72px; width: auto; padding: 12px 14px; }
+  .ca-model-caption p { display: none; }
+  .ca-model-caption ul { display: none; }
+  .ca-model-hint { display: none; }
+  .ca-model-actions { right: 16px; bottom: 18px; }
+  .ca-model-head .ca-iconbtn { width: 32px; height: 32px; }
+  .ca-model-stage .cm-label b { font-size: 9px; }
+  .ca-model-stage .cm-label em { display: none; }
+  .ca-intro { overflow-y: auto; align-items: start; padding: 28px 16px 48px; }
+  .ca-intro-quick { grid-template-columns: 1fr; max-width: 340px; margin-top: 20px; gap: 6px; }
+  .ca-intro-quick > div { flex-direction: row; align-items: center; gap: 10px; padding: 9px 11px; text-align: left; }
+  .ca-intro-actions { flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .ca-guide-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 18px; }
+  .ca-guide-title { font-size: 26px !important; }
+  .ca-guide-title kbd { min-width: 27px; height: 27px; font-size: 12px; }
+  .ca-guide-mock-body { padding: 10px 12px 13px; }
+  .ca-guide-mock-body p { font-size: 11px; }
+  .ca-guide-copy { gap: 13px; }
+  .ca-guide-block p { font-size: 11px; }
+  .ca-intro-count { display: none; }
+  .ca-controls-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 18px; }
+  .ca-intro-keymap { grid-template-columns: 1fr 1fr; margin-top: 14px; }
+  .ca-intro-keymap > div { padding: 6px 7px; }
+  .ca-book-mock-row { font-size: 7.5px; }
+  .ca-intro-controls .ca-intro-actions { margin-top: 14px; }
+}
+@media (max-width: 520px) {
+  .ca-model-head h2 { font-size: 22px; }
+  .ca-model-caption { bottom: 62px; }
+  .ca-model-actions { left: 16px; right: auto; }
+}
+
+.ca-intro {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  cursor: pointer;
+  background:
+    radial-gradient(ellipse at 50% 58%, rgba(2,8,12,.08) 0%, rgba(2,7,11,.62) 52%, rgba(1,4,8,.95) 100%);
+  backdrop-filter: blur(2px);
+  animation: caIntroIn .7s ease both;
+  transition: opacity .6s ease;
+}
+@keyframes caIntroIn { from { opacity: 0; } to { opacity: 1; } }
+.ca-intro.is-out { animation: caIntroOut .65s cubic-bezier(.4,0,.2,1) both; pointer-events: none; }
+@keyframes caIntroOut { to { opacity: 0; visibility: hidden; } }
+.ca-intro.is-out .ca-intro-inner { transform: scale(1.035); opacity: 0; transition: transform .65s ease, opacity .5s ease; }
+.ca-intro-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(127,247,228,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,247,228,.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 68%);
+  animation: caGridDrift 18s linear infinite;
+  pointer-events: none;
+}
+@keyframes caGridDrift { from { background-position: 0 0, 0 0; } to { background-position: 0 72px, 72px 0; } }
+.ca-intro-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 960px;
+  transition: transform .65s ease, opacity .5s ease;
+}
+.ca-intro-eyebrow {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .48em;
+  color: var(--ca-accent);
+  opacity: .8;
+  text-transform: uppercase;
+}
+.ca-intro h2 {
+  margin: 26px 0 10px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: .12em;
+  font-family: "Helvetica Neue", "Arial Narrow", "Segoe UI", sans-serif;
+  font-size: clamp(66px, 13.5vw, 176px);
+  font-weight: 200;
+  line-height: .82;
+  letter-spacing: .015em;
+  color: #d9eee8;
+}
+.ca-intro-fill {
+  background: linear-gradient(115deg, #c8e4dc 8%, #7fcfc2 46%, #a892c0 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.ca-intro-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(220,242,235,.32);
+}
+.ca-intro-slash { color: var(--ca-accent); font-weight: 100; opacity: .62; }
+.ca-intro-cn {
+  margin-top: 22px;
+  margin-left: .6em;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", SimSun, serif;
+  font-size: 21px;
+  font-weight: 300;
+  letter-spacing: .6em;
+  color: rgba(220,242,235,.74);
+}
+.ca-intro-sub {
+  margin-top: 12px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .3em;
+  color: rgba(201,233,228,.4);
+}
+.ca-enter {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ca-accent) 55%, transparent);
+  background: color-mix(in srgb, var(--ca-accent) 6%, transparent);
+  color: rgba(220,242,235,.86);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .3em;
+  cursor: pointer;
+  transition: background .3s ease, color .3s ease, box-shadow .3s ease;
+  backdrop-filter: blur(8px);
+}
+.ca-enter:hover,
+.ca-enter:focus-visible {
+  background: var(--ca-accent);
+  color: #03110f;
+  box-shadow: 0 0 32px color-mix(in srgb, var(--ca-accent) 45%, transparent);
+  outline: none;
+}
+.ca-intro-step { animation: caIntroStep .5s cubic-bezier(.16,.84,.24,1) both; }
+.ca-intro-welcome { margin-bottom: 15px; font-family: "Songti SC", "Noto Serif SC", "STSong", SimSun, serif; font-size: 19px; font-weight: 300; letter-spacing: .24em; color: rgba(238,251,247,.88); }
+@keyframes caIntroStep { from { opacity: 0; transform: translateY(12px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+.ca-intro-quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 620px; margin: 28px auto 0; }
+.ca-intro-quick > div { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 12px 10px; border: 1px solid rgba(127,247,228,.13); border-radius: 6px; background: rgba(2,10,13,.36); }
+.ca-intro-quick kbd { display: inline-grid; place-items: center; min-width: 23px; height: 23px; padding: 0 5px; border: 1px solid rgba(127,247,228,.45); border-radius: 4px; color: var(--ca-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; }
+.ca-intro-quick b { font-size: 12px; font-weight: 400; letter-spacing: .08em; color: rgba(232,251,247,.88); }
+.ca-intro-quick em { font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; line-height: 1.6; font-style: normal; color: rgba(201,233,228,.34); }
+.ca-intro-actions { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 22px; }
+.ca-intro-actions .ca-enter { margin-top: 0; }
+.ca-intro-count { font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; letter-spacing: .18em; color: rgba(201,233,228,.3); }
+.ca-intro-secondary { padding: 10px 15px; border: 0; background: transparent; color: rgba(201,233,228,.55); font-family: "SFMono-Regular", Consolas, monospace; font-size: 9px; letter-spacing: .06em; cursor: pointer; }
+.ca-intro-secondary:hover { color: var(--ca-accent); }
+.ca-intro-inner.is-guide { max-width: 1060px; text-align: left; }
+.ca-intro-inner.is-guide .ca-intro-eyebrow { text-align: center; }
+.ca-guide-title { display: block !important; justify-content: center !important; margin: 14px 0 0 !important; text-align: center; font-family: "Songti SC", "Noto Serif SC", "STSong", SimSun, serif !important; font-size: clamp(27px, 3vw, 38px) !important; font-weight: 300 !important; letter-spacing: .04em !important; color: rgba(238,251,247,.95) !important; }
+.ca-guide-title kbd { display: inline-grid; place-items: center; min-width: 32px; height: 32px; padding: 0 8px; margin: 0 4px; border: 1px solid rgba(127,247,228,.45); border-radius: 5px; background: rgba(127,247,228,.05); color: var(--ca-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 14px; vertical-align: 2px; }
+.ca-guide-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 26px; align-items: start; margin: 24px 0 4px; }
+.ca-guide-mock { border: 1px solid rgba(127,247,228,.18); border-radius: 7px; background: linear-gradient(165deg, rgba(6,19,24,.94), rgba(2,8,11,.96)); box-shadow: 0 24px 60px rgba(0,0,0,.4); overflow: hidden; }
+.ca-guide-mock-head { display: flex; align-items: center; gap: 9px; padding: 11px 14px; border-bottom: 1px solid rgba(127,247,228,.12); font-family: "SFMono-Regular", Consolas, monospace; }
+.ca-guide-mock-head span { font-size: 6px; letter-spacing: .2em; color: rgba(127,247,228,.55); }
+.ca-guide-mock-head b { font-size: 13px; font-weight: 400; letter-spacing: .06em; color: rgba(238,251,247,.9); }
+.ca-guide-mock-head kbd { margin-left: auto; display: grid; place-items: center; width: 21px; height: 21px; border: 1px solid rgba(127,247,228,.35); border-radius: 3px; color: var(--ca-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 9px; }
+.ca-guide-mock-body { padding: 14px 16px 16px; }
+.ca-guide-mini-label { margin: 10px 0 4px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; letter-spacing: .12em; color: var(--ca-accent); opacity: .72; }
+.ca-guide-mock-body p { margin: 0; font-size: 12px; line-height: 1.75; color: rgba(201,233,228,.58); }
+.ca-guide-copy { display: flex; flex-direction: column; gap: 16px; padding-top: 2px; }
+.ca-guide-block { display: grid; grid-template-columns: 27px minmax(0, 1fr); gap: 9px; }
+.ca-guide-block > span { width: 23px; height: 23px; display: grid; place-items: center; border: 1px solid rgba(127,247,228,.3); border-radius: 50%; color: var(--ca-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; }
+.ca-guide-block b { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 500; letter-spacing: .04em; color: rgba(238,251,247,.9); }
+.ca-guide-block p { margin: 0; font-size: 12px; line-height: 1.78; color: rgba(201,233,228,.54); }
+.ca-intro-inner.is-guide .ca-intro-actions { margin-top: 20px; }
+.ca-controls-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 26px; align-items: start; margin: 22px 0 0; }
+.ca-book-mock-body { padding: 8px 12px 10px; }
+.ca-book-mock-row { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 7px; align-items: center; padding: 4px 6px; border: 1px solid transparent; border-radius: 3px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; color: rgba(201,233,228,.42); }
+.ca-book-mock-row > span { color: var(--ca-accent); opacity: .6; font-size: 7px; }
+.ca-book-mock-row > em { font-style: normal; font-size: 7px; color: rgba(201,233,228,.26); }
+.ca-book-mock-row.is-active { border-color: rgba(127,247,228,.22); background: rgba(127,247,228,.06); color: rgba(238,251,247,.82); }
+.ca-book-mock-section { display: flex; align-items: center; gap: 7px; margin: 8px 0 2px 26px; padding: 7px 8px; border-left: 1px solid rgba(127,247,228,.3); font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; line-height: 1.5; color: rgba(201,233,228,.5); }
+.ca-book-mock-section > span { color: var(--ca-accent); opacity: .7; }
+.ca-book-mock-section > em { margin-left: auto; padding: 2px 4px; border: 1px solid rgba(127,247,228,.24); border-radius: 2px; font-style: normal; font-size: 6px; color: var(--ca-accent); white-space: nowrap; }
+.ca-intro-keymap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 18px; }
+.ca-intro-keymap > div { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; padding: 7px 8px; border: 1px solid rgba(127,247,228,.11); border-radius: 4px; background: rgba(2,10,13,.3); }
+.ca-intro-keymap kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border: 1px solid rgba(127,247,228,.35); border-radius: 3px; color: var(--ca-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; }
+.ca-intro-keymap b { font-size: 9px; font-weight: 400; color: rgba(201,233,228,.55); }
+.ca-intro-controls .ca-intro-actions { margin-top: 18px; }
+.ca-intro-load {
+  margin: 28px auto 0;
+  width: 210px;
+  height: 1px;
+  background: rgba(201,233,228,.15);
+  overflow: hidden;
+}
+.ca-intro-load span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--ca-accent);
+  transform-origin: left center;
+  animation: caLoad 2.8s cubic-bezier(.3,.6,.4,1) both;
+  box-shadow: 0 0 10px var(--ca-accent);
+}
+@keyframes caLoad { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.ca-intro-meta {
+  margin-top: 15px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  letter-spacing: .24em;
+  color: rgba(201,233,228,.3);
+}
+.ca-intro-skip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26px;
+  z-index: 2;
+  text-align: center;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 7px;
+  letter-spacing: .26em;
+  color: rgba(201,233,228,.35);
+}
+
+.ca-error {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 26px;
+  background: rgba(1,4,8,.82);
+  backdrop-filter: blur(8px);
+}
+.ca-error-card {
+  max-width: 520px;
+  padding: 30px 32px;
+  border: 1px solid rgba(255,116,183,.26);
+  background: rgba(5,11,16,.86);
+  box-shadow: 0 24px 80px rgba(0,0,0,.6);
+}
+.ca-error-no {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  letter-spacing: .28em;
+  color: #ff8fc1;
+}
+.ca-error-card h2 {
+  margin: 14px 0 12px;
+  font-family: "Songti SC", "Noto Serif SC", "STSong", SimSun, serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #ffeaf4;
+}
+.ca-error-card p { margin: 0; font-size: 13px; line-height: 1.85; color: rgba(232,251,247,.66); }
+.ca-error-detail {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background: rgba(255,116,183,.06);
+  border-left: 2px solid rgba(255,116,183,.5);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 9px;
+  line-height: 1.6;
+  color: rgba(255,190,217,.65);
+  overflow-wrap: anywhere;
+}
+.ca-error-actions { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+
+@media (max-width: 1180px) {
+  .ca-spine { display: none; }
+  .ca-topreadout { display: none; }
+  .ca-caption { width: min(540px, 58vw); }
+  .ca-readout { display: none; }
+}
+@media (max-width: 880px) {
+  .ca-ui { padding: 16px 16px 14px; }
+  .ca-brand-mark { width: 31px; height: 31px; }
+  .ca-wordmark { font-size: 9px; letter-spacing: .26em; }
+  .ca-wordmark-cn { display: none; }
+  .ca-topright { gap: 10px; }
+  .ca-study-toggle {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .ca-study-toggle span { display: none; }
+  .ca-book-btn { width: 33px; height: 33px; }
+  .ca-counter { font-size: 8px; }
+  .ca-counter b { font-size: 14px; }
+  .ca-iconbtn { width: 33px; height: 33px; }
+  .ca-caption { width: min(590px, calc(100% - 8px)); bottom: 44px; }
+  .ca-caption h1 { font-size: clamp(32px, 7.4vw, 44px); margin-top: 12px; }
+  .ca-en { margin-bottom: 12px; font-size: 8px; }
+  .ca-body { font-size: 12px; line-height: 1.8; max-width: 100%; }
+  .ca-facts { gap: 18px; margin-top: 14px; padding-top: 11px; }
+  .ca-fact-k { font-size: 7px; }
+  .ca-fact-v { font-size: 11px; }
+  .ca-rail { display: none; }
+  .ca-footer { flex-wrap: wrap; gap: 9px 14px; padding-top: 10px; }
+  .ca-auto { min-width: 0; flex: 1; order: 1; }
+  .ca-hint { display: none; }
+  .ca-controls { order: 2; margin-left: auto; gap: 5px; }
+  .ca-lum { height: 31px; padding: 0 6px; gap: 4px; }
+  .ca-lum input[type="range"] { width: 42px; }
+  .ca-lum-value { display: none; }
+  .ca-ctrl { width: 31px; height: 31px; }
+  .ca-ctrl-primary { width: 35px; height: 35px; }
+  .ca-timeline { order: 3; flex-basis: 100%; min-width: 0; }
+  .ca-intro h2 { font-size: clamp(56px, 17vw, 110px); }
+  .ca-intro-cn { font-size: 17px; margin-top: 18px; }
+  .ca-intro-sub { font-size: 8px; letter-spacing: .2em; }
+  .ca-intro-eyebrow { font-size: 7px; letter-spacing: .3em; }
+  .ca-intro-inner { max-width: 100%; }
+  .ca-intro-skip { bottom: 18px; font-size: 6px; }
+  .ca-study-panel { width: 100%; }
+  .ca-study-head { padding: 20px 18px 16px; }
+  .ca-study-head h2 { font-size: 21px; }
+  .ca-study-scroll { padding: 4px 18px 30px; }
+  .ca-study-label > em { display: none; }
+  .ca-concept { grid-template-columns: 1fr; gap: 5px; padding: 11px 0; }
+  .ca-concept dt > span { font-size: 12px; }
+  .ca-concept dd { font-size: 11.5px; }
+  .ca-study-footer { margin-top: 24px; }
+}
+@media (max-width: 520px) {
+  .ca-textbook-chip { width: 100%; min-height: 48px; gap: 8px; padding: 7px 9px; }
+  .ca-textbook-chip-icon { width: 28px; height: 28px; }
+  .ca-textbook-chip-top > b { font-size: 12px; }
+  .ca-textbook-chip-top > em { font-size: 7.5px; }
+  .ca-textbook-chip-sub { font-size: 7px; white-space: normal; }
+  .ca-textbook-chip-key { display: none; }
+  .ca-textbook-chip > svg { display: none; }
+  .ca-study-meta { font-size: 7px; }
+  .ca-study-objectives li,
+  .ca-study-mechanism li,
+  .ca-study-traps li { font-size: 11.5px; }
+  .ca-book-backdrop { padding: 0; }
+  .ca-book-panel { width: 100%; height: 100%; border-radius: 0; border: 0; }
+  .ca-book-head { padding: 18px 18px 14px; }
+  .ca-book-head h2 { font-size: 23px; margin: 6px 0; }
+  .ca-book-body { display: flex; flex-direction: column; }
+  .ca-book-nav {
+    flex: none;
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 12px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(127,247,228,.12);
+  }
+  .ca-book-navitem {
+    flex: 0 0 164px;
+    margin-bottom: 0;
+    grid-template-columns: 38px minmax(0, 1fr);
+  }
+  .ca-book-navitem i { display: none; }
+  .ca-book-main { flex: 1; padding: 18px 16px 26px; }
+  .ca-book-chapterhead { gap: 12px; flex-wrap: wrap; }
+  .ca-book-chapterhead h3 { font-size: 24px; }
+  .ca-book-jump { order: 2; }
+  .ca-book-section-head { gap: 8px; }
+  .ca-book-section-no { width: 34px; }
+  .ca-book-section-title { font-size: 13px; }
+  .ca-book-section-body { padding-left: 42px; }
+  .ca-book-terms { grid-template-columns: 1fr; }
+  .ca-study-book-cta { margin-top: 12px; }
+  .ca-study-book-cta-copy em { white-space: normal; line-height: 1.5; }
+}
+@media (max-height: 740px) {
+  .ca-ui { padding-top: 16px; padding-bottom: 12px; }
+  .ca-caption { bottom: 24px; }
+  .ca-caption h1 { font-size: clamp(30px, 3.5vw, 44px); margin: 10px 0 6px; }
+  .ca-body { display: none; }
+  .ca-facts { margin-top: 10px; padding-top: 9px; }
+  .ca-rail { gap: 8px; }
+  .ca-intro h2 { font-size: clamp(58px, 10vw, 120px); }
+  .ca-intro-cn { margin-top: 14px; }
+  .ca-enter { margin-top: 20px; }
+  .ca-intro-load { margin-top: 18px; }
+  .ca-intro-meta { margin-top: 10px; }
+  .ca-study-head { padding: 18px 22px 14px; }
+  .ca-study-head h2 { margin: 6px 0; font-size: 22px; }
+  .ca-study-scroll { padding-top: 0; }
+  .ca-study-section { padding-top: 18px; }
+  .ca-book-head { padding: 16px 20px 12px; }
+  .ca-book-head h2 { font-size: 24px; margin: 5px 0; }
+  .ca-book-main { padding-top: 16px; }
+  .ca-book-chapterhead { padding-bottom: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ca-root *,
+  .ca-root *::before,
+  .ca-root *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+`;window.__ModuleLoader__.load({id:"@local/cell-atlas",factory(i){return Rf(i("react"))}});})();

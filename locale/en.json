@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Cell Atlas",
+    "description": "A cinematic, fully procedural Three.js cell atlas: seven chapters from membrane to mitosis, with custom shaders, particle flow fields, volumetric light and bloom."
+  }
+}

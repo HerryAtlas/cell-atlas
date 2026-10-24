@@ -1,0 +1,12 @@
+node_modules/
+.pnpm-store/
+.dsh/
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.*
+dist/
+out/
+.video_work/
+tmp/

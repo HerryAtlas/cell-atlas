@@ -1,0 +1,47 @@
+{
+  "name": "@local/cell-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A cinematic, fully procedural Three.js cell atlas with a 16-chapter / 44-section study library and fourteen section 3D models.",
+  "license": "MIT",
+  "author": "Cell Atlas contributors",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "LICENSE",
+    "THIRD_PARTY_LICENSES.txt",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "scripts": {
+    "build": "node ./build.mjs",
+    "build:demo": "node ./build-demo.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.10",
+    "three": "^0.186.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HerryAtlas/cell-atlas.git"
+  },
+  "homepage": "https://HerryAtlas.github.io/cell-atlas/"
+}

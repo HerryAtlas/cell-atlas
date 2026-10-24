@@ -1,0 +1,3 @@
+- insert:
+    - id: cell-atlas
+      name: '@local/cell-atlas'
