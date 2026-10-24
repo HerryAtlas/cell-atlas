@@ -431,3 +431,7 @@ mock-up.
 If you use this project in teaching, a link back to the repository is
 appreciated. Contributions that improve scientific accuracy are especially
 welcome — please cite the textbook section or a primary source in the PR.
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for the official deployment URL, the abandoned-username note and the GitHub Pages header limitations.
