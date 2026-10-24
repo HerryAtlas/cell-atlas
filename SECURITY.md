@@ -10,7 +10,7 @@ Canonical repository:
 
 **https://github.com/HerryAtlas/cell-atlas**
 
-Any page at `herryatlas.github.io` or `github.com/HerryAtlas` is **not controlled by this project** and must be treated as untrusted. The account was renamed; the old GitHub username may be reclaimed. Do not enter credentials or download files from the old addresses.
+Any page at the former GitHub Pages address, or the former GitHub account, is **not controlled by this project** and must be treated as untrusted. The account was renamed; the former username may be reclaimed. Do not enter credentials or download files from the former addresses.
 
 ## Threat model
 
@@ -35,4 +35,4 @@ For a non-sensitive issue, open a GitHub issue on the canonical repository. Do n
 
 ## Scope
 
-Reports about the abandoned `HerryAtlas` username are welcome as a **domain/identity integrity** issue, but the project cannot technically prevent a third party from registering an available GitHub username. The durable mitigation is to use a controlled custom domain and to keep all official references pointed at the canonical URL above.
+Reports about the abandoned former username are welcome as a **domain/identity integrity** issue, but the project cannot technically prevent a third party from registering an available GitHub username. The durable mitigation is to use a controlled custom domain and to keep all official references pointed at the canonical URL above.
