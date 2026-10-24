@@ -147,6 +147,8 @@ function buildProkaryoteEukaryote() {
   pro.position.set(-3.35, 0.35, 0);
   add(new THREE.SphereGeometry(1.45, 44, 30), glass(0x4adac8, 0.15), null, null, pro, [1.25, 1, 1]);
   add(new THREE.SphereGeometry(1.52, 24, 16), new THREE.MeshBasicMaterial({ color: 0x5ee8d7, wireframe: true, transparent: true, opacity: 0.075 }), null, null, pro, [1.25, 1, 1]);
+  add(new THREE.SphereGeometry(1.58, 24, 16), new THREE.MeshBasicMaterial({ color: 0x8df2df, wireframe: true, transparent: true, opacity: 0.035 }), null, null, pro, [1.28, 1.03, 1.03]);
+  add(new THREE.SphereGeometry(1.72, 20, 14), glass(0x7cead8, 0.045), null, null, pro, [1.26, 1.02, 1.02]);
   const r = rand(12);
   for (let i = 0; i < 42; i += 1) {
     const theta = r() * TAU;
@@ -224,10 +226,13 @@ function buildProkaryoteEukaryote() {
   label(group, '原核细胞', [-3.35, 2.1, 0], 'PROKARYOTE');
   label(group, '拟核 DNA', [-4.1, 0.0, 0.5], 'NUCLEOID');
   label(group, '70S 核糖体', [-2.2, -1.2, 0.5], 'RIBOSOME');
+  label(group, '细胞壁 / 荚膜', [-4.15, 1.35, 0.3], 'CELL WALL / CAPSULE');
+  label(group, '鞭毛', [-4.75, -0.65, 0.25], 'FLAGELLUM');
   label(group, '真核细胞', [2.85, 2.75, 0], 'EUKARYOTE');
   label(group, '细胞核', [3.2, 0.3, 1.2], 'NUCLEUS');
   label(group, '线粒体', [4.35, -0.6, 0.2], 'MITOCHONDRION');
   label(group, '内膜系统', [1.1, -1.8, 1.0], 'ENDOMEMBRANE');
+  label(group, '80S 核糖体', [2.15, -1.45, 1.0], '80S RIBOSOME');
   return setDistance(group, 14.2);
 }
 
@@ -304,11 +309,30 @@ function buildMembrane() {
     const a = (i / 22) * TAU;
     ball(group, 0.045, 0xffb8de, [1.95 + Math.cos(a) * 0.25, 0.78 + (i % 3) * 0.12, -0.4 + Math.sin(a) * 0.25], { glow: 1.1, segments: 8, rings: 6 });
   }
+  // Inner-leaflet phosphatidylserine patch and fluorescent lipid markers
+  // that visibly diffuse sideways in the outer leaflet.
+  for (let i = 0; i < 7; i += 1) {
+    ball(group, 0.075, 0xff9ecb, [-1.25 + i * 0.17, -0.36, 0.48], { glow: 0.45, segments: 8, rings: 6 });
+  }
+  const lipidMarkers = [];
+  for (let i = 0; i < 7; i += 1) {
+    const mesh = ball(group, 0.045, 0xffd36e, [-2.25 + i * 0.72, 0.42, 0.72], { glow: 1.0, segments: 8, rings: 6 });
+    lipidMarkers.push({ mesh, baseX: mesh.position.x, phase: i * 0.7 });
+  }
   label(group, '磷脂双分子层', [-2.7, -0.9, 0.4], 'PHOSPHOLIPID BILAYER');
   label(group, '整合膜蛋白', [2.65, 0.2, 0.2], 'INTEGRAL PROTEIN');
   label(group, '通道蛋白', [0.9, 1.05, 0.2], 'CHANNEL');
   label(group, '糖萼', [-1.55, 1.25, 0.3], 'GLYCOCALYX');
   label(group, '胆固醇', [-1.3, 0.15, -0.6], 'CHOLESTEROL');
+  label(group, '磷脂酰丝氨酸', [-1.35, -0.72, 0.45], 'PS · INNER LEAFLET');
+  label(group, '脂质侧向扩散', [1.75, 0.82, 0.55], 'LATERAL DIFFUSION');
+  group.userData.update = (time) => {
+    lipidMarkers.forEach(({ mesh, baseX, phase }, i) => {
+      mesh.position.x = baseX + Math.sin(time * 0.45 + phase) * 0.24;
+      mesh.position.z = 0.72 + Math.cos(time * 0.32 + phase + i) * 0.10;
+      mesh.material.emissiveIntensity = 0.8 + Math.sin(time * 1.8 + i) * 0.3;
+    });
+  };
   return group;
 }
 
@@ -360,8 +384,10 @@ function buildTransport() {
     pump.children[2].rotation.z = 0.35 - Math.sin(time * 0.9) * 0.08;
   };
   label(group, '通道蛋白', [-1.65, 1.15, 0.2], 'CHANNEL');
-  label(group, 'Na⁺/K⁺ 泵', [1.7, 1.35, 0.2], 'P-TYPE PUMP');
-  label(group, 'ATP', [1.65, -1.05, 0.35], 'ENERGY');
+  label(group, 'Na⁺/K⁺ 泵', [1.7, 1.55, 0.2], 'P-TYPE PUMP');
+  label(group, '3 Na⁺ 出', [2.65, 1.05, 0.25], '3 Na⁺ OUT');
+  label(group, '2 K⁺ 入', [2.65, -0.95, 0.25], '2 K⁺ IN');
+  label(group, '1 ATP', [2.55, -1.45, 0.35], 'ENERGY');
   label(group, '膜电位', [3.1, -0.4, 0.4], 'MEMBRANE POTENTIAL');
   label(group, '细胞外', [-2.9, 1.55, 0.1], 'EXTRACELLULAR');
   label(group, '细胞质', [-2.9, -1.6, 0.1], 'CYTOPLASM');
@@ -415,7 +441,9 @@ function buildEndomembrane() {
   };
   label(group, '内质网', [-2.7, 1.45, 0.2], 'ENDOPLASMIC RETICULUM');
   label(group, '高尔基体', [0.35, 1.25, 0.1], 'GOLGI APPARATUS');
+  label(group, '顺面 / 反面', [0.35, 1.78, 0.1], 'CIS / TRANS');
   label(group, '转运膜泡', [0.95, -0.95, 0.5], 'TRANSPORT VESICLE');
+  label(group, 'COPI / COPII', [1.45, -0.38, 0.55], 'COATOMER');
   label(group, '溶酶体', [2.65, -0.95, 0.2], 'LYSOSOME');
   return group;
 }
@@ -588,10 +616,32 @@ function buildCytoskeleton() {
     }
     tube(group, pts, 0.045, strand === 1 ? 0xff9fc9 : 0xb7cfd1, { glow: 0.5, segments: 110 });
   }
+  const motors = [];
+  const motorColors = [0xffd36e, 0xffd36e, 0xff9fc9];
+  for (let i = 0; i < 3; i += 1) {
+    const motor = new THREE.Group();
+    motor.position.set(-2.2 + i * 1.5, -0.55, 0.28);
+    ball(motor, 0.10, motorColors[i], [0, 0, 0], { glow: 1.3, segments: 12, rings: 8 });
+    capsule(motor, 0.035, 0.16, motorColors[i], [-0.08, 0.12, 0], [0, 0, -0.45], { glow: 0.8 });
+    capsule(motor, 0.035, 0.16, motorColors[i], [0.08, 0.12, 0], [0, 0, 0.45], { glow: 0.8 });
+    ball(motor, 0.045, 0xfff0bd, [0, 0.16, 0], { glow: 0.7, segments: 8, rings: 5 });
+    group.add(motor);
+    motors.push({ group: motor, phase: i / 3, speed: 0.10 + i * 0.012, direction: i === 2 ? -1 : 1 });
+  }
   label(group, '微丝', [-2.0, 2.05, 0.4], 'ACTIN FILAMENT · 7 nm');
-  label(group, '微管', [0.1, -1.45, 0.5], 'MICROTUBULE · 24 nm');
+  label(group, '微管', [-1.6, -0.98, 0.55], 'MICROTUBULE · 24 nm');
   label(group, '中间丝', [2.2, -1.35, 0.4], 'INTERMEDIATE FILAMENT · 10 nm');
   label(group, '分子马达', [1.3, 1.55, 0.45], 'MOLECULAR MOTOR');
+  label(group, '驱动蛋白 →', [1.25, 0.05, 0.55], 'KINESIN · + END');
+  label(group, '动力蛋白 ←', [-1.8, -0.18, 0.55], 'DYNEIN · − END');
+  group.userData.update = (time) => {
+    motors.forEach(({ group: motor, phase, speed, direction }) => {
+      const u = ((time * speed + phase) % 1 + 1) % 1;
+      motor.position.x = direction > 0 ? -2.85 + u * 5.7 : 2.85 - u * 5.7;
+      motor.position.y = -0.55 + Math.sin(u * TAU * 4 + phase) * 0.035;
+      motor.rotation.z = direction > 0 ? 0.05 : -0.05;
+    });
+  };
   return group;
 }
 
@@ -741,9 +791,23 @@ function buildRibosome() {
     const u = i / 8;
     ball(group, 0.06, 0xffc077, [1.15 + Math.sin(u * TAU * 1.2) * 0.28, 1.0 + u * 1.5, 0.2 + Math.cos(u * TAU) * 0.2], { glow: 0.5, segments: 8, rings: 6 });
   }
+  const peptideTip = ball(group, 0.075, 0xffd28c, [1.15, 2.55, 0.2], { glow: 1.1, segments: 12, rings: 8 });
+  const trnaShuttle = [];
+  for (let i = 0; i < 3; i += 1) {
+    const bead = ball(group, 0.055, i === 1 ? 0xffb0d6 : 0x8fe7ff, [-0.35 + i * 0.34, 0.28, 0.86], { glow: 0.9, segments: 9, rings: 6 });
+    trnaShuttle.push({ mesh: bead, phase: i / 3 });
+  }
   group.userData.update = (time) => {
     large.rotation.z = Math.sin(time * 0.35) * 0.015;
     small.rotation.z = -Math.sin(time * 0.35) * 0.01;
+    peptideTip.position.y = 2.5 + Math.sin(time * 0.8) * 0.08;
+    peptideTip.scale.setScalar(0.85 + Math.sin(time * 0.8) * 0.15);
+    trnaShuttle.forEach(({ mesh, phase }, i) => {
+      const u = ((time * 0.12 + phase) % 1 + 1) % 1;
+      mesh.position.x = -0.55 + u * 1.0;
+      mesh.position.y = 0.18 + Math.sin(u * Math.PI) * 0.18;
+      mesh.position.z = 0.86 + Math.sin(u * TAU + i) * 0.04;
+    });
   };
   label(group, '大亚基', [0.9, 1.45, 0.4], 'LARGE SUBUNIT');
   label(group, '小亚基', [-0.45, -0.9, 0.4], 'SMALL SUBUNIT');
@@ -751,6 +815,8 @@ function buildRibosome() {
   label(group, 'tRNA', [-0.7, 1.2, 0.6], 'TRANSFER RNA');
   label(group, '新生肽链', [1.8, 1.8, 0.3], 'POLYPEPTIDE');
   label(group, 'A / P / E 位点', [0.55, 0.1, 0.95], 'SITES');
+  label(group, '肽键形成', [1.05, 0.55, 1.0], 'PEPTIDYL TRANSFER');
+  label(group, 'mRNA 5′→3′', [-2.55, 0.4, 0.5], 'TRANSLATION DIRECTION');
   return group;
 }
 
