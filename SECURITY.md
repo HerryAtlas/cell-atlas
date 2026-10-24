@@ -19,9 +19,10 @@ This is a static, client-side educational site:
 - no login, account system or user data collection;
 - no cookies used by the application;
 - no backend or database;
-- no third-party scripts, ads or analytics;
+- no third-party application scripts, ads or analytics;
+- the hosting platform injects its own same-origin HUD/badge script on Netlify's free plan; its inline bootstrap is blocked by the CSP, so the badge does not render;
 - no file uploads or form submissions;
-- no network requests after assets load.
+- no application network requests after assets load.
 
 The relevant risks are therefore limited to content spoofing at an abandoned URL and to browser-side code execution in the static frontend itself.
 

@@ -3,7 +3,13 @@ import { modelsForSection } from '../src/model-catalog.js';
 
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
-const start = Math.max(0, Math.min(TEXTBOOK.length - 1, Number(params.get('book')) || 0));
+
+function chapterIndex(value) {
+  const n = Number(value);
+  return Number.isInteger(n) && n >= 0 && n < TEXTBOOK.length ? n : 0;
+}
+
+const start = chapterIndex(params.get('book'));
 let selected = start;
 
 $('tbChapters').innerHTML = TEXTBOOK.map((chapter, index) => `
@@ -18,7 +24,7 @@ $('tbChapters').innerHTML = TEXTBOOK.map((chapter, index) => `
 const navButtons = Array.from(document.querySelectorAll('[data-chapter]'));
 
 function render(index, updateUrl = true, scroll = true) {
-  selected = Math.max(0, Math.min(TEXTBOOK.length - 1, index));
+  selected = chapterIndex(index);
   const chapter = TEXTBOOK[selected];
   navButtons.forEach((button, i) => {
     button.classList.toggle('is-active', i === selected);

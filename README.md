@@ -81,7 +81,8 @@ python -m http.server 8000
 
 On Windows PowerShell the same command works if Python is on `PATH`. Any static
 file server is fine; opening `docs/index.html` directly with `file://` also
-works because the demo uses no network requests.
+works because the demo itself makes no application network requests. The
+Netlify host may inject its own free-plan HUD script after load.
 
 The full section reader is a second static page:
 
@@ -223,8 +224,10 @@ Suggested study loop:
 3. Return to the reader and explain the section out loud without looking.
 4. Use the chapter pager to move to the next section.
 
-The reader intentionally uses no external fonts, images, analytics or network
-calls beyond the static files.
+The reader intentionally uses no external fonts, images, analytics or
+application network calls beyond the static files. The Netlify host may inject
+its own same-origin HUD script on the free plan; the CSP blocks its inline
+bootstrap.
 
 ---
 
@@ -398,7 +401,9 @@ stylesheet, icon and cover into `docs/`.
   transparent scene stable.
 - **Determinism** — the procedural layout uses a seeded PRNG; reloads compose the
   same cell.
-- **No tracking, no network calls, no external assets.**
+- **No application tracking, no application network calls, no external assets.**
+  The Netlify host injects its own same-origin HUD badge script on the free
+  plan; the CSP blocks its inline bootstrap.
 
 Tested in Chromium/Edge with WebGL2. A WebGL fallback panel explains when the
 browser cannot create a context.
