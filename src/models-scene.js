@@ -425,7 +425,7 @@ function buildEndomembrane() {
 /* ------------------------------------------------------------------ */
 function buildMitoChloro() {
   const group = new THREE.Group();
-  group.userData.distance = 12.8;
+  group.userData.distance = 12.0;
   const mito = new THREE.Group();
   mito.position.set(-2.25, 0.1, 0);
   capsule(mito, 1.05, 1.35, 0xffa765, [0, 0, 0], [0, 0, 0.05], { glass: true, opacity: 0.12 });
@@ -455,6 +455,40 @@ function buildMitoChloro() {
   tube(mito, mtDNA, 0.025, 0xa9ffdb, { glow: 0.5, segments: 50 });
   group.add(mito);
 
+  // ATP synthase on the inner membrane: F0 ring, stalk, F1 head, proton
+  // influx and newly synthesised ATP leaving the enzyme.
+  const synthase = new THREE.Group();
+  synthase.position.set(0.72, 0.38, 0.62);
+  synthase.rotation.set(0.15, -0.2, 0.12);
+  torus(synthase, 0.20, 0.03, 0x77f5e2, [0, 0, 0], [Math.PI / 2, 0, 0], { glow: 0.9, transparent: true, opacity: 0.82 });
+  torus(synthase, 0.12, 0.018, 0xffd18e, [0, 0, 0], [Math.PI / 2, 0, 0], { glow: 0.65, transparent: true, opacity: 0.75 });
+  add(new THREE.CylinderGeometry(0.045, 0.045, 0.20, 12), material(0xc4fff2, { metalness: 0.25, emissive: 0x236f64, emissiveIntensity: 0.5 }), [0, 0.14, 0], null, synthase);
+  const rotor = new THREE.Group();
+  rotor.position.y = 0.30;
+  torus(rotor, 0.14, 0.028, 0xffc275, [0, 0, 0], [Math.PI / 2, 0, 0], { glow: 0.8, transparent: true, opacity: 0.8 });
+  for (let i = 0; i < 3; i += 1) {
+    const a = (i / 3) * TAU;
+    ball(rotor, 0.04, 0xffe0a4, [Math.cos(a) * 0.13, 0, Math.sin(a) * 0.13], { glow: 1.1, segments: 8, rings: 6 });
+  }
+  synthase.add(rotor);
+  add(new THREE.CylinderGeometry(0.08, 0.11, 0.08, 16), material(0xffd08f, { metalness: 0.3, emissive: 0x8a4c18, emissiveIntensity: 0.5 }), [0, 0.38, 0], null, synthase);
+  tube(mito, [[0.72, 0.36, 0.62], [0.70, 0.66, 0.64], [0.68, 0.98, 0.66]], 0.012, 0xffd27a, { glow: 0.5, transparent: true, opacity: 0.26, segments: 24 });
+  mito.add(synthase);
+  tube(mito, [[0.82, 0.98, 0.72], [0.76, 0.62, 0.66], [0.72, 0.30, 0.62], [0.68, 0.0, 0.58]], 0.012, 0x8ff7ff, { glow: 0.45, transparent: true, opacity: 0.42, segments: 36 });
+  const synthaseProtons = [];
+  const synthaseAtp = [];
+  for (let i = 0; i < 10; i += 1) {
+    const proton = ball(mito, 0.038, 0x8ff7ff, [0.79, 0.9, 0.68], { glow: 1.0, segments: 8, rings: 6 });
+    synthaseProtons.push({ mesh: proton, phase: i / 10 });
+  }
+  for (let i = 0; i < 10; i += 1) {
+    const atpParticle = ball(mito, 0.065, 0xffcf72, [0.72, 0.4, 0.62], { glow: 1.2, segments: 10, rings: 7 });
+    synthaseAtp.push({ mesh: atpParticle, phase: i / 10 });
+  }
+  label(group, 'ATP 合酶', [-1.5, 1.2, 0.85], 'ATP SYNTHASE');
+  label(group, 'H⁺ 回流', [-1.45, 0.28, 0.82], 'H⁺ FLOW');
+  label(group, 'ADP + Pi → ATP', [-1.15, -1.12, 0.72], 'ATP SYNTHESIS');
+
   const chloro = new THREE.Group();
   chloro.position.set(2.15, 0.05, 0);
   add(new THREE.SphereGeometry(1.55, 44, 30), glass(0x63d9a1, 0.13), null, null, chloro, [1.15, 1.28, 0.86]);
@@ -481,9 +515,21 @@ function buildMitoChloro() {
   group.userData.update = (time) => {
     mito.rotation.z = Math.sin(time * 0.25) * 0.03;
     chloro.rotation.y = Math.sin(time * 0.22) * 0.08;
+    rotor.rotation.y = time * 1.7;
+    synthaseProtons.forEach(({ mesh, phase }) => {
+      const u = ((time * 0.26 + phase) % 1 + 1) % 1;
+      mesh.position.set(0.82 - u * 0.14, 0.98 - u * 1.02, 0.72 - u * 0.14);
+      mesh.scale.setScalar(0.65 + Math.sin(u * Math.PI) * 0.5);
+    });
+    synthaseAtp.forEach(({ mesh, phase }) => {
+      const u = ((time * 0.34 + phase) % 1 + 1) % 1;
+      mesh.position.set(0.72 + Math.sin(u * TAU + phase) * 0.06, 0.30 + u * 0.78, 0.62 + u * 0.05);
+      mesh.scale.setScalar(0.7 + Math.sin(u * Math.PI) * 0.45);
+      mesh.material.opacity = 0.35 + Math.sin(u * Math.PI) * 0.6;
+    });
   };
   label(group, '线粒体', [-2.25, 1.85, 0.2], 'MITOCHONDRION');
-  label(group, '嵴', [-1.45, 0.85, 0.45], 'CRISTAE');
+  label(group, '嵴', [-2.55, 0.82, 0.55], 'CRISTAE');
   label(group, '叶绿体', [2.15, 2.25, 0.2], 'CHLOROPLAST');
   label(group, '类囊体 / 基粒', [2.8, -0.9, 0.6], 'THYLAKOID / GRANA');
   return group;
@@ -554,7 +600,7 @@ function buildCytoskeleton() {
 /* ------------------------------------------------------------------ */
 function buildNucleus() {
   const group = new THREE.Group();
-  group.userData.distance = 12.4;
+  group.userData.distance = 11.6;
   add(new THREE.SphereGeometry(2.2, 52, 36), glass(0xb996ff, 0.13), null, null, group);
   add(new THREE.SphereGeometry(2.23, 26, 18), new THREE.MeshBasicMaterial({ color: 0xd4bfff, wireframe: true, transparent: true, opacity: 0.07 }), null, null, group);
   add(new THREE.SphereGeometry(2.08, 24, 16), new THREE.MeshBasicMaterial({ color: 0xffc6ea, wireframe: true, transparent: true, opacity: 0.035 }), null, null, group);
@@ -567,6 +613,34 @@ function buildNucleus() {
     pore.lookAt(0, 0, 0);
     ball(group, 0.028, 0xffe2f7, p, { glow: 0.35, segments: 7, rings: 5 });
   }
+
+  // One enlarged, camera-facing nuclear pore complex: outer ring, inner ring,
+  // eight radial spokes, a central channel and animated import/export cargo.
+  const npcDir = new THREE.Vector3(0.58, 0.32, 0.75).normalize();
+  const npc = new THREE.Group();
+  npc.position.copy(npcDir.clone().multiplyScalar(2.2));
+  npc.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), npcDir);
+  torus(npc, 0.38, 0.03, 0x8fdcff, [0, 0, 0], [0, 0, 0], { glow: 0.9, transparent: true, opacity: 0.82 });
+  torus(npc, 0.24, 0.022, 0xffc6ea, [0, 0, 0], [0, 0, 0], { glow: 0.55, transparent: true, opacity: 0.68 });
+  torus(npc, 0.46, 0.008, 0xc8f7ff, [0, 0, 0], [0, 0, 0], { glow: 0.35, transparent: true, opacity: 0.28 });
+  const npcSpokes = new THREE.Group();
+  for (let i = 0; i < 8; i += 1) {
+    const a = (i / 8) * TAU;
+    add(new THREE.CylinderGeometry(0.018, 0.018, 0.27, 6), material(0xc8f4ff, { transparent: true, opacity: 0.78, emissive: 0x2f8ba0, emissiveIntensity: 0.5 }), [Math.cos(a) * 0.30, Math.sin(a) * 0.30, 0], [0, 0, a - Math.PI / 2], npcSpokes);
+    ball(npcSpokes, 0.045, 0x9cecff, [Math.cos(a) * 0.37, Math.sin(a) * 0.37, 0], { glow: 0.8, segments: 8, rings: 5 });
+  }
+  add(new THREE.CylinderGeometry(0.085, 0.085, 0.30, 16, 1, true), glass(0x9be8ff, 0.32), [0, 0, 0], [Math.PI / 2, 0, 0], npc);
+  ball(npc, 0.06, 0xffd2f1, [0, 0, 0], { glow: 0.8, segments: 12, rings: 8 });
+  npc.add(npcSpokes);
+  const npcCargo = [];
+  for (let i = 0; i < 4; i += 1) {
+    const a = (i / 4) * TAU + 0.4;
+    const exportCargo = i % 2 === 1;
+    const cargo = ball(npc, 0.055, exportCargo ? 0xffc27a : 0x75e8ff, [Math.cos(a) * 0.11, Math.sin(a) * 0.11, exportCargo ? 0.52 : -0.52], { glow: 1.15, segments: 10, rings: 7 });
+    npcCargo.push({ mesh: cargo, phase: i / 4, speed: 0.32 + (i % 2) * 0.12, dir: exportCargo ? 1 : -1 });
+  }
+  group.add(npc);
+
   for (let i = 0; i < 5; i += 1) {
     const pts = [];
     for (let k = 0; k < 22; k += 1) {
@@ -596,9 +670,19 @@ function buildNucleus() {
   }
   ball(group, 0.18, 0x9ce7ff, [-1.3, 0.75, 0.65], { glass: true, opacity: 0.35 });
   label(group, '核被膜', [-2.25, 1.25, 0.4], 'NUCLEAR ENVELOPE');
-  label(group, '核孔', [1.65, 1.55, 0.8], 'NUCLEAR PORE');
+  label(group, '核孔复合体', [1.65, 1.55, 0.8], 'NUCLEAR PORE COMPLEX');
+  label(group, '核质交换', [1.72, 0.92, 0.9], 'IMPORT / EXPORT');
   label(group, '染色质', [-0.9, -0.85, 1.3], 'CHROMATIN');
   label(group, '核仁', [0.45, -0.2, 1.0], 'NUCLEOLUS');
+  group.userData.update = (time) => {
+    npcSpokes.rotation.z = time * 0.16;
+    npcCargo.forEach(({ mesh, phase, speed, dir }) => {
+      const u = ((time * speed + phase) % 1 + 1) % 1;
+      mesh.position.z = dir > 0 ? -0.56 + u * 1.12 : 0.56 - u * 1.12;
+      mesh.scale.setScalar(0.8 + Math.sin(u * Math.PI) * 0.4);
+      mesh.material.opacity = 0.45 + Math.sin(u * Math.PI) * 0.5;
+    });
+  };
   return group;
 }
 

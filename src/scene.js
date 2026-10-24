@@ -803,6 +803,70 @@ export function createCellAtlasScene(container, options = {}) {
   pores.instanceMatrix.needsUpdate = true;
   nucleusGroup.add(pores);
 
+  // A readable, camera-facing nuclear pore complex: eight spokes, outer/inner
+  // rings, a central channel and animated cargo moving in both directions.
+  const npcDir = new THREE.Vector3(0.58, 0.32, 0.75).normalize();
+  const npc = new THREE.Group();
+  npc.position.copy(npcDir.clone().multiplyScalar(2.78));
+  npc.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), npcDir);
+  const npcMat = new THREE.MeshBasicMaterial({
+    color: 0x9be8ff,
+    transparent: true,
+    opacity: 0.74,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+  const npcInnerMat = new THREE.MeshBasicMaterial({
+    color: 0xffb8e8,
+    transparent: true,
+    opacity: 0.62,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+  const npcOuter = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.030, 8, 40), npcMat);
+  const npcInner = new THREE.Mesh(new THREE.TorusGeometry(0.26, 0.020, 8, 30), npcInnerMat);
+  npc.add(npcOuter, npcInner);
+  const npcSpokes = new THREE.Group();
+  const spokeGeo = new THREE.CylinderGeometry(0.016, 0.016, 0.28, 6);
+  for (let i = 0; i < 8; i += 1) {
+    const a = (i / 8) * TAU;
+    const spoke = new THREE.Mesh(spokeGeo, npcMat);
+    spoke.position.set(Math.cos(a) * 0.32, Math.sin(a) * 0.32, 0);
+    spoke.rotation.z = a - Math.PI / 2;
+    npcSpokes.add(spoke);
+  }
+  npc.add(npcSpokes);
+  const channel = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.085, 0.085, 0.30, 16, 1, true),
+    new THREE.MeshBasicMaterial({ color: 0x6fe8ff, transparent: true, opacity: 0.18, side: THREE.DoubleSide, depthWrite: false })
+  );
+  channel.rotation.x = Math.PI / 2;
+  npc.add(channel);
+  const npcPlug = new THREE.Mesh(
+    new THREE.SphereGeometry(0.06, 12, 8),
+    new THREE.MeshBasicMaterial({ color: 0xffd2f1, transparent: true, opacity: 0.9, depthWrite: false })
+  );
+  npc.add(npcPlug);
+  const npcCargo = [];
+  for (let i = 0; i < 6; i += 1) {
+    const exportCargo = i % 2 === 1;
+    const a = (i / 6) * TAU;
+    const cargo = new THREE.Mesh(
+      new THREE.SphereGeometry(0.045, 10, 7),
+      new THREE.MeshBasicMaterial({
+        color: exportCargo ? 0xffc27a : 0x75e8ff,
+        transparent: true,
+        opacity: 0.9,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      })
+    );
+    cargo.position.set(Math.cos(a) * 0.09, Math.sin(a) * 0.09, exportCargo ? 0.62 : -0.62);
+    npc.add(cargo);
+    npcCargo.push({ mesh: cargo, phase: i / 6, speed: 0.28 + (i % 2) * 0.10, dir: exportCargo ? 1 : -1 });
+  }
+  nucleusGroup.add(npc);
+
   const chromatinGroup = new THREE.Group();
   nucleusGroup.add(chromatinGroup);
   const chromatinPositions = [];
@@ -941,6 +1005,86 @@ export function createCellAtlasScene(container, options = {}) {
     mitochondriaGroup.add(group);
   }
 
+  // ATP synthase assemblies: F0 ring in the inner membrane, a stalk and the
+  // F1 head facing the matrix. The highlighted assemblies also receive a
+  // visible H+ stream from the intermembrane space.
+  const synthaseAnchors = [];
+  const synthaseRotors = [];
+  const synthaseRingMat = new THREE.MeshBasicMaterial({
+    color: 0x78f5df,
+    transparent: true,
+    opacity: 0.72,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+  const synthaseGoldMat = new THREE.MeshStandardMaterial({
+    color: 0xffb85e,
+    emissive: 0x9a4a13,
+    emissiveIntensity: 0.85,
+    roughness: 0.3,
+    metalness: 0.3,
+  });
+  [0, 1, 2, 5, 7].forEach((index) => {
+    const center = new THREE.Vector3().fromArray(mitoPositions[index]);
+    const dir = center.clone().normalize();
+    const anchor = center.clone().addScaledVector(dir, 0.98);
+    const assembly = new THREE.Group();
+    assembly.position.copy(anchor);
+    assembly.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir);
+    const f0 = new THREE.Mesh(new THREE.TorusGeometry(0.30, 0.026, 8, 32), synthaseRingMat);
+    const f0Inner = new THREE.Mesh(new THREE.TorusGeometry(0.17, 0.015, 8, 24), synthaseRingMat);
+    assembly.add(f0, f0Inner);
+    const rotor = new THREE.Group();
+    rotor.position.z = -0.30;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.14, 16, 12), synthaseGoldMat);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.21, 0.022, 8, 28), synthaseGoldMat);
+    rotor.add(head, ring);
+    for (let i = 0; i < 3; i += 1) {
+      const a = (i / 3) * TAU;
+      const paddle = new THREE.Mesh(new THREE.SphereGeometry(0.035, 8, 6), synthaseGoldMat);
+      paddle.position.set(Math.cos(a) * 0.19, Math.sin(a) * 0.19, 0);
+      rotor.add(paddle);
+    }
+    assembly.add(rotor);
+    const stalk = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.045, 0.25, 8), synthaseGoldMat);
+    stalk.rotation.x = Math.PI / 2;
+    stalk.position.z = -0.14;
+    assembly.add(stalk);
+    mitochondriaGroup.add(assembly);
+    synthaseRotors.push(rotor);
+    synthaseAnchors.push({ anchor, dir, quaternion: assembly.quaternion.clone() });
+  });
+
+  const synthaseFlowCount = 180;
+  const synthaseFlowPositions = new Float32Array(synthaseFlowCount * 3);
+  const synthaseFlowData = [];
+  for (let i = 0; i < synthaseFlowCount; i += 1) {
+    const assembly = synthaseAnchors[i % synthaseAnchors.length];
+    const a = rng() * TAU;
+    synthaseFlowData.push({
+      anchor: assembly.anchor,
+      quaternion: assembly.quaternion,
+      x: Math.cos(a) * (0.02 + rng() * 0.07),
+      y: Math.sin(a) * (0.02 + rng() * 0.07),
+      phase: rng(),
+      speed: 0.24 + rng() * 0.38,
+    });
+  }
+  const synthaseFlowGeo = new THREE.BufferGeometry();
+  synthaseFlowGeo.setAttribute('position', new THREE.BufferAttribute(synthaseFlowPositions, 3));
+  const synthaseFlowMat = new THREE.PointsMaterial({
+    color: 0x8ff7ff,
+    size: 0.045,
+    sizeAttenuation: true,
+    transparent: true,
+    opacity: 0.62,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+  const synthaseFlow = new THREE.Points(synthaseFlowGeo, synthaseFlowMat);
+  synthaseFlow.frustumCulled = false;
+  mitochondriaGroup.add(synthaseFlow);
+
   const protonCount = 520;
   const protonPositions = new Float32Array(protonCount * 3);
   const protonData = [];
@@ -969,17 +1113,22 @@ export function createCellAtlasScene(container, options = {}) {
   protons.frustumCulled = false;
   mitochondriaGroup.add(protons);
 
-  const atpCount = 96;
+  const atpCount = 120;
   const atpPositions = new Float32Array(atpCount * 3);
   const atpLife = new Float32Array(atpCount);
   const atpData = [];
   for (let i = 0; i < atpCount; i += 1) {
+    const assembly = synthaseAnchors[i % synthaseAnchors.length];
+    const dir = assembly.dir.clone();
+    const tangent = new THREE.Vector3(-dir.y, dir.x, 0).normalize();
     atpData.push({
-      center: new THREE.Vector3().fromArray(mitoPositions[Math.floor(rng() * mitoPositions.length)]),
-      dir: randomUnit(rng),
+      origin: assembly.anchor.clone().addScaledVector(dir, -0.34),
+      dir,
+      tangent,
       age: rng() * 3,
-      life: 2 + rng() * 3,
-      speed: 0.35 + rng() * 0.9,
+      life: 2.6 + rng() * 2.4,
+      speed: 0.34 + rng() * 0.55,
+      wobble: rng() * TAU,
     });
     atpLife[i] = atpData[i].age / atpData[i].life;
   }
@@ -1021,6 +1170,34 @@ export function createCellAtlasScene(container, options = {}) {
   const atp = new THREE.Points(atpGeo, atpMat);
   atp.frustumCulled = false;
   mitochondriaGroup.add(atp);
+
+  const adpCount = 56;
+  const adpPositions = new Float32Array(adpCount * 3);
+  const adpData = [];
+  for (let i = 0; i < adpCount; i += 1) {
+    const assembly = synthaseAnchors[i % synthaseAnchors.length];
+    adpData.push({
+      anchor: assembly.anchor,
+      dir: assembly.dir,
+      tangent: new THREE.Vector3(-assembly.dir.y, assembly.dir.x, 0).normalize(),
+      phase: rng(),
+      speed: 0.20 + rng() * 0.28,
+    });
+  }
+  const adpGeo = new THREE.BufferGeometry();
+  adpGeo.setAttribute('position', new THREE.BufferAttribute(adpPositions, 3));
+  const adpMat = new THREE.PointsMaterial({
+    color: 0x8fd8ff,
+    size: 0.042,
+    sizeAttenuation: true,
+    transparent: true,
+    opacity: 0.32,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+  const adp = new THREE.Points(adpGeo, adpMat);
+  adp.frustumCulled = false;
+  mitochondriaGroup.add(adp);
   const mitoLight = new THREE.PointLight(0xff9c47, 20, 16, 2);
   mitoLight.position.set(4.9, 0.2, 1.8);
   mitochondriaGroup.add(mitoLight);
@@ -1442,6 +1619,13 @@ export function createCellAtlasScene(container, options = {}) {
     chromatinGroup.rotation.x = Math.sin(state.time * 0.09) * 0.12;
     nucleolus.rotation.y += dt * 0.05;
     envelope.rotation.y -= dt * 0.012;
+    npcSpokes.rotation.z = state.time * 0.14;
+    npcCargo.forEach(({ mesh, phase, speed, dir }) => {
+      const u = ((state.time * speed + phase) % 1 + 1) % 1;
+      mesh.position.z = dir > 0 ? -0.62 + u * 1.24 : 0.62 - u * 1.24;
+      mesh.scale.setScalar(0.7 + Math.sin(u * Math.PI) * 0.5);
+      mesh.material.opacity = 0.32 + Math.sin(u * Math.PI) * 0.6;
+    });
   }
 
   function updateCytoskeleton() {
@@ -1462,6 +1646,7 @@ export function createCellAtlasScene(container, options = {}) {
     motorGeo.attributes.position.needsUpdate = true;
   }
 
+  const flowVec = new THREE.Vector3();
   function updateMitochondria(dt) {
     for (let i = 0; i < protonData.length; i += 1) {
       const data = protonData[i];
@@ -1473,23 +1658,47 @@ export function createCellAtlasScene(container, options = {}) {
     }
     protonGeo.attributes.position.needsUpdate = true;
 
+    // H+ moves inward through each ATP synthase, down the electrochemical gradient.
+    for (let i = 0; i < synthaseFlowData.length; i += 1) {
+      const data = synthaseFlowData[i];
+      const u = ((state.time * data.speed + data.phase) % 1 + 1) % 1;
+      flowVec.set(data.x, data.y, 0.58 - u * 0.92).applyQuaternion(data.quaternion).add(data.anchor);
+      synthaseFlowPositions[i * 3] = flowVec.x;
+      synthaseFlowPositions[i * 3 + 1] = flowVec.y;
+      synthaseFlowPositions[i * 3 + 2] = flowVec.z;
+    }
+    synthaseFlowGeo.attributes.position.needsUpdate = true;
+
+    for (let i = 0; i < adpData.length; i += 1) {
+      const data = adpData[i];
+      const u = ((state.time * data.speed + data.phase) % 1 + 1) % 1;
+      flowVec.copy(data.anchor)
+        .addScaledVector(data.dir, 1.02 - u * 0.82)
+        .addScaledVector(data.tangent, Math.sin(u * TAU + data.phase) * 0.12);
+      adpPositions[i * 3] = flowVec.x;
+      adpPositions[i * 3 + 1] = flowVec.y;
+      adpPositions[i * 3 + 2] = flowVec.z;
+    }
+    adpGeo.attributes.position.needsUpdate = true;
+
     for (let i = 0; i < atpData.length; i += 1) {
       const data = atpData[i];
       data.age += dt;
-      if (data.age > data.life) {
-        data.age = 0;
-        data.dir = randomUnit(rng);
-        data.center.fromArray(mitoPositions[Math.floor(rng() * mitoPositions.length)]);
-      }
+      if (data.age > data.life) data.age = 0;
       const life = clamp(data.age / data.life, 0, 1);
-      const p = data.center.clone().addScaledVector(data.dir, data.age * data.speed);
-      atpPositions[i * 3] = p.x;
-      atpPositions[i * 3 + 1] = p.y + Math.sin(data.age * 1.7 + i) * 0.1;
-      atpPositions[i * 3 + 2] = p.z;
+      flowVec.copy(data.origin)
+        .addScaledVector(data.dir, data.age * data.speed)
+        .addScaledVector(data.tangent, Math.sin(data.age * 1.8 + data.wobble) * 0.18);
+      atpPositions[i * 3] = flowVec.x;
+      atpPositions[i * 3 + 1] = flowVec.y;
+      atpPositions[i * 3 + 2] = flowVec.z;
       atpLife[i] = life;
     }
     atpGeo.attributes.position.needsUpdate = true;
     atpGeo.attributes.aLife.needsUpdate = true;
+    synthaseRotors.forEach((rotor, i) => {
+      rotor.rotation.z = state.time * (1.35 + i * 0.08);
+    });
     mitoLight.intensity = 15 + Math.sin(state.time * 1.7) * 5;
   }
 
