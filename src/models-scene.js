@@ -494,9 +494,12 @@ function buildMitoChloro() {
   const rotor = new THREE.Group();
   rotor.position.y = 0.30;
   torus(rotor, 0.14, 0.028, 0xffc275, [0, 0, 0], [Math.PI / 2, 0, 0], { glow: 0.8, transparent: true, opacity: 0.8 });
+  const f1Sites = [];
   for (let i = 0; i < 3; i += 1) {
     const a = (i / 3) * TAU;
     ball(rotor, 0.04, 0xffe0a4, [Math.cos(a) * 0.13, 0, Math.sin(a) * 0.13], { glow: 1.1, segments: 8, rings: 6 });
+    const site = ball(rotor, 0.032, 0x8ff7ff, [Math.cos(a) * 0.19, 0, Math.sin(a) * 0.19], { glow: 0.9, segments: 7, rings: 5 });
+    f1Sites.push({ mesh: site, phase: i / 3 });
   }
   synthase.add(rotor);
   add(new THREE.CylinderGeometry(0.08, 0.11, 0.08, 16), material(0xffd08f, { metalness: 0.3, emissive: 0x8a4c18, emissiveIntensity: 0.5 }), [0, 0.38, 0], null, synthase);
@@ -515,6 +518,7 @@ function buildMitoChloro() {
   }
   label(group, 'ATP 合酶', [-1.5, 1.2, 0.85], 'ATP SYNTHASE');
   label(group, 'H⁺ 回流', [-1.45, 0.28, 0.82], 'H⁺ FLOW');
+  label(group, 'F₁ 三步旋转', [-0.72, 1.02, 0.8], 'F₁ · 120° STEPS');
   label(group, 'ADP + Pi → ATP', [-1.15, -1.12, 0.72], 'ATP SYNTHESIS');
 
   const chloro = new THREE.Group();
@@ -544,6 +548,10 @@ function buildMitoChloro() {
     mito.rotation.z = Math.sin(time * 0.25) * 0.03;
     chloro.rotation.y = Math.sin(time * 0.22) * 0.08;
     rotor.rotation.y = time * 1.7;
+    f1Sites.forEach(({ mesh, phase }) => {
+      mesh.material.emissiveIntensity = 0.6 + Math.sin(time * 3 + phase * TAU) * 0.55;
+      mesh.scale.setScalar(0.85 + Math.sin(time * 3 + phase * TAU) * 0.25);
+    });
     synthaseProtons.forEach(({ mesh, phase }) => {
       const u = ((time * 0.26 + phase) % 1 + 1) % 1;
       mesh.position.set(0.82 - u * 0.14, 0.98 - u * 1.02, 0.72 - u * 0.14);
@@ -691,6 +699,25 @@ function buildNucleus() {
   }
   group.add(npc);
 
+  // Ran-GTP is high in the nucleus and Ran-GDP is high in the cytoplasm;
+  // the colour field makes the directionality of nuclear transport visible.
+  const ranRng = rand(505);
+  for (let i = 0; i < 14; i += 1) {
+    const theta = ranRng() * TAU;
+    const phi = Math.acos(2 * ranRng() - 1);
+    const rr = 0.9 + ranRng() * 0.85;
+    ball(group, 0.032, 0x7dffc4, [Math.cos(theta) * Math.sin(phi) * rr, Math.cos(phi) * rr, Math.sin(theta) * Math.sin(phi) * rr], { glow: 0.75, segments: 7, rings: 5 });
+  }
+  const ranTangent = new THREE.Vector3(-npcDir.y, npcDir.x, 0).normalize();
+  const ranBitangent = new THREE.Vector3().crossVectors(npcDir, ranTangent).normalize();
+  for (let i = 0; i < 8; i += 1) {
+    const p = npc.position.clone()
+      .addScaledVector(npcDir, 0.30 + ranRng() * 0.35)
+      .addScaledVector(ranTangent, (ranRng() - 0.5) * 0.8)
+      .addScaledVector(ranBitangent, (ranRng() - 0.5) * 0.8);
+    ball(group, 0.032, 0xffb36b, [p.x, p.y, p.z], { glow: 0.8, segments: 7, rings: 5 });
+  }
+
   for (let i = 0; i < 5; i += 1) {
     const pts = [];
     for (let k = 0; k < 22; k += 1) {
@@ -722,6 +749,7 @@ function buildNucleus() {
   label(group, '核被膜', [-2.25, 1.25, 0.4], 'NUCLEAR ENVELOPE');
   label(group, '核孔复合体', [1.65, 1.55, 0.8], 'NUCLEAR PORE COMPLEX');
   label(group, '核质交换', [1.72, 0.92, 0.9], 'IMPORT / EXPORT');
+  label(group, 'Ran-GTP 梯度', [-1.35, -1.6, 0.8], 'RAN-GTP GRADIENT');
   label(group, '染色质', [-0.9, -0.85, 1.3], 'CHROMATIN');
   label(group, '核仁', [0.45, -0.2, 1.0], 'NUCLEOLUS');
   group.userData.update = (time) => {
