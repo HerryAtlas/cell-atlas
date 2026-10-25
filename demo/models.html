@@ -57,6 +57,11 @@
         <p id="cmSummary"></p>
         <div class="cm-info-label">观察重点 / WHAT TO NOTICE</div>
         <ul id="cmPoints"></ul>
+        <button type="button" class="cm-learn-entry" id="cmLearnEntry" hidden>
+          <span>GUIDED LESSON / 样板课</span>
+          <b>进入「跨膜运输」导学</b>
+          <em>点击结构 · 机制演示 · 预测实验 · 练习</em>
+        </button>
         <div class="cm-links">
           <a id="cmBookLink" href="./textbook.html">打开对应教材小节 →</a>
           <a id="cmSceneLink" href="./index.html">看整幕细胞 →</a>
@@ -64,6 +69,32 @@
         <div class="cm-info-foot">拖动模型观察结构关系 · 模型为示意性重建，不按真实比例</div>
       </aside>
     </div>
+
+    <section class="cm-lesson" id="cmLesson" hidden aria-label="跨膜运输导学">
+      <header class="cm-lesson-head">
+        <div>
+          <div class="cm-lesson-kicker">GUIDED LESSON / 样板课</div>
+          <h2>跨膜运输</h2>
+          <p>通道与泵 · Na⁺/K⁺ 泵的主动运输</p>
+          <a class="cm-lesson-book" href="./textbook.html?book=3">教材 pp. 62–68 · 回到对应小节 →</a>
+        </div>
+        <div class="cm-lesson-actions">
+          <button type="button" class="cm-lesson-peek" id="cmLessonPeek">看模型</button>
+          <button type="button" class="cm-lesson-close" id="cmLessonClose" aria-label="关闭导学">关闭</button>
+        </div>
+      </header>
+      <nav class="cm-lesson-tabs" id="cmLessonTabs" role="tablist" aria-label="导学阶段">
+        <button type="button" role="tab" data-stage="0" aria-selected="true"><span>01</span>认识结构</button>
+        <button type="button" role="tab" data-stage="1" aria-selected="false"><span>02</span>观察机制</button>
+        <button type="button" role="tab" data-stage="2" aria-selected="false"><span>03</span>动手探索</button>
+        <button type="button" role="tab" data-stage="3" aria-selected="false"><span>04</span>场景练习</button>
+      </nav>
+      <div class="cm-lesson-scroll"><div class="cm-lesson-body" id="cmLessonBody"></div></div>
+      <footer class="cm-lesson-foot">
+        <span id="cmLessonProgress">01 / 04 · 认识结构</span>
+        <button type="button" id="cmLessonNext">下一步 →</button>
+      </footer>
+    </section>
 
     <div class="cm-loading" id="cmLoading"><span></span> BUILDING SPECIMEN <i></i></div>
     <div class="cm-error" id="cmError" hidden><b>模型未能加载</b><p id="cmErrorText"></p><button type="button" id="cmReload">重新加载</button></div>

@@ -9,6 +9,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { MODEL_SPECS, modelById } from './model-catalog.js';
+import { getTransportStructure } from './transport-lesson.js';
 
 const TAU = Math.PI * 2;
 
@@ -361,10 +362,10 @@ function buildTransport() {
 
   const pump = new THREE.Group();
   pump.position.set(1.65, 0, 0);
-  capsule(pump, 0.42, 0.85, 0xffb56f, [0, 0.05, 0], null, { glow: 0.4 });
-  capsule(pump, 0.18, 0.5, 0xffdc9d, [-0.28, 0.55, 0], [0, 0, -0.35], { glow: 0.8 });
-  capsule(pump, 0.18, 0.5, 0xffdc9d, [0.28, 0.55, 0], [0, 0, 0.35], { glow: 0.8 });
-  ball(pump, 0.16, 0xffe6a6, [0, -0.65, 0], { glow: 1.8 });
+  const pumpBody = capsule(pump, 0.42, 0.85, 0xffb56f, [0, 0.05, 0], null, { glow: 0.4 });
+  const pumpLeft = capsule(pump, 0.18, 0.5, 0xffdc9d, [-0.28, 0.55, 0], [0, 0, -0.35], { glow: 0.8 });
+  const pumpRight = capsule(pump, 0.18, 0.5, 0xffdc9d, [0.28, 0.55, 0], [0, 0, 0.35], { glow: 0.8 });
+  const pumpAtp = ball(pump, 0.16, 0xffe6a6, [0, -0.65, 0], { glow: 1.8 });
   group.add(pump);
 
   const ions = [];
@@ -374,14 +375,88 @@ function buildTransport() {
     const mesh = ball(group, 0.07, ionColors[i % 3], [-2.8 + r() * 5.6, -1.8 + r() * 3.6, -0.7 + r() * 1.4], { glow: 1.5, segments: 10, rings: 8 });
     ions.push({ mesh, x: mesh.position.x, z: mesh.position.z, phase: r() * TAU, speed: 0.3 + r() * 0.6 });
   }
+
+  // Dedicated lesson actors. They are hidden in the normal specimen view and
+  // only become visible while the guided lesson is open.
+  const lesson = { active: false, step: 0, atp: 1, gradient: 1, inhibitor: false };
+  const lessonGroup = new THREE.Group();
+  lessonGroup.visible = false;
+  group.add(lessonGroup);
+  const naInside = [[1.35, -0.72, 0.2], [1.62, -0.92, -0.16], [1.92, -0.72, 0.3]].map((p) => new THREE.Vector3(...p));
+  const naPump = [[1.5, -0.38, 0.15], [1.65, -0.5, -0.1], [1.82, -0.38, 0.22]].map((p) => new THREE.Vector3(...p));
+  const naOutside = [[1.3, 0.75, 0.1], [1.62, 0.9, -0.12], [1.94, 0.76, 0.25]].map((p) => new THREE.Vector3(...p));
+  const kOutside = [[1.42, 0.86, 0.22], [1.86, 0.74, -0.1]].map((p) => new THREE.Vector3(...p));
+  const kPump = [[1.54, 0.35, 0.15], [1.78, 0.28, -0.08]].map((p) => new THREE.Vector3(...p));
+  const kInside = [[1.4, -0.55, 0.18], [1.82, -0.72, -0.12]].map((p) => new THREE.Vector3(...p));
+  const lessonIons = [];
+  for (let i = 0; i < 3; i += 1) {
+    const mesh = ball(lessonGroup, 0.075, 0x78d8ff, naInside[i].toArray(), { glow: 1.45, segments: 10, rings: 8 });
+    lessonIons.push({ mesh, target: naInside[i].clone() });
+  }
+  for (let i = 0; i < 2; i += 1) {
+    const mesh = ball(lessonGroup, 0.08, 0xffd28c, kOutside[i].toArray(), { glow: 1.35, segments: 10, rings: 8 });
+    lessonIons.push({ mesh, target: kOutside[i].clone() });
+  }
+  const lessonAtp = ball(lessonGroup, 0.12, 0xffcf72, [1.65, -0.82, 0.35], { glow: 1.8, segments: 12, rings: 8 });
+
+  function setLessonTargets(step) {
+    const naTargets = step <= 0 ? naInside : step === 1 ? naPump : naOutside;
+    const kTargets = step <= 2 ? kOutside : step === 3 ? kPump : kInside;
+    naTargets.forEach((p, i) => lessonIons[i].target.copy(p));
+    kTargets.forEach((p, i) => lessonIons[3 + i].target.copy(p));
+    lessonAtp.visible = step <= 1;
+    lessonAtp.position.set(step <= 0 ? 1.65 : 1.52, step <= 0 ? -0.82 : -0.42, 0.35);
+  }
+  setLessonTargets(0);
+  group.userData.picks = {
+    membrane: { ...getTransportStructure('membrane'), position: new THREE.Vector3(0, 0, 0) },
+    channel: { ...getTransportStructure('channel'), position: new THREE.Vector3(-1.65, 0, 0.05) },
+    pump: { ...getTransportStructure('pump'), position: new THREE.Vector3(1.65, 0.05, 0.05) },
+    atp: { ...getTransportStructure('atp'), position: new THREE.Vector3(1.65, -0.75, 0.35) },
+  };
+  function pickTarget(geometry, position, id) {
+    const hit = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
+    hit.position.set(...position);
+    hit.userData.pick = group.userData.picks[id];
+    group.add(hit);
+    return hit;
+  }
+  pickTarget(new THREE.BoxGeometry(6.4, 0.28, 2.5), [0, 0, 0], 'membrane');
+  pickTarget(new THREE.SphereGeometry(0.7, 10, 8), [-1.65, 0, 0.05], 'channel');
+  pickTarget(new THREE.SphereGeometry(0.82, 10, 8), [1.65, 0.08, 0.05], 'pump');
+  pickTarget(new THREE.SphereGeometry(0.26, 10, 8), [1.65, -0.82, 0.35], 'atp');
+
+  group.userData.applyLesson = (state = {}) => {
+    lesson.active = Boolean(state.active);
+    lesson.step = Number.isInteger(state.step) ? Math.max(0, Math.min(4, state.step)) : 0;
+    lessonGroup.visible = lesson.active;
+    ions.forEach((ion) => { ion.mesh.visible = !lesson.active; });
+    setLessonTargets(lesson.step);
+  };
+  group.userData.applyExperiment = (state = {}) => {
+    lesson.atp = Number.isFinite(state.atp) ? Math.max(0, Math.min(1, state.atp)) : 1;
+    lesson.gradient = Number.isFinite(state.gradient) ? Math.max(0, Math.min(1, state.gradient)) : 1;
+    lesson.inhibitor = Boolean(state.inhibitor);
+    pumpAtp.material.emissiveIntensity = lesson.inhibitor ? 0.15 : 1.2 + lesson.atp * 1.4;
+  };
+
   group.userData.update = (time) => {
-    ions.forEach((ion, i) => {
-      const y = -1.8 + ((time * ion.speed + ion.phase) % (Math.PI * 2)) / (Math.PI * 2) * 3.6;
-      ion.mesh.position.set(ion.x + Math.sin(time * 0.5 + i) * 0.12, y, ion.z);
-      ion.mesh.material.emissiveIntensity = 1.2 + Math.sin(time * 2 + i) * 0.5;
-    });
-    pump.children[1].rotation.z = -0.35 + Math.sin(time * 0.9) * 0.08;
-    pump.children[2].rotation.z = 0.35 - Math.sin(time * 0.9) * 0.08;
+    if (!lesson.active) {
+      ions.forEach((ion, i) => {
+        const y = -1.8 + ((time * ion.speed + ion.phase) % (Math.PI * 2)) / (Math.PI * 2) * 3.6;
+        ion.mesh.position.set(ion.x + Math.sin(time * 0.5 + i) * 0.12, y, ion.z);
+        ion.mesh.material.emissiveIntensity = 1.2 + Math.sin(time * 2 + i) * 0.5;
+      });
+      pumpLeft.rotation.z = -0.35 + Math.sin(time * 0.9) * 0.08;
+      pumpRight.rotation.z = 0.35 - Math.sin(time * 0.9) * 0.08;
+    } else {
+      lessonIons.forEach(({ mesh, target }) => mesh.position.lerp(target, 0.11));
+      const lobe = lesson.step === 1 || lesson.step === 2 ? 0.52 : lesson.step === 3 ? 0.18 : -0.35;
+      pumpLeft.rotation.z += (-lobe - pumpLeft.rotation.z) * 0.1;
+      pumpRight.rotation.z += (lobe - pumpRight.rotation.z) * 0.1;
+      lessonAtp.material.emissiveIntensity = 1.2 + Math.sin(time * 2.1) * 0.45;
+    }
+    pumpBody.material.emissiveIntensity = 0.3 + (lesson.active ? 0.25 : 0);
   };
   label(group, '通道蛋白', [-1.65, 1.15, 0.2], 'CHANNEL');
   label(group, 'Na⁺/K⁺ 泵', [1.7, 1.55, 0.2], 'P-TYPE PUMP');
@@ -1371,7 +1446,7 @@ function disposeObject(object) {
 }
 
 export function createModelScene(container, options = {}) {
-  const { onReady, onError, onModelChange } = options;
+  const { onReady, onError, onModelChange, onPick } = options;
   const width = () => Math.max(320, container.clientWidth || window.innerWidth);
   const height = () => Math.max(320, container.clientHeight || window.innerHeight);
 
@@ -1436,6 +1511,16 @@ export function createModelScene(container, options = {}) {
   const root = new THREE.Group();
   scene.add(root);
 
+  const selectionRing = new THREE.Mesh(
+    new THREE.TorusGeometry(0.58, 0.018, 8, 64),
+    new THREE.MeshBasicMaterial({ color: 0x9fffe8, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending })
+  );
+  selectionRing.visible = false;
+  scene.add(selectionRing);
+  let highlightLocal = null;
+  const raycaster = new THREE.Raycaster();
+  const pickPointer = new THREE.Vector2();
+
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
   const bloom = new UnrealBloomPass(new THREE.Vector2(width(), height()), 0.16, 0.42, 0.97);
@@ -1457,6 +1542,9 @@ export function createModelScene(container, options = {}) {
   let dragging = false;
   let pointerX = 0;
   let pointerY = 0;
+  let pointerStartX = 0;
+  let pointerStartY = 0;
+  let pointerStartTime = 0;
   let autoRotate = true;
   let ready = false;
   let disposed = false;
@@ -1491,10 +1579,15 @@ export function createModelScene(container, options = {}) {
       node.el.style.zIndex = String(10 + index);
     });
   }
+  function showHighlight(position) {
+    highlightLocal = position ? position.clone() : null;
+    selectionRing.visible = Boolean(highlightLocal);
+  }
   function setModel(id) {
     const spec = modelById(id);
     const builder = BUILDERS[spec.id];
     if (!builder) return;
+    showHighlight(null);
     if (current) {
       root.remove(current);
       disposeObject(current);
@@ -1539,6 +1632,9 @@ export function createModelScene(container, options = {}) {
     dragging = true;
     pointerX = event.clientX;
     pointerY = event.clientY;
+    pointerStartX = event.clientX;
+    pointerStartY = event.clientY;
+    pointerStartTime = performance.now();
     renderer.domElement.setPointerCapture?.(event.pointerId);
   }
   function onPointerMove(event) {
@@ -1550,7 +1646,29 @@ export function createModelScene(container, options = {}) {
     targetYaw += dx * 0.006;
     targetPitch = Math.max(-0.65, Math.min(0.65, targetPitch + dy * 0.005));
   }
-  function onPointerUp() { dragging = false; }
+  function onPointerUp(event) {
+    if (!dragging) return;
+    dragging = false;
+    const moved = Math.hypot(event.clientX - pointerStartX, event.clientY - pointerStartY);
+    const elapsed = performance.now() - pointerStartTime;
+    if (moved > 6 || elapsed > 550 || !current || !onPick) return;
+    const rect = renderer.domElement.getBoundingClientRect();
+    pickPointer.set(
+      ((event.clientX - rect.left) / rect.width) * 2 - 1,
+      -((event.clientY - rect.top) / rect.height) * 2 + 1
+    );
+    raycaster.setFromCamera(pickPointer, camera);
+    const hits = raycaster.intersectObjects(current.children, true);
+    for (const hit of hits) {
+      let object = hit.object;
+      while (object && !object.userData.pick) object = object.parent;
+      if (!object?.userData.pick) continue;
+      const data = object.userData.pick;
+      if (data.position) showHighlight(data.position);
+      onPick(data);
+      return;
+    }
+  }
   function onWheel(event) {
     event.preventDefault();
     targetDistance = Math.max(7, Math.min(21, targetDistance + event.deltaY * 0.008));
@@ -1576,6 +1694,11 @@ export function createModelScene(container, options = {}) {
     camera.position.y = 2.4 + pitch * 1.3;
     camera.lookAt(0, 0, 0);
     root.updateMatrixWorld(true);
+    if (highlightLocal && current) {
+      selectionRing.position.copy(highlightLocal).applyMatrix4(current.matrixWorld);
+      selectionRing.quaternion.copy(camera.quaternion);
+      selectionRing.scale.setScalar(1 + Math.sin(elapsed * 3) * 0.08);
+    }
     if (current?.userData.update) current.userData.update(elapsed, dt);
     dust.rotation.y = elapsed * 0.008;
     updateLabels();
@@ -1591,6 +1714,24 @@ export function createModelScene(container, options = {}) {
     setModel,
     resetView,
     setAutoRotate,
+    setLessonState(state = {}) {
+      if (current?.userData.applyLesson) current.userData.applyLesson(state);
+    },
+    setExperiment(state = {}) {
+      if (current?.userData.applyExperiment) current.userData.applyExperiment(state);
+    },
+    setLabelsVisible(value) {
+      labelLayer.style.visibility = value ? 'visible' : 'hidden';
+    },
+    clearHighlight() {
+      showHighlight(null);
+    },
+    selectPick(id) {
+      const data = current?.userData.picks?.[id];
+      if (!data) return;
+      showHighlight(data.position);
+      if (onPick) onPick(data);
+    },
     setExposure(value) {
       const next = Math.max(0.2, Math.min(0.8, Number(value) || 0.42));
       renderer.toneMappingExposure = next;

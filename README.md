@@ -192,6 +192,26 @@ The notes are original summaries written against **丁明孝、王喜忠、张�
 not a substitute for the textbook and are not endorsed by the authors or
 publisher.
 
+### Guided sample lesson · 跨膜运输
+
+The first end-to-end learning flow is at
+**[`docs/models.html?model=transport&learn=1`](docs/models.html?model=transport&learn=1)**.
+It walks through one complete loop:
+
+1. **认识结构** — click the membrane, channel, pump and ATP in the scene; each
+   selection opens a knowledge card and highlights the structure.
+2. **观察机制** — play, pause, step or replay the Na⁺/K⁺ pump's E1–E2 cycle with
+   a changing 3D state.
+3. **动手探索** — make a prediction, change ATP/gradient/inhibitor conditions,
+   run the relative-rate simulation and compare the observation with the
+   prediction.
+4. **场景练习** — hidden-label identification, process ordering and result
+   analysis, each with targeted feedback.
+
+The lesson is deliberately scoped to **第四章 第二节**; the remaining 16/44
+sections and their model mappings are tracked in
+[`COURSE-MAP.md`](COURSE-MAP.md), with status and missing work for each section.
+
 ---
 
 ## Section-by-section reader · 16 chapters / 44 sections

@@ -1,0 +1,172 @@
+// Sample lesson for the first complete guided flow. The structure is kept
+// deliberately small: one textbook section, one model, one mechanism and one
+// set of exercises. Other sections are mapped in COURSE-MAP.md and will reuse
+// this shape as they are authored.
+export const TRANSPORT_LESSON = {
+  id: 'transport',
+  course: '细胞生物学',
+  chapter: '第四章',
+  section: '第二节',
+  title: 'ATP 驱动泵与主动运输',
+  en: 'PRIMARY ACTIVE TRANSPORT',
+  pages: 'pp. 62–68',
+  duration: '10–15 min',
+  objectives: [
+    '区分通道蛋白与 ATP 驱动泵在方向、能量和速度上的差异。',
+    '按 E1 → E2 → E1 循环说明 Na⁺/K⁺ 泵的构象变化。',
+    '用 3 Na⁺ / 2 K⁺ / 1 ATP 的化学计量解释泵的工作。',
+    '预测 ATP 供应或 Na⁺ 梯度改变时，泵速率和膜电位会怎样变化。',
+  ],
+  structures: [
+    {
+      id: 'membrane',
+      label: '磷脂双分子层',
+      en: 'PHOSPHOLIPID BILAYER',
+      tag: '屏障',
+      position: [0, 0, 0],
+      summary: '疏水尾部构成通透性屏障，亲水头部面向两侧水相。',
+      detail: '离子不能自由穿过疏水核心；膜蛋白为离子提供选择性通路。膜的流动性允许蛋白 lateral diffusion，但不等于离子可以自由通过。',
+      fact: '主动运输的前提，是膜先成为一个“可被泵维持梯度”的屏障。',
+    },
+    {
+      id: 'channel',
+      label: '通道蛋白',
+      en: 'ION CHANNEL',
+      tag: '被动运输',
+      position: [-1.65, 0, 0.05],
+      summary: '形成亲水孔道，离子顺电化学梯度快速通过。',
+      detail: '通道有选择性，但不直接消耗 ATP。开放状态受门控调节；它只能降低活化能、加快平衡，不能逆梯度建立新的浓度差。',
+      fact: '通道与泵的区别不是“有没有蛋白”，而是“是否直接耦合能量、能否逆梯度”。',
+    },
+    {
+      id: 'pump',
+      label: 'Na⁺/K⁺ 泵',
+      en: 'Na⁺/K⁺-ATPase',
+      tag: '原发性主动运输',
+      position: [1.65, 0.05, 0.05],
+      summary: '每水解 1 个 ATP，泵出 3 个 Na⁺、泵入 2 个 K⁺。',
+      detail: '泵在 E1 与 E2 两种构象间循环。E1 对 Na⁺ 亲和力高，磷酸化后转为 E2，对 Na⁺ 亲和力降低、对 K⁺ 亲和力升高；去磷酸化后回到 E1。',
+      fact: '每循环净泵出 1 个正电荷，因此是生电性泵，参与维持膜电位。',
+    },
+    {
+      id: 'atp',
+      label: 'ATP',
+      en: 'ENERGY COUPLING',
+      tag: '能量',
+      position: [1.65, -0.75, 0.35],
+      summary: 'ATP 水解为泵的构象循环提供自由能。',
+      detail: 'ATP 的 γ-磷酸基转移至泵蛋白，形成磷酸化中间体。这里的能量不是“直接推动离子”，而是改变泵对离子的亲和力和构象。',
+      fact: 'ATP 不足时，泵循环停止，Na⁺/K⁺ 梯度会被其他漏通道逐渐耗散。',
+    },
+  ],
+  mechanism: {
+    title: 'Na⁺/K⁺ 泵的 E1–E2 循环',
+    note: '每一步先看高亮结构，再读一句话解释。示意模型不按真实时间比例。',
+    steps: [
+      {
+        id: 'na-bind',
+        title: '3 Na⁺ 从胞质侧结合 E1',
+        body: 'E1 构象对 Na⁺ 亲和力高。三个 Na⁺ 从细胞质一侧进入泵的结合位点。',
+        key: '方向：Na⁺ 由内向外；这是逆电化学梯度的主动运输。',
+        highlight: 'pump',
+        state: 0,
+      },
+      {
+        id: 'phosphorylation',
+        title: 'ATP 磷酸化泵蛋白',
+        body: 'ATP 水解，γ-磷酸基转移到泵的催化位点，形成高能磷酸中间体。',
+        key: '能量耦合：磷酸化改变结合位点的亲和力，而不是直接“搬运”离子。',
+        highlight: 'atp',
+        state: 1,
+      },
+      {
+        id: 'e2',
+        title: 'E1 → E2，3 Na⁺ 释放到胞外',
+        body: '磷酸化驱动构象由 E1 转为 E2。E2 对 Na⁺ 亲和力降低，三个 Na⁺ 释放到细胞外。',
+        key: '化学计量：3 个 Na⁺ 出，形成 outward-facing 状态。',
+        highlight: 'pump',
+        state: 2,
+      },
+      {
+        id: 'k-bind',
+        title: '2 K⁺ 从胞外结合 E2',
+        body: 'E2 对 K⁺ 亲和力高。两个 K⁺ 从细胞外进入结合位点。',
+        key: '方向：K⁺ 由外向内；与 Na⁺ 的方向相反。',
+        highlight: 'pump',
+        state: 3,
+      },
+      {
+        id: 'dephosphorylation',
+        title: '去磷酸化，E2 → E1',
+        body: 'K⁺ 结合促进去磷酸化，泵回到 E1 构象，两个 K⁺ 释放到细胞质。循环完成。',
+        key: '净结果：3 Na⁺ 出、2 K⁺ 入、1 ATP 水解，净泵出 1 个正电荷。',
+        highlight: 'pump',
+        state: 4,
+      },
+    ],
+  },
+  experiment: {
+    title: '改变条件，预测泵速率',
+    prompt: '把 ATP 供应调到 0，同时保持 Na⁺ 梯度不变。泵的相对速率会怎样？',
+    predictionOptions: [
+      { id: 'unchanged', label: '基本不变：泵不依赖 ATP' },
+      { id: 'decrease', label: '下降或停止：ATP 是构象循环的能量来源' },
+      { id: 'increase', label: '上升：没有 ATP 时泵转得更快' },
+    ],
+    correctPrediction: 'decrease',
+    assumptions: [
+      '这是相对速率模型，不是分子动力学模拟。',
+      '温度、pH、膜电位和其它转运蛋白保持恒定。',
+      'Na⁺/K⁺ 梯度用“相对充足度”表示，不计算真实离子浓度。',
+      '哇巴因（ouabain）被简化为直接抑制泵循环。',
+    ],
+    explanation: 'ATP 水解驱动磷酸化与构象循环。ATP 为 0 时，泵不能完成 E1→E2 的循环，主动运输停止；原有 Na⁺/K⁺ 梯度会因漏通道而逐渐下降。',
+    lowAtp: '低 ATP 时，泵仍可能偶发循环，但速率显著降低；梯度维持能力下降。',
+    zeroAtp: 'ATP 为 0 时，磷酸化循环停止：泵不能完成 E1→E2，主动运输速率为 0；原有梯度会被漏通道逐渐耗散。',
+    normal: 'ATP 与梯度都充足时，泵以较高相对速率运行，维持胞内高 K⁺、胞外高 Na⁺。',
+    inhibited: '哇巴因抑制后，泵速率归零；膜电位和 Na⁺/K⁺ 梯度逐渐失去主动维持。',
+  },
+  exercises: [
+    {
+      type: 'identify',
+      prompt: '隐藏标签后，点击模型中的 Na⁺/K⁺ 泵。',
+      answer: 'pump',
+      success: '正确。你点到的是 Na⁺/K⁺-ATPase；它每循环水解 1 个 ATP，泵出 3 个 Na⁺、泵入 2 个 K⁺。',
+      failure: '再看一眼：泵位于膜右侧，具有较大的跨膜主体和 ATP 结合位点；通道是左侧的贯穿孔道。',
+    },
+    {
+      type: 'ordering',
+      prompt: '把 Na⁺/K⁺ 泵的一个循环排成正确顺序。',
+      steps: [
+        { id: 'phosphorylation', label: 'ATP 磷酸化泵蛋白' },
+        { id: 'k-bind', label: '2 K⁺ 从胞外结合 E2' },
+        { id: 'na-bind', label: '3 Na⁺ 从胞质侧结合 E1' },
+        { id: 'dephosphorylation', label: '去磷酸化，E2 → E1' },
+        { id: 'e2', label: 'E1 → E2，3 Na⁺ 释放到胞外' },
+      ],
+      answer: ['na-bind', 'phosphorylation', 'e2', 'k-bind', 'dephosphorylation'],
+      success: '顺序正确：Na⁺ 结合 → 磷酸化 → E2 释放 Na⁺ → K⁺ 结合 → 去磷酸化回到 E1。',
+      failure: '顺序还不对。提示：先有 Na⁺ 结合，ATP 才能推动 E1→E2；K⁺ 在 E2 状态结合。',
+    },
+    {
+      type: 'analysis',
+      prompt: '用 1 mmol/L 哇巴因处理细胞后，最可能观察到什么？',
+      options: [
+        { id: 'a', label: 'Na⁺/K⁺ 泵速率上升，胞内 K⁺ 继续增加' },
+        { id: 'b', label: '泵被抑制，Na⁺/K⁺ 梯度逐渐下降，膜电位受影响' },
+        { id: 'c', label: '通道蛋白立刻关闭，离子完全不能通过膜' },
+      ],
+      answer: 'b',
+      success: '正确。哇巴因抑制 Na⁺/K⁺ 泵；主动维持的梯度会因漏通道而耗散，生电性泵的贡献也下降。',
+      failure: '哇巴因不是通道阻断剂。它抑制的是泵，因此首先失去的是“逆梯度维持”，不是所有离子通透性。',
+    },
+  ],
+  completion: {
+    title: '样板课完成',
+    body: '你已经完成一次“点击认识结构 → 观察机制 → 动手探索 → 作答获得反馈”的完整流程。下一步可按 COURSE-MAP.md 把同一结构扩展到其它章节。',
+  },
+};
+
+export function getTransportStructure(id) {
+  return TRANSPORT_LESSON.structures.find((item) => item.id === id) || null;
+}

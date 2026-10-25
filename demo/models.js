@@ -1,6 +1,7 @@
 import { MODEL_SPECS, modelById } from '../src/model-catalog.js';
 import { createModelScene } from '../src/models-scene.js';
 import { TEXTBOOK } from '../src/textbook.js';
+import { createTransportLessonUI } from './transport-lesson-ui.js';
 
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -13,6 +14,7 @@ let selectedBook = Number.isInteger(queryBook) && queryBook >= 0 && queryBook < 
 let activeSection = querySection;
 let activeId = initialModel;
 let engine = null;
+let lesson = null;
 
 $('cmModelList').innerHTML = MODEL_SPECS.map((spec, index) => `
   ${index === 8 ? '<div class="cm-rail-sep">METHODS / 实验方法</div>' : ''}
@@ -43,6 +45,7 @@ function renderInfo(spec) {
     button.classList.toggle('is-active', i === index);
     button.setAttribute('aria-current', i === index ? 'true' : 'false');
   });
+  if (lesson) lesson.setAvailable(spec.id === 'transport');
   document.title = `${spec.title} / Cell Atlas 3D Specimens`;
   const url = new URL(location.href);
   url.searchParams.set('model', spec.id);
@@ -52,6 +55,7 @@ function renderInfo(spec) {
 
 function selectModel(id, fromClick = false) {
   const spec = modelById(id);
+  if (lesson?.isOpen()) lesson.close();
   activeId = spec.id;
   if (fromClick) {
     selectedBook = spec.book;
@@ -74,10 +78,17 @@ try {
       $('cmLoading').classList.add('is-hidden');
     },
     onModelChange: renderInfo,
+    onPick: (pick) => lesson?.handlePick(pick),
+  });
+  lesson = createTransportLessonUI({
+    getEngine: () => engine,
+    onOpen: () => $('cmAuto').setAttribute('aria-pressed', 'false'),
+    onClose: () => $('cmAuto').setAttribute('aria-pressed', 'true'),
   });
   if (initialModel !== MODEL_SPECS[0].id) engine.setModel(initialModel);
   else renderInfo(MODEL_SPECS[0]);
   engine.setExposure(Number($('cmExposure').value) / 100);
+  if (initialModel === 'transport' && params.get('learn') === '1') lesson.open(0);
 } catch (error) {
   $('cmError').hidden = false;
   $('cmErrorText').textContent = String(error && error.message ? error.message : error).slice(0, 500);
@@ -103,6 +114,11 @@ $('cmFull').addEventListener('click', () => {
 $('cmReload').addEventListener('click', () => location.reload());
 
 document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && lesson?.isOpen()) {
+    lesson.close();
+    return;
+  }
+  if (lesson?.isOpen()) return;
   if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
     const index = MODEL_SPECS.findIndex((spec) => spec.id === activeId);
     const next = (index + (event.key === 'ArrowRight' ? 1 : -1) + MODEL_SPECS.length) % MODEL_SPECS.length;
