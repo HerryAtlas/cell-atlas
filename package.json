@@ -33,7 +33,8 @@
   },
   "scripts": {
     "build": "node ./build.mjs",
-    "build:demo": "node ./build-demo.mjs"
+    "build:demo": "node ./build-demo.mjs",
+    "test": "node tests/course-engine.test.mjs"
   },
   "devDependencies": {
     "esbuild": "^0.25.10",

@@ -1,4 +1,6 @@
 import { TRANSPORT_LESSON } from '../src/transport-lesson.js';
+import { CourseEngine } from '../src/course-engine.js';
+import { TRANSPORT_FLOW } from '../src/transport-flow.js';
 
 const STAGES = [
   { id: 'recognize', label: '认识结构', short: '01' },
@@ -21,6 +23,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   const closeButton = $('cmLessonClose');
   const peekButton = $('cmLessonPeek');
   const tabs = Array.from(document.querySelectorAll('[data-stage]'));
+  const course = new CourseEngine(TRANSPORT_FLOW);
 
   const state = {
     open: false,
@@ -85,6 +88,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   function goStage(stage) {
     const next = Math.max(0, Math.min(STAGES.length - 1, stage));
     stopMechanism();
+    course.goTo(next);
     state.stage = next;
     const instance = engine();
     if (!instance) return;
@@ -127,20 +131,17 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   }
 
   function allExercisesDone() {
-    return state.identifyResult === 'ok' && state.orderFeedback === 'ok' && state.analysisResult === 'ok';
+    return course.isStepComplete(3);
   }
 
   function canGoNext() {
-    if (state.stage === 0) return allStructuresSeen();
-    if (state.stage === 1) return true;
-    if (state.stage === 2) return state.expRun;
-    return allExercisesDone();
+    return course.isStepComplete();
   }
 
   function updateFooter() {
     const stage = STAGES[state.stage];
     progress.textContent = `${stage.short} / 04 · ${stage.label}`;
-    nextButton.disabled = !canGoNext();
+    nextButton.disabled = state.stage === 3 ? !allExercisesDone() : !canGoNext();
     if (state.stage === 3) nextButton.textContent = allExercisesDone() ? '完成并返回 →' : '完成练习后继续';
     else nextButton.textContent = '下一步 →';
   }
@@ -190,6 +191,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     if (!instance || !step) return;
     instance.setLessonState({ active: true, step: step.state });
     instance.selectPick(step.highlight);
+    course.dispatch('mechanism.step', { index: state.mechIndex, id: step.id });
   }
 
   function stopMechanism() {
@@ -328,6 +330,9 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         state.prediction = button.dataset.prediction;
         state.expRun = false;
         state.expResult = null;
+        course.revoke('experiment.run');
+        course.revoke('experiment.prediction');
+        course.dispatch('experiment.prediction', { id: state.prediction });
         renderExplore();
         updateFooter();
       });
@@ -339,6 +344,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         if (out) out.textContent = `${input.value}%`;
         state.expRun = false;
         state.expResult = null;
+        course.revoke('experiment.run');
         body.querySelector('.cm-lsn-result')?.setAttribute('hidden', '');
         body.querySelector('.cm-lsn-feedback')?.remove();
         updateFooter();
@@ -348,6 +354,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       state.exp.inhibitor = event.target.checked;
       state.expRun = false;
       state.expResult = null;
+      course.revoke('experiment.run');
       body.querySelector('.cm-lsn-result')?.setAttribute('hidden', '');
       body.querySelector('.cm-lsn-feedback')?.remove();
       updateFooter();
@@ -361,6 +368,14 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         observation: experimentObservation(rate),
         predictionCorrect: state.prediction === TRANSPORT_LESSON.experiment.correctPrediction,
       };
+      course.revoke('experiment.run');
+      course.dispatch('experiment.run', {
+        rate,
+        atp: state.exp.atp,
+        gradient: state.exp.gradient,
+        inhibitor: state.exp.inhibitor,
+        prediction: state.prediction,
+      });
       const instance = engine();
       if (instance) {
         instance.setExperiment({
@@ -423,17 +438,25 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       button.addEventListener('click', () => {
         state.order.push(button.dataset.order);
         state.orderFeedback = null;
+        course.revoke('exercise.answer', { exercise: 'ordering' });
         renderExercises();
       });
     });
     body.querySelector('[data-act="order-reset"]')?.addEventListener('click', () => {
       state.order = [];
       state.orderFeedback = null;
+      course.revoke('exercise.answer', { exercise: 'ordering' });
       renderExercises();
+      updateFooter();
     });
     body.querySelector('[data-act="order-check"]')?.addEventListener('click', () => {
       const expected = ordering.answer;
       state.orderFeedback = expected.every((id, index) => state.order[index] === id) && state.order.length === expected.length ? 'ok' : 'bad';
+      course.revoke('exercise.answer', { exercise: 'ordering' });
+      course.dispatch('exercise.answer', {
+        exercise: 'ordering',
+        correct: state.orderFeedback === 'ok',
+      });
       renderExercises();
       updateFooter();
     });
@@ -441,6 +464,11 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       button.addEventListener('click', () => {
         state.analysisChoice = button.dataset.analysis;
         state.analysisResult = button.dataset.analysis === analysis.answer ? 'ok' : 'bad';
+        course.revoke('exercise.answer', { exercise: 'analysis' });
+        course.dispatch('exercise.answer', {
+          exercise: 'analysis',
+          correct: state.analysisResult === 'ok',
+        });
         renderExercises();
         updateFooter();
       });
@@ -448,6 +476,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     body.querySelector('[data-act="retry-identify"]')?.addEventListener('click', () => {
       state.identifyResult = null;
       state.identifyPicked = null;
+      course.revoke('exercise.answer', { exercise: 'identify' });
       const instance = engine();
       if (instance) instance.clearHighlight();
       renderExercises();
@@ -461,6 +490,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       if (!TRANSPORT_LESSON.structures.some((item) => item.id === pick.id)) return;
       state.picked.add(pick.id);
       state.selected = pick.id;
+      course.dispatch('structure.selected', { id: pick.id });
       renderRecognize();
       updateFooter();
       if (overlay.classList.contains('is-peeking')) setPeek(false);
@@ -468,6 +498,12 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       const exercise = TRANSPORT_LESSON.exercises[0];
       state.identifyPicked = pick.id;
       state.identifyResult = pick.id === exercise.answer ? 'ok' : 'bad';
+      course.revoke('exercise.answer', { exercise: 'identify' });
+      course.dispatch('exercise.answer', {
+        exercise: 'identify',
+        correct: state.identifyResult === 'ok',
+        picked: pick.id,
+      });
       renderExercises();
       updateFooter();
       if (overlay.classList.contains('is-peeking')) setPeek(false);
@@ -478,8 +514,13 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   peekButton.addEventListener('click', () => setPeek(!overlay.classList.contains('is-peeking')));
   closeButton.addEventListener('click', close);
   nextButton.addEventListener('click', () => {
-    if (state.stage < STAGES.length - 1) goStage(state.stage + 1);
-    else if (allExercisesDone()) close();
+    if (state.stage < STAGES.length - 1) {
+      if (!course.advance()) return;
+      goStage(course.stepIndex);
+    } else if (allExercisesDone()) {
+      course.advance();
+      close();
+    }
   });
   tabs.forEach((tab) => tab.addEventListener('click', () => goStage(Number(tab.dataset.stage))));
 

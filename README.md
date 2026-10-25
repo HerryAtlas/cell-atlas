@@ -224,6 +224,24 @@ deliberately scoped to **第四章 第二节**; the remaining 16/44 sections and
 model mappings are tracked in [`COURSE-MAP.md`](COURSE-MAP.md), with status and
 missing work for each section.
 
+### Course engine · deterministic core
+
+The lesson is not driven by an LLM. A small state machine owns step gating,
+evidence and completion:
+
+- [`src/course-engine.js`](src/course-engine.js) — no DOM, Three.js, network or
+  AI dependency; supports event evidence, revoke, snapshots and subscriptions.
+- [`src/transport-flow.js`](src/transport-flow.js) — declarative requirements
+  for the four transport stages.
+- [`demo/transport-lesson-ui.js`](demo/transport-lesson-ui.js) — dispatches
+  evidence and renders the lesson.
+- [`tests/course-engine.test.mjs`](tests/course-engine.test.mjs) — engine
+  gating, completion, restore and revoke tests.
+
+If the AI service is unavailable, the student can still complete the full
+lesson. An AI tutor may explain or hint, but it cannot mark a step complete.
+See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the Jarvis/memory boundary.
+
 ### Reusable prompt pack
 
 The prompts and specifications used for this build are collected in
@@ -381,6 +399,8 @@ cell-atlas/
 │  ├─ textbook-part2.js  # section data for chapters 9–16
 │  ├─ model-catalog.js   # 14 section models, textbook mapping and captions
 │  ├─ models-scene.js    # procedural 3D specimen builder + label projection
+│  ├─ course-engine.js   # deterministic lesson state machine and evidence
+│  ├─ transport-flow.js  # declarative requirements for the sample lesson
 │  └─ plugin.jsx         # DSH React overlay, HUD, study panel, section browser
 ├─ demo/
 │  ├─ index.html         # standalone 3D demo shell
@@ -391,7 +411,10 @@ cell-atlas/
 │  ├─ textbook.js        # reader controller (same data as the plugin)
 │  ├─ models.html        # standalone section model gallery
 │  ├─ models.css         # model gallery / label styles
-│  └─ models.js          # model gallery controller
+│  ├─ models.js          # model gallery controller
+│  └─ transport-lesson-ui.js # guided transport lesson UI
+├─ tests/
+│  └─ course-engine.test.mjs
 ├─ docs/                 # built static demo + reader + model gallery
 ├─ media/
 │  ├─ demo-home.jpg
