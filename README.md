@@ -224,6 +224,15 @@ deliberately scoped to **第四章 第二节**; the remaining 16/44 sections and
 model mappings are tracked in [`COURSE-MAP.md`](COURSE-MAP.md), with status and
 missing work for each section.
 
+### Reusable prompt pack
+
+The prompts and specifications used for this build are collected in
+[`prompts/`](prompts/) with a downloadable
+[`cell-atlas-prompt-pack.zip`](prompts/cell-atlas-prompt-pack.zip). The pack
+includes the project context, the 10-step roadmap, the transport lesson spec,
+a rebuild prompt, an expansion template, a content-review prompt and a student
+trial script. It contains no credentials or private user data.
+
 ---
 
 ## Section-by-section reader · 16 chapters / 44 sections
