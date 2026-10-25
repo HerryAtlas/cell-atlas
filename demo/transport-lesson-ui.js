@@ -250,7 +250,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         <button type="button" data-act="mech-next" ${state.mechIndex === total - 1 ? 'disabled' : ''}>下一步 →</button>
         <button type="button" data-act="mech-replay">↺ 重播</button>
       </div>
-      <p class="cm-lsn-small">播放时每 3.8 秒自动推进一步；暂停、回看和重播都不会重置模型。高亮环指向当前步骤的重点结构。</p>
+      <p class="cm-lsn-small">播放时每 3.8 秒自动推进一步；看完 5 步后，底部「下一步」才会解锁。暂停、回看和重播都不会重置模型。高亮环指向当前步骤的重点结构。</p>
     `;
     body.querySelectorAll('[data-act]').forEach((button) => {
       button.addEventListener('click', () => {
