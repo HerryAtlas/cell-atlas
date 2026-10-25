@@ -96,12 +96,19 @@ The section 3D models are a third page:
 http://localhost:8000/docs/models.html
 ```
 
-Both work independently of the WebGL courseware and can be bookmarked as daily
+The guided **跨膜运输** sample lesson opens directly with:
+
+```text
+http://localhost:8000/docs/models.html?model=transport&learn=1
+```
+
+All work independently of the WebGL courseware and can be bookmarked as daily
 study pages. After GitHub Pages is enabled they live at:
 
 ```text
 https://gregarious-cat-8f3216.netlify.app/textbook.html
 https://gregarious-cat-8f3216.netlify.app/models.html
+https://gregarious-cat-8f3216.netlify.app/models.html?model=transport&learn=1
 ```
 
 ### GitHub Pages
@@ -134,10 +141,13 @@ shows the actual interface and explains one group of controls.
 - **Page 01** — the welcome line “欢迎来到细胞的世界”, title, quick key map
   (`T` study notes, `B` section library, drag/wheel) and the entry into the guide.
 - **Page 02** — a sample study drawer with 学习目标 / 核心概念 / 机制拆解 / 易错点 /
-  自测, how to open it, and the fact that auto-tour pauses.
+  自测, how to open it, the fact that auto-tour pauses, and the new
+  **跨膜运输** guided lesson (click structures → mechanism playback → prediction
+  experiment → exercises; mobile uses **看模型** to reveal the scene).
 - **Page 03** — the **B** section-library mock, chapter/section navigation,
-  model-name deep links, drag/wheel/double-click behaviour, brightness, and a
-  full key map (`←/→`, `Space`, `T`, `B`, `F`, `R`, `−/=`, double-click).
+  model-name deep links (the transport model opens the guided lesson), drag/wheel/
+  double-click behaviour, brightness, and a full key map
+  (`←/→`, `Space`, `T`, `B`, `F`, `R`, `−/=`, double-click).
 - Deep links from the reader or model page skip the onboarding and go straight
   to the requested chapter/model.
 
@@ -208,9 +218,11 @@ It walks through one complete loop:
 4. **场景练习** — hidden-label identification, process ordering and result
    analysis, each with targeted feedback.
 
-The lesson is deliberately scoped to **第四章 第二节**; the remaining 16/44
-sections and their model mappings are tracked in
-[`COURSE-MAP.md`](COURSE-MAP.md), with status and missing work for each section.
+On a phone, use **看模型** to fold the lesson into a bottom bar, tap a structure
+in the exposed 3D scene, then return to the panel automatically. The lesson is
+deliberately scoped to **第四章 第二节**; the remaining 16/44 sections and their
+model mappings are tracked in [`COURSE-MAP.md`](COURSE-MAP.md), with status and
+missing work for each section.
 
 ---
 

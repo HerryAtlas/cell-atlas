@@ -134,7 +134,7 @@ app.innerHTML = `
             </div>
             <div class="guide-block">
               <div class="guide-block-no">03</div>
-              <div><b>自动漫游会暂停</b><p>打开手册、全书分节或 3D 模型时，右下角的自动漫游会暂停；关闭后手动继续。</p></div>
+              <div><b>模型页新增「跨膜运输」导学</b><p>打开 3D 模型页，选择「跨膜运输」→「进入导学」：点击结构认识角色 → 播放 Na⁺/K⁺ 泵的 E1–E2 循环 → 改 ATP/梯度做预测实验 → 完成辨认、排序和分析练习。手机端点「看模型」可收起面板后直接点结构。打开手册、全书或 3D 模型时，自动漫游仍会暂停。</p></div>
             </div>
           </div>
         </div>
@@ -172,7 +172,7 @@ app.innerHTML = `
             </div>
             <div class="guide-block">
               <div class="guide-block-no">03</div>
-              <div><b>模型名字就是入口</b><p>章节顶部和每个小节会显示 3D 模型名称（结构 + 实验方法）。点击名称直接观察，关闭后回到该小节。</p></div>
+              <div><b>模型名字就是入口</b><p>章节顶部和每个小节会显示 3D 模型名称（结构 + 实验方法）。点击名称直接观察，关闭后回到该小节；跨膜运输模型会直接带「导学」入口。</p></div>
             </div>
             <div class="guide-block">
               <div class="guide-block-no">04</div>
@@ -197,7 +197,7 @@ app.innerHTML = `
         </div>
       </div>
     </div>
-    <div class="intro-skip">按 T 学习手册 · B 全书分节 · 拖动旋转</div>
+    <div class="intro-skip">按 T 学习手册 · B 全书分节 · 拖动旋转 · 模型页可进导学</div>
   </section>
   <div class="study-backdrop" id="studyBackdrop" hidden>
     <section class="study-panel" id="studyPanel" role="dialog" aria-modal="true" aria-labelledby="studyTitle" tabindex="-1">

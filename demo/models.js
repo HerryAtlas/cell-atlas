@@ -46,6 +46,9 @@ function renderInfo(spec) {
     button.setAttribute('aria-current', i === index ? 'true' : 'false');
   });
   if (lesson) lesson.setAvailable(spec.id === 'transport');
+  $('cmInfoFoot').textContent = spec.id === 'transport'
+    ? '导学：点击结构 → 观察机制 → 动手探索 → 场景练习 · 手机端点「看模型」'
+    : '拖动模型观察结构关系 · 模型为示意性重建，不按真实比例';
   document.title = `${spec.title} / Cell Atlas 3D Specimens`;
   const url = new URL(location.href);
   url.searchParams.set('model', spec.id);

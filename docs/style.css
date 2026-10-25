@@ -327,6 +327,9 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--accent); ou
   .intro-eyebrow { font-size: 7px; letter-spacing: .3em; }
   .intro-skip { bottom: 18px; font-size: 6px; }
   .intro { overflow-y: auto; align-items: start; padding: 28px 16px 50px; }
+  .intro-inner { width: 100%; }
+  .guide-grid, .controls-grid, .guide-copy, .guide-block { min-width: 0; }
+  .guide-block p { overflow-wrap: anywhere; }
   .intro-quick { grid-template-columns: 1fr; max-width: 340px; margin-top: 20px; gap: 6px; }
   .intro-quick > div { flex-direction: row; align-items: center; gap: 10px; padding: 9px 11px; text-align: left; }
   .intro-quick kbd { min-width: 26px; height: 26px; }
