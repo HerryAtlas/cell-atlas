@@ -10,3 +10,15 @@ dist/
 out/
 .video_work/
 tmp/
+
+# Private local material — never publish
+CMIT-submission/
+_cmit_build/
+.netlify/
+.npmrc
+*.pem
+*.key
+*.p12
+id_rsa*
+gh-token*.txt
+gh-auth*.log

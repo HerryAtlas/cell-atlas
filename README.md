@@ -480,7 +480,9 @@ welcome — please cite the textbook section or a primary source in the PR.
 
 ## Security
 
-See [SECURITY.md](SECURITY.md) for the official deployment URL, the abandoned-username note and the GitHub Pages header limitations.
+See [SECURITY.md](SECURITY.md) for the plugin threat model, official deployment URL,
+the abandoned-username note and the GitHub Pages header limitations. See
+[PRIVACY.md](PRIVACY.md) for the data-flow and repository-content statement.
 
 ## Hosting
 
