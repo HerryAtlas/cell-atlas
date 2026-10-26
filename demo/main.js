@@ -146,7 +146,7 @@ app.innerHTML = `
       </div>
 
       <div class="intro-step intro-guide intro-lesson" id="introStepThree" hidden>
-        <div class="intro-eyebrow">GUIDED LESSON / 新版使用说明</div>
+        <div class="intro-eyebrow">COMPLETE GUIDE / 新版完整导引</div>
         <h2 class="guide-title">四个阶段，走完才算结课</h2>
         <div class="lesson-guide-grid">
           <div class="lesson-stage-list">
@@ -162,6 +162,8 @@ app.innerHTML = `
               <p>只运行这个条件才会解锁下一步；其它组合显示“自由探索结果”，不计完成。</p>
             </div>
             <div class="lesson-rule"><b>可以自由回看</b><p>四个阶段可随时切换，但最终结课要求每个阶段都有当前有效证据。</p></div>
+            <div class="lesson-rule"><b>改条件 = 重跑</b><p>改 ATP、梯度或抑制剂后，旧实验结果失效，必须重新运行。</p></div>
+            <div class="lesson-rule"><b>完成后复习</b><p>全部阶段完成后进入复习，可重新回看；「重新学习」会开始新一轮。</p></div>
             <div class="lesson-rule"><b>重新学习与手机</b><p>重学会二次确认，历史只在本次打开期间保留；手机点「看模型」收起面板后直接点结构。</p></div>
             <div class="lesson-rule"><b>完成判定</b><p>本版没有 AI 自动批改；是否完成由课程引擎按上述证据判断。</p></div>
           </div>

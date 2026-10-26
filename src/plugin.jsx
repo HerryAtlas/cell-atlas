@@ -1520,8 +1520,8 @@ function AtlasExperience() {
 
             {introPage === 2 && (
               <div className="ca-intro-step ca-intro-guide ca-intro-usage">
-                <div className="ca-intro-eyebrow">NEW FEATURES / 新版使用说明</div>
-                <h2 className="ca-guide-title">模型、全书与导学怎么走</h2>
+                <div className="ca-intro-eyebrow">COMPLETE GUIDE / 新版完整导引</div>
+                <h2 className="ca-guide-title">从结构到结课，一页走完</h2>
                 <div className="ca-usage-grid">
                   <div className="ca-usage-col">
                     <div className="ca-usage-col-title">IN THIS PLUGIN / 插件内</div>
@@ -1545,12 +1545,11 @@ function AtlasExperience() {
                   <div className="ca-usage-col ca-usage-col-lesson">
                     <div className="ca-usage-col-title">PUBLIC LESSON / 公开站样板课</div>
                     <div className="ca-usage-target">
-                      <b>跨膜运输 · 四个阶段</b>
-                      <p>认识结构 → 观察机制 → 动手探索 → 场景练习</p>
+                      <b>目标实验 · 必须精确匹配</b>
                       <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
-                      <p>目标实验才计入完成；自由探索不计。所有阶段都有当前有效证据才算结课。</p>
+                      <p>只有这个条件计入完成；其它组合是自由探索。改任何参数后，旧结果失效，必须重新运行。</p>
                     </div>
-                    <p className="ca-usage-note">插件内可以从「物质的跨膜运输」章节打开模型看结构；完整的互动导学在公开站。</p>
+                    <p className="ca-usage-note">完整四阶段互动导学在公开站；插件内可从「物质的跨膜运输」章节打开模型观察结构。</p>
                     <a
                       className="ca-usage-link"
                       href="https://gregarious-cat-8f3216.netlify.app/models.html?model=transport&learn=1"
@@ -1559,9 +1558,41 @@ function AtlasExperience() {
                     >打开公开站完整导学 →</a>
                   </div>
                 </div>
+                <div className="ca-usage-rules">
+                  <div className="ca-usage-rule">
+                    <span>01</span>
+                    <b>认识结构</b>
+                    <p>点模型里的膜、通道、泵、ATP；标签已隐藏，也可以点下方名称。</p>
+                    <em>完成：四个结构都点过</em>
+                  </div>
+                  <div className="ca-usage-rule">
+                    <span>02</span>
+                    <b>观察机制</b>
+                    <p>播放或逐步看 E1–E2 的 5 个步骤；暂停、回看、重播不会清空进度。</p>
+                    <em>完成：五个步骤都看过</em>
+                  </div>
+                  <div className="ca-usage-rule">
+                    <span>03</span>
+                    <b>动手探索</b>
+                    <p>先选预测，再运行模拟。只有目标实验计完成，其它条件自由探索。</p>
+                    <em>完成：目标实验运行成功</em>
+                  </div>
+                  <div className="ca-usage-rule">
+                    <span>04</span>
+                    <b>场景练习</b>
+                    <p>点击泵、排 5 步顺序、选对结果分析；三项都正确才算完成，答错可重试。</p>
+                    <em>完成：三道题都正确</em>
+                  </div>
+                </div>
+                <div className="ca-usage-notes">
+                  <div><b>自由浏览</b><p>四个阶段可随时切换，但最终结课要求每个阶段都有当前有效证据。</p></div>
+                  <div><b>复习与重学</b><p>完成后再进入是复习；「重新学习」需要二次确认，历史只在本次打开期间保留。</p></div>
+                  <div><b>手机</b><p>点「看模型」收起面板，直接点 3D 结构；选中后自动回到面板。</p></div>
+                  <div><b>判定边界</b><p>本版没有 AI 自动批改；是否完成由课程引擎按上述证据判断。</p></div>
+                </div>
                 <div className="ca-usage-update">
                   <b>这一版更新</b>
-                  <span>四页入口引导 · 右上角「使用说明」可随时重开 · 章节 / 模型深链 · 手机窄屏适配</span>
+                  <span>四页入口引导 · 右上角「?」可随时重开 · 章节 / 模型深链 · 8 个结构模型 + 6 个方法模型</span>
                 </div>
                 <div className="ca-intro-actions">
                   <button type="button" className="ca-intro-secondary" onClick={() => setIntroPage(1)}>← 返回</button>
@@ -3869,6 +3900,16 @@ const ATLAS_CSS = `
 .ca-usage-update { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-top: 12px; padding: 9px 11px; border: 1px solid rgba(127,247,228,.12); border-radius: 4px; background: rgba(127,247,228,.035); text-align: left; }
 .ca-usage-update b { flex: none; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; font-weight: 400; letter-spacing: .12em; color: var(--ca-accent); }
 .ca-usage-update span { font-size: 10.5px; line-height: 1.6; color: rgba(201,233,228,.52); }
+.ca-usage-rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 10px; text-align: left; }
+.ca-usage-rule { padding: 9px 10px; border: 1px solid rgba(127,247,228,.12); border-radius: 4px; background: rgba(2,10,13,.3); }
+.ca-usage-rule > span { display: block; margin-bottom: 4px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; color: var(--ca-accent); opacity: .6; }
+.ca-usage-rule b { display: block; margin-bottom: 3px; font-size: 11px; font-weight: 500; color: rgba(238,251,247,.9); }
+.ca-usage-rule p { margin: 0; font-size: 9.5px; line-height: 1.55; color: rgba(201,233,228,.48); }
+.ca-usage-rule em { display: block; margin-top: 5px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; line-height: 1.5; font-style: normal; color: rgba(255,216,153,.72); }
+.ca-usage-notes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 6px; text-align: left; }
+.ca-usage-notes > div { padding: 8px 10px; border-left: 1px solid rgba(127,247,228,.22); background: rgba(127,247,228,.025); }
+.ca-usage-notes b { display: block; margin-bottom: 3px; font-size: 10px; font-weight: 500; color: rgba(238,251,247,.84); }
+.ca-usage-notes p { margin: 0; font-size: 9px; line-height: 1.55; color: rgba(201,233,228,.44); }
 .ca-intro-inner.is-guide .ca-intro-actions { margin-top: 20px; }
 .ca-controls-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 26px; align-items: start; margin: 22px 0 0; }
 .ca-book-mock-body { padding: 8px 12px 10px; }
@@ -3972,6 +4013,7 @@ const ATLAS_CSS = `
   .ca-readout { display: none; }
 }
 @media (max-width: 880px) {
+  .ca-intro { align-items: start; padding-top: 18px; padding-bottom: 24px; }
   .ca-ui { padding: 16px 16px 14px; }
   .ca-brand-mark { width: 31px; height: 31px; }
   .ca-wordmark { font-size: 9px; letter-spacing: .26em; }
@@ -4014,6 +4056,7 @@ const ATLAS_CSS = `
   .ca-intro-eyebrow { font-size: 7px; letter-spacing: .3em; }
   .ca-intro-inner { max-width: 100%; }
   .ca-usage-grid { grid-template-columns: 1fr; gap: 10px; }
+  .ca-usage-rules, .ca-usage-notes { grid-template-columns: 1fr 1fr; }
   .ca-usage-step p, .ca-usage-note, .ca-usage-update span { font-size: 11px; }
   .ca-intro-skip { bottom: 18px; font-size: 6px; }
   .ca-study-panel { width: 100%; }
@@ -4027,6 +4070,7 @@ const ATLAS_CSS = `
   .ca-study-footer { margin-top: 24px; }
 }
 @media (max-width: 520px) {
+  .ca-usage-rules, .ca-usage-notes { grid-template-columns: 1fr; }
   .ca-textbook-chip { width: 100%; min-height: 48px; gap: 8px; padding: 7px 9px; }
   .ca-textbook-chip-icon { width: 28px; height: 28px; }
   .ca-textbook-chip-top > b { font-size: 12px; }
@@ -4072,6 +4116,7 @@ const ATLAS_CSS = `
   .ca-study-book-cta-copy em { white-space: normal; line-height: 1.5; }
 }
 @media (max-height: 740px) {
+  .ca-intro { align-items: start; padding-top: 16px; padding-bottom: 20px; }
   .ca-ui { padding-top: 16px; padding-bottom: 12px; }
   .ca-caption { bottom: 24px; }
   .ca-caption h1 { font-size: clamp(30px, 3.5vw, 44px); margin: 10px 0 6px; }

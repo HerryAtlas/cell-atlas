@@ -62,6 +62,7 @@ export async function runSmoke({ playwright, executablePath, channel,
       await onboarding.locator('#guideNextTwo').click();
       assert.equal(await onboarding.locator('#introStepThree').isVisible(), true);
       assert.match(await onboarding.locator('#introStepThree').innerText(), /目标实验/);
+      assert.match(await onboarding.locator('#introStepThree').innerText(), /改条件 = 重跑/);
       await onboarding.locator('#guideNextThree').click();
       assert.equal(await onboarding.locator('#introStepFour').isVisible(), true);
       await onboarding.close();

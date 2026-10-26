@@ -27,7 +27,7 @@ BROWSER_CHANNEL can select a Playwright-supported installed channel when BROWSER
 
 - Desktop 1440x960 and mobile 390x844, each in a fresh browser context.
 - Standalone `guide.html` usage page loads on both viewports.
-- Four-page onboarding reaches the new lesson-guide page and the controls page.
+- Four-page onboarding reaches the new complete lesson guide and the controls page.
 - Real canvas clicks/raycasting, mobile model peek and return to the lesson.
 - Restart confirmation, cancel, Escape, confirmed reset and history notice.
 - Target experiment versus free exploration; parameter changes invalidate completion.

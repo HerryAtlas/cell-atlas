@@ -52,9 +52,10 @@ standalone page is not a video or a mock-up.
   microscopy, electron microscopy, centrifugation, cell culture, FRAP, FRET).
   They use projected anatomy labels and deep links from the reader.
 - **First-visit onboarding** — a four-page guide before entering the cell:
-  welcome, a concrete mock of the **T** study drawer, a detailed new-version
-  usage page (models, public guided lesson, completion conditions), then **B**
-  section navigation, model links, pointer controls and the full keyboard map.
+  welcome, a concrete mock of the **T** study drawer, a complete new-version
+  usage guide (models, public guided lesson, completion conditions, restart and
+  mobile rules), then **B** section navigation, model links, pointer controls
+  and the full keyboard map.
   The plugin's help button reopens the usage page at any time.
 - **No external assets** — no downloaded HDRIs, textures, 3D models or fonts.
   Three.js is bundled into the demo and the plugin client.
