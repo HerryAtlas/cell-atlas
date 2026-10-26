@@ -1543,19 +1543,21 @@ function AtlasExperience() {
                     </div>
                   </div>
                   <div className="ca-usage-col ca-usage-col-lesson">
-                    <div className="ca-usage-col-title">PUBLIC LESSON / 公开站样板课</div>
+                    <div className="ca-usage-col-title">GUIDED LESSON / 跨膜运输导学</div>
                     <div className="ca-usage-target">
                       <b>目标实验 · 必须精确匹配</b>
                       <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
                       <p>只有这个条件计入完成；其它组合是自由探索。改任何参数后，旧结果失效，必须重新运行。</p>
                     </div>
-                    <p className="ca-usage-note">完整四阶段互动导学在公开站；插件内可从「物质的跨膜运输」章节打开模型观察结构。</p>
-                    <a
+                    <p className="ca-usage-note">完整规则已经列在本页。插件内可以从「物质的跨膜运输」章节打开模型观察结构；不需要跳转外部网站。</p>
+                    <button
+                      type="button"
                       className="ca-usage-link"
-                      href="https://gregarious-cat-8f3216.netlify.app/models.html?model=transport&learn=1"
-                      target="_blank"
-                      rel="noopener"
-                    >打开公开站完整导学 →</a>
+                      onClick={() => {
+                        dismissIntro();
+                        openModel({ modelId: 'transport', book: 3, section: '第二节', chapterTitle: '物质的跨膜运输' });
+                      }}
+                    >在插件内打开跨膜运输模型 →</button>
                   </div>
                 </div>
                 <div className="ca-usage-rules">
@@ -3895,7 +3897,7 @@ const ATLAS_CSS = `
 .ca-usage-target > div { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0 8px; }
 .ca-usage-target code { padding: 3px 5px; border: 1px solid rgba(255,216,153,.3); border-radius: 3px; color: #ffd899; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; }
 .ca-usage-note { margin: 9px 0 0; font-size: 10.5px; line-height: 1.65; color: rgba(201,233,228,.52); }
-.ca-usage-link { display: inline-block; margin-top: 9px; padding-bottom: 2px; border-bottom: 1px solid rgba(255,216,153,.5); font-family: "SFMono-Regular", Consolas, monospace; font-size: 9px; color: #ffd899; }
+.ca-usage-link { display: inline-block; margin-top: 9px; padding: 0 0 2px; border: 0; border-bottom: 1px solid rgba(255,216,153,.5); background: transparent; cursor: pointer; font-family: "SFMono-Regular", Consolas, monospace; font-size: 9px; color: #ffd899; }
 .ca-usage-link:hover { border-bottom-color: #ffd899; }
 .ca-usage-update { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-top: 12px; padding: 9px 11px; border: 1px solid rgba(127,247,228,.12); border-radius: 4px; background: rgba(127,247,228,.035); text-align: left; }
 .ca-usage-update b { flex: none; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; font-weight: 400; letter-spacing: .12em; color: var(--ca-accent); }

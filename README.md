@@ -410,8 +410,10 @@ bundle adds:
 - a **细胞图谱** entry at the top of the conversation header
 - a cell-mark action at the sidebar foot
 - a frame-wide full-screen overlay with the complete courseware
-- a **four-page onboarding**, including the new-version usage page; the help
-  icon in the header reopens that page at any time
+- a **four-page onboarding**, including the complete new-version usage guide;
+  the help icon in the header reopens that page at any time
+- the usage page's model action opens the transport specimen **inside the
+  plugin**; it does not navigate to an external website
 - a **section browser** (book icon or `B`) covering all 16 chapters and 44 sections
 - a **3D model viewer** opened from any section that has a specimen in Batch 01/02
 
