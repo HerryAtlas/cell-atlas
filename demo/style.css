@@ -175,6 +175,8 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--accent); ou
 .guide-block b { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 500; letter-spacing: .04em; color: rgba(238,251,247,.9); }
 .guide-block p { margin: 0; font-size: 12px; line-height: 1.8; color: rgba(201,233,228,.54); }
 .intro-guide .intro-actions { margin-top: 20px; }
+.guide-detail-link { display: block; width: max-content; margin: 16px auto 0; padding-bottom: 2px; border-bottom: 1px solid rgba(127,247,228,.32); font-family: var(--mono); font-size: 9px; letter-spacing: .05em; color: var(--accent); opacity: .78; }
+.guide-detail-link:hover { opacity: 1; border-bottom-color: var(--accent); }
 .intro-controls { max-width: 1040px; }
 .controls-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 26px; align-items: start; margin: 22px 0 0; }
 .book-mock-body { padding: 8px 12px 10px; }

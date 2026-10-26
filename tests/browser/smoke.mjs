@@ -52,6 +52,10 @@ export async function runSmoke({ playwright, executablePath, channel,
       const stage = (n) => page.locator('[data-stage="' + n + '"]').click();
       const click = (selector) => page.locator(selector).click();
       const assertText = async (locator, pattern) => assert.match(await locator.innerText(), pattern);
+      const guide = await context.newPage();
+      await guide.goto(url + '/guide.html');
+      await assertText(guide.locator('h1'), /先知道怎么走/);
+      await guide.close();
       async function clickPump() {
         if (name === 'mobile') {
           await click('#cmLessonPeek');

@@ -102,6 +102,12 @@ The guided **跨膜运输** sample lesson opens directly with:
 http://localhost:8000/docs/models.html?model=transport&learn=1
 ```
 
+The detailed standalone usage page is:
+
+```text
+http://localhost:8000/docs/guide.html
+```
+
 All work independently of the WebGL courseware and can be bookmarked as daily
 study pages. After GitHub Pages is enabled they live at:
 
@@ -109,6 +115,7 @@ study pages. After GitHub Pages is enabled they live at:
 https://gregarious-cat-8f3216.netlify.app/textbook.html
 https://gregarious-cat-8f3216.netlify.app/models.html
 https://gregarious-cat-8f3216.netlify.app/models.html?model=transport&learn=1
+https://gregarious-cat-8f3216.netlify.app/guide.html
 ```
 
 ### GitHub Pages
@@ -141,9 +148,10 @@ shows the actual interface and explains one group of controls.
 - **Page 01** — the welcome line “欢迎来到细胞的世界”, title, quick key map
   (`T` study notes, `B` section library, drag/wheel) and the entry into the guide.
 - **Page 02** — a sample study drawer with 学习目标 / 核心概念 / 机制拆解 / 易错点 /
-  自测, how to open it, the fact that auto-tour pauses, and the new
-  **跨膜运输** guided lesson (click structures → mechanism playback → prediction
-  experiment → exercises; mobile uses **看模型** to reveal the scene).
+  自测, how to open it, the fact that auto-tour pauses, the new
+  **跨膜运输** guided lesson, and a link to the full
+  [usage guide](docs/guide.html) (click structures → mechanism playback →
+  prediction experiment → exercises; mobile uses **看模型** to reveal the scene).
 - **Page 03** — the **B** section-library mock, chapter/section navigation,
   model-name deep links (the transport model opens the guided lesson), drag/wheel/
   double-click behaviour, brightness, and a full key map
@@ -206,7 +214,8 @@ publisher.
 
 The first end-to-end learning flow is at
 **[`docs/models.html?model=transport&learn=1`](docs/models.html?model=transport&learn=1)**.
-It walks through one complete loop:
+A detailed, standalone usage page is at
+**[`docs/guide.html`](docs/guide.html)**. It walks through one complete loop:
 
 1. **认识结构** — click the membrane, channel, pump and ATP in the scene; each
    selection opens a knowledge card and highlights the structure.
@@ -218,8 +227,9 @@ It walks through one complete loop:
 4. **场景练习** — hidden-label identification, process ordering and result
    analysis, each with targeted feedback.
 
-At the top of the lesson, **使用说明** opens a compact guide at any time. The
-completion rules are deliberately explicit:
+At the top of the lesson, **使用说明** opens a compact guide at any time; the
+standalone [`docs/guide.html`](docs/guide.html) page contains the full rules,
+controls and FAQ. The completion rules are deliberately explicit:
 
 - all four structures must be selected;
 - all five mechanism steps must be viewed (play, step, pause and replay all
@@ -429,6 +439,8 @@ cell-atlas/
 │  ├─ models.html        # standalone section model gallery
 │  ├─ models.css         # model gallery / label styles
 │  ├─ models.js          # model gallery controller
+│  ├─ guide.html         # standalone detailed usage page
+│  ├─ guide.css          # usage page styles
 │  └─ transport-lesson-ui.js # guided transport lesson UI
 ├─ tests/
 │  └─ course-engine.test.mjs

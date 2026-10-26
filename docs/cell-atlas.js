@@ -4997,6 +4997,7 @@ void main() {
             </div>
           </div>
         </div>
+        <a class="guide-detail-link" href="./guide.html">\u67E5\u770B\u5B8C\u6574\u4F7F\u7528\u8BF4\u660E\uFF08\u65B0\u7248\u529F\u80FD\uFF09\u2192</a>
         <div class="intro-actions">
           <button class="intro-secondary" id="guideBack">\u2190 \u8FD4\u56DE</button>
           <button class="enter" id="guideNextTwo"><span>\u4E0B\u4E00\u6B65\uFF1A\u5168\u4E66\u4E0E\u64CD\u4F5C</span>${Lt("arrow",15)}</button>

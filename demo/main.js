@@ -138,6 +138,7 @@ app.innerHTML = `
             </div>
           </div>
         </div>
+        <a class="guide-detail-link" href="./guide.html">查看完整使用说明（新版功能）→</a>
         <div class="intro-actions">
           <button class="intro-secondary" id="guideBack">← 返回</button>
           <button class="enter" id="guideNextTwo"><span>下一步：全书与操作</span>${icon('arrow', 15)}</button>

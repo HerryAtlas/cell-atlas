@@ -55,6 +55,8 @@ await copyFile(resolve(root, 'demo/textbook.html'), resolve(docs, 'textbook.html
 await copyFile(resolve(root, 'demo/textbook.css'), resolve(docs, 'textbook.css'));
 await copyFile(resolve(root, 'demo/models.html'), resolve(docs, 'models.html'));
 await copyFile(resolve(root, 'demo/models.css'), resolve(docs, 'models.css'));
+await copyFile(resolve(root, 'demo/guide.html'), resolve(docs, 'guide.html'));
+await copyFile(resolve(root, 'demo/guide.css'), resolve(docs, 'guide.css'));
 await copyFile(resolve(root, 'demo/_headers'), resolve(docs, '_headers'));
 await copyFile(resolve(root, 'icon.svg'), resolve(docs, 'icon.svg'));
 await copyFile(resolve(root, 'media/cover.jpg'), resolve(docs, 'cover.jpg'));

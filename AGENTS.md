@@ -93,8 +93,9 @@ Any change to a user flow must update the instructions in the same change:
 
 1. `demo/main.js` — the three-page onboarding copy.
 2. `demo/models.html` — the in-lesson **使用说明** panel, button labels and hints.
-3. `README.md` — the guided-lesson steps, completion rules and mobile behaviour.
-4. `COURSE-MAP.md` — section status and remaining work, when a lesson changes.
+3. `demo/guide.html` / `demo/guide.css` — the standalone detailed usage page linked from onboarding and the lesson.
+4. `README.md` — the guided-lesson steps, completion rules and mobile behaviour.
+5. `COURSE-MAP.md` — section status and remaining work, when a lesson changes.
 
 A feature is not done if a user cannot discover how to use it from the page. Keep onboarding at exactly three pages. Browser tests should cover the critical instructions and controls where practical.
 
