@@ -5,7 +5,7 @@ Cell Atlas uses a deliberately small **course engine** at the center. The visual
 ```text
 Course definition  →  CourseEngine  →  UI / 3D scene
                          │
-                         └─ event stream ──→ optional AI tutor
+                         └─ readonly context ──→ optional AI tutor
                                              optional Jarvis bridge
                                              optional memory service
 ```
@@ -14,7 +14,7 @@ Course definition  →  CourseEngine  →  UI / 3D scene
 
 A lesson must remain completable when every AI service is offline.
 
-- The engine owns step order, evidence, completion and snapshots.
+- The engine owns stage navigation, evidence, completion and snapshots. Free browsing is allowed; completing the lesson requires evidence for every stage.
 - The UI owns presentation and 3D interaction.
 - An AI tutor may explain, ask a follow-up or suggest a hint.
 - An AI tutor **cannot** mark a step complete or bypass an exercise.
@@ -26,10 +26,11 @@ A lesson must remain completable when every AI service is offline.
 |---|---|---|
 | Course content | objectives, structures, mechanism text, experiments, exercises | `src/transport-lesson.js` |
 | Course flow | declarative step requirements | `src/transport-flow.js` |
+| Experiment | condition validation and task-specific prediction feedback | `src/transport-experiment.js` |
 | Engine | deterministic state machine, evidence, completion, snapshot | `src/course-engine.js` |
 | Scene | pickable structures, highlight, mechanism state, experiment state | `src/models-scene.js` |
 | Lesson UI | four stages, playback, prediction form, exercises, mobile peek | `demo/transport-lesson-ui.js` |
-| Tests | engine unit tests | `tests/course-engine.test.mjs` |
+| Tests | engine, experiment and lesson UI regressions | `tests/*.test.mjs` |
 
 The engine has no DOM, Three.js, React, network or LLM dependency.
 
@@ -57,24 +58,38 @@ The UI dispatches evidence:
 - `experiment.run`
 - `exercise.answer`
 
-If an experiment is re-run after a slider changes, the UI revokes the old `experiment.run` evidence first. Completion always reflects the current attempt.
+Evidence is scoped to its stage and attempt. `revoke()` marks matching evidence inactive without deleting previous answers or experiment conditions. Only active evidence in the current attempt contributes to progress. `reset()` starts a new attempt, preserving previous attempts in memory. Nothing is persisted or uploaded automatically. Restart requires a separate confirmation, supports cancellation and Escape, and explains that history lasts only during the current page session; refresh discards it.
+
+`goTo()` allows browsing any stage. The final `advance()` requires `canComplete()` to be true for the entire lesson. A completed lesson can be revisited without another completion notification; the UI also offers an explicit restart. Revoking required evidence invalidates completion until the learner supplies new evidence and finishes again.
+
+The transport experiment predicts a fixed condition: ATP 0%, gradient 60%, no inhibitor. Other conditions remain available for exploration but neither grade that prediction nor complete the task. An incorrect prediction still counts as an attempt when followed by the specified experiment and its explanatory feedback. Changing parameters invalidates the previous run; running again is required.
+
+The legacy flow id 'transport-lesson-v1' is stable identity, not a schema version. The flow's version describes its definition/requirements revision; ENGINE_VERSION describes the snapshot envelope. Snapshots use engine schema version 2 and a separate flow revision. Restore validates fields, event history and completion consistency; version 1 snapshots are rejected rather than silently reinterpreted. Exported snapshots and event payloads do not share mutable objects with the engine. This is data validation, not tamper-proof assessment; the static site is a self-study tool.
 
 ## 4. AI boundary
 
-A future tutor adapter can subscribe to engine events:
+A future tutor receives only the restricted observer handle:
 
-```js
-engine.subscribe((event, state) => {
-  // send a redacted summary to Jarvis or another tutor
+~~~js
+const tutor = engine.getTutorObserver();
+const context = tutor.getTutorContext();
+const unsubscribe = tutor.subscribe((currentContext) => {
+  // Only serialized, allowlisted context may cross the future bridge.
 });
-```
+~~~
+
+The deeply frozen context contains its schema version, flow identity/revision, current step id/label/kind and aggregate progress. It excludes answers, completion requirements, raw events, timestamps and previous attempts. Tutor listeners receive one context argument; synchronous and asynchronous failures do not interrupt learning.
+
+Pass only this handle to a tutor, never the engine or the complete lesson UI object. The UI exposes it as its 'tutor' property. The existing engine.subscribe() and getSnapshot() remain trusted local diagnostic/control-side APIs and include detailed evidence; they must not be given to AI integrations.
+
+The current context cannot support answer-specific misconception analysis. Adding that later requires an explicit data policy and a separate minimal, consented projection.
 
 Allowed AI behaviour:
 
 - explain the current structure or mechanism step;
 - ask a Socratic follow-up;
 - give a graduated hint;
-- summarise a misconception after an attempt.
+- suggest a next learning activity from aggregate progress.
 
 Not allowed:
 
@@ -85,15 +100,18 @@ Not allowed:
 
 If the tutor is unavailable, the static lesson continues normally.
 
+The observer interface exposes no `dispatch`, `goTo`, `reset` or completion setters. This limits accidental writes through that interface; it does not sandbox arbitrary JavaScript running in the same page. A future external tutor must receive serialized context and return validated hint data through a narrow adapter.
+
 ## 5. Jarvis and memory
 
 Jarvis should be a **separate local service**, not part of the public static bundle. A future bridge can expose a narrow API:
 
 ```text
 GET  /lesson/context
-POST /lesson/event
 POST /lesson/hint
 ```
+
+Evidence-writing stays inside the local lesson UI; no tutor event-write endpoint is proposed. This bridge is not implemented yet.
 
 The bridge should bind to `127.0.0.1`, use a short-lived token, and expose no general shell/file tools to the lesson page.
 

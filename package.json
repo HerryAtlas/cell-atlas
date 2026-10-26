@@ -34,7 +34,8 @@
   "scripts": {
     "build": "node ./build.mjs",
     "build:demo": "node ./build-demo.mjs",
-    "test": "node tests/course-engine.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/browser/smoke.mjs"
   },
   "devDependencies": {
     "esbuild": "^0.25.10",

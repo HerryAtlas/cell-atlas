@@ -1,13 +1,11 @@
 import { TRANSPORT_LESSON } from '../src/transport-lesson.js';
 import { CourseEngine } from '../src/course-engine.js';
 import { TRANSPORT_FLOW } from '../src/transport-flow.js';
+import { runTransportExperiment } from '../src/transport-experiment.js';
 
-const STAGES = [
-  { id: 'recognize', label: '认识结构', short: '01' },
-  { id: 'mechanism', label: '观察机制', short: '02' },
-  { id: 'explore', label: '动手探索', short: '03' },
-  { id: 'exercise', label: '场景练习', short: '04' },
-];
+const STAGES = TRANSPORT_FLOW.steps.map((step, index) => ({
+  id: step.id, label: step.label, short: String(index + 1).padStart(2, '0'),
+}));
 const $ = (id) => document.getElementById(id);
 
 function esc(value) {
@@ -22,11 +20,17 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   const nextButton = $('cmLessonNext');
   const closeButton = $('cmLessonClose');
   const peekButton = $('cmLessonPeek');
+  const restartButton = $('cmLessonRestart');
+  const restartPrompt = $('cmLessonRestartPrompt');
+  const restartConfirm = $('cmLessonRestartConfirm');
+  const restartCancel = $('cmLessonRestartCancel');
+  const historyNotice = $('cmLessonHistory');
   const tabs = Array.from(document.querySelectorAll('[data-stage]'));
   const course = new CourseEngine(TRANSPORT_FLOW);
 
-  const state = {
+  const initialState = () => ({
     open: false,
+    restartPending: false,
     stage: 0,
     picked: new Set(),
     selected: null,
@@ -34,8 +38,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     mechPlaying: false,
     mechTimer: null,
     prediction: null,
-    exp: { atp: 60, gradient: 60, inhibitor: false },
-    expRun: false,
+    exp: { ...TRANSPORT_LESSON.experiment.initialConditions },
     expResult: null,
     identifyResult: null,
     identifyPicked: null,
@@ -43,7 +46,8 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     orderFeedback: null,
     analysisResult: null,
     analysisChoice: null,
-  };
+  });
+  const state = initialState();
 
   const engine = () => getEngine();
 
@@ -53,8 +57,10 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   }
 
   function setPeek(value) {
+    setRestartPending(false);
     overlay.classList.toggle('is-peeking', Boolean(value));
     peekButton.textContent = value ? '回到面板' : '看模型';
+    if (value) document.querySelector('.cm-view')?.scrollIntoView({ block: 'start', behavior: 'auto' });
   }
 
   function open(stage = 0) {
@@ -86,13 +92,16 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   }
 
   function goStage(stage) {
-    const next = Math.max(0, Math.min(STAGES.length - 1, stage));
+    if (!Number.isInteger(stage) || !course.goTo(stage)) return;
+    setRestartPending(false);
+    const next = stage;
     stopMechanism();
-    course.goTo(next);
     state.stage = next;
     const instance = engine();
     if (!instance) return;
     instance.setLabelsVisible(false);
+    // Mechanism review must not inherit ATP depletion or an inhibitor.
+    instance.setExperiment({ atp: 1, gradient: 1, inhibitor: false });
     if (next === 0) {
       instance.setLessonState({ active: false });
       instance.clearHighlight();
@@ -101,7 +110,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       state.mechPlaying = false;
       syncMechanism();
     } else if (next === 2) {
-      instance.setLessonState({ active: true, step: 0 });
+      syncExperimentScene();
       instance.selectPick('pump');
     } else {
       instance.setLessonState({ active: false });
@@ -134,15 +143,47 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     return course.isStepComplete(3);
   }
 
-  function canGoNext() {
-    return course.isStepComplete();
+  function firstIncompleteStage() {
+    return STAGES.findIndex((_, index) => !course.isStepComplete(index));
+  }
+
+  function setRestartPending(value, restoreFocus = false) {
+    state.restartPending = value;
+    restartPrompt.hidden = !value;
+    restartButton.setAttribute('aria-expanded', String(value));
+    if (value) restartCancel.focus();
+    else if (restoreFocus) restartButton.focus();
+  }
+
+  function requestRestart() {
+    if (!state.open) return;
+    stopMechanism();
+    if (state.stage === 1) renderMechanism();
+    setRestartPending(!state.restartPending, state.restartPending);
+  }
+
+  function restart() {
+    if (!state.open || !state.restartPending) return;
+    stopMechanism();
+    course.reset();
+    Object.assign(state, initialState(), { open: true });
+    setPeek(false);
+    goStage(0);
+    historyNotice.textContent = '已开始第 ' + course.attempt + ' 轮学习，已保留历史尝试（仅本次打开期间，刷新后不保留）。';
+    historyNotice.hidden = false;
+    restartButton.focus();
   }
 
   function updateFooter() {
     const stage = STAGES[state.stage];
-    progress.textContent = `${stage.short} / 04 · ${stage.label}`;
-    nextButton.disabled = state.stage === 3 ? !allExercisesDone() : !canGoNext();
-    if (state.stage === 3) nextButton.textContent = allExercisesDone() ? '完成并返回 →' : '完成练习后继续';
+    progress.textContent = `${stage.short} / 04 · ${stage.label}${course.courseComplete ? ' · 复习' : ''}`;
+    nextButton.disabled = state.stage === 3 ? !allExercisesDone() : !course.canAdvance();
+    if (state.stage === 3) {
+      if (course.courseComplete) nextButton.textContent = '结束复习 →';
+      else if (course.canComplete()) nextButton.textContent = '完成并返回 →';
+      else if (allExercisesDone()) nextButton.textContent = `继续${STAGES[firstIncompleteStage()].label} →`;
+      else nextButton.textContent = '完成练习后继续';
+    }
     else nextButton.textContent = '下一步 →';
   }
 
@@ -271,11 +312,25 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     if (state.mechPlaying) scheduleMechanism();
   }
 
-  function experimentRate() {
-    if (state.exp.inhibitor) return 0;
-    const atp = state.exp.atp / 100;
-    const gradient = state.exp.gradient / 100;
-    return Math.round(100 * atp * (0.45 + 0.55 * gradient));
+  function syncExperimentScene() {
+    const instance = engine();
+    if (!instance) return;
+    instance.setExperiment({
+      atp: state.exp.atp / 100,
+      gradient: state.exp.gradient / 100,
+      inhibitor: state.exp.inhibitor,
+    });
+    // This is a conformational illustration, not a real-time rate animation.
+    instance.setLessonState({ active: true, step: state.expResult?.rate > 0 ? 4 : 0 });
+  }
+
+  function invalidateExperiment() {
+    state.expResult = null;
+    course.revoke('experiment.run');
+    syncExperimentScene();
+    body.querySelector('.cm-lsn-result')?.setAttribute('hidden', '');
+    body.querySelector('.cm-lsn-feedback')?.remove();
+    updateFooter();
   }
 
   function experimentObservation(rate) {
@@ -316,10 +371,13 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
           <strong>${result.rate}% 相对速率</strong>
           <p>${esc(result.observation)}</p>
         </div>
-        <div class="cm-lsn-feedback ${result.predictionCorrect ? 'ok' : 'bad'}">
-          ${result.predictionCorrect ? '预测正确。' : '预测与模拟结果不一致，正好用来修正模型。'} ${esc(TRANSPORT_LESSON.experiment.explanation)}
+        <div class="cm-lsn-feedback ${result.conditionsMet ? (result.predictionCorrect ? 'ok' : 'bad') : ''}">
+          ${result.conditionsMet
+            ? `${result.predictionCorrect ? '预测正确。' : '预测与模拟结果不一致，正好用来修正模型。'} ${esc(TRANSPORT_LESSON.experiment.explanation)}`
+            : '这是自由探索结果，尚未验证题目中的预测。请将 ATP 调到 0%、梯度保持 60%、取消抑制剂，再运行一次。'}
         </div>
       ` : '<p class="cm-lsn-small">预测是必填的。模拟结果只用于比较趋势，不是实验测量值。</p>'}
+      <p class="cm-lsn-small">预测针对上方指定条件。模型展示构象示意，速率请以运行后的数值为准；改变条件后需重新运行。</p>
       <div class="cm-lsn-assumptions">
         <b>SIMULATION ASSUMPTIONS / 模拟假设</b>
         <ul>${TRANSPORT_LESSON.experiment.assumptions.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>
@@ -328,11 +386,13 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     body.querySelectorAll('[data-prediction]').forEach((button) => {
       button.addEventListener('click', () => {
         state.prediction = button.dataset.prediction;
-        state.expRun = false;
-        state.expResult = null;
-        course.revoke('experiment.run');
+        invalidateExperiment();
         course.revoke('experiment.prediction');
-        course.dispatch('experiment.prediction', { id: state.prediction });
+        course.dispatch('experiment.prediction', {
+          id: state.prediction,
+          taskId: TRANSPORT_LESSON.experiment.taskId,
+          conditions: { ...TRANSPORT_LESSON.experiment.targetConditions },
+        });
         renderExplore();
         updateFooter();
       });
@@ -342,50 +402,31 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         state.exp[input.dataset.exp] = Number(input.value);
         const out = $(`lsn${input.dataset.exp === 'atp' ? 'Atp' : 'Gradient'}Out`);
         if (out) out.textContent = `${input.value}%`;
-        state.expRun = false;
-        state.expResult = null;
-        course.revoke('experiment.run');
-        body.querySelector('.cm-lsn-result')?.setAttribute('hidden', '');
-        body.querySelector('.cm-lsn-feedback')?.remove();
-        updateFooter();
+        invalidateExperiment();
       });
     });
     $('lsnInhibitor')?.addEventListener('change', (event) => {
       state.exp.inhibitor = event.target.checked;
-      state.expRun = false;
-      state.expResult = null;
-      course.revoke('experiment.run');
-      body.querySelector('.cm-lsn-result')?.setAttribute('hidden', '');
-      body.querySelector('.cm-lsn-feedback')?.remove();
-      updateFooter();
+      invalidateExperiment();
     });
     body.querySelector('[data-act="run-experiment"]')?.addEventListener('click', () => {
       if (!state.prediction) return;
-      const rate = experimentRate();
-      state.expRun = true;
+      const result = runTransportExperiment(state.exp, state.prediction);
       state.expResult = {
-        rate,
-        observation: experimentObservation(rate),
-        predictionCorrect: state.prediction === TRANSPORT_LESSON.experiment.correctPrediction,
+        ...result,
+        observation: experimentObservation(result.rate),
       };
       course.revoke('experiment.run');
       course.dispatch('experiment.run', {
-        rate,
+        taskId: TRANSPORT_LESSON.experiment.taskId,
+        rate: result.rate,
         atp: state.exp.atp,
         gradient: state.exp.gradient,
         inhibitor: state.exp.inhibitor,
         prediction: state.prediction,
       });
-      const instance = engine();
-      if (instance) {
-        instance.setExperiment({
-          atp: state.exp.atp / 100,
-          gradient: state.exp.gradient / 100,
-          inhibitor: state.exp.inhibitor,
-        });
-        instance.setLessonState({ active: true, step: 4 });
-        instance.selectPick('pump');
-      }
+      syncExperimentScene();
+      engine()?.selectPick('pump');
       renderExplore();
       updateFooter();
     });
@@ -432,7 +473,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         </div>
         ${state.analysisResult ? `<div class="cm-lsn-feedback ${state.analysisResult}">${esc(state.analysisResult === 'ok' ? analysis.success : analysis.failure)}</div>` : ''}
       </div>
-      ${allExercisesDone() ? `<div class="cm-lsn-complete"><h3>${esc(TRANSPORT_LESSON.completion.title)}</h3><p>${esc(TRANSPORT_LESSON.completion.body)}</p></div>` : ''}
+      ${course.canComplete() ? `<div class="cm-lsn-complete"><h3>${esc(TRANSPORT_LESSON.completion.title)}</h3><p>${esc(TRANSPORT_LESSON.completion.body)}</p></div>` : allExercisesDone() ? '<p class="cm-lsn-small">练习已完成。请用底部按钮补齐其它阶段，之后再结课。</p>' : ''}
     `;
     body.querySelectorAll('[data-order]').forEach((button) => {
       button.addEventListener('click', () => {
@@ -440,6 +481,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         state.orderFeedback = null;
         course.revoke('exercise.answer', { exercise: 'ordering' });
         renderExercises();
+        updateFooter();
       });
     });
     body.querySelector('[data-act="order-reset"]')?.addEventListener('click', () => {
@@ -456,6 +498,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       course.dispatch('exercise.answer', {
         exercise: 'ordering',
         correct: state.orderFeedback === 'ok',
+        answer: [...state.order],
       });
       renderExercises();
       updateFooter();
@@ -468,6 +511,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         course.dispatch('exercise.answer', {
           exercise: 'analysis',
           correct: state.analysisResult === 'ok',
+          answer: state.analysisChoice,
         });
         renderExercises();
         updateFooter();
@@ -513,18 +557,29 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   entry.addEventListener('click', () => open(0));
   peekButton.addEventListener('click', () => setPeek(!overlay.classList.contains('is-peeking')));
   closeButton.addEventListener('click', close);
+  restartButton.addEventListener('click', requestRestart);
+  restartConfirm.addEventListener('click', restart);
+  restartCancel.addEventListener('click', () => setRestartPending(false, true));
+  overlay.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && state.restartPending) {
+      event.stopPropagation();
+      setRestartPending(false, true);
+    }
+  });
   nextButton.addEventListener('click', () => {
     if (state.stage < STAGES.length - 1) {
       if (!course.advance()) return;
       goStage(course.stepIndex);
     } else if (allExercisesDone()) {
-      course.advance();
-      close();
+      if (!course.canComplete()) goStage(firstIncompleteStage());
+      else if (course.advance()) close();
     }
   });
   tabs.forEach((tab) => tab.addEventListener('click', () => goStage(Number(tab.dataset.stage))));
 
   return {
+    // Optional tutors get this read-only handle, never the course controller.
+    tutor: course.getTutorObserver(),
     setAvailable,
     open,
     close,

@@ -22,3 +22,6 @@ _cmit_build/
 id_rsa*
 gh-token*.txt
 gh-auth*.log
+
+# Local browser regression output
+tests/browser-results/

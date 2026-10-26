@@ -122,6 +122,8 @@ document.addEventListener('keydown', (event) => {
     return;
   }
   if (lesson?.isOpen()) return;
+  const target = event.target;
+  if (target?.matches('input, textarea, select, button, a') || target?.isContentEditable) return;
   if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
     const index = MODEL_SPECS.findIndex((spec) => spec.id === activeId);
     const next = (index + (event.key === 'ArrowRight' ? 1 : -1) + MODEL_SPECS.length) % MODEL_SPECS.length;

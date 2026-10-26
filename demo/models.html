@@ -79,17 +79,28 @@
           <a class="cm-lesson-book" href="./textbook.html?book=3">教材 pp. 62–68 · 回到对应小节 →</a>
         </div>
         <div class="cm-lesson-actions">
+          <button type="button" class="cm-lesson-restart" id="cmLessonRestart" aria-expanded="false" aria-controls="cmLessonRestartPrompt">重新学习</button>
           <button type="button" class="cm-lesson-peek" id="cmLessonPeek">看模型</button>
           <button type="button" class="cm-lesson-close" id="cmLessonClose" aria-label="关闭导学">关闭</button>
         </div>
       </header>
+      <div class="cm-lesson-restart-prompt" id="cmLessonRestartPrompt" role="group" aria-label="重新学习确认" hidden>
+        <p>重新开始本课？当前进度将重置，历史尝试会保留在本次打开期间；刷新页面后不保留。</p>
+        <div>
+          <button type="button" class="cm-lesson-close" id="cmLessonRestartCancel">继续本轮</button>
+          <button type="button" class="cm-lesson-restart" id="cmLessonRestartConfirm">确认重新学习</button>
+        </div>
+      </div>
       <nav class="cm-lesson-tabs" id="cmLessonTabs" role="tablist" aria-label="导学阶段">
         <button type="button" role="tab" data-stage="0" aria-selected="true"><span>01</span>认识结构</button>
         <button type="button" role="tab" data-stage="1" aria-selected="false"><span>02</span>观察机制</button>
         <button type="button" role="tab" data-stage="2" aria-selected="false"><span>03</span>动手探索</button>
         <button type="button" role="tab" data-stage="3" aria-selected="false"><span>04</span>场景练习</button>
       </nav>
-      <div class="cm-lesson-scroll"><div class="cm-lesson-body" id="cmLessonBody"></div></div>
+      <div class="cm-lesson-scroll">
+        <p class="cm-lesson-history" id="cmLessonHistory" role="status" hidden></p>
+        <div class="cm-lesson-body" id="cmLessonBody"></div>
+      </div>
       <footer class="cm-lesson-foot">
         <span id="cmLessonProgress">01 / 04 · 认识结构</span>
         <button type="button" id="cmLessonNext">下一步 →</button>

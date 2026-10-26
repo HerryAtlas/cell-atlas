@@ -98,7 +98,7 @@ Minimum for any change:
 5. Check a narrow/mobile viewport; labels and rails must remain usable.
 6. Do not commit `node_modules/`.
 
-There is no formal unit-test suite. Treat the browser smoke test as mandatory. The main risks are camera framing, label overlap, WebGL shader errors and broken deep links.
+Run `pnpm test` for course-engine, experiment and lesson UI regression tests. Run pnpm test:browser for the independent desktop/mobile suite (setup: tests/browser/README.md). Browser smoke tests are also mandatory; unit tests cannot verify camera framing, label overlap, WebGL shaders or visual deep-link behaviour.
 
 ## Current state
 

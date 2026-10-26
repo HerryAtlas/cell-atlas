@@ -3,7 +3,11 @@ import { TRANSPORT_LESSON } from './transport-lesson.js';
 // The course engine only sees declarative requirements. The UI dispatches
 // evidence; it cannot mark a step complete without producing the evidence.
 export const TRANSPORT_FLOW = {
+  // Stable legacy identity; its suffix is not the current schema revision.
   id: 'transport-lesson-v1',
+  // Revision of this flow definition/requirements, checked during restore.
+  // CourseEngine separately versions the snapshot envelope (ENGINE_VERSION).
+  version: 2,
   title: TRANSPORT_LESSON.title,
   course: 'cell-biology',
   lessonId: 'transport',
@@ -31,8 +35,11 @@ export const TRANSPORT_FLOW = {
       label: '动手探索',
       kind: 'experiment',
       requirements: [
-        { type: 'experiment.prediction' },
-        { type: 'experiment.run' },
+        { type: 'experiment.prediction', match: { taskId: TRANSPORT_LESSON.experiment.taskId } },
+        { type: 'experiment.run', match: {
+          taskId: TRANSPORT_LESSON.experiment.taskId,
+          ...TRANSPORT_LESSON.experiment.targetConditions,
+        } },
       ],
     },
     {

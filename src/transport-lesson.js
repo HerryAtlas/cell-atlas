@@ -106,8 +106,11 @@ export const TRANSPORT_LESSON = {
     ],
   },
   experiment: {
+    taskId: 'atp-depletion',
+    initialConditions: { atp: 60, gradient: 60, inhibitor: false },
+    targetConditions: { atp: 0, gradient: 60, inhibitor: false },
     title: '改变条件，预测泵速率',
-    prompt: '把 ATP 供应调到 0，同时保持 Na⁺ 梯度不变。泵的相对速率会怎样？',
+    prompt: '相对于初始条件（ATP 60%、Na⁺ 梯度相对充足度 60%、不加抑制剂），把 ATP 调到 0，保持其余条件不变。泵的相对速率会怎样？',
     predictionOptions: [
       { id: 'unchanged', label: '基本不变：泵不依赖 ATP' },
       { id: 'decrease', label: '下降或停止：ATP 是构象循环的能量来源' },
@@ -163,7 +166,7 @@ export const TRANSPORT_LESSON = {
   ],
   completion: {
     title: '样板课完成',
-    body: '你已经完成一次“点击认识结构 → 观察机制 → 动手探索 → 作答获得反馈”的完整流程。下一步可按 COURSE-MAP.md 把同一结构扩展到其它章节。',
+    body: '你已经完成结构辨认、机制观察、条件实验和三项练习。可以回看各阶段巩固理解，也可以重新学习，再检验一次自己的判断。',
   },
 };
 
