@@ -247,6 +247,14 @@ function Icon({ name, size = 18 }) {
           <path d="M12 6.3v13" opacity="0.5" />
         </svg>
       );
+    case 'help':
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M9.5 9.2a2.6 2.6 0 0 1 5.1.8c0 1.7-2.6 2-2.6 3.6" />
+          <path d="M12 17.2v.1" />
+        </svg>
+      );
     case 'plus':
       return (
         <svg {...common}>
@@ -984,6 +992,11 @@ function AtlasExperience() {
     if (engineRef.current) engineRef.current.pulse();
   }, []);
 
+  const openUsage = React.useCallback(() => {
+    setIntroPage(2);
+    setIntro('in');
+  }, []);
+
   const close = React.useCallback(() => {
     if (document.fullscreenElement && document.exitFullscreen) {
       document.exitFullscreen().catch(() => {});
@@ -1202,6 +1215,15 @@ function AtlasExperience() {
             <span>{current.readout}</span>
           </div>
           <div className="ca-topright">
+            <button
+              type="button"
+              className="ca-book-btn ca-help-btn"
+              onClick={openUsage}
+              aria-label="打开使用说明"
+              title="使用说明"
+            >
+              <Icon name="help" size={15} />
+            </button>
             <button
               type="button"
               className="ca-book-btn"
@@ -1443,7 +1465,7 @@ function AtlasExperience() {
                     <span>先看使用说明</span>
                     <Icon name="arrow" size={15} />
                   </button>
-                  <span className="ca-intro-count">01 / 03</span>
+                  <span className="ca-intro-count">01 / 04</span>
                 </div>
               </div>
             )}
@@ -1488,15 +1510,71 @@ function AtlasExperience() {
                 <div className="ca-intro-actions">
                   <button type="button" className="ca-intro-secondary" onClick={() => setIntroPage(0)}>← 返回</button>
                   <button type="button" className="ca-enter" onClick={() => setIntroPage(2)}>
-                    <span>下一步：全书与操作</span>
+                    <span>下一步：新版使用说明</span>
                     <Icon name="arrow" size={15} />
                   </button>
-                  <span className="ca-intro-count">02 / 03</span>
+                  <span className="ca-intro-count">02 / 04</span>
                 </div>
               </div>
             )}
 
             {introPage === 2 && (
+              <div className="ca-intro-step ca-intro-guide ca-intro-usage">
+                <div className="ca-intro-eyebrow">NEW FEATURES / 新版使用说明</div>
+                <h2 className="ca-guide-title">模型、全书与导学怎么走</h2>
+                <div className="ca-usage-grid">
+                  <div className="ca-usage-col">
+                    <div className="ca-usage-col-title">IN THIS PLUGIN / 插件内</div>
+                    <div className="ca-usage-step">
+                      <span>01</span>
+                      <div><b>按 T 打开学习手册</b><p>每节都有学习目标、核心概念、机制拆解、易错点、自测和教材页码。</p></div>
+                    </div>
+                    <div className="ca-usage-step">
+                      <span>02</span>
+                      <div><b>按 B 打开全书分节</b><p>左侧 16 章，右侧 44 节；搜索框可以筛章节和小节。</p></div>
+                    </div>
+                    <div className="ca-usage-step">
+                      <span>03</span>
+                      <div><b>模型名字就是入口</b><p>章节顶部和小节里的模型名可以直接打开：8 个结构模型 + 6 个实验方法模型。</p></div>
+                    </div>
+                    <div className="ca-usage-step">
+                      <span>04</span>
+                      <div><b>模型里怎么操作</b><p>拖动旋转、滚轮缩放、双击重置；关闭模型后回到全书原位置。</p></div>
+                    </div>
+                  </div>
+                  <div className="ca-usage-col ca-usage-col-lesson">
+                    <div className="ca-usage-col-title">PUBLIC LESSON / 公开站样板课</div>
+                    <div className="ca-usage-target">
+                      <b>跨膜运输 · 四个阶段</b>
+                      <p>认识结构 → 观察机制 → 动手探索 → 场景练习</p>
+                      <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
+                      <p>目标实验才计入完成；自由探索不计。所有阶段都有当前有效证据才算结课。</p>
+                    </div>
+                    <p className="ca-usage-note">插件内可以从「物质的跨膜运输」章节打开模型看结构；完整的互动导学在公开站。</p>
+                    <a
+                      className="ca-usage-link"
+                      href="https://gregarious-cat-8f3216.netlify.app/models.html?model=transport&learn=1"
+                      target="_blank"
+                      rel="noopener"
+                    >打开公开站完整导学 →</a>
+                  </div>
+                </div>
+                <div className="ca-usage-update">
+                  <b>这一版更新</b>
+                  <span>四页入口引导 · 右上角「使用说明」可随时重开 · 章节 / 模型深链 · 手机窄屏适配</span>
+                </div>
+                <div className="ca-intro-actions">
+                  <button type="button" className="ca-intro-secondary" onClick={() => setIntroPage(1)}>← 返回</button>
+                  <button type="button" className="ca-enter" onClick={() => setIntroPage(3)}>
+                    <span>下一步：全书与操作</span>
+                    <Icon name="arrow" size={15} />
+                  </button>
+                  <span className="ca-intro-count">03 / 04</span>
+                </div>
+              </div>
+            )}
+
+            {introPage === 3 && (
               <div className="ca-intro-step ca-intro-guide ca-intro-controls">
                 <div className="ca-intro-eyebrow">NAVIGATION & CONTROLS / 全书与操作</div>
                 <h2 className="ca-guide-title">按 <kbd>B</kbd>，进入 16 章 44 节</h2>
@@ -1543,12 +1621,12 @@ function AtlasExperience() {
                   <div><kbd>双击</kbd><b>重置视角</b></div>
                 </div>
                 <div className="ca-intro-actions">
-                  <button type="button" className="ca-intro-secondary" onClick={() => setIntroPage(1)}>← 返回</button>
+                  <button type="button" className="ca-intro-secondary" onClick={() => setIntroPage(2)}>← 返回</button>
                   <button type="button" className="ca-enter" onClick={dismissIntro}>
                     <span>{t('enter', '进入细胞')}</span>
                     <Icon name="arrow" size={15} />
                   </button>
-                  <span className="ca-intro-count">03 / 03</span>
+                  <span className="ca-intro-count">04 / 04</span>
                 </div>
               </div>
             )}
@@ -3637,6 +3715,7 @@ const ATLAS_CSS = `
   display: grid;
   place-items: center;
   padding: 24px;
+  overflow-y: auto;
   cursor: pointer;
   background:
     radial-gradient(ellipse at 50% 58%, rgba(2,8,12,.08) 0%, rgba(2,7,11,.62) 52%, rgba(1,4,8,.95) 100%);
@@ -3770,6 +3849,26 @@ const ATLAS_CSS = `
 .ca-guide-block > span { width: 23px; height: 23px; display: grid; place-items: center; border: 1px solid rgba(127,247,228,.3); border-radius: 50%; color: var(--ca-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; }
 .ca-guide-block b { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 500; letter-spacing: .04em; color: rgba(238,251,247,.9); }
 .ca-guide-block p { margin: 0; font-size: 12px; line-height: 1.78; color: rgba(201,233,228,.54); }
+.ca-usage-grid { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr); gap: 14px; margin: 20px 0 0; text-align: left; }
+.ca-usage-col { padding: 13px 14px; border: 1px solid rgba(127,247,228,.16); border-radius: 6px; background: rgba(2,10,13,.42); }
+.ca-usage-col-lesson { border-color: rgba(255,216,153,.24); background: rgba(255,216,153,.035); }
+.ca-usage-col-title { margin-bottom: 7px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; letter-spacing: .15em; color: rgba(127,247,228,.62); }
+.ca-usage-col-lesson .ca-usage-col-title { color: rgba(255,216,153,.72); }
+.ca-usage-step { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; padding: 7px 0; border-top: 1px solid rgba(127,247,228,.08); }
+.ca-usage-step > span { padding-top: 2px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; color: var(--ca-accent); opacity: .62; }
+.ca-usage-step b { display: block; margin-bottom: 2px; font-size: 11.5px; font-weight: 500; color: rgba(238,251,247,.9); }
+.ca-usage-step p { margin: 0; font-size: 10.5px; line-height: 1.65; color: rgba(201,233,228,.52); }
+.ca-usage-target { padding: 10px 11px; border: 1px solid rgba(255,216,153,.26); border-radius: 4px; background: rgba(255,216,153,.05); }
+.ca-usage-target > b { display: block; margin-bottom: 6px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; font-weight: 400; letter-spacing: .06em; color: #ffd899; }
+.ca-usage-target p { margin: 0 0 7px; font-size: 10.5px; line-height: 1.65; color: rgba(255,232,190,.72); }
+.ca-usage-target > div { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0 8px; }
+.ca-usage-target code { padding: 3px 5px; border: 1px solid rgba(255,216,153,.3); border-radius: 3px; color: #ffd899; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; }
+.ca-usage-note { margin: 9px 0 0; font-size: 10.5px; line-height: 1.65; color: rgba(201,233,228,.52); }
+.ca-usage-link { display: inline-block; margin-top: 9px; padding-bottom: 2px; border-bottom: 1px solid rgba(255,216,153,.5); font-family: "SFMono-Regular", Consolas, monospace; font-size: 9px; color: #ffd899; }
+.ca-usage-link:hover { border-bottom-color: #ffd899; }
+.ca-usage-update { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-top: 12px; padding: 9px 11px; border: 1px solid rgba(127,247,228,.12); border-radius: 4px; background: rgba(127,247,228,.035); text-align: left; }
+.ca-usage-update b { flex: none; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; font-weight: 400; letter-spacing: .12em; color: var(--ca-accent); }
+.ca-usage-update span { font-size: 10.5px; line-height: 1.6; color: rgba(201,233,228,.52); }
 .ca-intro-inner.is-guide .ca-intro-actions { margin-top: 20px; }
 .ca-controls-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 26px; align-items: start; margin: 22px 0 0; }
 .ca-book-mock-body { padding: 8px 12px 10px; }
@@ -3877,7 +3976,8 @@ const ATLAS_CSS = `
   .ca-brand-mark { width: 31px; height: 31px; }
   .ca-wordmark { font-size: 9px; letter-spacing: .26em; }
   .ca-wordmark-cn { display: none; }
-  .ca-topright { gap: 10px; }
+  .ca-topright { gap: 8px; }
+  .ca-help-btn { width: 31px; height: 31px; }
   .ca-study-toggle {
     width: 34px;
     height: 34px;
@@ -3913,6 +4013,8 @@ const ATLAS_CSS = `
   .ca-intro-sub { font-size: 8px; letter-spacing: .2em; }
   .ca-intro-eyebrow { font-size: 7px; letter-spacing: .3em; }
   .ca-intro-inner { max-width: 100%; }
+  .ca-usage-grid { grid-template-columns: 1fr; gap: 10px; }
+  .ca-usage-step p, .ca-usage-note, .ca-usage-update span { font-size: 11px; }
   .ca-intro-skip { bottom: 18px; font-size: 6px; }
   .ca-study-panel { width: 100%; }
   .ca-study-head { padding: 20px 18px 16px; }

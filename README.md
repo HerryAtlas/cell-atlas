@@ -51,9 +51,11 @@ standalone page is not a video or a mock-up.
   structure specimens plus six experimental-method models (light/fluorescence
   microscopy, electron microscopy, centrifugation, cell culture, FRAP, FRET).
   They use projected anatomy labels and deep links from the reader.
-- **First-visit onboarding** — a three-page guide before entering the cell:
-  welcome, a concrete mock of the **T** study drawer, then **B** section
-  navigation, model links, pointer controls and the full keyboard map.
+- **First-visit onboarding** — a four-page guide before entering the cell:
+  welcome, a concrete mock of the **T** study drawer, a detailed new-version
+  usage page (models, public guided lesson, completion conditions), then **B**
+  section navigation, model links, pointer controls and the full keyboard map.
+  The plugin's help button reopens the usage page at any time.
 - **No external assets** — no downloaded HDRIs, textures, 3D models or fonts.
   Three.js is bundled into the demo and the plugin client.
 
@@ -407,6 +409,8 @@ bundle adds:
 - a **细胞图谱** entry at the top of the conversation header
 - a cell-mark action at the sidebar foot
 - a frame-wide full-screen overlay with the complete courseware
+- a **four-page onboarding**, including the new-version usage page; the help
+  icon in the header reopens that page at any time
 - a **section browser** (book icon or `B`) covering all 16 chapters and 44 sections
 - a **3D model viewer** opened from any section that has a specimen in Batch 01/02
 

@@ -91,7 +91,7 @@ If the DSH environment supplies its own Node binary, use that binary explicitly.
 
 Any change to a user flow must update the instructions in the same change:
 
-1. `demo/main.js` — the four-page onboarding copy.
+1. `demo/main.js` and `src/plugin.jsx` — the four-page onboarding copy and the plugin help entry.
 2. `demo/models.html` — the in-lesson **使用说明** panel, button labels and hints.
 3. `demo/guide.html` / `demo/guide.css` — the standalone detailed usage page linked from onboarding and the lesson.
 4. `README.md` — the guided-lesson steps, completion rules and mobile behaviour.
