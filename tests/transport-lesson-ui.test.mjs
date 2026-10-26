@@ -380,3 +380,15 @@ test('the lesson exposes only the restricted tutor handle to integrations', (t) 
     assert.equal(f.ui.tutor[key], undefined);
   }
 });
+
+test('in-lesson help opens from the header and closes again', (t) => {
+  const f = fixture(t);
+  f.ui.open();
+  assert.equal(f.get('#cmLessonHelp').hidden, true);
+  f.click('#cmLessonHelpToggle');
+  assert.equal(f.get('#cmLessonHelp').hidden, false);
+  assert.equal(f.get('#cmLessonHelpToggle').getAttribute('aria-expanded'), 'true');
+  f.click('#cmLessonHelpClose');
+  assert.equal(f.get('#cmLessonHelp').hidden, true);
+  assert.equal(f.get('#cmLessonHelpToggle').getAttribute('aria-expanded'), 'false');
+});

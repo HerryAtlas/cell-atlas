@@ -25,12 +25,16 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   const restartConfirm = $('cmLessonRestartConfirm');
   const restartCancel = $('cmLessonRestartCancel');
   const historyNotice = $('cmLessonHistory');
+  const helpToggle = $('cmLessonHelpToggle');
+  const helpPanel = $('cmLessonHelp');
+  const helpClose = $('cmLessonHelpClose');
   const tabs = Array.from(document.querySelectorAll('[data-stage]'));
   const course = new CourseEngine(TRANSPORT_FLOW);
 
   const initialState = () => ({
     open: false,
     restartPending: false,
+    helpOpen: false,
     stage: 0,
     picked: new Set(),
     selected: null,
@@ -58,6 +62,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
 
   function setPeek(value) {
     setRestartPending(false);
+    setHelp(false);
     overlay.classList.toggle('is-peeking', Boolean(value));
     peekButton.textContent = value ? '回到面板' : '看模型';
     if (value) document.querySelector('.cm-view')?.scrollIntoView({ block: 'start', behavior: 'auto' });
@@ -68,6 +73,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     state.open = true;
     overlay.hidden = false;
     setPeek(false);
+    setHelp(false);
     engine().setAutoRotate(false);
     engine().setLabelsVisible(false);
     onOpen?.();
@@ -78,6 +84,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     if (!state.open) return;
     state.open = false;
     setPeek(false);
+    setHelp(false);
     stopMechanism();
     overlay.hidden = true;
     const instance = engine();
@@ -94,6 +101,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   function goStage(stage) {
     if (!Number.isInteger(stage) || !course.goTo(stage)) return;
     setRestartPending(false);
+    setHelp(false);
     const next = stage;
     stopMechanism();
     state.stage = next;
@@ -149,16 +157,31 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
 
   function setRestartPending(value, restoreFocus = false) {
     state.restartPending = value;
+    if (value) setHelp(false);
     restartPrompt.hidden = !value;
     restartButton.setAttribute('aria-expanded', String(value));
     if (value) restartCancel.focus();
     else if (restoreFocus) restartButton.focus();
   }
 
+  function setHelp(value, restoreFocus = false) {
+    state.helpOpen = Boolean(value);
+    helpPanel.hidden = !state.helpOpen;
+    overlay.classList.toggle('is-help-open', state.helpOpen);
+    helpToggle.setAttribute('aria-expanded', String(state.helpOpen));
+    if (state.helpOpen) {
+      setRestartPending(false);
+      helpClose.focus();
+    } else if (restoreFocus) {
+      helpToggle.focus();
+    }
+  }
+
   function requestRestart() {
     if (!state.open) return;
     stopMechanism();
     if (state.stage === 1) renderMechanism();
+    setHelp(false);
     setRestartPending(!state.restartPending, state.restartPending);
   }
 
@@ -560,8 +583,13 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   restartButton.addEventListener('click', requestRestart);
   restartConfirm.addEventListener('click', restart);
   restartCancel.addEventListener('click', () => setRestartPending(false, true));
+  helpToggle.addEventListener('click', () => setHelp(!state.helpOpen, state.helpOpen));
+  helpClose.addEventListener('click', () => setHelp(false, true));
   overlay.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && state.restartPending) {
+    if (event.key === 'Escape' && state.helpOpen) {
+      event.stopPropagation();
+      setHelp(false, true);
+    } else if (event.key === 'Escape' && state.restartPending) {
       event.stopPropagation();
       setRestartPending(false, true);
     }

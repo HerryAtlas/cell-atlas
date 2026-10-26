@@ -218,6 +218,23 @@ It walks through one complete loop:
 4. **场景练习** — hidden-label identification, process ordering and result
    analysis, each with targeted feedback.
 
+At the top of the lesson, **使用说明** opens a compact guide at any time. The
+completion rules are deliberately explicit:
+
+- all four structures must be selected;
+- all five mechanism steps must be viewed (play, step, pause and replay all
+  contribute);
+- the graded experiment is exactly **ATP 0%, Na⁺ gradient 60%, no inhibitor**.
+  Other combinations are free exploration and do not unlock the stage;
+- after changing any experiment condition, run again — the old result is
+  invalidated;
+- all three exercises must be correct before the lesson can finish;
+- stages can be browsed freely, but final completion requires current evidence
+  from every stage;
+- after completion, the lesson opens in review mode; **重新学习** requires a
+  second confirmation, and history is retained only for the current page
+  session (a refresh clears it).
+
 On a phone, use **看模型** to fold the lesson into a bottom bar, tap a structure
 in the exposed 3D scene, then return to the panel automatically. The lesson is
 deliberately scoped to **第四章 第二节**; the remaining 16/44 sections and their

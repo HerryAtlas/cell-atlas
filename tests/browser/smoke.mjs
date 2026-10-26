@@ -73,6 +73,11 @@ export async function runSmoke({ playwright, executablePath, channel,
         await page.locator('#cmLesson').waitFor({ state: 'visible' });
         await page.locator('#cmLoading.is-hidden').waitFor({ state: 'attached' });
         assert.equal(await page.locator('#modelStage canvas').evaluate((el) => !!el.getContext('webgl2')), true);
+        await click('#cmLessonHelpToggle');
+        assert.equal(await page.locator('#cmLessonHelp').isVisible(), true);
+        await assertText(page.locator('#cmLessonHelp'), /ATP = 0%|目标实验/);
+        await click('#cmLessonHelpClose');
+        assert.equal(await page.locator('#cmLessonHelp').isVisible(), false);
         await clickPump();
         await assertText(body, /已认识 1 \/ 4/);
         await assertText(body.locator('article h3'), /Na⁺\/K⁺ 泵/);
