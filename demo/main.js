@@ -98,7 +98,7 @@ app.innerHTML = `
         </div>
         <div class="intro-actions">
           <button class="enter" id="guideNext"><span>先看使用说明</span>${icon('arrow', 15)}</button>
-          <span class="intro-count">01 / 03</span>
+          <span class="intro-count">01 / 04</span>
         </div>
       </div>
 
@@ -138,15 +138,43 @@ app.innerHTML = `
             </div>
           </div>
         </div>
-        <a class="guide-detail-link" href="./guide.html">查看完整使用说明（新版功能）→</a>
         <div class="intro-actions">
           <button class="intro-secondary" id="guideBack">← 返回</button>
-          <button class="enter" id="guideNextTwo"><span>下一步：全书与操作</span>${icon('arrow', 15)}</button>
-          <span class="intro-count">02 / 03</span>
+          <button class="enter" id="guideNextTwo"><span>下一步：新版使用说明</span>${icon('arrow', 15)}</button>
+          <span class="intro-count">02 / 04</span>
         </div>
       </div>
 
-      <div class="intro-step intro-guide intro-controls" id="introStepThree" hidden>
+      <div class="intro-step intro-guide intro-lesson" id="introStepThree" hidden>
+        <div class="intro-eyebrow">GUIDED LESSON / 新版使用说明</div>
+        <h2 class="guide-title">四个阶段，走完才算结课</h2>
+        <div class="lesson-guide-grid">
+          <div class="lesson-stage-list">
+            <div class="lesson-stage"><span>01</span><div><b>认识结构</b><p>点模型里的膜、通道、泵、ATP；四个都点过，下一步才解锁。</p></div></div>
+            <div class="lesson-stage"><span>02</span><div><b>观察机制</b><p>播放或逐步看 E1–E2 的 5 个步骤；都看过才能继续。</p></div></div>
+            <div class="lesson-stage"><span>03</span><div><b>动手探索</b><p>先预测，再运行。只有目标实验计入完成，其它条件是自由探索。</p></div></div>
+            <div class="lesson-stage"><span>04</span><div><b>场景练习</b><p>辨认、排序、结果分析三道都正确，才能结课。</p></div></div>
+          </div>
+          <div class="lesson-rules">
+            <div class="lesson-target">
+              <b>目标实验</b>
+              <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
+              <p>只运行这个条件才会解锁下一步；其它组合显示“自由探索结果”，不计完成。</p>
+            </div>
+            <div class="lesson-rule"><b>可以自由回看</b><p>四个阶段可随时切换，但最终结课要求每个阶段都有当前有效证据。</p></div>
+            <div class="lesson-rule"><b>重新学习与手机</b><p>重学会二次确认，历史只在本次打开期间保留；手机点「看模型」收起面板后直接点结构。</p></div>
+            <div class="lesson-rule"><b>完成判定</b><p>本版没有 AI 自动批改；是否完成由课程引擎按上述证据判断。</p></div>
+          </div>
+        </div>
+        <a class="guide-detail-link" href="./guide.html">打开独立完整说明页 →</a>
+        <div class="intro-actions">
+          <button class="intro-secondary" id="guideBackTwo">← 返回</button>
+          <button class="enter" id="guideNextThree"><span>下一步：全书与操作</span>${icon('arrow', 15)}</button>
+          <span class="intro-count">03 / 04</span>
+        </div>
+      </div>
+
+      <div class="intro-step intro-guide intro-controls" id="introStepFour" hidden>
         <div class="intro-eyebrow">NAVIGATION & CONTROLS / 全书与操作</div>
         <h2 class="guide-title">按 <kbd>B</kbd>，进入 16 章 44 节</h2>
         <div class="controls-grid">
@@ -192,9 +220,9 @@ app.innerHTML = `
           <div><kbd>双击</kbd><b>重置视角</b></div>
         </div>
         <div class="intro-actions">
-          <button class="intro-secondary" id="guideBackTwo">← 返回</button>
+          <button class="intro-secondary" id="guideBackThree">← 返回</button>
           <button class="enter" id="enterBtn"><span>进入细胞</span>${icon('arrow', 15)}</button>
-          <span class="intro-count">03 / 03</span>
+          <span class="intro-count">04 / 04</span>
         </div>
       </div>
     </div>
@@ -420,8 +448,10 @@ $('lum').addEventListener('input', (event) => {
 $('errorReload').addEventListener('click', () => window.location.reload());
 $('guideNext').addEventListener('click', () => showIntroStep(1));
 $('guideNextTwo').addEventListener('click', () => showIntroStep(2));
+$('guideNextThree').addEventListener('click', () => showIntroStep(3));
 $('guideBack').addEventListener('click', () => showIntroStep(0));
 $('guideBackTwo').addEventListener('click', () => showIntroStep(1));
+$('guideBackThree').addEventListener('click', () => showIntroStep(2));
 $('enterBtn').addEventListener('click', (event) => { event.stopPropagation(); dismissIntro(); });
 $('fullBtn').addEventListener('click', () => {
   if (!document.fullscreenElement) app.requestFullscreen?.().catch(() => {});
@@ -434,10 +464,12 @@ function showIntroStep(step) {
   const one = $('introStepOne');
   const two = $('introStepTwo');
   const three = $('introStepThree');
-  if (!one || !two || !three) return;
+  const four = $('introStepFour');
+  if (!one || !two || !three || !four) return;
   one.hidden = step !== 0;
   two.hidden = step !== 1;
   three.hidden = step !== 2;
+  four.hidden = step !== 3;
 }
 function dismissIntro() {
   if (!introOpen) return;

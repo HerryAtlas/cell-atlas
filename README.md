@@ -131,9 +131,9 @@ After pushing the repository:
 `docs/.nojekyll` is included, so the asset paths are served as-is. Replace
 `HerryAtlas` in this README once the Pages URL exists.
 
-### First visit: three-page guide
+### First visit: four-page guide
 
-The first visit opens with a three-page onboarding sequence before the cell
+The first visit opens with a four-page onboarding sequence before the cell
 scene becomes interactive. It is deliberately not a modal tooltip: each page
 shows the actual interface and explains one group of controls.
 
@@ -148,11 +148,13 @@ shows the actual interface and explains one group of controls.
 - **Page 01** — the welcome line “欢迎来到细胞的世界”, title, quick key map
   (`T` study notes, `B` section library, drag/wheel) and the entry into the guide.
 - **Page 02** — a sample study drawer with 学习目标 / 核心概念 / 机制拆解 / 易错点 /
-  自测, how to open it, the fact that auto-tour pauses, the new
-  **跨膜运输** guided lesson, and a link to the full
-  [usage guide](docs/guide.html) (click structures → mechanism playback →
-  prediction experiment → exercises; mobile uses **看模型** to reveal the scene).
-- **Page 03** — the **B** section-library mock, chapter/section navigation,
+  自测, how to open it, the fact that auto-tour pauses, and the new
+  **跨膜运输** guided lesson entry.
+- **Page 03** — the detailed **新版使用说明** page: four stages, exact completion
+  requirements, the ATP 0% / gradient 60% target experiment, free exploration,
+  restart confirmation, mobile **看模型**, and a link to the standalone
+  [full guide](docs/guide.html).
+- **Page 04** — the **B** section-library mock, chapter/section navigation,
   model-name deep links (the transport model opens the guided lesson), drag/wheel/
   double-click behaviour, brightness, and a full key map
   (`←/→`, `Space`, `T`, `B`, `F`, `R`, `−/=`, double-click).

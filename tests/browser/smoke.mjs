@@ -56,6 +56,15 @@ export async function runSmoke({ playwright, executablePath, channel,
       await guide.goto(url + '/guide.html');
       await assertText(guide.locator('h1'), /先知道怎么走/);
       await guide.close();
+      const onboarding = await context.newPage();
+      await onboarding.goto(url + '/index.html');
+      await onboarding.locator('#guideNext').click();
+      await onboarding.locator('#guideNextTwo').click();
+      assert.equal(await onboarding.locator('#introStepThree').isVisible(), true);
+      assert.match(await onboarding.locator('#introStepThree').innerText(), /目标实验/);
+      await onboarding.locator('#guideNextThree').click();
+      assert.equal(await onboarding.locator('#introStepFour').isVisible(), true);
+      await onboarding.close();
       async function clickPump() {
         if (name === 'mobile') {
           await click('#cmLessonPeek');

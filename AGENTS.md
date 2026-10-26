@@ -91,13 +91,13 @@ If the DSH environment supplies its own Node binary, use that binary explicitly.
 
 Any change to a user flow must update the instructions in the same change:
 
-1. `demo/main.js` — the three-page onboarding copy.
+1. `demo/main.js` — the four-page onboarding copy.
 2. `demo/models.html` — the in-lesson **使用说明** panel, button labels and hints.
 3. `demo/guide.html` / `demo/guide.css` — the standalone detailed usage page linked from onboarding and the lesson.
 4. `README.md` — the guided-lesson steps, completion rules and mobile behaviour.
 5. `COURSE-MAP.md` — section status and remaining work, when a lesson changes.
 
-A feature is not done if a user cannot discover how to use it from the page. Keep onboarding at exactly three pages. Browser tests should cover the critical instructions and controls where practical.
+A feature is not done if a user cannot discover how to use it from the page. Keep onboarding at exactly four pages: welcome, study notes, new lesson guide, controls. Browser tests should cover the critical instructions and controls where practical.
 
 ## Testing / definition of done
 
@@ -115,7 +115,7 @@ Run `pnpm test` for course-engine, experiment and lesson UI regression tests. Ru
 ## Current state
 
 - 14 models implemented; methods models were recently upgraded to instrument-level detail.
-- Onboarding is exactly three pages; page 1 starts with “欢迎来到细胞的世界”.
+- Onboarding is exactly four pages: welcome, study notes, new lesson guide, controls. Page 1 starts with “欢迎来到细胞的世界”.
 - `docs/` and `client.js` are prebuilt and current at the time of this file.
 - DSH is optional; the standalone `docs/` site is the primary public demo.
 - The repository is prepared for GitHub Pages (`main` / `docs`).
