@@ -1557,7 +1557,7 @@ function AtlasExperience() {
                         dismissIntro();
                         openModel({ modelId: 'transport', book: 3, section: '第二节', chapterTitle: '物质的跨膜运输' });
                       }}
-                    >在插件内打开跨膜运输模型 →</button>
+                    >查看跨膜运输模型 →</button>
                   </div>
                 </div>
                 <div className="ca-usage-rules">
