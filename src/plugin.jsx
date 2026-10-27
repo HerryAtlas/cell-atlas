@@ -888,8 +888,8 @@ function UsageManual({ onClose }) {
             <h3>跨膜运输导学</h3>
             <div className="ca-manual-grid ca-manual-stages">
               <div><b>01 认识结构</b><p>点模型里的膜、通道、泵、ATP；也可以点下方名称。</p><em>完成：四个结构都点过</em></div>
-              <div><b>02 观察机制</b><p>播放或逐步看 E1–E2 的 5 个步骤；暂停、回看、重播不会清空进度。</p><em>完成：五个步骤都看过</em></div>
-              <div><b>03 动手探索</b><p>先选预测，再运行模拟；只有目标实验计入完成，其它条件是自由探索。</p><em>完成：目标实验运行成功</em></div>
+              <div><b>02 观察机制</b><p>可选正常 / 慢速，或逐步看 E1–E2 的 5 个步骤；暂停、回看、重播不会清空进度。</p><em>完成：五个步骤都看过</em></div>
+              <div><b>03 动手探索</b><p>先预测再运行，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p><em>完成：目标实验运行成功</em></div>
               <div><b>04 场景练习</b><p>点击泵、排 5 步顺序、选对结果分析；答错可重试。</p><em>完成：三道题都正确</em></div>
             </div>
             <div className="ca-manual-target">
@@ -1668,13 +1668,13 @@ function AtlasExperience() {
                   <div className="ca-usage-rule">
                     <span>02</span>
                     <b>观察机制</b>
-                    <p>播放或逐步看 E1–E2 的 5 个步骤；暂停、回看、重播不会清空进度。</p>
+                    <p>可选正常 / 慢速，或逐步看 E1–E2 的 5 个步骤；暂停、回看、重播不会清空进度。</p>
                     <em>完成：五个步骤都看过</em>
                   </div>
                   <div className="ca-usage-rule">
                     <span>03</span>
                     <b>动手探索</b>
-                    <p>先选预测，再运行模拟。只有目标实验计完成，其它条件自由探索。</p>
+                    <p>先预测再运行，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p>
                     <em>完成：目标实验运行成功</em>
                   </div>
                   <div className="ca-usage-rule">

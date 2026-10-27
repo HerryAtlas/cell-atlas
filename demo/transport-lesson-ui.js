@@ -2,6 +2,7 @@ import { TRANSPORT_LESSON } from '../src/transport-lesson.js';
 import { CourseEngine } from '../src/course-engine.js';
 import { TRANSPORT_FLOW } from '../src/transport-flow.js';
 import { runTransportExperiment } from '../src/transport-experiment.js';
+import { getPumpActivity } from '../src/transport-motion.js';
 
 const STAGES = TRANSPORT_FLOW.steps.map((step, index) => ({
   id: step.id, label: step.label, short: String(index + 1).padStart(2, '0'),
@@ -31,6 +32,9 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
   const tabs = Array.from(document.querySelectorAll('[data-stage]'));
   const course = new CourseEngine(TRANSPORT_FLOW);
 
+  const motionPreference = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)');
+  let mechSpeed = motionPreference?.matches ? 'slow' : 'normal';
+  const playbackDelay = () => mechSpeed === 'slow' ? 7600 : 3800;
   const initialState = () => ({
     open: false,
     restartPending: false,
@@ -281,7 +285,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
         stopMechanism();
         renderMechanism();
       }
-    }, 3800);
+    }, playbackDelay());
   }
 
   function setMech(index) {
@@ -308,14 +312,26 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       <div class="cm-mech-dots" aria-hidden="true">
         ${TRANSPORT_LESSON.mechanism.steps.map((_, index) => `<i class="${index < state.mechIndex ? 'is-done' : index === state.mechIndex ? 'is-current' : ''}"></i>`).join('')}
       </div>
+      <div class="cm-lsn-speed" role="group" aria-label="机制播放速度">
+        <span>播放速度</span>
+        <button type="button" class="cm-lsn-btn" data-speed="normal" aria-pressed="${mechSpeed === 'normal'}">正常 · 3.8 秒/步</button>
+        <button type="button" class="cm-lsn-btn" data-speed="slow" aria-pressed="${mechSpeed === 'slow'}">慢速 · 7.6 秒/步</button>
+      </div>
       <div class="cm-lsn-controls">
         <button type="button" data-act="mech-prev" ${state.mechIndex === 0 ? 'disabled' : ''}>← 上一步</button>
         <button type="button" class="primary" data-act="mech-play">${state.mechPlaying ? '⏸ 暂停' : '▶ 播放'}</button>
         <button type="button" data-act="mech-next" ${state.mechIndex === total - 1 ? 'disabled' : ''}>下一步 →</button>
         <button type="button" data-act="mech-replay">↺ 重播</button>
       </div>
-      <p class="cm-lsn-small">播放时每 3.8 秒自动推进一步；看完 5 步后，底部「下一步」才会解锁。暂停、回看和重播都不会重置模型。高亮环指向当前步骤的重点结构。</p>
+      <p class="cm-lsn-small">播放时每 ${playbackDelay() / 1000} 秒自动推进一步；切换速度从当前步重新计时。${motionPreference?.matches ? '系统减少动态效果偏好已启用；可用慢速播放或手动逐步看。' : ''}看完 5 步后，底部「下一步」才会解锁。暂停、回看和重播都不会重置模型。高亮环指向当前步骤的重点结构。</p>
     `;
+    body.querySelectorAll('[data-speed]').forEach((button) => {
+      button.addEventListener('click', () => {
+        mechSpeed = button.dataset.speed;
+        renderMechanism();
+        body.querySelector('[data-speed="' + mechSpeed + '"]')?.focus();
+      });
+    });
     body.querySelectorAll('[data-act]').forEach((button) => {
       button.addEventListener('click', () => {
         const action = button.dataset.act;
@@ -343,8 +359,8 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       gradient: state.exp.gradient / 100,
       inhibitor: state.exp.inhibitor,
     });
-    // This is a conformational illustration, not a real-time rate animation.
-    instance.setLessonState({ active: true, step: state.expResult?.rate > 0 ? 4 : 0 });
+    // Only a completed run can drive the cycle. Parameter edits clear the rate.
+    instance.setLessonState({ active: true, step: 0, experimentRate: state.expResult?.rate ?? null });
   }
 
   function invalidateExperiment() {
@@ -353,6 +369,8 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     syncExperimentScene();
     body.querySelector('.cm-lsn-result')?.setAttribute('hidden', '');
     body.querySelector('.cm-lsn-feedback')?.remove();
+    const status = body.querySelector('#lsnPumpStatus');
+    if (status) status.textContent = pumpStatus();
     updateFooter();
   }
 
@@ -361,6 +379,15 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
     if (rate === 0) return state.exp.atp === 0 ? TRANSPORT_LESSON.experiment.zeroAtp : TRANSPORT_LESSON.experiment.lowAtp;
     if (rate < 35) return '低速率：泵仍能工作，但不能充分维持 Na⁺/K⁺ 梯度；膜电位恢复变慢。';
     return TRANSPORT_LESSON.experiment.normal;
+  }
+
+  function pumpStatus() {
+    const activity = getPumpActivity(state.expResult?.rate);
+    if (activity.id === 'pending') return '模型状态：待运行。先运行模拟，修改条件后需重新运行。';
+    return '模型状态：' + activity.label + '。'
+      + (motionPreference?.matches
+        ? '已按系统减少动态效果偏好显示静态示意；速率仍以数值为准。'
+        : '循环节奏按速率区间示意（0% 停止，1–34% 低速，35–100% 较快），不代表真实分子速度。');
   }
 
   function renderExplore() {
@@ -400,7 +427,7 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
             : '这是自由探索结果，尚未验证题目中的预测。请将 ATP 调到 0%、梯度保持 60%、取消抑制剂，再运行一次。'}
         </div>
       ` : '<p class="cm-lsn-small">预测是必填的。模拟结果只用于比较趋势，不是实验测量值。</p>'}
-      <p class="cm-lsn-small">预测针对上方指定条件。模型展示构象示意，速率请以运行后的数值为准；改变条件后需重新运行。</p>
+      <p class="cm-lsn-small" id="lsnPumpStatus" role="status">${esc(pumpStatus())}</p>
       <div class="cm-lsn-assumptions">
         <b>SIMULATION ASSUMPTIONS / 模拟假设</b>
         <ul>${TRANSPORT_LESSON.experiment.assumptions.map((item) => `<li>${esc(item)}</li>`).join('')}</ul>
@@ -576,6 +603,15 @@ export function createTransportLessonUI({ getEngine, onOpen, onClose }) {
       if (overlay.classList.contains('is-peeking')) setPeek(false);
     }
   }
+
+  motionPreference?.addEventListener('change', () => {
+    if (motionPreference.matches) {
+      mechSpeed = 'slow';
+      stopMechanism();
+    }
+    if (state.open && state.stage === 1) renderMechanism();
+    if (state.open && state.stage === 2) renderExplore();
+  });
 
   entry.addEventListener('click', () => open(0));
   peekButton.addEventListener('click', () => setPeek(!overlay.classList.contains('is-peeking')));

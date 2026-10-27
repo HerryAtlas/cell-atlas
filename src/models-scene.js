@@ -10,6 +10,7 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { MODEL_SPECS, modelById } from './model-catalog.js';
 import { getTransportStructure } from './transport-lesson.js';
+import { advancePumpCycle } from './transport-motion.js';
 
 const TAU = Math.PI * 2;
 
@@ -378,7 +379,7 @@ function buildTransport() {
 
   // Dedicated lesson actors. They are hidden in the normal specimen view and
   // only become visible while the guided lesson is open.
-  const lesson = { active: false, step: 0, atp: 1, gradient: 1, inhibitor: false };
+  const lesson = { active: false, step: 0, atp: 1, gradient: 1, inhibitor: false, experimentRate: null, phase: 0 };
   const lessonGroup = new THREE.Group();
   lessonGroup.visible = false;
   group.add(lessonGroup);
@@ -429,6 +430,8 @@ function buildTransport() {
   group.userData.applyLesson = (state = {}) => {
     lesson.active = Boolean(state.active);
     lesson.step = Number.isInteger(state.step) ? Math.max(0, Math.min(4, state.step)) : 0;
+    lesson.experimentRate = Number.isFinite(state.experimentRate) ? state.experimentRate : null;
+    lesson.phase = 0;
     lessonGroup.visible = lesson.active;
     ions.forEach((ion) => { ion.mesh.visible = !lesson.active; });
     setLessonTargets(lesson.step);
@@ -438,9 +441,24 @@ function buildTransport() {
     lesson.gradient = Number.isFinite(state.gradient) ? Math.max(0, Math.min(1, state.gradient)) : 1;
     lesson.inhibitor = Boolean(state.inhibitor);
     pumpAtp.material.emissiveIntensity = lesson.inhibitor ? 0.15 : 1.2 + lesson.atp * 1.4;
+    // No bound ATP is shown at zero ATP or when the pump is inhibited.
+    pumpAtp.visible = lesson.atp > 0 && !lesson.inhibitor;
   };
 
-  group.userData.update = (time) => {
+  group.userData.update = (time, delta = 0, { reducedMotion = false } = {}) => {
+    if (lesson.active && lesson.experimentRate !== null) {
+      lesson.phase = advancePumpCycle(lesson.phase, delta, lesson.experimentRate, reducedMotion);
+      const step = Math.floor(lesson.phase);
+      if (step !== lesson.step) {
+        // Each wrap represents a new set of ions, not ions transported backward.
+        if (step === 0) {
+          setLessonTargets(0);
+          lessonIons.forEach(({ mesh, target }) => mesh.position.copy(target));
+        }
+        lesson.step = step;
+        setLessonTargets(step);
+      }
+    }
     if (!lesson.active) {
       ions.forEach((ion, i) => {
         const y = -1.8 + ((time * ion.speed + ion.phase) % (Math.PI * 2)) / (Math.PI * 2) * 3.6;
@@ -450,11 +468,15 @@ function buildTransport() {
       pumpLeft.rotation.z = -0.35 + Math.sin(time * 0.9) * 0.08;
       pumpRight.rotation.z = 0.35 - Math.sin(time * 0.9) * 0.08;
     } else {
-      lessonIons.forEach(({ mesh, target }) => mesh.position.lerp(target, 0.11));
+      const blend = reducedMotion ? 1 : 1 - Math.exp(-7 * delta);
+      lessonIons.forEach(({ mesh, target }) => mesh.position.lerp(target, blend));
       const lobe = lesson.step === 1 || lesson.step === 2 ? 0.52 : lesson.step === 3 ? 0.18 : -0.35;
-      pumpLeft.rotation.z += (-lobe - pumpLeft.rotation.z) * 0.1;
-      pumpRight.rotation.z += (lobe - pumpRight.rotation.z) * 0.1;
-      lessonAtp.material.emissiveIntensity = 1.2 + Math.sin(time * 2.1) * 0.45;
+      pumpLeft.rotation.z += (-lobe - pumpLeft.rotation.z) * blend;
+      pumpRight.rotation.z += (lobe - pumpRight.rotation.z) * blend;
+      lessonAtp.material.emissiveIntensity = reducedMotion || lesson.experimentRate === 0
+        ? 1.2 : 1.2 + Math.sin(time * 2.1) * 0.45;
+      // Zero ATP and inhibited runs must not look like ongoing ATP consumption.
+      lessonAtp.visible = lesson.step <= 1 && lesson.atp > 0 && !lesson.inhibitor;
     }
     pumpBody.material.emissiveIntensity = 0.3 + (lesson.active ? 0.25 : 0);
   };
@@ -1678,11 +1700,12 @@ export function createModelScene(container, options = {}) {
   window.addEventListener('pointerup', onPointerUp);
   renderer.domElement.addEventListener('wheel', onWheel, { passive: false });
 
-  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  const motionPreference = window.matchMedia?.('(prefers-reduced-motion: reduce)');
   function frame() {
     if (disposed) return;
     const dt = Math.min(clock.getDelta(), 0.05);
     const elapsed = clock.elapsedTime;
+    const reduceMotion = Boolean(motionPreference?.matches);
     if (autoRotate && !dragging && !reduceMotion) targetYaw += dt * 0.1;
     yaw += (targetYaw - yaw) * 0.09;
     pitch += (targetPitch - pitch) * 0.09;
@@ -1697,10 +1720,10 @@ export function createModelScene(container, options = {}) {
     if (highlightLocal && current) {
       selectionRing.position.copy(highlightLocal).applyMatrix4(current.matrixWorld);
       selectionRing.quaternion.copy(camera.quaternion);
-      selectionRing.scale.setScalar(1 + Math.sin(elapsed * 3) * 0.08);
+      selectionRing.scale.setScalar(reduceMotion ? 1 : 1 + Math.sin(elapsed * 3) * 0.08);
     }
-    if (current?.userData.update) current.userData.update(elapsed, dt);
-    dust.rotation.y = elapsed * 0.008;
+    if (current?.userData.update) current.userData.update(elapsed, dt, { reducedMotion: reduceMotion });
+    if (!reduceMotion) dust.rotation.y = elapsed * 0.008;
     updateLabels();
     composer.render();
     renderer.setAnimationLoop(null);

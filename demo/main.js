@@ -151,8 +151,8 @@ app.innerHTML = `
         <div class="lesson-guide-grid">
           <div class="lesson-stage-list">
             <div class="lesson-stage"><span>01</span><div><b>认识结构</b><p>点模型里的膜、通道、泵、ATP；四个都点过，下一步才解锁。</p></div></div>
-            <div class="lesson-stage"><span>02</span><div><b>观察机制</b><p>播放或逐步看 E1–E2 的 5 个步骤；都看过才能继续。</p></div></div>
-            <div class="lesson-stage"><span>03</span><div><b>动手探索</b><p>先预测，再运行。只有目标实验计入完成，其它条件是自由探索。</p></div></div>
+            <div class="lesson-stage"><span>02</span><div><b>观察机制</b><p>可选正常 / 慢速，或逐步看 E1–E2 的 5 个步骤；都看过才能继续。</p></div></div>
+            <div class="lesson-stage"><span>03</span><div><b>动手探索</b><p>先预测再运行，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p></div></div>
             <div class="lesson-stage"><span>04</span><div><b>场景练习</b><p>辨认、排序、结果分析三道都正确，才能结课。</p></div></div>
           </div>
           <div class="lesson-rules">

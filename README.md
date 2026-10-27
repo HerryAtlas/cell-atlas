@@ -225,12 +225,14 @@ A detailed, standalone usage page is at
 1. **认识结构** — click the membrane, channel, pump and ATP in the scene; each
    selection opens a knowledge card and highlights the structure.
 2. **观察机制** — play, pause, step or replay the Na⁺/K⁺ pump's E1–E2 cycle with
-   a changing 3D state.
+   a changing 3D state. Choose normal (3.8 s/step) or slow (7.6 s/step); changing speed restarts the current step timer without losing progress.
 3. **动手探索** — make a prediction, change ATP/gradient/inhibitor conditions,
    run the relative-rate simulation and compare the observation with the
-   prediction.
+   prediction. The pump cycles by qualitative bands: stopped at 0%, slow at 1–34%, faster at 35–100%. Parameter edits stop the old cycle until another run; these are display bands, not measured molecular speeds.
 4. **场景练习** — hidden-label identification, process ordering and result
    analysis, each with targeted feedback.
+
+With the system reduced-motion preference enabled, mechanism playback defaults to slow and experiment cycles show a static diagram. Enabling that preference during playback pauses the mechanism; manual stepping stays available.
 
 At the top of the lesson, **使用说明** opens a compact guide at any time; the
 standalone [`docs/guide.html`](docs/guide.html) page contains the full rules,

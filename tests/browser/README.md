@@ -35,3 +35,5 @@ BROWSER_CHANNEL can select a Playwright-supported installed channel when BROWSER
 - Console/page errors fail the run. Missing browser or WebGL2 fails rather than silently skipping.
 
 The test binds a temporary server to 127.0.0.1 and closes it with the browser. It invokes no AI or memory service. Screenshots go to ignored tests/browser-results/. Canvas click coordinates intentionally assume the current lesson camera and the two stated viewports; update them if the camera/layout changes.
+
+Playback regression also checks slow/normal automatic dwell, rate-band status, invalidation on edits, and live reduced-motion preference changes.

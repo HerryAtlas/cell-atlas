@@ -203,7 +203,7 @@ test('default parameters are free exploration; only the requested experiment unl
   f.click('[data-act="run-experiment"]');
   assert.match(f.body().textContent, /预测正确。/);
   assert.equal(f.next().disabled, false);
-  assert.deepEqual(f.calls.lesson.at(-1), { active: true, step: 0 });
+  assert.deepEqual(f.calls.lesson.at(-1), { active: true, step: 0, experimentRate: 0 });
   assert.deepEqual(f.calls.experiment.at(-1), { atp: 0, gradient: 0.6, inhibitor: false });
 });
 
@@ -282,7 +282,7 @@ test('returning to exploration restores its conditions and mechanism review rese
   assert.deepEqual(f.calls.experiment.at(-1), { atp: 1, gradient: 1, inhibitor: false });
   f.ui.open(2);
   assert.deepEqual(f.calls.experiment.at(-1), { atp: 0, gradient: 0.6, inhibitor: false });
-  assert.deepEqual(f.calls.lesson.at(-1), { active: true, step: 0 });
+  assert.deepEqual(f.calls.lesson.at(-1), { active: true, step: 0, experimentRate: 0 });
   assert.match(f.body().textContent, /预测正确。/);
   f.stage(1);
   assert.deepEqual(f.calls.experiment.at(-1), { atp: 1, gradient: 1, inhibitor: false });
@@ -391,4 +391,81 @@ test('in-lesson help opens from the header and closes again', (t) => {
   f.click('#cmLessonHelpClose');
   assert.equal(f.get('#cmLessonHelp').hidden, true);
   assert.equal(f.get('#cmLessonHelpToggle').getAttribute('aria-expanded'), 'false');
+});
+
+test('speed changes restart the current dwell without skipping steps or clearing progress', (t) => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const f = fixture(t);
+  f.ui.open(1);
+  f.click('[data-act="mech-play"]');
+  t.mock.timers.tick(3000);
+  f.click('[data-speed="slow"]');
+  t.mock.timers.tick(7599);
+  assert.match(f.body().textContent, /01 \/ 05/);
+  t.mock.timers.tick(1);
+  assert.match(f.body().textContent, /02 \/ 05/);
+  f.click('[data-speed="normal"]');
+  t.mock.timers.tick(3800);
+  assert.match(f.body().textContent, /03 \/ 05/);
+  f.click('[data-act="mech-play"]');
+  t.mock.timers.tick(20000);
+  assert.match(f.body().textContent, /03 \/ 05/);
+  assert.equal(f.next().disabled, true);
+  f.click('[data-act="mech-next"]');
+  f.click('[data-act="mech-next"]');
+  assert.equal(f.next().disabled, false);
+});
+
+test('experiment animation receives only current runs and clears on edits, navigation and restart', (t) => {
+  const f = fixture(t);
+  f.ui.open(2);
+  assert.equal(f.calls.lesson.at(-1).experimentRate, null);
+  f.click('[data-prediction="decrease"]');
+  f.click('[data-act="run-experiment"]');
+  assert.equal(f.calls.lesson.at(-1).experimentRate, 47);
+  assert.match(f.get('#lsnPumpStatus').textContent, /较快/);
+  f.input('lsnAtp', 20);
+  assert.equal(f.calls.lesson.at(-1).experimentRate, null);
+  assert.match(f.get('#lsnPumpStatus').textContent, /待运行/);
+  f.click('[data-act="run-experiment"]');
+  assert.equal(f.calls.lesson.at(-1).experimentRate, 16);
+  assert.match(f.get('#lsnPumpStatus').textContent, /低速/);
+  f.check(true);
+  assert.equal(f.calls.lesson.at(-1).experimentRate, null);
+  f.click('[data-act="run-experiment"]');
+  assert.equal(f.calls.lesson.at(-1).experimentRate, 0);
+  assert.match(f.get('#lsnPumpStatus').textContent, /停止/);
+  f.stage(1);
+  assert.equal(f.calls.lesson.at(-1).experimentRate, undefined);
+  f.stage(2);
+  assert.equal(f.calls.lesson.at(-1).experimentRate, 0);
+  f.click('#cmLessonRestart');
+  f.click('#cmLessonRestartConfirm');
+  f.stage(2);
+  assert.equal(f.calls.lesson.at(-1).experimentRate, null);
+});
+
+test('reduced motion defaults to slow and a live preference change pauses autoplay', (t) => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const original = globalThis.matchMedia;
+  let changed;
+  const media = { matches: true, addEventListener: (_, fn) => { changed = fn; } };
+  globalThis.matchMedia = () => media;
+  t.after(() => {
+    if (original === undefined) delete globalThis.matchMedia;
+    else globalThis.matchMedia = original;
+  });
+  const f = fixture(t);
+  f.ui.open(1);
+  assert.equal(f.get('[data-speed="slow"]').getAttribute('aria-pressed'), 'true');
+  f.click('[data-speed="normal"]');
+  f.click('[data-act="mech-play"]');
+  changed();
+  t.mock.timers.tick(20000);
+  assert.match(f.body().textContent, /01 \/ 05/);
+  assert.match(f.get('[data-act="mech-play"]').textContent, /播放/);
+  f.stage(2);
+  f.click('[data-prediction="decrease"]');
+  f.click('[data-act="run-experiment"]');
+  assert.match(f.get('#lsnPumpStatus').textContent, /静态示意/);
 });

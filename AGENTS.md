@@ -44,6 +44,7 @@ If the DSH environment supplies its own Node binary, use that binary explicitly.
 | `src/models-scene.js` | Standalone section-model renderer plus all 14 model builders and shared helpers. |
 | `src/course-engine.js` | Deterministic lesson state machine: evidence, gating, snapshots and subscriptions; no DOM/AI dependency. |
 | `src/transport-flow.js` | Declarative requirements for the guided transport lesson. |
+| `src/transport-motion.js` | Qualitative playback bands and reduced-motion-safe experiment cycle timing. |
 | `src/model-catalog.js` | 14 model specs, section mapping, `modelForSection()` / `modelsForSection()` deep-link helpers. |
 | `src/textbook.js` + `src/textbook-part1.js` + `src/textbook-part2.js` | 16-chapter / 44-section study content, section cards, terms and self-check answers. |
 | `src/plugin.jsx` | DSH Web UI overlay: onboarding, study drawer, section browser, `SectionModelViewer`. |

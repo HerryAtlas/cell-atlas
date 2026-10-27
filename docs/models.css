@@ -344,3 +344,9 @@ button { cursor: pointer; }
   .cm-info h1 { font-size: 27px; }
   .cm-en { font-size: 8px; letter-spacing: .14em; }
 }
+
+/* Lesson playback speed: wraps on narrow panels and retains keyboard focus. */
+.cm-lsn-speed { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 18px 0 12px; }
+.cm-lsn-speed > span { width: 100%; font-size: 12px; color: var(--muted, #95aba8); }
+.cm-lsn-speed button[aria-pressed="true"] { border-color: #6fe2d1; background: rgba(111,226,209,.12); color: #b5fff0; }
+.cm-lsn-speed button:focus-visible { outline: 2px solid #6fe2d1; outline-offset: 3px; }

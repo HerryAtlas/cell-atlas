@@ -66,6 +66,12 @@ The transport experiment predicts a fixed condition: ATP 0%, gradient 60%, no in
 
 The legacy flow id 'transport-lesson-v1' is stable identity, not a schema version. The flow's version describes its definition/requirements revision; ENGINE_VERSION describes the snapshot envelope. Snapshots use engine schema version 2 and a separate flow revision. Restore validates fields, event history and completion consistency; version 1 snapshots are rejected rather than silently reinterpreted. Exported snapshots and event payloads do not share mutable objects with the engine. This is data validation, not tamper-proof assessment; the static site is a self-study tool.
 
+### Presentation timing
+
+Mechanism playback supports normal (3.8 seconds per step) and slow (7.6 seconds per step) pacing without changing completion evidence. The UI passes only the last valid experiment result to the scene; editing conditions clears it immediately. Shared display bands in src/transport-motion.js map 0% to stopped, 1-34% to a slow cycle and 35-100% to a faster cycle. These are qualitative presentation timings, not molecular kinetics. Experiment animation never dispatches mechanism-completion events.
+
+The renderer advances cycles by frame delta, resets ion positions at the start of each new cycle, and uses static experiment actors under the system reduced-motion preference. The mechanism defaults to slow under that preference; enabling it during playback pauses autoplay.
+
 ## 4. AI boundary
 
 A future tutor receives only the restricted observer handle:
