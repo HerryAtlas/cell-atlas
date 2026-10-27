@@ -10,6 +10,10 @@ or paid plan.
 The repository publishes `docs/` from `main` through GitHub Pages, which is free
 for public repositories. A push to `main` updates the site automatically.
 
+The workflow `.github/workflows/sync-generated.yml` also rebuilds `docs/` and
+`client.js`, runs the unit tests, and commits generated changes back to `main`.
+That keeps the repository and GitHub Pages in sync when only source files change.
+
 No Netlify upgrade is required. The old Netlify URL remains online while the
 team is on operating credits, but its production deploys are paused until the
 next billing cycle or a plan change.

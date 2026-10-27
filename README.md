@@ -137,6 +137,12 @@ The repository already deploys `docs/` from `main`:
 
 `docs/.nojekyll` is included, so the asset paths are served as-is.
 
+A source push also runs
+[`.github/workflows/sync-generated.yml`](.github/workflows/sync-generated.yml).
+It rebuilds `docs/` and `client.js`, runs the unit tests, and commits the generated
+files back to `main` when they changed. GitHub Pages then publishes the updated
+`docs/` automatically; a source-only change does not leave the public site stale.
+
 ### First visit: four-page guide
 
 The first visit opens with a four-page onboarding sequence before the cell
