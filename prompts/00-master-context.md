@@ -70,8 +70,8 @@ node build-demo.mjs
 
 ## 公开地址
 
-- 主站：<https://gregarious-cat-8f3216.netlify.app/>
-- 导学：<https://gregarious-cat-8f3216.netlify.app/models.html?model=transport&learn=1>
+- 主站：<https://herryatlas.github.io/cell-atlas/>
+- 导学：<https://herryatlas.github.io/cell-atlas/models.html?model=transport&learn=1>
 - 仓库：<https://github.com/HerryAtlas/cell-atlas>
 
 ## 给代理的工作方式

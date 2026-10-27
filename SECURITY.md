@@ -4,13 +4,18 @@
 
 The only official live deployment is:
 
-**https://gregarious-cat-8f3216.netlify.app/**
+**https://herryatlas.github.io/cell-atlas/**
 
 Canonical repository:
 
 **https://github.com/HerryAtlas/cell-atlas**
 
-Any page at the former GitHub Pages address, or the former GitHub account, is **not controlled by this project** and must be treated as untrusted. The account was renamed; the former username may be reclaimed. Do not enter credentials or download files from the former addresses.
+The legacy Netlify URL (`https://gregarious-cat-8f3216.netlify.app/`) remains
+online but production deploys are paused. It is not the primary public entry.
+
+Any page at another address or a former GitHub account is **not controlled by
+this project** and must be treated as untrusted. Do not enter credentials or
+download files from unofficial addresses.
 
 ## Threat model
 
@@ -20,7 +25,9 @@ This is a static, client-side educational site:
 - no cookies used by the application;
 - no backend or database;
 - no third-party application scripts, ads or analytics;
-- the hosting platform injects its own same-origin HUD/badge script on Netlify's free plan; its inline bootstrap is blocked by the CSP, so the badge does not render;
+- the legacy Netlify deployment injects its own same-origin HUD/badge script on
+  Netlify's free plan; its inline bootstrap is blocked by the CSP, so the badge
+  does not render;
 - no file uploads or form submissions;
 - no application network requests after assets load.
 
@@ -59,7 +66,10 @@ This is a static project with a small dependency set (`three` and `esbuild` at b
 
 ## Hosting headers
 
-The official Netlify deployment supplies the full security-header set through `_headers`: CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, COOP, CORP, COEP, HSTS and X-Permitted-Cross-Domain-Policies. The GitHub Pages copy is a legacy mirror and cannot set those response headers; it is not the official deployment.
+The GitHub Pages deployment cannot set arbitrary response headers. The built
+pages therefore carry a strict CSP and `Referrer-Policy` in `<meta>` tags. The
+legacy Netlify deployment and Cloudflare Pages can additionally apply
+`docs/_headers` as real response headers.
 
 ## Reporting
 

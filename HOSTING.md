@@ -1,33 +1,24 @@
 # Hosting
 
-The site is a static build in `docs/`. It can be deployed without a build step.
+The site is a static build in `docs/`. It needs no server, database, build step,
+or paid plan.
 
-**Live:** https://gregarious-cat-8f3216.netlify.app/
+## Current public deployment: GitHub Pages
 
-Security headers were verified on the live Netlify deployment. The GitHub repository is linked to Netlify: a push to `main` triggers an automatic production deploy.
+**Live:** https://herryatlas.github.io/cell-atlas/
 
-## Recommended: Netlify Drop
+The repository publishes `docs/` from `main` through GitHub Pages, which is free
+for public repositories. A push to `main` updates the site automatically.
 
-1. Sign up at **https://app.netlify.com/signup** with GitHub (free, no card).
-2. Open **https://app.netlify.com/drop**.
-3. Drag the **`docs` folder** onto the drop area. Do not drag the repository root.
-4. Wait for the deploy, then open the generated `*.netlify.app` URL.
-5. Site configuration → Change site name: for example `herry-cell-atlas`.
-6. Send me the final URL so I can update canonical links and README.
+No Netlify upgrade is required. The old Netlify URL remains online while the
+team is on operating credits, but its production deploys are paused until the
+next billing cycle or a plan change.
 
-The `docs/_headers` file is included and gives Netlify the full security-header set:
-CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy,
-COOP, CORP, COEP and HSTS.
+## Security headers
 
-Verify after deploy:
-
-```bash
-curl -I https://<your-site>.netlify.app/
-```
-
-You should see `content-security-policy`, `x-frame-options`, `x-content-type-options`,
-`referrer-policy`, `permissions-policy`, `cross-origin-opener-policy`,
-`cross-origin-resource-policy` and `cross-origin-embedder-policy`.
+GitHub Pages cannot set arbitrary response headers. The built pages therefore
+carry a strict CSP and `Referrer-Policy` in `<meta>` tags. Netlify and Cloudflare
+Pages can additionally apply `docs/_headers` as real response headers.
 
 ## Alternative: Cloudflare Pages
 
@@ -36,21 +27,31 @@ You should see `content-security-policy`, `x-frame-options`, `x-content-type-opt
 3. Upload the contents of `docs/` (with `_headers` at the root).
 4. The generated `*.pages.dev` URL is the site.
 
-Cloudflare Pages also reads `_headers`.
+Cloudflare Pages reads `_headers` and has a free tier.
 
-## Alternative: Vercel
+## Alternative: Netlify Drop
 
-Vercel needs a `vercel.json` header configuration rather than `_headers`. Use Netlify
-or Cloudflare for the simplest static deployment.
+Netlify can host the same static folder, but production deployment or agent
+runners may require a paid plan when operating credits are exhausted.
 
-## Custom domain
+1. Open **https://app.netlify.com/drop**.
+2. Drag the **`docs` folder** onto the drop area. Do not drag the repository root.
+3. Rename the site if needed.
 
-A custom domain is optional. If you own one, add it in the hosting dashboard and
-follow the DNS instructions. After that, update the canonical URL in:
+`docs/_headers` gives Netlify the full response-header set when the plan allows
+production deployment.
 
-- `demo/index.html`, `demo/textbook.html`, `demo/models.html`
-- `README.md`
-- `SECURITY.md`
-- `package.json`
+## Verify after deploy
 
-Then rebuild with `node build-demo.mjs`.
+Open the four public pages and check:
+
+```text
+/
+/textbook.html
+/models.html
+/models.html?model=transport&learn=1
+/guide.html
+```
+
+Also check that the browser reports no console errors and that the mobile
+viewport remains usable.

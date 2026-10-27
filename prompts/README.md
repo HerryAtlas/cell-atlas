@@ -35,7 +35,7 @@
 ## 当前对应版本
 
 - 功能提交：`12ae379`（使用说明）之前的 `9a61e4c`（导学第一版）
-- 线上入口：<https://gregarious-cat-8f3216.netlify.app/models.html?model=transport&learn=1>
+- 线上入口：<https://herryatlas.github.io/cell-atlas/models.html?model=transport&learn=1>
 - 课程地图：[`../COURSE-MAP.md`](../COURSE-MAP.md)
 
 提示词包是开发与教研资产，不是课程内容本身；正式教学内容仍以 `src/textbook-part*.js`、`src/transport-lesson.js` 和审校后的页面为准。

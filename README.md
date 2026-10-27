@@ -1,6 +1,6 @@
 # Cell Atlas / 细胞图谱
 
-> **在线体验**：[https://gregarious-cat-8f3216.netlify.app/](https://gregarious-cat-8f3216.netlify.app/) · [14 个 3D 模型](https://gregarious-cat-8f3216.netlify.app/models.html) · [教材分节](https://gregarious-cat-8f3216.netlify.app/textbook.html)
+> **在线体验**：[https://herryatlas.github.io/cell-atlas/](https://herryatlas.github.io/cell-atlas/) · [14 个 3D 模型](https://herryatlas.github.io/cell-atlas/models.html) · [教材分节](https://herryatlas.github.io/cell-atlas/textbook.html)
 
 **A cinematic, fully procedural Three.js cell biology courseware.**  
 Seven movements, zero external textures or models, plus a **16-chapter / 44-section**
@@ -112,27 +112,30 @@ http://localhost:8000/docs/guide.html
 ```
 
 All work independently of the WebGL courseware and can be bookmarked as daily
-study pages. After GitHub Pages is enabled they live at:
+study pages. The current free deployment is GitHub Pages:
 
 ```text
-https://gregarious-cat-8f3216.netlify.app/textbook.html
-https://gregarious-cat-8f3216.netlify.app/models.html
-https://gregarious-cat-8f3216.netlify.app/models.html?model=transport&learn=1
-https://gregarious-cat-8f3216.netlify.app/guide.html
+https://herryatlas.github.io/cell-atlas/textbook.html
+https://herryatlas.github.io/cell-atlas/models.html
+https://herryatlas.github.io/cell-atlas/models.html?model=transport&learn=1
+https://herryatlas.github.io/cell-atlas/guide.html
 ```
+
+The old Netlify deployment remains online but production deploys are paused
+while the team is on operating credits. GitHub Pages is the current public
+entry; no paid upgrade is required.
 
 ### GitHub Pages
 
-After pushing the repository:
+The repository already deploys `docs/` from `main`:
 
 1. **Settings → Pages**
 2. Source: **Deploy from a branch**
 3. Branch: `main`, folder: **`/docs`**
-4. Save. The demo will be at
-   `https://gregarious-cat-8f3216.netlify.app/`.
+4. Save. The demo is at
+   `https://herryatlas.github.io/cell-atlas/`.
 
-`docs/.nojekyll` is included, so the asset paths are served as-is. Replace
-`HerryAtlas` in this README once the Pages URL exists.
+`docs/.nojekyll` is included, so the asset paths are served as-is.
 
 ### First visit: four-page guide
 

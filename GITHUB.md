@@ -48,9 +48,9 @@ a GitHub Release asset instead and edit the link in `README.md`.
 The demo URL will be:
 
 ```text
-https://gregarious-cat-8f3216.netlify.app/
-https://gregarious-cat-8f3216.netlify.app/textbook.html   ← 16章44节学习页
-https://gregarious-cat-8f3216.netlify.app/models.html     ← 14个分节3D模型
+https://herryatlas.github.io/cell-atlas/
+https://herryatlas.github.io/cell-atlas/textbook.html   ← 16章44节学习页
+https://herryatlas.github.io/cell-atlas/models.html     ← 14个分节3D模型
 ```
 
 ## Option B — GitHub Desktop
@@ -88,7 +88,7 @@ gh repo edit --add-topic threejs,webgl,glsl,shaders,creative-coding,cell-biology
    `media/study-notes.jpg` should render inline in the README.
 2. Check **Actions** is unnecessary: the Pages site is served directly from the
    committed `docs/` folder, no build workflow required.
-3. Open `https://gregarious-cat-8f3216.netlify.app/` and verify:
+3. Open `https://herryatlas.github.io/cell-atlas/` and verify:
    - the three-page onboarding appears before entering;
    - the T guide page shows the study drawer and model links;
    - `T` opens the study drawer;
