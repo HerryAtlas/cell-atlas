@@ -835,6 +835,101 @@ function SectionModelViewer({ context, onClose, t }) {
   );
 }
 
+function UsageManual({ onClose }) {
+  React.useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.stopPropagation();
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [onClose]);
+
+  return (
+    <div className="ca-manual-backdrop" role="presentation">
+      <section className="ca-manual-panel" role="dialog" aria-modal="true" aria-labelledby="caManualTitle">
+        <header className="ca-manual-head">
+          <div>
+            <div className="ca-manual-eyebrow">CELL ATLAS / COMPLETE MANUAL</div>
+            <h2 id="caManualTitle">使用手册</h2>
+            <p>从学习手册、全书分节，到 14 个模型与跨膜运输导学。</p>
+          </div>
+          <button type="button" className="ca-iconbtn" onClick={onClose} aria-label="关闭使用手册" autoFocus>
+            <Icon name="close" />
+          </button>
+        </header>
+        <div className="ca-manual-scroll">
+          <section className="ca-manual-section">
+            <div className="ca-manual-no">01 / START</div>
+            <h3>打开后先看什么</h3>
+            <div className="ca-manual-grid">
+              <div><b>学习手册</b><p>按 <kbd>T</kbd>，或点右上角「学习」。每节包含学习目标、核心概念、机制拆解、易错点、自测和教材页码。</p></div>
+              <div><b>全书分节</b><p>按 <kbd>B</kbd>，或点右上角书本图标。左侧 16 章，右侧 44 节，搜索框可筛章节和小节。</p></div>
+              <div><b>3D 模型</b><p>章节顶部和小节里的模型名就是入口。当前有 8 个结构模型和 6 个实验方法模型。</p></div>
+              <div><b>使用手册</b><p>右上角 <kbd>?</kbd> 可随时重新打开本页；<kbd>Esc</kbd> 关闭。</p></div>
+            </div>
+          </section>
+
+          <section className="ca-manual-section">
+            <div className="ca-manual-no">02 / MODELS</div>
+            <h3>看模型</h3>
+            <div className="ca-manual-grid">
+              <div><b>结构模型</b><p>原核/真核、质膜、跨膜运输、内膜系统、线粒体/叶绿体、细胞骨架、细胞核、核糖体。</p></div>
+              <div><b>方法模型</b><p>光学显微、电子显微、差速离心、细胞培养、FRAP、FRET。</p></div>
+              <div><b>操作</b><p>拖动旋转、滚轮缩放、双击重置；关闭模型后回到打开它的章节位置。</p></div>
+              <div><b>标注</b><p>模型上的标签用于识别结构；导学里的「认识结构」会隐藏标签，先靠形状判断。</p></div>
+            </div>
+          </section>
+
+          <section className="ca-manual-section">
+            <div className="ca-manual-no">03 / GUIDED LESSON</div>
+            <h3>跨膜运输导学</h3>
+            <div className="ca-manual-grid ca-manual-stages">
+              <div><b>01 认识结构</b><p>点模型里的膜、通道、泵、ATP；也可以点下方名称。</p><em>完成：四个结构都点过</em></div>
+              <div><b>02 观察机制</b><p>播放或逐步看 E1–E2 的 5 个步骤；暂停、回看、重播不会清空进度。</p><em>完成：五个步骤都看过</em></div>
+              <div><b>03 动手探索</b><p>先选预测，再运行模拟；只有目标实验计入完成，其它条件是自由探索。</p><em>完成：目标实验运行成功</em></div>
+              <div><b>04 场景练习</b><p>点击泵、排 5 步顺序、选对结果分析；答错可重试。</p><em>完成：三道题都正确</em></div>
+            </div>
+            <div className="ca-manual-target">
+              <b>目标实验 · 必须精确匹配</b>
+              <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
+              <p>只有这个条件计入完成；其它组合是自由探索。改任何参数后，旧结果失效，必须重新运行。所有阶段都有当前有效证据，才能结课。</p>
+            </div>
+            <p className="ca-manual-note">完成后进入复习；「重新学习」需要二次确认，历史只在本次打开期间保留。手机端点「看模型」收起面板后直接点结构。</p>
+          </section>
+
+          <section className="ca-manual-section">
+            <div className="ca-manual-no">04 / CONTROLS</div>
+            <h3>操作速查</h3>
+            <div className="ca-manual-keys">
+              <span><kbd>拖动</kbd> 旋转</span>
+              <span><kbd>滚轮</kbd> 缩放</span>
+              <span><kbd>双击</kbd> 重置视角</span>
+              <span><kbd>←</kbd><kbd>→</kbd> 切换章节</span>
+              <span><kbd>Space</kbd> 暂停 / 继续</span>
+              <span><kbd>F</kbd> 全屏</span>
+              <span><kbd>R</kbd> 重置视角</span>
+              <span><kbd>−</kbd><kbd>=</kbd> 亮度</span>
+            </div>
+          </section>
+
+          <section className="ca-manual-section">
+            <div className="ca-manual-no">05 / BOUNDARIES</div>
+            <h3>当前边界</h3>
+            <p className="ca-manual-note">本手册只描述插件当前功能。完成判定由课程引擎按证据执行，不依赖 AI；AI 助教、Jarvis 和记忆服务尚未接入主流程，也不会上传学习记录。学习进度目前只保留在本次打开期间。</p>
+          </section>
+
+          <div className="ca-manual-foot">
+            <button type="button" className="ca-manual-close" onClick={onClose}>返回插件</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 function AtlasExperience() {
   const t = useT();
   const rootRef = React.useRef(null);
@@ -864,6 +959,7 @@ function AtlasExperience() {
   const [error, setError] = React.useState(null);
   const [intro, setIntro] = React.useState('in');
   const [introPage, setIntroPage] = React.useState(0);
+  const [manualOpen, setManualOpen] = React.useState(false);
   const [studyOpen, setStudyOpen] = React.useState(false);
   const [bookOpen, setBookOpen] = React.useState(false);
   const [bookChapter, setBookChapter] = React.useState(0);
@@ -992,9 +1088,14 @@ function AtlasExperience() {
     if (engineRef.current) engineRef.current.pulse();
   }, []);
 
-  const openUsage = React.useCallback(() => {
-    setIntroPage(2);
-    setIntro('in');
+  const openManual = React.useCallback(() => {
+    setIntro((value) => (value === 'in' ? 'out' : value));
+    setManualOpen(true);
+    if (engineRef.current) engineRef.current.pulse();
+  }, []);
+
+  const closeManual = React.useCallback(() => {
+    setManualOpen(false);
   }, []);
 
   const close = React.useCallback(() => {
@@ -1218,9 +1319,9 @@ function AtlasExperience() {
             <button
               type="button"
               className="ca-book-btn ca-help-btn"
-              onClick={openUsage}
-              aria-label="打开使用说明"
-              title="使用说明"
+              onClick={openManual}
+              aria-label="打开完整使用手册"
+              title="完整使用手册"
             >
               <Icon name="help" size={15} />
             </button>
@@ -1549,15 +1650,12 @@ function AtlasExperience() {
                       <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
                       <p>只有这个条件计入完成；其它组合是自由探索。改任何参数后，旧结果失效，必须重新运行。</p>
                     </div>
-                    <p className="ca-usage-note">完整规则已经列在本页。插件内可以从「物质的跨膜运输」章节打开模型观察结构；不需要跳转外部网站。</p>
+                    <p className="ca-usage-note">完整规则已经列在本页；插件内可以从「物质的跨膜运输」章节打开模型观察结构。通用操作、模型和全部按键见完整使用手册。</p>
                     <button
                       type="button"
                       className="ca-usage-link"
-                      onClick={() => {
-                        dismissIntro();
-                        openModel({ modelId: 'transport', book: 3, section: '第二节', chapterTitle: '物质的跨膜运输' });
-                      }}
-                    >查看跨膜运输模型 →</button>
+                      onClick={openManual}
+                    >查看完整使用手册 →</button>
                   </div>
                 </div>
                 <div className="ca-usage-rules">
@@ -1688,6 +1786,8 @@ function AtlasExperience() {
       {modelView && (
         <SectionModelViewer context={modelView} onClose={closeModel} t={t} />
       )}
+
+      {manualOpen && <UsageManual onClose={closeManual} />}
 
       {error && (
         <div className="ca-error" role="alert">
@@ -3741,6 +3841,55 @@ const ATLAS_CSS = `
   .ca-model-actions { left: 16px; right: auto; }
 }
 
+.ca-manual-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(1,4,8,.82);
+  backdrop-filter: blur(10px);
+}
+.ca-manual-panel {
+  width: min(980px, 100%);
+  max-height: calc(100% - 16px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(127,247,228,.22);
+  border-radius: 10px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(127,247,228,.08), transparent 45%),
+    linear-gradient(165deg, rgba(6,18,23,.98), rgba(2,7,10,.99));
+  box-shadow: 0 32px 100px rgba(0,0,0,.65);
+}
+.ca-manual-head { flex: none; display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 22px 24px 18px; border-bottom: 1px solid rgba(127,247,228,.14); }
+.ca-manual-eyebrow { font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; letter-spacing: .18em; color: var(--ca-accent); opacity: .7; }
+.ca-manual-head h2 { margin: 8px 0 5px; font-family: "Songti SC", "Noto Serif SC", "STSong", SimSun, serif; font-size: 31px; font-weight: 300; letter-spacing: .04em; }
+.ca-manual-head p { margin: 0; font-size: 12px; line-height: 1.7; color: rgba(201,233,228,.52); }
+.ca-manual-scroll { flex: 1; overflow-y: auto; padding: 0 24px 24px; scrollbar-width: thin; scrollbar-color: rgba(127,247,228,.2) transparent; }
+.ca-manual-section { padding: 20px 0; border-bottom: 1px solid rgba(127,247,228,.1); }
+.ca-manual-no { margin-bottom: 7px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; letter-spacing: .14em; color: var(--ca-accent); opacity: .6; }
+.ca-manual-section h3 { margin: 0 0 10px; font-family: "Songti SC", "Noto Serif SC", "STSong", SimSun, serif; font-size: 22px; font-weight: 400; }
+.ca-manual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.ca-manual-grid > div { padding: 10px 11px; border: 1px solid rgba(127,247,228,.11); border-radius: 4px; background: rgba(127,247,228,.025); }
+.ca-manual-grid b { display: block; margin-bottom: 3px; font-size: 11.5px; font-weight: 500; color: rgba(238,251,247,.9); }
+.ca-manual-grid p { margin: 0; font-size: 10.5px; line-height: 1.65; color: rgba(201,233,228,.52); }
+.ca-manual-grid em { display: block; margin-top: 5px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; line-height: 1.5; font-style: normal; color: rgba(255,216,153,.72); }
+.ca-manual-stages { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ca-manual-target { margin-top: 7px; padding: 11px 12px; border: 1px solid rgba(255,216,153,.28); border-radius: 4px; background: rgba(255,216,153,.05); }
+.ca-manual-target > b { display: block; margin-bottom: 6px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; font-weight: 400; letter-spacing: .06em; color: #ffd899; }
+.ca-manual-target > div { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 7px; }
+.ca-manual-target code { padding: 3px 5px; border: 1px solid rgba(255,216,153,.3); border-radius: 3px; color: #ffd899; font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; }
+.ca-manual-target p { margin: 0; font-size: 10.5px; line-height: 1.65; color: rgba(255,232,190,.74); }
+.ca-manual-note { margin: 8px 0 0; font-size: 10.5px; line-height: 1.7; color: rgba(201,233,228,.5); }
+.ca-manual-keys { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.ca-manual-keys > span { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; min-height: 35px; padding: 7px 8px; border: 1px solid rgba(127,247,228,.1); border-radius: 4px; font-size: 9px; color: rgba(201,233,228,.5); }
+.ca-manual-keys kbd { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border: 1px solid rgba(127,247,228,.35); border-radius: 3px; color: var(--ca-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; }
+.ca-manual-foot { display: flex; justify-content: flex-end; padding-top: 18px; }
+.ca-manual-close { padding: 9px 13px; border: 1px solid rgba(127,247,228,.35); border-radius: 4px; background: rgba(127,247,228,.08); color: var(--ca-accent); font-family: "SFMono-Regular", Consolas, monospace; font-size: 9px; }
+.ca-manual-close:hover { background: var(--ca-accent); color: #03110f; }
 .ca-intro {
   position: absolute;
   inset: 0;
@@ -4016,6 +4165,13 @@ const ATLAS_CSS = `
 }
 @media (max-width: 880px) {
   .ca-intro { align-items: start; padding-top: 18px; padding-bottom: 24px; }
+  .ca-manual-backdrop { padding: 0; }
+  .ca-manual-panel { width: 100%; height: 100%; max-height: none; border: 0; border-radius: 0; }
+  .ca-manual-head { padding: 18px 18px 14px; }
+  .ca-manual-head h2 { font-size: 26px; }
+  .ca-manual-scroll { padding: 0 16px 20px; }
+  .ca-manual-grid, .ca-manual-stages { grid-template-columns: 1fr; }
+  .ca-manual-keys { grid-template-columns: 1fr 1fr; }
   .ca-ui { padding: 16px 16px 14px; }
   .ca-brand-mark { width: 31px; height: 31px; }
   .ca-wordmark { font-size: 9px; letter-spacing: .26em; }

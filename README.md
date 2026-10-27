@@ -411,8 +411,8 @@ bundle adds:
 - a cell-mark action at the sidebar foot
 - a frame-wide full-screen overlay with the complete courseware
 - a **four-page onboarding**, including the complete new-version usage guide;
-  the help icon in the header reopens that page at any time
-- the usage page's model action opens the transport specimen **inside the
+  the help icon in the header opens the full manual at any time
+- the third page's **查看完整使用手册** action opens that manual **inside the
   plugin**; it does not navigate to an external website
 - a **section browser** (book icon or `B`) covering all 16 chapters and 44 sections
 - a **3D model viewer** opened from any section that has a specimen in Batch 01/02
