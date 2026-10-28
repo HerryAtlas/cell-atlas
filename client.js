@@ -5058,250 +5058,250 @@ void main() {
       <li><b>\u52A8\u624B\u63A2\u7D22</b>\uFF1A\u5148\u9884\u6D4B\u5E73\u53F0\u53D8\u5316\uFF0C\u518D\u8C03\u8282\u6761\u4EF6\u5E76\u8FD0\u884C\u3002\u76EE\u6807\u5B9E\u9A8C\u662F<b>\u53EF\u79FB\u52A8\u6BD4\u4F8B 40%\u3001\u76F8\u5BF9\u4EA4\u6362\u901F\u5EA6 100%</b>\uFF1B\u5176\u5B83\u6761\u4EF6\u662F\u81EA\u7531\u63A2\u7D22\uFF0C\u4E0D\u8BA1\u672C\u9636\u6BB5\u5B8C\u6210\u3002\u9884\u6D4B\u7B54\u9519\u4ECD\u53EF\u901A\u8FC7\u5B9E\u9A8C\u4FEE\u6B63\u7406\u89E3\u3002</li>
       <li><b>\u8BFB\u66F2\u7EBF</b>\uFF1A\u5B9E\u7EBF\u4E3A\u5F53\u524D\u5B9E\u9A8C\uFF0C\u865A\u7EBF\u4E3A\u521D\u59CB\u6761\u4EF6\uFF1B\u5E73\u53F0\u662F\u957F\u671F\u6781\u9650\uFF0C\u66F2\u7EBF\u8BB0\u5F55\u5230 30 \u4E2A\u76F8\u5BF9\u65F6\u95F4\u5355\u4F4D\u3002\u53EF\u79FB\u52A8\u6BD4\u4F8B\u5F71\u54CD\u5E73\u53F0\uFF0C\u4EA4\u6362\u901F\u5EA6\u5F71\u54CD\u6062\u590D\u534A\u65F6\uFF1B\u8FD9\u4E9B\u662F\u6559\u5B66\u6A21\u578B\u7ED3\u679C\u3002</li>
       <li><b>\u573A\u666F\u7EC3\u4E60</b>\uFF1A\u70B9\u51FB\u5C40\u90E8\u6F02\u767D\u533A\u57DF\u3001\u6392\u597D 4 \u6B65\u987A\u5E8F\u3001\u9009\u5BF9\u5206\u6790\u3002\u4E09\u4E2A\u4EFB\u52A1\u90FD\u6B63\u786E\u4E14\u524D\u9762\u9636\u6BB5\u9F50\u5168\u540E\u624D\u80FD\u7ED3\u8BFE\u3002</li>
-      <li><b>\u7EE7\u7EED\u5B66\u4E60</b>\uFF1A\u4E24\u8282\u8BFE\u5206\u522B\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u3002\u6BCF\u6B21\u8FD0\u884C\u52A0\u5165\u5BF9\u7167\u8BB0\u5F55\uFF1B\u590D\u7528\u6761\u4EF6\u540E\u8981\u91CD\u65B0\u8FD0\u884C\u3002\u91CD\u5B66\u9700\u786E\u8BA4\u5E76\u4FDD\u7559\u5386\u53F2\uFF1B\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55\u53EA\u5220\u9664 FRAP\u3002\u624B\u673A\u70B9\u300C\u770B\u6A21\u578B\u300D\u540E\u53EF\u76F4\u63A5\u9009\u7ED3\u6784\u3002</li>`}})}var Uf=`<section class="cm-lesson" id="cmLesson" hidden aria-label="\u8DE8\u819C\u8FD0\u8F93\u5BFC\u5B66">
-      <header class="cm-lesson-head">
-        <div>
-          <div class="cm-lesson-kicker">GUIDED LESSON / \u4E92\u52A8\u8BFE</div>
-          <h2 id="cmLessonTitle">\u8DE8\u819C\u8FD0\u8F93</h2>
-          <p id="cmLessonSubtitle">\u901A\u9053\u4E0E\u6CF5 \xB7 Na\u207A/K\u207A \u6CF5\u7684\u4E3B\u52A8\u8FD0\u8F93</p>
-          <a id="cmLessonBook" class="cm-lesson-book" href="./textbook.html?book=3">\u6559\u6750 pp. 62\u201368 \xB7 \u56DE\u5230\u5BF9\u5E94\u5C0F\u8282 \u2192</a>
-        </div>
-        <div class="cm-lesson-actions">
-          <button type="button" class="cm-lesson-help-toggle" id="cmLessonHelpToggle" aria-expanded="false" aria-controls="cmLessonHelp">\u4F7F\u7528\u8BF4\u660E</button>
-          <button type="button" class="cm-lesson-restart" id="cmLessonRestart" aria-expanded="false" aria-controls="cmLessonRestartPrompt">\u91CD\u65B0\u5B66\u4E60</button>
-          <button type="button" class="cm-lesson-peek" id="cmLessonPeek">\u770B\u6A21\u578B</button>
-          <button type="button" class="cm-lesson-close" id="cmLessonClose" aria-label="\u5173\u95ED\u5BFC\u5B66">\u5173\u95ED</button>
-        </div>
-      </header>
-      <section class="cm-lesson-help" id="cmLessonHelp" hidden aria-labelledby="cmLessonHelpTitle">
-        <div class="cm-lesson-help-head">
-          <div>
-            <div class="cm-lsn-kicker">HOW TO USE / \u4F7F\u7528\u8BF4\u660E</div>
-            <h3 id="cmLessonHelpTitle">\u8FD9\u8282\u5BFC\u5B66\u600E\u4E48\u8D70</h3>
-          </div>
-          <button type="button" class="cm-lesson-close" id="cmLessonHelpClose">\u6536\u8D77</button>
-        </div>
-        <ol class="cm-lesson-help-list" id="cmLessonHelpSteps">
-          <li><b>\u8BA4\u8BC6\u7ED3\u6784</b>\uFF1A\u76F4\u63A5\u70B9\u6A21\u578B\u91CC\u7684\u819C\u3001\u901A\u9053\u3001\u6CF5\u3001ATP\uFF1B\u6807\u7B7E\u5DF2\u9690\u85CF\uFF0C\u4E5F\u53EF\u4EE5\u70B9\u4E0B\u65B9\u540D\u79F0\u3002\u56DB\u4E2A\u90FD\u70B9\u8FC7\uFF0C\u5E95\u90E8\u300C\u4E0B\u4E00\u6B65\u300D\u624D\u89E3\u9501\u3002</li>
-          <li><b>\u89C2\u5BDF\u673A\u5236</b>\uFF1A\u53EF\u9009\u300C\u6B63\u5E38 / \u6162\u901F\u300D\u64AD\u653E\uFF0C\u6216\u7528\u300C\u4E0B\u4E00\u6B65\u300D\u9010\u6B65\u770B\uFF1B\u7CFB\u7EDF\u51CF\u5C11\u52A8\u6001\u6548\u679C\u5F00\u542F\u65F6\u9ED8\u8BA4\u6162\u901F\u30025 \u4E2A\u6B65\u9AA4\u90FD\u770B\u8FC7\uFF0C\u5E95\u90E8\u300C\u4E0B\u4E00\u6B65\u300D\u624D\u89E3\u9501\uFF1B\u6682\u505C\u3001\u56DE\u770B\u3001\u91CD\u64AD\u90FD\u4E0D\u4F1A\u6E05\u7A7A\u8FDB\u5EA6\u3002</li>
-          <li><b>\u52A8\u624B\u63A2\u7D22</b>\uFF1A\u5148\u9009\u4E00\u4E2A\u9884\u6D4B\uFF0C\u518D\u8FD0\u884C\u6A21\u62DF\u3002\u53EA\u6709 <b>ATP = 0%\u3001Na\u207A \u68AF\u5EA6 = 60%\u3001\u4E0D\u52A0\u6291\u5236\u5242</b> \u7684\u76EE\u6807\u5B9E\u9A8C\u4F1A\u89E3\u9501\u4E0B\u4E00\u6B65\uFF1B\u5176\u5B83\u6761\u4EF6\u53EF\u4EE5\u81EA\u7531\u63A2\u7D22\uFF0C\u4F46\u4E0D\u8BA1\u5B8C\u6210\u3002\u6539\u6761\u4EF6\u540E\u8981\u91CD\u65B0\u8FD0\u884C\u3002\u6BCF\u6B21\u8FD0\u884C\u52A0\u5165\u5BF9\u7167\u8BB0\u5F55\uFF0C\u53EF\u590D\u7528\u6761\u4EF6\u6216\u6062\u590D\u521D\u59CB\u6761\u4EF6\uFF1B\u590D\u7528\u540E\u4ECD\u9700\u8FD0\u884C\u3002\u8FD0\u884C\u540E\u6CF5\u6309\u300C\u505C\u6B62 / \u4F4E\u901F / \u8F83\u5FEB\u300D\u6F14\u793A\uFF1B\u51CF\u5C11\u52A8\u6001\u6548\u679C\u5F00\u542F\u65F6\u663E\u793A\u9759\u6001\u793A\u610F\u3002</li>
-          <li><b>\u573A\u666F\u7EC3\u4E60</b>\uFF1A\u70B9\u51FB\u6CF5\u3001\u6392\u597D 5 \u6B65\u987A\u5E8F\u3001\u9009\u5BF9\u7ED3\u679C\u5206\u6790\uFF1B\u4E09\u9879\u90FD\u6B63\u786E\u624D\u7B97\u5B8C\u6210\u3002\u7B54\u9519\u53EF\u91CD\u8BD5\u3002</li>
-          <li><b>\u7ED3\u8BFE\u4E0E\u590D\u4E60</b>\uFF1A\u53EF\u4EE5\u70B9\u4E0A\u65B9\u9636\u6BB5\u56DE\u770B\uFF1B\u6240\u6709\u9636\u6BB5\u5B8C\u6210\u540E\u624D\u80FD\u300C\u5B8C\u6210\u5E76\u8FD4\u56DE\u300D\u3002\u5B8C\u6210\u540E\u518D\u8FDB\u5165\u662F\u590D\u4E60\uFF0C\u4E5F\u53EF\u4EE5\u300C\u91CD\u65B0\u5B66\u4E60\u300D\u3002</li>
-          <li><b>\u624B\u673A</b>\uFF1A\u70B9\u300C\u770B\u6A21\u578B\u300D\u6536\u8D77\u9762\u677F\uFF0C\u76F4\u63A5\u70B9\u7ED3\u6784\uFF0C\u9009\u4E2D\u540E\u81EA\u52A8\u56DE\u5230\u9762\u677F\u3002\u91CD\u5B66\u4F1A\u4E8C\u6B21\u786E\u8BA4\uFF1B\u8FDB\u5EA6\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\uFF0C\u5237\u65B0\u540E\u53EF\u7EE7\u7EED\uFF1B\u91CD\u5B66\u4FDD\u7559\u5386\u53F2\uFF0C\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55\u4F1A\u5220\u9664\u6240\u6709\u8F6E\u6B21\u3002</li>
-        </ol>
-        <p class="cm-lsn-small">\u8FDB\u5EA6\u548C\u5B9E\u9A8C\u8BB0\u5F55\u53EA\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\uFF0C\u4E0D\u4E0A\u4F20\uFF0C\u4E5F\u4E0D\u8DE8\u8BBE\u5907\u540C\u6B65\u3002\u5171\u4EAB\u7535\u8111\u4F7F\u7528\u540E\u53EF\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55\u3002</p>
-        <button type="button" class="cm-lesson-restart" id="cmLessonClear">\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55</button>
-        <p class="cm-lsn-small">\u672C\u7248\u6CA1\u6709 AI \u81EA\u52A8\u6279\u6539\uFF1B\u662F\u5426\u5B8C\u6210\u7531\u8BFE\u7A0B\u5F15\u64CE\u6309\u4E0A\u8FF0\u8BC1\u636E\u5224\u5B9A\u3002\u72EC\u7ACB\u7AD9\u4E0E\u63D2\u4EF6\u5171\u7528\u4E24\u8282\u4E92\u52A8\u8BFE\uFF0C\u8FDB\u5EA6\u5206\u522B\u4FDD\u5B58\u5728\u5404\u81EA\u7AD9\u70B9\u3002</p>
-        <a class="cm-lesson-help-link" href="./guide.html" target="_blank" rel="noopener">\u67E5\u770B\u5B8C\u6574\u4F7F\u7528\u8BF4\u660E\uFF08\u65B0\u7248\u529F\u80FD\uFF09\u2192</a>
-      </section>
-      <div class="cm-lesson-restart-prompt" id="cmLessonRestartPrompt" role="group" aria-label="\u91CD\u65B0\u5B66\u4E60\u786E\u8BA4" hidden>
-        <p>\u91CD\u65B0\u5F00\u59CB\u672C\u8BFE\uFF1F\u5F53\u524D\u8FDB\u5EA6\u5C06\u91CD\u7F6E\uFF0C\u5386\u53F2\u5C1D\u8BD5\u548C\u5B9E\u9A8C\u5BF9\u7167\u8BB0\u5F55\u5C06\u4FDD\u7559\uFF0C\u81EA\u52A8\u4FDD\u5B58\u6210\u529F\u540E\u5237\u65B0\u53EF\u7EE7\u7EED\u3002</p>
-        <div>
-          <button type="button" class="cm-lesson-close" id="cmLessonRestartCancel">\u7EE7\u7EED\u672C\u8F6E</button>
-          <button type="button" class="cm-lesson-restart" id="cmLessonRestartConfirm">\u786E\u8BA4\u91CD\u65B0\u5B66\u4E60</button>
-        </div>
-      </div>
-      <div class="cm-lesson-restart-prompt" id="cmLessonClearPrompt" role="group" aria-label="\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55\u786E\u8BA4" hidden>
-        <p>\u5220\u9664\u672C\u8BFE\u5168\u90E8\u8FDB\u5EA6\u3001\u7B54\u6848\u548C\u5B9E\u9A8C\u8BB0\u5F55\uFF1F\u6240\u6709\u8F6E\u6B21\u90FD\u4F1A\u6E05\u9664\uFF0C\u6B64\u64CD\u4F5C\u65E0\u6CD5\u64A4\u9500\u3002</p>
-        <div>
-          <button type="button" class="cm-lesson-close" id="cmLessonClearCancel">\u53D6\u6D88\uFF0C\u4FDD\u7559\u8BB0\u5F55</button>
-          <button type="button" class="cm-lesson-restart" id="cmLessonClearConfirm">\u786E\u8BA4\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55</button>
-        </div>
-      </div>
-      <nav class="cm-lesson-tabs" id="cmLessonTabs" role="tablist" aria-label="\u5BFC\u5B66\u9636\u6BB5">
-        <button type="button" role="tab" data-stage="0" aria-selected="true"><span>01</span>\u8BA4\u8BC6\u7ED3\u6784</button>
-        <button type="button" role="tab" data-stage="1" aria-selected="false"><span>02</span>\u89C2\u5BDF\u673A\u5236</button>
-        <button type="button" role="tab" data-stage="2" aria-selected="false"><span>03</span>\u52A8\u624B\u63A2\u7D22</button>
-        <button type="button" role="tab" data-stage="3" aria-selected="false"><span>04</span>\u573A\u666F\u7EC3\u4E60</button>
-      </nav>
-      <div class="cm-lesson-scroll">
-        <p class="cm-lsn-small cm-lesson-save-status" id="cmLessonSaveStatus" role="status"></p>
-        <p class="cm-lesson-history" id="cmLessonHistory" role="status" hidden></p>
-        <div class="cm-lesson-body" id="cmLessonBody"></div>
-      </div>
-      <footer class="cm-lesson-foot">
-        <span id="cmLessonProgress">01 / 04 \xB7 \u8BA4\u8BC6\u7ED3\u6784</span>
-        <button type="button" id="cmLessonNext">\u4E0B\u4E00\u6B65 \u2192</button>
-      </footer>
-    </section>
-`;var Of=`.cm-lesson[hidden] { display: none; }
-.cm-lesson {
-  position: fixed;
-  top: 64px;
-  right: 0;
-  bottom: 0;
-  z-index: 30;
-  display: flex;
-  flex-direction: column;
-  width: min(500px, 100vw);
-  border-left: 1px solid rgba(127,247,228,.22);
-  background:
-    radial-gradient(ellipse at 100% 0%, rgba(127,247,228,.09), transparent 40%),
-    linear-gradient(180deg, rgba(6,18,22,.99), rgba(2,7,10,.99));
-  box-shadow: -30px 0 80px rgba(0,0,0,.42);
-  backdrop-filter: blur(18px);
-  transition: transform .28s ease;
-}
-.cm-lesson-head { flex: none; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 22px 24px 16px; border-bottom: 1px solid var(--line); }
-.cm-lesson-kicker { font-family: var(--mono); font-size: 8px; letter-spacing: .18em; color: var(--accent); opacity: .7; }
-.cm-lesson-head h2 { margin: 9px 0 4px; font-family: var(--serif); font-size: 30px; font-weight: 300; letter-spacing: .02em; }
-.cm-lesson-head p { margin: 0; font-size: 12px; color: var(--muted); }
-.cm-lesson-book { display: inline-block; margin-top: 8px; font-family: var(--mono); font-size: 8px; letter-spacing: .04em; color: var(--accent); opacity: .7; }
-.cm-lesson-book:hover { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
-.cm-lesson-close { flex: none; padding: 6px 9px; border: 1px solid rgba(204,235,228,.2); border-radius: 4px; background: transparent; font-family: var(--mono); font-size: 9px; color: var(--faint); }
-.cm-lesson-close:hover { color: var(--ink); border-color: var(--accent); }
-.cm-lesson-restart { flex: none; padding: 6px 9px; border: 1px solid rgba(255,216,153,.5); border-radius: 4px; background: rgba(255,216,153,.08); font-family: var(--mono); font-size: 9px; color: #ffd899; }
-.cm-lesson-restart:hover { border-color: #ffd899; background: rgba(255,216,153,.16); }
-.cm-lesson-restart:focus-visible, .cm-lesson-restart-prompt button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.cm-lesson-restart-prompt { flex: none; padding: 12px 18px; border-bottom: 1px solid rgba(255,216,153,.3); background: rgba(255,216,153,.06); }
-.cm-lesson-restart-prompt[hidden], .cm-lesson-history[hidden] { display: none; }
-.cm-lesson-restart-prompt p { margin: 0 0 9px; color: #ffd899; font-size: 12px; line-height: 1.7; }
-.cm-lesson-restart-prompt > div { display: flex; flex-wrap: wrap; gap: 10px; }
-.cm-lesson-history { margin: 16px 18px 0; padding: 10px; border: 1px solid var(--line); color: var(--accent); font-size: 12px; line-height: 1.7; }
-.cm-lesson-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; align-items: center; }
-.cm-lesson-help-toggle { flex: none; padding: 6px 9px; border: 1px solid rgba(127,247,228,.32); border-radius: 4px; background: rgba(127,247,228,.06); font-family: var(--mono); font-size: 9px; color: var(--accent); }
-.cm-lesson-help-toggle:hover { border-color: var(--accent); background: rgba(127,247,228,.13); }
-.cm-lesson-help-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.cm-lesson-help[hidden] { display: none; }
-.cm-lesson-help { flex: none; max-height: 44vh; overflow-y: auto; padding: 14px 18px 16px; border-bottom: 1px solid rgba(127,247,228,.22); background: rgba(127,247,228,.045); scrollbar-width: thin; scrollbar-color: rgba(127,247,228,.2) transparent; }
-.cm-lesson-help-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.cm-lesson-help-head h3 { margin: 5px 0 0; font-family: var(--serif); font-size: 20px; font-weight: 400; }
-.cm-lesson-help-list { display: grid; gap: 8px; margin: 11px 0 0; padding-left: 18px; }
-.cm-lesson-help-list li { padding-left: 2px; font-size: 12px; line-height: 1.75; color: var(--muted); }
-.cm-lesson-help-list b { color: var(--ink); font-weight: 500; }
-.cm-lesson-help-link { display: inline-block; margin-top: 9px; padding-bottom: 2px; border-bottom: 1px solid rgba(127,247,228,.32); font-family: var(--mono); font-size: 9px; color: var(--accent); opacity: .8; }
-.cm-lesson-help-link:hover { opacity: 1; border-bottom-color: var(--accent); }
-.cm-lesson-peek { display: none; flex: none; padding: 6px 9px; border: 1px solid rgba(127,247,228,.3); border-radius: 4px; background: rgba(127,247,228,.08); font-family: var(--mono); font-size: 9px; color: var(--accent); }
-.cm-lesson-tabs { flex: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; padding: 0 14px; border-bottom: 1px solid var(--line); background: rgba(0,0,0,.18); }
-.cm-lesson-tabs button { display: flex; flex-direction: column; gap: 4px; padding: 10px 7px 11px; border: 0; border-bottom: 1px solid transparent; background: transparent; font-family: var(--mono); font-size: 8px; line-height: 1.35; color: var(--faint); text-align: left; }
-.cm-lesson-tabs button span { font-size: 7px; color: rgba(127,247,228,.46); }
-.cm-lesson-tabs button:hover { color: var(--ink); }
-.cm-lesson-tabs button[aria-selected="true"] { border-bottom-color: var(--accent); color: var(--accent); background: rgba(127,247,228,.05); }
-.cm-lesson-scroll { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(127,247,228,.2) transparent; }
-.cm-lesson-body { padding: 20px 24px 34px; }
-.cm-lesson-foot { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 24px; border-top: 1px solid var(--line); background: rgba(3,10,13,.94); }
-.cm-lesson-foot span { font-family: var(--mono); font-size: 8px; letter-spacing: .06em; color: var(--faint); }
-.cm-lesson-foot button { padding: 8px 13px; border: 1px solid rgba(127,247,228,.36); border-radius: 4px; background: rgba(127,247,228,.1); color: var(--accent); font-family: var(--mono); font-size: 9px; }
-.cm-lesson-foot button:hover { background: var(--accent); color: #03110f; }
-.cm-lesson-foot button:disabled { opacity: .3; cursor: not-allowed; }
-.cm-lsn-lead { margin: 0 0 16px; font-size: 14px; line-height: 1.9; color: rgba(228,246,240,.82); }
-.cm-lsn-muted { color: var(--muted); font-size: 12px; line-height: 1.8; }
-.cm-lsn-objectives { margin: 0 0 18px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 5px; background: rgba(127,247,228,.035); }
-.cm-lsn-objectives b { display: block; margin-bottom: 7px; font-family: var(--mono); font-size: 8px; letter-spacing: .12em; color: var(--accent); font-weight: 400; }
-.cm-lsn-objectives ul { display: grid; gap: 6px; margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.7; color: var(--muted); }
-.cm-lsn-kicker { margin-bottom: 8px; font-family: var(--mono); font-size: 8px; letter-spacing: .14em; color: var(--accent); opacity: .7; }
-.cm-lsn-title { margin: 0 0 10px; font-family: var(--serif); font-size: 23px; font-weight: 300; line-height: 1.35; }
-.cm-lsn-picklist { display: grid; gap: 6px; margin: 15px 0; }
-.cm-pick-btn { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 10px 11px; border: 1px solid var(--line); border-radius: 4px; background: rgba(127,247,228,.025); text-align: left; }
-.cm-pick-btn:hover { border-color: rgba(127,247,228,.4); background: rgba(127,247,228,.07); }
-.cm-pick-btn b { display: block; font-size: 12.5px; font-weight: 400; color: var(--ink); }
-.cm-pick-btn em { display: block; margin-top: 2px; font-family: var(--mono); font-size: 7px; font-style: normal; letter-spacing: .05em; color: var(--faint); }
-.cm-pick-btn span { flex: none; font-family: var(--mono); font-size: 7px; color: var(--faint); }
-.cm-pick-btn.is-done { border-color: rgba(127,247,228,.34); }
-.cm-pick-btn.is-done span { color: var(--accent); }
-.cm-pick-btn.is-active { border-color: var(--accent); background: rgba(127,247,228,.1); }
-.cm-lsn-card { margin: 16px 0; padding: 14px; border: 1px solid rgba(127,247,228,.24); border-radius: 5px; background: rgba(127,247,228,.055); }
-.cm-lsn-card .cm-lsn-kicker { margin-bottom: 5px; }
-.cm-lsn-card h3 { margin: 0 0 3px; font-family: var(--serif); font-size: 20px; font-weight: 400; }
-.cm-lsn-card .cm-en-line { font-family: var(--mono); font-size: 7px; letter-spacing: .08em; color: var(--faint); }
-.cm-lsn-card p { margin: 10px 0 0; font-size: 12.5px; line-height: 1.8; color: var(--muted); }
-.cm-lsn-fact { margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--line); font-size: 11.5px; line-height: 1.75; color: rgba(255,216,153,.82); }
-.cm-lsn-controls { display: flex; gap: 6px; margin: 16px 0 12px; }
-.cm-lsn-controls button, .cm-lsn-btn { padding: 8px 11px; border: 1px solid rgba(204,235,228,.2); border-radius: 4px; background: rgba(2,10,13,.5); font-family: var(--mono); font-size: 9px; color: var(--muted); }
-.cm-lsn-controls button:hover, .cm-lsn-btn:hover { border-color: var(--accent); color: var(--accent); }
-.cm-lsn-controls button.primary, .cm-lsn-btn.primary { border-color: rgba(127,247,228,.42); background: rgba(127,247,228,.12); color: var(--accent); }
-.cm-mech-dots { display: flex; gap: 5px; margin: 10px 0 16px; }
-.cm-mech-dots i { display: block; height: 2px; flex: 1; background: rgba(204,235,228,.16); }
-.cm-mech-dots i.is-done { background: rgba(127,247,228,.55); }
-.cm-mech-dots i.is-current { background: var(--accent); box-shadow: 0 0 8px rgba(127,247,228,.6); }
-.cm-lsn-slider { display: grid; grid-template-columns: 1fr 46px; align-items: center; gap: 8px; margin: 13px 0; }
-.cm-lsn-slider label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
-.cm-lsn-slider output { font-family: var(--mono); font-size: 10px; color: var(--accent); text-align: right; }
-.cm-lsn-slider input { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); }
-.cm-lsn-check { display: flex; align-items: center; gap: 8px; margin: 13px 0; font-size: 12px; color: var(--muted); }
-.cm-lsn-check input { accent-color: var(--accent); }
-.cm-lsn-choice { display: flex; flex-direction: column; gap: 6px; margin: 13px 0; }
-.cm-lsn-choice button { padding: 10px 11px; border: 1px solid var(--line); border-radius: 4px; background: rgba(127,247,228,.025); font-size: 12px; line-height: 1.65; color: var(--muted); text-align: left; }
-.cm-lsn-choice button:hover { border-color: rgba(127,247,228,.4); color: var(--ink); }
-.cm-lsn-choice button.is-selected { border-color: var(--accent); background: rgba(127,247,228,.1); color: var(--ink); }
-.cm-lsn-result { margin: 15px 0; padding: 13px; border: 1px solid rgba(255,205,118,.28); border-radius: 5px; background: rgba(255,205,118,.055); }
-.cm-lsn-result .cm-lsn-kicker { color: #ffd08a; }
-.cm-lsn-result strong { display: block; margin-bottom: 5px; font-family: var(--serif); font-size: 25px; font-weight: 300; color: #ffe1aa; }
-.cm-lsn-result p { margin: 0; font-size: 12px; line-height: 1.8; color: var(--muted); }
-.cm-lsn-assumptions { margin: 15px 0; padding: 11px 12px; border-left: 2px solid rgba(204,235,228,.2); background: rgba(255,255,255,.018); }
-.cm-lsn-assumptions b { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 7px; letter-spacing: .1em; color: var(--faint); font-weight: 400; }
-.cm-lsn-assumptions ul { margin: 0; padding-left: 14px; font-size: 10.5px; line-height: 1.75; color: rgba(204,235,228,.5); }
-.cm-lsn-feedback { margin: 13px 0; padding: 11px 12px; border-radius: 4px; font-size: 12px; line-height: 1.8; }
-.cm-lsn-feedback.ok { border: 1px solid rgba(127,247,228,.3); background: rgba(127,247,228,.07); color: rgba(210,255,243,.9); }
-.cm-lsn-feedback.bad { border: 1px solid rgba(255,157,183,.3); background: rgba(255,157,183,.06); color: rgba(255,205,220,.9); }
-.cm-lsn-order { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
-.cm-order-chip { padding: 7px 9px; border: 1px solid var(--line); border-radius: 4px; background: rgba(127,247,228,.035); font-size: 11px; line-height: 1.5; color: var(--muted); text-align: left; }
-.cm-order-chip:hover { border-color: var(--accent); color: var(--ink); }
-.cm-order-selected { display: flex; flex-direction: column; gap: 4px; margin: 12px 0; padding: 0; list-style: none; counter-reset: order; }
-.cm-order-selected li { counter-increment: order; display: flex; align-items: center; gap: 8px; padding: 8px 9px; border: 1px solid rgba(127,247,228,.2); border-radius: 4px; background: rgba(127,247,228,.045); font-size: 11.5px; line-height: 1.55; color: var(--ink); }
-.cm-order-selected li::before { content: counter(order, decimal-leading-zero); font-family: var(--mono); font-size: 8px; color: var(--accent); }
-.cm-lsn-divider { height: 1px; margin: 20px 0; background: var(--line); }
-.cm-lsn-complete { padding: 16px; border: 1px solid rgba(127,247,228,.32); border-radius: 5px; background: rgba(127,247,228,.07); }
-.cm-lsn-complete h3 { margin: 0 0 7px; font-family: var(--serif); font-size: 23px; font-weight: 300; color: var(--accent); }
-.cm-lsn-complete p { margin: 0; font-size: 12px; line-height: 1.8; color: var(--muted); }
-.cm-lsn-small { margin: 8px 0 0; font-family: var(--mono); font-size: 8px; line-height: 1.7; color: var(--faint); }
-
-.cm-label-layer { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
-.cm-label { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 7px; white-space: nowrap; transition: opacity .25s ease; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8)); }
-.cm-label i { width: 5px; height: 5px; flex: none; border-radius: 50%; background: var(--accent); box-shadow: 0 0 9px var(--accent); }
-.cm-label span { display: flex; flex-direction: column; gap: 1px; padding: 4px 8px; border: 1px solid rgba(127,247,228,.16); border-radius: 3px; background: rgba(2,8,11,.68); backdrop-filter: blur(6px); }
-.cm-label b { font-size: 11px; font-weight: 400; letter-spacing: .04em; color: rgba(240,255,251,.94); }
-.cm-label em { font-family: var(--mono); font-size: 7px; font-style: normal; letter-spacing: .07em; color: rgba(204,235,228,.46); }
-
-
-@media (max-width: 900px) {
-  .cm-lesson { top: 54px; width: 100%; border-left: 0; }
-  .cm-lesson.is-peeking { transform: translateY(calc(100% - 128px)); }
-  .cm-lesson.is-peeking .cm-lesson-tabs,
-  .cm-lesson.is-peeking .cm-lesson-scroll,
-  .cm-lesson.is-peeking .cm-lesson-foot { display: none; }
-  .cm-lesson-peek { display: block; }
-  .cm-lesson-head { padding: 16px 18px 13px; }
-  .cm-lesson-head h2 { font-size: 26px; }
-  .cm-lesson-help { max-height: 38vh; padding: 12px 16px 14px; }
-  .cm-lesson.is-help-open .cm-lesson-tabs,
-  .cm-lesson.is-help-open .cm-lesson-scroll,
-  .cm-lesson.is-help-open .cm-lesson-foot { display: none; }
-  .cm-lesson.is-help-open .cm-lesson-help { flex: 1 1 auto; max-height: none; }
-  .cm-lesson-help-toggle, .cm-lesson-restart, .cm-lesson-close { font-size: 8px; padding: 6px 7px; }
-  .cm-lesson-tabs { padding: 0 8px; }
-  .cm-lesson-tabs button { font-size: 7px; padding: 9px 4px 10px; }
-  .cm-lesson-body { padding: 17px 18px 28px; }
-  .cm-lesson-foot { padding: 10px 18px; }
-}
-
-/* Lesson playback speed: wraps on narrow panels and retains keyboard focus. */
-.cm-lsn-speed { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 18px 0 12px; }
-.cm-lsn-speed > span { width: 100%; font-size: 12px; color: var(--muted, #95aba8); }
-.cm-lsn-speed button[aria-pressed="true"] { border-color: #6fe2d1; background: rgba(111,226,209,.12); color: #b5fff0; }
-.cm-lsn-speed button:focus-visible { outline: 2px solid #6fe2d1; outline-offset: 3px; }
-
-.cm-lesson-save-status { padding: 10px 0; border-bottom: 1px solid rgba(111,226,209,.15); }
-.cm-lsn-records { margin: 22px 0; }
-.cm-lsn-records h3 { font-size: 17px; }
-.cm-lsn-table-scroll { overflow-x: auto; max-width: 100%; border: 1px solid rgba(111,226,209,.2); border-radius: 5px; }
-.cm-lsn-table-scroll:focus-visible { outline: 2px solid #6fe2d1; }
-.cm-lsn-records table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 12px; }
-.cm-lsn-records th, .cm-lsn-records td { padding: 10px 8px; text-align: left; border-bottom: 1px solid rgba(111,226,209,.12); }
-.cm-lsn-records thead { color: #a6e5dc; background: rgba(111,226,209,.06); }
-.cm-lsn-records td button { display: block; margin-top: 7px; white-space: nowrap; }
-.cm-lsn-records > .cm-lsn-small { font-size: 12px; line-height: 1.7; color: #93aaa7; }
-/* FRAP shares the lesson layout; its chart scales with the lesson column. */
-.cm-frap-graph { margin: 16px 0; }
-.cm-frap-graph svg { display: block; width: 100%; height: auto; }
-.cm-frap-graph text { fill: #b3d4ce; font-size: 11px; font-family: inherit; }
-.cm-frap-graph .grid { stroke: #30534e; stroke-width: .6; }
-.cm-frap-graph .axis { fill: none; stroke: #94bcb3; stroke-width: 1; }
-.cm-frap-graph .current { fill: none; stroke: #87ffdc; stroke-width: 2.5; }
-.cm-frap-graph .reference { fill: none; stroke: #ffd193; stroke-width: 1.8; stroke-dasharray: 5 4; }
-.cm-frap-graph figcaption { font-size: 12px; line-height: 1.8; color: #b3d4ce; }
-.cm-frap-graph .current-key { color: #87ffdc; }
-.cm-frap-graph .reference-key { color: #ffd193; }
+      <li><b>\u7EE7\u7EED\u5B66\u4E60</b>\uFF1A\u4E24\u8282\u8BFE\u5206\u522B\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\u3002\u6BCF\u6B21\u8FD0\u884C\u52A0\u5165\u5BF9\u7167\u8BB0\u5F55\uFF1B\u590D\u7528\u6761\u4EF6\u540E\u8981\u91CD\u65B0\u8FD0\u884C\u3002\u91CD\u5B66\u9700\u786E\u8BA4\u5E76\u4FDD\u7559\u5386\u53F2\uFF1B\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55\u53EA\u5220\u9664 FRAP\u3002\u624B\u673A\u70B9\u300C\u770B\u6A21\u578B\u300D\u540E\u53EF\u76F4\u63A5\u9009\u7ED3\u6784\u3002</li>`}})}var Uf=`<section class="cm-lesson" id="cmLesson" hidden aria-label="\u8DE8\u819C\u8FD0\u8F93\u5BFC\u5B66">\r
+      <header class="cm-lesson-head">\r
+        <div>\r
+          <div class="cm-lesson-kicker">GUIDED LESSON / \u4E92\u52A8\u8BFE</div>\r
+          <h2 id="cmLessonTitle">\u8DE8\u819C\u8FD0\u8F93</h2>\r
+          <p id="cmLessonSubtitle">\u901A\u9053\u4E0E\u6CF5 \xB7 Na\u207A/K\u207A \u6CF5\u7684\u4E3B\u52A8\u8FD0\u8F93</p>\r
+          <a id="cmLessonBook" class="cm-lesson-book" href="./textbook.html?book=3">\u6559\u6750 pp. 62\u201368 \xB7 \u56DE\u5230\u5BF9\u5E94\u5C0F\u8282 \u2192</a>\r
+        </div>\r
+        <div class="cm-lesson-actions">\r
+          <button type="button" class="cm-lesson-help-toggle" id="cmLessonHelpToggle" aria-expanded="false" aria-controls="cmLessonHelp">\u4F7F\u7528\u8BF4\u660E</button>\r
+          <button type="button" class="cm-lesson-restart" id="cmLessonRestart" aria-expanded="false" aria-controls="cmLessonRestartPrompt">\u91CD\u65B0\u5B66\u4E60</button>\r
+          <button type="button" class="cm-lesson-peek" id="cmLessonPeek">\u770B\u6A21\u578B</button>\r
+          <button type="button" class="cm-lesson-close" id="cmLessonClose" aria-label="\u5173\u95ED\u5BFC\u5B66">\u5173\u95ED</button>\r
+        </div>\r
+      </header>\r
+      <section class="cm-lesson-help" id="cmLessonHelp" hidden aria-labelledby="cmLessonHelpTitle">\r
+        <div class="cm-lesson-help-head">\r
+          <div>\r
+            <div class="cm-lsn-kicker">HOW TO USE / \u4F7F\u7528\u8BF4\u660E</div>\r
+            <h3 id="cmLessonHelpTitle">\u8FD9\u8282\u5BFC\u5B66\u600E\u4E48\u8D70</h3>\r
+          </div>\r
+          <button type="button" class="cm-lesson-close" id="cmLessonHelpClose">\u6536\u8D77</button>\r
+        </div>\r
+        <ol class="cm-lesson-help-list" id="cmLessonHelpSteps">\r
+          <li><b>\u8BA4\u8BC6\u7ED3\u6784</b>\uFF1A\u76F4\u63A5\u70B9\u6A21\u578B\u91CC\u7684\u819C\u3001\u901A\u9053\u3001\u6CF5\u3001ATP\uFF1B\u6807\u7B7E\u5DF2\u9690\u85CF\uFF0C\u4E5F\u53EF\u4EE5\u70B9\u4E0B\u65B9\u540D\u79F0\u3002\u56DB\u4E2A\u90FD\u70B9\u8FC7\uFF0C\u5E95\u90E8\u300C\u4E0B\u4E00\u6B65\u300D\u624D\u89E3\u9501\u3002</li>\r
+          <li><b>\u89C2\u5BDF\u673A\u5236</b>\uFF1A\u53EF\u9009\u300C\u6B63\u5E38 / \u6162\u901F\u300D\u64AD\u653E\uFF0C\u6216\u7528\u300C\u4E0B\u4E00\u6B65\u300D\u9010\u6B65\u770B\uFF1B\u7CFB\u7EDF\u51CF\u5C11\u52A8\u6001\u6548\u679C\u5F00\u542F\u65F6\u9ED8\u8BA4\u6162\u901F\u30025 \u4E2A\u6B65\u9AA4\u90FD\u770B\u8FC7\uFF0C\u5E95\u90E8\u300C\u4E0B\u4E00\u6B65\u300D\u624D\u89E3\u9501\uFF1B\u6682\u505C\u3001\u56DE\u770B\u3001\u91CD\u64AD\u90FD\u4E0D\u4F1A\u6E05\u7A7A\u8FDB\u5EA6\u3002</li>\r
+          <li><b>\u52A8\u624B\u63A2\u7D22</b>\uFF1A\u5148\u9009\u4E00\u4E2A\u9884\u6D4B\uFF0C\u518D\u8FD0\u884C\u6A21\u62DF\u3002\u53EA\u6709 <b>ATP = 0%\u3001Na\u207A \u68AF\u5EA6 = 60%\u3001\u4E0D\u52A0\u6291\u5236\u5242</b> \u7684\u76EE\u6807\u5B9E\u9A8C\u4F1A\u89E3\u9501\u4E0B\u4E00\u6B65\uFF1B\u5176\u5B83\u6761\u4EF6\u53EF\u4EE5\u81EA\u7531\u63A2\u7D22\uFF0C\u4F46\u4E0D\u8BA1\u5B8C\u6210\u3002\u6539\u6761\u4EF6\u540E\u8981\u91CD\u65B0\u8FD0\u884C\u3002\u6BCF\u6B21\u8FD0\u884C\u52A0\u5165\u5BF9\u7167\u8BB0\u5F55\uFF0C\u53EF\u590D\u7528\u6761\u4EF6\u6216\u6062\u590D\u521D\u59CB\u6761\u4EF6\uFF1B\u590D\u7528\u540E\u4ECD\u9700\u8FD0\u884C\u3002\u8FD0\u884C\u540E\u6CF5\u6309\u300C\u505C\u6B62 / \u4F4E\u901F / \u8F83\u5FEB\u300D\u6F14\u793A\uFF1B\u51CF\u5C11\u52A8\u6001\u6548\u679C\u5F00\u542F\u65F6\u663E\u793A\u9759\u6001\u793A\u610F\u3002</li>\r
+          <li><b>\u573A\u666F\u7EC3\u4E60</b>\uFF1A\u70B9\u51FB\u6CF5\u3001\u6392\u597D 5 \u6B65\u987A\u5E8F\u3001\u9009\u5BF9\u7ED3\u679C\u5206\u6790\uFF1B\u4E09\u9879\u90FD\u6B63\u786E\u624D\u7B97\u5B8C\u6210\u3002\u7B54\u9519\u53EF\u91CD\u8BD5\u3002</li>\r
+          <li><b>\u7ED3\u8BFE\u4E0E\u590D\u4E60</b>\uFF1A\u53EF\u4EE5\u70B9\u4E0A\u65B9\u9636\u6BB5\u56DE\u770B\uFF1B\u6240\u6709\u9636\u6BB5\u5B8C\u6210\u540E\u624D\u80FD\u300C\u5B8C\u6210\u5E76\u8FD4\u56DE\u300D\u3002\u5B8C\u6210\u540E\u518D\u8FDB\u5165\u662F\u590D\u4E60\uFF0C\u4E5F\u53EF\u4EE5\u300C\u91CD\u65B0\u5B66\u4E60\u300D\u3002</li>\r
+          <li><b>\u624B\u673A</b>\uFF1A\u70B9\u300C\u770B\u6A21\u578B\u300D\u6536\u8D77\u9762\u677F\uFF0C\u76F4\u63A5\u70B9\u7ED3\u6784\uFF0C\u9009\u4E2D\u540E\u81EA\u52A8\u56DE\u5230\u9762\u677F\u3002\u91CD\u5B66\u4F1A\u4E8C\u6B21\u786E\u8BA4\uFF1B\u8FDB\u5EA6\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\uFF0C\u5237\u65B0\u540E\u53EF\u7EE7\u7EED\uFF1B\u91CD\u5B66\u4FDD\u7559\u5386\u53F2\uFF0C\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55\u4F1A\u5220\u9664\u6240\u6709\u8F6E\u6B21\u3002</li>\r
+        </ol>\r
+        <p class="cm-lsn-small">\u8FDB\u5EA6\u548C\u5B9E\u9A8C\u8BB0\u5F55\u53EA\u4FDD\u5B58\u5728\u5F53\u524D\u6D4F\u89C8\u5668\uFF0C\u4E0D\u4E0A\u4F20\uFF0C\u4E5F\u4E0D\u8DE8\u8BBE\u5907\u540C\u6B65\u3002\u5171\u4EAB\u7535\u8111\u4F7F\u7528\u540E\u53EF\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55\u3002</p>\r
+        <button type="button" class="cm-lesson-restart" id="cmLessonClear">\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55</button>\r
+        <p class="cm-lsn-small">\u672C\u7248\u6CA1\u6709 AI \u81EA\u52A8\u6279\u6539\uFF1B\u662F\u5426\u5B8C\u6210\u7531\u8BFE\u7A0B\u5F15\u64CE\u6309\u4E0A\u8FF0\u8BC1\u636E\u5224\u5B9A\u3002\u72EC\u7ACB\u7AD9\u4E0E\u63D2\u4EF6\u5171\u7528\u4E24\u8282\u4E92\u52A8\u8BFE\uFF0C\u8FDB\u5EA6\u5206\u522B\u4FDD\u5B58\u5728\u5404\u81EA\u7AD9\u70B9\u3002</p>\r
+        <a class="cm-lesson-help-link" href="./guide.html" target="_blank" rel="noopener">\u67E5\u770B\u5B8C\u6574\u4F7F\u7528\u8BF4\u660E\uFF08\u65B0\u7248\u529F\u80FD\uFF09\u2192</a>\r
+      </section>\r
+      <div class="cm-lesson-restart-prompt" id="cmLessonRestartPrompt" role="group" aria-label="\u91CD\u65B0\u5B66\u4E60\u786E\u8BA4" hidden>\r
+        <p>\u91CD\u65B0\u5F00\u59CB\u672C\u8BFE\uFF1F\u5F53\u524D\u8FDB\u5EA6\u5C06\u91CD\u7F6E\uFF0C\u5386\u53F2\u5C1D\u8BD5\u548C\u5B9E\u9A8C\u5BF9\u7167\u8BB0\u5F55\u5C06\u4FDD\u7559\uFF0C\u81EA\u52A8\u4FDD\u5B58\u6210\u529F\u540E\u5237\u65B0\u53EF\u7EE7\u7EED\u3002</p>\r
+        <div>\r
+          <button type="button" class="cm-lesson-close" id="cmLessonRestartCancel">\u7EE7\u7EED\u672C\u8F6E</button>\r
+          <button type="button" class="cm-lesson-restart" id="cmLessonRestartConfirm">\u786E\u8BA4\u91CD\u65B0\u5B66\u4E60</button>\r
+        </div>\r
+      </div>\r
+      <div class="cm-lesson-restart-prompt" id="cmLessonClearPrompt" role="group" aria-label="\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55\u786E\u8BA4" hidden>\r
+        <p>\u5220\u9664\u672C\u8BFE\u5168\u90E8\u8FDB\u5EA6\u3001\u7B54\u6848\u548C\u5B9E\u9A8C\u8BB0\u5F55\uFF1F\u6240\u6709\u8F6E\u6B21\u90FD\u4F1A\u6E05\u9664\uFF0C\u6B64\u64CD\u4F5C\u65E0\u6CD5\u64A4\u9500\u3002</p>\r
+        <div>\r
+          <button type="button" class="cm-lesson-close" id="cmLessonClearCancel">\u53D6\u6D88\uFF0C\u4FDD\u7559\u8BB0\u5F55</button>\r
+          <button type="button" class="cm-lesson-restart" id="cmLessonClearConfirm">\u786E\u8BA4\u6E05\u9664\u672C\u8BFE\u8BB0\u5F55</button>\r
+        </div>\r
+      </div>\r
+      <nav class="cm-lesson-tabs" id="cmLessonTabs" role="tablist" aria-label="\u5BFC\u5B66\u9636\u6BB5">\r
+        <button type="button" role="tab" data-stage="0" aria-selected="true"><span>01</span>\u8BA4\u8BC6\u7ED3\u6784</button>\r
+        <button type="button" role="tab" data-stage="1" aria-selected="false"><span>02</span>\u89C2\u5BDF\u673A\u5236</button>\r
+        <button type="button" role="tab" data-stage="2" aria-selected="false"><span>03</span>\u52A8\u624B\u63A2\u7D22</button>\r
+        <button type="button" role="tab" data-stage="3" aria-selected="false"><span>04</span>\u573A\u666F\u7EC3\u4E60</button>\r
+      </nav>\r
+      <div class="cm-lesson-scroll">\r
+        <p class="cm-lsn-small cm-lesson-save-status" id="cmLessonSaveStatus" role="status"></p>\r
+        <p class="cm-lesson-history" id="cmLessonHistory" role="status" hidden></p>\r
+        <div class="cm-lesson-body" id="cmLessonBody"></div>\r
+      </div>\r
+      <footer class="cm-lesson-foot">\r
+        <span id="cmLessonProgress">01 / 04 \xB7 \u8BA4\u8BC6\u7ED3\u6784</span>\r
+        <button type="button" id="cmLessonNext">\u4E0B\u4E00\u6B65 \u2192</button>\r
+      </footer>\r
+    </section>\r
+`;var Of=`.cm-lesson[hidden] { display: none; }\r
+.cm-lesson {\r
+  position: fixed;\r
+  top: 64px;\r
+  right: 0;\r
+  bottom: 0;\r
+  z-index: 30;\r
+  display: flex;\r
+  flex-direction: column;\r
+  width: min(500px, 100vw);\r
+  border-left: 1px solid rgba(127,247,228,.22);\r
+  background:\r
+    radial-gradient(ellipse at 100% 0%, rgba(127,247,228,.09), transparent 40%),\r
+    linear-gradient(180deg, rgba(6,18,22,.99), rgba(2,7,10,.99));\r
+  box-shadow: -30px 0 80px rgba(0,0,0,.42);\r
+  backdrop-filter: blur(18px);\r
+  transition: transform .28s ease;\r
+}\r
+.cm-lesson-head { flex: none; display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 22px 24px 16px; border-bottom: 1px solid var(--line); }\r
+.cm-lesson-kicker { font-family: var(--mono); font-size: 8px; letter-spacing: .18em; color: var(--accent); opacity: .7; }\r
+.cm-lesson-head h2 { margin: 9px 0 4px; font-family: var(--serif); font-size: 30px; font-weight: 300; letter-spacing: .02em; }\r
+.cm-lesson-head p { margin: 0; font-size: 12px; color: var(--muted); }\r
+.cm-lesson-book { display: inline-block; margin-top: 8px; font-family: var(--mono); font-size: 8px; letter-spacing: .04em; color: var(--accent); opacity: .7; }\r
+.cm-lesson-book:hover { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }\r
+.cm-lesson-close { flex: none; padding: 6px 9px; border: 1px solid rgba(204,235,228,.2); border-radius: 4px; background: transparent; font-family: var(--mono); font-size: 9px; color: var(--faint); }\r
+.cm-lesson-close:hover { color: var(--ink); border-color: var(--accent); }\r
+.cm-lesson-restart { flex: none; padding: 6px 9px; border: 1px solid rgba(255,216,153,.5); border-radius: 4px; background: rgba(255,216,153,.08); font-family: var(--mono); font-size: 9px; color: #ffd899; }\r
+.cm-lesson-restart:hover { border-color: #ffd899; background: rgba(255,216,153,.16); }\r
+.cm-lesson-restart:focus-visible, .cm-lesson-restart-prompt button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }\r
+.cm-lesson-restart-prompt { flex: none; padding: 12px 18px; border-bottom: 1px solid rgba(255,216,153,.3); background: rgba(255,216,153,.06); }\r
+.cm-lesson-restart-prompt[hidden], .cm-lesson-history[hidden] { display: none; }\r
+.cm-lesson-restart-prompt p { margin: 0 0 9px; color: #ffd899; font-size: 12px; line-height: 1.7; }\r
+.cm-lesson-restart-prompt > div { display: flex; flex-wrap: wrap; gap: 10px; }\r
+.cm-lesson-history { margin: 16px 18px 0; padding: 10px; border: 1px solid var(--line); color: var(--accent); font-size: 12px; line-height: 1.7; }\r
+.cm-lesson-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; align-items: center; }\r
+.cm-lesson-help-toggle { flex: none; padding: 6px 9px; border: 1px solid rgba(127,247,228,.32); border-radius: 4px; background: rgba(127,247,228,.06); font-family: var(--mono); font-size: 9px; color: var(--accent); }\r
+.cm-lesson-help-toggle:hover { border-color: var(--accent); background: rgba(127,247,228,.13); }\r
+.cm-lesson-help-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }\r
+.cm-lesson-help[hidden] { display: none; }\r
+.cm-lesson-help { flex: none; max-height: 44vh; overflow-y: auto; padding: 14px 18px 16px; border-bottom: 1px solid rgba(127,247,228,.22); background: rgba(127,247,228,.045); scrollbar-width: thin; scrollbar-color: rgba(127,247,228,.2) transparent; }\r
+.cm-lesson-help-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }\r
+.cm-lesson-help-head h3 { margin: 5px 0 0; font-family: var(--serif); font-size: 20px; font-weight: 400; }\r
+.cm-lesson-help-list { display: grid; gap: 8px; margin: 11px 0 0; padding-left: 18px; }\r
+.cm-lesson-help-list li { padding-left: 2px; font-size: 12px; line-height: 1.75; color: var(--muted); }\r
+.cm-lesson-help-list b { color: var(--ink); font-weight: 500; }\r
+.cm-lesson-help-link { display: inline-block; margin-top: 9px; padding-bottom: 2px; border-bottom: 1px solid rgba(127,247,228,.32); font-family: var(--mono); font-size: 9px; color: var(--accent); opacity: .8; }\r
+.cm-lesson-help-link:hover { opacity: 1; border-bottom-color: var(--accent); }\r
+.cm-lesson-peek { display: none; flex: none; padding: 6px 9px; border: 1px solid rgba(127,247,228,.3); border-radius: 4px; background: rgba(127,247,228,.08); font-family: var(--mono); font-size: 9px; color: var(--accent); }\r
+.cm-lesson-tabs { flex: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; padding: 0 14px; border-bottom: 1px solid var(--line); background: rgba(0,0,0,.18); }\r
+.cm-lesson-tabs button { display: flex; flex-direction: column; gap: 4px; padding: 10px 7px 11px; border: 0; border-bottom: 1px solid transparent; background: transparent; font-family: var(--mono); font-size: 8px; line-height: 1.35; color: var(--faint); text-align: left; }\r
+.cm-lesson-tabs button span { font-size: 7px; color: rgba(127,247,228,.46); }\r
+.cm-lesson-tabs button:hover { color: var(--ink); }\r
+.cm-lesson-tabs button[aria-selected="true"] { border-bottom-color: var(--accent); color: var(--accent); background: rgba(127,247,228,.05); }\r
+.cm-lesson-scroll { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(127,247,228,.2) transparent; }\r
+.cm-lesson-body { padding: 20px 24px 34px; }\r
+.cm-lesson-foot { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 24px; border-top: 1px solid var(--line); background: rgba(3,10,13,.94); }\r
+.cm-lesson-foot span { font-family: var(--mono); font-size: 8px; letter-spacing: .06em; color: var(--faint); }\r
+.cm-lesson-foot button { padding: 8px 13px; border: 1px solid rgba(127,247,228,.36); border-radius: 4px; background: rgba(127,247,228,.1); color: var(--accent); font-family: var(--mono); font-size: 9px; }\r
+.cm-lesson-foot button:hover { background: var(--accent); color: #03110f; }\r
+.cm-lesson-foot button:disabled { opacity: .3; cursor: not-allowed; }\r
+.cm-lsn-lead { margin: 0 0 16px; font-size: 14px; line-height: 1.9; color: rgba(228,246,240,.82); }\r
+.cm-lsn-muted { color: var(--muted); font-size: 12px; line-height: 1.8; }\r
+.cm-lsn-objectives { margin: 0 0 18px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 5px; background: rgba(127,247,228,.035); }\r
+.cm-lsn-objectives b { display: block; margin-bottom: 7px; font-family: var(--mono); font-size: 8px; letter-spacing: .12em; color: var(--accent); font-weight: 400; }\r
+.cm-lsn-objectives ul { display: grid; gap: 6px; margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.7; color: var(--muted); }\r
+.cm-lsn-kicker { margin-bottom: 8px; font-family: var(--mono); font-size: 8px; letter-spacing: .14em; color: var(--accent); opacity: .7; }\r
+.cm-lsn-title { margin: 0 0 10px; font-family: var(--serif); font-size: 23px; font-weight: 300; line-height: 1.35; }\r
+.cm-lsn-picklist { display: grid; gap: 6px; margin: 15px 0; }\r
+.cm-pick-btn { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 10px 11px; border: 1px solid var(--line); border-radius: 4px; background: rgba(127,247,228,.025); text-align: left; }\r
+.cm-pick-btn:hover { border-color: rgba(127,247,228,.4); background: rgba(127,247,228,.07); }\r
+.cm-pick-btn b { display: block; font-size: 12.5px; font-weight: 400; color: var(--ink); }\r
+.cm-pick-btn em { display: block; margin-top: 2px; font-family: var(--mono); font-size: 7px; font-style: normal; letter-spacing: .05em; color: var(--faint); }\r
+.cm-pick-btn span { flex: none; font-family: var(--mono); font-size: 7px; color: var(--faint); }\r
+.cm-pick-btn.is-done { border-color: rgba(127,247,228,.34); }\r
+.cm-pick-btn.is-done span { color: var(--accent); }\r
+.cm-pick-btn.is-active { border-color: var(--accent); background: rgba(127,247,228,.1); }\r
+.cm-lsn-card { margin: 16px 0; padding: 14px; border: 1px solid rgba(127,247,228,.24); border-radius: 5px; background: rgba(127,247,228,.055); }\r
+.cm-lsn-card .cm-lsn-kicker { margin-bottom: 5px; }\r
+.cm-lsn-card h3 { margin: 0 0 3px; font-family: var(--serif); font-size: 20px; font-weight: 400; }\r
+.cm-lsn-card .cm-en-line { font-family: var(--mono); font-size: 7px; letter-spacing: .08em; color: var(--faint); }\r
+.cm-lsn-card p { margin: 10px 0 0; font-size: 12.5px; line-height: 1.8; color: var(--muted); }\r
+.cm-lsn-fact { margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--line); font-size: 11.5px; line-height: 1.75; color: rgba(255,216,153,.82); }\r
+.cm-lsn-controls { display: flex; gap: 6px; margin: 16px 0 12px; }\r
+.cm-lsn-controls button, .cm-lsn-btn { padding: 8px 11px; border: 1px solid rgba(204,235,228,.2); border-radius: 4px; background: rgba(2,10,13,.5); font-family: var(--mono); font-size: 9px; color: var(--muted); }\r
+.cm-lsn-controls button:hover, .cm-lsn-btn:hover { border-color: var(--accent); color: var(--accent); }\r
+.cm-lsn-controls button.primary, .cm-lsn-btn.primary { border-color: rgba(127,247,228,.42); background: rgba(127,247,228,.12); color: var(--accent); }\r
+.cm-mech-dots { display: flex; gap: 5px; margin: 10px 0 16px; }\r
+.cm-mech-dots i { display: block; height: 2px; flex: 1; background: rgba(204,235,228,.16); }\r
+.cm-mech-dots i.is-done { background: rgba(127,247,228,.55); }\r
+.cm-mech-dots i.is-current { background: var(--accent); box-shadow: 0 0 8px rgba(127,247,228,.6); }\r
+.cm-lsn-slider { display: grid; grid-template-columns: 1fr 46px; align-items: center; gap: 8px; margin: 13px 0; }\r
+.cm-lsn-slider label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }\r
+.cm-lsn-slider output { font-family: var(--mono); font-size: 10px; color: var(--accent); text-align: right; }\r
+.cm-lsn-slider input { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); }\r
+.cm-lsn-check { display: flex; align-items: center; gap: 8px; margin: 13px 0; font-size: 12px; color: var(--muted); }\r
+.cm-lsn-check input { accent-color: var(--accent); }\r
+.cm-lsn-choice { display: flex; flex-direction: column; gap: 6px; margin: 13px 0; }\r
+.cm-lsn-choice button { padding: 10px 11px; border: 1px solid var(--line); border-radius: 4px; background: rgba(127,247,228,.025); font-size: 12px; line-height: 1.65; color: var(--muted); text-align: left; }\r
+.cm-lsn-choice button:hover { border-color: rgba(127,247,228,.4); color: var(--ink); }\r
+.cm-lsn-choice button.is-selected { border-color: var(--accent); background: rgba(127,247,228,.1); color: var(--ink); }\r
+.cm-lsn-result { margin: 15px 0; padding: 13px; border: 1px solid rgba(255,205,118,.28); border-radius: 5px; background: rgba(255,205,118,.055); }\r
+.cm-lsn-result .cm-lsn-kicker { color: #ffd08a; }\r
+.cm-lsn-result strong { display: block; margin-bottom: 5px; font-family: var(--serif); font-size: 25px; font-weight: 300; color: #ffe1aa; }\r
+.cm-lsn-result p { margin: 0; font-size: 12px; line-height: 1.8; color: var(--muted); }\r
+.cm-lsn-assumptions { margin: 15px 0; padding: 11px 12px; border-left: 2px solid rgba(204,235,228,.2); background: rgba(255,255,255,.018); }\r
+.cm-lsn-assumptions b { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 7px; letter-spacing: .1em; color: var(--faint); font-weight: 400; }\r
+.cm-lsn-assumptions ul { margin: 0; padding-left: 14px; font-size: 10.5px; line-height: 1.75; color: rgba(204,235,228,.5); }\r
+.cm-lsn-feedback { margin: 13px 0; padding: 11px 12px; border-radius: 4px; font-size: 12px; line-height: 1.8; }\r
+.cm-lsn-feedback.ok { border: 1px solid rgba(127,247,228,.3); background: rgba(127,247,228,.07); color: rgba(210,255,243,.9); }\r
+.cm-lsn-feedback.bad { border: 1px solid rgba(255,157,183,.3); background: rgba(255,157,183,.06); color: rgba(255,205,220,.9); }\r
+.cm-lsn-order { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }\r
+.cm-order-chip { padding: 7px 9px; border: 1px solid var(--line); border-radius: 4px; background: rgba(127,247,228,.035); font-size: 11px; line-height: 1.5; color: var(--muted); text-align: left; }\r
+.cm-order-chip:hover { border-color: var(--accent); color: var(--ink); }\r
+.cm-order-selected { display: flex; flex-direction: column; gap: 4px; margin: 12px 0; padding: 0; list-style: none; counter-reset: order; }\r
+.cm-order-selected li { counter-increment: order; display: flex; align-items: center; gap: 8px; padding: 8px 9px; border: 1px solid rgba(127,247,228,.2); border-radius: 4px; background: rgba(127,247,228,.045); font-size: 11.5px; line-height: 1.55; color: var(--ink); }\r
+.cm-order-selected li::before { content: counter(order, decimal-leading-zero); font-family: var(--mono); font-size: 8px; color: var(--accent); }\r
+.cm-lsn-divider { height: 1px; margin: 20px 0; background: var(--line); }\r
+.cm-lsn-complete { padding: 16px; border: 1px solid rgba(127,247,228,.32); border-radius: 5px; background: rgba(127,247,228,.07); }\r
+.cm-lsn-complete h3 { margin: 0 0 7px; font-family: var(--serif); font-size: 23px; font-weight: 300; color: var(--accent); }\r
+.cm-lsn-complete p { margin: 0; font-size: 12px; line-height: 1.8; color: var(--muted); }\r
+.cm-lsn-small { margin: 8px 0 0; font-family: var(--mono); font-size: 8px; line-height: 1.7; color: var(--faint); }\r
+\r
+.cm-label-layer { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }\r
+.cm-label { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 7px; white-space: nowrap; transition: opacity .25s ease; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8)); }\r
+.cm-label i { width: 5px; height: 5px; flex: none; border-radius: 50%; background: var(--accent); box-shadow: 0 0 9px var(--accent); }\r
+.cm-label span { display: flex; flex-direction: column; gap: 1px; padding: 4px 8px; border: 1px solid rgba(127,247,228,.16); border-radius: 3px; background: rgba(2,8,11,.68); backdrop-filter: blur(6px); }\r
+.cm-label b { font-size: 11px; font-weight: 400; letter-spacing: .04em; color: rgba(240,255,251,.94); }\r
+.cm-label em { font-family: var(--mono); font-size: 7px; font-style: normal; letter-spacing: .07em; color: rgba(204,235,228,.46); }\r
+\r
+\r
+@media (max-width: 900px) {\r
+  .cm-lesson { top: 54px; width: 100%; border-left: 0; }\r
+  .cm-lesson.is-peeking { transform: translateY(calc(100% - 128px)); }\r
+  .cm-lesson.is-peeking .cm-lesson-tabs,\r
+  .cm-lesson.is-peeking .cm-lesson-scroll,\r
+  .cm-lesson.is-peeking .cm-lesson-foot { display: none; }\r
+  .cm-lesson-peek { display: block; }\r
+  .cm-lesson-head { padding: 16px 18px 13px; }\r
+  .cm-lesson-head h2 { font-size: 26px; }\r
+  .cm-lesson-help { max-height: 38vh; padding: 12px 16px 14px; }\r
+  .cm-lesson.is-help-open .cm-lesson-tabs,\r
+  .cm-lesson.is-help-open .cm-lesson-scroll,\r
+  .cm-lesson.is-help-open .cm-lesson-foot { display: none; }\r
+  .cm-lesson.is-help-open .cm-lesson-help { flex: 1 1 auto; max-height: none; }\r
+  .cm-lesson-help-toggle, .cm-lesson-restart, .cm-lesson-close { font-size: 8px; padding: 6px 7px; }\r
+  .cm-lesson-tabs { padding: 0 8px; }\r
+  .cm-lesson-tabs button { font-size: 7px; padding: 9px 4px 10px; }\r
+  .cm-lesson-body { padding: 17px 18px 28px; }\r
+  .cm-lesson-foot { padding: 10px 18px; }\r
+}\r
+\r
+/* Lesson playback speed: wraps on narrow panels and retains keyboard focus. */\r
+.cm-lsn-speed { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 18px 0 12px; }\r
+.cm-lsn-speed > span { width: 100%; font-size: 12px; color: var(--muted, #95aba8); }\r
+.cm-lsn-speed button[aria-pressed="true"] { border-color: #6fe2d1; background: rgba(111,226,209,.12); color: #b5fff0; }\r
+.cm-lsn-speed button:focus-visible { outline: 2px solid #6fe2d1; outline-offset: 3px; }\r
+\r
+.cm-lesson-save-status { padding: 10px 0; border-bottom: 1px solid rgba(111,226,209,.15); }\r
+.cm-lsn-records { margin: 22px 0; }\r
+.cm-lsn-records h3 { font-size: 17px; }\r
+.cm-lsn-table-scroll { overflow-x: auto; max-width: 100%; border: 1px solid rgba(111,226,209,.2); border-radius: 5px; }\r
+.cm-lsn-table-scroll:focus-visible { outline: 2px solid #6fe2d1; }\r
+.cm-lsn-records table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 12px; }\r
+.cm-lsn-records th, .cm-lsn-records td { padding: 10px 8px; text-align: left; border-bottom: 1px solid rgba(111,226,209,.12); }\r
+.cm-lsn-records thead { color: #a6e5dc; background: rgba(111,226,209,.06); }\r
+.cm-lsn-records td button { display: block; margin-top: 7px; white-space: nowrap; }\r
+.cm-lsn-records > .cm-lsn-small { font-size: 12px; line-height: 1.7; color: #93aaa7; }\r
+/* FRAP shares the lesson layout; its chart scales with the lesson column. */\r
+.cm-frap-graph { margin: 16px 0; }\r
+.cm-frap-graph svg { display: block; width: 100%; height: auto; }\r
+.cm-frap-graph text { fill: #b3d4ce; font-size: 11px; font-family: inherit; }\r
+.cm-frap-graph .grid { stroke: #30534e; stroke-width: .6; }\r
+.cm-frap-graph .axis { fill: none; stroke: #94bcb3; stroke-width: 1; }\r
+.cm-frap-graph .current { fill: none; stroke: #87ffdc; stroke-width: 2.5; }\r
+.cm-frap-graph .reference { fill: none; stroke: #ffd193; stroke-width: 1.8; stroke-dasharray: 5 4; }\r
+.cm-frap-graph figcaption { font-size: 12px; line-height: 1.8; color: #b3d4ce; }\r
+.cm-frap-graph .current-key { color: #87ffdc; }\r
+.cm-frap-graph .reference-key { color: #ffd193; }\r
 `;var Bf=`.ca-lesson-host {
   --accent: #7ff7e4; --line: rgba(127,247,228,.14);
   --ink: #e8f8f4; --muted: rgba(204,235,228,.66); --faint: rgba(204,235,228,.45);
