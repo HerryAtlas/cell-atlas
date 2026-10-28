@@ -45,7 +45,7 @@ If the DSH environment supplies its own Node binary, use that binary explicitly.
 | `src/course-engine.js` | Deterministic lesson state machine: evidence, gating, snapshots and subscriptions; no DOM/AI dependency. |
 | `src/transport-flow.js` | Declarative requirements for the guided transport lesson. |
 | `src/frap-lesson.js`, `src/frap-flow.js`, `src/frap-experiment.js` | Second lesson content, requirements and shared FRAP teaching curve; scientific scope in `FRAP-SOURCES.md`. |
-| `demo/guided-lesson-ui.js`, `demo/*-explore.js` | Shared four-stage lesson UI and per-lesson experiment presenters; dispose before replacing a controller. |
+| `src/lesson-ui/`, `src/lesson-host.jsx` | Shared four-stage UI, experiment presenters, HTML shell and CSS; React LessonHost mounts a scoped controller and releases it before scene disposal. Demo modules are compatibility re-exports. |
 | `src/lesson-progress.js`, `src/frap-progress.js` | Shared save validation and separate FRAP storage; preserve the legacy transport envelope and key. |
 | `src/transport-progress.js` | Validated browser-local lesson persistence, view reconstruction and experiment record projection. |
 | `src/transport-motion.js` | Qualitative playback bands and reduced-motion-safe experiment cycle timing. |
@@ -120,7 +120,7 @@ Run `pnpm test` for course-engine, experiment and lesson UI regression tests. Ru
 ## Current state
 
 - 14 models implemented; methods models were recently upgraded to instrument-level detail.
-- Two complete standalone guided lessons: transport (5 mechanism steps) and membrane fluidity / FRAP (4). Keep independent browser progress and history; clearing one must preserve the other. FRAP maps to chapter 2 section 4 and chapter 3 section 2 without marking those entire sections complete.
+- Two complete guided lessons in both the standalone site and plugin overlay: transport (5 mechanism steps) and membrane fluidity / FRAP (4). Keep independent browser progress and history; clearing one must preserve the other. FRAP maps to chapter 2 section 4 and chapter 3 section 2 without marking those entire sections complete.
 - Onboarding is exactly four pages: welcome, study notes, new lesson guide, controls. Page 1 starts with “欢迎来到细胞的世界”.
 - `docs/` and `client.js` are prebuilt and current at the time of this file.
 - DSH is optional; the standalone `docs/` site is the primary public demo.

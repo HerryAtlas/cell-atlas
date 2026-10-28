@@ -71,72 +71,8 @@
       </aside>
     </div>
 
-    <section class="cm-lesson" id="cmLesson" hidden aria-label="跨膜运输导学">
-      <header class="cm-lesson-head">
-        <div>
-          <div class="cm-lesson-kicker">GUIDED LESSON / 互动课</div>
-          <h2 id="cmLessonTitle">跨膜运输</h2>
-          <p id="cmLessonSubtitle">通道与泵 · Na⁺/K⁺ 泵的主动运输</p>
-          <a id="cmLessonBook" class="cm-lesson-book" href="./textbook.html?book=3">教材 pp. 62–68 · 回到对应小节 →</a>
-        </div>
-        <div class="cm-lesson-actions">
-          <button type="button" class="cm-lesson-help-toggle" id="cmLessonHelpToggle" aria-expanded="false" aria-controls="cmLessonHelp">使用说明</button>
-          <button type="button" class="cm-lesson-restart" id="cmLessonRestart" aria-expanded="false" aria-controls="cmLessonRestartPrompt">重新学习</button>
-          <button type="button" class="cm-lesson-peek" id="cmLessonPeek">看模型</button>
-          <button type="button" class="cm-lesson-close" id="cmLessonClose" aria-label="关闭导学">关闭</button>
-        </div>
-      </header>
-      <section class="cm-lesson-help" id="cmLessonHelp" hidden aria-labelledby="cmLessonHelpTitle">
-        <div class="cm-lesson-help-head">
-          <div>
-            <div class="cm-lsn-kicker">HOW TO USE / 使用说明</div>
-            <h3 id="cmLessonHelpTitle">这节导学怎么走</h3>
-          </div>
-          <button type="button" class="cm-lesson-close" id="cmLessonHelpClose">收起</button>
-        </div>
-        <ol class="cm-lesson-help-list" id="cmLessonHelpSteps">
-          <li><b>认识结构</b>：直接点模型里的膜、通道、泵、ATP；标签已隐藏，也可以点下方名称。四个都点过，底部「下一步」才解锁。</li>
-          <li><b>观察机制</b>：可选「正常 / 慢速」播放，或用「下一步」逐步看；系统减少动态效果开启时默认慢速。5 个步骤都看过，底部「下一步」才解锁；暂停、回看、重播都不会清空进度。</li>
-          <li><b>动手探索</b>：先选一个预测，再运行模拟。只有 <b>ATP = 0%、Na⁺ 梯度 = 60%、不加抑制剂</b> 的目标实验会解锁下一步；其它条件可以自由探索，但不计完成。改条件后要重新运行。每次运行加入对照记录，可复用条件或恢复初始条件；复用后仍需运行。运行后泵按「停止 / 低速 / 较快」演示；减少动态效果开启时显示静态示意。</li>
-          <li><b>场景练习</b>：点击泵、排好 5 步顺序、选对结果分析；三项都正确才算完成。答错可重试。</li>
-          <li><b>结课与复习</b>：可以点上方阶段回看；所有阶段完成后才能「完成并返回」。完成后再进入是复习，也可以「重新学习」。</li>
-          <li><b>手机</b>：点「看模型」收起面板，直接点结构，选中后自动回到面板。重学会二次确认；进度保存在当前浏览器，刷新后可继续；重学保留历史，清除本课记录会删除所有轮次。</li>
-        </ol>
-        <p class="cm-lsn-small">进度和实验记录只保存在当前浏览器，不上传，也不跨设备同步。共享电脑使用后可清除本课记录。</p>
-        <button type="button" class="cm-lesson-restart" id="cmLessonClear">清除本课记录</button>
-        <p class="cm-lsn-small">本版没有 AI 自动批改；是否完成由课程引擎按上述证据判定。</p>
-        <a class="cm-lesson-help-link" href="./guide.html" target="_blank" rel="noopener">查看完整使用说明（新版功能）→</a>
-      </section>
-      <div class="cm-lesson-restart-prompt" id="cmLessonRestartPrompt" role="group" aria-label="重新学习确认" hidden>
-        <p>重新开始本课？当前进度将重置，历史尝试和实验对照记录将保留，自动保存成功后刷新可继续。</p>
-        <div>
-          <button type="button" class="cm-lesson-close" id="cmLessonRestartCancel">继续本轮</button>
-          <button type="button" class="cm-lesson-restart" id="cmLessonRestartConfirm">确认重新学习</button>
-        </div>
-      </div>
-      <div class="cm-lesson-restart-prompt" id="cmLessonClearPrompt" role="group" aria-label="清除本课记录确认" hidden>
-        <p>删除本课全部进度、答案和实验记录？所有轮次都会清除，此操作无法撤销。</p>
-        <div>
-          <button type="button" class="cm-lesson-close" id="cmLessonClearCancel">取消，保留记录</button>
-          <button type="button" class="cm-lesson-restart" id="cmLessonClearConfirm">确认清除本课记录</button>
-        </div>
-      </div>
-      <nav class="cm-lesson-tabs" id="cmLessonTabs" role="tablist" aria-label="导学阶段">
-        <button type="button" role="tab" data-stage="0" aria-selected="true"><span>01</span>认识结构</button>
-        <button type="button" role="tab" data-stage="1" aria-selected="false"><span>02</span>观察机制</button>
-        <button type="button" role="tab" data-stage="2" aria-selected="false"><span>03</span>动手探索</button>
-        <button type="button" role="tab" data-stage="3" aria-selected="false"><span>04</span>场景练习</button>
-      </nav>
-      <div class="cm-lesson-scroll">
-        <p class="cm-lsn-small cm-lesson-save-status" id="cmLessonSaveStatus" role="status"></p>
-        <p class="cm-lesson-history" id="cmLessonHistory" role="status" hidden></p>
-        <div class="cm-lesson-body" id="cmLessonBody"></div>
-      </div>
-      <footer class="cm-lesson-foot">
-        <span id="cmLessonProgress">01 / 04 · 认识结构</span>
-        <button type="button" id="cmLessonNext">下一步 →</button>
-      </footer>
-    </section>
+    <!-- LESSON_SHELL -->
+    <!-- Shared four-stage lesson and usage guide: src/lesson-ui/shell.html; also hosted inside the React plugin. -->
 
     <div class="cm-loading" id="cmLoading"><span></span> BUILDING SPECIMEN <i></i></div>
     <div class="cm-error" id="cmError" hidden><b>模型未能加载</b><p id="cmErrorText"></p><button type="button" id="cmReload">重新加载</button></div>

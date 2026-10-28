@@ -278,4 +278,8 @@ if (typeof process !== 'undefined' && process.argv[1] && pathToFileURL(path.reso
   console.log(JSON.stringify(await runFrapSmoke({ playwright,
     executablePath: process.env.BROWSER_EXECUTABLE,
     channel: process.env.BROWSER_CHANNEL, onProgress: console.log }), null, 2));
+  const { runPluginSmoke } = await import('./plugin-smoke.mjs');
+  console.log(JSON.stringify(await runPluginSmoke({ playwright,
+    executablePath: process.env.BROWSER_EXECUTABLE,
+    channel: process.env.BROWSER_CHANNEL, onProgress: console.log }), null, 2));
 }

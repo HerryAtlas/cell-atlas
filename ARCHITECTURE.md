@@ -29,11 +29,25 @@ A lesson must remain completable when every AI service is offline.
 | Experiment | condition validation and task-specific prediction feedback | `src/transport-experiment.js`, `src/frap-experiment.js` |
 | Engine | deterministic state machine, evidence, completion, snapshot | `src/course-engine.js` |
 | Scene | pickable structures, highlight, mechanism state, experiment state | `src/models-scene.js` |
-| Lesson UI | shared stages, playback, exercises, mobile peek; per-lesson experiment presenters | `demo/guided-lesson-ui.js`, `demo/*-lesson-ui.js`, `demo/*-explore.js` |
+| Lesson UI | shared stages, playback, exercises, mobile peek; per-lesson experiment presenters | `src/lesson-ui/*.js`, `src/lesson-host.jsx` |
 | Local persistence | validated snapshots, view drafts, course-isolated records | `src/lesson-progress.js`, `src/transport-progress.js`, `src/frap-progress.js` |
 | Tests | engine, experiment and lesson UI regressions | `tests/*.test.mjs` |
 
 The engine has no DOM, Three.js, React, network or LLM dependency.
+
+The standalone gallery and plugin each own one lesson controller at a time.
+The plugin's React `LessonHost` mounts the shared trusted HTML shell in a scoped
+DOM root and owns controller cleanup, keyboard focus and internal book navigation.
+React does not reconcile the presenter's inner DOM. `SectionModelViewer` keeps
+its real model scene and forwards picks to the active controller; it releases the
+controller before disposing the scene. React is still supplied by DSH, not bundled.
+The plugin never embeds an iframe or loads a lesson from an external origin.
+
+The shared `src/lesson-ui/` directory holds the controller, experiment presenters,
+shell and CSS. Demo modules remain compatibility re-exports. Both build targets
+consume the same shell/styles; the static build expands markers in demo/models.
+Selectors are scoped to the lesson root so another plugin's IDs or buttons cannot
+receive course handlers. Timers and media listeners are removed on unmount.
 
 The gallery owns one lesson controller at a time. Switching models disposes the
 old controller, flushes its pending save, stops timers and removes shell/media

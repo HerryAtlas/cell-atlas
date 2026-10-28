@@ -296,9 +296,17 @@ confirmed clear action deletes only that course. The mobile **看模型** button
 normal/slow mechanism playback work as in the first lesson. Reduced motion shows
 the experiment's observation endpoint without animation.
 
-Full guided lessons run in the standalone model page. The DSH plugin shares the
-same course knowledge and upgraded FRAP model; it does not embed the standalone
-lesson panel or upload learning records.
+Both full lessons also run **inside the DSH plugin overlay**. Open the section
+library (B) or study notes (T), open a transport or FRAP model, then select
+**进入 / 继续互动课**. All four stages, model picking, simulations and exercises
+stay in the current plugin window; no iframe, external site or Netlify is required.
+The textbook link returns to the built-in section library. **返回模型** saves the
+draft, and Escape dismisses confirmations/help before leaving the lesson.
+
+After refreshing the plugin, reopen the atlas and the same course to continue.
+Transport and FRAP retain separate keys and clearing one preserves the other.
+Storage belongs to the browser origin: a plugin host and a standalone site with
+different addresses do not automatically share saves. No records are uploaded.
 
 ### Course engine · deterministic core
 
@@ -309,9 +317,10 @@ evidence and completion:
   AI dependency; supports event evidence, revoke, snapshots and subscriptions.
 - [`src/transport-flow.js`](src/transport-flow.js) — declarative requirements
   for the four transport stages.
-- [`demo/guided-lesson-ui.js`](demo/guided-lesson-ui.js) — shared four-stage UI,
+- [`src/lesson-ui/guided-lesson-ui.js`](src/lesson-ui/guided-lesson-ui.js) — shared four-stage UI,
   evidence dispatch and lifecycle cleanup when switching lessons. The transport
   and FRAP wrappers supply content, persistence and experiment presenters.
+- [`src/lesson-host.jsx`](src/lesson-host.jsx) — React lifecycle adapter for the plugin; uses the host React runtime and the same local lesson presenters.
 - [`src/lesson-progress.js`](src/lesson-progress.js) — shared validation and
   storage with separate course keys; legacy transport saves remain compatible.
 - [`tests/course-engine.test.mjs`](tests/course-engine.test.mjs) — engine

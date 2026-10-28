@@ -3,6 +3,7 @@ import { CHAPTERS } from './chapters.js';
 import { TEXTBOOK, TEXTBOOK_SECTION_COUNT, bookChapterForScene } from './textbook.js';
 import { modelsForSection, MODEL_SPECS } from './model-catalog.js';
 import { createModelScene } from './models-scene.js';
+import { LessonHost, hasGuidedLesson } from './lesson-host.jsx';
 
 let React = null;
 let store = null;
@@ -772,9 +773,17 @@ function TextbookBrowser({ initialChapter, onClose, onJump, onOpenModel, t }) {
   );
 }
 
-function SectionModelViewer({ context, onClose, t }) {
+function SectionModelViewer({ context, onClose, onBook, t }) {
   const hostRef = React.useRef(null);
   const engineRef = React.useRef(null);
+  const controllerRef = React.useRef(null);
+  const lessonEntryRef = React.useRef(null);
+  const [lessonOpen, setLessonOpen] = React.useState(false);
+  const getLessonEngine = React.useCallback(() => engineRef.current, []);
+  const closeLesson = React.useCallback(() => {
+    setLessonOpen(false);
+    requestAnimationFrame(() => lessonEntryRef.current?.focus());
+  }, []);
   const [spec, setSpec] = React.useState(null);
   const [error, setError] = React.useState(null);
 
@@ -782,6 +791,7 @@ function SectionModelViewer({ context, onClose, t }) {
     let alive = true;
     try {
       const engine = createModelScene(hostRef.current, {
+        onPick: (pick) => controllerRef.current?.handlePick(pick),
         onModelChange: (next) => {
           if (alive) setSpec(next);
         },
@@ -796,6 +806,9 @@ function SectionModelViewer({ context, onClose, t }) {
     }
     return () => {
       alive = false;
+      // Parent effects can clean up before child effects on unmount.
+      controllerRef.current?.dispose();
+      controllerRef.current = null;
       if (engineRef.current) {
         engineRef.current.dispose();
         engineRef.current = null;
@@ -805,7 +818,7 @@ function SectionModelViewer({ context, onClose, t }) {
 
   return (
     <div className="ca-model-backdrop" role="presentation">
-      <section className="ca-model-panel" role="dialog" aria-modal="true" aria-label={spec ? spec.title : '3D model'}>
+      <section className={'ca-model-panel' + (lessonOpen ? ' is-learning' : '')} role="dialog" aria-modal="true" aria-label={spec ? spec.title : '3D model'}>
         <div className="ca-model-stage" ref={hostRef} />
         <header className="ca-model-head">
           <div>
@@ -826,10 +839,16 @@ function SectionModelViewer({ context, onClose, t }) {
         )}
         <div className="ca-model-hint">拖动旋转 · 滚轮缩放</div>
         <div className="ca-model-actions">
+          {hasGuidedLesson(context.modelId) && !error && <button ref={lessonEntryRef} type="button"
+            data-open-lesson={context.modelId} disabled={!spec}
+            onClick={() => setLessonOpen(true)}>进入 / 继续互动课</button>}
           <button type="button" onClick={() => engineRef.current?.resetView()}>重置视角</button>
           <button type="button" onClick={onClose}>返回全书</button>
         </div>
         {error && <div className="ca-model-error"><b>3D 模型未能启动</b><span>{error}</span></div>}
+        {lessonOpen && <LessonHost react={React} modelId={context.modelId}
+          getEngine={getLessonEngine} controllerRef={controllerRef}
+          onClose={closeLesson} onBook={onBook} />}
       </section>
     </div>
   );
@@ -854,7 +873,7 @@ function UsageManual({ onClose }) {
           <div>
             <div className="ca-manual-eyebrow">CELL ATLAS / COMPLETE MANUAL</div>
             <h2 id="caManualTitle">使用手册</h2>
-            <p>从学习手册、全书分节，到 14 个模型与两节独立站互动导学。</p>
+            <p>从学习手册、全书分节，到 14 个模型与插件内两节完整互动课。</p>
           </div>
           <button type="button" className="ca-iconbtn" onClick={onClose} aria-label="关闭使用手册" autoFocus>
             <Icon name="close" />
@@ -885,7 +904,7 @@ function UsageManual({ onClose }) {
 
           <section className="ca-manual-section">
             <div className="ca-manual-no">03 / GUIDED LESSON</div>
-            <h3>跨膜运输 / 膜的流动性与 FRAP</h3><p>完整四阶段导学在独立站模型页打开；插件内共享课程知识和 3D 模型。</p>
+            <h3>跨膜运输 / 膜的流动性与 FRAP</h3><p>从插件内的跨膜运输或 FRAP 模型点「进入 / 继续互动课」，原位完成四阶段；不用打开外部网站。</p>
             <div className="ca-manual-grid ca-manual-stages">
               <div><b>01 认识结构</b><p>跨膜运输看膜、通道、泵、ATP；FRAP 看膜面、荧光标记、漂白区与曲线。</p><em>完成：四个结构都点过</em></div>
               <div><b>02 观察机制</b><p>可选正常 / 慢速或逐步看：跨膜运输 5 步，FRAP 4 步。暂停、回看不清空进度。</p><em>完成：本课步骤都看过</em></div>
@@ -897,7 +916,7 @@ function UsageManual({ onClose }) {
               <p>跨膜运输：ATP 0%、梯度 60%、无抑制剂。FRAP：可移动比例 40%、相对交换速度 100%。</p>
               <p>只有这个条件计入完成；其它组合是自由探索。改任何参数后，旧结果失效，必须重新运行。所有阶段都有当前有效证据，才能结课。</p>
             </div>
-            <p className="ca-manual-note">完成后进入复习；「重新学习」需要二次确认，导学进度保存在当前浏览器，刷新可继续；使用说明内可清除本课记录。手机端点「看模型」收起面板后直接点结构。</p>
+            <p className="ca-manual-note">完成后进入复习；「重新学习」需要二次确认，导学进度保存在当前浏览器，刷新可继续；使用说明内可清除本课记录。手机端点「看模型」收起面板后直接点结构。Escape 优先取消确认或收起说明，再返回模型；教材链接返回内置全书。</p>
           </section>
 
           <section className="ca-manual-section">
@@ -918,7 +937,7 @@ function UsageManual({ onClose }) {
           <section className="ca-manual-section">
             <div className="ca-manual-no">05 / BOUNDARIES</div>
             <h3>当前边界</h3>
-            <p className="ca-manual-note">本手册只描述插件当前功能。完成判定由课程引擎按证据执行，不依赖 AI；AI 助教、Jarvis 和记忆服务尚未接入主流程，也不会上传学习记录。独立导学页自动保存到当前浏览器，不跨设备同步。</p>
+            <p className="ca-manual-note">本手册只描述插件当前功能。完成判定由课程引擎按证据执行，不依赖 AI；AI 助教、Jarvis 和记忆服务尚未接入主流程，也不会上传学习记录。插件和独立站都保存到各自站点的当前浏览器，两课独立；不同站点之间不自动共享或跨设备同步。</p>
           </section>
 
           <div className="ca-manual-foot">
@@ -1179,6 +1198,13 @@ function AtlasExperience() {
     engineRef.current?.setPaused?.(false);
     setModelView(null);
   }, []);
+
+  const returnToModelBook = React.useCallback(() => {
+    setBookChapter(modelView?.book ?? 0);
+    setStudyOpen(false);
+    setBookOpen(true);
+    closeModel();
+  }, [modelView, closeModel]);
 
   actionsRef.current = {
     close,
@@ -1650,7 +1676,7 @@ function AtlasExperience() {
                       <p>跨膜运输：ATP 0%、梯度 60%、无抑制剂。FRAP：可移动比例 40%、相对交换速度 100%。</p>
                       <p>只有这个条件计入完成；其它组合是自由探索。改任何参数后，旧结果失效，必须重新运行。</p>
                     </div>
-                    <p className="ca-usage-note">完整互动导学在独立站模型页；插件内从跨膜运输、细胞质膜或实验方法章节打开对应模型。FRAP 对照记录分别比较平台与恢复半时，两课进度独立保存。通用操作、模型和全部按键见完整使用手册。</p>
+                    <p className="ca-usage-note">插件内从全书分节或学习手册打开跨膜运输 / FRAP 模型，再点「进入 / 继续互动课」。两课的实验、练习与对照记录均在当前窗口完成，刷新后重新打开本课可继续。通用操作、模型和全部按键见完整使用手册。</p>
                     <button
                       type="button"
                       className="ca-usage-link"
@@ -1692,7 +1718,7 @@ function AtlasExperience() {
                 </div>
                 <div className="ca-usage-update">
                   <b>这一版更新</b>
-                  <span>新增膜的流动性与 FRAP 互动课 · 两课独立进度 · 曲线与实验对照 · 四页入口引导</span>
+                  <span>插件内完成两节互动课 · 不跳外站 · 两课独立续学 · 曲线与实验对照</span>
                 </div>
                 <div className="ca-intro-actions">
                   <button type="button" className="ca-intro-secondary" onClick={() => setIntroPage(1)}>← 返回</button>
@@ -1784,7 +1810,7 @@ function AtlasExperience() {
       )}
 
       {modelView && (
-        <SectionModelViewer context={modelView} onClose={closeModel} t={t} />
+        <SectionModelViewer context={modelView} onClose={closeModel} onBook={returnToModelBook} t={t} />
       )}
 
       {manualOpen && <UsageManual onClose={closeManual} />}

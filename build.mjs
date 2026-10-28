@@ -15,7 +15,7 @@ await build({
   jsx: 'transform',
   jsxFactory: 'React.createElement',
   jsxFragment: 'React.Fragment',
-  loader: { '.js': 'jsx' },
+  loader: { '.js': 'jsx', '.html': 'text', '.css': 'text' },
   minify: true,
   legalComments: 'none',
   define: { 'process.env.NODE_ENV': '"production"' },

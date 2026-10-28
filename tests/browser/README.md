@@ -1,11 +1,21 @@
 # Real-browser lesson smoke tests
 
-`pnpm test:browser` runs the transport suite and then the FRAP suite in real
+`pnpm test:browser` runs transport, FRAP and the plugin integration suites in real
 desktop and mobile browsers. FRAP covers both chapter entry links, actual ROI
 raycasting, four-step completion, curve comparisons, repeated runs, draft/answer
 reloads, reduced motion, switching lessons on the same shell, and isolated
 restart/clear behavior. To run only that lesson, use `node tests/browser/frap-smoke.mjs`
 with the same browser environment variables described below.
+
+`pnpm test:plugin` runs only plugin integration. It loads the actual built
+`client.js` using a minimal DSH loader/slot adapter and real React 18 StrictMode.
+It does not reimplement the course, renderer or plugin UI. On desktop and mobile
+it completes both lessons through SectionModelViewer, reloads the plugin during
+each experiment, verifies separate saves, reopens completed review and clears
+FRAP without changing transport. It also checks Escape, focus restoration,
+unrelated host controls and actual canvas picking. All external requests are
+blocked and asserted absent, including Netlify. This validates the bundle's
+browser integration; it does not launch or replace the installed DSH desktop app.
 
 This optional development suite uses Playwright with a real WebGL2 browser and the built docs page. It is independent from the mocked UI unit tests and adds no public-site runtime dependency.
 
@@ -15,6 +25,7 @@ From the repository root, with Node 20+ and pnpm:
 
 ~~~sh
 pnpm install
+pnpm build
 pnpm build:demo
 pnpm --dir tests/browser install
 pnpm --dir tests/browser exec playwright install chromium

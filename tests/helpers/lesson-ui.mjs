@@ -4,7 +4,8 @@ import { createTransportLessonUI } from '../../demo/transport-lesson-ui.js';
 
 // A small DOM fixture for event-flow tests, not a browser/layout replacement.
 // Read the real shell so missing IDs (including the restart button) fail here.
-const shell = readFileSync(new URL('../../demo/models.html', import.meta.url), 'utf8');
+const shell = readFileSync(new URL('../../demo/models.html', import.meta.url), 'utf8')
+  .replace('<!-- LESSON_SHELL -->', readFileSync(new URL('../../src/lesson-ui/shell.html', import.meta.url), 'utf8'));
 const voidTags = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
 
 class Element {
@@ -152,4 +153,3 @@ export function fixture(t, storage = memoryStorage(), createUI = createTransport
     stage: (index) => click(`[data-stage="${index}"]`),
   };
 }
-

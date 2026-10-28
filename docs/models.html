@@ -104,7 +104,7 @@
         </ol>
         <p class="cm-lsn-small">进度和实验记录只保存在当前浏览器，不上传，也不跨设备同步。共享电脑使用后可清除本课记录。</p>
         <button type="button" class="cm-lesson-restart" id="cmLessonClear">清除本课记录</button>
-        <p class="cm-lsn-small">本版没有 AI 自动批改；是否完成由课程引擎按上述证据判定。</p>
+        <p class="cm-lsn-small">本版没有 AI 自动批改；是否完成由课程引擎按上述证据判定。独立站与插件共用两节互动课，进度分别保存在各自站点。</p>
         <a class="cm-lesson-help-link" href="./guide.html" target="_blank" rel="noopener">查看完整使用说明（新版功能）→</a>
       </section>
       <div class="cm-lesson-restart-prompt" id="cmLessonRestartPrompt" role="group" aria-label="重新学习确认" hidden>
@@ -137,6 +137,8 @@
         <button type="button" id="cmLessonNext">下一步 →</button>
       </footer>
     </section>
+
+    <!-- Shared four-stage lesson and usage guide: src/lesson-ui/shell.html; also hosted inside the React plugin. -->
 
     <div class="cm-loading" id="cmLoading"><span></span> BUILDING SPECIMEN <i></i></div>
     <div class="cm-error" id="cmError" hidden><b>模型未能加载</b><p id="cmErrorText"></p><button type="button" id="cmReload">重新加载</button></div>
