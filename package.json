@@ -39,7 +39,7 @@
     "test:plugin": "node tests/browser/plugin-smoke.mjs"
   },
   "devDependencies": {
-    "esbuild": "^0.25.10",
+    "esbuild": "^0.28.2",
     "three": "^0.186.1"
   },
   "repository": {
