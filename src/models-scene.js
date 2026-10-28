@@ -176,6 +176,44 @@ function buildProkaryoteEukaryote() {
     const a = (i / 9) * TAU;
     ball(pro, 0.05, 0xffd18a, [Math.cos(a) * 0.72, -0.2 + Math.sin(a * 2) * 0.32, Math.sin(a) * 0.56], { glow: 0.6, segments: 8, rings: 6 });
   }
+  // Capsule, cell wall and plasma membrane are separated into faint shells;
+  // pili, a flagellar motor and storage granules make the prokaryote read as a
+  // whole cell rather than a labelled sphere.
+  add(new THREE.SphereGeometry(1.63, 36, 24), glass(0x5de7d2, 0.045), [0, 0, 0], null, pro, [1.27, 1.01, 1.01]);
+  add(new THREE.SphereGeometry(1.5, 28, 18), new THREE.MeshBasicMaterial({ color: 0x7ff0de, wireframe: true, transparent: true, opacity: 0.11 }), [0, 0, 0], null, pro, [1.24, 1, 1]);
+  const proRng = rand(19);
+  for (let i = 0; i < 18; i += 1) {
+    const a = proRng() * TAU;
+    const b = Math.acos(2 * proRng() - 1);
+    const p = [Math.cos(a) * Math.sin(b) * 1.45 * 1.2, Math.cos(b) * 1.45, Math.sin(a) * Math.sin(b) * 1.45];
+    tube(pro, [p, [p[0] * 1.1, p[1] * 1.1, p[2] * 1.1], [p[0] * 1.16 + Math.cos(a) * 0.1, p[1] * 1.16, p[2] * 1.16]], 0.012, 0x8ff3df, { transparent: true, opacity: 0.55, segments: 8 });
+  }
+  const motor = new THREE.Group();
+  motor.position.set(-1.48, 0.05, 0.18);
+  for (let i = 0; i < 3; i += 1) torus(motor, 0.12 + i * 0.035, 0.012, 0x8fd9ff, [0, 0, 0], [0, Math.PI / 2, 0], { transparent: true, opacity: 0.5 });
+  ball(motor, 0.07, 0x9fefff, [0, 0, 0], { glow: 0.8, segments: 8, rings: 6 });
+  pro.add(motor);
+  for (let i = 0; i < 4; i += 1) {
+    const loop = [];
+    for (let k = 0; k < 22; k += 1) {
+      const a = (k / 21) * TAU * 1.4 + i * 1.7;
+      loop.push([-0.25 + Math.cos(a) * (0.28 + i * 0.08), 0.12 + Math.sin(a * 2.1) * 0.2, 0.05 + Math.sin(a) * (0.28 + i * 0.06)]);
+    }
+    tube(pro, loop, 0.018, i % 2 ? 0x9dffd9 : 0x6ff2d9, { glow: 0.55, segments: 46 });
+  }
+  for (let i = 0; i < 2; i += 1) {
+    torus(pro, 0.12 + i * 0.03, 0.012, 0xffd58d, [0.6 - i * 0.2, 0.45 - i * 0.18, 0.25], [0.4, 0.2, i * 0.6], { glow: 0.4, transparent: true, opacity: 0.7 });
+  }
+  for (let i = 0; i < 10; i += 1) {
+    const a = (i / 10) * TAU;
+    const x = -0.8 + Math.cos(a) * 0.75;
+    const z = 0.1 + Math.sin(a) * 0.55;
+    ball(pro, 0.035, 0x9effdf, [x, -0.25 + (i % 3) * 0.2, z], { glow: 0.65, segments: 7, rings: 5 });
+    ball(pro, 0.045, 0xffcf8c, [x + 0.05, -0.19 + (i % 3) * 0.2, z + 0.04], { glow: 0.45, segments: 7, rings: 5 });
+  }
+  for (let i = 0; i < 3; i += 1) {
+    ball(pro, 0.16, 0xffdd96, [0.45 - i * 0.34, -0.35 + i * 0.22, 0.35], { glass: true, opacity: 0.28, segments: 12, rings: 8 });
+  }
   const tail = [];
   for (let i = 0; i < 7; i += 1) tail.push([-1.35 - i * 0.22, 0.05 + Math.sin(i * 0.9) * 0.3, 0.25 * Math.sin(i * 1.4)]);
   tube(pro, tail, 0.035, 0x70c8ff, { glow: 1.2, segments: 60 });
@@ -225,13 +263,57 @@ function buildProkaryoteEukaryote() {
   for (let i = 0; i < 4; i += 1) {
     ball(euk, 0.09, 0xffd08a, [-1.3 + i * 0.8, -1.05 + (i % 2) * 0.3, 0.6], { glow: 0.5, segments: 10, rings: 7 });
   }
+  // Nuclear envelope pores and chromatin loops.
+  for (let i = 0; i < 12; i += 1) {
+    const a = (i / 12) * TAU;
+    const b = Math.acos(1 - 2 * ((i + 0.5) / 12));
+    const p = [0.2 + Math.cos(a) * Math.sin(b) * 0.97, 0.25 + Math.cos(b) * 0.97, 0.05 + Math.sin(a) * Math.sin(b) * 0.97];
+    torus(euk, 0.055, 0.012, 0xffd6f2, p, [0, 0, 0], { glow: 0.45, transparent: true, opacity: 0.72 }).lookAt(0.2, 0.25, 0.05);
+  }
+  for (let i = 0; i < 3; i += 1) {
+    const chromatin = [];
+    for (let k = 0; k < 18; k += 1) {
+      const a = (k / 17) * TAU * 1.4 + i * 2.1;
+      chromatin.push([0.2 + Math.cos(a) * (0.3 + i * 0.08), 0.25 + Math.sin(a * 1.7) * 0.34, 0.05 + Math.sin(a) * (0.28 + i * 0.06)]);
+    }
+    tube(euk, chromatin, 0.016, 0xe0c4ff, { glow: 0.4, transparent: true, opacity: 0.62, segments: 42 });
+  }
+  // Rough ER cisternae with bound ribosomes, plus a layered Golgi stack.
+  for (let i = 0; i < 4; i += 1) {
+    const y = 0.42 - i * 0.13;
+    tube(euk, [[-0.95, y, 0.95], [-0.55, y + 0.08, 1.15], [-0.1, y, 1.12], [0.25, y - 0.04, 0.95]], 0.022, 0xffc58d, { glow: 0.35, transparent: true, opacity: 0.72, segments: 32 });
+    for (let k = 0; k < 4; k += 1) ball(euk, 0.026, 0xffe1a8, [-0.8 + k * 0.3, y + 0.1, 1.06], { glow: 0.55, segments: 6, rings: 4 });
+  }
+  for (let i = 0; i < 4; i += 1) {
+    const t = torus(euk, 0.4 - i * 0.035, 0.025, 0x8df2e4, [0.7, 0.15 - i * 0.12, 1.05], [Math.PI / 2 + i * 0.08, 0.1, 0.22], { transparent: true, opacity: 0.52 });
+    t.scale.z = 0.72;
+  }
+  // Mitochondrial cristae and lysosomes/peroxisomes.
+  for (let i = 0; i < 3; i += 1) {
+    const mx = 1.25 + i * 0.06;
+    const my = 0.65 - i * 0.48;
+    for (let k = 0; k < 4; k += 1) {
+      tube(euk, [[mx - 0.2, my - 0.18 + k * 0.1, -0.45 + i * 0.18], [mx, my - 0.13 + k * 0.1, -0.36 + i * 0.18], [mx + 0.2, my - 0.18 + k * 0.1, -0.45 + i * 0.18]], 0.012, 0xffd39a, { glow: 0.4, transparent: true, opacity: 0.6, segments: 18 });
+    }
+  }
+  for (const [x, y, z, color] of [[-1.15, -0.55, 0.85, 0xc58aff], [0.95, -1.15, 0.85, 0xffa6cf], [-0.8, -1.2, 0.45, 0x9ecbff]]) {
+    ball(euk, 0.14, color, [x, y, z], { glass: true, opacity: 0.35, segments: 14, rings: 10 });
+    for (let k = 0; k < 4; k += 1) {
+      const a = k / 4 * TAU;
+      ball(euk, 0.022, 0xffe6ab, [x + Math.cos(a) * 0.07, y + Math.sin(a) * 0.06, z + 0.05], { glow: 0.5, segments: 6, rings: 4 });
+    }
+  }
+  for (let i = 0; i < 10; i += 1) {
+    const a = (i / 10) * TAU;
+    ball(euk, 0.034, 0xbaffdf, [Math.cos(a) * 1.35, -0.55 + Math.sin(a * 1.8) * 0.5, Math.sin(a) * 1.1], { glow: 0.55, segments: 7, rings: 5 });
+  }
   group.add(euk);
 
   label(group, '原核细胞', [-3.35, 2.1, 0], 'PROKARYOTE');
-  label(group, '拟核 DNA', [-4.1, 0.0, 0.5], 'NUCLEOID');
-  label(group, '70S 核糖体', [-2.2, -1.2, 0.5], 'RIBOSOME');
-  label(group, '细胞壁 / 荚膜', [-4.15, 1.35, 0.3], 'CELL WALL / CAPSULE');
-  label(group, '鞭毛', [-4.75, -0.65, 0.25], 'FLAGELLUM');
+  label(group, '拟核 DNA', [-3.55, 0.0, 0.5], 'NUCLEOID');
+  label(group, '70S 核糖体', [-2.25, -1.2, 0.5], 'RIBOSOME');
+  label(group, '细胞壁 / 荚膜', [-3.55, 1.35, 0.3], 'CELL WALL / CAPSULE');
+  label(group, '鞭毛', [-3.8, -0.65, 0.25], 'FLAGELLUM');
   label(group, '真核细胞', [2.85, 2.75, 0], 'EUKARYOTE');
   label(group, '细胞核', [3.2, 0.3, 1.2], 'NUCLEUS');
   label(group, '线粒体', [4.35, -0.6, 0.2], 'MITOCHONDRION');
@@ -621,6 +703,21 @@ function buildMitoChloro() {
     }
     tube(mito, pts, 0.035, 0xffb46e, { glow: 0.45, segments: 46 });
   }
+  // Cristae junctions, matrix ribosomes and dense granules add the internal
+  // scale that is otherwise lost at the whole-organelle camera distance.
+  for (let i = 0; i < 7; i += 1) {
+    const y = -0.85 + i * 0.28;
+    torus(mito, 0.055, 0.012, 0xffd79c, [-0.64, y, Math.sin(i * 1.5) * 0.25], [0, Math.PI / 2, 0], { glow: 0.45, transparent: true, opacity: 0.62 });
+    torus(mito, 0.055, 0.012, 0xffd79c, [0.64, y, Math.sin(i * 1.5) * 0.25], [0, Math.PI / 2, 0], { glow: 0.45, transparent: true, opacity: 0.62 });
+  }
+  for (let i = 0; i < 14; i += 1) {
+    const a = (i / 14) * TAU;
+    const p = [Math.cos(a) * 0.72, -0.9 + (i % 5) * 0.36, Math.sin(a) * 0.24];
+    ball(mito, 0.022, 0x9fffe0, p, { glow: 0.55, segments: 6, rings: 4 });
+  }
+  for (const [x, y, z] of [[0.25, -0.6, 0.15], [-0.3, 0.55, -0.1], [0.38, 0.82, 0.2]]) {
+    ball(mito, 0.09, 0xffdf9a, [x, y, z], { glass: true, opacity: 0.3, segments: 12, rings: 8 });
+  }
   for (let i = 0; i < 18; i += 1) {
     const a = (i / 18) * TAU;
     ball(mito, 0.035, 0xffe0a2, [Math.cos(a) * 1.08, -1.1 + (i % 7) * 0.32, Math.sin(a) * 0.38], { glow: 0.8, segments: 7, rings: 5 });
@@ -680,14 +777,42 @@ function buildMitoChloro() {
   add(new THREE.SphereGeometry(1.55, 44, 30), glass(0x63d9a1, 0.13), null, null, chloro, [1.15, 1.28, 0.86]);
   add(new THREE.SphereGeometry(1.58, 24, 16), new THREE.MeshBasicMaterial({ color: 0x8af2b9, wireframe: true, transparent: true, opacity: 0.055 }), null, null, chloro, [1.15, 1.28, 0.86]);
   for (let s = 0; s < 3; s += 1) {
-    const sx = -0.55 + s * 0.56;
+    const sx = -0.62 + s * 0.62;
     for (let i = 0; i < 5; i += 1) {
-      add(new THREE.CylinderGeometry(0.43, 0.43, 0.035, 28), material(0x5cd48c, { emissive: 0x174d30, emissiveIntensity: 0.22, transparent: true, opacity: 0.9 }), [sx, -0.55 + i * 0.17, 0.05], [0.12, 0.3, -0.18], chloro);
+      add(new THREE.CylinderGeometry(0.34, 0.34, 0.035, 28), material(0x5cd48c, { emissive: 0x174d30, emissiveIntensity: 0.22, transparent: true, opacity: 0.9 }), [sx, -0.55 + i * 0.155, 0.05], [0.12, 0.3, -0.18], chloro);
     }
     for (let i = 0; i < 5; i += 1) {
-      torus(chloro, 0.4, 0.022, 0xc2ffd2, [sx, -0.55 + i * 0.17, 0.05], [Math.PI / 2 + 0.12, 0.3, -0.18], { transparent: true, opacity: 0.28 });
+      torus(chloro, 0.32, 0.022, 0xc2ffd2, [sx, -0.55 + i * 0.155, 0.05], [Math.PI / 2 + 0.12, 0.3, -0.18], { transparent: true, opacity: 0.28 });
     }
   }
+  // Inner envelope, stroma lamellae and photosystem particles.
+  add(new THREE.SphereGeometry(1.44, 40, 26), glass(0x7ee7aa, 0.08), null, null, chloro, [1.14, 1.26, 0.85]);
+  for (let s = 0; s < 2; s += 1) {
+    const sx = -0.27 + s * 0.56;
+    for (let i = 0; i < 4; i += 1) {
+      const y = -0.55 + i * 0.17;
+      tube(chloro, [[sx, y, 0.05], [sx + 0.28, y + 0.1, 0.2], [sx + 0.56, y, 0.05]], 0.012, 0xa9f5bb, { glow: 0.35, transparent: true, opacity: 0.45, segments: 20 });
+    }
+  }
+  for (let s = 0; s < 3; s += 1) {
+    const sx = -0.62 + s * 0.62;
+    for (let i = 0; i < 5; i += 1) {
+      for (let k = 0; k < 4; k += 1) {
+        const a = k / 4 * TAU;
+        ball(chloro, 0.022, k % 2 ? 0xffe29a : 0x8dffc0, [sx + Math.cos(a) * 0.22, -0.55 + i * 0.155, 0.05 + Math.sin(a) * 0.16], { glow: 0.45, segments: 6, rings: 4 });
+      }
+    }
+  }
+  for (let i = 0; i < 5; i += 1) {
+    const a = i / 5 * TAU;
+    ball(chloro, 0.045, 0xffe08a, [Math.cos(a) * 0.8, 0.35 + Math.sin(a * 1.5) * 0.35, Math.sin(a) * 0.5], { glow: 0.45, segments: 8, rings: 6 });
+  }
+  const chloroDNA = [];
+  for (let i = 0; i < 20; i += 1) {
+    const a = (i / 19) * TAU;
+    chloroDNA.push([Math.cos(a) * 0.33, 0.62 + Math.sin(a * 2) * 0.2, Math.sin(a) * 0.3]);
+  }
+  tube(chloro, chloroDNA, 0.014, 0x9dffd9, { glow: 0.45, transparent: true, opacity: 0.62, segments: 44 });
   for (let i = 0; i < 3; i += 1) {
     tube(chloro, [[-0.7 + i * 0.5, -0.4, -0.4], [-0.35 + i * 0.5, 0.1, 0.2], [0.0 + i * 0.3, 0.55, 0.35]], 0.022, 0xa9f5bb, { glow: 0.25, transparent: true, opacity: 0.45, segments: 30 });
   }

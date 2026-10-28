@@ -1,6 +1,6 @@
 {
   "name": "@local/cell-atlas",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "type": "module",
   "description": "A cinematic, fully procedural Three.js cell atlas with a 16-chapter / 44-section study library and fourteen section 3D models.",
