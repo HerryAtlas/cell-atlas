@@ -358,10 +358,47 @@ function buildTransport() {
       ball(group, 0.028, 0x49bdb5, [x, -0.16, z], { glow: 0.25, segments: 6, rings: 4 });
     }
   }
+
+  // Two lipid leaflets with visible acyl tails. The denser head rows keep the
+  // bilayer readable at lesson distance without turning the plane into noise.
+  for (let i = 0; i < 30; i += 1) {
+    const x = -3 + (i / 29) * 6;
+    for (const z of [-1.1, 1.1]) {
+      for (const side of [-1, 1]) {
+        const tail = add(
+          new THREE.CylinderGeometry(0.009, 0.014, 0.23, 5),
+          material(0x2f8e86, { transparent: true, opacity: 0.45, emissive: 0x0b3533, emissiveIntensity: 0.25 }),
+          [x + Math.sin(i * 1.7) * 0.018, side * 0.09, z + Math.cos(i * 1.3) * 0.018],
+          [0, 0, Math.sin(i * 2.1) * 0.08],
+          group
+        );
+        tail.name = 'lipid-acyl-tail';
+        ball(group, 0.035, 0x5ad7c8, [x, side * 0.23, z], { glow: 0.32, segments: 6, rings: 4 });
+      }
+    }
+  }
+  // A few integral proteins and carbohydrate chains give the membrane its
+  // mosaic character while keeping the channel and pump visually dominant.
+  for (const [x, z, hue] of [[-2.62, 0.55, 0x4fc9b8], [-2.2, -0.72, 0x65d8c4], [0.15, 0.72, 0x4fc9b8], [2.55, -0.6, 0x65d8c4]]) {
+    capsule(group, 0.085, 0.5, hue, [x, -0.02, z], [0, 0, x * 0.035], { glow: 0.35, transparent: true, opacity: 0.85 });
+    tube(group, [[x, 0.26, z], [x + 0.07, 0.43, z + 0.02], [x + 0.015, 0.58, z + 0.06]], 0.012, 0x9bffe9, { glow: 0.5 });
+  }
+
   const channel = add(new THREE.CylinderGeometry(0.46, 0.46, 1.15, 26, 1, true), glass(0x8bdcff, 0.26), [-1.65, 0, 0], null, group);
   channel.material.side = THREE.DoubleSide;
   torus(group, 0.46, 0.065, 0xa4eaff, [-1.65, 0.58, 0], [Math.PI / 2, 0, 0], { glow: 1.3 });
   torus(group, 0.46, 0.065, 0xa4eaff, [-1.65, -0.58, 0], [Math.PI / 2, 0, 0], { glow: 1.3 });
+  // Six tilted transmembrane helices around the pore, plus a selectivity ring.
+  for (let i = 0; i < 6; i += 1) {
+    const angle = i / 6 * TAU;
+    capsule(group, 0.055, 0.88, 0x6fc7e8, [-1.65 + Math.cos(angle) * 0.34, 0, Math.sin(angle) * 0.3],
+      [Math.sin(angle) * 0.18, 0, -Math.cos(angle) * 0.18], { glow: 0.5, transparent: true, opacity: 0.78 });
+  }
+  torus(group, 0.23, 0.022, 0xd4fbff, [-1.65, 0.46, 0], [Math.PI / 2, 0, 0], { glow: 1.1, transparent: true, opacity: 0.9 });
+  for (let i = 0; i < 3; i += 1) {
+    const angle = i / 3 * TAU;
+    ball(group, 0.035, 0x9fefff, [-1.65 + Math.cos(angle) * 0.13, 0.46, Math.sin(angle) * 0.13], { glow: 1.2, segments: 7, rings: 5 });
+  }
 
   const pump = new THREE.Group();
   pump.position.set(1.65, 0, 0);
@@ -369,6 +406,23 @@ function buildTransport() {
   const pumpLeft = capsule(pump, 0.18, 0.5, 0xffdc9d, [-0.28, 0.55, 0], [0, 0, -0.35], { glow: 0.8 });
   const pumpRight = capsule(pump, 0.18, 0.5, 0xffdc9d, [0.28, 0.55, 0], [0, 0, 0.35], { glow: 0.8 });
   const pumpAtp = ball(pump, 0.16, 0xffe6a6, [0, -0.65, 0], { glow: 1.8 });
+  // P-type pump detail: transmembrane helices, a phosphorylation site and a
+  // small bound-ATP phosphate chain. The lesson controls still drive the lobes.
+  for (let i = 0; i < 10; i += 1) {
+    const angle = i / 10 * TAU;
+    capsule(pump, 0.045, 0.72, 0xd99255,
+      [Math.cos(angle) * 0.34, -0.18, Math.sin(angle) * 0.26],
+      [Math.sin(angle) * 0.2, 0, -Math.cos(angle) * 0.2],
+      { glow: 0.22, transparent: true, opacity: 0.82 });
+  }
+  ball(pump, 0.055, 0x9dffe0, [0, 0.45, 0.3], { glow: 1.1, segments: 8, rings: 6 }).name = 'pump-phosphorylation-site';
+  torus(pump, 0.25, 0.018, 0xffe2af, [0, 0.22, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.55 });
+  const pumpAtpDetail = new THREE.Group();
+  for (let i = 0; i < 3; i += 1) {
+    ball(pumpAtpDetail, 0.042, 0xffd477, [-0.11 + i * 0.11, -0.66 + Math.sin(i * 1.7) * 0.025, 0.02], { glow: 1.1, segments: 7, rings: 5 });
+  }
+  torus(pumpAtpDetail, 0.09, 0.012, 0xffe6a6, [0, -0.7, 0], [Math.PI / 2, 0, 0], { glow: 0.7, transparent: true, opacity: 0.8 });
+  pump.add(pumpAtpDetail);
   group.add(pump);
 
   const ions = [];
@@ -445,6 +499,7 @@ function buildTransport() {
     pumpAtp.material.emissiveIntensity = lesson.inhibitor ? 0.15 : 1.2 + lesson.atp * 1.4;
     // No bound ATP is shown at zero ATP or when the pump is inhibited.
     pumpAtp.visible = lesson.atp > 0 && !lesson.inhibitor;
+    pumpAtpDetail.visible = pumpAtp.visible;
   };
 
   group.userData.update = (time, delta = 0, { reducedMotion = false } = {}) => {
@@ -1288,6 +1343,23 @@ function buildFrap() {
 
   add(new THREE.SphereGeometry(2.0, 56, 34), glass(0x61d8be, 0.14), [0, -0.72, 0], null, group, [1.35, 0.3, 1.0]);
   torus(group, 2.0, 0.025, 0x86efd7, [0, -0.72, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.35 });
+  // A sparse second leaflet, acyl tails, integral proteins and a few glycan
+  // chains make the membrane read as a fluid mosaic rather than a bare shell.
+  for (let i = 0; i < 36; i += 1) {
+    const angle = i / 36 * TAU;
+    const x = Math.cos(angle) * 1.47;
+    const z = Math.sin(angle) * 1.02;
+    ball(group, 0.024, 0x48b7a6, [x, -0.42, z], { glow: 0.2, segments: 6, rings: 4 });
+    add(new THREE.CylinderGeometry(0.008, 0.012, 0.16, 5),
+      material(0x2f8d80, { transparent: true, opacity: 0.38 }), [x, -0.5, z],
+      [Math.sin(angle) * 0.18, 0, -Math.cos(angle) * 0.18], group);
+  }
+  for (const [angle, hue] of [[0.35, 0x4bc8b4], [2.0, 0x5ed6c2], [3.8, 0x3fae9f], [5.1, 0x66dcca]]) {
+    const x = Math.cos(angle) * 1.16;
+    const z = Math.sin(angle) * 0.82;
+    capsule(group, 0.06, 0.36, hue, [x, -0.47, z], [0, 0, angle * 0.24], { glow: 0.3, transparent: true, opacity: 0.8 });
+    tube(group, [[x, -0.32, z], [x + 0.08, -0.16, z + 0.03], [x + 0.02, -0.02, z + 0.08]], 0.01, 0x99ffe4, { glow: 0.4 });
+  }
   add(new THREE.SphereGeometry(0.48, 32, 20), material(0xb58cff, { transparent: true, opacity: 0.68 }), [-0.58, -0.62, 0.02], null, group);
   ball(group, 0.19, 0xffabd8, [-0.58, -0.62, 0.02], { glow: 0.35, segments: 16, rings: 10 });
 
@@ -1318,6 +1390,12 @@ function buildFrap() {
   spot.name = 'frap-roi-fluorescence';
   torus(region, 0.56, 0.018, 0xffffff, [0, 0.01, 0], [Math.PI / 2, 0, 0], { glow: 0.5, transparent: true, opacity: 0.65 });
   torus(region, 0.76, 0.01, 0x9fffe8, [0, 0.02, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.22 });
+  box(region, 1.16, 0.007, 0.009, 0xb5fff0, [0, 0.035, 0], null, { transparent: true, opacity: 0.28 });
+  box(region, 0.009, 0.007, 1.0, 0xb5fff0, [0, 0.035, 0], null, { transparent: true, opacity: 0.28 });
+  for (let i = 0; i < 4; i += 1) {
+    const a = i / 4 * TAU;
+    ball(region, 0.018, 0xffffff, [Math.cos(a) * 0.65, 0.04, Math.sin(a) * 0.55], { glow: 0.6, segments: 6, rings: 4 });
+  }
   group.add(region);
 
   const residents = [];
@@ -1341,6 +1419,12 @@ function buildFrap() {
   add(new THREE.CylinderGeometry(0.42, 0.34, 0.6, 28), material(0x7bd7d0, { metalness: 0.4 }), [0.72, 1.25, 0.08], null, group);
   add(new THREE.CylinderGeometry(0.27, 0.27, 0.42, 24), material(0x2a5a5e, { metalness: 0.55 }), [0.72, 1.7, 0.08], null, group);
   torus(group, 0.43, 0.03, 0x9cebe2, [0.72, 1.55, 0.08], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.5 });
+  torus(group, 0.36, 0.012, 0xb7fff2, [0.72, 1.03, 0.08], [Math.PI / 2, 0, 0], { glow: 0.6, transparent: true, opacity: 0.55 });
+  torus(group, 0.3, 0.01, 0xb7fff2, [0.72, 1.9, 0.08], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.35 });
+  for (const side of [-1, 1]) {
+    box(group, 0.08, 0.1, 0.12, 0x4c999b, [0.72 + side * 0.48, 1.25, 0.08], null, { metalness: 0.5, transparent: true, opacity: 0.8 });
+  }
+  add(new THREE.CircleGeometry(0.32, 28), glass(0x8fffe0, 0.24), [0.72, 0.94, 0.08], [-Math.PI / 2, 0, 0], group);
   const laser = add(new THREE.CylinderGeometry(0.02, 0.09, 1.65, 14), new THREE.MeshBasicMaterial({
     color: 0xff7fc8, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false,
   }), [0.72, 0.48, 0.08], null, group);
@@ -1355,6 +1439,10 @@ function buildFrap() {
   screenPanel(chart, 1.16, 0.82, 0x0b2d2a, [0, 0, 0]);
   box(chart, 0.012, 0.52, 0.012, 0x76b8aa, [-0.43, -0.02, 0.045], null, { transparent: true, opacity: 0.6 });
   box(chart, 0.88, 0.01, 0.012, 0x76b8aa, [0, -0.27, 0.045], null, { transparent: true, opacity: 0.6 });
+  for (let i = 1; i <= 3; i += 1) {
+    box(chart, 0.82, 0.004, 0.006, 0x2f8f7f, [0, -0.27 + i * 0.12, 0.042], null, { transparent: true, opacity: 0.24 });
+    box(chart, 0.004, 0.48, 0.006, 0x2f8f7f, [-0.43 + i * 0.2, -0.02, 0.042], null, { transparent: true, opacity: 0.2 });
+  }
   // Baseline, vertical bleach drop, then the same sampled curve as the lesson.
   // The buffer is allocated once; changing conditions only rewrites its values.
   const curvePositions = new Float32Array(63 * 3);
