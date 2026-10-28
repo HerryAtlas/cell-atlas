@@ -364,6 +364,23 @@ function buildMembrane() {
   }
   group.add(heads, tails);
 
+  // Cholesterol is a compact four-ring steroid, not a single yellow peg.
+  for (let i = 0; i < 7; i += 1) {
+    const x = -2.35 + i * 0.78;
+    const chol = new THREE.Group();
+    chol.position.set(x, i % 2 ? -0.05 : 0.05, i % 2 ? -0.48 : 0.48);
+    chol.rotation.set(0.25, i * 0.7, 0.4);
+    for (let k = 0; k < 4; k += 1) torus(chol, 0.052 + (k % 2) * 0.012, 0.009, 0xffce7a, [k * 0.075, 0, 0], [Math.PI / 2, 0, 0], { glow: 0.25, transparent: true, opacity: 0.72 });
+    group.add(chol);
+  }
+  // Branched glycocalyx chains on the extracellular face.
+  for (let i = 0; i < 9; i += 1) {
+    const x = -2.5 + i * 0.62;
+    const z = -0.78 + (i % 3) * 0.55;
+    tube(group, [[x, 0.3, z], [x + 0.08, 0.55, z + 0.06], [x - 0.04, 0.78, z + 0.12], [x + 0.06, 0.96, z + 0.08]], 0.013, i % 2 ? 0xff9fc9 : 0xffc08d, { glow: 0.5, transparent: true, opacity: 0.68, segments: 18 });
+    ball(group, 0.035, i % 2 ? 0xffd0e8 : 0xffe0aa, [x + 0.06, 0.98, z + 0.08], { glow: 0.55, segments: 6, rings: 4 });
+  }
+
   const proteinColors = [0x7adfff, 0xffb0d6, 0xffd08a, 0xa9a4ff];
   for (let i = 0; i < 5; i += 1) {
     const x = -2.2 + i * 1.05;
@@ -667,6 +684,29 @@ function buildEndomembrane() {
     const a = (i / 16) * TAU;
     ball(group, 0.045, 0xffd48a, [2.65 + Math.cos(a) * 0.45, 0.05 + Math.sin(a * 2) * 0.32, 0.1 + Math.sin(a) * 0.38], { glow: 1.1, segments: 8, rings: 6 });
   }
+  // Rough-ER ribosomes and COPII buds, Golgi-derived vesicles, and a double
+  // membrane autophagosome make the secretory route legible at close range.
+  for (let i = 0; i < 24; i += 1) {
+    const a = (i / 24) * TAU;
+    ball(group, 0.03, i % 3 ? 0xffe0a3 : 0x8ff7df, [-2.6 + Math.cos(a) * 0.55, 0.62 + Math.sin(a) * 0.32, -0.1 + Math.sin(a * 2) * 0.28], { glow: 0.55, segments: 6, rings: 4 });
+  }
+  for (let i = 0; i < 7; i += 1) {
+    const a = (i / 7) * TAU;
+    capsule(group, 0.035, 0.12, 0x8ff7df, [-1.65 + Math.cos(a) * 0.42, 0.35 + Math.sin(a) * 0.25, 0.35], [0, 0, a], { glow: 0.5, transparent: true, opacity: 0.75 });
+  }
+  for (let i = 0; i < 10; i += 1) {
+    const a = (i / 10) * TAU;
+    ball(group, 0.045, i % 2 ? 0xffcf84 : 0x8ff1e1, [0.35 + Math.cos(a) * 1.03, 0.5 + Math.sin(a * 2) * 0.4, Math.sin(a) * 0.72], { glow: 0.55, segments: 7, rings: 5 });
+  }
+  for (const [x, y, z] of [[1.9, -0.75, 0.5], [2.25, -0.82, 0.35]]) {
+    ball(group, 0.2, 0xc6ffff, [x, y, z], { glass: true, opacity: 0.22, segments: 14, rings: 10 });
+    torus(group, 0.22, 0.018, 0x9dffe8, [x, y, z], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.5 });
+    ball(group, 0.055, 0xffd48a, [x + 0.08, y + 0.02, z], { glow: 0.5, segments: 8, rings: 6 });
+  }
+  for (let i = 0; i < 7; i += 1) {
+    const a = (i / 7) * TAU;
+    box(group, 0.12, 0.025, 0.025, 0xffe3a4, [2.65 + Math.cos(a) * 0.3, 0.05 + Math.sin(a * 2) * 0.2, 0.1 + Math.sin(a) * 0.25], [a, 0.4, a], { glow: 0.4, transparent: true, opacity: 0.75 });
+  }
   group.userData.update = (time) => {
     vesicles.forEach((v) => {
       const u = (v.offset + time * 0.035) % 1;
@@ -874,11 +914,26 @@ function buildCytoskeleton() {
     ball(group, 0.055, 0xa8fff0, [x, 1.25 + Math.sin(i * 1.7) * 0.23, Math.cos(i * 1.7) * 0.23], { glow: 0.35, segments: 8, rings: 6 });
   }
   for (let i = 0; i < 5; i += 1) ball(group, 0.12, 0xffc46d, [-2.2 + i * 1.1, 1.5 + (i % 2) * 0.12, 0.25], { glow: 1.1, segments: 12, rings: 8 });
+  // Actin monomers, crosslinkers and microtubule protofilaments.
+  for (let i = 0; i < 18; i += 1) {
+    const u = i / 17;
+    const a = u * TAU * 7;
+    ball(group, 0.035, 0xb9fff1, [-3 + u * 6, 1.25 + Math.cos(a) * 0.23, Math.sin(a) * 0.23], { glow: 0.35, segments: 6, rings: 4 });
+  }
+  for (let i = 0; i < 6; i += 1) {
+    const x = -2.4 + i * 0.96;
+    capsule(group, 0.022, 0.55, 0xa8b8ff, [x, 0.36, 0.08], [0, 0, 0.05], { glow: 0.3, transparent: true, opacity: 0.55 });
+  }
 
   add(new THREE.CylinderGeometry(0.28, 0.28, 6, 28, 1, true), glass(0x7cc8ff, 0.24), [0, -0.55, 0], [0, 0, Math.PI / 2], group);
   for (let i = 0; i < 7; i += 1) {
     torus(group, 0.28, 0.025, 0xa7dfff, [-2.7 + i * 0.9, -0.55, 0], [0, Math.PI / 2, 0], { transparent: true, opacity: 0.55 });
   }
+  for (let i = 0; i < 7; i += 1) {
+    const a = (i / 7) * TAU;
+    tube(group, [[-2.95, -0.55 + Math.cos(a) * 0.22, Math.sin(a) * 0.22], [2.95, -0.55 + Math.cos(a) * 0.22, Math.sin(a) * 0.22]], 0.008, 0x9ddfff, { transparent: true, opacity: 0.35, segments: 30 });
+  }
+  torus(group, 0.3, 0.035, 0xbcefff, [2.96, -0.55, 0], [0, Math.PI / 2, 0], { glow: 0.5, transparent: true, opacity: 0.65 });
   for (let i = 0; i < 3; i += 1) {
     const pts = [];
     for (let k = 0; k < 30; k += 1) {
@@ -1025,6 +1080,31 @@ function buildNucleus() {
     ball(group, 0.09 + (i % 3) * 0.02, 0xb17bd8, [Math.cos(a) * 1.5, -1.0 + (i % 3) * 0.8, Math.sin(a) * 1.2], { glass: true, opacity: 0.38, segments: 10, rings: 7 });
   }
   ball(group, 0.18, 0x9ce7ff, [-1.3, 0.75, 0.65], { glass: true, opacity: 0.35 });
+  // Nuclear lamina, heterochromatin clumps, euchromatin loops and speckles
+  // add the internal texture of a nucleus without changing its silhouette.
+  add(new THREE.SphereGeometry(2.03, 28, 18), new THREE.MeshBasicMaterial({ color: 0x86cfff, wireframe: true, transparent: true, opacity: 0.075 }), null, null, group);
+  const chromRng = rand(606);
+  for (let i = 0; i < 16; i += 1) {
+    const theta = chromRng() * TAU;
+    const phi = Math.acos(2 * chromRng() - 1);
+    const rr = 0.55 + chromRng() * 1.15;
+    ball(group, 0.07 + chromRng() * 0.045, 0xb07ca8, [Math.cos(theta) * Math.sin(phi) * rr, Math.cos(phi) * rr, Math.sin(theta) * Math.sin(phi) * rr], { transparent: true, opacity: 0.55, segments: 8, rings: 6 });
+  }
+  for (let i = 0; i < 2; i += 1) {
+    const loop = [];
+    for (let k = 0; k < 26; k += 1) {
+      const a = k / 25 * TAU * 1.5 + i * 2.2;
+      loop.push([Math.cos(a) * (0.7 + i * 0.2), 0.2 + Math.sin(a * 1.6) * 0.7, Math.sin(a) * (0.6 + i * 0.15)]);
+    }
+    tube(group, loop, 0.018, 0xffc4e8, { glow: 0.4, transparent: true, opacity: 0.55, segments: 48 });
+  }
+  for (let i = 0; i < 12; i += 1) {
+    const a = (i / 12) * TAU;
+    ball(group, 0.032, i % 3 ? 0xffd0ed : 0x9effd5, [Math.cos(a) * 1.45, -0.4 + Math.sin(a * 2) * 0.8, Math.sin(a) * 1.2], { glow: 0.55, segments: 6, rings: 4 });
+  }
+  for (let i = 0; i < 3; i += 1) {
+    torus(group, 0.36 + i * 0.09, 0.018, 0xffa9d7, [0.45, -0.2, 0.3], [Math.PI / 2 + i * 0.2, 0, i * 0.4], { transparent: true, opacity: 0.28 });
+  }
   label(group, '核被膜', [-2.25, 1.25, 0.4], 'NUCLEAR ENVELOPE');
   label(group, '核孔复合体', [1.65, 1.55, 0.8], 'NUCLEAR PORE COMPLEX');
   label(group, '核质交换', [1.72, 0.92, 0.9], 'IMPORT / EXPORT');
@@ -1219,6 +1299,13 @@ function buildLightMicroscopy() {
     const a = (i / 8) * TAU;
     add(new THREE.CylinderGeometry(0.035, 0.035, 0.035, 8), material(0x88a9a8, { metalness: 0.7 }), [Math.cos(a) * 1.95, -1.69, Math.sin(a) * 0.9], [Math.PI / 2, 0, 0], group);
   }
+  // Stage micrometer and front lenses make the optical path readable.
+  for (let i = 0; i < 11; i += 1) {
+    box(group, 0.012, 0.006, 0.12, 0xc7fff6, [-1.05 + i * 0.21, -0.285, -0.34], null, { transparent: true, opacity: 0.55 });
+  }
+  objectives.forEach((obj) => {
+    lensElement(turret, 0.11, 0.025, 0x8feaff, [obj.x, -0.35 - obj.len / 2 - 0.015, obj.z]);
+  });
 
   label(group, '光源 / 视场光阑', [-1.25, -1.42, 0.55], 'LIGHT SOURCE');
   label(group, '聚光镜 / 载物台', [1.05, -0.38, 0.65], 'CONDENSER / STAGE');
@@ -1282,6 +1369,17 @@ function buildElectronMicroscopy() {
   for (let i = 0; i < 5; i += 1) {
     ball(group, 0.045, 0xa8eaff, [-0.48 + i * 0.22, 0.13, -0.1 + (i % 2) * 0.22], { glow: 0.7, segments: 8, rings: 5 });
   }
+  // Specimen grid, aperture strip and vacuum gauge.
+  for (let i = 0; i < 7; i += 1) {
+    for (let k = 0; k < 4; k += 1) {
+      ball(group, 0.018, 0x8fe8ff, [-0.42 + i * 0.14, 0.145, -0.28 + k * 0.14], { glow: 0.45, segments: 5, rings: 4 });
+    }
+  }
+  for (let i = 0; i < 5; i += 1) {
+    box(group, 0.34, 0.018, 0.015, 0x7f95d8, [-0.8, 1.95 - i * 0.2, 0.82], null, { transparent: true, opacity: 0.5 });
+  }
+  screenPanel(group, 0.62, 0.34, 0x8fe8ff, [1.48, -0.82, 0.68], [0, -0.3, 0]);
+  add(new THREE.CylinderGeometry(0.13, 0.13, 0.08, 18), material(0x5f7db4, { metalness: 0.5 }), [1.48, -1.04, 0.68], [Math.PI / 2, 0, 0], group);
   // Projector lens and viewing screen
   add(new THREE.CylinderGeometry(0.62, 0.74, 0.32, 28), material(0x202f58, { metalness: 0.55 }), [0, -0.82, 0], null, group);
   torus(group, 0.62, 0.04, 0x83a0ff, [0, -0.98, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.55 });
@@ -1362,6 +1460,12 @@ function buildCentrifugation() {
     tubes.push(bucket);
   }
   group.add(rotor);
+  // Transparent rotor lid and locking ring; the lid is visual, not a second
+  // rotating body, so the buckets remain readable through it.
+  add(new THREE.CylinderGeometry(2.35, 2.35, 0.055, 64, 1, true), glass(0x9df4e8, 0.09), [0, 0.78, 0], null, group);
+  torus(group, 2.35, 0.025, 0xb8fff2, [0, 0.81, 0], [Math.PI / 2, 0, 0], { glow: 0.5, transparent: true, opacity: 0.5 });
+  box(group, 0.9, 0.1, 0.22, 0x4f858a, [0, 1.02, 0], null, { metalness: 0.5 });
+  for (const x of [-0.44, 0.44]) add(new THREE.CylinderGeometry(0.045, 0.045, 0.12, 10), material(0x9ff2e8, { metalness: 0.4 }), [x, 1.12, 0], null, group);
   label(group, '转子 / 吊桶', [-1.9, 1.25, 0.3], 'ROTOR / BUCKET');
   label(group, '密度梯度', [2.25, 1.0, 0.45], 'DENSITY GRADIENT');
   label(group, '细胞核沉淀', [2.05, 0.35, 0.45], 'NUCLEAR PELLET');
@@ -1410,6 +1514,12 @@ function buildCellCulture() {
   for (let i = 0; i < 7; i += 1) {
     box(group, 0.12, 0.025, 0.02, 0xc7fff5, [-1.7 + i * 0.18, -0.3, 1.12], null, { transparent: true, opacity: 0.45 });
     box(group, 0.12, 0.025, 0.02, 0xc7fff5, [-1.7 + i * 0.18, -0.52, 1.12], null, { transparent: true, opacity: 0.45 });
+  }
+  for (let i = 0; i < 6; i += 1) {
+    box(group, 0.09, 0.012, 0.012, 0x8ff5e2, [-1.1 + i * 0.12, 0.58, 1.115], null, { transparent: true, opacity: 0.55 });
+  }
+  for (const [cx, cz] of [[-1.25, -0.55], [0.2, 0.45], [1.15, -0.2]]) {
+    torus(group, 0.17, 0.012, 0x9affdf, [cx, -0.875, cz], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.32 });
   }
   // Medium, meniscus and bubbles
   box(group, 3.9, 0.48, 2.05, 0x1c6d68, [0, -0.68, 0], null, { transparent: true, opacity: 0.23 });
@@ -1744,6 +1854,16 @@ function buildFret() {
   box(group, 0.78, 0.012, 0.012, 0x9ff7e2, [0, 1.34, 0.12], null, { transparent: true, opacity: 0.45 });
   for (const x of [-0.42, 0.42]) {
     box(group, 0.012, 0.12, 0.012, 0x9ff7e2, [x, 1.3, 0.12], null, { transparent: true, opacity: 0.45 });
+  }
+  for (let i = 1; i < 5; i += 1) {
+    box(group, 0.01, 0.045, 0.01, 0x9ff7e2, [-0.42 + i * 0.168, 1.36, 0.12], null, { transparent: true, opacity: 0.34 });
+  }
+  // Excitation filter cube and dichroic mirrors.
+  box(group, 0.72, 0.46, 0.34, 0x173f43, [1.45, 0.08, 0.98], null, { transparent: true, opacity: 0.65, metalness: 0.25 });
+  box(group, 0.58, 0.035, 0.24, 0x5de8ff, [1.45, 0.08, 0.98], [0, 0, 0.72], { glow: 0.6, transparent: true, opacity: 0.7 });
+  box(group, 0.58, 0.035, 0.24, 0xffb45e, [1.45, 0.08, 0.98], [0, 0, -0.72], { glow: 0.35, transparent: true, opacity: 0.6 });
+  for (const [x, color] of [[-0.42, 0x5de8ff], [0.42, 0xffb45e]]) {
+    box(group, 0.012, 0.5, 0.012, color, [x, 1.72, 0.12], null, { glow: 0.5, transparent: true, opacity: 0.55 });
   }
   // Excitation and emission beams
   const excitation = add(new THREE.CylinderGeometry(0.035, 0.12, 2.15, 14), new THREE.MeshBasicMaterial({ color: 0x5de8ff, transparent: true, opacity: 0.24, blending: THREE.AdditiveBlending, depthWrite: false }), [-0.42, 1.95, 0.12], null, group);
