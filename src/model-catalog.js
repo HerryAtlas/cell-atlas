@@ -150,9 +150,10 @@ export const MODEL_SPECS = [
     en: 'FLUORESCENCE RECOVERY AFTER PHOTOBLEACHING',
     book: 1,
     sections: ['第四节'],
+    maps: [{ book: 1, sections: ['第四节'] }, { book: 2, sections: ['第二节'] }],
     accent: '#71f0d4',
     summary: '用强激光把一小块荧光区域漂白，再观察周围未漂白分子扩散进来；恢复曲线能报告分子的运动速度与结合状态。',
-    points: ['漂白区荧光恢复速度反映分子扩散和交换', '恢复不完整提示存在不易移动的结合池', 'FRAP 适合研究膜蛋白、核蛋白和细胞质分子的动态'],
+    points: ['漂白区荧光恢复速度反映分子扩散和交换', '恢复平台与可移动比例有关；有限时间内恢复不足也可能只是交换较慢', '进入互动课，比较可移动比例与交换速度对曲线的不同影响'],
   },
   {
     id: 'fret',

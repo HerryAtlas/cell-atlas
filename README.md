@@ -241,6 +241,10 @@ A detailed, standalone usage page is at
 4. **场景练习** — hidden-label identification, process ordering and result
    analysis, each with targeted feedback.
 
+Each experiment run is kept in a comparison table (the latest 20 are shown, including previous attempts). It lists conditions, prediction, relative rate and percentage-point difference from the initial model reference. Reusing a row or restoring initial conditions invalidates the current run; running again is required.
+
+Local saves stay on the current origin/device/browser. Storage errors are shown explicitly; incompatible saves are preserved until cleared, and a stale tab pauses writes if another tab changed the saved record. Browser data cleanup can remove records; cloud sync and backup are not implemented.
+
 With the system reduced-motion preference enabled, mechanism playback defaults to slow and experiment cycles show a static diagram. Enabling that preference during playback pauses the mechanism; manual stepping stays available.
 
 At the top of the lesson, **使用说明** opens a compact guide at any time; the
@@ -258,14 +262,43 @@ controls and FAQ. The completion rules are deliberately explicit:
 - stages can be browsed freely, but final completion requires current evidence
   from every stage;
 - after completion, the lesson opens in review mode; **重新学习** requires a
-  second confirmation, and history is retained only for the current page
-  session (a refresh clears it).
+  second confirmation and retains previous attempts. The standalone lesson saves progress, answer drafts and experiment conditions in this browser; reloading resumes with playback paused. **清除本课记录** in the lesson help requires confirmation and removes all attempts for this lesson only.
 
 On a phone, use **看模型** to fold the lesson into a bottom bar, tap a structure
 in the exposed 3D scene, then return to the panel automatically. The lesson is
 deliberately scoped to **第四章 第二节**; the remaining 16/44 sections and their
 model mappings are tracked in [`COURSE-MAP.md`](COURSE-MAP.md), with status and
 missing work for each section.
+
+### Second interactive lesson · 膜的流动性与 FRAP
+
+Open **[`docs/models.html?model=frap&learn=1`](docs/models.html?model=frap&learn=1)**,
+or choose FRAP in the model gallery. Textbook chapter 2 section 4 and chapter 3
+section 2 both link to it. The 14 model IDs and the 16/44 book structure remain stable.
+
+1. Click the membrane plane, fluorescent label, bleach ROI and recovery curve.
+2. Observe all **four** steps: baseline, local bleaching, molecular exchange and recovery plateau.
+3. Predict the platform change, then run the target experiment with **mobile fraction 40% and relative exchange rate 100%**. Initial conditions are 80% / 100%. Other combinations are free exploration; a wrong prediction receives explanatory feedback and still counts when followed by the specified experiment.
+4. Identify the bleach ROI in the scene, order the four steps and answer the curve-analysis question. All three answers and all earlier stages are required to finish.
+
+The experiment shows a current curve against the initial reference, a long-time
+plateau, recovery half-time and the finite-window endpoint. Time uses relative
+units; this single-exponential model is a teaching illustration, not measured
+kinetics or a diffusion-coefficient fit. At zero mobility the curve is flat and
+the half-time is undefined. See [`FRAP-SOURCES.md`](FRAP-SOURCES.md) for sources,
+the equation and interpretation limits.
+
+Comparison records retain the last 20 displayed runs across attempts. Reusing
+conditions requires running again. Each lesson has its **own local save**;
+switching courses or reloading restores the relevant progress, answers and
+conditions with mechanism playback paused. Restart keeps history, while the
+confirmed clear action deletes only that course. The mobile **看模型** button and
+normal/slow mechanism playback work as in the first lesson. Reduced motion shows
+the experiment's observation endpoint without animation.
+
+Full guided lessons run in the standalone model page. The DSH plugin shares the
+same course knowledge and upgraded FRAP model; it does not embed the standalone
+lesson panel or upload learning records.
 
 ### Course engine · deterministic core
 
@@ -276,8 +309,11 @@ evidence and completion:
   AI dependency; supports event evidence, revoke, snapshots and subscriptions.
 - [`src/transport-flow.js`](src/transport-flow.js) — declarative requirements
   for the four transport stages.
-- [`demo/transport-lesson-ui.js`](demo/transport-lesson-ui.js) — dispatches
-  evidence and renders the lesson.
+- [`demo/guided-lesson-ui.js`](demo/guided-lesson-ui.js) — shared four-stage UI,
+  evidence dispatch and lifecycle cleanup when switching lessons. The transport
+  and FRAP wrappers supply content, persistence and experiment presenters.
+- [`src/lesson-progress.js`](src/lesson-progress.js) — shared validation and
+  storage with separate course keys; legacy transport saves remain compatible.
 - [`tests/course-engine.test.mjs`](tests/course-engine.test.mjs) — engine
   gating, completion, restore and revoke tests.
 

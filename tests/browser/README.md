@@ -1,5 +1,12 @@
 # Real-browser lesson smoke tests
 
+`pnpm test:browser` runs the transport suite and then the FRAP suite in real
+desktop and mobile browsers. FRAP covers both chapter entry links, actual ROI
+raycasting, four-step completion, curve comparisons, repeated runs, draft/answer
+reloads, reduced motion, switching lessons on the same shell, and isolated
+restart/clear behavior. To run only that lesson, use `node tests/browser/frap-smoke.mjs`
+with the same browser environment variables described below.
+
 This optional development suite uses Playwright with a real WebGL2 browser and the built docs page. It is independent from the mocked UI unit tests and adds no public-site runtime dependency.
 
 ## Setup and run
@@ -37,3 +44,5 @@ BROWSER_CHANNEL can select a Playwright-supported installed channel when BROWSER
 The test binds a temporary server to 127.0.0.1 and closes it with the browser. It invokes no AI or memory service. Screenshots go to ignored tests/browser-results/. Canvas click coordinates intentionally assume the current lesson camera and the two stated viewports; update them if the camera/layout changes.
 
 Playback regression also checks slow/normal automatic dwell, rate-band status, invalidation on edits, and live reduced-motion preference changes.
+
+Persistence coverage includes actual reloads during recognition, mechanism, experiment and partial ordering, completed review, confirmed clearing, and recovery from an incompatible saved version. The comparison table is checked at both viewport sizes.

@@ -134,7 +134,7 @@ app.innerHTML = `
             </div>
             <div class="guide-block">
               <div class="guide-block-no">03</div>
-              <div><b>模型页新增「跨膜运输」导学</b><p>打开 3D 模型页，选择「跨膜运输」→「进入导学」：点击结构认识角色 → 播放 Na⁺/K⁺ 泵的 E1–E2 循环 → 改 ATP/梯度做预测实验 → 完成辨认、排序和分析练习。第一次进入请点导学右上角「使用说明」；手机端点「看模型」可收起面板后直接点结构。打开手册、全书或 3D 模型时，自动漫游仍会暂停。</p></div>
+              <div><b>模型页有两节互动导学</b><p>打开 3D 模型页，选择「跨膜运输」或「FRAP 荧光漂白恢复」→「进入导学」：点击结构 → 观察过程 → 预测并做实验 → 辨认、排序和分析。第一课观察泵循环，第二课比较膜分子交换的恢复曲线。手机端点「看模型」可收起面板后直接点结构。打开手册、全书或 3D 模型时，自动漫游仍会暂停。</p></div>
             </div>
           </div>
         </div>
@@ -150,21 +150,21 @@ app.innerHTML = `
         <h2 class="guide-title">四个阶段，走完才算结课</h2>
         <div class="lesson-guide-grid">
           <div class="lesson-stage-list">
-            <div class="lesson-stage"><span>01</span><div><b>认识结构</b><p>点模型里的膜、通道、泵、ATP；四个都点过，下一步才解锁。</p></div></div>
-            <div class="lesson-stage"><span>02</span><div><b>观察机制</b><p>可选正常 / 慢速，或逐步看 E1–E2 的 5 个步骤；都看过才能继续。</p></div></div>
-            <div class="lesson-stage"><span>03</span><div><b>动手探索</b><p>先预测再运行，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p></div></div>
+            <div class="lesson-stage"><span>01</span><div><b>认识结构</b><p>每节课各有四个结构：跨膜运输看膜、通道、泵、ATP；FRAP 看膜面、荧光标记、漂白区和曲线。</p></div></div>
+            <div class="lesson-stage"><span>02</span><div><b>观察机制</b><p>可选正常 / 慢速或逐步看。跨膜运输有 5 步，FRAP 有 4 步；都看过才能继续。</p></div></div>
+            <div class="lesson-stage"><span>03</span><div><b>动手探索</b><p>先预测再运行，记录可对照、复用条件，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p></div></div>
             <div class="lesson-stage"><span>04</span><div><b>场景练习</b><p>辨认、排序、结果分析三道都正确，才能结课。</p></div></div>
           </div>
           <div class="lesson-rules">
             <div class="lesson-target">
-              <b>目标实验</b>
-              <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
+              <b>目标实验 · 按课程分别完成</b>
+              <p>跨膜运输：ATP 0%、梯度 60%、无抑制剂。</p><p>FRAP：可移动比例 40%、相对交换速度 100%。</p>
               <p>只运行这个条件才会解锁下一步；其它组合显示“自由探索结果”，不计完成。</p>
             </div>
             <div class="lesson-rule"><b>可以自由回看</b><p>四个阶段可随时切换，但最终结课要求每个阶段都有当前有效证据。</p></div>
-            <div class="lesson-rule"><b>改条件 = 重跑</b><p>改 ATP、梯度或抑制剂后，旧实验结果失效，必须重新运行。</p></div>
+            <div class="lesson-rule"><b>改条件 = 重跑</b><p>改任何实验条件后，旧结果失效，必须重新运行。</p></div>
             <div class="lesson-rule"><b>完成后复习</b><p>全部阶段完成后进入复习，可重新回看；「重新学习」会开始新一轮。</p></div>
-            <div class="lesson-rule"><b>重新学习与手机</b><p>重学会二次确认，历史只在本次打开期间保留；手机点「看模型」收起面板后直接点结构。</p></div>
+            <div class="lesson-rule"><b>重新学习与手机</b><p>两课进度分别保存，刷新后可继续；重学保留历史，使用说明内可清除本课记录；手机点「看模型」收起面板后直接点结构。</p></div>
             <div class="lesson-rule"><b>完成判定</b><p>本版没有 AI 自动批改；是否完成由课程引擎按上述证据判断。</p></div>
           </div>
         </div>
@@ -203,7 +203,7 @@ app.innerHTML = `
             </div>
             <div class="guide-block">
               <div class="guide-block-no">03</div>
-              <div><b>模型名字就是入口</b><p>章节顶部和每个小节会显示 3D 模型名称（结构 + 实验方法）。点击名称直接观察，关闭后回到该小节；跨膜运输模型会直接带「导学」入口。</p></div>
+              <div><b>模型名字就是入口</b><p>章节顶部和每个小节会显示 3D 模型名称（结构 + 实验方法）。点击名称直接观察，关闭后回到该小节；跨膜运输和 FRAP 模型都带「导学」入口。</p></div>
             </div>
             <div class="guide-block">
               <div class="guide-block-no">04</div>

@@ -317,9 +317,11 @@ export class CourseEngine {
     return engine;
   }
 
-  reset() {
-    this.#events = this.#events.map((event) => event.active ? freezeData({ ...event, active: false }) : event);
-    this.#attempt += 1;
+  reset({ discardHistory = false } = {}) {
+    this.#events = discardHistory ? []
+      : this.#events.map((event) => event.active ? freezeData({ ...event, active: false }) : event);
+    this.#attempt = discardHistory ? 1 : this.#attempt + 1;
+    if (discardHistory) this.#sequence = 0;
     this.#stepIndex = 0;
     this.#courseComplete = false;
     this.#startedAt = Date.now();

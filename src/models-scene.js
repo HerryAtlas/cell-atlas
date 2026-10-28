@@ -11,6 +11,8 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { MODEL_SPECS, modelById } from './model-catalog.js';
 import { getTransportStructure } from './transport-lesson.js';
 import { advancePumpCycle } from './transport-motion.js';
+import { getFrapStructure } from './frap-lesson.js';
+import { frapIntensity, FRAP_OBSERVATION_END } from './frap-experiment.js';
 
 const TAU = Math.PI * 2;
 
@@ -1280,76 +1282,199 @@ function buildCellCulture() {
 function buildFrap() {
   const group = new THREE.Group();
   group.userData.distance = 11.0;
-  // Coverslip and microscope stage
   box(group, 6.1, 0.2, 3.1, 0x0b2025, [0, -1.35, 0], null, { metalness: 0.45 });
   box(group, 4.8, 0.06, 2.4, 0x8ddbd3, [0, -1.17, 0], null, { glass: true, opacity: 0.16 });
   box(group, 4.8, 0.03, 2.4, 0xc4fff7, [0, -1.13, 0], null, { glass: true, opacity: 0.1 });
-  // Cell, membrane and nucleus
+
   add(new THREE.SphereGeometry(2.0, 56, 34), glass(0x61d8be, 0.14), [0, -0.72, 0], null, group, [1.35, 0.3, 1.0]);
   torus(group, 2.0, 0.025, 0x86efd7, [0, -0.72, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.35 });
   add(new THREE.SphereGeometry(0.48, 32, 20), material(0xb58cff, { transparent: true, opacity: 0.68 }), [-0.58, -0.62, 0.02], null, group);
   ball(group, 0.19, 0xffabd8, [-0.58, -0.62, 0.02], { glow: 0.35, segments: 16, rings: 10 });
+
+  // The unbleached pool stays bright. Only molecules initially inside the
+  // ROI are bleached; recovery is illustrated by different, bright arrivals.
   const r = rand(781);
-  const dots = [];
-  for (let i = 0; i < 120; i += 1) {
+  for (let i = 0; i < 110; i += 1) {
     const a = r() * TAU;
     const rr = 0.55 + Math.sqrt(r()) * 1.25;
-    const dot = ball(group, 0.022 + r() * 0.018, 0x7dffd2, [Math.cos(a) * rr, -0.48 + r() * 0.055, Math.sin(a) * rr * 0.72], { glow: 0.5, segments: 7, rings: 5 });
-    dots.push(dot);
+    const x = Math.cos(a) * rr;
+    const z = Math.sin(a) * rr * 0.72;
+    if (Math.hypot(x - 0.72, z - 0.08) < 0.62) continue;
+    ball(group, 0.022 + r() * 0.018, 0x7dffd2, [x, -0.43 + r() * 0.04, z], { glow: 0.65, segments: 7, rings: 5 });
   }
-  // ROI and bleach spot
+  // An enlarged cluster provides a visible, accessible selection target.
+  const fluorophore = new THREE.Group();
+  fluorophore.position.set(-1.25, -0.39, 0.55);
+  for (let i = 0; i < 5; i += 1) {
+    ball(fluorophore, 0.045, 0x7dffd2, [Math.cos(i * 2.4) * 0.12, 0.02, Math.sin(i * 2.4) * 0.09], { glow: 0.85, segments: 10, rings: 7 });
+  }
+  group.add(fluorophore);
+
   const region = new THREE.Group();
   region.position.set(0.72, -0.4, 0.08);
-  const spot = add(new THREE.CircleGeometry(0.5, 40), new THREE.MeshBasicMaterial({ color: 0x9dffe0, transparent: true, opacity: 0.8, side: THREE.DoubleSide, depthWrite: false }), [0, 0, 0], [-Math.PI / 2, 0, 0], region);
+  const spot = add(new THREE.CircleGeometry(0.5, 40), new THREE.MeshBasicMaterial({
+    color: 0x9dffe0, transparent: true, opacity: 0.6, side: THREE.DoubleSide, depthWrite: false,
+  }), [0, 0, 0], [-Math.PI / 2, 0, 0], region);
+  spot.name = 'frap-roi-fluorescence';
   torus(region, 0.56, 0.018, 0xffffff, [0, 0.01, 0], [Math.PI / 2, 0, 0], { glow: 0.5, transparent: true, opacity: 0.65 });
   torus(region, 0.76, 0.01, 0x9fffe8, [0, 0.02, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.22 });
   group.add(region);
-  // Objective above ROI and laser path
+
+  const residents = [];
+  const arrivals = [];
+  for (let i = 0; i < 25; i += 1) {
+    const angle = i * 2.39996;
+    const radius = 0.12 + Math.sqrt((i + 0.5) / 25) * 0.28;
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
+    const mesh = ball(region, 0.032, 0x7dffd2, [x, 0.055, z], { glow: 0.8, segments: 8, rings: 6 });
+    mesh.name = i < 5 ? 'frap-unbleached-resident' : 'frap-bleached-resident';
+    residents.push({ mesh, x, z, angle });
+    if (i >= 5) {
+      const incoming = ball(region, 0.033, 0x7dffd2, [Math.cos(angle) * 0.9, 0.06, Math.sin(angle) * 0.9], { glow: 0.8, segments: 8, rings: 6 });
+      incoming.name = 'frap-unbleached-arrival';
+      arrivals.push({ mesh: incoming, x, z, angle });
+    }
+  }
+
+  // Objective and laser. A pulse is never left on during recovery.
   add(new THREE.CylinderGeometry(0.42, 0.34, 0.6, 28), material(0x7bd7d0, { metalness: 0.4 }), [0.72, 1.25, 0.08], null, group);
   add(new THREE.CylinderGeometry(0.27, 0.27, 0.42, 24), material(0x2a5a5e, { metalness: 0.55 }), [0.72, 1.7, 0.08], null, group);
   torus(group, 0.43, 0.03, 0x9cebe2, [0.72, 1.55, 0.08], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.5 });
-  const laser = add(new THREE.CylinderGeometry(0.02, 0.09, 1.65, 14), new THREE.MeshBasicMaterial({ color: 0xff7fc8, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false }), [0.72, 0.48, 0.08], null, group);
-  for (let i = 0; i < 3; i += 1) {
-    torus(group, 0.62 + i * 0.13, 0.01, 0xff9fc9, [0.72, -0.36 + i * 0.1, 0.08], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.14 });
-  }
-  // A small recovery plot on the right
+  const laser = add(new THREE.CylinderGeometry(0.02, 0.09, 1.65, 14), new THREE.MeshBasicMaterial({
+    color: 0xff7fc8, transparent: true, opacity: 0.35, blending: THREE.AdditiveBlending, depthWrite: false,
+  }), [0.72, 0.48, 0.08], null, group);
+  laser.name = 'frap-bleach-pulse';
+  const pulseRings = new THREE.Group();
+  for (let i = 0; i < 3; i += 1) torus(pulseRings, 0.62 + i * 0.13, 0.01, 0xff9fc9, [0.72, -0.36 + i * 0.1, 0.08], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.14 });
+  group.add(pulseRings);
+
   const chart = new THREE.Group();
   chart.position.set(2.25, -0.05, 0.15);
   chart.rotation.y = -0.32;
   screenPanel(chart, 1.16, 0.82, 0x0b2d2a, [0, 0, 0]);
-  box(chart, 0.012, 0.52, 0.012, 0x76b8aa, [-0.42, -0.02, 0.045], null, { transparent: true, opacity: 0.6 });
-  box(chart, 0.84, 0.01, 0.012, 0x76b8aa, [0.0, -0.27, 0.045], null, { transparent: true, opacity: 0.6 });
-  const chartPoints = [];
-  for (let i = 0; i <= 24; i += 1) {
-    const u = i / 24;
-    const y = -0.26 + (u < 0.2 ? 0.02 : u < 0.32 ? 0.02 - (u - 0.2) * 0.8 : 0.02 + Math.min(0.42, (u - 0.32) * 0.7));
-    chartPoints.push(new THREE.Vector3(-0.4 + u * 0.78, y, 0.05));
-  }
-  const chartCurve = new THREE.CatmullRomCurve3(chartPoints);
-  add(new THREE.TubeGeometry(chartCurve, 60, 0.01, 6, false), glow(0x7dffce, 0.5), null, null, chart);
-  const chartMarker = ball(chart, 0.035, 0xffd47e, [chartPoints[0].x, chartPoints[0].y, 0.07], { glow: 1.0, segments: 10, rings: 7 });
+  box(chart, 0.012, 0.52, 0.012, 0x76b8aa, [-0.43, -0.02, 0.045], null, { transparent: true, opacity: 0.6 });
+  box(chart, 0.88, 0.01, 0.012, 0x76b8aa, [0, -0.27, 0.045], null, { transparent: true, opacity: 0.6 });
+  // Baseline, vertical bleach drop, then the same sampled curve as the lesson.
+  // The buffer is allocated once; changing conditions only rewrites its values.
+  const curvePositions = new Float32Array(63 * 3);
+  const curveGeometry = new THREE.BufferGeometry();
+  curveGeometry.setAttribute('position', new THREE.BufferAttribute(curvePositions, 3));
+  const curve = new THREE.Line(curveGeometry, new THREE.LineBasicMaterial({ color: 0x7dffce }));
+  curve.name = 'frap-recovery-curve';
+  chart.add(curve);
+  const chartMarker = ball(chart, 0.035, 0xffd47e, [-0.29, 0.23, 0.07], { glow: 1, segments: 10, rings: 7 });
+  chartMarker.name = 'frap-recovery-marker';
   group.add(chart);
-  group.userData.update = (time) => {
-    const cycle = time % 6.2;
-    let recovery;
-    if (cycle < 2.2) recovery = 1;
-    else if (cycle < 2.6) recovery = 1 - (cycle - 2.2) / 0.4;
-    else recovery = Math.min(1, (cycle - 2.6) / 3.6);
-    spot.material.opacity = 0.08 + recovery * 0.8;
-    spot.material.color.setHSL(0.44, 0.8, 0.52 + recovery * 0.28);
-    laser.material.opacity = cycle > 2.12 && cycle < 2.58 ? 0.5 : 0.05;
-    dots.forEach((dot, i) => {
-      dot.material.emissiveIntensity = 0.22 + (0.38 + Math.sin(time * 1.5 + i) * 0.15) * (0.25 + recovery * 0.55);
-    });
-    const u = Math.min(1, Math.max(0, (cycle < 2.2 ? 0.1 : cycle < 2.6 ? 0.1 + (cycle - 2.2) / 0.4 * 0.22 : 0.32 + (cycle - 2.6) / 3.6 * 0.68)));
-    const pos = chartCurve.getPoint(u);
-    chartMarker.position.set(pos.x, pos.y, 0.07);
+
+  const defaults = { mobileFraction: 80, exchangeRate: 100 };
+  const lesson = { active: false, mode: 'mechanism', step: 0, result: null, elapsed: 0, signature: '', conditions: { ...defaults } };
+  let plottedMobile = null;
+  let plottedRate = null;
+  function updateCurve(conditions) {
+    if (plottedMobile === conditions.mobileFraction && plottedRate === conditions.exchangeRate) return;
+    plottedMobile = conditions.mobileFraction;
+    plottedRate = conditions.exchangeRate;
+    curvePositions.set([-0.43, 0.23, 0.06, -0.29, 0.23, 0.06]);
+    for (let i = 0; i <= 60; i += 1) {
+      const t = FRAP_OBSERVATION_END * i / 60;
+      const offset = (i + 2) * 3;
+      curvePositions[offset] = -0.29 + 0.72 * i / 60;
+      curvePositions[offset + 1] = -0.27 + frapIntensity(conditions, t) / 200;
+      curvePositions[offset + 2] = 0.06;
+    }
+    curveGeometry.attributes.position.needsUpdate = true;
+    curveGeometry.computeBoundingSphere();
+  }
+
+  group.userData.picks = Object.fromEntries([
+    ['membrane', [-1.75, -0.6, 0.15]],
+    ['fluorophore', [-1.25, -0.39, 0.55]],
+    ['bleach-region', [0.72, -0.4, 0.08]],
+    ['recovery-curve', [2.25, -0.05, 0.15]],
+  ].map(([id, position]) => [id, { ...getFrapStructure(id), position: new THREE.Vector3(...position) }]));
+  const pickMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+  function pickTarget(geometry, position, id, parent = group) {
+    const hit = add(geometry, pickMaterial, position, null, parent);
+    hit.userData.pick = group.userData.picks[id];
+    return hit;
+  }
+  pickTarget(new THREE.BoxGeometry(1.0, 0.4, 1.4), [-1.95, -0.64, -0.05], 'membrane');
+  pickTarget(new THREE.SphereGeometry(0.32, 12, 8), [-1.25, -0.39, 0.55], 'fluorophore');
+  pickTarget(new THREE.SphereGeometry(0.57, 16, 10), [0.72, -0.4, 0.08], 'bleach-region');
+  pickTarget(new THREE.BoxGeometry(1.25, 0.92, 0.16), [0, 0, 0], 'recovery-curve', chart);
+
+  group.userData.applyExperiment = (state = {}) => {
+    lesson.conditions.mobileFraction = Number.isFinite(state.mobileFraction) ? Math.max(0, Math.min(100, state.mobileFraction)) : defaults.mobileFraction;
+    lesson.conditions.exchangeRate = Number.isFinite(state.exchangeRate) ? Math.max(25, Math.min(200, state.exchangeRate)) : defaults.exchangeRate;
   };
-  label(group, '荧光标记细胞', [-1.85, 0.35, 0.4], 'FLUORESCENT CELL');
+  group.userData.applyLesson = (state = {}) => {
+    const active = Boolean(state.active);
+    const mode = state.mode === 'experiment' ? 'experiment' : 'mechanism';
+    const result = state.experimentResult || null;
+    const signature = result ? JSON.stringify([result.plateau, result.halfTime, result.runId, result.attemptId, lesson.conditions.mobileFraction, lesson.conditions.exchangeRate]) : '';
+    if (active !== lesson.active || mode !== lesson.mode || signature !== lesson.signature) lesson.elapsed = 0;
+    lesson.active = active;
+    lesson.mode = mode;
+    lesson.result = result;
+    lesson.signature = signature;
+    lesson.step = Number.isInteger(state.step) ? Math.max(0, Math.min(3, state.step)) : 0;
+  };
+  group.userData.update = (time, delta = 0, { reducedMotion = false } = {}) => {
+    const conditions = lesson.active && lesson.mode === 'experiment' ? lesson.conditions : defaults;
+    updateCurve(conditions);
+    let baseline = false;
+    let bleach = false;
+    let t = 0;
+    if (lesson.active && lesson.mode === 'experiment') {
+      baseline = !lesson.result;
+      if (lesson.result) {
+        // One finite observation per run. UI refreshes do not restart it.
+        lesson.elapsed = reducedMotion ? FRAP_OBSERVATION_END : Math.min(FRAP_OBSERVATION_END, lesson.elapsed + Math.max(0, Math.min(delta, 0.05)) * 4);
+        t = lesson.elapsed;
+        bleach = !reducedMotion && t < 0.8;
+      }
+    } else if (lesson.active) {
+      baseline = lesson.step === 0;
+      bleach = lesson.step === 1;
+      t = lesson.step <= 1 ? 0 : lesson.step === 2 ? 5 : FRAP_OBSERVATION_END;
+    } else if (reducedMotion) {
+      t = FRAP_OBSERVATION_END;
+    } else {
+      const cycle = time % 10;
+      baseline = cycle < 2;
+      bleach = cycle >= 2 && cycle < 2.25;
+      t = Math.max(0, Math.min(FRAP_OBSERVATION_END, (cycle - 2.25) * 4));
+    }
+    const intensity = baseline ? 100 : frapIntensity(conditions, t);
+    const fraction = baseline || conditions.mobileFraction === 0 ? 0 : (intensity - 20) / (0.8 * conditions.mobileFraction);
+    spot.material.opacity = 0.05 + intensity * 0.0055;
+    laser.visible = bleach;
+    pulseRings.visible = bleach;
+    curveGeometry.setDrawRange(0, baseline ? 2 : 3 + Math.floor(t / FRAP_OBSERVATION_END * 60));
+    chartMarker.position.set(baseline ? -0.29 : -0.29 + t / FRAP_OBSERVATION_END * 0.72, -0.27 + intensity / 200, 0.075);
+    residents.forEach(({ mesh, x, z, angle }, i) => {
+      const isBleached = !baseline && i >= 5;
+      mesh.material.emissiveIntensity = isBleached ? 0.015 : 0.8;
+      mesh.material.color.setHex(isBleached ? 0x173a38 : 0x7dffd2);
+      const mobile = i >= 5 && (i - 5) / 20 < conditions.mobileFraction / 100;
+      const travel = mobile && !baseline ? fraction * 0.7 : 0;
+      mesh.position.set(x + Math.cos(angle) * travel, 0.055, z + Math.sin(angle) * travel);
+    });
+    arrivals.forEach(({ mesh, x, z, angle }, i) => {
+      mesh.visible = !baseline && i / 20 < conditions.mobileFraction / 100;
+      const startX = Math.cos(angle) * 0.9;
+      const startZ = Math.sin(angle) * 0.9;
+      mesh.position.set(startX + (x - startX) * fraction, 0.06, startZ + (z - startZ) * fraction);
+    });
+  };
+  group.userData.update(0, 0);
+  label(group, '膜的侧向流动', [-1.85, 0.35, 0.4], 'LATERAL DIFFUSION');
+  label(group, '荧光标记', [-1.35, -0.85, 0.6], 'FLUORESCENT LABEL');
   label(group, '物镜', [1.45, 1.45, 0.2], 'OBJECTIVE');
-  label(group, '漂白区 ROI', [1.55, -0.15, 0.2], 'BLEACH ROI');
+  label(group, '漂白区 ROI', [1.05, -0.85, 0.2], 'BLEACH ROI');
   label(group, '激光脉冲', [1.55, 1.0, 0.1], 'LASER PULSE');
-  label(group, '恢复曲线', [2.25, -0.85, 0.35], 'RECOVERY');
+  label(group, '恢复曲线', [2.65, -0.85, 0.35], 'RECOVERY');
   return group;
 }
 

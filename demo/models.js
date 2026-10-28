@@ -2,6 +2,7 @@ import { MODEL_SPECS, modelById } from '../src/model-catalog.js';
 import { createModelScene } from '../src/models-scene.js';
 import { TEXTBOOK } from '../src/textbook.js';
 import { createTransportLessonUI } from './transport-lesson-ui.js';
+import { createFrapLessonUI } from './frap-lesson-ui.js';
 
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -15,6 +16,23 @@ let activeSection = querySection;
 let activeId = initialModel;
 let engine = null;
 let lesson = null;
+let lessonId = null;
+const lessonFactories = { transport: createTransportLessonUI, frap: createFrapLessonUI };
+
+function setLesson(id) {
+  if (!engine) return;
+  const nextId = lessonFactories[id] ? id : null;
+  if (lessonId === nextId) return;
+  lesson?.dispose();
+  lessonId = nextId;
+  lesson = nextId ? lessonFactories[nextId]({
+    getEngine: () => engine,
+    onOpen: () => $('cmAuto').setAttribute('aria-pressed', 'false'),
+    onClose: () => $('cmAuto').setAttribute('aria-pressed', 'true'),
+  }) : null;
+  $('cmLearnEntry').hidden = !lesson;
+}
+
 
 $('cmModelList').innerHTML = MODEL_SPECS.map((spec, index) => `
   ${index === 8 ? '<div class="cm-rail-sep">METHODS / 实验方法</div>' : ''}
@@ -45,8 +63,9 @@ function renderInfo(spec) {
     button.classList.toggle('is-active', i === index);
     button.setAttribute('aria-current', i === index ? 'true' : 'false');
   });
-  if (lesson) lesson.setAvailable(spec.id === 'transport');
-  $('cmInfoFoot').textContent = spec.id === 'transport'
+  setLesson(spec.id);
+  $('cmLearnEntry').hidden = !lesson;
+  $('cmInfoFoot').textContent = lessonFactories[spec.id]
     ? '导学：点击结构 → 观察机制 → 动手探索 → 场景练习 · 手机端点「看模型」'
     : '拖动模型观察结构关系 · 模型为示意性重建，不按真实比例';
   document.title = `${spec.title} / Cell Atlas 3D Specimens`;
@@ -64,6 +83,7 @@ function selectModel(id, fromClick = false) {
     selectedBook = spec.book;
     activeSection = '';
   }
+  if (lessonId !== spec.id) { lesson?.dispose(); lesson = null; lessonId = null; }
   if (engine) engine.setModel(spec.id);
   renderInfo(spec);
 }
@@ -83,15 +103,10 @@ try {
     onModelChange: renderInfo,
     onPick: (pick) => lesson?.handlePick(pick),
   });
-  lesson = createTransportLessonUI({
-    getEngine: () => engine,
-    onOpen: () => $('cmAuto').setAttribute('aria-pressed', 'false'),
-    onClose: () => $('cmAuto').setAttribute('aria-pressed', 'true'),
-  });
   if (initialModel !== MODEL_SPECS[0].id) engine.setModel(initialModel);
   else renderInfo(MODEL_SPECS[0]);
   engine.setExposure(Number($('cmExposure').value) / 100);
-  if (initialModel === 'transport' && params.get('learn') === '1') lesson.open(0);
+  if (lesson && params.get('learn') === '1') lesson.open();
 } catch (error) {
   $('cmError').hidden = false;
   $('cmErrorText').textContent = String(error && error.message ? error.message : error).slice(0, 500);

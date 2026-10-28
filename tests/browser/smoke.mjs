@@ -1,30 +1,11 @@
+import { serve } from './server.mjs';
 import assert from 'node:assert/strict';
-import http from 'node:http';
-import { readFile, mkdir } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-
-async function serve(root) {
-  const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg' };
-  const server = http.createServer(async (req, res) => {
-    try {
-      const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
-      const target = path.resolve(root, '.' + pathname + (pathname.endsWith('/') ? 'index.html' : ''));
-      if (!target.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
-      const data = await readFile(target);
-      res.writeHead(200, { 'Content-Type': mime[path.extname(target)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
-      res.end(data);
-    } catch { res.writeHead(404).end(); }
-  });
-  await new Promise((resolve, reject) => {
-    server.once('error', reject);
-    server.listen(0, '127.0.0.1', resolve);
-  });
-  return { server, url: 'http://127.0.0.1:' + server.address().port };
-}
 
 // Actual browser, real built page and real raycasting. No engine hooks, event
 // injection, DOM fixture or alternative testing implementation of the lesson.
@@ -63,6 +44,8 @@ export async function runSmoke({ playwright, executablePath, channel,
       assert.equal(await onboarding.locator('#introStepThree').isVisible(), true);
       assert.match(await onboarding.locator('#introStepThree').innerText(), /目标实验/);
       assert.match(await onboarding.locator('#introStepThree').innerText(), /改条件 = 重跑/);
+      assert.match(await onboarding.locator('#introStepThree').innerText(), /FRAP/);
+      await onboarding.screenshot({ path: path.join(outputDir, name + '-onboarding.png') });
       await onboarding.locator('#guideNextThree').click();
       assert.equal(await onboarding.locator('#introStepFour').isVisible(), true);
       await onboarding.close();
@@ -85,7 +68,7 @@ export async function runSmoke({ playwright, executablePath, channel,
         onProgress(name + ': model and restart');
         await page.goto(url + '/models.html?model=transport&learn=1');
         await page.locator('#cmLesson').waitFor({ state: 'visible' });
-        await page.locator('#cmLoading.is-hidden').waitFor({ state: 'attached' });
+        await page.locator('#cmLoading').waitFor({ state: 'hidden' });
         assert.equal(await page.locator('#modelStage canvas').evaluate((el) => !!el.getContext('webgl2')), true);
         await click('#cmLessonHelpToggle');
         assert.equal(await page.locator('#cmLessonHelp').isVisible(), true);
@@ -95,6 +78,11 @@ export async function runSmoke({ playwright, executablePath, channel,
         await clickPump();
         await assertText(body, /已认识 1 \/ 4/);
         await assertText(body.locator('article h3'), /Na⁺\/K⁺ 泵/);
+        await page.reload();
+        await page.locator('#cmLesson').waitFor({ state: 'visible' });
+        await page.locator('#cmLoading').waitFor({ state: 'hidden' });
+        await assertText(body, /已认识 1 \/ 4/);
+        await assertText(page.locator('#cmLessonSaveStatus'), /保存|恢复/);
         await click('#cmLessonRestart');
         assert.equal(await page.locator('#cmLessonRestartPrompt').isVisible(), true);
         await assertText(body, /已认识 1 \/ 4/);
@@ -109,7 +97,7 @@ export async function runSmoke({ playwright, executablePath, channel,
         await click('#cmLessonRestart');
         await click('#cmLessonRestartConfirm');
         await assertText(body, /已认识 0 \/ 4/);
-        await assertText(page.locator('#cmLessonHistory'), /第 2 轮.*已保留历史尝试.*刷新后不保留/);
+        await assertText(page.locator('#cmLessonHistory'), /第 2 轮.*已保留历史尝试/);
         assert.equal(await next.isEnabled(), false);
         assert.equal(await page.locator('#cmLessonRestartPrompt').isVisible(), false);
         await page.screenshot({ path: path.join(outputDir, name + '-restart.png') });
@@ -124,6 +112,11 @@ export async function runSmoke({ playwright, executablePath, channel,
         await click('[data-act="mech-play"]');
         assert.equal(await next.isEnabled(), false);
         await page.screenshot({ path: path.join(outputDir, name + '-playback-speed.png') });
+        await page.reload();
+        await page.locator('#cmLesson').waitFor({ state: 'visible' });
+        await page.locator('#cmLoading').waitFor({ state: 'hidden' });
+        await assertText(body, /03 \/ 05/);
+        await assertText(page.locator('[data-act="mech-play"]'), /播放/);
 
         onProgress(name + ': target experiment');
         await stage(2);
@@ -152,6 +145,25 @@ export async function runSmoke({ playwright, executablePath, channel,
         await assertText(page.locator('#lsnPumpStatus'), /停止/);
         await page.screenshot({ path: path.join(outputDir, name + '-pump-stopped.png') });
         await assertText(page.locator('.cm-lsn-feedback'), /预测正确/);
+        const recordsBefore = await page.locator('[data-record]').count();
+        assert.equal(recordsBefore, 4);
+        await page.reload();
+        await page.locator('#cmLesson').waitFor({ state: 'visible' });
+        await page.locator('#cmLoading').waitFor({ state: 'hidden' });
+        assert.equal(await page.locator('[data-record]').count(), recordsBefore);
+        assert.equal(await next.isEnabled(), true);
+        await page.locator('[data-reuse]').first().click();
+        await assertText(page.locator('#lsnPumpStatus'), /待运行/);
+        assert.equal(await next.isEnabled(), false);
+        assert.equal(await page.locator('[data-record]').count(), recordsBefore);
+        await click('[data-act="restore-conditions"]');
+        assert.equal(await page.locator('#lsnAtp').inputValue(), '60');
+        await page.locator('#lsnAtp').focus();
+        await page.keyboard.press('Home');
+        await click('[data-act="run-experiment"]');
+        await page.locator('.cm-lsn-records').scrollIntoViewIfNeeded();
+        await page.screenshot({ path: path.join(outputDir, name + '-experiment-records.png') });
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
         assert.equal(await next.isEnabled(), true);
         await page.locator('#lsnGradient').focus();
         await page.keyboard.press('ArrowRight');
@@ -167,6 +179,13 @@ export async function runSmoke({ playwright, executablePath, channel,
         await assertText(body.locator('.cm-lsn-feedback').first(), /正确。你点到/);
         for (const id of ['na-bind','phosphorylation','e2','k-bind','dephosphorylation']) {
           await click('[data-order="' + id + '"]');
+          if (id === 'phosphorylation') {
+            await page.reload();
+            await page.locator('#cmLesson').waitFor({ state: 'visible' });
+            await page.locator('#cmLoading').waitFor({ state: 'hidden' });
+            assert.equal(await page.locator('.cm-order-selected li').count(), 2);
+            await assertText(body.locator('.cm-lsn-feedback').first(), /正确。你点到/);
+          }
         }
         await click('[data-act="order-check"]');
         await click('[data-analysis="b"]');
@@ -182,6 +201,9 @@ export async function runSmoke({ playwright, executablePath, channel,
         await next.click();
         assert.equal(await page.locator('#cmLesson').isVisible(), false);
         await click('#cmLearnEntry');
+        await page.reload();
+        await page.locator('#cmLesson').waitFor({ state: 'visible' });
+        await page.locator('#cmLoading').waitFor({ state: 'hidden' });
         await assertText(page.locator('#cmLessonProgress'), /复习/);
         await next.click();
         await assertText(page.locator('#cmLessonProgress'), /观察机制.*复习/);
@@ -196,6 +218,36 @@ export async function runSmoke({ playwright, executablePath, channel,
         await click('[data-act="run-experiment"]');
         await assertText(page.locator('#lsnPumpStatus'), /较快.*静态示意/);
         await page.screenshot({ path: path.join(outputDir, name + '-reduced-motion.png') });
+        onProgress(name + ': local save, clear and incompatible data');
+        await click('#cmLessonHelpToggle');
+        await click('#cmLessonClear');
+        await page.keyboard.press('Escape');
+        assert.equal(await page.locator('#cmLessonClearPrompt').isVisible(), false);
+        assert.ok(await page.locator('[data-record]').count() >= 4);
+        await click('#cmLessonHelpToggle');
+        await click('#cmLessonClear');
+        await click('#cmLessonClearConfirm');
+        await assertText(body, /已认识 0 \/ 4/);
+        assert.equal(await page.evaluate(() => localStorage.getItem('cell-atlas.lesson.transport.progress')), null);
+        await page.reload();
+        await page.locator('#cmLesson').waitFor({ state: 'visible' });
+        await page.locator('#cmLoading').waitFor({ state: 'hidden' });
+        await assertText(body, /已认识 0 \/ 4/);
+        await page.evaluate(() => localStorage.setItem('cell-atlas.lesson.transport.progress', '{"version":999}'));
+        await page.reload();
+        await page.locator('#cmLesson').waitFor({ state: 'visible' });
+        await page.locator('#cmLoading').waitFor({ state: 'hidden' });
+        await assertText(page.locator('#cmLessonSaveStatus'), /不兼容|损坏/);
+        await click('[data-pick="pump"]');
+        assert.equal(await page.evaluate(() => localStorage.getItem('cell-atlas.lesson.transport.progress')), '{"version":999}');
+        await click('#cmLessonHelpToggle');
+        await click('#cmLessonClear');
+        await click('#cmLessonClearConfirm');
+        await click('[data-pick="pump"]');
+        await page.reload();
+        await page.locator('#cmLesson').waitFor({ state: 'visible' });
+        await page.locator('#cmLoading').waitFor({ state: 'hidden' });
+        await assertText(body, /已认识 1 \/ 4/);
         assert.deepEqual(errors, [], 'No browser console or page errors');
         results.push({ viewport, name, passed: true });
         onProgress(name + ': passed');
@@ -222,4 +274,8 @@ if (typeof process !== 'undefined' && process.argv[1] && pathToFileURL(path.reso
     onProgress: console.log,
   });
   console.log(JSON.stringify(result, null, 2));
+  const { runFrapSmoke } = await import('./frap-smoke.mjs');
+  console.log(JSON.stringify(await runFrapSmoke({ playwright,
+    executablePath: process.env.BROWSER_EXECUTABLE,
+    channel: process.env.BROWSER_CHANNEL, onProgress: console.log }), null, 2));
 }

@@ -52,7 +52,7 @@ function render(index, updateUrl = true, scroll = true) {
   const strip = $('tbModelStrip');
   if (chapterModels.length) {
     strip.hidden = false;
-    strip.innerHTML = `<span>3D 模型</span>${chapterModels.map(({ model, section }) => `<a href="./models.html?model=${model.id}&book=${selected}&section=${encodeURIComponent(section.no)}${model.id === 'transport' ? '&learn=1' : ''}">${model.title}<em>↗</em></a>`).join('')}`;
+    strip.innerHTML = `<span>3D 模型</span>${chapterModels.map(({ model, section }) => `<a href="./models.html?model=${model.id}&book=${selected}&section=${encodeURIComponent(section.no)}${['transport', 'frap'].includes(model.id) ? '&learn=1' : ''}">${model.title}<em>↗</em></a>`).join('')}`;
   } else {
     strip.hidden = true;
     strip.innerHTML = '';
@@ -69,7 +69,7 @@ function render(index, updateUrl = true, scroll = true) {
           <span class="tb-sec-toggle" aria-hidden="true"></span>
         </summary>
         <div class="tb-sec-body">
-          ${sectionModels.length ? `<div class="tb-model-names">${sectionModels.map((model) => `<a class="tb-model-name" href="./models.html?model=${model.id}&book=${selected}&section=${encodeURIComponent(section.no)}${model.id === 'transport' ? '&learn=1' : ''}"><span>3D</span><b>${model.title}</b><em>点击观察 →</em></a>`).join('')}</div>` : ''}
+          ${sectionModels.length ? `<div class="tb-model-names">${sectionModels.map((model) => `<a class="tb-model-name" href="./models.html?model=${model.id}&book=${selected}&section=${encodeURIComponent(section.no)}${['transport', 'frap'].includes(model.id) ? '&learn=1' : ''}"><span>3D</span><b>${model.title}</b><em>点击观察 →</em></a>`).join('')}</div>` : ''}
           <div class="tb-outline">${section.outline.map((item) => `<span>${item}</span>`).join('')}</div>
           <p class="tb-summary">${section.summary}</p>
           <div class="tb-points">

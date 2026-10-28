@@ -1,144 +1,8 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import test from 'node:test';
-import { createTransportLessonUI } from '../demo/transport-lesson-ui.js';
+import { TRANSPORT_PROGRESS_KEY, restoreTransportProgress } from '../src/transport-progress.js';
 
-// A small DOM fixture for event-flow tests, not a browser/layout replacement.
-// Read the real shell so missing IDs (including the restart button) fail here.
-const shell = readFileSync(new URL('../demo/models.html', import.meta.url), 'utf8');
-const voidTags = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
-
-class Element {
-  constructor(tag, attributes = {}) {
-    this.tag = tag;
-    this.attributes = { ...attributes };
-    this.children = [];
-    this.listeners = new Map();
-    this.scrollCalls = [];
-    this.value = attributes.value ?? '';
-    this.disabled = 'disabled' in attributes;
-    this.hidden = 'hidden' in attributes;
-    this.checked = 'checked' in attributes;
-    this.dataset = Object.fromEntries(Object.entries(attributes)
-      .filter(([name]) => name.startsWith('data-'))
-      .map(([name, value]) => [name.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase()), value]));
-    this.classList = {
-      contains: (name) => (this.attributes.class ?? '').split(/\s+/).includes(name),
-      toggle: (name, force) => {
-        const classes = new Set((this.attributes.class ?? '').split(/\s+/).filter(Boolean));
-        const enabled = force ?? !classes.has(name);
-        if (enabled) classes.add(name); else classes.delete(name);
-        this.attributes.class = [...classes].join(' ');
-        return enabled;
-      },
-    };
-  }
-
-  set innerHTML(html) { this.children = parse(html, this).children; }
-  get textContent() { return this.children.map((child) => typeof child === 'string' ? child : child.textContent).join(''); }
-  set textContent(text) { this.children = [String(text)]; }
-  setAttribute(name, value) {
-    this.attributes[name] = String(value);
-    if (name === 'hidden' || name === 'disabled') this[name] = true;
-  }
-  getAttribute(name) { return this.attributes[name] ?? null; }
-  addEventListener(type, listener) {
-    if (!this.listeners.has(type)) this.listeners.set(type, []);
-    this.listeners.get(type).push(listener);
-  }
-  dispatch(type) {
-    if (type === 'click' && this.disabled) return;
-    for (const listener of this.listeners.get(type) ?? []) listener({ target: this });
-  }
-  click() { this.dispatch('click'); }
-  focus() { this.focused = true; }
-  scrollIntoView(options) { this.scrollCalls.push({ ...options }); }
-  remove() { this.parent.children = this.parent.children.filter((child) => child !== this); }
-  querySelectorAll(selector) {
-    const found = [];
-    for (const child of this.children) {
-      if (typeof child === 'string') continue;
-      if (matches(child, selector)) found.push(child);
-      found.push(...child.querySelectorAll(selector));
-    }
-    return found;
-  }
-  querySelector(selector) { return this.querySelectorAll(selector)[0] ?? null; }
-}
-
-function matches(element, selector) {
-  if (selector.startsWith('#')) return element.attributes.id === selector.slice(1);
-  if (selector.startsWith('.')) return element.classList.contains(selector.slice(1));
-  const attribute = selector.match(/^\[([^=\]]+)(?:="([^"]*)")?\]$/);
-  if (attribute) return attribute[1] in element.attributes
-    && (attribute[2] === undefined || element.attributes[attribute[1]] === attribute[2]);
-  return element.tag === selector;
-}
-
-function parse(html, target = new Element('#document')) {
-  const stack = [target];
-  target.children = [];
-  for (const token of html.match(/<!--[\s\S]*?-->|<[^>]*>|[^<]+/g) ?? []) {
-    if (token.startsWith('<!')) continue;
-    if (token.startsWith('</')) { stack.pop(); continue; }
-    if (!token.startsWith('<')) { stack.at(-1).children.push(token); continue; }
-    const tag = token.match(/^<([\w-]+)/)?.[1];
-    if (!tag) continue;
-    const attributes = {};
-    const attributeText = token.slice(tag.length + 1, -1);
-    for (const match of attributeText.matchAll(/([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)) {
-      attributes[match[1]] = match[2] ?? match[3] ?? match[4] ?? '';
-    }
-    const element = new Element(tag, attributes);
-    element.parent = stack.at(-1);
-    element.parent.children.push(element);
-    if (!voidTags.has(tag) && !token.endsWith('/>')) stack.push(element);
-  }
-  return target;
-}
-
-function fixture(t) {
-  const document = parse(shell);
-  document.getElementById = (id) => document.querySelector(`#${id}`);
-  const priorDocument = globalThis.document;
-  globalThis.document = document;
-  const calls = { lesson: [], experiment: [] };
-  let ui;
-  const scene = {
-    setAutoRotate() {}, setLabelsVisible() {}, clearHighlight() {},
-    setLessonState: (state) => calls.lesson.push({ ...state }),
-    setExperiment: (state) => calls.experiment.push({ ...state }),
-    selectPick: (id) => ui.handlePick({ id }),
-  };
-  ui = createTransportLessonUI({ getEngine: () => scene });
-  t.after(() => {
-    ui.close();
-    if (priorDocument === undefined) delete globalThis.document;
-    else globalThis.document = priorDocument;
-  });
-  const get = (selector) => {
-    const element = document.querySelector(selector);
-    assert.ok(element, `Expected rendered element: ${selector}`);
-    return element;
-  };
-  const click = (selector) => get(selector).click();
-  const input = (id, value) => {
-    const element = get(`#${id}`);
-    element.value = String(value);
-    element.dispatch('input');
-  };
-  const check = (value) => {
-    const element = get('#lsnInhibitor');
-    element.checked = value;
-    element.dispatch('change');
-  };
-  return {
-    ui, calls, get, click, input, check,
-    next: () => get('#cmLessonNext'),
-    body: () => get('#cmLessonBody'),
-    stage: (index) => click(`[data-stage="${index}"]`),
-  };
-}
+import { fixture, memoryStorage } from './helpers/lesson-ui.mjs';
 
 function completeRecognition(f) {
   for (const id of ['membrane', 'channel', 'pump', 'atp']) f.click(`[data-pick="${id}"]`);
@@ -355,7 +219,7 @@ test('restart needs a separate confirmation and cancellation preserves progress'
   f.click('#cmLessonRestartConfirm');
   assert.match(f.body().textContent, /已认识 0 \/ 4/);
   assert.equal(f.get('#cmLessonHistory').hidden, false);
-  assert.match(f.get('#cmLessonHistory').textContent, /第 2 轮.*已保留历史尝试.*刷新后不保留/);
+  assert.match(f.get('#cmLessonHistory').textContent, /第 2 轮.*已保留历史尝试/);
 });
 
 test('navigation and closing dismiss a pending restart without resetting', (t) => {
@@ -370,6 +234,8 @@ test('navigation and closing dismiss a pending restart without resetting', (t) =
   f.click('#cmLessonRestart');
   f.ui.close(); f.ui.open();
   assert.equal(f.get('#cmLessonRestartPrompt').hidden, true);
+  assert.match(f.get('#cmLessonProgress').textContent, /观察机制/);
+  f.stage(0);
   assert.match(f.body().textContent, /已认识 1 \/ 4/);
 });
 
@@ -468,4 +334,158 @@ test('reduced motion defaults to slow and a live preference change pauses autopl
   f.click('[data-prediction="decrease"]');
   f.click('[data-act="run-experiment"]');
   assert.match(f.get('#lsnPumpStatus').textContent, /静态示意/);
+});
+
+
+test('comparison records survive edits and reuse restores conditions without completing a task', async (t) => {
+  const f = fixture(t);
+  f.ui.open(2);
+  f.click('[data-prediction="decrease"]');
+  f.click('[data-act="run-experiment"]');
+  completeExperiment(f);
+  assert.equal(f.body().querySelectorAll('[data-record]').length, 2);
+  assert.match(f.body().textContent, /47%/);
+  assert.match(f.body().textContent, /-47/);
+  const reuse = f.body().querySelector('[data-reuse]');
+  reuse.click(); // Newest run is the target; reuse must invalidate it.
+  assert.equal(f.get('#lsnAtp').value, '0');
+  assert.equal(f.next().disabled, true);
+  assert.match(f.get('#lsnPumpStatus').textContent, /待运行/);
+  assert.equal(f.body().querySelectorAll('[data-record]').length, 2);
+  f.click('[data-act="restore-conditions"]');
+  assert.equal(f.get('#lsnAtp').value, '60');
+  assert.equal(f.get('#lsnGradient').value, '60');
+  await Promise.resolve();
+  const saved = restoreTransportProgress(f.storage.getItem(TRANSPORT_PROGRESS_KEY));
+  assert.equal(saved.state.expResult, null);
+  assert.equal(saved.course.isStepComplete(2), false);
+});
+
+test('reload restores current stage, draft conditions, predictions, records and paused mechanism', async (t) => {
+  const storage = memoryStorage();
+  const f = fixture(t, storage);
+  f.ui.open();
+  completeRecognition(f);
+  f.stage(1);
+  f.click('[data-act="mech-next"]');
+  f.click('[data-act="mech-next"]');
+  f.click('[data-speed="slow"]');
+  f.ui.close();
+  await Promise.resolve();
+  const resumed = fixture(t, storage);
+  resumed.ui.open();
+  assert.match(resumed.body().textContent, /03 \/ 05/);
+  assert.match(resumed.get('[data-act="mech-play"]').textContent, /播放/);
+  assert.equal(resumed.get('[data-speed="slow"]').getAttribute('aria-pressed'), 'true');
+  resumed.stage(2);
+  completeExperiment(resumed);
+  resumed.input('lsnAtp', 25); // Unsaved-to-engine draft must invalidate the result on reload.
+  resumed.ui.close();
+  await Promise.resolve();
+  const again = fixture(t, storage);
+  again.ui.open();
+  assert.match(again.get('#cmLessonProgress').textContent, /动手探索/);
+  assert.equal(again.get('#lsnAtp').value, '25');
+  assert.equal(again.next().disabled, true);
+  assert.match(again.get('#lsnPumpStatus').textContent, /待运行/);
+  assert.equal(again.body().querySelectorAll('[data-record]').length, 1);
+  assert.equal(again.get('[data-prediction="decrease"]').classList.contains('is-selected'), true);
+});
+
+test('reload preserves incomplete ordering and wrong answers without granting completion', async (t) => {
+  const storage = memoryStorage();
+  const f = fixture(t, storage);
+  f.ui.open(3);
+  f.ui.handlePick({ id: 'channel' });
+  f.click('[data-order="na-bind"]');
+  f.click('[data-order="phosphorylation"]');
+  f.click('[data-analysis="a"]');
+  f.ui.close();
+  await Promise.resolve();
+  const resumed = fixture(t, storage);
+  resumed.ui.open();
+  assert.equal(resumed.body().querySelector('.cm-order-selected').querySelectorAll('li').length, 2);
+  assert.equal(resumed.body().querySelectorAll('.bad').length, 2);
+  assert.equal(resumed.next().disabled, true);
+});
+
+test('restart preserves saved history; confirmed clear removes only this lesson and resets its tutor', async (t) => {
+  const storage = memoryStorage();
+  storage.setItem('unrelated', 'keep');
+  const f = fixture(t, storage);
+  const tutor = f.ui.tutor;
+  f.ui.open(2);
+  completeExperiment(f);
+  f.click('#cmLessonRestart');
+  f.click('#cmLessonRestartConfirm');
+  await Promise.resolve();
+  assert.equal(restoreTransportProgress(storage.getItem(TRANSPORT_PROGRESS_KEY)).course.attempt, 2);
+  f.stage(2);
+  assert.equal(f.body().querySelectorAll('[data-record]').length, 1);
+  f.click('#cmLessonHelpToggle');
+  f.click('#cmLessonClear');
+  f.click('#cmLessonClearCancel');
+  assert.equal(f.body().querySelectorAll('[data-record]').length, 1);
+  f.click('#cmLessonHelpToggle');
+  f.click('#cmLessonClear');
+  f.click('#cmLessonClearConfirm');
+  await Promise.resolve();
+  assert.equal(storage.getItem(TRANSPORT_PROGRESS_KEY), null);
+  assert.equal(storage.getItem('unrelated'), 'keep');
+  assert.equal(tutor.getTutorContext().progress.completedSteps, 0);
+  assert.match(f.body().textContent, /已认识 0 \/ 4/);
+  f.click('[data-pick="pump"]');
+  await Promise.resolve();
+  assert.equal(restoreTransportProgress(storage.getItem(TRANSPORT_PROGRESS_KEY)).course.attempt, 1);
+});
+
+test('storage denial does not interrupt learning or claim a successful save', async (t) => {
+  const f = fixture(t, { getItem() { throw new Error('Denied'); }, setItem() { throw new Error('Denied'); } });
+  f.ui.open();
+  f.click('[data-pick="pump"]');
+  await Promise.resolve();
+  assert.match(f.body().textContent, /已认识 1 \/ 4/);
+  assert.match(f.get('#cmLessonSaveStatus').textContent, /保存失败/);
+});
+
+
+test('completed lessons reload in review with all answers and experiment results restored', async (t) => {
+  const storage = memoryStorage();
+  const f = fixture(t, storage);
+  f.ui.open();
+  completeRecognition(f);
+  f.click('#cmLessonNext');
+  completeMechanism(f);
+  f.click('#cmLessonNext');
+  completeExperiment(f);
+  f.click('#cmLessonNext');
+  completeExercises(f);
+  f.click('#cmLessonNext');
+  await Promise.resolve();
+  const resumed = fixture(t, storage);
+  resumed.ui.open();
+  assert.match(resumed.get('#cmLessonProgress').textContent, /认识结构.*复习/);
+  assert.match(resumed.body().textContent, /已认识 4 \/ 4/);
+  resumed.stage(2);
+  assert.match(resumed.body().textContent, /0% 相对速率/);
+  assert.equal(resumed.next().disabled, false);
+  resumed.stage(3);
+  assert.equal(resumed.body().querySelectorAll('.ok').length, 3);
+  assert.match(resumed.body().textContent, /样板课完成/);
+});
+
+test('restarting a saved draft before any evidence replaces the old saved stage', async (t) => {
+  const storage = memoryStorage();
+  const f = fixture(t, storage);
+  f.ui.open(2);
+  f.input('lsnAtp', 25);
+  await Promise.resolve();
+  assert.equal(restoreTransportProgress(storage.getItem(TRANSPORT_PROGRESS_KEY)).state.stage, 2);
+  f.click('#cmLessonRestart');
+  f.click('#cmLessonRestartConfirm');
+  await Promise.resolve();
+  const restored = restoreTransportProgress(storage.getItem(TRANSPORT_PROGRESS_KEY));
+  assert.equal(restored.state.stage, 0);
+  assert.equal(restored.state.exp.atp, 60);
+  assert.equal(restored.course.attempt, 2);
 });

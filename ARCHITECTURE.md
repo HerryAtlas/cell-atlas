@@ -24,15 +24,37 @@ A lesson must remain completable when every AI service is offline.
 
 | Layer | Responsibility | Current files |
 |---|---|---|
-| Course content | objectives, structures, mechanism text, experiments, exercises | `src/transport-lesson.js` |
-| Course flow | declarative step requirements | `src/transport-flow.js` |
-| Experiment | condition validation and task-specific prediction feedback | `src/transport-experiment.js` |
+| Course content | objectives, structures, mechanism text, experiments, exercises | `src/transport-lesson.js`, `src/frap-lesson.js` |
+| Course flow | declarative step requirements | `src/transport-flow.js`, `src/frap-flow.js` |
+| Experiment | condition validation and task-specific prediction feedback | `src/transport-experiment.js`, `src/frap-experiment.js` |
 | Engine | deterministic state machine, evidence, completion, snapshot | `src/course-engine.js` |
 | Scene | pickable structures, highlight, mechanism state, experiment state | `src/models-scene.js` |
-| Lesson UI | four stages, playback, prediction form, exercises, mobile peek | `demo/transport-lesson-ui.js` |
+| Lesson UI | shared stages, playback, exercises, mobile peek; per-lesson experiment presenters | `demo/guided-lesson-ui.js`, `demo/*-lesson-ui.js`, `demo/*-explore.js` |
+| Local persistence | validated snapshots, view drafts, course-isolated records | `src/lesson-progress.js`, `src/transport-progress.js`, `src/frap-progress.js` |
 | Tests | engine, experiment and lesson UI regressions | `tests/*.test.mjs` |
 
 The engine has no DOM, Three.js, React, network or LLM dependency.
+
+The gallery owns one lesson controller at a time. Switching models disposes the
+old controller, flushes its pending save, stops timers and removes shell/media
+listeners before mounting the next lesson. Tutors receive only the same read-only
+observer API. Lesson-specific experiment presenters never receive network or shell
+capabilities.
+
+Both lessons keep the version-1 local save envelope. Transport keeps its original
+key and flow revision; FRAP uses `cell-atlas.lesson.frap.progress`, stable flow ID
+`frap-lesson-v1` and flow revision 1. The shared validator derives condition keys,
+ordering length and result fields from each lesson. A foreign lesson snapshot is
+rejected even if stored under the wrong key; clearing one key preserves the other.
+
+FRAP has four mechanism states and a target of mobile fraction 40% / exchange
+rate 100%. `frapIntensity()` is shared by its 3D display and result curve. The
+scene receives raw condition percentages and `{ active, mode, step,
+experimentResult }`; each run includes a sequence ID to replay identical
+conditions, while edits send a null result. Experiment playback is finite and
+never grants mechanism evidence. Long-time plateau and finite-window intensity
+are labeled separately. Reduced motion displays the observation endpoint. See
+`FRAP-SOURCES.md` for scientific assumptions and sources.
 
 ## 3. Evidence-based completion
 
@@ -58,7 +80,7 @@ The UI dispatches evidence:
 - `experiment.run`
 - `exercise.answer`
 
-Evidence is scoped to its stage and attempt. `revoke()` marks matching evidence inactive without deleting previous answers or experiment conditions. Only active evidence in the current attempt contributes to progress. `reset()` starts a new attempt, preserving previous attempts in memory. Nothing is persisted or uploaded automatically. Restart requires a separate confirmation, supports cancellation and Escape, and explains that history lasts only during the current page session; refresh discards it.
+Evidence is scoped to its stage and attempt. `revoke()` marks matching evidence inactive without deleting previous answers or experiment conditions. Only active evidence in the current attempt contributes to progress. `reset()` starts a new attempt, preserving previous attempts in memory. The standalone lesson automatically saves a versioned engine snapshot and a minimal view draft to one origin-local browser key via src/transport-progress.js; nothing is uploaded. Restore validates lesson evidence and derives feedback from answers rather than trusting saved display labels. Mechanism playback resumes paused. Restart requires confirmation and preserves history; the separate confirmed clear action discards all attempts and removes only this lesson key. Failed writes are visible. Incompatible saves are preserved until explicitly cleared, and stale pages cannot overwrite a changed storage value. The experiment table shows the latest 20 runs across attempts; reusing conditions never counts as running an experiment.
 
 `goTo()` allows browsing any stage. The final `advance()` requires `canComplete()` to be true for the entire lesson. A completed lesson can be revisited without another completion notification; the UI also offers an explicit restart. Revoking required evidence invalidates completion until the learner supplies new evidence and finishes again.
 
@@ -152,7 +174,7 @@ Not implemented yet:
 - AI tutor adapter;
 - Jarvis bridge;
 - Tencent Memory adapter;
-- persistent learner records and backup;
+- cloud synchronization and learner-record backup;
 - multi-user/classroom auth.
 
 The first integration milestone should be **authoring memory**, not student personal data: let Jarvis remember project decisions, course maps and review outcomes while the course engine remains the source of lesson truth.

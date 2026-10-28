@@ -854,7 +854,7 @@ function UsageManual({ onClose }) {
           <div>
             <div className="ca-manual-eyebrow">CELL ATLAS / COMPLETE MANUAL</div>
             <h2 id="caManualTitle">使用手册</h2>
-            <p>从学习手册、全书分节，到 14 个模型与跨膜运输导学。</p>
+            <p>从学习手册、全书分节，到 14 个模型与两节独立站互动导学。</p>
           </div>
           <button type="button" className="ca-iconbtn" onClick={onClose} aria-label="关闭使用手册" autoFocus>
             <Icon name="close" />
@@ -885,19 +885,19 @@ function UsageManual({ onClose }) {
 
           <section className="ca-manual-section">
             <div className="ca-manual-no">03 / GUIDED LESSON</div>
-            <h3>跨膜运输导学</h3>
+            <h3>跨膜运输 / 膜的流动性与 FRAP</h3><p>完整四阶段导学在独立站模型页打开；插件内共享课程知识和 3D 模型。</p>
             <div className="ca-manual-grid ca-manual-stages">
-              <div><b>01 认识结构</b><p>点模型里的膜、通道、泵、ATP；也可以点下方名称。</p><em>完成：四个结构都点过</em></div>
-              <div><b>02 观察机制</b><p>可选正常 / 慢速，或逐步看 E1–E2 的 5 个步骤；暂停、回看、重播不会清空进度。</p><em>完成：五个步骤都看过</em></div>
-              <div><b>03 动手探索</b><p>先预测再运行，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p><em>完成：目标实验运行成功</em></div>
-              <div><b>04 场景练习</b><p>点击泵、排 5 步顺序、选对结果分析；答错可重试。</p><em>完成：三道题都正确</em></div>
+              <div><b>01 认识结构</b><p>跨膜运输看膜、通道、泵、ATP；FRAP 看膜面、荧光标记、漂白区与曲线。</p><em>完成：四个结构都点过</em></div>
+              <div><b>02 观察机制</b><p>可选正常 / 慢速或逐步看：跨膜运输 5 步，FRAP 4 步。暂停、回看不清空进度。</p><em>完成：本课步骤都看过</em></div>
+              <div><b>03 动手探索</b><p>先预测再运行，记录可对照、复用条件，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p><em>完成：目标实验运行成功</em></div>
+              <div><b>04 场景练习</b><p>点击本课目标结构、排好实验或机制顺序、选对结果分析；答错可重试。</p><em>完成：三道题都正确</em></div>
             </div>
             <div className="ca-manual-target">
               <b>目标实验 · 必须精确匹配</b>
-              <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
+              <p>跨膜运输：ATP 0%、梯度 60%、无抑制剂。FRAP：可移动比例 40%、相对交换速度 100%。</p>
               <p>只有这个条件计入完成；其它组合是自由探索。改任何参数后，旧结果失效，必须重新运行。所有阶段都有当前有效证据，才能结课。</p>
             </div>
-            <p className="ca-manual-note">完成后进入复习；「重新学习」需要二次确认，历史只在本次打开期间保留。手机端点「看模型」收起面板后直接点结构。</p>
+            <p className="ca-manual-note">完成后进入复习；「重新学习」需要二次确认，导学进度保存在当前浏览器，刷新可继续；使用说明内可清除本课记录。手机端点「看模型」收起面板后直接点结构。</p>
           </section>
 
           <section className="ca-manual-section">
@@ -918,7 +918,7 @@ function UsageManual({ onClose }) {
           <section className="ca-manual-section">
             <div className="ca-manual-no">05 / BOUNDARIES</div>
             <h3>当前边界</h3>
-            <p className="ca-manual-note">本手册只描述插件当前功能。完成判定由课程引擎按证据执行，不依赖 AI；AI 助教、Jarvis 和记忆服务尚未接入主流程，也不会上传学习记录。学习进度目前只保留在本次打开期间。</p>
+            <p className="ca-manual-note">本手册只描述插件当前功能。完成判定由课程引擎按证据执行，不依赖 AI；AI 助教、Jarvis 和记忆服务尚未接入主流程，也不会上传学习记录。独立导学页自动保存到当前浏览器，不跨设备同步。</p>
           </section>
 
           <div className="ca-manual-foot">
@@ -1644,13 +1644,13 @@ function AtlasExperience() {
                     </div>
                   </div>
                   <div className="ca-usage-col ca-usage-col-lesson">
-                    <div className="ca-usage-col-title">GUIDED LESSON / 跨膜运输导学</div>
+                    <div className="ca-usage-col-title">GUIDED LESSON / 两节互动课</div>
                     <div className="ca-usage-target">
                       <b>目标实验 · 必须精确匹配</b>
-                      <div><code>ATP 0%</code><code>梯度 60%</code><code>无抑制剂</code></div>
+                      <p>跨膜运输：ATP 0%、梯度 60%、无抑制剂。FRAP：可移动比例 40%、相对交换速度 100%。</p>
                       <p>只有这个条件计入完成；其它组合是自由探索。改任何参数后，旧结果失效，必须重新运行。</p>
                     </div>
-                    <p className="ca-usage-note">完整规则已经列在本页；插件内可以从「物质的跨膜运输」章节打开模型观察结构。通用操作、模型和全部按键见完整使用手册。</p>
+                    <p className="ca-usage-note">完整互动导学在独立站模型页；插件内从跨膜运输、细胞质膜或实验方法章节打开对应模型。FRAP 对照记录分别比较平台与恢复半时，两课进度独立保存。通用操作、模型和全部按键见完整使用手册。</p>
                     <button
                       type="button"
                       className="ca-usage-link"
@@ -1662,37 +1662,37 @@ function AtlasExperience() {
                   <div className="ca-usage-rule">
                     <span>01</span>
                     <b>认识结构</b>
-                    <p>点模型里的膜、通道、泵、ATP；标签已隐藏，也可以点下方名称。</p>
+                    <p>每课认识四个结构；可点击模型或名称。FRAP 关注膜面、荧光标记、漂白区与曲线。</p>
                     <em>完成：四个结构都点过</em>
                   </div>
                   <div className="ca-usage-rule">
                     <span>02</span>
                     <b>观察机制</b>
-                    <p>可选正常 / 慢速，或逐步看 E1–E2 的 5 个步骤；暂停、回看、重播不会清空进度。</p>
-                    <em>完成：五个步骤都看过</em>
+                    <p>可选正常 / 慢速或逐步看：跨膜运输 5 步，FRAP 4 步。暂停、回看不清空进度。</p>
+                    <em>完成：本课步骤都看过</em>
                   </div>
                   <div className="ca-usage-rule">
                     <span>03</span>
                     <b>动手探索</b>
-                    <p>先预测再运行，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p>
+                    <p>先预测再运行，记录可对照、复用条件，泵按速率区间演示；只有目标实验计完成。减少动态效果开启时显示静态示意。</p>
                     <em>完成：目标实验运行成功</em>
                   </div>
                   <div className="ca-usage-rule">
                     <span>04</span>
                     <b>场景练习</b>
-                    <p>点击泵、排 5 步顺序、选对结果分析；三项都正确才算完成，答错可重试。</p>
+                    <p>点击本课目标结构、排好实验或机制顺序、选对结果分析；三项都正确才算完成，答错可重试。</p>
                     <em>完成：三道题都正确</em>
                   </div>
                 </div>
                 <div className="ca-usage-notes">
                   <div><b>自由浏览</b><p>四个阶段可随时切换，但最终结课要求每个阶段都有当前有效证据。</p></div>
-                  <div><b>复习与重学</b><p>完成后再进入是复习；「重新学习」需要二次确认，历史只在本次打开期间保留。</p></div>
+                  <div><b>复习与重学</b><p>完成后再进入是复习；「重新学习」需要二次确认，导学进度保存在当前浏览器，刷新可继续；使用说明内可清除本课记录。</p></div>
                   <div><b>手机</b><p>点「看模型」收起面板，直接点 3D 结构；选中后自动回到面板。</p></div>
                   <div><b>判定边界</b><p>本版没有 AI 自动批改；是否完成由课程引擎按上述证据判断。</p></div>
                 </div>
                 <div className="ca-usage-update">
                   <b>这一版更新</b>
-                  <span>四页入口引导 · 右上角「?」可随时重开 · 章节 / 模型深链 · 8 个结构模型 + 6 个方法模型</span>
+                  <span>新增膜的流动性与 FRAP 互动课 · 两课独立进度 · 曲线与实验对照 · 四页入口引导</span>
                 </div>
                 <div className="ca-intro-actions">
                   <button type="button" className="ca-intro-secondary" onClick={() => setIntroPage(1)}>← 返回</button>
