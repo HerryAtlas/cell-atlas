@@ -57,6 +57,10 @@ export async function runPluginSmoke({ playwright, executablePath, channel, onPr
         await page.locator('.ca-launcher').click();
         for (let i = 0; i < 4; i++) await page.locator('.ca-intro .ca-enter').click();
         await page.locator('.ca-intro').waitFor({ state: 'hidden' });
+        // The DSH slot can sit inside transformed/clipped layout containers.
+        // The top-layer dialog must still cover the whole viewport.
+        if (name === 'desktop') await page.addStyleTag({ content:
+          '#plugin-root { transform: translateX(180px); width: 70%; overflow: hidden; }' });
         // Fullscreen can be rejected in Electron hosts; the overlay must fall
         // back to an in-window immersive mode instead of hiding the control.
         const fullscreenButton = page.locator('.ca-root button[aria-label*="全屏"]');
@@ -65,6 +69,9 @@ export async function runPluginSmoke({ playwright, executablePath, channel, onPr
         await page.waitForFunction(() =>
           Boolean(document.fullscreenElement) ||
           document.querySelector('.ca-root')?.classList.contains('is-expanded'));
+        const rootBox = await page.locator('.ca-root').boundingBox();
+        assert.equal(Math.round(rootBox.x), 0, 'Expanded overlay escapes the slot container');
+        assert.equal(Math.round(rootBox.width), viewport.width, 'Expanded overlay spans the viewport');
         const fullscreenTop = await page.locator('.ca-root').evaluate((el) => el.getBoundingClientRect().top);
         assert.ok(fullscreenTop <= 1, 'Fullscreen or expanded mode starts at the viewport top');
         await page.keyboard.press('Escape');

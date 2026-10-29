@@ -146,6 +146,10 @@ function useAtlasOpen() {
   return open;
 }
 
+function openAtlas() {
+  store.set(true);
+}
+
 function useT() {
   const [, force] = React.useReducer((value) => value + 1, 0);
   React.useEffect(() => {
@@ -322,7 +326,7 @@ function Launcher(props) {
         title={t('launcherTitle', '细胞图谱')}
         aria-label={t('launcherAria', '打开细胞图谱')}
         aria-pressed={open}
-        onClick={() => store.set(true)}
+        onClick={openAtlas}
         data-wide={props && props.wide ? 'true' : 'false'}
       >
         <span className="ca-launcher-halo" aria-hidden="true" />
@@ -345,7 +349,7 @@ function HeaderEntry() {
         title={t('launcherTitle', '细胞图谱')}
         aria-label={t('launcherAria', '打开细胞图谱')}
         aria-haspopup="dialog"
-        onClick={() => store.set(true)}
+        onClick={openAtlas}
       >
         <span className="ca-header-entry-mark-wrap">
           <CellMark className="ca-header-entry-mark" />
@@ -932,7 +936,7 @@ function UsageManual({ onClose }) {
               <span><kbd>R</kbd> 重置视角</span>
               <span><kbd>−</kbd><kbd>=</kbd> 亮度</span>
             </div>
-            <p className="ca-manual-note">全屏：宿主允许时进入系统全屏；宿主限制原生全屏时，扩展为窗口内沉浸模式。Esc 先退出全屏 / 沉浸，再关闭当前面板。</p>
+            <p className="ca-manual-note">全屏：宿主允许时进入系统全屏；宿主限制原生全屏时，扩展为窗口内沉浸模式。DSH 桌面版如侧栏仍显示，按 Ctrl+B 收起宿主侧栏。Esc 先退出全屏 / 沉浸，再关闭当前面板。</p>
           </section>
 
           <section className="ca-manual-section">
@@ -986,6 +990,7 @@ function AtlasExperience() {
   const [modelView, setModelView] = React.useState(null);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const dialogRef = React.useRef(null);
   const current = CHAPTERS[chapter];
   const study = current.study;
   const ended = !playing && chapter === CHAPTERS.length - 1 && progress > 0.995;
@@ -1121,6 +1126,7 @@ function AtlasExperience() {
 
   const close = React.useCallback(() => {
     setIsExpanded(false);
+    if (dialogRef.current?.open) dialogRef.current.close();
     if (document.fullscreenElement && document.exitFullscreen) {
       document.exitFullscreen().catch(() => {});
     }
@@ -1253,7 +1259,7 @@ function AtlasExperience() {
         return;
       }
       if (actionsRef.current.bookOpen) {
-        if (event.key === 'Escape' || event.key.toLowerCase() === 'b') {
+        if (event.key === 'Escape' || (event.key.toLowerCase() === 'b' && !event.ctrlKey && !event.metaKey)) {
           event.preventDefault();
           actionsRef.current.closeBook();
         }
@@ -1270,7 +1276,7 @@ function AtlasExperience() {
         else actionsRef.current.close();
         return;
       }
-      if (event.key.toLowerCase() === 'b') {
+      if (event.key.toLowerCase() === 'b' && !event.ctrlKey && !event.metaKey) {
         event.preventDefault();
         actionsRef.current.openBook();
         return;
@@ -1322,7 +1328,28 @@ function AtlasExperience() {
 
   const immersive = isFullscreen || isExpanded;
 
+  React.useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return undefined;
+    if (!dialog.open) {
+      try {
+        dialog.showModal();
+      } catch {
+        dialog.setAttribute('open', '');
+      }
+    }
+    return () => {
+      if (dialog.open) dialog.close();
+    };
+  }, []);
+
   return (
+    <dialog
+      ref={dialogRef}
+      className="ca-dialog"
+      aria-label={t('dialog', '细胞图谱 —— 一场穿过活细胞的视觉漫游')}
+      onCancel={(event) => event.preventDefault()}
+    >
     <div
       ref={rootRef}
       className={`ca-root ${ready ? 'is-ready' : ''} ${isExpanded ? 'is-expanded' : ''}`}
@@ -1813,7 +1840,7 @@ function AtlasExperience() {
               </div>
             )}
           </div>
-          <div className="ca-intro-skip">按 T 学习手册 · B 全书分节 · 拖动旋转</div>
+          <div className="ca-intro-skip">按 T 学习手册 · B 全书分节 · Ctrl+B 收起宿主侧栏 · 拖动旋转</div>
         </div>
       )}
 
@@ -1859,6 +1886,7 @@ function AtlasExperience() {
         </div>
       )}
     </div>
+    </dialog>
   );
 }
 
@@ -2077,6 +2105,20 @@ const LAUNCHER_CSS = `
 `;
 
 const ATLAS_CSS = `
+.ca-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+.ca-dialog::backdrop { background: #02060b; }
 .ca-root {
   position: fixed;
   inset: 0;
