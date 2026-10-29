@@ -1,5 +1,13 @@
 # Real-browser lesson smoke tests
 
+`node tests/browser/model-gallery.mjs` additionally checks all fourteen built
+models at 1440×1000 and 390×844, exercises orbit/zoom, checks WebGL and console
+errors, and saves screenshots plus `report.json` in `tests/browser-results/models/`.
+Inspect those screenshots for framing, structure visibility and label overlap;
+successful loading alone does not establish visual quality. Use the same browser
+setup and `BROWSER_EXECUTABLE` below. `pnpm test` also checks production model
+geometry, animation transforms, membrane orientation and rendering budgets.
+
 `pnpm test:browser` runs transport, FRAP and the plugin integration suites in real
 desktop and mobile browsers. FRAP covers both chapter entry links, actual ROI
 raycasting, four-step completion, curve comparisons, repeated runs, draft/answer
@@ -16,6 +24,15 @@ FRAP without changing transport. It also checks Escape, focus restoration,
 unrelated host controls and actual canvas picking. All external requests are
 blocked and asserted absent, including Netlify. This validates the bundle's
 browser integration; it does not launch or replace the installed DSH desktop app.
+
+Installed DSH validation (2026-10-29, Windows): both lessons reached completion
+through the actual client UI, including canvas identification and target experiments.
+A full app exit/relaunch retained transport's ATP 0 / gradient 60 result and FRAP's
+40 / 100 result (plateau 52, half-time 3.47) independently. Transport's partial ordering
+also survived closing/reopening the plugin. Existing records were retained. Ctrl+R did
+not reload this installed client, so persistence was checked with a full restart.
+The desktop overlay now reserves 40 px for DSH native controls; the browser host also
+checks that lesson actions and the textbook fit below that reserved strip.
 
 This optional development suite uses Playwright with a real WebGL2 browser and the built docs page. It is independent from the mocked UI unit tests and adds no public-site runtime dependency.
 

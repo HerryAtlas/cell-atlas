@@ -57,8 +57,17 @@ export async function runPluginSmoke({ playwright, executablePath, channel, onPr
         await page.locator('.ca-launcher').click();
         for (let i = 0; i < 4; i++) await page.locator('.ca-intro .ca-enter').click();
         await page.locator('.ca-intro').waitFor({ state: 'hidden' });
+        // The installed Windows client has native controls above the web overlay.
+        // Emulate that reserved strip in the browser host; mobile stays unchanged.
+        if (name === 'desktop') await page.addStyleTag({ content:
+          '.ca-root { --ca-host-top: 40px !important; }' });
         await page.keyboard.press('b');
         await page.locator('.ca-book-panel').waitFor({ state: 'visible' });
+        await page.waitForFunction(() => getComputedStyle(document.querySelector('.ca-book-backdrop')).opacity === '1');
+        await page.locator('.ca-book-panel').evaluate((el) => Promise.all(el.getAnimations().map((animation) => animation.finished)));
+        const bookBox = await page.locator('.ca-book-panel').boundingBox();
+        assert.ok(bookBox.y >= (name === 'desktop' ? 40 : 0));
+        assert.ok(bookBox.y + bookBox.height <= viewport.height, 'Textbook stays inside available host height');
       }
       async function open(id) {
         const course = courses[id];
@@ -75,6 +84,8 @@ export async function runPluginSmoke({ playwright, executablePath, channel, onPr
         assert.equal(page.url(), url + '/');
         assert.equal(page.frames().length, 1, 'Lesson is in the plugin DOM, not a remote frame');
         assert.equal(await host.locator('#cmLessonBook').evaluate((el) => el.tagName), 'BUTTON');
+        const helpBox = await host.locator('#cmLessonHelpToggle').boundingBox();
+        assert.ok(helpBox.y >= (name === 'desktop' ? 40 : 0), 'Lesson actions clear native titlebar');
       }
       async function actualPick(id) {
         if (name === 'mobile') await click('#cmLessonPeek');

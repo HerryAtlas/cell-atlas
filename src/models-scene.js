@@ -8,6 +8,8 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { organicGeometry, cisternaGeometry, annulusGeometry, beadInstances, lipidBilayer } from './model-geometry.js';
 import { MODEL_SPECS, modelById } from './model-catalog.js';
 import { getTransportStructure } from './transport-lesson.js';
 import { advancePumpCycle } from './transport-motion.js';
@@ -71,7 +73,26 @@ function capsule(group, r, length, color, position, rotation, opts = {}) {
 }
 function box(group, sx, sy, sz, color, position, rotation, opts = {}) {
   const mat = opts.glass ? glass(color, opts.opacity ?? 0.2) : opts.glow ? glow(color, opts.glow) : material(color, opts);
-  return add(new THREE.BoxGeometry(sx, sy, sz), mat, position, rotation, group);
+  const radius = Math.min(sx, sy, sz) * 0.16;
+  return add(new RoundedBoxGeometry(sx, sy, sz, 2, radius), mat, position, rotation, group);
+}
+function organic(group, radius, color, position, scale = [1, 1, 1], phase = 0, opts = {}) {
+  const mesh = add(organicGeometry(radius, opts.strength ?? 0.10, phase),
+    opts.glass ? glass(color, opts.opacity ?? 0.2) : material(color, { roughness: 0.65, metalness: 0.02, ...opts }),
+    position, null, group, scale);
+  if (opts.granular) {
+    const p = mesh.geometry.attributes.position, points = [];
+    for (let row = 3; row < 26; row += 2) for (let col = row % 3; col < 40; col += 3) {
+      const index = row * 41 + col;
+      points.push([p.getX(index) * 0.985, p.getY(index) * 0.985, p.getZ(index) * 0.985]);
+    }
+    beadInstances(mesh, points, radius * 0.045, color, [1, 1, 1], 'molecular-surface-relief');
+  }
+  return mesh;
+}
+function cisterna(group, width, depth, thickness, color, position, bend = 0.15, phase = 0) {
+  return add(cisternaGeometry(width, depth, thickness, bend, phase),
+    material(color, { roughness: 0.57, metalness: 0.02, transparent: true, opacity: 0.85 }), position, null, group);
 }
 function torus(group, r, tube, color, position, rotation, opts = {}) {
   return add(new THREE.TorusGeometry(r, tube, 12, 40, opts.arc ?? TAU), opts.glow ? glow(color, opts.glow) : material(color, opts), position, rotation, group);
@@ -149,9 +170,9 @@ function buildProkaryoteEukaryote() {
 
   const pro = new THREE.Group();
   pro.position.set(-3.35, 0.35, 0);
-  add(new THREE.SphereGeometry(1.45, 44, 30), glass(0x4adac8, 0.15), null, null, pro, [1.25, 1, 1]);
-  add(new THREE.SphereGeometry(1.52, 24, 16), new THREE.MeshBasicMaterial({ color: 0x5ee8d7, wireframe: true, transparent: true, opacity: 0.075 }), null, null, pro, [1.25, 1, 1]);
-  add(new THREE.SphereGeometry(1.58, 24, 16), new THREE.MeshBasicMaterial({ color: 0x8df2df, wireframe: true, transparent: true, opacity: 0.035 }), null, null, pro, [1.28, 1.03, 1.03]);
+  add(organicGeometry(1.45, 0.035, 1), glass(0x4adac8, 0.15), null, null, pro, [1.25, 1, 1]);
+  add(organicGeometry(1.52, 0.035, 1), glass(0x5ee8d7, 0.08), null, null, pro, [1.25, 1, 1]);
+  add(organicGeometry(1.58, 0.035, 1), glass(0x8df2df, 0.025), null, null, pro, [1.28, 1.03, 1.03]);
   add(new THREE.SphereGeometry(1.72, 20, 14), glass(0x7cead8, 0.045), null, null, pro, [1.26, 1.02, 1.02]);
   const r = rand(12);
   for (let i = 0; i < 42; i += 1) {
@@ -180,7 +201,7 @@ function buildProkaryoteEukaryote() {
   // pili, a flagellar motor and storage granules make the prokaryote read as a
   // whole cell rather than a labelled sphere.
   add(new THREE.SphereGeometry(1.63, 36, 24), glass(0x5de7d2, 0.045), [0, 0, 0], null, pro, [1.27, 1.01, 1.01]);
-  add(new THREE.SphereGeometry(1.5, 28, 18), new THREE.MeshBasicMaterial({ color: 0x7ff0de, wireframe: true, transparent: true, opacity: 0.11 }), [0, 0, 0], null, pro, [1.24, 1, 1]);
+  add(organicGeometry(1.5, 0.035, 1), glass(0x7ff0de, 0.05), [0, 0, 0], null, pro, [1.24, 1, 1]);
   const proRng = rand(19);
   for (let i = 0; i < 18; i += 1) {
     const a = proRng() * TAU;
@@ -189,7 +210,7 @@ function buildProkaryoteEukaryote() {
     tube(pro, [p, [p[0] * 1.1, p[1] * 1.1, p[2] * 1.1], [p[0] * 1.16 + Math.cos(a) * 0.1, p[1] * 1.16, p[2] * 1.16]], 0.012, 0x8ff3df, { transparent: true, opacity: 0.55, segments: 8 });
   }
   const motor = new THREE.Group();
-  motor.position.set(-1.48, 0.05, 0.18);
+  motor.position.set(-1.86, 0.05, 0.18);
   for (let i = 0; i < 3; i += 1) torus(motor, 0.12 + i * 0.035, 0.012, 0x8fd9ff, [0, 0, 0], [0, Math.PI / 2, 0], { transparent: true, opacity: 0.5 });
   ball(motor, 0.07, 0x9fefff, [0, 0, 0], { glow: 0.8, segments: 8, rings: 6 });
   pro.add(motor);
@@ -215,7 +236,10 @@ function buildProkaryoteEukaryote() {
     ball(pro, 0.16, 0xffdd96, [0.45 - i * 0.34, -0.35 + i * 0.22, 0.35], { glass: true, opacity: 0.28, segments: 12, rings: 8 });
   }
   const tail = [];
-  for (let i = 0; i < 7; i += 1) tail.push([-1.35 - i * 0.22, 0.05 + Math.sin(i * 0.9) * 0.3, 0.25 * Math.sin(i * 1.4)]);
+  for (let i = 0; i <= 64; i += 1) {
+    const u = i / 64, a = u * TAU * 2.7, envelope = Math.min(1, u * 5);
+    tail.push([-1.86 - u * 1.3, 0.05 + Math.sin(a) * 0.2 * envelope, 0.18 + (Math.cos(a) - 1) * 0.2 * envelope]);
+  }
   tube(pro, tail, 0.035, 0x70c8ff, { glow: 1.2, segments: 60 });
   for (let i = 0; i < 9; i += 1) {
     const a = (i / 9) * TAU;
@@ -225,8 +249,8 @@ function buildProkaryoteEukaryote() {
 
   const euk = new THREE.Group();
   euk.position.set(2.85, 0.1, 0);
-  add(new THREE.SphereGeometry(2.15, 52, 34), glass(0x9b86ef, 0.12), null, null, euk);
-  add(new THREE.SphereGeometry(2.22, 28, 18), new THREE.MeshBasicMaterial({ color: 0xbea9ff, wireframe: true, transparent: true, opacity: 0.06 }), null, null, euk);
+  add(organicGeometry(2.15, 0.045, 2), glass(0x9b86ef, 0.12), null, null, euk);
+  add(organicGeometry(2.18, 0.045, 2), glass(0xbea9ff, 0.045), null, null, euk);
   ball(euk, 0.96, 0xcd9aff, [0.2, 0.25, 0.05], { glass: true, opacity: 0.35 });
   ball(euk, 0.32, 0xffa6d9, [0.45, 0.35, 0.25], { glow: 1.6 });
   const er = [[-0.1, -0.2, 1.65], [0.7, 0.1, 1.2], [1.05, -0.5, 0.65], [0.45, -0.9, 0.25], [-0.25, -0.55, 0.65], [-0.8, -0.9, 1.05], [-0.7, -0.35, 1.55]];
@@ -281,11 +305,11 @@ function buildProkaryoteEukaryote() {
   // Rough ER cisternae with bound ribosomes, plus a layered Golgi stack.
   for (let i = 0; i < 4; i += 1) {
     const y = 0.42 - i * 0.13;
-    tube(euk, [[-0.95, y, 0.95], [-0.55, y + 0.08, 1.15], [-0.1, y, 1.12], [0.25, y - 0.04, 0.95]], 0.022, 0xffc58d, { glow: 0.35, transparent: true, opacity: 0.72, segments: 32 });
+    cisterna(euk, 0.66, 0.29, 0.025, 0xd5a16f, [-0.35, y, 1.05], 0.075, i);
     for (let k = 0; k < 4; k += 1) ball(euk, 0.026, 0xffe1a8, [-0.8 + k * 0.3, y + 0.1, 1.06], { glow: 0.55, segments: 6, rings: 4 });
   }
   for (let i = 0; i < 4; i += 1) {
-    const t = torus(euk, 0.4 - i * 0.035, 0.025, 0x8df2e4, [0.7, 0.15 - i * 0.12, 1.05], [Math.PI / 2 + i * 0.08, 0.1, 0.22], { transparent: true, opacity: 0.52 });
+    const t = cisterna(euk, 0.4 - i * 0.035, 0.28, 0.03, 0x8df2e4, [0.7, 0.15 - i * 0.12, 1.05], 0.1, i);
     t.scale.z = 0.72;
   }
   // Mitochondrial cristae and lysosomes/peroxisomes.
@@ -319,7 +343,7 @@ function buildProkaryoteEukaryote() {
   label(group, '线粒体', [4.35, -0.6, 0.2], 'MITOCHONDRION');
   label(group, '内膜系统', [1.1, -1.8, 1.0], 'ENDOMEMBRANE');
   label(group, '80S 核糖体', [2.15, -1.45, 1.0], '80S RIBOSOME');
-  return setDistance(group, 14.2);
+  return setDistance(group, 20.2);
 }
 
 /* ------------------------------------------------------------------ */
@@ -328,41 +352,8 @@ function buildProkaryoteEukaryote() {
 function buildMembrane() {
   const group = new THREE.Group();
   group.userData.distance = 11.2;
-  const nx = 18;
-  const nz = 5;
-  const headGeom = new THREE.SphereGeometry(0.105, 14, 10);
-  const tailGeom = new THREE.CapsuleGeometry(0.035, 0.32, 4, 8);
-  const heads = new THREE.InstancedMesh(headGeom, material(0x3ac8ba, { transparent: true, opacity: 0.82, emissive: 0x0d4a46, emissiveIntensity: 0.2 }), nx * nz * 2);
-  const tails = new THREE.InstancedMesh(tailGeom, material(0x237a76, { transparent: true, opacity: 0.48 }), nx * nz * 4);
-  const dummy = new THREE.Object3D();
-  let hi = 0;
-  let ti = 0;
-  for (let ix = 0; ix < nx; ix += 1) {
-    for (let iz = 0; iz < nz; iz += 1) {
-      const x = (ix - (nx - 1) / 2) * 0.34;
-      const z = (iz - (nz - 1) / 2) * 0.34;
-      for (const sign of [-1, 1]) {
-        dummy.position.set(x, sign * 0.28, z);
-        dummy.rotation.set(0, 0, 0);
-        dummy.scale.set(1, 1, 1);
-        dummy.updateMatrix();
-        heads.setMatrixAt(hi, dummy.matrix);
-        hi += 1;
-        for (const off of [-0.065, 0.065]) {
-          dummy.position.set(x + off, sign * 0.5, z);
-          dummy.rotation.set(0, 0, 0);
-          dummy.scale.set(1, 1, 1);
-          dummy.updateMatrix();
-          tails.setMatrixAt(ti, dummy.matrix);
-          ti += 1;
-        }
-      }
-      if ((ix + iz) % 7 === 0) {
-        add(new THREE.CylinderGeometry(0.045, 0.045, 0.5, 6), material(0xffce7a, { emissive: 0x6d4a14, emissiveIntensity: 0.3 }), [x + 0.05, 0.1, z], [0, 0, 0.3], group);
-      }
-    }
-  }
-  group.add(heads, tails);
+  lipidBilayer(group, { width: 5.8, depth: 1.7, half: 0.46, spacing: 0.23,
+    holes: [[-2.2, 0.02, 0.24], [-1.15, 0.02, 0.24], [-0.1, 0.02, 0.24], [0.9, 0.05, 0.46], [2, 0.02, 0.24]] });
 
   // Cholesterol is a compact four-ring steroid, not a single yellow peg.
   for (let i = 0; i < 7; i += 1) {
@@ -382,10 +373,10 @@ function buildMembrane() {
   }
 
   const proteinColors = [0x7adfff, 0xffb0d6, 0xffd08a, 0xa9a4ff];
-  for (let i = 0; i < 5; i += 1) {
+  for (const i of [0, 1, 2, 4]) {
     const x = -2.2 + i * 1.05;
     capsule(group, 0.16, 0.8, proteinColors[i % proteinColors.length], [x, 0, 0.02], [0, 0, 0], { transparent: true, opacity: 0.9, glow: 0.55 });
-    ball(group, 0.17, proteinColors[(i + 1) % proteinColors.length], [x, 0.58, 0.02], { glow: 1.2, segments: 12, rings: 8 });
+    organic(group, 0.22, proteinColors[(i + 1) % proteinColors.length], [x, 0.58, 0.02], [1, 1.25, 0.85], i);
   }
   for (let i = 0; i < 5; i += 1) {
     const x = -2.3 + i * 1.12;
@@ -399,10 +390,15 @@ function buildMembrane() {
   for (let i = 0; i < 4; i += 1) {
     tube(group, [[-2.4 + i * 1.5, -0.78, -0.3], [-2.35 + i * 1.5, -1.2, -0.35], [-2.2 + i * 1.5, -1.55, -0.2]], 0.02, 0x76e2d4, { glow: 0.25, transparent: true, opacity: 0.45, segments: 14 });
   }
+  for (let i = 0; i < 6; i++) {
+    const a = i / 6 * TAU;
+    capsule(group, 0.075, 0.85, 0x7ebaca, [0.9 + Math.cos(a) * 0.31, 0, 0.05 + Math.sin(a) * 0.31],
+      [Math.sin(a) * 0.14, 0, -Math.cos(a) * 0.14], { roughness: 0.6, metalness: 0.02 });
+  }
   const channel = add(new THREE.CylinderGeometry(0.36, 0.36, 1.05, 24, 1, true), glass(0x86e8ff, 0.3), [0.9, 0, 0.05], null, group);
   channel.material.side = THREE.DoubleSide;
-  torus(group, 0.36, 0.06, 0x9cecff, [0.9, 0.52, 0.05], [Math.PI / 2, 0, 0], { glow: 1.2 });
-  torus(group, 0.36, 0.06, 0x9cecff, [0.9, -0.52, 0.05], [Math.PI / 2, 0, 0], { glow: 1.2 });
+  torus(group, 0.36, 0.035, 0x9cecff, [0.9, 0.52, 0.05], [Math.PI / 2, 0, 0], { roughness: 0.6, metalness: 0.02 });
+  torus(group, 0.36, 0.035, 0x9cecff, [0.9, -0.52, 0.05], [Math.PI / 2, 0, 0], { roughness: 0.6, metalness: 0.02 });
 
   for (let i = 0; i < 18; i += 1) {
     const a = (i / 18) * TAU;
@@ -415,20 +411,20 @@ function buildMembrane() {
   // Inner-leaflet phosphatidylserine patch and fluorescent lipid markers
   // that visibly diffuse sideways in the outer leaflet.
   for (let i = 0; i < 7; i += 1) {
-    ball(group, 0.075, 0xff9ecb, [-1.25 + i * 0.17, -0.36, 0.48], { glow: 0.45, segments: 8, rings: 6 });
+    ball(group, 0.075, 0xff9ecb, [-1.25 + i * 0.17, -0.49, 0.48], { glow: 0.45, segments: 8, rings: 6 });
   }
   const lipidMarkers = [];
   for (let i = 0; i < 7; i += 1) {
-    const mesh = ball(group, 0.045, 0xffd36e, [-2.25 + i * 0.72, 0.42, 0.72], { glow: 1.0, segments: 8, rings: 6 });
+    const mesh = ball(group, 0.045, 0xffd36e, [-2.25 + i * 0.72, 0.53, 0.72], { glow: 1.0, segments: 8, rings: 6 });
     lipidMarkers.push({ mesh, baseX: mesh.position.x, phase: i * 0.7 });
   }
-  label(group, '磷脂双分子层', [-2.7, -0.9, 0.4], 'PHOSPHOLIPID BILAYER');
+  label(group, '磷脂双分子层', [-2.7, -1.1, 0.4], 'PHOSPHOLIPID BILAYER');
   label(group, '整合膜蛋白', [2.65, 0.2, 0.2], 'INTEGRAL PROTEIN');
-  label(group, '通道蛋白', [0.9, 1.05, 0.2], 'CHANNEL');
-  label(group, '糖萼', [-1.55, 1.25, 0.3], 'GLYCOCALYX');
-  label(group, '胆固醇', [-1.3, 0.15, -0.6], 'CHOLESTEROL');
-  label(group, '磷脂酰丝氨酸', [-1.35, -0.72, 0.45], 'PS · INNER LEAFLET');
-  label(group, '脂质侧向扩散', [1.75, 0.82, 0.55], 'LATERAL DIFFUSION');
+  label(group, '通道蛋白', [0.4, 1.7, 0.2], 'CHANNEL');
+  label(group, '糖萼', [-2.1, 1.55, 0.3], 'GLYCOCALYX');
+  label(group, '胆固醇', [-0.2, -0.65, 0.95], 'CHOLESTEROL');
+  label(group, '磷脂酰丝氨酸', [0.4, -1.5, 0.45], 'PS · INNER LEAFLET');
+  label(group, '脂质侧向扩散', [2.3, 1.0, 0.55], 'LATERAL DIFFUSION');
   group.userData.update = (time) => {
     lipidMarkers.forEach(({ mesh, baseX, phase }, i) => {
       mesh.position.x = baseX + Math.sin(time * 0.45 + phase) * 0.24;
@@ -445,37 +441,8 @@ function buildMembrane() {
 function buildTransport() {
   const group = new THREE.Group();
   group.userData.distance = 11.4;
-  add(new THREE.BoxGeometry(6.4, 0.28, 2.5), material(0x1b615f, { transparent: true, opacity: 0.42, emissive: 0x0b3533, emissiveIntensity: 0.6 }), [0, 0, 0], null, group);
-  for (let i = 0; i < 30; i += 1) {
-    const x = -3 + (i / 29) * 6;
-    for (const z of [-1.1, 1.1]) ball(group, 0.04, 0x71e4d6, [x, 0.23, z], { glow: 0.5, segments: 7, rings: 5 });
-  }
-  for (let i = 0; i < 18; i += 1) {
-    const x = -3 + (i / 17) * 6;
-    for (const z of [-0.65, 0, 0.65]) {
-      ball(group, 0.028, 0x49bdb5, [x, 0.16, z], { glow: 0.25, segments: 6, rings: 4 });
-      ball(group, 0.028, 0x49bdb5, [x, -0.16, z], { glow: 0.25, segments: 6, rings: 4 });
-    }
-  }
-
-  // Two lipid leaflets with visible acyl tails. The denser head rows keep the
-  // bilayer readable at lesson distance without turning the plane into noise.
-  for (let i = 0; i < 30; i += 1) {
-    const x = -3 + (i / 29) * 6;
-    for (const z of [-1.1, 1.1]) {
-      for (const side of [-1, 1]) {
-        const tail = add(
-          new THREE.CylinderGeometry(0.009, 0.014, 0.23, 5),
-          material(0x2f8e86, { transparent: true, opacity: 0.45, emissive: 0x0b3533, emissiveIntensity: 0.25 }),
-          [x + Math.sin(i * 1.7) * 0.018, side * 0.09, z + Math.cos(i * 1.3) * 0.018],
-          [0, 0, Math.sin(i * 2.1) * 0.08],
-          group
-        );
-        tail.name = 'lipid-acyl-tail';
-        ball(group, 0.035, 0x5ad7c8, [x, side * 0.23, z], { glow: 0.32, segments: 6, rings: 4 });
-      }
-    }
-  }
+  lipidBilayer(group, { width: 6.2, depth: 2.3, half: 0.23,
+    holes: [[-1.65, 0, 0.54], [1.65, 0, 0.5], [-2.62, 0.55, 0.14], [-2.2, -0.72, 0.14], [0.15, 0.72, 0.14], [2.55, -0.6, 0.14]] });
   // A few integral proteins and carbohydrate chains give the membrane its
   // mosaic character while keeping the channel and pump visually dominant.
   for (const [x, z, hue] of [[-2.62, 0.55, 0x4fc9b8], [-2.2, -0.72, 0x65d8c4], [0.15, 0.72, 0x4fc9b8], [2.55, -0.6, 0x65d8c4]]) {
@@ -485,8 +452,8 @@ function buildTransport() {
 
   const channel = add(new THREE.CylinderGeometry(0.46, 0.46, 1.15, 26, 1, true), glass(0x8bdcff, 0.26), [-1.65, 0, 0], null, group);
   channel.material.side = THREE.DoubleSide;
-  torus(group, 0.46, 0.065, 0xa4eaff, [-1.65, 0.58, 0], [Math.PI / 2, 0, 0], { glow: 1.3 });
-  torus(group, 0.46, 0.065, 0xa4eaff, [-1.65, -0.58, 0], [Math.PI / 2, 0, 0], { glow: 1.3 });
+  torus(group, 0.46, 0.035, 0xa4eaff, [-1.65, 0.58, 0], [Math.PI / 2, 0, 0], { roughness: 0.6, metalness: 0.02 });
+  torus(group, 0.46, 0.035, 0xa4eaff, [-1.65, -0.58, 0], [Math.PI / 2, 0, 0], { roughness: 0.6, metalness: 0.02 });
   // Six tilted transmembrane helices around the pore, plus a selectivity ring.
   for (let i = 0; i < 6; i += 1) {
     const angle = i / 6 * TAU;
@@ -501,9 +468,12 @@ function buildTransport() {
 
   const pump = new THREE.Group();
   pump.position.set(1.65, 0, 0);
-  const pumpBody = capsule(pump, 0.42, 0.85, 0xffb56f, [0, 0.05, 0], null, { glow: 0.4 });
-  const pumpLeft = capsule(pump, 0.18, 0.5, 0xffdc9d, [-0.28, 0.55, 0], [0, 0, -0.35], { glow: 0.8 });
-  const pumpRight = capsule(pump, 0.18, 0.5, 0xffdc9d, [0.28, 0.55, 0], [0, 0, 0.35], { glow: 0.8 });
+  const pumpBody = organic(pump, 0.4, 0xd49c65, [0, 0.05, 0], [1, 1.55, 0.85], 3, { granular: true });
+  pumpBody.name = 'pump-transmembrane-core';
+  const pumpLeft = organic(pump, 0.27, 0xffdc9d, [-0.28, -0.58, 0], [0.9, 1.2, 1], 1);
+  pumpLeft.name = 'pump-cytoplasmic-domain-left';
+  const pumpRight = organic(pump, 0.27, 0xffdc9d, [0.28, -0.58, 0], [1, 1.15, 1], 4);
+  pumpRight.name = 'pump-cytoplasmic-domain-right';
   const pumpAtp = ball(pump, 0.16, 0xffe6a6, [0, -0.65, 0], { glow: 1.8 });
   // P-type pump detail: transmembrane helices, a phosphorylation site and a
   // small bound-ATP phosphate chain. The lesson controls still drive the lobes.
@@ -514,7 +484,7 @@ function buildTransport() {
       [Math.sin(angle) * 0.2, 0, -Math.cos(angle) * 0.2],
       { glow: 0.22, transparent: true, opacity: 0.82 });
   }
-  ball(pump, 0.055, 0x9dffe0, [0, 0.45, 0.3], { glow: 1.1, segments: 8, rings: 6 }).name = 'pump-phosphorylation-site';
+  ball(pump, 0.055, 0x9dffe0, [0, -0.48, 0.3], { glow: 1.1, segments: 8, rings: 6 }).name = 'pump-phosphorylation-site';
   torus(pump, 0.25, 0.018, 0xffe2af, [0, 0.22, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.55 });
   const pumpAtpDetail = new THREE.Group();
   for (let i = 0; i < 3; i += 1) {
@@ -654,14 +624,20 @@ function buildEndomembrane() {
   const group = new THREE.Group();
   group.userData.distance = 12.6;
   const er = [[-3.0, 0.2, 0.1], [-2.4, 0.9, -0.3], [-1.7, 0.2, 0.4], [-2.2, -0.6, -0.2], [-3.0, -0.7, 0.3], [-3.35, 0.0, -0.1], [-2.8, 0.45, 0.5], [-2.2, 1.0, 0.0]];
-  tube(group, er, 0.075, 0x74e6d8, { glow: 0.9, segments: 110 });
+  tube(group, er, 0.055, 0x74bfb0, { roughness: 0.6, segments: 110 });
+  for (let i = 0; i < 4; i++) {
+    cisterna(group, 0.82, 0.6, 0.055, 0x68b9a8, [-2.5, -0.2 + i * 0.25, 0], 0.18, i * 0.6);
+    for (let k = 0; k < 9; k++) {
+      const x = -2.98 + (k % 3) * 0.4, z = -0.32 + Math.floor(k / 3) * 0.3;
+      ball(group, 0.044, 0xdcc8a1, [x, -0.08 + i * 0.25, z], { roughness: 0.7, metalness: 0, segments: 8, rings: 6 });
+    }
+  }
   for (let i = 0; i < 12; i += 1) {
     ball(group, 0.045, 0x9affdf, [-2.9 + (i % 4) * 0.34, 0.55 + (i % 3) * 0.24, -0.25 + (i % 2) * 0.4], { glow: 1.2, segments: 8, rings: 6 });
   }
 
   for (let i = 0; i < 5; i += 1) {
-    add(new THREE.CylinderGeometry(1.02 - i * 0.07, 0.9 - i * 0.06, 0.1, 36), material(0xffb46e, { transparent: true, opacity: 0.82 }), [0.35, 0.8 - i * 0.2, 0], [0.15, 0, 0.06], group);
-    torus(group, 0.86 - i * 0.06, 0.035, 0xffd39d, [0.35, 0.86 - i * 0.2, 0], [Math.PI / 2, 0, 0.06], { transparent: true, opacity: 0.55 });
+    cisterna(group, 1.02 - i * 0.06, 0.66 - i * 0.025, 0.055, 0xd6a26c, [0.35, 0.8 - i * 0.23, 0], 0.21, i * 0.4).name = 'golgi-cisterna';
   }
   const path = new THREE.CatmullRomCurve3([
     new THREE.Vector3(-1.3, 0.1, 0.25),
@@ -700,7 +676,7 @@ function buildEndomembrane() {
   }
   for (const [x, y, z] of [[1.9, -0.75, 0.5], [2.25, -0.82, 0.35]]) {
     ball(group, 0.2, 0xc6ffff, [x, y, z], { glass: true, opacity: 0.22, segments: 14, rings: 10 });
-    torus(group, 0.22, 0.018, 0x9dffe8, [x, y, z], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.5 });
+    ball(group, 0.23, 0x9dffe8, [x, y, z], { glass: true, opacity: 0.16, segments: 20, rings: 14 });
     ball(group, 0.055, 0xffd48a, [x + 0.08, y + 0.02, z], { glow: 0.5, segments: 8, rings: 6 });
   }
   for (let i = 0; i < 7; i += 1) {
@@ -734,14 +710,8 @@ function buildMitoChloro() {
   mito.position.set(-2.25, 0.1, 0);
   capsule(mito, 1.05, 1.35, 0xffa765, [0, 0, 0], [0, 0, 0.05], { glass: true, opacity: 0.12 });
   capsule(mito, 0.88, 1.08, 0xffd08f, [0, 0, 0], [0, 0, 0.05], { glass: true, opacity: 0.12 });
-  for (let i = 0; i < 7; i += 1) {
-    const y = -0.85 + i * 0.28;
-    const pts = [];
-    for (let k = 0; k < 12; k += 1) {
-      const u = k / 11;
-      pts.push([-0.62 + u * 1.24, y + Math.sin(u * TAU * 1.4 + i) * 0.09, Math.sin(u * TAU + i * 0.5) * 0.38]);
-    }
-    tube(mito, pts, 0.035, 0xffb46e, { glow: 0.45, segments: 46 });
+  for (let i = 0; i < 7; i++) {
+    cisterna(mito, 0.74, 0.53, 0.036, 0xe3ad76, [0, -0.85 + i * 0.28, 0], 0.10, i * 0.6).name = 'crista-membrane';
   }
   // Cristae junctions, matrix ribosomes and dense granules add the internal
   // scale that is otherwise lost at the whole-organelle camera distance.
@@ -783,7 +753,15 @@ function buildMitoChloro() {
   torus(synthase, 0.12, 0.018, 0xffd18e, [0, 0, 0], [Math.PI / 2, 0, 0], { glow: 0.65, transparent: true, opacity: 0.75 });
   add(new THREE.CylinderGeometry(0.045, 0.045, 0.20, 12), material(0xc4fff2, { metalness: 0.25, emissive: 0x236f64, emissiveIntensity: 0.5 }), [0, 0.14, 0], null, synthase);
   const rotor = new THREE.Group();
+  rotor.name = 'atp-synthase-fixed-head';
   rotor.position.y = 0.30;
+  const shaft = capsule(synthase, 0.038, 0.26, 0xd9edcf, [0, 0.18, 0], [0.1, 0, 0.15], { metalness: 0.02 });
+  shaft.name = 'atp-synthase-rotating-shaft';
+  tube(synthase, [[0.19, 0, 0], [0.23, 0.23, 0], [0.13, 0.37, 0]], 0.018, 0xadcdb6);
+  for (let i = 0; i < 6; i++) {
+    const a = i / 6 * TAU;
+    organic(rotor, 0.075, i % 2 ? 0xdbb883 : 0xbca773, [Math.cos(a) * 0.11, 0, Math.sin(a) * 0.11], [0.85, 1.1, 0.85], i);
+  }
   torus(rotor, 0.14, 0.028, 0xffc275, [0, 0, 0], [Math.PI / 2, 0, 0], { glow: 0.8, transparent: true, opacity: 0.8 });
   const f1Sites = [];
   for (let i = 0; i < 3; i += 1) {
@@ -809,17 +787,17 @@ function buildMitoChloro() {
   }
   label(group, 'ATP 合酶', [-1.5, 1.2, 0.85], 'ATP SYNTHASE');
   label(group, 'H⁺ 回流', [-1.45, 0.28, 0.82], 'H⁺ FLOW');
-  label(group, 'F₁ 三步旋转', [-0.72, 1.02, 0.8], 'F₁ · 120° STEPS');
+  label(group, 'F₁ 中央轴旋转', [-0.72, 1.02, 0.8], 'F₁ · CENTRAL SHAFT');
   label(group, 'ADP + Pi → ATP', [-1.15, -1.12, 0.72], 'ATP SYNTHESIS');
 
   const chloro = new THREE.Group();
   chloro.position.set(2.15, 0.05, 0);
   add(new THREE.SphereGeometry(1.55, 44, 30), glass(0x63d9a1, 0.13), null, null, chloro, [1.15, 1.28, 0.86]);
-  add(new THREE.SphereGeometry(1.58, 24, 16), new THREE.MeshBasicMaterial({ color: 0x8af2b9, wireframe: true, transparent: true, opacity: 0.055 }), null, null, chloro, [1.15, 1.28, 0.86]);
+  add(organicGeometry(1.58, 0.025, 2), glass(0x8af2b9, 0.035), null, null, chloro, [1.15, 1.28, 0.86]);
   for (let s = 0; s < 3; s += 1) {
     const sx = -0.62 + s * 0.62;
     for (let i = 0; i < 5; i += 1) {
-      add(new THREE.CylinderGeometry(0.34, 0.34, 0.035, 28), material(0x5cd48c, { emissive: 0x174d30, emissiveIntensity: 0.22, transparent: true, opacity: 0.9 }), [sx, -0.55 + i * 0.155, 0.05], [0.12, 0.3, -0.18], chloro);
+      cisterna(chloro, 0.34, 0.32, 0.035, 0x6fae7d, [sx, -0.55 + i * 0.155, 0.05], 0.018, i).name = 'thylakoid-sac';
     }
     for (let i = 0; i < 5; i += 1) {
       torus(chloro, 0.32, 0.022, 0xc2ffd2, [sx, -0.55 + i * 0.155, 0.05], [Math.PI / 2 + 0.12, 0.3, -0.18], { transparent: true, opacity: 0.28 });
@@ -831,7 +809,7 @@ function buildMitoChloro() {
     const sx = -0.27 + s * 0.56;
     for (let i = 0; i < 4; i += 1) {
       const y = -0.55 + i * 0.17;
-      tube(chloro, [[sx, y, 0.05], [sx + 0.28, y + 0.1, 0.2], [sx + 0.56, y, 0.05]], 0.012, 0xa9f5bb, { glow: 0.35, transparent: true, opacity: 0.45, segments: 20 });
+      cisterna(chloro, 0.32, 0.13, 0.015, 0x8ec59a, [sx, y, 0.05], 0.025, i);
     }
   }
   for (let s = 0; s < 3; s += 1) {
@@ -866,7 +844,7 @@ function buildMitoChloro() {
   group.userData.update = (time) => {
     mito.rotation.z = Math.sin(time * 0.25) * 0.03;
     chloro.rotation.y = Math.sin(time * 0.22) * 0.08;
-    rotor.rotation.y = time * 1.7;
+    shaft.rotation.y = time * 1.7;
     f1Sites.forEach(({ mesh, phase }) => {
       mesh.material.emissiveIntensity = 0.6 + Math.sin(time * 3 + phase * TAU) * 0.55;
       mesh.scale.setScalar(0.85 + Math.sin(time * 3 + phase * TAU) * 0.25);
@@ -896,74 +874,56 @@ function buildMitoChloro() {
 function buildCytoskeleton() {
   const group = new THREE.Group();
   group.userData.distance = 12.2;
-  const makeStrand = (centerY, color, radius, twist, length, turns) => {
-    for (const phase of [0, Math.PI]) {
-      const pts = [];
-      for (let i = 0; i <= 40; i += 1) {
-        const u = i / 40;
-        const x = -3 + u * 6;
-        const a = u * TAU * turns + phase;
-        pts.push([x, centerY + Math.cos(a) * twist, Math.sin(a) * twist]);
-      }
-      tube(group, pts, radius, color, { glow: 0.65, segments: 120 });
+  for (let strand = 0; strand < 2; strand++) {
+    const points = [];
+    for (let i = 0; i < 42; i++) {
+      const u = i / 41, a = u * TAU * 3.5 + strand * Math.PI;
+      points.push([-3 + u * 6, 1.25 + Math.cos(a) * 0.14, Math.sin(a) * 0.14]);
     }
-  };
-  makeStrand(1.25, 0x68eadb, 0.07, 0.23, 6, 7);
-  for (let i = 0; i < 9; i += 1) {
-    const x = -2.7 + i * 0.65;
-    ball(group, 0.055, 0xa8fff0, [x, 1.25 + Math.sin(i * 1.7) * 0.23, Math.cos(i * 1.7) * 0.23], { glow: 0.35, segments: 8, rings: 6 });
-  }
-  for (let i = 0; i < 5; i += 1) ball(group, 0.12, 0xffc46d, [-2.2 + i * 1.1, 1.5 + (i % 2) * 0.12, 0.25], { glow: 1.1, segments: 12, rings: 8 });
-  // Actin monomers, crosslinkers and microtubule protofilaments.
-  for (let i = 0; i < 18; i += 1) {
-    const u = i / 17;
-    const a = u * TAU * 7;
-    ball(group, 0.035, 0xb9fff1, [-3 + u * 6, 1.25 + Math.cos(a) * 0.23, Math.sin(a) * 0.23], { glow: 0.35, segments: 6, rings: 4 });
+    beadInstances(group, points, 0.115, strand ? 0x75c4b5 : 0x459d92, [1, 0.95, 1], 'actin-strand-' + strand);
   }
   for (let i = 0; i < 6; i += 1) {
     const x = -2.4 + i * 0.96;
     capsule(group, 0.022, 0.55, 0xa8b8ff, [x, 0.36, 0.08], [0, 0, 0.05], { glow: 0.3, transparent: true, opacity: 0.55 });
   }
 
-  add(new THREE.CylinderGeometry(0.28, 0.28, 6, 28, 1, true), glass(0x7cc8ff, 0.24), [0, -0.55, 0], [0, 0, Math.PI / 2], group);
-  for (let i = 0; i < 7; i += 1) {
-    torus(group, 0.28, 0.025, 0xa7dfff, [-2.7 + i * 0.9, -0.55, 0], [0, Math.PI / 2, 0], { transparent: true, opacity: 0.55 });
-  }
-  for (let i = 0; i < 7; i += 1) {
-    const a = (i / 7) * TAU;
-    tube(group, [[-2.95, -0.55 + Math.cos(a) * 0.22, Math.sin(a) * 0.22], [2.95, -0.55 + Math.cos(a) * 0.22, Math.sin(a) * 0.22]], 0.008, 0x9ddfff, { transparent: true, opacity: 0.35, segments: 30 });
-  }
-  torus(group, 0.3, 0.035, 0xbcefff, [2.96, -0.55, 0], [0, Math.PI / 2, 0], { glow: 0.5, transparent: true, opacity: 0.65 });
-  for (let i = 0; i < 3; i += 1) {
-    const pts = [];
-    for (let k = 0; k < 30; k += 1) {
-      const u = k / 29;
-      const a = u * TAU * 1.2 + i;
-      pts.push([-2.8 + u * 5.6, -0.55 + Math.cos(a) * 0.26, Math.sin(a) * 0.26]);
+  const alpha = [], beta = [];
+  for (let strand = 0; strand < 13; strand++) {
+    const a = strand / 13 * TAU;
+    for (let i = 0; i < 36; i++) {
+      // A small longitudinal stagger suggests the lattice seam, without
+      // winding whole protofilaments into misleading helices.
+      const x = -2.92 + i * 0.165 + strand * 0.004;
+      (i % 2 ? beta : alpha).push([x, -0.55 + Math.cos(a) * 0.27, Math.sin(a) * 0.27]);
     }
-    tube(group, pts, 0.018, 0xb8e8ff, { glow: 0.3, transparent: true, opacity: 0.5, segments: 60 });
   }
+  beadInstances(group, alpha, 0.069, 0x6c9ec7, [1.23, 1, 1], 'alpha-tubulin');
+  beadInstances(group, beta, 0.069, 0x98c9df, [1.23, 1, 1], 'beta-tubulin');
+  group.userData.protofilaments = 13;
   for (let i = 0; i < 5; i += 1) {
     tube(group, [[-1.2 + i * 0.6, 0.75, 0.1], [-1.15 + i * 0.6, 0.1, 0.2], [-1.1 + i * 0.6, -0.45, 0.1]], 0.015, 0xffc98d, { glow: 0.3, transparent: true, opacity: 0.55, segments: 12 });
   }
   for (let i = 0; i < 4; i += 1) ball(group, 0.1, 0x9b8cff, [-1.9 + i * 1.2, -0.32, 0.3], { glow: 1.2, segments: 12, rings: 8 });
 
-  for (let strand = 0; strand < 3; strand += 1) {
+  for (let strand = 0; strand < 8; strand += 1) {
     const pts = [];
     for (let i = 0; i <= 38; i += 1) {
       const u = i / 38;
       const x = -3 + u * 6;
-      const a = u * TAU * 4 + (strand / 3) * TAU;
+      const a = u * TAU * 4 + (strand / 8) * TAU;
       pts.push([x, -1.75 + Math.cos(a) * 0.18, Math.sin(a) * 0.18]);
     }
-    tube(group, pts, 0.045, strand === 1 ? 0xff9fc9 : 0xb7cfd1, { glow: 0.5, segments: 110 });
+    tube(group, pts, 0.032, strand === 1 ? 0xff9fc9 : 0xb7cfd1, { glow: 0.5, segments: 110 });
   }
   const motors = [];
   const motorColors = [0xffd36e, 0xffd36e, 0xff9fc9];
   for (let i = 0; i < 3; i += 1) {
     const motor = new THREE.Group();
     motor.position.set(-2.2 + i * 1.5, -0.55, 0.28);
-    ball(motor, 0.10, motorColors[i], [0, 0, 0], { glow: 1.3, segments: 12, rings: 8 });
+    organic(motor, 0.085, motorColors[i], [-0.09, 0.025, 0], [1.1, 0.7, 1], i);
+    organic(motor, 0.085, motorColors[i], [0.09, 0.025, 0], [1.1, 0.7, 1], i + 2);
+    capsule(motor, 0.025, 0.24, motorColors[i], [0, 0.28, 0], null, { metalness: 0.02 });
+    organic(motor, 0.15, 0x88b9b6, [0, 0.5, 0], [1.1, 0.9, 1], i, { glass: true, opacity: 0.4 });
     capsule(motor, 0.035, 0.16, motorColors[i], [-0.08, 0.12, 0], [0, 0, -0.45], { glow: 0.8 });
     capsule(motor, 0.035, 0.16, motorColors[i], [0.08, 0.12, 0], [0, 0, 0.45], { glow: 0.8 });
     ball(motor, 0.045, 0xfff0bd, [0, 0.16, 0], { glow: 0.7, segments: 8, rings: 5 });
@@ -994,8 +954,8 @@ function buildNucleus() {
   const group = new THREE.Group();
   group.userData.distance = 11.6;
   add(new THREE.SphereGeometry(2.2, 52, 36), glass(0xb996ff, 0.13), null, null, group);
-  add(new THREE.SphereGeometry(2.23, 26, 18), new THREE.MeshBasicMaterial({ color: 0xd4bfff, wireframe: true, transparent: true, opacity: 0.07 }), null, null, group);
-  add(new THREE.SphereGeometry(2.08, 24, 16), new THREE.MeshBasicMaterial({ color: 0xffc6ea, wireframe: true, transparent: true, opacity: 0.035 }), null, null, group);
+  add(new THREE.SphereGeometry(2.23, 48, 32), glass(0xd4bfff, 0.045), null, null, group);
+  add(new THREE.SphereGeometry(2.08, 48, 32), glass(0xffc6ea, 0.055), null, null, group);
   const r = rand(404);
   for (let i = 0; i < 14; i += 1) {
     const theta = r() * TAU;
@@ -1016,6 +976,7 @@ function buildNucleus() {
   torus(npc, 0.24, 0.022, 0xffc6ea, [0, 0, 0], [0, 0, 0], { glow: 0.55, transparent: true, opacity: 0.68 });
   torus(npc, 0.46, 0.008, 0xc8f7ff, [0, 0, 0], [0, 0, 0], { glow: 0.35, transparent: true, opacity: 0.28 });
   const npcSpokes = new THREE.Group();
+  npcSpokes.name = 'nuclear-pore-scaffold';
   for (let i = 0; i < 8; i += 1) {
     const a = (i / 8) * TAU;
     add(new THREE.CylinderGeometry(0.018, 0.018, 0.27, 6), material(0xc8f4ff, { transparent: true, opacity: 0.78, emissive: 0x2f8ba0, emissiveIntensity: 0.5 }), [Math.cos(a) * 0.30, Math.sin(a) * 0.30, 0], [0, 0, a - Math.PI / 2], npcSpokes);
@@ -1023,6 +984,13 @@ function buildNucleus() {
   }
   add(new THREE.CylinderGeometry(0.085, 0.085, 0.30, 16, 1, true), glass(0x9be8ff, 0.32), [0, 0, 0], [Math.PI / 2, 0, 0], npc);
   ball(npc, 0.06, 0xffd2f1, [0, 0, 0], { glow: 0.8, segments: 12, rings: 8 });
+  for (const z of [-0.10, 0.10]) torus(npcSpokes, 0.33, 0.035, 0xb0c5d6, [0, 0, z], null, { roughness: 0.6 });
+  for (let i = 0; i < 8; i++) {
+    const a = i / 8 * TAU, x = Math.cos(a), y = Math.sin(a);
+    tube(npcSpokes, [[x * 0.32, y * 0.32, -0.1], [x * 0.27, y * 0.27, -0.35], [x * 0.16, y * 0.16, -0.48]], 0.012, 0xb1a4cd, { segments: 12 });
+    tube(npcSpokes, [[x * 0.32, y * 0.32, 0.1], [x * 0.39, y * 0.39, 0.26], [x * 0.43, y * 0.43, 0.33]], 0.014, 0xa6d4db, { segments: 12 });
+  }
+  torus(npcSpokes, 0.16, 0.015, 0xb1a4cd, [0, 0, -0.48]);
   npc.add(npcSpokes);
   const npcCargo = [];
   for (let i = 0; i < 4; i += 1) {
@@ -1063,14 +1031,17 @@ function buildNucleus() {
         Math.sin(a) * (0.4 + u * 1.2) + (i % 2 ? 0.3 : -0.25),
       ]);
     }
-    tube(group, pts, 0.04, i % 2 ? 0xffa6d9 : 0xcab3ff, { glow: 0.3, segments: 90 });
+    tube(group, pts, 0.018, i % 2 ? 0xffa6d9 : 0xcab3ff, { roughness: 0.6, segments: 90 });
+    const curve = new THREE.CatmullRomCurve3(pts.map(p => new THREE.Vector3(...p)));
+    beadInstances(group, Array.from({ length: 55 }, (_, k) => curve.getPoint(k / 54).toArray()), 0.055,
+      i % 2 ? 0xbc8eaa : 0x9d8db8, [1, 0.75, 1], 'chromatin-nucleosomes');
   }
   for (let i = 0; i < 22; i += 1) {
     const a = (i / 22) * TAU;
     const rr = 0.35 + (i % 5) * 0.2;
     ball(group, 0.06, 0xffc0e5, [Math.cos(a) * rr, Math.sin(a * 1.8) * 0.75, Math.sin(a) * rr], { glow: 0.45, segments: 9, rings: 6 });
   }
-  ball(group, 0.58, 0xff8fc3, [0.45, -0.2, 0.3], { glass: true, opacity: 0.5 });
+  organic(group, 0.58, 0xb975a7, [0.45, -0.2, 0.3], [1, 0.9, 1], 4, { glass: true, opacity: 0.55 });
   for (let i = 0; i < 8; i += 1) {
     const a = (i / 8) * TAU;
     ball(group, 0.055, 0xffe0a8, [0.45 + Math.cos(a) * 0.35, -0.2 + Math.sin(a * 2) * 0.25, 0.3 + Math.sin(a) * 0.35], { glow: 0.5, segments: 8, rings: 6 });
@@ -1112,7 +1083,7 @@ function buildNucleus() {
   label(group, '染色质', [-0.9, -0.85, 1.3], 'CHROMATIN');
   label(group, '核仁', [0.45, -0.2, 1.0], 'NUCLEOLUS');
   group.userData.update = (time) => {
-    npcSpokes.rotation.z = time * 0.16;
+    // The pore scaffold is fixed; only cargo traverses its central channel.
     npcCargo.forEach(({ mesh, phase, speed, dir }) => {
       const u = ((time * speed + phase) % 1 + 1) % 1;
       mesh.position.z = dir > 0 ? -0.56 + u * 1.12 : 0.56 - u * 1.12;
@@ -1143,12 +1114,25 @@ function buildRibosome() {
   }
   const large = new THREE.Group();
   large.position.set(0.25, 0.55, 0);
-  add(new THREE.SphereGeometry(1.08, 40, 28), material(0x6257b4, { roughness: 0.42, transparent: true, opacity: 0.88 }), null, null, large, [1.15, 0.78, 1]);
-  add(new THREE.SphereGeometry(1.09, 24, 14), new THREE.MeshBasicMaterial({ color: 0xb5a8ff, wireframe: true, transparent: true, opacity: 0.08 }), null, null, large, [1.15, 0.78, 1]);
+  organic(large, 1.08, 0x8272b6, [0, 0, -0.1], [1.15, 0.74, 0.82], 2, { granular: true });
+  organic(large, 0.35, 0x9c88cc, [-0.25, 0.62, -0.08], [0.95, 1.1, 1], 5);
+  organic(large, 0.27, 0x9c88cc, [0.9, 0.32, -0.12], [0.8, 1.1, 0.9], 3);
   group.add(large);
   const small = new THREE.Group();
   small.position.set(0.25, -0.28, 0);
-  add(new THREE.SphereGeometry(0.95, 36, 24), material(0x3f9d98, { roughness: 0.45, transparent: true, opacity: 0.9 }), null, null, small, [1.1, 0.56, 0.9]);
+  organic(small, 0.95, 0x62a39b, [0, -0.12, -0.06], [1.1, 0.43, 0.78], 4, { granular: true });
+  organic(small, 0.3, 0x84bcb0, [-0.7, 0.08, -0.12], [0.9, 1.2, 1], 1);
+  // rRNA surface ridges are schematic, not individual atoms.
+  for (const [part, hue, height] of [[large, 0xb3a1d2, 0.58], [small, 0x94ccbb, 0.30]]) {
+    for (let k = 0; k < 6; k++) {
+      const pts = [];
+      for (let j = 0; j < 22; j++) {
+        const a = j / 21 * Math.PI * 1.5 + k * 0.2;
+        pts.push([Math.cos(a) * (0.72 + k * 0.025), Math.sin(a * 2 + k) * height * 0.5, 0.48 + k * 0.045 + Math.sin(a) * 0.05]);
+      }
+      tube(part, pts, 0.025, hue, { segments: 40, roughness: 0.65 });
+    }
+  }
   group.add(small);
   for (let i = 0; i < 10; i += 1) {
     const a = (i / 10) * TAU;
@@ -1229,13 +1213,15 @@ function buildLightMicroscopy() {
 
   // Arm and head
   box(group, 0.5, 3.15, 0.62, 0x1d4a50, [-1.7, -0.25, 0], null, { metalness: 0.55, roughness: 0.35 });
-  box(group, 0.72, 0.55, 0.62, 0x1d4a50, [-1.35, 1.2, 0], null, { metalness: 0.55 });
+  box(group, 1.7, 0.45, 0.62, 0x1d4a50, [-0.85, 1.18, 0], null, { metalness: 0.55 });
   box(group, 1.0, 0.34, 0.68, 0x214f55, [0, 1.02, 0], null, { metalness: 0.5 });
   knob(group, 0.3, 0.14, 0x2a5d63, [-2.02, -0.15, 0.18], [0, 0, Math.PI / 2], 8);
   knob(group, 0.24, 0.12, 0x2a5d63, [-2.02, -0.55, 0.18], [0, 0, Math.PI / 2], 7);
 
   // Stage, slide clips and sample
-  box(group, 3.15, 0.14, 1.95, 0x1e5056, [0, -0.43, 0], null, { metalness: 0.55 });
+  for (const x of [-1.01, 1.01]) box(group, 1.13, 0.14, 1.95, 0x1e5056, [x, -0.43, 0], null, { metalness: 0.55 });
+  for (const z of [-0.71, 0.71]) box(group, 0.9, 0.14, 0.53, 0x1e5056, [0, -0.43, z], null, { metalness: 0.55 });
+  add(annulusGeometry(0.45, 0.35, 0.14), material(0x547678, { metalness: 0.65 }), [0, -0.43, 0], null, group).name = 'stage-light-aperture';
   box(group, 1.9, 0.045, 1.0, 0xa9f2ef, [0, -0.33, 0.05], null, { glass: true, opacity: 0.2 });
   box(group, 1.4, 0.025, 0.62, 0xc9fcff, [0.05, -0.3, 0.05], null, { glass: true, opacity: 0.24 });
   box(group, 0.34, 0.045, 0.62, 0x6b9a9e, [-0.75, -0.3, 0.05], null, { metalness: 0.5 });
@@ -1251,7 +1237,8 @@ function buildLightMicroscopy() {
   }
 
   // Condenser and illumination cone
-  add(new THREE.CylinderGeometry(0.38, 0.46, 0.3, 28), material(0x2b6268, { metalness: 0.55 }), [0, -0.72, 0], null, group);
+  add(annulusGeometry(0.46, 0.27, 0.3), material(0x2b6268, { metalness: 0.55 }), [0, -0.72, 0], null, group);
+  lensElement(group, 0.27, 0.04, 0xc5ded7, [0, -0.57, 0]);
   torus(group, 0.4, 0.025, 0x9af6ef, [0, -0.58, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.55 });
   for (let i = 0; i < 5; i += 1) {
     torus(group, 0.34 - i * 0.02, 0.01, 0x82e8e4, [0, -0.83 + i * 0.035, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.28 });
@@ -1261,22 +1248,22 @@ function buildLightMicroscopy() {
 
   // Revolving nosepiece and objectives
   const turret = new THREE.Group();
-  turret.position.set(0, 0.22, 0);
+  turret.position.set(0, 0.7, 0);
   add(new THREE.CylinderGeometry(0.62, 0.52, 0.18, 32), material(0x2b5f65, { metalness: 0.6 }), [0, 0, 0], null, turret);
   torus(turret, 0.55, 0.025, 0x8debe4, [0, -0.09, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.45 });
   const objectives = [
-    { x: -0.32, z: 0.2, len: 0.62, ring: 0x66e7dc },
-    { x: 0.3, z: 0.24, len: 0.48, ring: 0xffb36d },
-    { x: 0.12, z: -0.28, len: 0.78, ring: 0x9fa9ff },
+    { x: -0.36, z: -0.26, len: 0.44, ring: 0x66e7dc },
+    { x: 0.36, z: -0.26, len: 0.36, ring: 0xffb36d },
+    { x: 0, z: 0, len: 0.78, ring: 0x9fa9ff },
   ];
   objectives.forEach((obj) => {
-    add(new THREE.CylinderGeometry(0.14, 0.11, obj.len, 20), material(0x9ab8b8, { metalness: 0.55 }), [obj.x, -0.35, obj.z], [0, 0, 0], turret);
+    add(annulusGeometry(0.14, 0.085, obj.len, 24), material(0x9ab8b8, { metalness: 0.55 }), [obj.x, -0.35, obj.z], [0, 0, 0], turret);
     torus(turret, 0.15, 0.018, obj.ring, [obj.x, -0.35 - obj.len / 2, obj.z], [Math.PI / 2, 0, 0], { glow: 0.5, transparent: true, opacity: 0.75 });
   });
   group.add(turret);
 
   // Body tube, binocular head and camera port
-  add(new THREE.CylinderGeometry(0.26, 0.3, 1.25, 28), material(0x2b5f65, { metalness: 0.55 }), [0, 1.65, 0], null, group);
+  add(annulusGeometry(0.3, 0.18, 1.25), material(0x2b5f65, { metalness: 0.55 }), [0, 1.65, 0], null, group);
   box(group, 0.95, 0.32, 0.7, 0x1c464c, [0, 2.28, 0], null, { metalness: 0.5 });
   for (const x of [-0.28, 0.28]) {
     add(new THREE.CylinderGeometry(0.16, 0.18, 0.62, 22), material(0x2c5c62, { metalness: 0.5 }), [x, 2.56, -0.02], [0.12, 0, x > 0 ? -0.14 : 0.14], group);
@@ -1309,7 +1296,7 @@ function buildLightMicroscopy() {
 
   label(group, '光源 / 视场光阑', [-1.25, -1.42, 0.55], 'LIGHT SOURCE');
   label(group, '聚光镜 / 载物台', [1.05, -0.38, 0.65], 'CONDENSER / STAGE');
-  label(group, '物镜转盘', [-0.82, 0.22, 0.48], 'NOSEPIECE');
+  label(group, '物镜转盘', [-0.82, 0.72, 0.48], 'NOSEPIECE');
   label(group, '荧光滤块', [1.65, 0.75, 0.65], 'FILTER CUBE');
   label(group, '目镜 / 相机', [0.0, 2.95, 0.1], 'EYEPIECE / CAMERA');
   label(group, '样品 / 荧光标记', [0.0, 0.12, 0.72], 'SAMPLE');
@@ -1345,7 +1332,11 @@ function buildElectronMicroscopy() {
   outer.renderOrder = 3;
   for (let i = 0; i < 5; i += 1) {
     const y = -1.5 + i * 1.05;
-    add(new THREE.CylinderGeometry(1.08, 1.08, 0.12, 40), material(0x2c3a60, { metalness: 0.65 }), [0, y, 0], null, group);
+    for (let bolt = 0; bolt < 8; bolt++) {
+      const a = bolt / 8 * TAU;
+      add(new THREE.CylinderGeometry(0.035, 0.035, 0.05, 6), material(0x8c99ad, { metalness: 0.65 }), [Math.cos(a), y + 0.085, Math.sin(a)], null, group);
+    }
+    add(annulusGeometry(1.08, 0.82, 0.12), material(0x2c3a60, { metalness: 0.65 }), [0, y, 0], null, group);
     torus(group, 1.06, 0.035, 0x9fb4ff, [0, y, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.4 });
   }
   // Electron gun, anode and apertures
@@ -1355,7 +1346,7 @@ function buildElectronMicroscopy() {
   torus(group, 0.5, 0.04, 0xb2c3ff, [0, 3.12, 0], [Math.PI / 2, 0, 0], { glow: 0.6 });
   torus(group, 0.66, 0.035, 0x7085c7, [0, 2.55, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.5 });
   for (let i = 0; i < 3; i += 1) {
-    const disc = add(new THREE.CylinderGeometry(0.48, 0.48, 0.025, 28), material(0x394b7c, { metalness: 0.4 }), [0, 2.18 - i * 0.62, 0], null, group);
+    const disc = add(annulusGeometry(0.48, 0.10, 0.025), material(0x394b7c, { metalness: 0.4 }), [0, 2.18 - i * 0.62, 0], null, group);
     ball(group, 0.055, 0x8fdfff, [0, 2.18 - i * 0.62 + 0.018, 0], { glow: 0.6, segments: 8, rings: 5 });
     disc.renderOrder = 1;
   }
@@ -1365,7 +1356,13 @@ function buildElectronMicroscopy() {
   // Specimen airlock and holder rod
   add(new THREE.CylinderGeometry(0.22, 0.22, 0.9, 20), glass(0xb4c4ff, 0.2), [1.55, 0.38, 0], [0, 0, Math.PI / 2], group);
   add(new THREE.CylinderGeometry(0.28, 0.28, 0.32, 20), material(0x2e406c, { metalness: 0.6 }), [1.15, 0.38, 0], [0, 0, Math.PI / 2], group);
-  box(group, 1.8, 0.06, 1.15, 0x27335a, [0, 0.06, 0], null, { metalness: 0.55 });
+  add(annulusGeometry(0.45, 0.34, 0.05), material(0x8f8466, { metalness: 0.55 }), [0, 0.13, 0], null, group);
+  for (let i = -3; i <= 3; i++) {
+    const offset = i * 0.085, length = 2 * Math.sqrt(0.34 ** 2 - offset ** 2);
+    box(group, length, 0.009, 0.008, 0xab9774, [0, 0.14, offset]);
+    box(group, 0.008, 0.009, length, 0xab9774, [offset, 0.14, 0]);
+  }
+  tube(group, [[1.65, 0.38, 0], [0.75, 0.38, 0], [0.45, 0.13, 0]], 0.045, 0x7d90a8, { metalness: 0.6 });
   for (let i = 0; i < 5; i += 1) {
     ball(group, 0.045, 0xa8eaff, [-0.48 + i * 0.22, 0.13, -0.1 + (i % 2) * 0.22], { glow: 0.7, segments: 8, rings: 5 });
   }
@@ -1381,7 +1378,7 @@ function buildElectronMicroscopy() {
   screenPanel(group, 0.62, 0.34, 0x8fe8ff, [1.48, -0.82, 0.68], [0, -0.3, 0]);
   add(new THREE.CylinderGeometry(0.13, 0.13, 0.08, 18), material(0x5f7db4, { metalness: 0.5 }), [1.48, -1.04, 0.68], [Math.PI / 2, 0, 0], group);
   // Projector lens and viewing screen
-  add(new THREE.CylinderGeometry(0.62, 0.74, 0.32, 28), material(0x202f58, { metalness: 0.55 }), [0, -0.82, 0], null, group);
+  add(annulusGeometry(0.74, 0.17, 0.32), material(0x202f58, { metalness: 0.55 }), [0, -0.82, 0], null, group);
   torus(group, 0.62, 0.04, 0x83a0ff, [0, -0.98, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.55 });
   box(group, 1.65, 0.1, 1.25, 0x111a36, [0, -1.35, 0.08], null, { metalness: 0.5 });
   screenPanel(group, 1.25, 0.85, 0x4ff0b3, [0, -1.26, 0.42], [Math.PI / 2, 0, 0]);
@@ -1424,15 +1421,13 @@ function buildCentrifugation() {
   knob(group, 0.11, 0.08, 0x4c8289, [1.15, -1.0, 1.78], [Math.PI / 2, 0, 0], 5);
   box(group, 0.75, 0.14, 0.05, 0x2d7f78, [0.55, -1.18, 1.75], null, { glow: 0.5 });
   // Rotor chamber with transparent lid
-  add(new THREE.CylinderGeometry(2.85, 3.0, 0.85, 64, 1, true), glass(0x7be4dc, 0.08), [0, -0.65, 0], null, group);
-  torus(group, 2.85, 0.06, 0x5b999e, [0, -0.24, 0], [Math.PI / 2, 0, 0], { metalness: 0.6, transparent: true, opacity: 0.6 });
+  add(new THREE.CylinderGeometry(2.85, 3.0, 1.85, 64, 1, true), glass(0x7be4dc, 0.08), [0, -0.15, 0], null, group);
+  torus(group, 2.85, 0.06, 0x5b999e, [0, 0.78, 0], [Math.PI / 2, 0, 0], { metalness: 0.6, transparent: true, opacity: 0.6 });
   torus(group, 2.95, 0.05, 0x5b999e, [0, -1.02, 0], [Math.PI / 2, 0, 0], { metalness: 0.6, transparent: true, opacity: 0.55 });
-  add(new THREE.CylinderGeometry(2.6, 2.6, 0.08, 64, 1, true), glass(0x9df4e8, 0.1), [0, 0.0, 0], null, group);
-  add(new THREE.TorusGeometry(2.55, 0.035, 8, 72), material(0x7fe6d7, { transparent: true, opacity: 0.5, emissive: 0x1f7069, emissiveIntensity: 0.4 }), [0, 0.01, 0], [Math.PI / 2, 0, 0], group);
-  add(new THREE.CylinderGeometry(0.18, 0.18, 0.25, 16), material(0x4e7f85, { metalness: 0.5 }), [0, 0.2, 0], null, group);
+  add(new THREE.CylinderGeometry(0.18, 0.18, 1.05, 16), material(0x4e7f85, { metalness: 0.5 }), [0, 0.25, 0], null, group);
   // Rotor
   const rotor = new THREE.Group();
-  rotor.position.y = 0.05;
+  rotor.position.y = -0.4;
   add(new THREE.CylinderGeometry(0.52, 0.62, 0.55, 32), material(0x3f6c73, { metalness: 0.65, roughness: 0.3 }), [0, 0, 0], null, rotor);
   torus(rotor, 0.53, 0.05, 0x8ce6d9, [0, 0.25, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.55 });
   const tubes = [];
@@ -1446,8 +1441,12 @@ function buildCentrifugation() {
     }
     const bucket = new THREE.Group();
     bucket.position.set(1.65, 0.1, 0);
-    bucket.rotation.z = -0.82;
-    add(new THREE.CylinderGeometry(0.24, 0.2, 1.55, 24, 1, true), glass(0xc6f4ec, 0.24), [0, 0.36, 0], null, bucket);
+    bucket.rotation.z = 0.82;
+    bucket.name = 'centrifuge-bucket';
+    add(new THREE.LatheGeometry([
+      new THREE.Vector2(0, -0.84), new THREE.Vector2(0.08, -0.78), new THREE.Vector2(0.20, -0.55),
+      new THREE.Vector2(0.23, -0.44), new THREE.Vector2(0.24, 0.77),
+    ], 32), glass(0xc6f4ec, 0.24), [0, 0.36, 0], null, bucket);
     add(new THREE.CylinderGeometry(0.26, 0.24, 0.16, 24), material(0x5c8c91, { metalness: 0.55 }), [0, 1.17, 0], null, bucket);
     torus(bucket, 0.24, 0.025, 0xb8fff2, [0, 1.27, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.55 });
     const layerColors = [0x7fd7ff, 0xffb46e, 0x9ff2b0];
@@ -1462,8 +1461,8 @@ function buildCentrifugation() {
   group.add(rotor);
   // Transparent rotor lid and locking ring; the lid is visual, not a second
   // rotating body, so the buckets remain readable through it.
-  add(new THREE.CylinderGeometry(2.35, 2.35, 0.055, 64, 1, true), glass(0x9df4e8, 0.09), [0, 0.78, 0], null, group);
-  torus(group, 2.35, 0.025, 0xb8fff2, [0, 0.81, 0], [Math.PI / 2, 0, 0], { glow: 0.5, transparent: true, opacity: 0.5 });
+  add(new THREE.CylinderGeometry(2.85, 2.85, 0.055, 64), glass(0x9df4e8, 0.09), [0, 0.81, 0], null, group);
+  torus(group, 2.85, 0.025, 0xb8fff2, [0, 0.84, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.5 });
   box(group, 0.9, 0.1, 0.22, 0x4f858a, [0, 1.02, 0], null, { metalness: 0.5 });
   for (const x of [-0.44, 0.44]) add(new THREE.CylinderGeometry(0.045, 0.045, 0.12, 10), material(0x9ff2e8, { metalness: 0.4 }), [x, 1.12, 0], null, group);
   label(group, '转子 / 吊桶', [-1.9, 1.25, 0.3], 'ROTOR / BUCKET');
@@ -1473,7 +1472,7 @@ function buildCentrifugation() {
   label(group, '转速控制', [-1.65, -1.1, 1.8], 'SPEED CONTROL');
   group.userData.update = (time) => {
     rotor.rotation.y = time * 1.15;
-    tubes.forEach((tube, i) => { tube.rotation.z = -0.82 - Math.sin(time * 2.2 + i) * 0.018; });
+    tubes.forEach((tube, i) => { tube.rotation.z = 0.82 + Math.sin(time * 2.2 + i) * 0.018; });
   };
   return group;
 }
@@ -1487,23 +1486,25 @@ function buildCellCulture() {
   // Lab bench
   box(group, 5.6, 0.18, 3.2, 0x0c2024, [0, -1.28, 0], null, { metalness: 0.45 });
   box(group, 4.6, 0.12, 2.5, 0x18363a, [0, -1.16, 0], null, { metalness: 0.35 });
-  // T-flask: bottom, walls, shoulders and frame
-  box(group, 4.2, 0.14, 2.35, 0x71c9c0, [0, -1.05, 0], null, { glass: true, opacity: 0.22 });
-  box(group, 4.05, 1.85, 2.2, 0x9ce7dc, [0, 0.0, 0], null, { glass: true, opacity: 0.075 });
-  box(group, 4.05, 0.09, 2.2, 0x8ae2d7, [0, 0.92, 0], null, { glass: true, opacity: 0.16 });
-  for (const x of [-2.02, 2.02]) {
-    for (const z of [-1.1, 1.1]) {
-      box(group, 0.07, 1.95, 0.07, 0x87d6cd, [x, -0.05, z], null, { transparent: true, opacity: 0.4 });
-    }
-  }
-  for (const z of [-1.1, 1.1]) {
-    box(group, 4.05, 0.07, 0.07, 0x87d6cd, [0, 0.92, z], null, { transparent: true, opacity: 0.4 });
-  }
+  // Low-profile T-flask with tapered shoulders, generated from its outline.
+  const outline = new THREE.Shape();
+  outline.moveTo(-2.0, -1.05);
+  outline.lineTo(1.18, -1.05);
+  outline.quadraticCurveTo(1.6, -0.95, 2.18, -0.32);
+  outline.lineTo(2.18, 0.32);
+  outline.quadraticCurveTo(1.6, 0.95, 1.18, 1.05);
+  outline.lineTo(-2.0, 1.05);
+  outline.closePath();
+  const flaskGeometry = new THREE.ExtrudeGeometry(outline, {
+    depth: 1.15, steps: 1, bevelEnabled: true, bevelSize: 0.06, bevelThickness: 0.04, bevelSegments: 3, curveSegments: 12,
+  });
+  flaskGeometry.rotateX(-Math.PI / 2);
+  add(flaskGeometry, glass(0x9ce7dc, 0.12), [0, -0.98, 0], null, group).name = 'culture-flask-shell';
   // Angled neck and filter cap
-  add(new THREE.CylinderGeometry(0.3, 0.4, 1.1, 28), glass(0xb9fff3, 0.15), [2.25, 0.88, 0], [0, 0, -0.56], group);
-  add(new THREE.CylinderGeometry(0.38, 0.35, 0.28, 28), material(0x2b6d69, { metalness: 0.35 }), [2.75, 1.2, 0], [0, 0, -0.56], group);
+  add(new THREE.CylinderGeometry(0.3, 0.4, 1.1, 28), glass(0xb9fff3, 0.15), [2.25, 0.65, 0], [0, 0, -0.56], group);
+  add(new THREE.CylinderGeometry(0.38, 0.35, 0.28, 28), material(0x2b6d69, { metalness: 0.35 }), [2.56, 1.13, 0], [0, 0, -0.56], group);
   const cap = new THREE.Group();
-  cap.position.set(2.88, 1.27, 0);
+  cap.position.set(2.63, 1.26, 0);
   cap.rotation.z = -0.56;
   add(new THREE.CylinderGeometry(0.39, 0.39, 0.32, 28), material(0x6fbab0, { metalness: 0.35 }), [0, 0, 0], null, cap);
   for (let i = 0; i < 8; i += 1) {
@@ -1516,25 +1517,31 @@ function buildCellCulture() {
     box(group, 0.12, 0.025, 0.02, 0xc7fff5, [-1.7 + i * 0.18, -0.52, 1.12], null, { transparent: true, opacity: 0.45 });
   }
   for (let i = 0; i < 6; i += 1) {
-    box(group, 0.09, 0.012, 0.012, 0x8ff5e2, [-1.1 + i * 0.12, 0.58, 1.115], null, { transparent: true, opacity: 0.55 });
+    box(group, 0.09, 0.012, 0.012, 0x8ff5e2, [-1.1 + i * 0.12, 0.03, 1.115], null, { transparent: true, opacity: 0.55 });
   }
   for (const [cx, cz] of [[-1.25, -0.55], [0.2, 0.45], [1.15, -0.2]]) {
     torus(group, 0.17, 0.012, 0x9affdf, [cx, -0.875, cz], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.32 });
   }
   // Medium, meniscus and bubbles
-  box(group, 3.9, 0.48, 2.05, 0x1c6d68, [0, -0.68, 0], null, { transparent: true, opacity: 0.23 });
-  box(group, 3.9, 0.025, 2.05, 0x8ff5e2, [0, -0.43, 0], null, { transparent: true, opacity: 0.18 });
+  const liquid = new THREE.ExtrudeGeometry(outline, { depth: 0.48, steps: 1, bevelEnabled: false, curveSegments: 12 });
+  liquid.rotateX(-Math.PI / 2);
+  liquid.scale(0.94, 1, 0.94);
+  add(liquid, glass(0x3b8072, 0.22), [0, -0.94, 0], null, group);
+  const meniscus = new THREE.ShapeGeometry(outline, 12);
+  meniscus.rotateX(-Math.PI / 2);
+  meniscus.scale(0.94, 1, 0.94);
+  add(meniscus, glass(0xa9d7c9, 0.14), [0, -0.46, 0], null, group);
   const r = rand(222);
   for (let i = 0; i < 18; i += 1) {
-    ball(group, 0.022 + r() * 0.02, 0xc9fff3, [-1.7 + r() * 3.4, -0.36 + r() * 0.22, -0.85 + r() * 1.7], { glow: 0.2, segments: 7, rings: 5 });
+    ball(group, 0.022 + r() * 0.02, 0xc9fff3, [-1.6 + r() * 2.8, -0.72 + r() * 0.18, -0.8 + r() * 1.6], { glow: 0.2, segments: 7, rings: 5 });
   }
   // Adherent cell monolayer with nuclei and dividing pairs
   for (let i = 0; i < 62; i += 1) {
-    const x = -1.65 + r() * 3.3;
-    const z = -0.82 + r() * 1.64;
+    const x = -1.65 + (i % 10) * 0.30 + (r() - 0.5) * 0.05;
+    const z = -0.78 + Math.floor(i / 10) * 0.245 + (r() - 0.5) * 0.05;
     const y = -0.91 + (r() - 0.5) * 0.022;
-    const cell = ball(group, 0.07 + r() * 0.035, i % 5 === 0 ? 0xffaad5 : 0x78eab1, [x, y, z], { glow: 0.25, segments: 12, rings: 8 });
-    cell.scale.y = 0.5;
+    const cell = organic(group, 0.095, i % 5 === 0 ? 0xc695b0 : 0x78ad92, [x, y, z], [1.65, 0.27, 0.8], i);
+    cell.rotation.y = (r() - 0.5) * 0.7;
     ball(group, 0.026, 0x6bb9a8, [x, y + 0.035, z], { glow: 0.15, segments: 7, rings: 5 });
     if (i % 9 === 0) {
       const x2 = x + 0.12;
@@ -1544,11 +1551,11 @@ function buildCellCulture() {
   }
   // Floating dead/detached cells and a few bubbles
   for (let i = 0; i < 7; i += 1) {
-    ball(group, 0.05, 0x9ad8c4, [-1.2 + r() * 2.4, -0.28 + r() * 0.8, -0.4 + r() * 0.8], { glow: 0.18, segments: 8, rings: 6 });
+    ball(group, 0.05, 0x9ad8c4, [-1.2 + r() * 2.4, -0.74 + r() * 0.18, -0.4 + r() * 0.8], { glow: 0.18, segments: 8, rings: 6 });
   }
   // Pipette with bulb and drop
   const pipette = new THREE.Group();
-  pipette.position.set(-1.15, 1.9, 0.25);
+  pipette.position.set(-2.65, 1.6, 0.25);
   pipette.rotation.z = 0.3;
   add(new THREE.CylinderGeometry(0.055, 0.09, 2.0, 16), material(0xc4efe8, { transparent: true, opacity: 0.6 }), [0, 0, 0], null, pipette);
   ball(pipette, 0.28, 0x9de3d7, [0, 0.95, 0], { glass: true, opacity: 0.35, segments: 20, rings: 14 });
@@ -1559,9 +1566,9 @@ function buildCellCulture() {
   label(group, '滤膜盖', [2.85, 1.65, 0.2], 'FILTER CAP');
   label(group, '培养基 / 液面', [0.35, -0.3, 0.8], 'MEDIUM / MENISCUS');
   label(group, '贴壁细胞单层', [-0.8, -1.05, 0.5], 'CELL MONOLAYER');
-  label(group, '移液管 / 无菌操作', [-1.6, 2.35, 0.3], 'PIPETTE / STERILE');
+  label(group, '移液管（分开展示）', [-2.1, 2.35, 0.3], 'PIPETTE');
   group.userData.update = (time) => {
-    pipette.position.y = 1.9 + Math.sin(time * 0.5) * 0.02;
+    pipette.position.y = 1.6 + Math.sin(time * 0.5) * 0.02;
   };
   return group;
 }
@@ -1578,25 +1585,16 @@ function buildFrap() {
 
   add(new THREE.SphereGeometry(2.0, 56, 34), glass(0x61d8be, 0.14), [0, -0.72, 0], null, group, [1.35, 0.3, 1.0]);
   torus(group, 2.0, 0.025, 0x86efd7, [0, -0.72, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.35 });
-  // A sparse second leaflet, acyl tails, integral proteins and a few glycan
-  // chains make the membrane read as a fluid mosaic rather than a bare shell.
-  for (let i = 0; i < 36; i += 1) {
-    const angle = i / 36 * TAU;
-    const x = Math.cos(angle) * 1.47;
-    const z = Math.sin(angle) * 1.02;
-    ball(group, 0.024, 0x48b7a6, [x, -0.42, z], { glow: 0.2, segments: 6, rings: 4 });
-    add(new THREE.CylinderGeometry(0.008, 0.012, 0.16, 5),
-      material(0x2f8d80, { transparent: true, opacity: 0.38 }), [x, -0.5, z],
-      [Math.sin(angle) * 0.18, 0, -Math.cos(angle) * 0.18], group);
-  }
+  lipidBilayer(group, { width: 4.2, depth: 2.65, y: -0.59, half: 0.10,
+    spacing: 0.18, ellipse: true });
   for (const [angle, hue] of [[0.35, 0x4bc8b4], [2.0, 0x5ed6c2], [3.8, 0x3fae9f], [5.1, 0x66dcca]]) {
     const x = Math.cos(angle) * 1.16;
     const z = Math.sin(angle) * 0.82;
     capsule(group, 0.06, 0.36, hue, [x, -0.47, z], [0, 0, angle * 0.24], { glow: 0.3, transparent: true, opacity: 0.8 });
     tube(group, [[x, -0.32, z], [x + 0.08, -0.16, z + 0.03], [x + 0.02, -0.02, z + 0.08]], 0.01, 0x99ffe4, { glow: 0.4 });
   }
-  add(new THREE.SphereGeometry(0.48, 32, 20), material(0xb58cff, { transparent: true, opacity: 0.68 }), [-0.58, -0.62, 0.02], null, group);
-  ball(group, 0.19, 0xffabd8, [-0.58, -0.62, 0.02], { glow: 0.35, segments: 16, rings: 10 });
+  organic(group, 0.48, 0xa186bd, [-0.58, -0.89, 0.02], [1.1, 0.32, 0.85], 3, { glass: true, opacity: 0.55 });
+  organic(group, 0.14, 0xd49cbe, [-0.58, -0.87, 0.02], [1, 0.4, 1], 1);
 
   // The unbleached pool stays bright. Only molecules initially inside the
   // ROI are bleached; recovery is illustrated by different, bright arrivals.
@@ -1650,6 +1648,8 @@ function buildFrap() {
     }
   }
 
+  lensElement(group, 0.30, 0.04, 0xb2d7d0, [0.72, 0.94, 0.08]);
+  for (let i = 0; i < 5; i++) torus(group, 0.4, 0.009, 0x78aaa5, [0.72, 1.28 + i * 0.045, 0.08], [Math.PI / 2, 0, 0], { metalness: 0.6 });
   // Objective and laser. A pulse is never left on during recovery.
   add(new THREE.CylinderGeometry(0.42, 0.34, 0.6, 28), material(0x7bd7d0, { metalness: 0.4 }), [0.72, 1.25, 0.08], null, group);
   add(new THREE.CylinderGeometry(0.27, 0.27, 0.42, 24), material(0x2a5a5e, { metalness: 0.55 }), [0.72, 1.7, 0.08], null, group);
@@ -1809,19 +1809,13 @@ function buildFret() {
   group.userData.distance = 11.4;
   // Lab bench and membrane
   box(group, 6.0, 0.2, 3.1, 0x0b2025, [0, -1.45, 0], null, { metalness: 0.45 });
-  box(group, 5.35, 0.22, 2.2, 0x1a4b4e, [0, -0.88, 0], null, { transparent: true, opacity: 0.65 });
-  for (let i = 0; i < 16; i += 1) {
-    const x = -2.4 + i * 0.32;
-    for (const z of [-0.82, 0.82]) {
-      ball(group, 0.04, 0x6fe5d5, [x, -0.72, z], { glow: 0.22, segments: 7, rings: 5 });
-      ball(group, 0.035, 0x4ba7a4, [x, -1.02, z], { glow: 0.15, segments: 6, rings: 4 });
-    }
-  }
+  lipidBilayer(group, { width: 5.1, depth: 2, y: -0.88, half: 0.14, spacing: 0.2,
+    holes: [[-0.42, 0, 0.20], [0.42, 0, 0.20]] });
   // Receptor dimer: extracellular domains, transmembrane helices, intracellular tails
   for (const x of [-0.42, 0.42]) {
     add(new THREE.CylinderGeometry(0.16, 0.2, 1.05, 20), material(0x7184d2, { transparent: true, opacity: 0.85 }), [x, -0.25, 0], null, group);
-    ball(group, 0.3, 0x7c94df, [x, 0.45, 0.02], { transparent: true, opacity: 0.76, segments: 22, rings: 14 });
-    ball(group, 0.17, 0x9eb0ff, [x, 0.68, 0.02], { transparent: true, opacity: 0.65, segments: 14, rings: 9 });
+    organic(group, 0.3, 0x7c94bf, [x, 0.45, 0.02], [0.9, 1.2, 0.9], x * 4);
+    organic(group, 0.17, 0x9eb0cf, [x, 0.68, 0.02], [1, 1.2, 1], x * 3);
     add(new THREE.CylinderGeometry(0.075, 0.1, 0.55, 14), material(0x5368a5, { metalness: 0.2 }), [x, -1.05, 0], null, group);
     for (let i = 0; i < 3; i += 1) {
       torus(group, 0.18, 0.015, 0x9baaff, [x, -0.65 + i * 0.22, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.28 });
@@ -1831,7 +1825,7 @@ function buildFret() {
   // Donor and acceptor fluorophores with lobes and rims
   const donorGroup = new THREE.Group();
   donorGroup.position.set(-0.42, 0.95, 0.12);
-  ball(donorGroup, 0.23, 0x4ce2ff, [0, 0, 0], { glow: 1.0, segments: 28, rings: 18 });
+  ball(donorGroup, 0.09, 0x4ce2ff, [0, 0, 0], { glow: 1.0, segments: 28, rings: 18 });
   torus(donorGroup, 0.3, 0.022, 0x9ef7ff, [0, 0, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.6 });
   for (let i = 0; i < 4; i += 1) {
     const a = (i / 4) * TAU;
@@ -1840,13 +1834,22 @@ function buildFret() {
   group.add(donorGroup);
   const acceptorGroup = new THREE.Group();
   acceptorGroup.position.set(0.42, 0.95, 0.12);
-  ball(acceptorGroup, 0.23, 0xffb45e, [0, 0, 0], { glow: 0.5, segments: 28, rings: 18 });
+  ball(acceptorGroup, 0.09, 0xffb45e, [0, 0, 0], { glow: 0.5, segments: 28, rings: 18 });
   torus(acceptorGroup, 0.3, 0.022, 0xffd89b, [0, 0, 0], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.6 });
   for (let i = 0; i < 4; i += 1) {
     const a = (i / 4) * TAU + 0.3;
     ball(acceptorGroup, 0.05, 0xffcf85, [Math.cos(a) * 0.25, -0.06, Math.sin(a) * 0.25], { glow: 0.35, segments: 8, rings: 5 });
   }
   group.add(acceptorGroup);
+  for (const [barrel, hue] of [[donorGroup, 0x8cc6cb], [acceptorGroup, 0xd5ad79]]) {
+    barrel.name = 'fluorescent-protein-beta-barrel';
+    for (let i = 0; i < 11; i++) {
+      const a = i / 11 * TAU;
+      tube(barrel, [[Math.cos(a) * 0.18, -0.25, Math.sin(a) * 0.18],
+        [Math.cos(a + 0.18) * 0.21, 0, Math.sin(a + 0.18) * 0.21],
+        [Math.cos(a + 0.32) * 0.18, 0.25, Math.sin(a + 0.32) * 0.18]], 0.024, hue, { roughness: 0.65, segments: 12 });
+    }
+  }
   // Energy transfer field and distance bracket
   for (let i = 0; i < 4; i += 1) {
     torus(group, 0.28 + i * 0.1, 0.012, 0x76f5df, [0, 0.95, 0.12], [Math.PI / 2, 0, 0], { transparent: true, opacity: 0.28 - i * 0.05 });
@@ -1914,6 +1917,14 @@ const BUILDERS = {
   frap: buildFrap,
   fret: buildFret,
 };
+
+export function buildModelSpecimen(id) {
+  const builder = BUILDERS[id];
+  if (!builder) throw new RangeError('Unknown model: ' + id);
+  const specimen = builder();
+  specimen.name = id;
+  return specimen;
+}
 
 function disposeObject(object) {
   object.traverse((child) => {
@@ -2065,14 +2076,12 @@ export function createModelScene(container, options = {}) {
   }
   function setModel(id) {
     const spec = modelById(id);
-    const builder = BUILDERS[spec.id];
-    if (!builder) return;
     showHighlight(null);
     if (current) {
       root.remove(current);
       disposeObject(current);
     }
-    current = builder();
+    current = buildModelSpecimen(spec.id);
     current.userData.modelId = spec.id;
     root.add(current);
     labels = current.userData.labels || [];

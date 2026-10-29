@@ -1301,7 +1301,9 @@ function AtlasExperience() {
     <div
       ref={rootRef}
       className={`ca-root ${ready ? 'is-ready' : ''}`}
-      style={{ '--ca-accent': current.accent }}
+      style={{ '--ca-accent': current.accent,
+        // Electron's native menu/window controls stay above plugin overlays.
+        '--ca-host-top': window.location.protocol === 'dsh-app:' ? '40px' : '0px' }}
       role="dialog"
       aria-modal="true"
       aria-label={t('dialog', '细胞图谱 —— 一场穿过活细胞的视觉漫游')}
@@ -2055,6 +2057,7 @@ const ATLAS_CSS = `
 .ca-root {
   position: fixed;
   inset: 0;
+  top: var(--ca-host-top, 0px);
   z-index: 2147483000;
   overflow: hidden;
   pointer-events: auto;
@@ -2070,6 +2073,7 @@ const ATLAS_CSS = `
 .ca-root *::after { box-sizing: border-box; }
 .ca-root button { font: inherit; color: inherit; }
 .ca-root ::selection { background: rgba(127,247,228,.3); color: #fff; }
+.ca-root:fullscreen { top: 0; }
 
 .ca-fallback {
   position: absolute;
@@ -3386,7 +3390,7 @@ const ATLAS_CSS = `
 }
 .ca-book-panel {
   width: min(1180px, 96vw);
-  height: min(900px, 92vh);
+  height: min(900px, 92vh, calc(100dvh - var(--ca-host-top, 0px) - 48px));
   display: flex;
   flex-direction: column;
   overflow: hidden;

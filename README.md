@@ -1,6 +1,8 @@
 # Cell Atlas / 细胞图谱
 
 > **在线体验**：[https://herryatlas.github.io/cell-atlas/](https://herryatlas.github.io/cell-atlas/) · [14 个 3D 模型](https://herryatlas.github.io/cell-atlas/models.html) · [教材分节](https://herryatlas.github.io/cell-atlas/textbook.html)
+>
+> **仓库**：[github.com/HerryAtlas/cell-atlas](https://github.com/HerryAtlas/cell-atlas) · **产品介绍**：[PDF](presentation/Cell-Atlas-产品介绍与未来构想.pdf) · **合作计划**：[PDF](presentation/Cell-Atlas-团队与算力合作计划书.pdf)
 
 **A cinematic, fully procedural Three.js cell biology courseware.**  
 Seven movements, zero external textures or models, plus a **16-chapter / 44-section**
@@ -51,6 +53,10 @@ standalone page is not a video or a mock-up.
   structure specimens plus six experimental-method models (light/fluorescence
   microscopy, electron microscopy, centrifugation, cell culture, FRAP, FRET).
   They use projected anatomy labels and deep links from the reader.
+  All fourteen specimens include the structural refinements documented in
+  [MODEL-REALISM.md](MODEL-REALISM.md): molecular bilayers, membrane sacs,
+  subunit geometry and instrument assembly. These remain teaching-scale
+  reconstructions, not atomic structures or calibrated instrument simulations.
 - **First-visit onboarding** — a four-page guide before entering the cell:
   welcome, a concrete mock of the **T** study drawer, a complete new-version
   usage guide (models, public guided lesson, completion conditions, restart and
