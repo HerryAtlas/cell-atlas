@@ -57,6 +57,32 @@ export async function runPluginSmoke({ playwright, executablePath, channel, onPr
         await page.locator('.ca-launcher').click();
         for (let i = 0; i < 4; i++) await page.locator('.ca-intro .ca-enter').click();
         await page.locator('.ca-intro').waitFor({ state: 'hidden' });
+        // Fullscreen can be rejected in Electron hosts; the overlay must fall
+        // back to an in-window immersive mode instead of hiding the control.
+        const fullscreenButton = page.locator('.ca-root button[aria-label*="全屏"]');
+        assert.equal(await fullscreenButton.count(), 1, 'Fullscreen control is always available');
+        await fullscreenButton.click();
+        await page.waitForFunction(() =>
+          Boolean(document.fullscreenElement) ||
+          document.querySelector('.ca-root')?.classList.contains('is-expanded'));
+        const fullscreenTop = await page.locator('.ca-root').evaluate((el) => el.getBoundingClientRect().top);
+        assert.ok(fullscreenTop <= 1, 'Fullscreen or expanded mode starts at the viewport top');
+        await page.keyboard.press('Escape');
+        await page.waitForFunction(() =>
+          !document.fullscreenElement &&
+          !document.querySelector('.ca-root')?.classList.contains('is-expanded'));
+        // Simulate an Electron host that rejects the native API. The control
+        // must still expand the overlay instead of doing nothing.
+        await page.evaluate(() => {
+          const root = document.querySelector('.ca-root');
+          root.requestFullscreen = () => Promise.reject(new Error('blocked by host'));
+        });
+        await fullscreenButton.click();
+        await page.waitForFunction(() =>
+          document.querySelector('.ca-root')?.classList.contains('is-expanded'));
+        await page.keyboard.press('Escape');
+        await page.waitForFunction(() =>
+          !document.querySelector('.ca-root')?.classList.contains('is-expanded'));
         // The installed Windows client has native controls above the web overlay.
         // Emulate that reserved strip in the browser host; mobile stays unchanged.
         if (name === 'desktop') await page.addStyleTag({ content:

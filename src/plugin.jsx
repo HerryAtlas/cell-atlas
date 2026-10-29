@@ -928,10 +928,11 @@ function UsageManual({ onClose }) {
               <span><kbd>双击</kbd> 重置视角</span>
               <span><kbd>←</kbd><kbd>→</kbd> 切换章节</span>
               <span><kbd>Space</kbd> 暂停 / 继续</span>
-              <span><kbd>F</kbd> 全屏</span>
+              <span><kbd>F</kbd> 全屏 / 沉浸</span>
               <span><kbd>R</kbd> 重置视角</span>
               <span><kbd>−</kbd><kbd>=</kbd> 亮度</span>
             </div>
+            <p className="ca-manual-note">全屏：宿主允许时进入系统全屏；宿主限制原生全屏时，扩展为窗口内沉浸模式。Esc 先退出全屏 / 沉浸，再关闭当前面板。</p>
           </section>
 
           <section className="ca-manual-section">
@@ -984,6 +985,7 @@ function AtlasExperience() {
   const [bookChapter, setBookChapter] = React.useState(0);
   const [modelView, setModelView] = React.useState(null);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(false);
   const current = CHAPTERS[chapter];
   const study = current.study;
   const ended = !playing && chapter === CHAPTERS.length - 1 && progress > 0.995;
@@ -1118,6 +1120,7 @@ function AtlasExperience() {
   }, []);
 
   const close = React.useCallback(() => {
+    setIsExpanded(false);
     if (document.fullscreenElement && document.exitFullscreen) {
       document.exitFullscreen().catch(() => {});
     }
@@ -1145,15 +1148,28 @@ function AtlasExperience() {
     setPlaying(!playing);
   }, [playing, ended]);
 
-  const toggleFullscreen = React.useCallback(() => {
-    if (!document.fullscreenElement) {
-      if (rootRef.current && rootRef.current.requestFullscreen) {
-        rootRef.current.requestFullscreen().catch(() => {});
-      }
-    } else if (document.exitFullscreen) {
-      document.exitFullscreen().catch(() => {});
+  const toggleFullscreen = React.useCallback(async () => {
+    if (isExpanded) {
+      setIsExpanded(false);
+      return;
     }
-  }, []);
+    if (document.fullscreenElement) {
+      if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+      return;
+    }
+    const root = rootRef.current;
+    const request = root && (root.requestFullscreen || root.webkitRequestFullscreen);
+    if (request) {
+      try {
+        await request.call(root);
+        if (document.fullscreenElement || document.webkitFullscreenElement) return;
+      } catch {
+        // Electron hosts can disable the native Fullscreen API. Keep the
+        // cinematic overlay usable by expanding it inside the host viewport.
+      }
+    }
+    setIsExpanded(true);
+  }, [isExpanded]);
 
   const setBrightnessValue = React.useCallback((value) => {
     const next = Math.max(0.3, Math.min(1, Math.round(Number(value) * 100) / 100));
@@ -1222,6 +1238,7 @@ function AtlasExperience() {
     studyOpen,
     bookOpen,
     modelView,
+    expanded: isExpanded,
   };
 
   React.useEffect(() => {
@@ -1240,6 +1257,11 @@ function AtlasExperience() {
           event.preventDefault();
           actionsRef.current.closeBook();
         }
+        return;
+      }
+      if (event.key === 'Escape' && (actionsRef.current.expanded || document.fullscreenElement)) {
+        event.preventDefault();
+        actionsRef.current.toggleFullscreen();
         return;
       }
       if (event.key === 'Escape') {
@@ -1289,18 +1311,21 @@ function AtlasExperience() {
   }, []);
 
   React.useEffect(() => {
-    const onChange = () => setIsFullscreen(Boolean(document.fullscreenElement));
+    const onChange = () => {
+      const native = Boolean(document.fullscreenElement);
+      setIsFullscreen(native);
+      if (native) setIsExpanded(false);
+    };
     document.addEventListener('fullscreenchange', onChange);
     return () => document.removeEventListener('fullscreenchange', onChange);
   }, []);
 
-  const fullscreenSupported =
-    typeof document !== 'undefined' && Boolean(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  const immersive = isFullscreen || isExpanded;
 
   return (
     <div
       ref={rootRef}
-      className={`ca-root ${ready ? 'is-ready' : ''}`}
+      className={`ca-root ${ready ? 'is-ready' : ''} ${isExpanded ? 'is-expanded' : ''}`}
       style={{ '--ca-accent': current.accent,
         // Electron's native menu/window controls stay above plugin overlays.
         '--ca-host-top': window.location.protocol === 'dsh-app:' ? '40px' : '0px' }}
@@ -1551,17 +1576,15 @@ function AtlasExperience() {
             >
               <Icon name="next" />
             </button>
-            {fullscreenSupported && (
-              <button
-                type="button"
-                className="ca-ctrl ca-ctrl-quiet"
-                onClick={toggleFullscreen}
-                aria-label={isFullscreen ? t('exitFullscreen', '退出全屏') : t('fullscreen', '进入全屏')}
-                title={isFullscreen ? t('exitFullscreen', '退出全屏') : t('fullscreen', '进入全屏')}
-              >
-                <Icon name={isFullscreen ? 'collapse' : 'expand'} />
-              </button>
-            )}
+            <button
+              type="button"
+              className="ca-ctrl ca-ctrl-quiet"
+              onClick={toggleFullscreen}
+              aria-label={immersive ? t('exitFullscreen', '退出全屏') : t('fullscreen', '进入全屏')}
+              title={immersive ? t('exitFullscreen', '退出全屏') : t('fullscreen', '进入全屏')}
+            >
+              <Icon name={immersive ? 'collapse' : 'expand'} />
+            </button>
           </div>
         </footer>
       </div>
@@ -2073,7 +2096,13 @@ const ATLAS_CSS = `
 .ca-root *::after { box-sizing: border-box; }
 .ca-root button { font: inherit; color: inherit; }
 .ca-root ::selection { background: rgba(127,247,228,.3); color: #fff; }
-.ca-root:fullscreen { top: 0; }
+.ca-root:fullscreen { top: 0 !important; }
+.ca-root.is-expanded {
+  top: 0 !important;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 2147483646;
+}
 
 .ca-fallback {
   position: absolute;
