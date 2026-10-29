@@ -1,5 +1,11 @@
 # Real-browser lesson smoke tests
 
+`node tests/browser/main-gallery.mjs` checks all seven opening movements at desktop
+and phone widths, including onboarding, chapter navigation, orbit/zoom, WebGL errors
+and division playback. Screenshots and a report are written to
+`tests/browser-results/opening/`. Inspect them alongside the section-model gallery;
+the opening scene uses its own camera and post-processing.
+
 `node tests/browser/model-gallery.mjs` additionally checks all fourteen built
 models at 1440×1000 and 390×844, exercises orbit/zoom, checks WebGL and console
 errors, and saves screenshots plus `report.json` in `tests/browser-results/models/`.

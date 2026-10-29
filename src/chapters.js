@@ -20,7 +20,7 @@ export const CHAPTERS = [
     ],
     readout: 'WHOLE CELL / OPTICAL DARKFIELD',
     accent: '#7ff7e4',
-    camera: { pos: [0, 3.0, 23.5], target: [0, 0.6, 0], fov: 42 },
+    camera: { pos: [0, 3.0, 26.5], target: [0, 0.6, 0], fov: 42 },
     duration: 17000,
     study: {
       textbook: {
@@ -39,7 +39,7 @@ export const CHAPTERS = [
         { color: '#7ff7e4', label: '半透明外壳 = 细胞质膜' },
         { color: '#c58cff', label: '中央紫核 = 细胞核' },
         { color: '#9df5c1', label: '青绿丝网 = 细胞骨架' },
-        { color: '#ffc177', label: '金色胶囊 = 线粒体' },
+        { color: '#ffc177', label: '金色双膜与层片 = 线粒体及嵴' },
       ],
       concepts: [
         {
@@ -128,7 +128,7 @@ export const CHAPTERS = [
       visuals: [
         { color: '#67e8f9', label: '青色细杆 = 磷脂疏水尾部' },
         { color: '#b7fff4', label: '亮点 = 磷脂极性头部' },
-        { color: '#ffcf87', label: '胶囊/环 = 膜蛋白与通道' },
+        { color: '#ffcf87', label: '跨膜亚基 / 开放孔腔 = 膜蛋白与通道' },
         { color: '#ffb36b', label: '外围毛刺 = 糖萼' },
       ],
       concepts: [
@@ -330,7 +330,7 @@ export const CHAPTERS = [
         '理解线粒体半自主性、融合/分裂以及母系遗传。',
       ],
       visuals: [
-        { color: '#ffc177', label: '金色胶囊 = 线粒体' },
+        { color: '#ffc177', label: '金色双膜与层片 = 线粒体及嵴' },
         { color: '#ffe4a4', label: '内部条纹 = 内膜嵴' },
         { color: '#85fff2', label: '青蓝粒子 = 膜间隙质子' },
         { color: '#ffbf6b', label: '金色爆发 = ATP' },
@@ -375,7 +375,7 @@ export const CHAPTERS = [
       mechanism: [
         '糖酵解在细胞质中产生丙酮酸；丙酮酸进入线粒体基质，经丙酮酸脱氢酶复合体转为乙酰 CoA，进入三羧酸循环，生成 NADH、FADH₂ 和少量 ATP/GTP。',
         'NADH 和 FADH₂ 把电子交给内膜上的电子传递链；复合体 I、III、IV 将 H⁺ 泵到膜间隙，形成跨内膜质子动力势。',
-        'H⁺ 经 ATP 合酶 F₀ 部分回流，驱动 F₁ 头部旋转，使 ADP + Pi → ATP。若内膜对 H⁺ 自由通透，梯度消失，氧化与磷酸化解偶联。',
+        'H⁺ 经 ATP 合酶 F₀ 部分回流，驱动转子与中央轴旋转，促使固定的 F₁ 催化头发生构象变化，使 ADP + Pi → ATP。若内膜对 H⁺ 自由通透，梯度消失，氧化与磷酸化解偶联。',
         '嵴增加内膜面积；线粒体通过融合与分裂维持网络，受损线粒体可经线粒体自噬清除。',
       ],
       pitfalls: [
@@ -714,13 +714,13 @@ export const CHAPTERS = [
 
 // How much each visual system matters in each movement. 0 = absent, 1 = full.
 export const WEIGHTS = {
-  membrane: [1.0, 1.0, 0.2, 0.16, 0.28, 0.22, 0.1],
-  lipids: [1.0, 1.0, 0.18, 0.08, 0.1, 0.1, 0.04],
-  proteins: [0.9, 1.0, 0.2, 0.1, 0.18, 0.16, 0.04],
-  particles: [1.0, 0.55, 0.9, 0.55, 0.72, 0.72, 0.42],
-  cytoskeleton: [0.55, 0.2, 1.0, 0.28, 0.36, 0.52, 0.38],
-  mitochondria: [0.78, 0.1, 0.3, 1.0, 0.18, 0.14, 0.08],
-  nucleus: [1.0, 0.16, 0.3, 0.1, 1.0, 0.2, 0.1],
-  endomembrane: [0.62, 0.08, 0.25, 0.08, 0.35, 1.0, 0.12],
+  membrane: [1.0, 1.0, 0.12, 0.08, 0.1, 0.08, 0.0],
+  lipids: [1.0, 1.0, 0.05, 0.03, 0.03, 0.03, 0.0],
+  proteins: [0.9, 1.0, 0.05, 0.03, 0.03, 0.03, 0.0],
+  particles: [0.65, 0.3, 0.35, 0.25, 0.25, 0.3, 0.15],
+  cytoskeleton: [0.55, 0.05, 1.0, 0.06, 0.04, 0.06, 0.0],
+  mitochondria: [0.78, 0.04, 0.06, 1.0, 0.04, 0.04, 0.0],
+  nucleus: [1.0, 0.04, 0.08, 0.04, 1.0, 0.06, 0.0],
+  endomembrane: [0.62, 0.04, 0.06, 0.04, 0.05, 1.0, 0.0],
   mitosis: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0],
 };

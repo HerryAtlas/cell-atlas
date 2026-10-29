@@ -444,7 +444,7 @@ void main() {
   vec2 dir = normalize(c + 0.00001);
   float lens = r * r * 0.008 * uIntensity;
   vec2 warped = uv + dir * lens;
-  float ca = 0.0014 + r * 0.0022;
+  float ca = 0.00035 + r * 0.00065;
   ca *= uIntensity;
   vec3 col;
   col.r = texture2D(tDiffuse, warped + dir * ca).r;
@@ -458,11 +458,11 @@ void main() {
   for (int i = 0; i < 7; i++) {
     float f = float(i) / 6.0;
     float w = 1.0 - f;
-    blur += texture2D(tDiffuse, warped - dir * r * r * 0.022 * f).rgb * w;
+    blur += texture2D(tDiffuse, warped - dir * r * r * 0.008 * f).rgb * w;
     total += w;
   }
   blur /= total;
-  col = mix(col, blur, smoothstep(0.22, 0.9, r) * 0.5 * uIntensity);
+  col = mix(col, blur, smoothstep(0.4, 0.95, r) * 0.24 * uIntensity);
 
   col += vec3(0.18, 0.48, 0.54) * uFlash * (0.12 + r * 0.56);
   float grain = ca_hash(gl_FragCoord.xy + uTime * 61.0) - 0.5;

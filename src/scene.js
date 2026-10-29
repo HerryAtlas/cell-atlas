@@ -6,6 +6,10 @@ import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { CHAPTERS, WEIGHTS } from './chapters.js';
 import * as SH from './shaders.js';
+import { cisternaGeometry } from './model-geometry.js';
+import { sphericalBilayer, decorateMembraneProtein, cytoskeletonCurve,
+  cytoskeletonDetails, mitochondrialInterior, nuclearBasket, chromatinBeads,
+  roughERSheets, divisionAnatomy } from './scene-anatomy.js';
 
 const TAU = Math.PI * 2;
 const CELL_RADIUS = 8.2;
@@ -194,8 +198,10 @@ export function createCellAtlasScene(container, options = {}) {
   const pinkLight = new THREE.PointLight(0xff3e9f, 85, 40, 2);
   pinkLight.position.set(-9, -3, 6);
   scene.add(pinkLight);
-  const amberLight = new THREE.PointLight(0xffab58, 70, 34, 2);
-  amberLight.position.set(-4, -1, 2);
+  // Keep the fill outside the Golgi stack; an embedded point light clips the
+  // cisternae to white and hides their lumen/stacking in the close-up.
+  const amberLight = new THREE.PointLight(0xffab58, 22, 34, 2);
+  amberLight.position.set(-7, 4, 5);
   scene.add(amberLight);
   const topSpot = new THREE.SpotLight(0x8ff8ff, 170, 55, 0.62, 0.92, 1.6);
   topSpot.position.set(0, 18, 4);
@@ -343,7 +349,7 @@ export function createCellAtlasScene(container, options = {}) {
   const membraneMaterial = new THREE.ShaderMaterial({
     uniforms: {
       uTime: timeUniform,
-      uOpacity: { value: 0.8 },
+      uOpacity: { value: 0.56 },
       uAmp: { value: 0.14 },
       uColorA: { value: new THREE.Color(0x0a5262) },
       uColorB: { value: new THREE.Color(0x9b2c6c) },
@@ -379,7 +385,7 @@ export function createCellAtlasScene(container, options = {}) {
     attenuationDistance: 3.5,
     envMapIntensity: 1.15,
     transparent: true,
-    opacity: 0.28,
+    opacity: 0.16,
     depthWrite: false,
   });
   const physicalShell = new THREE.Mesh(
@@ -412,155 +418,23 @@ export function createCellAtlasScene(container, options = {}) {
 
   const lipidGroup = new THREE.Group();
   cellRoot.add(lipidGroup);
-  const lipidPoints = fibonacciSphere(1500);
   const dummy = new THREE.Object3D();
-  const lipidGeometry = new THREE.CylinderGeometry(0.026, 0.038, 0.36, 4, 1, false);
-  const lipidMaterial = new THREE.ShaderMaterial({
-    uniforms: {
-      uTime: timeUniform,
-      uOpacity: { value: 0.48 },
-      uColorA: { value: new THREE.Color(0x2dc9c0) },
-      uColorB: { value: new THREE.Color(0xff74b7) },
-    },
-    vertexShader: SH.LIPID_VS,
-    fragmentShader: SH.LIPID_FS,
-    transparent: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-  });
-  const lipids = new THREE.InstancedMesh(lipidGeometry, lipidMaterial, lipidPoints.length);
-  lipids.frustumCulled = false;
-  for (let i = 0; i < lipidPoints.length; i += 1) {
-    const dir = lipidPoints[i];
-    dummy.position.copy(dir).multiplyScalar(CELL_RADIUS + 0.03);
-    dummy.quaternion.setFromUnitVectors(UP, dir);
-    dummy.rotateY(rng() * TAU);
-    const s = 0.72 + rng() * 0.7;
-    dummy.scale.set(s, s, s);
-    dummy.updateMatrix();
-    lipids.setMatrixAt(i, dummy.matrix);
-  }
-  lipids.instanceMatrix.needsUpdate = true;
-  lipidGroup.add(lipids);
-
-  const headPositions = new Float32Array(lipidPoints.length * 3);
-  for (let i = 0; i < lipidPoints.length; i += 1) {
-    const p = lipidPoints[i].clone().multiplyScalar(CELL_RADIUS + 0.22);
-    headPositions[i * 3] = p.x;
-    headPositions[i * 3 + 1] = p.y;
-    headPositions[i * 3 + 2] = p.z;
-  }
-  const headGeo = new THREE.BufferGeometry();
-  headGeo.setAttribute('position', new THREE.BufferAttribute(headPositions, 3));
-  const headMat = new THREE.PointsMaterial({
-    color: 0x9ffff1,
-    size: 0.085,
-    sizeAttenuation: true,
-    transparent: true,
-    opacity: 0.36,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-  });
-  const heads = new THREE.Points(headGeo, headMat);
-  heads.frustumCulled = false;
-  lipidGroup.add(heads);
+  const proteinDirs = fibonacciSphere(30);
+  lipidGroup.add(sphericalBilayer(fibonacciSphere(2400), CELL_RADIUS, proteinDirs));
 
   const proteinGroup = new THREE.Group();
   cellRoot.add(proteinGroup);
-  const proteinDirs = fibonacciSphere(30);
-  const capsuleGeo = new THREE.CapsuleGeometry(0.145, 0.42, 5, 12);
-  const ringGeo = new THREE.TorusGeometry(0.27, 0.052, 6, 18);
-  const knobGeo = new THREE.SphereGeometry(0.085, 10, 8);
-  const proteinPalette = [
-    new THREE.MeshPhysicalMaterial({
-      color: 0x6ff5dd,
-      emissive: 0x1a8d7c,
-      emissiveIntensity: 0.62,
-      roughness: 0.3,
-      metalness: 0.15,
-      transmission: 0.28,
-      thickness: 0.4,
-      clearcoat: 1,
-      clearcoatRoughness: 0.2,
-      transparent: true,
-      opacity: 0.78,
-      envMapIntensity: 1.05,
-    }),
-    new THREE.MeshPhysicalMaterial({
-      color: 0xffb86b,
-      emissive: 0x8d4211,
-      emissiveIntensity: 0.58,
-      roughness: 0.28,
-      metalness: 0.2,
-      transmission: 0.24,
-      thickness: 0.4,
-      clearcoat: 1,
-      clearcoatRoughness: 0.16,
-      transparent: true,
-      opacity: 0.78,
-      envMapIntensity: 1.05,
-    }),
-    new THREE.MeshPhysicalMaterial({
-      color: 0xbe8dff,
-      emissive: 0x54278c,
-      emissiveIntensity: 0.55,
-      roughness: 0.32,
-      metalness: 0.1,
-      transmission: 0.2,
-      thickness: 0.35,
-      clearcoat: 0.9,
-      clearcoatRoughness: 0.22,
-      transparent: true,
-      opacity: 0.78,
-      envMapIntensity: 1.0,
-    }),
-  ];
   for (let i = 0; i < proteinDirs.length; i += 1) {
     const dir = proteinDirs[i];
     const protein = new THREE.Group();
     protein.position.copy(dir).multiplyScalar(CELL_RADIUS - 0.03);
     protein.quaternion.setFromUnitVectors(UP, dir);
     protein.rotateY(rng() * TAU);
-    const scale = 0.78 + rng() * 0.8;
+    const scale = 0.86 + rng() * 0.20;
     protein.scale.setScalar(scale);
-    const mat = proteinPalette[i % proteinPalette.length];
-    const body = new THREE.Mesh(capsuleGeo, mat);
-    body.position.y = 0.28;
-    protein.add(body);
-    const ring = new THREE.Mesh(ringGeo, mat);
-    ring.rotation.x = Math.PI * 0.5;
-    ring.position.y = 0.02;
-    protein.add(ring);
-    const knobs = 2 + Math.floor(rng() * 3);
-    for (let k = 0; k < knobs; k += 1) {
-      const knob = new THREE.Mesh(knobGeo, mat);
-      knob.position.set((rng() - 0.5) * 0.44, 0.7 + rng() * 0.4, (rng() - 0.5) * 0.44);
-      protein.add(knob);
-    }
+    decorateMembraneProtein(protein, i);
     proteinGroup.add(protein);
   }
-
-  const glycanCount = 180;
-  const glycanPositions = new Float32Array(glycanCount * 3);
-  for (let i = 0; i < glycanCount; i += 1) {
-    const dir = randomUnit(rng);
-    const p = dir.multiplyScalar(CELL_RADIUS + 0.38 + rng() * 0.38);
-    glycanPositions.set([p.x, p.y, p.z], i * 3);
-  }
-  const glycanGeo = new THREE.BufferGeometry();
-  glycanGeo.setAttribute('position', new THREE.BufferAttribute(glycanPositions, 3));
-  const glycanMat = new THREE.PointsMaterial({
-    color: 0xffd18f,
-    size: 0.07,
-    sizeAttenuation: true,
-    transparent: true,
-    opacity: 0.36,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
-  });
-  const glycans = new THREE.Points(glycanGeo, glycanMat);
-  glycans.frustumCulled = false;
-  proteinGroup.add(glycans);
 
   // ---------------------------------------------------------- cytoplasmic --
   const particleGroup = new THREE.Group();
@@ -609,18 +483,8 @@ export function createCellAtlasScene(container, options = {}) {
   const fiberPositions = [];
   const fiberT = [];
   const fiberSeeds = [];
-  for (let f = 0; f < 76; f += 1) {
-    const points = [];
-    const startDir = randomUnit(rng);
-    const start = startDir.multiplyScalar(2.9 + rng() * 4.6);
-    points.push(start);
-    const bend = randomUnit(rng).multiplyScalar(1.2 + rng() * 2.3);
-    points.push(start.clone().multiplyScalar(0.58).add(bend));
-    const other = randomUnit(rng).multiplyScalar(2.8 + rng() * 4.7);
-    points.push(other);
-    const end = randomUnit(rng).multiplyScalar(2.8 + rng() * 4.7);
-    points.push(end);
-    const curve = new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.5);
+  for (let f = 0; f < 48; f += 1) {
+    const curve = cytoskeletonCurve(f);
     fiberCurves.push(curve);
     const samples = [];
     for (let s = 0; s < 140; s += 1) samples.push(curve.getPoint(s / 139));
@@ -637,6 +501,7 @@ export function createCellAtlasScene(container, options = {}) {
       previous = current;
     }
   }
+  cytoskeletonGroup.add(cytoskeletonDetails(fiberCurves));
   const fiberGeo = new THREE.BufferGeometry();
   fiberGeo.setAttribute('position', new THREE.Float32BufferAttribute(fiberPositions, 3));
   fiberGeo.setAttribute('aT', new THREE.Float32BufferAttribute(fiberT, 1));
@@ -689,7 +554,7 @@ export function createCellAtlasScene(container, options = {}) {
       points.push(
         new THREE.Vector3(
           Math.cos(angle) * radius,
-          -3.8 + rng() * 7.6,
+          (-1 + rng() * 2) * Math.sqrt(Math.max(0, 7.7 ** 2 - radius ** 2)),
           Math.sin(angle) * radius
         )
       );
@@ -735,7 +600,7 @@ export function createCellAtlasScene(container, options = {}) {
   const nucleusMaterial = new THREE.ShaderMaterial({
     uniforms: {
       uTime: timeUniform,
-      uOpacity: { value: 0.92 },
+      uOpacity: { value: 0.22 },
       uColorA: { value: new THREE.Color(0x4b1b70) },
       uColorB: { value: new THREE.Color(0xc344a4) },
       uColorC: { value: new THREE.Color(0x8ff5ff) },
@@ -743,7 +608,7 @@ export function createCellAtlasScene(container, options = {}) {
     vertexShader: SH.NUCLEUS_VS,
     fragmentShader: SH.NUCLEUS_FS,
     transparent: true,
-    depthWrite: true,
+    depthWrite: false,
   });
   const nucleusCore = new THREE.Mesh(new THREE.SphereGeometry(2.5, 96, 64), nucleusMaterial);
   nucleusGroup.add(nucleusCore);
@@ -765,6 +630,9 @@ export function createCellAtlasScene(container, options = {}) {
   });
   const envelope = new THREE.Mesh(new THREE.SphereGeometry(2.78, 64, 48), envelopeMaterial);
   nucleusGroup.add(envelope);
+  const innerEnvelope = new THREE.Mesh(new THREE.SphereGeometry(2.66, 64, 40), envelopeMaterial.clone());
+  innerEnvelope.material.uniforms.uOpacity.value = 0.10;
+  nucleusGroup.add(innerEnvelope);
 
   const nucleolusGeometry = organicSphereGeometry(0.82, 32, 24, 0.07, 3.1);
   const nucleolusMaterial = new THREE.MeshStandardMaterial({
@@ -835,7 +703,8 @@ export function createCellAtlasScene(container, options = {}) {
     spoke.rotation.z = a - Math.PI / 2;
     npcSpokes.add(spoke);
   }
-  npc.add(npcSpokes);
+  npcSpokes.name = 'fixed-npc-scaffold';
+  npc.add(npcSpokes, nuclearBasket());
   const channel = new THREE.Mesh(
     new THREE.CylinderGeometry(0.085, 0.085, 0.30, 16, 1, true),
     new THREE.MeshBasicMaterial({ color: 0x6fe8ff, transparent: true, opacity: 0.18, side: THREE.DoubleSide, depthWrite: false })
@@ -930,7 +799,7 @@ export function createCellAtlasScene(container, options = {}) {
   });
   const chromatinNodes = new THREE.Points(chromatinPointGeo, chromatinPointMat);
   chromatinNodes.frustumCulled = false;
-  chromatinGroup.add(chromatinNodes);
+  chromatinGroup.add(chromatinNodes, chromatinBeads(chromatinPoints));
 
   const lamina = new THREE.Mesh(
     new THREE.IcosahedronGeometry(2.66, 2),
@@ -966,7 +835,7 @@ export function createCellAtlasScene(container, options = {}) {
   const mitoMaterial = new THREE.ShaderMaterial({
     uniforms: {
       uTime: timeUniform,
-      uOpacity: { value: 0.76 },
+      uOpacity: { value: 0.24 },
       uColorA: { value: new THREE.Color(0x7a2f11) },
       uColorB: { value: new THREE.Color(0xff9e4a) },
       uColorC: { value: new THREE.Color(0xffe4a4) },
@@ -974,7 +843,7 @@ export function createCellAtlasScene(container, options = {}) {
     vertexShader: SH.MITO_VS,
     fragmentShader: SH.MITO_FS,
     transparent: true,
-    depthWrite: true,
+    depthWrite: false,
   });
   const mitoGlowMaterial = new THREE.ShaderMaterial({
     uniforms: {
@@ -991,6 +860,7 @@ export function createCellAtlasScene(container, options = {}) {
     side: THREE.BackSide,
     blending: THREE.AdditiveBlending,
   });
+  const mitoBodies = [];
   const mitoGeometry = new THREE.CapsuleGeometry(0.42, 1.5, 6, 18);
   const mitoGlowGeometry = new THREE.CapsuleGeometry(0.5, 1.55, 6, 18);
   for (let i = 0; i < mitoPositions.length; i += 1) {
@@ -999,7 +869,8 @@ export function createCellAtlasScene(container, options = {}) {
     group.rotation.set(rng() * TAU, rng() * TAU, rng() * TAU);
     group.scale.set(0.8 + rng() * 0.45, 0.82 + rng() * 0.55, 0.8 + rng() * 0.45);
     const mito = new THREE.Mesh(mitoGeometry, mitoMaterial);
-    group.add(mito);
+    group.add(mito, mitochondrialInterior());
+    mitoBodies.push(group);
     const glow = new THREE.Mesh(mitoGlowGeometry, mitoGlowMaterial);
     group.add(glow);
     mitochondriaGroup.add(group);
@@ -1022,14 +893,18 @@ export function createCellAtlasScene(container, options = {}) {
     emissive: 0x9a4a13,
     emissiveIntensity: 0.85,
     roughness: 0.3,
-    metalness: 0.3,
+    metalness: 0.08,
+    transparent: true,
+    opacity: 0.9,
   });
   [0, 1, 2, 5, 7].forEach((index) => {
-    const center = new THREE.Vector3().fromArray(mitoPositions[index]);
-    const dir = center.clone().normalize();
-    const anchor = center.clone().addScaledVector(dir, 0.98);
+    const body = mitoBodies[index];
+    body.updateMatrix();
+    const dir = new THREE.Vector3(0, 0, 1).applyQuaternion(body.quaternion);
+    const anchor = new THREE.Vector3(0.04, 0.08, 0.30).applyMatrix4(body.matrix);
     const assembly = new THREE.Group();
     assembly.position.copy(anchor);
+    assembly.scale.setScalar(0.62);
     assembly.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir);
     const f0 = new THREE.Mesh(new THREE.TorusGeometry(0.30, 0.026, 8, 32), synthaseRingMat);
     const f0Inner = new THREE.Mesh(new THREE.TorusGeometry(0.17, 0.015, 8, 24), synthaseRingMat);
@@ -1051,7 +926,20 @@ export function createCellAtlasScene(container, options = {}) {
     stalk.position.z = -0.14;
     assembly.add(stalk);
     mitochondriaGroup.add(assembly);
-    synthaseRotors.push(rotor);
+    rotor.name = 'fixed-f1-head';
+    const shaft = new THREE.Group();
+    shaft.name = 'rotating-gamma-shaft';
+    assembly.remove(stalk);
+    shaft.add(stalk);
+    const cam = new THREE.Mesh(new THREE.SphereGeometry(0.04, 8, 6), synthaseGoldMat);
+    cam.position.set(0.035, 0, -0.2);
+    shaft.add(cam);
+    assembly.add(shaft);
+    const stator = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.34, 6), synthaseGoldMat);
+    stator.rotation.x = Math.PI / 2;
+    stator.position.set(0.20, 0, -0.15);
+    assembly.add(stator);
+    synthaseRotors.push(shaft);
     synthaseAnchors.push({ anchor, dir, quaternion: assembly.quaternion.clone() });
   });
 
@@ -1218,6 +1106,7 @@ export function createCellAtlasScene(container, options = {}) {
     depthWrite: false,
     blending: THREE.AdditiveBlending,
   });
+  endomembraneGroup.add(roughERSheets());
   const erCurves = [];
   for (let i = 0; i < 13; i += 1) {
     const points = [];
@@ -1275,7 +1164,7 @@ export function createCellAtlasScene(container, options = {}) {
   const golgiMat = new THREE.MeshStandardMaterial({
     color: 0xffa252,
     emissive: 0x9c3d0c,
-    emissiveIntensity: 0.7,
+    emissiveIntensity: 0.22,
     roughness: 0.34,
     metalness: 0.16,
     transparent: true,
@@ -1283,19 +1172,19 @@ export function createCellAtlasScene(container, options = {}) {
   });
   for (let i = 0; i < 6; i += 1) {
     const radius = 1.13 - i * 0.08;
-    const arc = Math.PI * (1.18 + i * 0.025);
     const cisterna = new THREE.Mesh(
-      new THREE.TorusGeometry(radius, 0.048, 8, 80, arc),
+      cisternaGeometry(radius, radius * 0.70, 0.046, 0.15, i),
       golgiMat
     );
     cisterna.position.z = (i - 2.5) * 0.16;
-    cisterna.rotation.z = -arc * 0.5 + Math.PI * 0.5;
+    cisterna.rotation.x = Math.PI / 2;
+    cisterna.rotation.z = (i - 2.5) * 0.035;
     golgiGroup.add(cisterna);
   }
 
   const vesicleRoutes = [];
   for (let i = 0; i < 18; i += 1) {
-    const start = new THREE.Vector3(-3.4 + (rng() - 0.5) * 1.2, 0.3 + (rng() - 0.5) * 1.2, 1.1 + (rng() - 0.5) * 1.2);
+    const start = erCurves[i % erCurves.length].getPoint(0.35 + rng() * 0.3);
     const end = new THREE.Vector3(-3.5 + (rng() - 0.5) * 0.8, -0.3 + (rng() - 0.5) * 0.8, 1.1 + (rng() - 0.5) * 0.8);
     const mid = start.clone().lerp(end, 0.5).add(randomUnit(rng).multiplyScalar(0.8));
     vesicleRoutes.push(new THREE.CatmullRomCurve3([start, mid, end]));
@@ -1339,6 +1228,11 @@ export function createCellAtlasScene(container, options = {}) {
   const vesicles = [];
   for (let i = 0; i < 40; i += 1) {
     const mesh = new THREE.Mesh(vesicleGeo, vesicleMats[i % 2]);
+    if (i % 3 === 0) {
+      const coat = new THREE.Mesh(new THREE.IcosahedronGeometry(0.13, 1),
+        new THREE.MeshBasicMaterial({ color: 0xc5b292, wireframe: true, transparent: true, opacity: 0.4, depthWrite: false }));
+      mesh.add(coat);
+    }
     const route = vesicleRoutes[i % vesicleRoutes.length];
     const data = {
       mesh,
@@ -1370,6 +1264,9 @@ export function createCellAtlasScene(container, options = {}) {
       0.9 + (rng() - 0.5) * 1.7
     );
     lysosome.scale.setScalar(0.75 + rng() * 0.9);
+    const contents = new THREE.Mesh(organicSphereGeometry(0.11, 16, 12, 0.035, i),
+      new THREE.MeshStandardMaterial({ color: 0x925263, roughness: 0.8, transparent: true, opacity: 0.8 }));
+    lysosome.add(contents);
     endomembraneGroup.add(lysosome);
   }
 
@@ -1412,9 +1309,15 @@ export function createCellAtlasScene(container, options = {}) {
       for (let arm = 0; arm < 2; arm += 1) {
         const mesh = new THREE.Mesh(chromatidGeo, material);
         mesh.rotation.z = (arm === 0 ? 1 : -1) * 0.58;
-        mesh.position.x = (arm === 0 ? 1 : -1) * 0.1;
+        // Arms meet at the centromere and trail behind the pole-facing tip.
+        mesh.position.set(-side * 0.13, (arm === 0 ? 1 : -1) * 0.2, 0);
+        mesh.rotation.z = (arm === 0 ? -side : side) * 0.58;
         group.add(mesh);
       }
+      const kinetochore = new THREE.Mesh(new THREE.SphereGeometry(0.065, 10, 8),
+        new THREE.MeshStandardMaterial({ color: 0xe6d7a9, roughness: 0.65, transparent: true, opacity: 0.9 }));
+      kinetochore.name = 'kinetochore';
+      group.add(kinetochore);
       group.position.copy(meta).add(new THREE.Vector3(side * 0.1, side * 0.045, 0));
       mitosisGroup.add(group);
       chromatids.push({
@@ -1485,6 +1388,9 @@ export function createCellAtlasScene(container, options = {}) {
     mitosisGroup.add(daughter);
     daughterNuclei.push(daughter);
   }
+
+  const division = divisionAnatomy();
+  mitosisGroup.add(division);
 
   addActor('membrane', membraneGroup);
   addActor('lipids', lipidGroup);
@@ -1577,7 +1483,7 @@ export function createCellAtlasScene(container, options = {}) {
     const next = clamp(Number(value) || 0.58, 0.3, 1);
     state.brightness = next;
     renderer.toneMappingExposure = 0.55 + next * 0.5;
-    bloom.strength = 0.14 + next * 0.46;
+    bloom.strength = 0.10 + next * 0.30;
   }
 
   function updateCamera(dt) {
@@ -1588,7 +1494,8 @@ export function createCellAtlasScene(container, options = {}) {
     state.pointerY += (state.pointerTargetY - state.pointerY) * (1 - Math.exp(-dt * 2.5));
 
     const distance = cameraBase.distanceTo(targetBase);
-    const zoomedDistance = Math.max(1.4, distance * clamp(state.zoom, 0.42, 1.75) * state.distanceScale);
+    const portraitFit = clamp(0.95 / camera.aspect, 1, 2.4);
+    const zoomedDistance = Math.max(1.4, distance * clamp(state.zoom, 0.42, 1.75) * state.distanceScale * portraitFit);
     const goal = cameraGoal.copy(targetBase);
     goalOffset.copy(cameraBase).sub(targetBase);
     goalOffset.normalize().multiplyScalar(zoomedDistance);
@@ -1609,22 +1516,23 @@ export function createCellAtlasScene(container, options = {}) {
   }
 
   function updateMembrane(dt) {
-    const breath = 1 + Math.sin(state.time * 0.64) * 0.006;
+    const breath = 1 + Math.sin(state.time * 0.64) * 0.002;
     membraneShell.scale.setScalar(breath);
     physicalShell.scale.setScalar(breath);
   }
 
   function updateNucleus(dt) {
+    nucleusLight.intensity = 6 * actors.get('nucleus').weight;
     chromatinGroup.rotation.y += dt * 0.018;
     chromatinGroup.rotation.x = Math.sin(state.time * 0.09) * 0.12;
     nucleolus.rotation.y += dt * 0.05;
     envelope.rotation.y -= dt * 0.012;
-    npcSpokes.rotation.z = state.time * 0.14;
+    // NPC scaffold is stationary; cargo translocation does not rotate the pore.
     npcCargo.forEach(({ mesh, phase, speed, dir }) => {
       const u = ((state.time * speed + phase) % 1 + 1) % 1;
       mesh.position.z = dir > 0 ? -0.62 + u * 1.24 : 0.62 - u * 1.24;
       mesh.scale.setScalar(0.7 + Math.sin(u * Math.PI) * 0.5);
-      mesh.material.opacity = 0.32 + Math.sin(u * Math.PI) * 0.6;
+      mesh.material.opacity = (0.32 + Math.sin(u * Math.PI) * 0.6) * actors.get('nucleus').weight;
     });
   }
 
@@ -1699,13 +1607,13 @@ export function createCellAtlasScene(container, options = {}) {
     synthaseRotors.forEach((rotor, i) => {
       rotor.rotation.z = state.time * (1.35 + i * 0.08);
     });
-    mitoLight.intensity = 15 + Math.sin(state.time * 1.7) * 5;
+    mitoLight.intensity = (5 + Math.sin(state.time * 1.7) * 1.2) * actors.get('mitochondria').weight;
   }
 
   function updateEndomembrane() {
     const t = state.time;
     for (const data of vesicles) {
-      const u = (data.offset + t * data.speed) % 1;
+      const u = THREE.MathUtils.euclideanModulo(data.offset + t * data.speed, 1);
       if (!Number.isFinite(u)) continue;
       const p = data.route.getPoint(u);
       data.mesh.position.copy(p);
@@ -1725,6 +1633,7 @@ export function createCellAtlasScene(container, options = {}) {
     const condense = smoothstep(0, 2.6, cycle);
     const separate = smoothstep(5.2, 9.4, cycle);
     const daughter = smoothstep(7.4, 10.8, cycle);
+    division.userData.update(smoothstep(8.2, 11.8, cycle));
     const positions = spindleGeo.attributes.position.array;
     for (let i = 0; i < chromatids.length; i += 1) {
       const data = chromatids[i];
@@ -1851,6 +1760,12 @@ export function createCellAtlasScene(container, options = {}) {
     composer.setPixelRatio(dpr);
     composer.setSize(width, height);
     camera.aspect = width / height;
+    if (camera.aspect < 0.85) {
+      // Reserve the lower phone screen for the existing chapter caption.
+      camera.setViewOffset(width, height, 0, height * 0.18, width, height);
+    } else {
+      camera.clearViewOffset();
+    }
     camera.updateProjectionMatrix();
     dprUniform.value = dpr;
     finalPass.uniforms.uResolution.value.set(width * dpr, height * dpr);
@@ -1869,7 +1784,9 @@ export function createCellAtlasScene(container, options = {}) {
     if (disposed) return;
     raf = requestAnimationFrame(frame);
     if (renderFailed) return;
-    const delta = Math.min((now - last) / 1000, 0.05);
+    // RAF timestamps can precede construction's performance.now() in the first
+    // frame. Never run paths backwards out of their [0, 1] parameter interval.
+    const delta = clamp((now - last) / 1000, 0, 0.05);
     last = now;
     const speed = state.paused ? 0.14 : 1;
     state.time += delta * speed;

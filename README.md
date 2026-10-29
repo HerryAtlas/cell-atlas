@@ -34,9 +34,13 @@ demo that runs on GitHub Pages. The visual engine is the same in both: the
 standalone page is not a video or a mock-up.
 
 - **Fully procedural** — icosahedral membrane, instanced phospholipids, flow
-  particles, chromatin fibres, mitochondrial cristae, ER tubes, Golgi arcs,
+  particles, chromatin fibres, mitochondrial cristae, rough ER sheets, Golgi cisternae,
   lysosomes, spindle fibres and contractile-ring geometry are all generated in
   code.
+- **All scenes refined** — the seven opening movements and fourteen section models
+  share anatomical shape cues, with inward lipid tails, folded membrane sacs,
+  fixed nuclear-pore scaffolds and a rotating ATP-synthase shaft. See
+  [model improvements and teaching limits](MODEL-REALISM.md).
 - **Custom GLSL** — noise displacement, Fresnel rims, liquid-crystal membrane
   veins, proton glow, volumetric shafts, film grain, chromatic aberration and a
   bespoke final grade.
