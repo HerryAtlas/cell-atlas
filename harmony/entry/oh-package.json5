@@ -1,0 +1,9 @@
+{
+  "name": "entry",
+  "version": "1.8.3",
+  "description": "Cell Atlas entry module",
+  "main": "",
+  "author": "HerryAtlas",
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -2,7 +2,7 @@
 
 > **在线体验**：[https://herryatlas.github.io/cell-atlas/](https://herryatlas.github.io/cell-atlas/) · [14 个 3D 模型](https://herryatlas.github.io/cell-atlas/models.html) · [教材分节](https://herryatlas.github.io/cell-atlas/textbook.html)
 >
-> **仓库**：[github.com/HerryAtlas/cell-atlas](https://github.com/HerryAtlas/cell-atlas) · **产品介绍**：[PDF](presentation/Cell-Atlas-产品介绍与未来构想.pdf) · **合作计划**：[PDF](presentation/Cell-Atlas-团队与算力合作计划书.pdf)
+> **仓库**：[github.com/HerryAtlas/cell-atlas](https://github.com/HerryAtlas/cell-atlas) · **产品介绍**：[PDF](presentation/Cell-Atlas-产品介绍与未来构想.pdf) · **合作计划**：[PDF](presentation/Cell-Atlas-团队与算力合作计划书.pdf) · **多设备**：[HarmonyOS 工程](harmony/README.md)
 
 **A cinematic, fully procedural Three.js cell biology courseware.**  
 Seven movements, zero external textures or models, plus a **16-chapter / 44-section**

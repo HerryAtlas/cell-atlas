@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>分节 3D 模型 / Cell Atlas Specimens</title>
+  <meta name="description" content="Cell Atlas 分节 3D 模型：原核/真核细胞、质膜、跨膜运输、内膜系统、线粒体/叶绿体、细胞骨架、细胞核与核糖体。" />
+  <link rel="canonical" href="https://herryatlas.github.io/cell-atlas/models.html" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; worker-src 'self' blob:;" />
+  <meta name="theme-color" content="#02070a" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./models.css" />
+</head>
+<body>
+  <div class="cm-app">
+    <header class="cm-top">
+      <a class="cm-back" href="./textbook.html">← 返回教材分节</a>
+      <div class="cm-brand"><i></i> CELL ATLAS <em>/ 3D SPECIMENS</em></div>
+      <div class="cm-batch" id="cmBatch">BATCH 01–02 · 14 MODELS</div>
+    </header>
+
+    <div class="cm-shell">
+      <aside class="cm-rail" aria-label="模型列表">
+        <div class="cm-rail-head">SPECIMEN INDEX</div>
+        <nav id="cmModelList"></nav>
+        <div class="cm-rail-foot" id="cmRailFoot">结构模型 + 实验方法<br />14 个重点模型</div>
+      </aside>
+
+      <main class="cm-view">
+        <div class="cm-stage" id="modelStage"></div>
+        <div class="cm-view-corner cm-view-corner--tl"></div>
+        <div class="cm-view-corner cm-view-corner--tr"></div>
+        <div class="cm-view-corner cm-view-corner--bl"></div>
+        <div class="cm-view-corner cm-view-corner--br"></div>
+        <div class="cm-hint">拖动旋转 · 滚轮缩放 · ← → 切换模型 · 跨膜运输可进导学</div>
+        <div class="cm-controls">
+          <label class="cm-exposure" title="模型亮度">
+            <span>亮度</span>
+            <input id="cmExposure" type="range" min="20" max="70" step="1" value="42" aria-label="模型亮度" />
+            <em id="cmExposureValue">42</em>
+          </label>
+          <button type="button" id="cmReset" aria-label="重置视角" title="重置视角 (R)">重置</button>
+          <button type="button" id="cmAuto" aria-pressed="true" title="自动旋转">自动旋转</button>
+          <button type="button" id="cmFull" aria-label="全屏" title="全屏 (F)">全屏</button>
+        </div>
+      </main>
+
+      <aside class="cm-info" aria-live="polite">
+        <div class="cm-info-eyebrow">MODEL NOTES / 模型说明</div>
+        <div class="cm-info-head">
+          <span id="cmIndex">01 / 08</span>
+          <span id="cmChapter">CH01 · 绪论</span>
+        </div>
+        <h1 id="cmTitle"></h1>
+        <div class="cm-en" id="cmEn"></div>
+        <p id="cmSummary"></p>
+        <div class="cm-info-label">观察重点 / WHAT TO NOTICE</div>
+        <ul id="cmPoints"></ul>
+        <button type="button" class="cm-learn-entry" id="cmLearnEntry" hidden>
+          <span>GUIDED LESSON / 互动课</span>
+          <b>进入「跨膜运输」导学</b>
+          <em>点击结构 · 机制演示 · 预测实验 · 练习</em>
+        </button>
+        <div class="cm-links">
+          <a id="cmBookLink" href="./textbook.html">打开对应教材小节 →</a>
+          <a id="cmSceneLink" href="./index.html">看整幕细胞 →</a>
+          <a href="./guide.html" target="_blank" rel="noopener">完整使用说明 →</a>
+        </div>
+        <div class="cm-info-foot" id="cmInfoFoot">拖动模型观察结构关系 · 模型为示意性重建，不按真实比例</div>
+      </aside>
+    </div>
+
+    <section class="cm-lesson" id="cmLesson" hidden aria-label="跨膜运输导学">
+      <header class="cm-lesson-head">
+        <div>
+          <div class="cm-lesson-kicker">GUIDED LESSON / 互动课</div>
+          <h2 id="cmLessonTitle">跨膜运输</h2>
+          <p id="cmLessonSubtitle">通道与泵 · Na⁺/K⁺ 泵的主动运输</p>
+          <a id="cmLessonBook" class="cm-lesson-book" href="./textbook.html?book=3">教材 pp. 62–68 · 回到对应小节 →</a>
+        </div>
+        <div class="cm-lesson-actions">
+          <button type="button" class="cm-lesson-help-toggle" id="cmLessonHelpToggle" aria-expanded="false" aria-controls="cmLessonHelp">使用说明</button>
+          <button type="button" class="cm-lesson-restart" id="cmLessonRestart" aria-expanded="false" aria-controls="cmLessonRestartPrompt">重新学习</button>
+          <button type="button" class="cm-lesson-peek" id="cmLessonPeek">看模型</button>
+          <button type="button" class="cm-lesson-close" id="cmLessonClose" aria-label="关闭导学">关闭</button>
+        </div>
+      </header>
+      <section class="cm-lesson-help" id="cmLessonHelp" hidden aria-labelledby="cmLessonHelpTitle">
+        <div class="cm-lesson-help-head">
+          <div>
+            <div class="cm-lsn-kicker">HOW TO USE / 使用说明</div>
+            <h3 id="cmLessonHelpTitle">这节导学怎么走</h3>
+          </div>
+          <button type="button" class="cm-lesson-close" id="cmLessonHelpClose">收起</button>
+        </div>
+        <ol class="cm-lesson-help-list" id="cmLessonHelpSteps">
+          <li><b>认识结构</b>：直接点模型里的膜、通道、泵、ATP；标签已隐藏，也可以点下方名称。四个都点过，底部「下一步」才解锁。</li>
+          <li><b>观察机制</b>：可选「正常 / 慢速」播放，或用「下一步」逐步看；系统减少动态效果开启时默认慢速。5 个步骤都看过，底部「下一步」才解锁；暂停、回看、重播都不会清空进度。</li>
+          <li><b>动手探索</b>：先选一个预测，再运行模拟。只有 <b>ATP = 0%、Na⁺ 梯度 = 60%、不加抑制剂</b> 的目标实验会解锁下一步；其它条件可以自由探索，但不计完成。改条件后要重新运行。每次运行加入对照记录，可复用条件或恢复初始条件；复用后仍需运行。运行后泵按「停止 / 低速 / 较快」演示；减少动态效果开启时显示静态示意。</li>
+          <li><b>场景练习</b>：点击泵、排好 5 步顺序、选对结果分析；三项都正确才算完成。答错可重试。</li>
+          <li><b>结课与复习</b>：可以点上方阶段回看；所有阶段完成后才能「完成并返回」。完成后再进入是复习，也可以「重新学习」。</li>
+          <li><b>手机</b>：点「看模型」收起面板，直接点结构，选中后自动回到面板。重学会二次确认；进度保存在当前浏览器，刷新后可继续；重学保留历史，清除本课记录会删除所有轮次。</li>
+        </ol>
+        <p class="cm-lsn-small">进度和实验记录只保存在当前浏览器，不上传，也不跨设备同步。共享电脑使用后可清除本课记录。</p>
+        <button type="button" class="cm-lesson-restart" id="cmLessonClear">清除本课记录</button>
+        <p class="cm-lsn-small">本版没有 AI 自动批改；是否完成由课程引擎按上述证据判定。独立站与插件共用两节互动课，进度分别保存在各自站点。</p>
+        <a class="cm-lesson-help-link" href="./guide.html" target="_blank" rel="noopener">查看完整使用说明（新版功能）→</a>
+      </section>
+      <div class="cm-lesson-restart-prompt" id="cmLessonRestartPrompt" role="group" aria-label="重新学习确认" hidden>
+        <p>重新开始本课？当前进度将重置，历史尝试和实验对照记录将保留，自动保存成功后刷新可继续。</p>
+        <div>
+          <button type="button" class="cm-lesson-close" id="cmLessonRestartCancel">继续本轮</button>
+          <button type="button" class="cm-lesson-restart" id="cmLessonRestartConfirm">确认重新学习</button>
+        </div>
+      </div>
+      <div class="cm-lesson-restart-prompt" id="cmLessonClearPrompt" role="group" aria-label="清除本课记录确认" hidden>
+        <p>删除本课全部进度、答案和实验记录？所有轮次都会清除，此操作无法撤销。</p>
+        <div>
+          <button type="button" class="cm-lesson-close" id="cmLessonClearCancel">取消，保留记录</button>
+          <button type="button" class="cm-lesson-restart" id="cmLessonClearConfirm">确认清除本课记录</button>
+        </div>
+      </div>
+      <nav class="cm-lesson-tabs" id="cmLessonTabs" role="tablist" aria-label="导学阶段">
+        <button type="button" role="tab" data-stage="0" aria-selected="true"><span>01</span>认识结构</button>
+        <button type="button" role="tab" data-stage="1" aria-selected="false"><span>02</span>观察机制</button>
+        <button type="button" role="tab" data-stage="2" aria-selected="false"><span>03</span>动手探索</button>
+        <button type="button" role="tab" data-stage="3" aria-selected="false"><span>04</span>场景练习</button>
+      </nav>
+      <div class="cm-lesson-scroll">
+        <p class="cm-lsn-small cm-lesson-save-status" id="cmLessonSaveStatus" role="status"></p>
+        <p class="cm-lesson-history" id="cmLessonHistory" role="status" hidden></p>
+        <div class="cm-lesson-body" id="cmLessonBody"></div>
+      </div>
+      <footer class="cm-lesson-foot">
+        <span id="cmLessonProgress">01 / 04 · 认识结构</span>
+        <button type="button" id="cmLessonNext">下一步 →</button>
+      </footer>
+    </section>
+
+    <!-- Shared four-stage lesson and usage guide: src/lesson-ui/shell.html; also hosted inside the React plugin. -->
+
+    <div class="cm-loading" id="cmLoading"><span></span> BUILDING SPECIMEN <i></i></div>
+    <div class="cm-error" id="cmError" hidden><b>模型未能加载</b><p id="cmErrorText"></p><button type="button" id="cmReload">重新加载</button></div>
+  </div>
+  <script src="./models.js"></script>
+</body>
+</html>
