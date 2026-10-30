@@ -20,7 +20,7 @@ harmony/
     src/main/resources/
       rawfile/www/         由 docs/ 复制而来
   build-harmony.ps1        ASCII 临时目录 + hvigor 构建
-  dist/                    构建产物
+  artifacts/               构建产物
 ```
 
 ## 构建
@@ -35,7 +35,7 @@ powershell -ExecutionPolicy Bypass -File .\harmony\build-harmony.ps1
 
 - DevEco：`D:\HarmoneyOs\DevEco Studio`
 - 构建目录：`D:\AI\DSH\cell-atlas-harmony-build`
-- 产物：`harmony\dist\CellAtlas-unsigned.hap`
+- 产物：`harmony\artifacts\CellAtlas-unsigned.hap`
 
 如果 DevEco 安装在其他位置：
 

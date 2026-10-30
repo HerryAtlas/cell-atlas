@@ -46,9 +46,17 @@ try {
       report.push({mode,id:CHAPTERS[i].id,webgl:true,errors:0});
       console.log(mode+': '+CHAPTERS[i].id);
     }
-    // Observe the end of the real division cycle, not only its starting pose.
-    await page.locator('#playBtn').click();
-    await page.waitForTimeout(10000);
+    // Reset the cycle and measure rendered simulation time. A wall-clock sleep
+    // can land in the next cycle or before anaphase on slow software WebGL.
+    await page.locator('#timeline button').nth(6).click();
+    await page.evaluate(() => new Promise(resolve => {
+      let elapsed=0, last=performance.now();
+      const tick=now=>{
+        elapsed+=Math.max(0,Math.min(now-last,50)); last=now;
+        if(elapsed>=10500) resolve(); else requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }));
     await page.screenshot({path:path.join(output,mode+'-division-late.png')});
     assert.deepEqual(errors,[]);
     await context.close();

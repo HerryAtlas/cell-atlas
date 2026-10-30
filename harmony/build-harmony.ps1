@@ -25,10 +25,13 @@ if ($LASTEXITCODE -ge 8) { throw "robocopy failed: $LASTEXITCODE" }
 # Always refresh the embedded web shell from the built docs output.
 $docs = Join-Path (Split-Path $source -Parent) 'docs'
 $www = Join-Path $BuildRoot 'entry\src\main\resources\rawfile\www'
+$sourceWww = Join-Path $source 'entry\src\main\resources\rawfile\www'
 if (-not (Test-Path -LiteralPath $docs)) { throw "docs not found: $docs" }
-if (Test-Path -LiteralPath $www) { Remove-Item -LiteralPath $www -Recurse -Force }
-New-Item -ItemType Directory -Path $www -Force | Out-Null
-Copy-Item -Path (Join-Path $docs '*') -Destination $www -Recurse -Force
+foreach ($target in @($www, $sourceWww)) {
+  if (Test-Path -LiteralPath $target) { Remove-Item -LiteralPath $target -Recurse -Force }
+  New-Item -ItemType Directory -Path $target -Force | Out-Null
+  Copy-Item -Path (Join-Path $docs '*') -Destination $target -Recurse -Force
+}
 Set-Content -LiteralPath (Join-Path $BuildRoot 'local.properties') -Value "sdk.dir=$($sdk.Replace('\','\\'))" -Encoding utf8
 
 $env:DEVECO_SDK_HOME = $sdk
@@ -45,7 +48,7 @@ try {
 
 $hap = Get-ChildItem -LiteralPath $BuildRoot -Recurse -File -Filter '*-unsigned.hap' | Select-Object -First 1
 if (-not $hap) { throw 'Build succeeded but no unsigned HAP was produced.' }
-$dist = Join-Path $source 'dist'
+$dist = Join-Path $source 'artifacts'
 New-Item -ItemType Directory -Path $dist -Force | Out-Null
 $target = Join-Path $dist 'CellAtlas-unsigned.hap'
 Copy-Item -LiteralPath $hap.FullName -Destination $target -Force

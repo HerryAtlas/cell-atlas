@@ -420,6 +420,10 @@ export function createCellAtlasScene(container, options = {}) {
   cellRoot.add(lipidGroup);
   const dummy = new THREE.Object3D();
   const proteinDirs = fibonacciSphere(30);
+  // Keep a representative channel and receptor in the membrane close-up,
+  // rather than placing every identifiable protein outside its initial frame.
+  proteinDirs[12].set(-0.18, 0.28, 0.94).normalize();
+  proteinDirs[13].set(-0.39, 0.12, 0.91).normalize();
   lipidGroup.add(sphericalBilayer(fibonacciSphere(2400), CELL_RADIUS, proteinDirs));
 
   const proteinGroup = new THREE.Group();
@@ -1381,8 +1385,8 @@ export function createCellAtlasScene(container, options = {}) {
     blending: THREE.AdditiveBlending,
   });
   const daughterNuclei = [];
-  for (const x of [-3.8, 3.8]) {
-    const daughter = new THREE.Mesh(new THREE.SphereGeometry(0.95, 32, 24), daughterMat);
+  for (const x of [-3.25, 3.25]) {
+    const daughter = new THREE.Mesh(new THREE.SphereGeometry(1.85, 32, 24), daughterMat);
     daughter.position.set(x, 0, 0);
     daughter.scale.setScalar(0.01);
     mitosisGroup.add(daughter);
@@ -1655,11 +1659,13 @@ export function createCellAtlasScene(container, options = {}) {
       positions[i * 6 + 5] = data.group.position.z;
     }
     spindleGeo.attributes.position.needsUpdate = true;
-    spindleMat.opacity = 0.07 + 0.17 * condense;
+    spindleMat.opacity = (0.07 + 0.17 * condense) * (1 - daughter);
 
     for (let i = 0; i < daughterNuclei.length; i += 1) {
       const s = 0.01 + daughter * (0.92 + Math.sin(state.time * 1.6 + i) * 0.05);
-      daughterNuclei[i].scale.setScalar(s);
+      // Flatten along the spindle axis to enclose the chromosome cluster
+      // while keeping the centrosome outside the re-forming nuclear envelope.
+      daughterNuclei[i].scale.set(s * 0.55, s, s);
     }
     poles[0].scale.setScalar(0.85 + Math.sin(state.time * 2.2) * 0.12);
     poles[1].scale.setScalar(0.85 + Math.cos(state.time * 2.1) * 0.12);
