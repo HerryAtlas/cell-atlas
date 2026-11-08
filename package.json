@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "esbuild": "^0.25.10",
-    "three": "^0.186.1"
+    "three": "^0.187.0"
   },
   "repository": {
     "type": "git",
